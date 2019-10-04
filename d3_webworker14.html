@@ -1,0 +1,55 @@
+<!--REMOVED SET TIME OUT, REMOVED TEST FUNCTION .. REMOVED OPEN AND PUSH-->
+
+<button onclick='clicked();console.log(test123);test123.postMessage("Message Sent","*");'>Test</button>
+
+<script>
+
+var test123 = {};
+var clicked = function () {
+
+
+    var win = window.open();
+    var i = 15;
+    win.console.log("Starting magic...");
+    var oScript = win.document.createElement("script");
+    var js = `window.addEventListener("message", function(event) {
+        
+            console.log( "received: " + event.data+" FROM:"+event.origin+" SOURCE:"+event.source );
+            console.log(event);
+            event.source.postMessage('New Tab responds back!!!',"*");
+
+});
+            `;
+
+    oScript.id="tested";
+    var oScriptText = win.document.createTextNode(js);
+    oScript.appendChild(oScriptText);
+    win.document.body.appendChild(oScript);
+    win.console.log('New script appended!');
+    test123 = win;
+}
+
+</script>
+
+
+<p>Count numbers: <output id="result"></output></p>
+<button onclick="startWorker()">Start Worker</button> 
+<button onclick="stopWorker()">Stop Worker</button>
+
+
+
+<script>
+
+function startWorker(){
+test123.postMessage("Message going and going","*");
+
+window.addEventListener("message", function(event) {
+  console.log(event);
+console.log( "received: " + event.data+" FROM:"+event.origin+" SOURCE:"+event.source );
+//event.source.postMessage('Source fires again !!!',"*"); //Infinite loop if this is enabled
+
+});
+
+}
+
+</script>

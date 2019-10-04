@@ -1,0 +1,405 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Portfolio page (work in progress)</title>
+<style>
+    /*to add responsive */  
+/*do something about IE*/
+  .section {
+        height: 400px;
+        width: 75%;
+        margin: 0px auto;
+        padding-top: 15%;
+        font-size: 20px;
+        color: white;
+        text-align: center;
+        font-family: 'Oswald', sans-serif;
+
+      }
+
+      
+
+      body, html, .container {
+        /* important */
+        height: 100%;
+        font-size: 0px;
+        margin: 0px;
+        padding: 0px;
+        font-family: 
+      }
+      
+
+
+      .cd-fixed-bg {
+        min-height: 100%;
+        width: 100%;
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: center center;
+        margin: 0px;
+        padding: 0px;
+        display: inline-block;
+        overflow: hidden; /*do not forget this line here*/
+      }
+
+       
+      .cd-fixed-bg.cd-bg-1 {
+        background-image: url("https://dl.dropboxusercontent.com/u/80598466/portfolio_page/spiral_background.jpg");
+      }
+      .cd-fixed-bg.cd-bg-2 {
+        background-image: url("https://dl.dropboxusercontent.com/u/80598466/portfolio_page/lights_background.jpg");
+      }
+      .cd-fixed-bg.cd-bg-3 {
+        background-image: url("https://dl.dropboxusercontent.com/u/80598466/portfolio_page/building_background.jpg");
+      }
+      .cd-fixed-bg.cd-bg-4 {
+        background-image: url("https://dl.dropboxusercontent.com/u/80598466/portfolio_page/starry_background.jpg");
+      }
+      
+      .contactB {
+        opacity: 0.7;
+        width: 120px;
+        height: 70px;
+        background-color: black;
+        font-size: 12px;
+        color: white;
+        border-radius: 10%;
+        margin-right: 5px;
+        margin-left: 5px;
+        font-family: 'Oswald', sans-serif;
+      }
+
+      .contactB:hover {
+        opacity: 0.9;
+        cursor: pointer;
+      }
+
+      li {
+        display: inline;
+        padding-left: 5px;
+        padding-right: 5px;
+        height: 100% auto;
+
+
+      } 
+
+      li:hover {
+        background-color: white;
+        color: black;
+        cursor: pointer;
+      }
+
+      li>a {
+        text-decoration: none;
+        color: grey;
+      }
+      li>a:hover {
+        color: black;
+      }     
+      .menu, .footer {
+        background-color: black;
+        width: 100%;
+        height: 50px;
+        font-size: 10px;
+        color: grey;
+        font-family: 'Oswald', sans-serif;
+      }
+
+      .menu {
+        position: fixed;
+        z-index: 1;
+      }
+
+      .tinyMenu {
+        text-align: right;
+        padding-right: 5%;
+        display: inline-block;
+        height: 100%;
+        width: 40%;
+        font-size: 15px;
+
+      }
+
+      .tinyName {
+        text-align: left;
+        padding-left: 5%;
+        display: inline-block;
+        height: 100%;
+        width: 40%;
+        font-size: 15px;
+      }
+
+      h1 {
+        font-family: 'Orbitron', sans-serif;
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+
+      h2 {
+        font-family: 'Orbitron', sans-serif;
+      }
+
+      .meText {
+        padding: 0px;
+        margin: 0px;
+        width: 50%;
+        height: 100%;
+        display: inline-block;
+        text-align: center;
+        margin: auto;
+        
+      }
+
+      .mePic {
+        padding: 0px;
+        margin: 0px;
+        width: 50%;
+        height: 100%;
+        display: inline-block;
+        float: right;
+
+      }
+
+      .portrait {
+        background-image: url('https://dl.dropboxusercontent.com/u/80598466/portfolio_page/profile_pic.jpg');
+        background-repeat: no-repeat;
+          background-position: center;
+          background-size: 150px;
+        width: 150px;
+        height: 150px;
+        border-radius: 20%;
+        border: 1px solid grey;
+        margin: auto;
+      }
+
+      .portfolioDiv {
+        width: 100%;
+        height: 100%;
+      }
+
+      .imageportfolio {
+        width: 25%;
+        height: 35%;
+        min-width: 100px;
+        display: inline-block;
+        margin-left: 3px;
+        margin-right: 3px;
+        opacity: 0.5;
+        color: white;
+      }
+
+      .imageportfolio:hover {
+        opacity: 1;
+      }
+
+      .empty {
+        background-image: url('https://images.unsplash.com/photo-1453282649935-38317451bf29?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=98a9923da68672214ba4fa9596970040');
+        background-size: 85%;
+        background-position: center;
+
+      }
+
+      #simonG {
+        background-image: url('https://dl.dropboxusercontent.com/u/80598466/portfolio_page/meteo_app.jpg');
+        background-size: 85%;
+        background-position: center;
+
+      }
+
+      #simonG p {
+        height: 70%;
+        background-color: black;
+        opacity: 0.7;
+        
+      }
+      #simonG p:hover {
+        color: black;
+        opacity: 0;
+      }
+
+      #memoryG {
+        background-image: url('https://dl.dropboxusercontent.com/u/80598466/portfolio_page/house_game.jpg');
+        background-size: 85%;
+        background-position: center;
+      }
+
+      #memoryG p {
+        height: 70%;
+        background-color: black;
+        opacity: 0.7;
+      }
+      #memoryG p:hover {
+        color: black;
+        opacity: 0;
+      }
+
+      #portfolioG {
+        background-image: url('https://dl.dropboxusercontent.com/u/80598466/portfolio_page/portofoliu.jpg');
+        background-size: 100%;
+        background-position: center;
+      }
+      #portfolioG p {
+        height: 70%;
+        background-color: black;
+        opacity: 0.7;
+      }
+      #portfolioG p:hover {
+        color: black;
+        opacity: 0;
+      }
+
+      #floodG {
+        background-image: url('https://dl.dropboxusercontent.com/u/80598466/portfolio_page/flood.jpg');
+        background-size: 100%;
+        background-position: center;
+      }
+      #floodG p {
+        height: 70%;
+        background-color: black;
+        opacity: 0.7;
+      }
+      #floodG p:hover {
+        color: black;
+        opacity: 0;
+      }
+
+      #quoteG {
+        background-image: url('https://dl.dropboxusercontent.com/u/80598466/portfolio_page/quote_machine.jpg');
+        background-size: 100%;
+        background-position: center;
+      }
+      #quoteG p {
+        height: 70%;
+        background-color: black;
+        opacity: 0.7;
+      }
+      #quoteG p:hover {
+        color: black;
+        opacity: 0;
+      }
+
+      #reflexG {
+        background-image: url('https://dl.dropboxusercontent.com/u/80598466/portfolio_page/reflexes.jpg');
+        background-size: 100%;
+        background-position: center;
+      }
+      #reflexG p {
+        height: 70%;
+        background-color: black;
+        opacity: 0.7;
+      }
+      #reflexG p:hover {
+        color: black;
+        opacity: 0;
+      }
+
+      .footer ul {
+        padding: 10px;
+        margin: 0px;
+        font-size: 0px;
+        text-align: right;
+      }
+
+      .footer li {
+        padding: 5px;
+        font-size: 15px;
+      }
+
+      .logo {
+        width: 75px;
+      }
+
+      .logoDiv {
+        display: inline-block;
+        padding: 20px;
+      }
+
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+
+<link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css">
+
+
+<div class="container">
+<div class="menu">
+<div class="tinyName">Adina Tudor
+</div>
+<div class="tinyMenu">
+<ul class="menuUl">
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#portfolio">Portfolio</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</div>
+</div>
+<div class="cd-fixed-bg cd-bg-1">
+<div class="section transparent" id="home">
+<a name="home"></a>
+<h1>One Portfolio, Lots of Awesomeness</h1>
+<a href="https://twitter.com/adinatudor" target="_blank"><button class="contactB">Twitter</button></a>
+<a href="https://codepen.io/adinatudor/" target="_blank"><button class="contactB">CodePen</button></a>
+<a href="https://www.freecodecamp.com/adinatudor" target="_blank"><button class="contactB">FreeCodeCamp</button></a>
+<a href="https://codingalien.wordpress.com/" target="_blank"><button class="contactB">Wordpress</button></a>
+<a href="https://github.com/adinatudor" target="_blank"><button class="contactB">GitHub</button></a>
+</div>
+</div>
+<div class="cd-fixed-bg cd-bg-2">
+<div class="section transparent" id="about">
+<a name="about"></a>
+<div class="meText">
+<h2>About me</h2>
+<p>Programming apprentice and Free Code Camper, learning JavaScript, jQuery, HTML and CSS magic. Aiming to become a professional Front-End Developer.</p>
+</div>
+<div class="mePic">
+<div class="portrait"></div>
+</div>
+</div>
+</div>
+<div class="cd-fixed-bg cd-bg-3">
+<div class="section transparent" id="portfolio">
+<a name="portfolio"></a>
+<h2>Current portfolio</h2>
+<div class="portfolioDiv">
+<a href="https://codepen.io/adinatudor/full/qNPYJE/" target="_blank"><div class="imageportfolio" id="simonG"><p>Meteo App</p></div></a>
+<a href="https://codepen.io/adinatudor/full/rrLAbq/" target="_blank"><div class="imageportfolio" id="memoryG"><p>House Game </p></div></a>
+<a href="https://codepen.io/adinatudor/full/EPLNbq/" target="_blank"><div class="imageportfolio" id="portfolioG"><p>Portfolio page</p></div></a>
+<a href="https://codepen.io/adinatudor/full/MyBdqM/" target="_blank"><div class="imageportfolio" id="floodG"><p>Flood it!</p></div></a>
+<a href="https://codepen.io/adinatudor/full/YqKXKj/" target="_blank"><div class="imageportfolio" id="quoteG"><p>Random Quote</p></div></a>
+<a href="https://codepen.io/adinatudor/full/AXQRVE/" target="_blank"><div class="imageportfolio" id="reflexG"><p>Reflexes test</p></div></a>
+</div>
+</div>
+</div>
+<div class="cd-fixed-bg cd-bg-4">
+<div class="section transparent" id="contact">
+<a name="contact"></a>
+<h2>Contact</h2>
+<div class="logoDiv"> <a href="https://twitter.com/adinatudor" target="_blank"><img class="logo" src="https://g.twimg.com/Twitter_logo_white.png"></a></div>
+<div class="logoDiv"><a href="https://codepen.io/adinatudor/" target="_blank"><img class="logo" src="https://blog.codepen.io/wp-content/uploads/2014/03/codepen-logo.svg"></a></div>
+<div class="logoDiv"> <a href="https://codingalien.wordpress.com/" target="_blank"><img class="logo" src="https://s.w.org/about/images/logos/wordpress-logo-notext-rgb.png"></a> </div>
+<div class="logoDiv"><a href="https://www.freecodecamp.com/adinatudor" target="_blank"><img class="logo" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/231853/freecodecamp.png"></a></div>
+<div class="logoDiv"><a href="https://github.com/adinatudor" target="_blank"><img class="logo" src="http://megaicons.net/static/img/icons_sizes/8/178/512/logos-github-icon.png"></a> </div>
+</div>
+</div>
+<div class="footer">
+<ul>
+<li>A portfolio page created by Adina Tudor</li>
+<li><a href="https://unsplash.com" target="_blank">Images courtesy of Unsplash</a> </li>
+</ul>
+</div>
+</div>
+
+
+
+</body></html>

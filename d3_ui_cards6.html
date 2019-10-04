@@ -1,0 +1,234 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Vertical input range cross-browser supported</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    *, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #3D3D4A;
+  color: white;
+  min-height: 400px;
+  font-family: sans-serif;
+}
+
+.info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  opacity: .5;
+}
+
+.container {
+  padding-top: 40px;
+  position: relative;
+  display: inline-block;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  padding-bottom: 20px;
+}
+@media (min-height: 500px) {
+  .container {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding-bottom: 0;
+  }
+}
+
+.range-slider {
+  display: inline-block;
+  width: 40px;
+  position: relative;
+  text-align: center;
+  height: 300px;
+  max-height: 100%;
+}
+.range-slider:before {
+  position: absolute;
+  top: -2em;
+  left: .5em;
+  content: attr(data-slider-value) "%";
+  color: white;
+  font-size: 90%;
+}
+.range-slider__thumb {
+  position: absolute;
+  left: 5px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  background: white;
+  color: #777;
+  font-size: 50%;
+  box-shadow: 0 0 0 4px #3D3D4A;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.range-slider__bar {
+  left: 16px;
+  bottom: 0;
+  position: absolute;
+  background: linear-gradient(dodgerblue, blue);
+  pointer-events: none;
+  width: 8px;
+  border-radius: 10px;
+}
+.range-slider input[type=range][orient=vertical] {
+  position: relative;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  position: relative;
+  writing-mode: bt-lr;
+  -webkit-appearance: slider-vertical;
+}
+.range-slider input[type=range][orient=vertical]::-webkit-slider-runnable-track, .range-slider input[type=range][orient=vertical]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+.range-slider input[type=range][orient=vertical]::-webkit-slider-runnable-track {
+  border: none;
+  background: #343440;
+  width: 8px;
+  border-color: #343440;
+  border-radius: 10px;
+  box-shadow: 0 0 0 2px #3D3D4A;
+}
+.range-slider input[type=range][orient=vertical]::-moz-range-track {
+  border: none;
+  background: #343440;
+  width: 8px;
+  border-color: #343440;
+  border-radius: 10px;
+  box-shadow: 0 0 0 2px #3D3D4A;
+}
+.range-slider input[type=range][orient=vertical]::-ms-track {
+  border: none;
+  background: #343440;
+  width: 8px;
+  border-color: #343440;
+  border-radius: 10px;
+  box-shadow: 0 0 0 2px #3D3D4A;
+  color: transparent;
+  height: 100%;
+}
+.range-slider input[type=range][orient=vertical]::-ms-fill-lower, .range-slider input[type=range][orient=vertical]::-ms-fill-upper, .range-slider input[type=range][orient=vertical]::-ms-tooltip {
+  display: none;
+}
+.range-slider input[type=range][orient=vertical]::-webkit-slider-thumb {
+  width: 30px;
+  height: 30px;
+  opacity: 0;
+}
+.range-slider input[type=range][orient=vertical]::-moz-range-thumb {
+  width: 30px;
+  height: 30px;
+  opacity: 0;
+}
+.range-slider input[type=range][orient=vertical]::-ms-thumb {
+  width: 30px;
+  height: 30px;
+  opacity: 0;
+}
+
+.theme1 {
+  background: linear-gradient(pink, deeppink);
+}
+
+.theme2 {
+  background: linear-gradient(tomato, red);
+}
+
+.theme3 {
+  background: linear-gradient(yellow, orange);
+}
+
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="info">Vertical cross-browser supported input range html elements, no library dependency, no transform rotate.</div>
+<div class="container">
+<div class="range-slider" data-slider-value="100">
+<input type="range" orient="vertical" min="0" max="100" value="50">
+<div class="range-slider__bar" style="height: calc(90% + 15px);"></div>
+<div class="range-slider__thumb" style="bottom: 90%;">100%</div>
+</div>
+<div class="range-slider" data-slider-value="94">
+<input type="range" orient="vertical" min="0" max="100" value="50">
+<div class="range-slider__bar theme1" style="height: calc(84.6% + 15px);"></div>
+<div class="range-slider__thumb" style="bottom: 84.6%;">94%</div>
+</div>
+<div class="range-slider" data-slider-value="50">
+<input type="range" orient="vertical" min="0" max="100" value="50">
+<div class="range-slider__bar theme2" style="height: calc(45% + 15px);"></div>
+<div class="range-slider__thumb" style="bottom: 45%;">50%</div>
+</div>
+<div class="range-slider" data-slider-value="94">
+<input type="range" orient="vertical" min="0" max="100" value="50">
+<div class="range-slider__bar theme3" style="height: calc(84.6% + 15px);"></div>
+<div class="range-slider__thumb" style="bottom: 84.6%;">94%</div>
+</div>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      let app = (() => {
+
+  function updateSlider(element) {
+    if (element) {
+      let parent = element.parentElement,
+      lastValue = parent.getAttribute('data-slider-value');
+
+      if (lastValue === element.value) {
+        return; // No value change, no need to update then
+      }
+
+      parent.setAttribute('data-slider-value', element.value);
+      let $thumb = parent.querySelector('.range-slider__thumb'),
+      $bar = parent.querySelector('.range-slider__bar'),
+      pct = element.value * ((parent.clientHeight - $thumb.clientHeight) / parent.clientHeight);
+
+      $thumb.style.bottom = `${pct}%`;
+      $bar.style.height = `calc(${pct}% + ${$thumb.clientHeight / 2}px)`;
+      $thumb.textContent = `${element.value}%`;
+    }
+  }
+  return {
+    updateSlider: updateSlider };
+
+
+})();
+
+(function initAndSetupTheSliders() {
+  const inputs = [].slice.call(document.querySelectorAll('.range-slider input'));
+  inputs.forEach(input => input.setAttribute('value', '50'));
+  inputs.forEach(input => app.updateSlider(input));
+  // Cross-browser support where value changes instantly as you drag the handle, therefore two event types.
+  inputs.forEach(input => input.addEventListener('input', element => app.updateSlider(input)));
+  inputs.forEach(input => input.addEventListener('change', element => app.updateSlider(input)));
+})();
+      //# sourceURL=pen.js
+    </script>
+
+
+</body></html>

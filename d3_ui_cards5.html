@@ -1,0 +1,348 @@
+<html lang="en" class=" -webkit-"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - canvas cake for @thebabydino and her 20k hearts</title>
+<style>
+    canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+p {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font: 20px Verdana;
+  color: #bbb;
+}
+a {
+  color: #ddd;
+  text-decoration: none;
+}
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<canvas id="c" width="1600" height="264"></canvas>
+<p>Happy 20k loves <a href="https://codepen.io/thebabydino">Ana Tudor</a> :D</p>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      var w = c.width = window.innerWidth,
+h = c.height = window.innerHeight,
+ctx = c.getContext('2d'),
+
+opts = {
+  slices: 9,
+  radius: 150,
+  spacing: 30,
+  height: -50,
+  midPoint: -30,
+  bottomColor: 'rgba(255,255,255,alp)',
+  topColor: 'hsla(hue,80%,50%,alp)',
+
+  rotSpeed: .004, // around y
+  depth: 400, // z
+  below: 200, // y
+
+  vanishPoint: {
+    x: w / 2,
+    y: h / 2 - 120 // remove 50 because the cake will be slightly under the vanish point
+  },
+  focalLength: 250 },
+
+tau = Math.PI * 2,
+calc = {
+  angle: tau / opts.slices,
+  cosHalf: Math.cos(tau / opts.slices / 2),
+  sinHalf: Math.sin(tau / opts.slices / 2) },
+
+slices = [],
+
+rot = 0,
+rotCos = 1,
+rotSin = 0,
+
+// generate a simple fixed slice, rotate it later by the right amount
+slicePoints = [
+// [ x, y, z ]
+[0, 0, 0], // center 0
+[0, opts.midPoint, 0], // center midPoint
+[0, opts.height, 0], // center 1
+[calc.cosHalf * opts.radius, 0, -calc.sinHalf * opts.radius], // external closer 0
+[calc.cosHalf * opts.radius, opts.midPoint, -calc.sinHalf * opts.radius], // external closer midPoint
+[calc.cosHalf * opts.radius, opts.height, -calc.sinHalf * opts.radius], // external closer 1
+[opts.radius + (opts.radius - calc.cosHalf * opts.radius), 0, 0], // bezier 0
+[opts.radius + (opts.radius - calc.cosHalf * opts.radius), opts.midPoint, 0], // bezier midPoint
+[opts.radius + (opts.radius - calc.cosHalf * opts.radius), opts.height, 0], // bezier 1
+[calc.cosHalf * opts.radius, 0, calc.sinHalf * opts.radius], // external farther 0
+[calc.cosHalf * opts.radius, opts.midPoint, calc.sinHalf * opts.radius], // external farther midPoint
+[calc.cosHalf * opts.radius, opts.height, calc.sinHalf * opts.radius]];
+
+
+for (var i = 0; i < slicePoints.length; ++i) {
+  var pt = slicePoints[i];
+
+  slicePoints[i] = { x: pt[0] + opts.spacing, y: pt[1] + opts.below, z: pt[2] };
+}
+
+function Slice(angle) {
+
+  var sin = Math.sin(angle),
+  cos = Math.cos(angle);
+
+  this.points = [];
+  for (var i = 0; i < slicePoints.length; ++i)
+  this.points[i] = {
+    x: slicePoints[i].x,
+    y: slicePoints[i].y,
+    z: slicePoints[i].z };
+
+
+  // now rotate around the right angle on the y
+  this.points.map(function (pt) {
+
+    var ptx1 = pt.x;
+    pt.x = pt.x * cos - pt.z * sin;
+    pt.z = pt.z * cos + ptx1 * sin;
+
+  });
+
+  // we need this because we have to separate transforms and drawing for z-indexing
+  this.transformedPoints = [];
+  for (var i = 0; i < this.points.length; ++i)
+  this.transformedPoints[i] = {
+    y: this.points[i].y };
+
+
+  this.screenPoints = [];
+  for (var i = 0; i < this.points.length; ++i)
+  this.screenPoints[i] = {};
+
+  // now we have the virtual points of our slices. We just need a drawing method pretty much :D
+
+  this.angle = angle; // for hue calculations later
+}
+Slice.prototype.step = function () {
+
+  // transform each point according to it's depth and rotation
+  for (var i = 0; i < this.points.length; ++i) {
+
+    var a = this.transformedPoints[i],
+    b = this.points[i];
+
+    a.x = b.x * rotCos - b.z * rotSin;
+    a.z = b.z * rotCos + b.x * rotSin;
+
+    a.z += opts.depth;
+
+    var scale = opts.focalLength / a.z;
+    this.screenPoints[i].x = opts.vanishPoint.x + a.x * scale;
+    this.screenPoints[i].y = opts.vanishPoint.y + a.y * scale;
+  }
+
+  // this is actually all we need for transforming I think :D
+};
+Slice.prototype.draw = function () {
+
+  // now comes the slightly more boring part in which I just draw lines in my mind, and fail miserably to get everything to go clockwise to get backface culling to work
+
+  // which one can work?
+
+  // grouping them so I can change fillStyle the least amount of times possible
+  var bottomCloser = false,
+  topCloser = false,
+  bottomExternal = false,
+  topExternal = false,
+  bottomFarther = false,
+  topFarther = false;
+  // you can always draw the top face, and never the bottom one, the sides do change tho.
+  // it is possible to calculate it just based on the angles, but that might take a few minutes for me to figure out
+  // actually it would be much easier. If perf gets bad I'll give it a try ;)
+
+  var a = this.transformedPoints[0], // center 0
+  b = this.transformedPoints[1], // center midPoint or center 1, doesn't matter
+  c = this.transformedPoints[3]; // any external closer
+
+  bottomCloser = topCloser = isFrontFace(a, b, c);
+
+  a = c; // external closer 0
+  b = this.transformedPoints[4]; // external closer midPoint
+  c = this.transformedPoints[6]; // external bezier 0
+
+  var half1 = isFrontFace(a, b, c);
+
+  a = c;
+  b = this.transformedPoints[7];
+  c = this.transformedPoints[9];
+
+  bottomExternal = topExternal = half1 || isFrontFace(a, b, c);
+
+  a = c; // external farther 0
+  b = this.transformedPoints[10]; // external farther midPoint
+  c = this.transformedPoints[0]; // center 0
+
+  bottomFarther = topFarther = isFrontFace(a, b, c);
+
+  // now we just draw the thing :D
+
+  // bottom things first
+  ctx.fillStyle = opts.bottomColor.replace('alp', .9); // for now, may get it to change later based on depth
+
+  if (bottomCloser) {
+    ctx.beginPath();
+    ctx.moveTo(this.screenPoints[0].x, this.screenPoints[0].y); // center 0
+    ctx.lineTo(this.screenPoints[1].x, this.screenPoints[1].y); // center midPoint
+    ctx.lineTo(this.screenPoints[4].x, this.screenPoints[4].y); // external closer midPoint
+    ctx.lineTo(this.screenPoints[3].x, this.screenPoints[3].y); // external closer 0
+    ctx.lineTo(this.screenPoints[0].x, this.screenPoints[0].y); // center 0
+    ctx.fill();
+  }
+
+  // this is going to be a mess
+  if (bottomExternal) {
+    ctx.beginPath();
+    ctx.moveTo(this.screenPoints[3].x, this.screenPoints[3].y); // external closer 0
+    ctx.lineTo(this.screenPoints[4].x, this.screenPoints[4].y); // external closer midPoint
+    ctx.quadraticCurveTo(
+    this.screenPoints[7].x, this.screenPoints[7].y, // bezier midPoint
+    this.screenPoints[10].x, this.screenPoints[10].y // external farther midPoint I hope
+    );
+    ctx.lineTo(this.screenPoints[9].x, this.screenPoints[9].y); // external farther 0
+    ctx.quadraticCurveTo(
+    this.screenPoints[6].x, this.screenPoints[6].y, // bezier 0
+    this.screenPoints[3].x, this.screenPoints[3].y // external closer 0
+    );
+    ctx.fill();
+  }
+
+  if (bottomFarther) {
+    ctx.beginPath();
+    ctx.moveTo(this.screenPoints[0].x, this.screenPoints[0].y); // center 0
+    ctx.lineTo(this.screenPoints[1].x, this.screenPoints[1].y); // center midPoint
+    ctx.lineTo(this.screenPoints[10].x, this.screenPoints[10].y); // external farther midPoint
+    ctx.lineTo(this.screenPoints[9].x, this.screenPoints[9].y); // external farther 0
+    ctx.lineTo(this.screenPoints[0].x, this.screenPoints[0].y); // center 0
+    ctx.fill();
+  }
+
+  // to the top bun now :D
+  ctx.fillStyle = opts.topColor.
+  replace('hue', this.angle / tau * 360).
+  replace('alp', .9); // again, temporary
+
+  // this is pretty much just adding 1 to every index I think :D
+  if (topCloser) {
+    ctx.beginPath();
+    ctx.moveTo(this.screenPoints[1].x, this.screenPoints[1].y); // center midPoint
+    ctx.lineTo(this.screenPoints[2].x, this.screenPoints[2].y); // center 1
+    ctx.lineTo(this.screenPoints[5].x, this.screenPoints[5].y); // external closer 1
+    ctx.lineTo(this.screenPoints[4].x, this.screenPoints[4].y); // external closer midPoint
+    ctx.lineTo(this.screenPoints[1].x, this.screenPoints[1].y); // center midPoint
+    ctx.fill();
+  }
+
+  // this is going to be a mess
+  if (topExternal) {
+    ctx.beginPath();
+    ctx.moveTo(this.screenPoints[4].x, this.screenPoints[4].y); // external closer midPoint
+    ctx.lineTo(this.screenPoints[5].x, this.screenPoints[5].y); // external closer 1
+    ctx.quadraticCurveTo(
+    this.screenPoints[8].x, this.screenPoints[8].y, // bezier 1
+    this.screenPoints[11].x, this.screenPoints[11].y // external farther 1
+    );
+    ctx.lineTo(this.screenPoints[10].x, this.screenPoints[10].y); // external farther midPoint
+    ctx.quadraticCurveTo(
+    this.screenPoints[7].x, this.screenPoints[7].y, // bezier midPoint
+    this.screenPoints[4].x, this.screenPoints[4].y // external closer midPoint
+    );
+    ctx.fill();
+  }
+
+  if (topFarther) {
+    ctx.beginPath();
+    ctx.moveTo(this.screenPoints[1].x, this.screenPoints[1].y); // center midPoint
+    ctx.lineTo(this.screenPoints[2].x, this.screenPoints[2].y); // center 1
+    ctx.lineTo(this.screenPoints[11].x, this.screenPoints[11].y); // external farther 1
+    ctx.lineTo(this.screenPoints[10].x, this.screenPoints[10].y); // external farther midPoint
+    ctx.lineTo(this.screenPoints[1].x, this.screenPoints[1].y); // center midPoint
+    ctx.fill();
+  }
+
+  // draw the always-drawn face
+
+  ctx.beginPath();
+  ctx.moveTo(this.screenPoints[2].x, this.screenPoints[2].y); // center 1
+  ctx.lineTo(this.screenPoints[5].x, this.screenPoints[5].y); // external closer 1
+  ctx.quadraticCurveTo(
+  this.screenPoints[8].x, this.screenPoints[8].y, // bezier 1
+  this.screenPoints[11].x, this.screenPoints[11].y // external farther 1
+  );
+  ctx.lineTo(this.screenPoints[2].x, this.screenPoints[2].y); // center 1
+  ctx.fill();
+
+};
+function isFrontFace(a, b, c) {
+
+  // have to google the formula, sorry XD
+  // I know it has to do with normals and multiplying things then checking the summation, but I always forget what it actually is
+
+  // yup, had it written down in this pen: https://codepen.io/towc/pen/GpZNgm
+  // now that I think about it I'm pretty much doing the same thing now XD
+
+  // fun fact: that pen also comes from Ana doing things, and it's also her biggest factor in her 20k hearts :D
+
+  var u = {
+    x: b.x - a.x,
+    y: b.y - a.y,
+    z: b.z - a.z },
+
+  v = {
+    x: c.x - a.x,
+    y: c.y - a.y,
+    z: c.z - a.z },
+
+  normal = {
+    x: u.y * v.z - u.z * v.y,
+    y: u.z * v.x - u.x * v.z,
+    z: u.x * v.y - u.y * v.x };
+
+
+  return normal.x * a.x + normal.y * a.y + normal.z * a.z >= 0;
+
+  // hopefully works
+}
+
+for (var i = 0; i < opts.slices; ++i)
+slices.push(new Slice(i * calc.angle));
+
+function anim() {
+
+  window.requestAnimationFrame(anim);
+
+  rot += opts.rotSpeed;
+  rotCos = Math.cos(rot);
+  rotSin = Math.sin(rot);
+
+  ctx.fillStyle = 'black';
+  ctx.fillRect(0, 0, w, h);
+
+  slices.map(function (slice) {slice.step();});
+  slices.sort(function (a, b) {return b.transformedPoints[0].z - a.transformedPoints[0].z;});
+  slices.map(function (slice) {slice.draw();});
+}
+anim();
+      //# sourceURL=pen.js
+    </script>
+
+
+</body></html>

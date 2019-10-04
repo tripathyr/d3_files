@@ -1,0 +1,146 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Modern, Usable, Responsive Sliders.</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="https://simeydotme.github.io/jQuery-ui-Slider-Pips/dist/css/jqueryui.min.css">
+<link rel="stylesheet" href="https://simeydotme.github.io/jQuery-ui-Slider-Pips/dist/css/jquery-ui-slider-pips.min.css">
+<link rel="stylesheet" href="https://simeydotme.github.io/jQuery-ui-Slider-Pips/dist/css/app.min.css">
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Roboto:100,300,600);
+[id*=flat-slider].ui-slider,
+[id*=flat-slider].ui-slider .ui-slider-pip .ui-slider-line {
+  background: #7e8c9f;
+}
+
+[id*=flat-slider].ui-slider .ui-slider-handle .ui-slider-tip:after {
+  border-left-color: #434d5a;
+}
+
+[id*=flat-slider].ui-slider .ui-slider-handle.ui-state-hover,
+[id*=flat-slider].ui-slider .ui-slider-handle.ui-state-focus,
+[id*=flat-slider].ui-slider .ui-slider-handle.ui-state-active {
+  border-color: white;
+}
+
+body {
+  background: #434d5a;
+  font-family: "Roboto";
+}
+
+h1 {
+  color: #7e8c9f;
+  padding: 0;
+  margin: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: default;
+}
+
+p {
+  color: #c7cdd5;
+  text-align: center;
+  margin: 0.5em 1em;
+  font-weight: 300;
+  font-size: 1.3em;
+}
+p:nth-of-type(1) {
+  margin-top: 3em;
+}
+p:last-child {
+  font-weight: 100;
+  font-size: 1em;
+}
+p:last-child a {
+  font-weight: 300;
+}
+
+.stuff {
+  padding: 50px 50px 50px;
+  max-width: 900px;
+  margin: auto;
+}
+
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="stuff">
+<h1>Modern, Cute, Usable Sliders.</h1>
+<main>
+<div id="flat-slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all ui-slider-pips"><div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 36%; width: 24%;"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 36%;"></span><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 60%;"></span><span class="ui-slider-pip ui-slider-pip-first ui-slider-pip-0" style="left: 0%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="0">0</span></span><span class="ui-slider-pip ui-slider-pip-1" style="left: 2.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="1">1</span></span><span class="ui-slider-pip ui-slider-pip-2" style="left: 4.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="2">2</span></span><span class="ui-slider-pip ui-slider-pip-3" style="left: 6.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="3">3</span></span><span class="ui-slider-pip ui-slider-pip-4" style="left: 8.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="4">4</span></span><span class="ui-slider-pip ui-slider-pip-5" style="left: 10.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="5">5</span></span><span class="ui-slider-pip ui-slider-pip-6" style="left: 12.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="6">6</span></span><span class="ui-slider-pip ui-slider-pip-7" style="left: 14.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="7">7</span></span><span class="ui-slider-pip ui-slider-pip-8" style="left: 16.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="8">8</span></span><span class="ui-slider-pip ui-slider-pip-9" style="left: 18.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="9">9</span></span><span class="ui-slider-pip ui-slider-pip-10" style="left: 20.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="10">10</span></span><span class="ui-slider-pip ui-slider-pip-11" style="left: 22.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="11">11</span></span><span class="ui-slider-pip ui-slider-pip-12" style="left: 24.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="12">12</span></span><span class="ui-slider-pip ui-slider-pip-13" style="left: 26.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="13">13</span></span><span class="ui-slider-pip ui-slider-pip-14" style="left: 28.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="14">14</span></span><span class="ui-slider-pip ui-slider-pip-15 ui-slider-pip-initial-1" style="left: 30.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="15">15</span></span><span class="ui-slider-pip ui-slider-pip-16" style="left: 32.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="16">16</span></span><span class="ui-slider-pip ui-slider-pip-17" style="left: 34.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="17">17</span></span><span class="ui-slider-pip ui-slider-pip-18 ui-slider-pip-selected-1" style="left: 36.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="18">18</span></span><span class="ui-slider-pip ui-slider-pip-19 ui-slider-pip-inrange" style="left: 38.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="19">19</span></span><span class="ui-slider-pip ui-slider-pip-20 ui-slider-pip-inrange" style="left: 40.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="20">20</span></span><span class="ui-slider-pip ui-slider-pip-21 ui-slider-pip-inrange" style="left: 42.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="21">21</span></span><span class="ui-slider-pip ui-slider-pip-22 ui-slider-pip-inrange" style="left: 44.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="22">22</span></span><span class="ui-slider-pip ui-slider-pip-23 ui-slider-pip-inrange" style="left: 46.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="23">23</span></span><span class="ui-slider-pip ui-slider-pip-24 ui-slider-pip-inrange" style="left: 48.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="24">24</span></span><span class="ui-slider-pip ui-slider-pip-25 ui-slider-pip-inrange" style="left: 50.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="25">25</span></span><span class="ui-slider-pip ui-slider-pip-26 ui-slider-pip-inrange" style="left: 52.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="26">26</span></span><span class="ui-slider-pip ui-slider-pip-27 ui-slider-pip-inrange" style="left: 54.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="27">27</span></span><span class="ui-slider-pip ui-slider-pip-28 ui-slider-pip-inrange" style="left: 56.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="28">28</span></span><span class="ui-slider-pip ui-slider-pip-29 ui-slider-pip-inrange" style="left: 58.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="29">29</span></span><span class="ui-slider-pip ui-slider-pip-30 ui-slider-pip-selected-2" style="left: 60.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="30">30</span></span><span class="ui-slider-pip ui-slider-pip-31" style="left: 62.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="31">31</span></span><span class="ui-slider-pip ui-slider-pip-32" style="left: 64.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="32">32</span></span><span class="ui-slider-pip ui-slider-pip-33" style="left: 66.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="33">33</span></span><span class="ui-slider-pip ui-slider-pip-34" style="left: 68.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="34">34</span></span><span class="ui-slider-pip ui-slider-pip-35 ui-slider-pip-initial-2" style="left: 70.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="35">35</span></span><span class="ui-slider-pip ui-slider-pip-36" style="left: 72.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="36">36</span></span><span class="ui-slider-pip ui-slider-pip-37" style="left: 74.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="37">37</span></span><span class="ui-slider-pip ui-slider-pip-38" style="left: 76.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="38">38</span></span><span class="ui-slider-pip ui-slider-pip-39" style="left: 78.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="39">39</span></span><span class="ui-slider-pip ui-slider-pip-40" style="left: 80.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="40">40</span></span><span class="ui-slider-pip ui-slider-pip-41" style="left: 82.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="41">41</span></span><span class="ui-slider-pip ui-slider-pip-42" style="left: 84.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="42">42</span></span><span class="ui-slider-pip ui-slider-pip-43" style="left: 86.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="43">43</span></span><span class="ui-slider-pip ui-slider-pip-44" style="left: 88.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="44">44</span></span><span class="ui-slider-pip ui-slider-pip-45" style="left: 90.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="45">45</span></span><span class="ui-slider-pip ui-slider-pip-46" style="left: 92.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="46">46</span></span><span class="ui-slider-pip ui-slider-pip-47" style="left: 94.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="47">47</span></span><span class="ui-slider-pip ui-slider-pip-48" style="left: 96.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="48">48</span></span><span class="ui-slider-pip ui-slider-pip-49" style="left: 98.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="49">49</span></span><span class="ui-slider-pip ui-slider-pip-last ui-slider-pip-50" style="left: 100%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="50">50</span></span></div>
+<div id="flat-slider-vertical-1" class="ui-slider ui-slider-vertical ui-widget ui-widget-content ui-corner-all ui-slider-pips ui-slider-float"><div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="height: 100%;"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="bottom: 100%;"><span class="ui-slider-tip">25</span></span><span class="ui-slider-pip ui-slider-pip-first ui-slider-pip-0 ui-slider-pip-inrange" style="bottom: 0%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="0">0</span></span><span class="ui-slider-pip ui-slider-pip-1 ui-slider-pip-inrange" style="bottom: 4.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="1">1</span></span><span class="ui-slider-pip ui-slider-pip-2 ui-slider-pip-inrange" style="bottom: 8.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="2">2</span></span><span class="ui-slider-pip ui-slider-pip-3 ui-slider-pip-inrange" style="bottom: 12.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="3">3</span></span><span class="ui-slider-pip ui-slider-pip-4 ui-slider-pip-inrange" style="bottom: 16.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="4">4</span></span><span class="ui-slider-pip ui-slider-pip-5 ui-slider-pip-inrange" style="bottom: 20.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="5">5</span></span><span class="ui-slider-pip ui-slider-pip-6 ui-slider-pip-inrange" style="bottom: 24.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="6">6</span></span><span class="ui-slider-pip ui-slider-pip-7 ui-slider-pip-inrange" style="bottom: 28.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="7">7</span></span><span class="ui-slider-pip ui-slider-pip-8 ui-slider-pip-inrange" style="bottom: 32.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="8">8</span></span><span class="ui-slider-pip ui-slider-pip-9 ui-slider-pip-inrange" style="bottom: 36.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="9">9</span></span><span class="ui-slider-pip ui-slider-pip-10 ui-slider-pip-inrange" style="bottom: 40.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="10">10</span></span><span class="ui-slider-pip ui-slider-pip-11 ui-slider-pip-inrange" style="bottom: 44.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="11">11</span></span><span class="ui-slider-pip ui-slider-pip-12 ui-slider-pip-inrange" style="bottom: 48.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="12">12</span></span><span class="ui-slider-pip ui-slider-pip-13 ui-slider-pip-inrange" style="bottom: 52.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="13">13</span></span><span class="ui-slider-pip ui-slider-pip-14 ui-slider-pip-inrange" style="bottom: 56.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="14">14</span></span><span class="ui-slider-pip ui-slider-pip-15 ui-slider-pip-inrange" style="bottom: 60.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="15">15</span></span><span class="ui-slider-pip ui-slider-pip-16 ui-slider-pip-inrange" style="bottom: 64.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="16">16</span></span><span class="ui-slider-pip ui-slider-pip-17 ui-slider-pip-inrange" style="bottom: 68.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="17">17</span></span><span class="ui-slider-pip ui-slider-pip-18 ui-slider-pip-inrange" style="bottom: 72.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="18">18</span></span><span class="ui-slider-pip ui-slider-pip-19 ui-slider-pip-inrange" style="bottom: 76.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="19">19</span></span><span class="ui-slider-pip ui-slider-pip-20 ui-slider-pip-inrange" style="bottom: 80.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="20">20</span></span><span class="ui-slider-pip ui-slider-pip-21 ui-slider-pip-inrange" style="bottom: 84.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="21">21</span></span><span class="ui-slider-pip ui-slider-pip-22 ui-slider-pip-inrange" style="bottom: 88.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="22">22</span></span><span class="ui-slider-pip ui-slider-pip-23 ui-slider-pip-inrange" style="bottom: 92.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="23">23</span></span><span class="ui-slider-pip ui-slider-pip-24 ui-slider-pip-inrange" style="bottom: 96.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="24">24</span></span><span class="ui-slider-pip ui-slider-pip-last ui-slider-pip-25 ui-slider-pip-initial ui-slider-pip-selected" style="bottom: 100%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="25">25</span></span></div>
+<div id="flat-slider-vertical-2" class="ui-slider ui-slider-vertical ui-widget ui-widget-content ui-corner-all ui-slider-pips ui-slider-float"><div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-max" style="height: 52%;"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="bottom: 48%;"><span class="ui-slider-tip">12</span></span><span class="ui-slider-pip ui-slider-pip-first ui-slider-pip-0" style="bottom: 0%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="0">0</span></span><span class="ui-slider-pip ui-slider-pip-1" style="bottom: 4.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="1">1</span></span><span class="ui-slider-pip ui-slider-pip-2" style="bottom: 8.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="2">2</span></span><span class="ui-slider-pip ui-slider-pip-3" style="bottom: 12.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="3">3</span></span><span class="ui-slider-pip ui-slider-pip-4" style="bottom: 16.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="4">4</span></span><span class="ui-slider-pip ui-slider-pip-5" style="bottom: 20.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="5">5</span></span><span class="ui-slider-pip ui-slider-pip-6" style="bottom: 24.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="6">6</span></span><span class="ui-slider-pip ui-slider-pip-7" style="bottom: 28.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="7">7</span></span><span class="ui-slider-pip ui-slider-pip-8" style="bottom: 32.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="8">8</span></span><span class="ui-slider-pip ui-slider-pip-9" style="bottom: 36.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="9">9</span></span><span class="ui-slider-pip ui-slider-pip-10" style="bottom: 40.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="10">10</span></span><span class="ui-slider-pip ui-slider-pip-11" style="bottom: 44.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="11">11</span></span><span class="ui-slider-pip ui-slider-pip-12 ui-slider-pip-initial ui-slider-pip-selected" style="bottom: 48.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="12">12</span></span><span class="ui-slider-pip ui-slider-pip-13 ui-slider-pip-inrange" style="bottom: 52.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="13">13</span></span><span class="ui-slider-pip ui-slider-pip-14 ui-slider-pip-inrange" style="bottom: 56.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="14">14</span></span><span class="ui-slider-pip ui-slider-pip-15 ui-slider-pip-inrange" style="bottom: 60.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="15">15</span></span><span class="ui-slider-pip ui-slider-pip-16 ui-slider-pip-inrange" style="bottom: 64.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="16">16</span></span><span class="ui-slider-pip ui-slider-pip-17 ui-slider-pip-inrange" style="bottom: 68.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="17">17</span></span><span class="ui-slider-pip ui-slider-pip-18 ui-slider-pip-inrange" style="bottom: 72.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="18">18</span></span><span class="ui-slider-pip ui-slider-pip-19 ui-slider-pip-inrange" style="bottom: 76.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="19">19</span></span><span class="ui-slider-pip ui-slider-pip-20 ui-slider-pip-inrange" style="bottom: 80.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="20">20</span></span><span class="ui-slider-pip ui-slider-pip-21 ui-slider-pip-inrange" style="bottom: 84.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="21">21</span></span><span class="ui-slider-pip ui-slider-pip-22 ui-slider-pip-inrange" style="bottom: 88.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="22">22</span></span><span class="ui-slider-pip ui-slider-pip-23 ui-slider-pip-inrange" style="bottom: 92.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="23">23</span></span><span class="ui-slider-pip ui-slider-pip-24 ui-slider-pip-inrange" style="bottom: 96.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="24">24</span></span><span class="ui-slider-pip ui-slider-pip-last ui-slider-pip-25 ui-slider-pip-inrange" style="bottom: 100%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="25">25</span></span></div>
+<div id="flat-slider-vertical-3" class="ui-slider ui-slider-vertical ui-widget ui-widget-content ui-corner-all ui-slider-pips ui-slider-float"><div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="height: 0%;"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="bottom: 0%;"><span class="ui-slider-tip">0</span></span><span class="ui-slider-pip ui-slider-pip-first ui-slider-pip-0 ui-slider-pip-initial ui-slider-pip-selected" style="bottom: 0%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="0">0</span></span><span class="ui-slider-pip ui-slider-pip-1" style="bottom: 4.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="1">1</span></span><span class="ui-slider-pip ui-slider-pip-2" style="bottom: 8.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="2">2</span></span><span class="ui-slider-pip ui-slider-pip-3" style="bottom: 12.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="3">3</span></span><span class="ui-slider-pip ui-slider-pip-4" style="bottom: 16.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="4">4</span></span><span class="ui-slider-pip ui-slider-pip-5" style="bottom: 20.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="5">5</span></span><span class="ui-slider-pip ui-slider-pip-6" style="bottom: 24.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="6">6</span></span><span class="ui-slider-pip ui-slider-pip-7" style="bottom: 28.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="7">7</span></span><span class="ui-slider-pip ui-slider-pip-8" style="bottom: 32.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="8">8</span></span><span class="ui-slider-pip ui-slider-pip-9" style="bottom: 36.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="9">9</span></span><span class="ui-slider-pip ui-slider-pip-10" style="bottom: 40.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="10">10</span></span><span class="ui-slider-pip ui-slider-pip-11" style="bottom: 44.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="11">11</span></span><span class="ui-slider-pip ui-slider-pip-12" style="bottom: 48.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="12">12</span></span><span class="ui-slider-pip ui-slider-pip-13" style="bottom: 52.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="13">13</span></span><span class="ui-slider-pip ui-slider-pip-14" style="bottom: 56.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="14">14</span></span><span class="ui-slider-pip ui-slider-pip-15" style="bottom: 60.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="15">15</span></span><span class="ui-slider-pip ui-slider-pip-16" style="bottom: 64.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="16">16</span></span><span class="ui-slider-pip ui-slider-pip-17" style="bottom: 68.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="17">17</span></span><span class="ui-slider-pip ui-slider-pip-18" style="bottom: 72.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="18">18</span></span><span class="ui-slider-pip ui-slider-pip-19" style="bottom: 76.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="19">19</span></span><span class="ui-slider-pip ui-slider-pip-20" style="bottom: 80.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="20">20</span></span><span class="ui-slider-pip ui-slider-pip-21" style="bottom: 84.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="21">21</span></span><span class="ui-slider-pip ui-slider-pip-22" style="bottom: 88.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="22">22</span></span><span class="ui-slider-pip ui-slider-pip-23" style="bottom: 92.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="23">23</span></span><span class="ui-slider-pip ui-slider-pip-24" style="bottom: 96.0000%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="24">24</span></span><span class="ui-slider-pip ui-slider-pip-last ui-slider-pip-25" style="bottom: 100%"><span class="ui-slider-line"></span><span class="ui-slider-label" data-value="25">25</span></span></div>
+</main>
+<p>Check them out and even more at: <a href="https://simeydotme.github.io/jQuery-ui-Slider-Pips/#styling-flat" target="_blank">https://simeydotme.github.io/</a></p>
+<p>Heavily inspired by <a target="_blank" href="https://codepen.io/thebabydino/pen/RNEEZP">Ana Tudor's Codepen</a> where she does some amazing (and way too complicated for me) css tricks to style HTML5 range inputs in a similar style.</p>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://simeydotme.github.io/jQuery-ui-Slider-Pips/dist/js/jquery-plus-ui.min.js"></script>
+<script src="https://simeydotme.github.io/jQuery-ui-Slider-Pips/dist/js/jquery-ui-slider-pips.js"></script>
+<script id="rendered-js">
+      $.extend($.ui.slider.prototype.options, {
+  animate: 300 });
+
+
+$("#flat-slider").
+slider({
+  max: 50,
+  min: 0,
+  range: true,
+  values: [15, 35] }).
+
+slider("pips", {
+  first: "pip",
+  last: "pip" });
+
+
+$("#flat-slider-vertical-1").
+slider({
+  max: 25,
+  min: 0,
+  range: "min",
+  value: 25,
+  orientation: "vertical" });
+
+
+$("#flat-slider-vertical-2").
+slider({
+  max: 25,
+  min: 0,
+  range: "max",
+  value: 12,
+  orientation: "vertical" });
+
+
+$("#flat-slider-vertical-3").
+slider({
+  max: 25,
+  min: 0,
+  range: "min",
+  value: 0,
+  orientation: "vertical" });
+
+
+$("#flat-slider-vertical-1, #flat-slider-vertical-2, #flat-slider-vertical-3").
+slider("pips", {
+  first: "pip",
+  last: "pip" }).
+
+slider("float");
+      //# sourceURL=pen.js
+    </script>
+
+
+</body></html>

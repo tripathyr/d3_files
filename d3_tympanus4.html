@@ -1,0 +1,100 @@
+<style>
+
+
+@import url(//fonts.googleapis.com/css?family=Lato:300,400,700|Raleway:400,300,700);
+
+
+a {
+	text-decoration: none;
+}
+
+
+
+.container > section {
+	margin: 0 auto;
+	padding: 10em 3em;
+	text-align: center;
+}
+
+
+.color-6 {
+	background: #0e83cd;
+}
+
+*,
+*:after,
+*::before {
+    box-sizing: border-box;
+}
+
+body {
+	font-family: 'Raleway', sans-serif;
+}
+
+nav a {
+	position: relative;
+	display: inline-block;
+	margin: 15px 25px;
+	outline: none;
+	color: #fff;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 400;
+	text-shadow: 0 0 1px rgba(255,255,255,0.3);
+	font-size: 1.35em;
+}
+
+nav a:hover,
+nav a:focus {
+	outline: none;
+}
+
+/* Effect 3: bottom line slides/fades in */
+.cl-effect-3 a {
+	padding: 8px 0;
+}
+
+/*Its a default box .. not CSS line */
+.cl-effect-3 a::after {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 4px;
+	background: rgba(0,0,0,0.2);
+	content: '';
+	opacity: 0;
+	transition: opacity 0.3s, transform 0.3s;
+	transform: translateY(10px);
+}
+
+.cl-effect-3 a:hover::after,
+.cl-effect-3 a:focus::after {
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+
+
+
+
+</style>
+
+	<body>
+	<div class="container">
+
+
+	<section class="color-6">
+				<nav class="cl-effect-3" id="cl-effect-3">
+					<a href="#cl-effect-3">Palimpsest</a>
+					<a href="#cl-effect-3">Ineffable</a>
+					<a href="#cl-effect-3">Lilt</a>
+					<a href="#cl-effect-3">Mellifluous</a>
+					<a href="#cl-effect-3">Serendipity</a>
+				</nav>
+			</section>
+
+	</div>
+	</body>		
+

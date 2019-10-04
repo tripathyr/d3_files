@@ -1,0 +1,65 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Youtube API playlist</title>
+<style>
+    li {
+  list-style: none;
+  float: left;
+  margin: 5px;
+}
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<ul id="results"><li><iframe width="320" height="180" src="https://www.youtube.com/embed/ot4BpmVLxPQ?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe></li><li><iframe width="320" height="180" src="https://www.youtube.com/embed/pedAcoRUWm0?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe></li><li><iframe width="320" height="180" src="https://www.youtube.com/embed/dQH4AEDLWVQ?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe></li><li><iframe width="320" height="180" src="https://www.youtube.com/embed/scBXl3NcOtI?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe></li><li><iframe width="320" height="180" src="https://www.youtube.com/embed/xatTv1zBAhs?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe></li><li><iframe width="320" height="180" src="https://www.youtube.com/embed/jpUrG5amhyI?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe></li><li><iframe width="320" height="180" src="https://www.youtube.com/embed/nfuA8WY_cWw?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe></li><li><iframe width="320" height="180" src="https://www.youtube.com/embed/BX7iEay76kM?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe></li><li><iframe width="320" height="180" src="https://www.youtube.com/embed/RaGKskQai7g?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe></li><li><iframe width="320" height="180" src="https://www.youtube.com/embed/_AM3EFql38I?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe></li><li><iframe width="320" height="180" src="https://www.youtube.com/embed/h_BRU0mvQS8?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe></li><li><iframe width="320" height="180" src="https://www.youtube.com/embed/4RNJ8FajFYo?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe></li><li><iframe width="320" height="180" src="https://www.youtube.com/embed/_3z3e4AjIWo?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe></li><li><iframe width="320" height="180" src="https://www.youtube.com/embed/_3z3e4AjIWo?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe></li><li><iframe width="320" height="180" src="https://www.youtube.com/embed/3xqqj9o7TgA?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe></li><li><iframe width="320" height="180" src="https://www.youtube.com/embed/rqsvToXY3WU?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe></li><li><iframe width="320" height="180" src="https://www.youtube.com/embed/K2fkCcjzBrQ?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe></li><li><iframe width="320" height="180" src="https://www.youtube.com/embed/K2fkCcjzBrQ?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe></li><li><iframe width="320" height="180" src="https://www.youtube.com/embed/5oaMuB4qQDM?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe></li></ul>
+
+
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script id="rendered-js">
+      // Get Uploads Playlist
+//populate the id(your user id) and key field with your own info
+$.get(
+"https://www.googleapis.com/youtube/v3/channels", {
+  part: 'contentDetails',
+  id: 'UCaNuHqbsd3w8Qr48Px00cEw',
+  key: 'AIzaSyAIkacs6JYw2_-d61I7_6Qpg1tt0550MAM' },
+function (data) {
+  $.each(data.items, function (i, item) {
+    pid = 'PLw6hQqeAJMqQEYvhAok6mz3lrwFsXEitW'; //place actual playlist id here.
+    getVids(pid);
+  });
+});
+
+
+//Get Videos
+function getVids(pid) {
+  $.get(
+  "https://www.googleapis.com/youtube/v3/playlistItems", {
+    part: 'snippet',
+    maxResults: 20,
+    playlistId: pid,
+    key: 'AIzaSyAIkacs6JYw2_-d61I7_6Qpg1tt0550MAM' },
+  function (data) {
+    var results;
+    $.each(data.items, function (i, item) {
+      results = '<li><iframe width="320" height="180" src="https://www.youtube.com/embed/' + item.snippet.resourceId.videoId + '?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe></li>';
+      $('#results').append(results);
+    });
+  });
+
+}
+      //# sourceURL=pen.js
+    </script>
+
+
+</body></html>

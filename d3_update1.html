@@ -1,0 +1,64 @@
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<style>
+.container { width: 600px; }
+
+svg {
+  display: block;
+  width: 1200px;
+  height: 120px;
+}
+
+circle { fill: tomato; }
+
+</style>
+
+<div class="container my-3 my-md-5">
+  <svg class="my-3"></svg>
+  <button id="addCircle" class="btn btn-primary">Add circle</button>
+  <button id="removeCircle" class="btn btn-primary">Remove circle</button>
+</div>
+
+<script>
+const data = [1, 1];
+
+const circleRadius = 30;
+const circleDiameter = circleRadius * 2;
+
+const plot = (data, svg) => {
+  const circle = svg
+    .selectAll('circle')
+    .data(data);
+
+  circle
+    .enter()
+    .append('circle')
+    .attr('cy', circleRadius)
+    .attr('cx', (d, i) => circleRadius + (i * circleDiameter))
+    .attr('r', 0)
+    .transition()
+    .attr('r', circleRadius);
+
+  circle
+    .exit()
+    .transition()
+    .attr('r', 0)
+    .remove();
+};
+
+const svg = d3.select('svg');
+
+const addCircle = () => {
+  data.push(1);
+  plot(data, svg);
+};
+
+const removeCircle = () => {
+  data.pop();
+  plot(data, svg);
+};
+
+document.getElementById('addCircle').addEventListener('click', addCircle);
+document.getElementById('removeCircle').addEventListener('click', removeCircle);
+
+plot(data, svg);
+</script>

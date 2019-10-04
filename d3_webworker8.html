@@ -1,0 +1,77 @@
+<!-- This does not work -->
+
+<button onclick="clicked()">Test</button>
+
+<script>
+
+var clicked = function () {
+
+function openAndPush() {
+    var win = window.open();
+    
+    win.test = function () {
+        win.console.log("Starting magic...");
+         var oScript = win.document.createElement("script");
+    
+        setTimeout(function () {
+        var js = `var i = 0;
+
+            function timedCount() {
+              i = i + 1;
+              console.log(i);
+              /*postMessage(i);*/
+              setTimeout("timedCount()",500);
+            }
+
+            `;
+
+        oScript.id="test";
+        var oScriptText = win.document.createTextNode(js);
+        oScript.appendChild(oScriptText);
+
+        win.document.body.appendChild(oScript);
+        win.console.log('New script appended!');
+        
+    }, 1000);
+
+    }
+    win.test();
+    win.console.log('Tadaaaa!!!');
+    win.console.log(win.document.timedCount()); //does not work
+
+} 
+
+openAndPush();
+
+}
+
+</script>
+
+
+<p>Count numbers: <output id="result"></output></p>
+<button onclick="startWorker()">Start Worker</button> 
+<button onclick="stopWorker()">Stop Worker</button>
+
+
+
+<script>
+var w;
+
+function startWorker() {
+  if(typeof(Worker) !== "undefined") {
+    if(typeof(w) == "undefined") {
+      w = new Worker("new_page.document.getElementById('test')");
+    }
+    w.onmessage = function(event) {
+      document.getElementById("result").innerHTML = event.data;
+    };
+  } else {
+    document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Workers...";
+  }
+}
+
+function stopWorker() { 
+  w.terminate();
+  w = undefined;
+}
+</script>

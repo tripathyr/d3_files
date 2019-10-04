@@ -1,0 +1,357 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Isometric CSS Grid experiment in three planes</title>
+<link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:200,300,400" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<style>
+    body{
+  font-family: 'Saira Extra Condensed', sans-serif;
+  text-align: left;
+  background-color: #070514;
+}
+h1 {
+  font-size: 4vw;
+  margin: 1.2vw;
+  line-height: 120%;
+}
+img{
+  height:100%;
+  display: block;
+}
+p {
+  font-weight: 200;
+  font-size: 2.4vw;
+  margin: 1vw;
+  line-height: 120%;
+  color: #de7eb5;
+}
+#holder {
+display:inline-block;  width: 100vw;
+  height: 420vw;
+  overflow: hidden;
+  position: relative;
+}
+.grid{
+  display:grid;
+  width: 100vw;
+  grid-template-columns: repeat(auto-fill, 5vw);
+  grid-auto-rows: 5.7735vw;
+}
+#grid1 {
+  position: absolute;
+  transform-origin: 0 0;
+  transform: skewY(-30deg);
+}
+#grid2 {
+  position: absolute;
+  transform-origin: 100vw 0;
+  transform: skewY(30deg);
+}
+#grid3 {
+  position: absolute;
+  width: 600vw;
+  transform-origin: 500vw 0;
+  transform: translatex(-500vw) rotatez(-60deg) skewY(30deg);
+}
+.grid > div {
+  background-color: #021226;
+  overflow: hidden;
+}
+#grid1 > div{
+  border-top: #de7eb5 1px solid;
+  padding-top:2px;
+}
+#grid2 > div{
+  border-bottom: #13ebe3 1px solid;
+  padding-top:2px;
+}
+#grid2 > div > p{
+  text-align: right;
+  color: #13ebe3;
+}
+#grid1 > div:nth-child(1){
+  color: white;
+  border-top: none;
+  border-left: white 1px solid;
+  grid-column: 2 / 7;  
+  grid-row: 3 / 6;  
+}
+#grid1 > div:nth-child(2){
+  grid-column: 16 / 19;  
+  grid-row: 15;  
+}
+#grid1 > div:nth-child(3){
+  grid-column: 12 / 18;  
+  grid-row: 17 / 19;  
+}
+#grid1 > div:nth-child(4){
+  grid-column: 1 / 5;  
+  grid-row: 14 / 16;  
+}
+#grid1 > div:nth-child(5){
+  grid-column: 9 / 11;  
+  grid-row: 20;  
+}
+#grid1 > div:nth-child(6){
+  grid-column: 10 / 13;  
+  grid-row: 23;  
+}
+#grid1 > div:nth-child(7){
+  grid-column: 13 / 16;  
+  grid-row: 29/31;  
+}
+#grid1 > div:nth-child(8){
+  grid-column: 2 / 6;  
+  grid-row: 25 / 27;  
+}
+#grid1 > div:nth-child(9){
+  grid-column: 5 / 11;  
+  grid-row: 29 / 31;  
+}
+#grid1 > div:nth-child(10){
+  grid-column: 9 / 11;  
+  grid-row: 33;  
+}
+#grid1 > div:nth-child(11){
+  grid-column: 11 / 16;  
+  grid-row: 37 / 39;  
+}
+#grid1 > div:nth-child(12){
+  grid-column: 14 / 21;  
+  grid-row: 42 / 44;  
+}
+#grid1 > div:nth-child(13){
+  grid-column: 2 / 5;  
+  grid-row: 43 / 45;  
+}
+#grid1 > div:nth-child(14){
+  grid-column: 6 / 9;  
+  grid-row: 46;  
+}
+#grid1 > div:nth-child(15){
+  grid-column: 14 / 20;  
+  grid-row: 54 / 56;  
+}
+#grid1 > div:nth-child(16){
+  grid-column: 11 / 20;  
+  grid-row: 58 / 60;  
+}
+#grid1 > div:nth-child(17){
+  grid-column: 5 / 9;  
+  grid-row: 61 / 63;  
+}
+#grid1 > div:nth-child(18){
+  grid-column: 8 / 16;  
+  grid-row: 63 / 65;  
+}
+#grid1 > div:nth-child(19){
+  grid-column: 13 / 17;  
+  grid-row: 66;  
+}
+#grid1 > div:nth-child(20){
+  grid-column: 3 / 9;  
+  grid-row: 66 / 68;  
+}
+
+
+#grid2 > div:nth-child(1){
+  grid-column: 10 / 13;  
+  grid-row: 8;  
+}
+#grid2 > div:nth-child(2){
+  grid-column: 12 / 15;  
+  grid-row: 9 / 11;  
+}
+#grid2 > div:nth-child(3){
+  grid-column: 18 / 20;  
+  grid-row: 9;  
+}
+#grid2 > div:nth-child(4){
+  grid-column: 8 / 12;  
+  grid-row: 14 / 16;  
+}
+#grid2 > div:nth-child(5){
+  grid-column: 17 / 19;  
+  grid-row: 14;  
+}
+#grid2 > div:nth-child(6){
+  grid-column: 5 / 9;  
+  grid-row: 21;  
+}
+#grid2 > div:nth-child(7){
+  grid-column: 7 / 10;  
+  grid-row: 23;  
+}
+#grid2 > div:nth-child(8){
+  grid-column: 12 / 16;  
+  grid-row: 23 / 25;  
+}
+#grid2 > div:nth-child(9){
+  grid-column: 16 / 21;  
+  grid-row: 26;  
+}
+#grid2 > div:nth-child(10){
+  grid-column: 6 / 8;  
+  grid-row: 30 / 32;  
+}
+#grid2 > div:nth-child(11){
+  grid-column: 7 / 9;  
+  grid-row:  35;  
+}
+#grid2 > div:nth-child(12){
+  grid-column: 10 / 12;  
+  grid-row:  35 / 37;  
+}
+#grid2 > div:nth-child(13){
+  grid-column: 16 / 19;  
+  grid-row:  33 / 35;  
+}
+#grid2 > div:nth-child(14){
+  grid-column: 2 / 4;  
+  grid-row:  48 / 50;  
+}
+#grid2 > div:nth-child(15){
+  grid-column: 5 / 7;  
+  grid-row:  49;  
+}
+#grid2 > div:nth-child(16){
+  grid-column: 8/12;  
+  grid-row:  50;  
+}
+#grid2 > div:nth-child(17){ 
+  grid-column: 9 / 13;  
+  grid-row:  51 / 53;  
+}
+#grid2 > div:nth-child(18){
+  grid-column: 3 / 10;  
+  grid-row:  57 / 59;  
+}
+#grid2 > div:nth-child(19){
+  grid-column: 3 / 6;  
+  grid-row:  63 / 65;  
+}
+#grid2 > div:nth-child(20){
+  grid-column: 13 / 19;  
+  grid-row:  67 / 71;  
+}
+#grid2 > div:nth-child(20) > p{
+  font-size: 5vw;
+  margin: 1.2vw;
+  line-height: 120%;
+}
+#grid3 > div:nth-child(1){
+  grid-column: 104/109;  
+  grid-row: 8 / 13;  
+}
+#grid3 > div:nth-child(2){
+  grid-column: 93 / 102;  
+  grid-row: 5 / 11;  
+}
+#grid3 > div:nth-child(3){
+  grid-column: 91 / 99;  
+  grid-row: 22 / 28;  
+}
+#grid3 > div:nth-child(4){
+  grid-column: 82 / 87;  
+  grid-row: 18 / 23;  
+}
+#grid3 > div:nth-child(5){
+  grid-column: 77 / 82;  
+  grid-row: 32 / 37;  
+}
+#grid3 > div:nth-child(6){
+  grid-column: 63 / 74;  
+  grid-row: 45 / 50;  
+}
+#grid3 > div:nth-child(7){
+  grid-column: 31 / 43;  
+  grid-row: 70 / 79;  
+}
+#grid3 > div:nth-child(8){
+  grid-column: 54 / 60;  
+  grid-row: 60 / 64;  
+}
+#grid3 > div:nth-child(9){
+  grid-column: 65 / 72;  
+  grid-row: 35 / 40;  
+}
+#grid3 > div:nth-child(10){
+  grid-column: 48 / 53;  
+  grid-row: 52 / 56;  
+}
+
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+
+<div id="holder">
+<div id="grid3" class="grid">
+<div><img src="https://www.andybarefoot.com/codepen/images/bladerunner/br6.jpg"></div>
+<div><img src="https://www.andybarefoot.com/codepen/images/bladerunner/br3.jpg"></div>
+<div><img src="https://www.andybarefoot.com/codepen/images/bladerunner/br1.jpg"></div>
+<div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/br6a.jpg"></div>
+<div><img src="https://www.andybarefoot.com/codepen/images/bladerunner/br2.jpg"></div>
+<div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/br7a.jpg"></div>
+<div><img src="https://www.andybarefoot.com/codepen/images/bladerunner/br7.jpg"></div>
+<div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/br1a.jpg"></div>
+<div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/br3a.jpg"></div>
+<div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/br5a.jpg"></div>
+</div>
+<div id="grid2" class="grid">
+<div><p>Okay if I talk?</p></div>
+<div><p>I kinda get nervous when I take tests.</p></div>
+<div><p>Sorry.</p></div>
+<div><p>I already had an I.Q. test this year... but I don't think I ever had a...</p></div>
+<div><p>Uh... sure...</p></div>
+<div><p>Oh... that's the hotel.</p></div>
+<div><p>Where I live.</p></div>
+<div><p>Huh? Sure. Yeah. I guess. Is that...part of the test?</p></div>
+<div><p>Oh. it's not fancy or anything.</p></div>
+<div><p>Is this the test now?</p></div>
+<div><p>What one?</p></div>
+<div><p>What desert?</p></div>
+<div><p>But how come I'd be there?</p></div>
+<div><p>A tortoise. What's that?</p></div>
+<div><p>Of course.</p></div>
+<div><p>I never seen a turtle.</p></div>
+<div><p>But I understand what you mean.</p></div>
+<div><p>You make up these questions, Mr. Holden, or do they write 'em down for you?</p></div>
+<div><p>Whatya means, I'm not helping?</p></div>
+<div><p>My mother... <br>I'll tell you about my mother.</p></div>
+</div>
+<div id="grid1" class="grid">
+<div><h1>CSS Grid<br>experiment in three planes</h1></div>
+<div><p>Don't move.</p></div>
+<div><p>Reaction time is a factor in this so please pay attention. Answer as quickly as you can.</p></div>
+<div><p>One one eight seven at Hunterwasser...</p></div>
+<div><p>What?</p></div>
+<div><p>Nice place?</p></div>
+<div><p>Warming you up, that's all.</p></div>
+<div><p>You're in a desert, walking along in the sand when...</p></div>
+<div><p>Yes. You're in a desert, walking along in the sand when all of a sudden you look down and see a...</p></div>
+<div><p>What?</p></div>
+<div><p>Doesn't make any difference what desert... its completely hypothetical.</p></div>
+<div><p>Maybe you're fed up, maybe you want to be by yourself...who knows. So you look down and see a tortoise. It's crawling toward you...</p></div>
+<div><p>Know what a turtle is?</p></div>
+<div><p>Same thing.</p></div>
+<div><p>You reach down and flip the tortoise over on its back, Leon.</p></div>
+<div><p>The tortoise lays on its back, its belly baking in the hot sun, beating its legs trying to turn itself over. But it can't. Not with out your help. But you're not helping.</p></div>
+<div><p>I mean you're not helping! Why is that, Leon?</p></div>
+<div><p>They're just questions, Leon. In answer to your query, they're written down for me. It's a test designed to provoke an emotional response.</p></div>
+<div><p>Shall we continue?</p></div>
+<div><p>Describe in single words. Only the good things that come to your mind. About your mother.</p></div>
+</div>
+</div>
+
+
+</body></html>

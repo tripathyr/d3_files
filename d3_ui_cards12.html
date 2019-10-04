@@ -1,0 +1,1549 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Isometric eCommerce CSS Grid</title>
+<meta name="viewport" content="initial-scale=1.0, width=device-width">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<style>
+    html {
+  background:#E7FFF4;
+  font-family: 'Open Sans Condensed', sans-serif;
+  color: #5A626F;
+}
+
+a{
+    color: #5A626F;
+}
+h1{
+  font-size: 2em;
+  margin: 20px 20px 10px 20px;
+}
+
+h3{
+  margin: 0 20px 50px 20px;
+  font-size: 1em;
+}
+
+#productGrid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr); 
+  width: 100%;
+  overflow: hidden;
+}
+
+#productGrid > b:nth-child(2n){
+  grid-column: 1;
+}
+
+#productGrid > b:nth-child(2n+1){
+  grid-column: -2/-1;
+}
+
+.product {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-end: span 2;
+  position: relative;
+}
+
+b, .product{
+  height: calc(173.2vw/3);
+}
+
+.product>.photo {
+  grid-column: 1;
+  grid-row: 1;
+  grid-column-end: span 2;
+  z-index: 1;
+  text-align: center;
+  display: none;
+}
+.product>.photo>img {
+  position:absolute;
+  bottom: -10%;
+  left: 19%;
+  max-width: 62%;
+  -webkit-filter: drop-shadow(0 50px 20px  rgba(0, 0, 0, 0.20));
+  filter: drop-shadow(0 50px 20px rgba(0, 0, 0, 0.20));
+  transition-property: bottom, filter, -webkit-filter;
+  transition-duration: .3s;
+}
+.product>.photo>img:hover { 
+  bottom: 0%;
+  -webkit-filter: drop-shadow(0 80px 40px  rgba(0, 0, 0, 0.20));
+  filter: drop-shadow(0 80px 30px rgba(0, 0, 0, 0.20));
+}
+
+.product>.details {
+  grid-column: 1;
+  grid-row: 1;
+  padding: 5%;
+}
+.product>.logo {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.product>.details, #productGrid > b:nth-child(2n+1){
+  background-color: #FFEFE5;
+  background-image: linear-gradient(to bottom right, #FFF0E7, #E8DAD1);
+  clip-path: polygon(0% 33.333%, 100% 0%, 100% 0%, 0% 33.33%, 0% 0%);
+  -webkit-clip-path: polygon(0% 33.333%, 100% 0%, 100% 0%, 0% 33.33%, 0% 0%);
+}
+
+.product>.logo, #productGrid > b:nth-child(2n){
+  background-color: #C9E0D6;
+  background-image: linear-gradient(to bottom left, #CDE2D9, #B7CCC3);
+  clip-path: polygon(0% 0%, 100% 33.333%, 100% 33.33%, 0% 0%, 0% 0%);
+  -webkit-clip-path: polygon(0% 0%, 100% 33.333%, 100% 33.33%, 0% 0%, 0% 0%);
+}
+
+.product>.details>h2 {
+  opacity: 0;
+  margin-top: 35%;
+  margin-bottom: 0;
+  transform: skewY(-30deg);
+  font-size: 3vw;
+}
+.product>.details>p {
+  opacity: 0;
+  margin-top: 0;
+  transform: skewY(-30deg);
+  font-size: 6vw;
+}
+.product>.logo>img {
+  opacity: 0;
+  position: absolute;
+  max-width: 18%;
+  top: 30%;
+  right: 5%;
+  transform: skewY(30deg);
+}
+
+@media (min-width:600px) {
+  #productGrid{ 
+    grid-template-columns: repeat(5,1fr); 
+  }
+  b, .product{
+    height: calc(173.2vw/5);
+  }
+  .product>.details>h2 {
+    font-size: 3vw;
+  }
+  .product>.details>p {
+    font-size: 6vw;
+  }
+  h1{
+    font-size: 2em;
+  }
+
+  h3{
+    font-size: 1em;
+  }
+}
+@media (min-width:900px) {
+  #productGrid{ 
+    grid-template-columns: repeat(7,1fr); 
+  }
+  b, .product{
+    height: calc(173.2vw/7);
+  } 
+  .product>.details>h2 {
+    font-size: 2vw;
+  }
+  .product>.details>p {
+    font-size: 4vw;
+  }
+}
+@media (min-width:1200px) { 
+  #productGrid{ 
+    grid-template-columns: repeat(9,1fr); 
+  }
+  b, .product{
+    height: calc(173.2vw/9);
+  } 
+  .product>.details>h2 {
+    font-size: 1.6vw;
+  }
+  .product>.details>p {
+    font-size: 3.3vw;
+  }
+}
+@media (min-width:1500px) { 
+  #productGrid{ 
+    grid-template-columns: repeat(11,1fr); 
+  }
+  b, .product{
+    height: calc(173.2vw/11);
+  } 
+  .product>.details>h2 {
+    font-size: 1.3vw;
+  }
+  .product>.details>p {
+    font-size: 2.6vw;
+  }
+}
+@media (min-width:1800px) { 
+  #productGrid{ 
+    grid-template-columns: repeat(13,1fr); 
+  }
+  b, .product{
+    height: calc(173.2vw/13);
+  } 
+  .product>.details>h2 {
+    font-size: 1.1vw;
+  }
+  .product>.details>p {
+    font-size: 2.2vw;
+  }
+}
+@media (min-width:2100px) { 
+  #productGrid{ 
+    grid-template-columns: repeat(15,1fr); 
+  }
+  b, .product{
+    height: calc(173.2vw/15);
+  } 
+  .product>.details>h2 {
+    font-size: 0.95vw;
+  }
+  .product>.details>p {
+    font-size: 1.6vw;
+  }
+}
+
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<h1>Responsive eCommerce layout using CSS Grid</h1>
+<h3><a href="https://codepen.io/collection/DapBxW" target="_blank">More CSS Grid layouts</a></h3>
+<ul id="productGrid" style="grid-auto-rows: 34.64vw;">
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">NMD_R1</h2>
+<p class="price" style="opacity: 1;">£109.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas02.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">CALIFORNIA 78</h2>
+<p class="price" style="opacity: 1;">£75.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/trainer01.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">TUBULAR DUSK PRIMEKNIT</h2>
+<p class="price" style="opacity: 1;">£109.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas05.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">GSM</h2>
+<p class="price" style="opacity: 1;">£80.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger04.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">NMD_CS2 PRIMEKNIT</h2>
+<p class="price" style="opacity: 1;">£149.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas04.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">MEXICO 66</h2>
+<p class="price" style="opacity: 1;">£75.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger02.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">STAN SMITH</h2>
+<p class="price" style="opacity: 1;">£74.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas03.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">ALVARADO</h2>
+<p class="price" style="opacity: 1;">£70.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger03.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">I-5923 RUNNER PRIDE</h2>
+<p class="price" style="opacity: 1;">£99.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas01.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">TIGER ALLY</h2>
+<p class="price" style="opacity: 1;">£95.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger05.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">NMD_R1</h2>
+<p class="price" style="opacity: 1;">£109.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas02.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">CALIFORNIA 78</h2>
+<p class="price" style="opacity: 1;">£75.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/trainer01.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">TUBULAR DUSK PRIMEKNIT</h2>
+<p class="price" style="opacity: 1;">£109.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas05.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">GSM</h2>
+<p class="price" style="opacity: 1;">£80.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger04.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">NMD_CS2 PRIMEKNIT</h2>
+<p class="price" style="opacity: 1;">£149.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas04.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">MEXICO 66</h2>
+<p class="price" style="opacity: 1;">£75.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger02.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">STAN SMITH</h2>
+<p class="price" style="opacity: 1;">£74.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas03.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">ALVARADO</h2>
+<p class="price" style="opacity: 1;">£70.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger03.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">I-5923 RUNNER PRIDE</h2>
+<p class="price" style="opacity: 1;">£99.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas01.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">TIGER ALLY</h2>
+<p class="price" style="opacity: 1;">£95.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger05.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">NMD_R1</h2>
+<p class="price" style="opacity: 1;">£109.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas02.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">CALIFORNIA 78</h2>
+<p class="price" style="opacity: 1;">£75.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/trainer01.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">TUBULAR DUSK PRIMEKNIT</h2>
+<p class="price" style="opacity: 1;">£109.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas05.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">GSM</h2>
+<p class="price" style="opacity: 1;">£80.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger04.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">NMD_CS2 PRIMEKNIT</h2>
+<p class="price" style="opacity: 1;">£149.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas04.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">MEXICO 66</h2>
+<p class="price" style="opacity: 1;">£75.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger02.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">STAN SMITH</h2>
+<p class="price" style="opacity: 1;">£74.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas03.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">ALVARADO</h2>
+<p class="price" style="opacity: 1;">£70.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger03.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">I-5923 RUNNER PRIDE</h2>
+<p class="price" style="opacity: 1;">£99.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas01.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">TIGER ALLY</h2>
+<p class="price" style="opacity: 1;">£95.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger05.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">NMD_R1</h2>
+<p class="price" style="opacity: 1;">£109.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas02.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">CALIFORNIA 78</h2>
+<p class="price" style="opacity: 1;">£75.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/trainer01.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">TUBULAR DUSK PRIMEKNIT</h2>
+<p class="price" style="opacity: 1;">£109.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas05.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">GSM</h2>
+<p class="price" style="opacity: 1;">£80.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger04.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">NMD_CS2 PRIMEKNIT</h2>
+<p class="price" style="opacity: 1;">£149.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas04.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">MEXICO 66</h2>
+<p class="price" style="opacity: 1;">£75.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger02.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">STAN SMITH</h2>
+<p class="price" style="opacity: 1;">£74.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas03.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">ALVARADO</h2>
+<p class="price" style="opacity: 1;">£70.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger03.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">I-5923 RUNNER PRIDE</h2>
+<p class="price" style="opacity: 1;">£99.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas01.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">TIGER ALLY</h2>
+<p class="price" style="opacity: 1;">£95.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger05.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">NMD_R1</h2>
+<p class="price" style="opacity: 1;">£109.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas02.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">CALIFORNIA 78</h2>
+<p class="price" style="opacity: 1;">£75.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/trainer01.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">TUBULAR DUSK PRIMEKNIT</h2>
+<p class="price" style="opacity: 1;">£109.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas05.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">GSM</h2>
+<p class="price" style="opacity: 1;">£80.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger04.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">NMD_CS2 PRIMEKNIT</h2>
+<p class="price" style="opacity: 1;">£149.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas04.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">MEXICO 66</h2>
+<p class="price" style="opacity: 1;">£75.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger02.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">STAN SMITH</h2>
+<p class="price" style="opacity: 1;">£74.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas03.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">ALVARADO</h2>
+<p class="price" style="opacity: 1;">£70.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger03.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">I-5923 RUNNER PRIDE</h2>
+<p class="price" style="opacity: 1;">£99.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas01.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">TIGER ALLY</h2>
+<p class="price" style="opacity: 1;">£95.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger05.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">NMD_R1</h2>
+<p class="price" style="opacity: 1;">£109.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas02.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">CALIFORNIA 78</h2>
+<p class="price" style="opacity: 1;">£75.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/trainer01.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">TUBULAR DUSK PRIMEKNIT</h2>
+<p class="price" style="opacity: 1;">£109.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas05.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">GSM</h2>
+<p class="price" style="opacity: 1;">£80.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger04.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">NMD_CS2 PRIMEKNIT</h2>
+<p class="price" style="opacity: 1;">£149.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas04.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">MEXICO 66</h2>
+<p class="price" style="opacity: 1;">£75.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger02.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">STAN SMITH</h2>
+<p class="price" style="opacity: 1;">£74.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas03.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">ALVARADO</h2>
+<p class="price" style="opacity: 1;">£70.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger03.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">I-5923 RUNNER PRIDE</h2>
+<p class="price" style="opacity: 1;">£99.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas01.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">TIGER ALLY</h2>
+<p class="price" style="opacity: 1;">£95.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger05.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">NMD_R1</h2>
+<p class="price" style="opacity: 1;">£109.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas02.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">CALIFORNIA 78</h2>
+<p class="price" style="opacity: 1;">£75.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/trainer01.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">TUBULAR DUSK PRIMEKNIT</h2>
+<p class="price" style="opacity: 1;">£109.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas05.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">GSM</h2>
+<p class="price" style="opacity: 1;">£80.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger04.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">NMD_CS2 PRIMEKNIT</h2>
+<p class="price" style="opacity: 1;">£149.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas04.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">MEXICO 66</h2>
+<p class="price" style="opacity: 1;">£75.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger02.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">STAN SMITH</h2>
+<p class="price" style="opacity: 1;">£74.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas03.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">ALVARADO</h2>
+<p class="price" style="opacity: 1;">£70.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger03.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">I-5923 RUNNER PRIDE</h2>
+<p class="price" style="opacity: 1;">£99.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas01.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">TIGER ALLY</h2>
+<p class="price" style="opacity: 1;">£95.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger05.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">NMD_R1</h2>
+<p class="price" style="opacity: 1;">£109.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas02.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">CALIFORNIA 78</h2>
+<p class="price" style="opacity: 1;">£75.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/trainer01.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">TUBULAR DUSK PRIMEKNIT</h2>
+<p class="price" style="opacity: 1;">£109.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+ <div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas05.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">GSM</h2>
+<p class="price" style="opacity: 1;">£80.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger04.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">NMD_CS2 PRIMEKNIT</h2>
+<p class="price" style="opacity: 1;">£149.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas04.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">MEXICO 66</h2>
+<p class="price" style="opacity: 1;">£75.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger02.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">STAN SMITH</h2>
+<p class="price" style="opacity: 1;">£74.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas03.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">ALVARADO</h2>
+<p class="price" style="opacity: 1;">£70.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger03.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">I-5923 RUNNER PRIDE</h2>
+<p class="price" style="opacity: 1;">£99.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas01.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">TIGER ALLY</h2>
+<p class="price" style="opacity: 1;">£95.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger05.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">NMD_R1</h2>
+<p class="price" style="opacity: 1;">£109.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas02.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">CALIFORNIA 78</h2>
+<p class="price" style="opacity: 1;">£75.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/trainer01.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">TUBULAR DUSK PRIMEKNIT</h2>
+<p class="price" style="opacity: 1;">£109.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas05.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">GSM</h2>
+<p class="price" style="opacity: 1;">£80.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger04.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">NMD_CS2 PRIMEKNIT</h2>
+<p class="price" style="opacity: 1;">£149.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas04.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">MEXICO 66</h2>
+<p class="price" style="opacity: 1;">£75.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger02.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">STAN SMITH</h2>
+<p class="price" style="opacity: 1;">£74.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas03.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">ALVARADO</h2>
+<p class="price" style="opacity: 1;">£70.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger03.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">I-5923 RUNNER PRIDE</h2>
+<p class="price" style="opacity: 1;">£99.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas01.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">TIGER ALLY</h2>
+<p class="price" style="opacity: 1;">£95.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger05.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">NMD_R1</h2>
+<p class="price" style="opacity: 1;">£109.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas02.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">CALIFORNIA 78</h2>
+<p class="price" style="opacity: 1;">£75.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/trainer01.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">TUBULAR DUSK PRIMEKNIT</h2>
+<p class="price" style="opacity: 1;">£109.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas05.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">GSM</h2>
+<p class="price" style="opacity: 1;">£80.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger04.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+ <h2 style="opacity: 1;">NMD_CS2 PRIMEKNIT</h2>
+<p class="price" style="opacity: 1;">£149.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas04.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">MEXICO 66</h2>
+<p class="price" style="opacity: 1;">£75.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger02.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">STAN SMITH</h2>
+<p class="price" style="opacity: 1;">£74.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas03.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">ALVARADO</h2>
+<p class="price" style="opacity: 1;">£70.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger03.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">I-5923 RUNNER PRIDE</h2>
+<p class="price" style="opacity: 1;">£99.95</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/adidas01.png" alt="">
+</div>
+</li>
+<li class="product" style="display: grid;">
+<div class="details" style="clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);">
+<h2 style="opacity: 1;">TIGER ALLY</h2>
+<p class="price" style="opacity: 1;">£95.00</p>
+</div>
+<div class="logo" style="clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger.png" alt="" style="opacity: 0.6;">
+</div>
+<div class="photo" style="display: block; opacity: 1;">
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/881020/tiger05.png" alt="">
+</div>
+</li>
+<span></span>
+<b style="grid-row: 1 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 2 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 3 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 4 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 5 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 6 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 7 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 8 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 9 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 10 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 11 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 12 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 13 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 14 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 15 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 16 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 17 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 18 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 19 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 20 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 21 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 22 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 23 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 24 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 25 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 26 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 27 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 28 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 29 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 30 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 31 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 32 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 33 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 34 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 35 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 36 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 37 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 38 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 39 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 40 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 41 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 42 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 43 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 44 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 45 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 46 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 47 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 48 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 49 / auto; display: block; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 50 / auto; display: block; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 51 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 52 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 53 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 54 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 55 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 56 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 57 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 58 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 59 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 60 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 61 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 62 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 63 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 64 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 65 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 66 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 67 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 68 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 69 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 70 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 71 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 72 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 73 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 74 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 75 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 76 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 77 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 78 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 79 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 80 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 81 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 82 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 83 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 84 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 85 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 86 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 87 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 88 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 89 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 90 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 91 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 92 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 93 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 94 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 95 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 96 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 97 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 98 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b><b style="grid-row: 99 / auto; display: none; clip-path: polygon(0% 0%, 100% 33.333%, 100% 99.997%, 0% 66.667%, 0% 0%);"></b><b style="grid-row: 100 / auto; display: none; clip-path: polygon(0% 33.333%, 100% 0%, 100% 66.667%, 0% 99.997%, 0% 0%);"></b></ul>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      var grid = document.getElementById("productGrid");
+var products = document.getElementById("productGrid").getElementsByTagName("li");
+var productsShown;
+var spacers;
+var nPerRow;
+var rowHeight;
+var closedRowHeight;
+
+function addSpacers() {
+  for (var i = 1; i <= products.length; i++) {
+    var node = document.createElement("b");
+    node.style.gridRow = i;
+    grid.appendChild(node);
+  }
+  resizeGrid();
+  startAnim();
+}
+
+function resizeGrid() {
+  var w = window.innerWidth;
+  if (w < 600) {
+    nPerRow = 1;
+  } else if (w < 900) {
+    nPerRow = 2;
+  } else if (w < 1200) {
+    nPerRow = 3;
+  } else if (w < 1500) {
+    nPerRow = 4;
+  } else if (w < 1800) {
+    nPerRow = 5;
+  } else if (w < 2100) {
+    nPerRow = 6;
+  } else {
+    nPerRow = 7;
+  }
+  var nRows = Math.floor(products.length / nPerRow);
+  productsShown = nRows * nPerRow;
+  rowHeight = 173.2 / (2 * nPerRow + 1);
+  closedRowHeight = 57.74 / (2 * nPerRow + 1);
+  grid.style.gridAutoRows = rowHeight + "vw";
+  spacers = document.getElementById("productGrid").getElementsByTagName("b");
+
+  for (var i = 0; i < products.length; i++) {
+    if (i < nRows) {
+      spacers[i].style.display = "block";
+    } else {
+      spacers[i].style.display = "none";
+    }
+    if (i < productsShown) {
+      products[i].style.display = "grid";
+    } else {
+      products[i].style.display = "none";
+    }
+  }
+}
+
+function startAnim() {
+  var details = document.getElementsByClassName('details');
+  var logos = document.getElementsByClassName('logo');
+  var photos = document.getElementsByClassName('photo');
+  var count = 0;
+  var wait = setInterval(delay, 500);
+  var openSteps = 25;
+  var revealSteps = 10;
+  function delay() {
+    var anim = setInterval(frame, 10);
+    clearInterval(wait);
+  }
+  function frame() {
+    count++;
+    if (count > openSteps + revealSteps) {
+      clearInterval(anim);
+    } else if (count > openSteps) {
+      for (var i = 0; i < photos.length; i++) {
+        photos[i].style.display = "block";
+        photos[i].style.opacity = (count - openSteps) / revealSteps;
+        details[i].getElementsByTagName("h2")[0].style.opacity = (count - openSteps) / revealSteps;
+        details[i].getElementsByTagName("p")[0].style.opacity = (count - openSteps) / revealSteps;
+        logos[i].getElementsByTagName("img")[0].style.opacity = 0.6 * (count - openSteps) / revealSteps;
+      }
+    } else {
+      grid.style.gridAutoRows = closedRowHeight + (rowHeight - closedRowHeight) * count / openSteps + "vw";
+      for (var i = 0; i < details.length; i++) {
+        details[i].style.clipPath = "polygon(0% 33.333%, 100% 0%, 100% " + count * 66.667 / openSteps + "%, 0% " + (33.33 + count * 66.667 / openSteps) + "%, 0% 0%)";
+        details[i].style.webkitClipPath = "polygon(0% 33.333%, 100% 0%, 100% " + count * 66.667 / openSteps + "%, 0% " + (33.33 + count * 66.667 / openSteps) + "%, 0% 0%)";
+        logos[i].style.clipPath = "polygon(0% 0%, 100% 33.333%, 100% " + (33.33 + count * 66.667 / openSteps) + "%, 0% " + count * 66.667 / openSteps + "%, 0% 0%)";
+        logos[i].style.webkitClipPath = "polygon(0% 0%, 100% 33.333%, 100% " + (33.33 + count * 66.667 / openSteps) + "%, 0% " + count * 66.667 / openSteps + "%, 0% 0%)";
+        photos[i].style.display = "none";
+        details[i].getElementsByTagName("h2")[0].style.opacity = 0;
+        details[i].getElementsByTagName("p")[0].style.opacity = 0;
+        logos[i].getElementsByTagName("img")[0].style.opacity = 0;
+      }
+      for (var j = 0; j < spacers.length; j++) {
+        if (j % 2) {
+          spacers[j].style.clipPath = "polygon(0% 33.333%, 100% 0%, 100% " + count * 66.667 / openSteps + "%, 0% " + (33.33 + count * 66.667 / openSteps) + "%, 0% 0%)";
+          spacers[j].style.webkitClipPath = "polygon(0% 33.333%, 100% 0%, 100% " + count * 66.667 / openSteps + "%, 0% " + (33.33 + count * 66.667 / openSteps) + "%, 0% 0%)";
+        } else {
+          spacers[j].style.clipPath = "polygon(0% 0%, 100% 33.333%, 100% " + (33.33 + count * 66.667 / openSteps) + "%, 0% " + count * 66.667 / openSteps + "%, 0% 0%)";
+          spacers[j].style.webkitClipPath = "polygon(0% 0%, 100% 33.333%, 100% " + (33.33 + count * 66.667 / openSteps) + "%, 0% " + count * 66.667 / openSteps + "%, 0% 0%)";
+        }
+      }
+    }
+  }
+};
+
+window.onresize = function () {
+  resizeGrid();
+};
+
+window.onload = addSpacers();
+      //# sourceURL=pen.js
+    </script>
+
+
+</body></html>

@@ -1,0 +1,78 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Tinder Pulse</title>
+<style>
+    .photo{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translateX(-50%) translateY(-50%);
+  border-radius:1000px;
+  width:150px;
+  height:150px;
+  padding:5px;
+  border:2px solid #efefef;
+  background:#fdfdfd;
+}
+
+.photo img{
+  border-radius: 1000px;
+  width: 150px;
+}
+
+.pulse{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:500px;
+  height:500px;
+  background:radial-gradient(white 25%, red);
+  z-index:-1;
+  transform:translateY(-50%) translateX(-50%);
+  border-radius:1000px;
+  opacity:0.3;
+  border:2px solid red;
+}
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="photo">
+<img src="http://api.randomuser.me/portraits/med/women/87.jpg" alt="">
+</div>
+<div class="pulse" style="width: 266px; height: 266px; opacity: 0.233;"> </div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script id="rendered-js">
+      var size = 140;
+setInterval(function () {
+  $('.pulse').width(size).height(size);
+  size++;
+  if (size > 200) {
+    $('.pulse').css('opacity', $('.pulse').css('opacity') - 0.001);
+  }
+  if (size > 500) {
+    size = 50;
+    $('.pulse').width(size).height(size);
+    $('.pulse').css('opacity', '0.3');
+  }
+}, 0);
+
+$('.photo').click(function () {
+  console.log('CLick');
+  $(".pulse").clone().appendTo("body");
+});
+      //# sourceURL=pen.js
+    </script>
+
+
+<div class="pulse" style="width: 266px; height: 266px; opacity: 0.233;"> </div><div class="pulse" style="width: 266px; height: 266px; opacity: 0.233;"> </div><div class="pulse" style="width: 266px; height: 266px; opacity: 0.233;"> </div><div class="pulse" style="width: 266px; height: 266px; opacity: 0.233;"> </div><div class="pulse" style="width: 266px; height: 266px; opacity: 0.233;"> </div><div class="pulse" style="width: 266px; height: 266px; opacity: 0.233;"> </div><div class="pulse" style="width: 266px; height: 266px; opacity: 0.233;"> </div><div class="pulse" style="width: 266px; height: 266px; opacity: 0.233;"> </div><div class="pulse" style="width: 266px; height: 266px; opacity: 0.233;"> </div><div class="pulse" style="width: 266px; height: 266px; opacity: 0.233;"> </div><div class="pulse" style="width: 266px; height: 266px; opacity: 0.233;"> </div><div class="pulse" style="width: 266px; height: 266px; opacity: 0.233;"> </div><div class="pulse" style="width: 266px; height: 266px; opacity: 0.233;"> </div><div class="pulse" style="width: 266px; height: 266px; opacity: 0.233;"> </div><div class="pulse" style="width: 266px; height: 266px; opacity: 0.233;"> </div></body></html>

@@ -1,0 +1,102 @@
+<style>
+
+
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700|Raleway:400,300,700);
+
+
+a {
+	text-decoration: none;
+}
+
+
+
+.container > section {
+	margin: 0 auto;
+	padding: 10em 3em;
+	text-align: center;
+}
+
+
+.color-5 {
+	background: #0e83cd;
+}
+
+*,
+*:after,
+*::before {
+    box-sizing: border-box;
+}
+
+body {
+	font-family: 'Raleway', sans-serif;
+}
+
+nav a {
+	position: relative;
+	display: inline-block;
+	margin: 15px 25px;
+	outline: none;
+	color: #fff;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 400;
+	text-shadow: 0 0 1px rgba(255,255,255,0.3);
+	font-size: 1.35em;
+}
+
+nav a:hover,
+nav a:focus {
+	outline: none;
+}
+
+/* Effect 5: same word slide in .. Text::before and normal effect is used. Bring down the 100% by top:100%, and then bring it back up 100% using transform: translateY(-100%);*/
+
+.cl-effect-5 a {
+	overflow: hidden;
+	padding: 0 4px;
+	height: 1em;
+}
+
+.cl-effect-5 a span {
+	position: relative;
+	display: inline-block;
+	transition: transform 0.3s;
+}
+
+.cl-effect-5 a span::before {
+	position: absolute;
+	top:100%;
+	content: attr(data-hover);
+	font-weight: 800;
+	transform: translate3d(0,0,0);
+}
+
+/* The whole span is moving 100% up including ::before text and main text. On hover main text gous 100% up and ::before text comes in focus. After hover the original positions are restored */
+
+.cl-effect-5 a:hover span,
+.cl-effect-5 a:focus span {
+	transform: translateY(-100%);
+}
+
+
+
+
+</style>
+
+	<body>
+	<div class="container">
+
+	<section class="color-5">
+				<nav class="cl-effect-5" id="cl-effect-5">
+					<a href="#cl-effect-5"><span data-hover="Seraglio">Seraglio</span></a>
+					<a href="#cl-effect-5"><span data-hover="Sumptuous">Sumptuous</span></a>
+					<a href="#cl-effect-5"><span data-hover="Scintilla">Scintilla</span></a>
+					<a href="#cl-effect-5"><span data-hover="Palimpsest">Palimpsest</span></a>
+					<a href="#cl-effect-5"><span data-hover="Assemblage">Assemblage</span></a>
+					</nav>
+			</section>
+
+	</div>
+	</body>		
+

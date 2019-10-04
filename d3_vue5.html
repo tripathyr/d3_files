@@ -1,0 +1,26 @@
+ 
+ <script src="vue.js"></script>
+ 	
+<body>
+<div id="app">
+  <user-name name="Flavio"></user-name>
+  <user-name name="Scorpio"></user-name>
+  <user-name name="Tristina"></user-name>
+</div>
+
+
+
+<script>
+
+Vue.component('userName', {
+  props: ['name'],
+  template: '<p>Hi {{ name }}</p>'
+})
+
+new Vue({
+  el: '#app'
+})
+
+</script> 
+
+</body>
