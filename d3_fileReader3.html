@@ -1,0 +1,16 @@
+<head></head>
+
+<script>
+function load_js(){
+    setInterval(function()
+   {
+      var head= document.getElementsByTagName('head')[0];
+      var script= document.createElement('script');
+      script.src= 'data.js';
+      head.appendChild(script);
+   }, 3000);
+ }  
+</script>
+
+<button onclick="load_js()">Click me</button>
+

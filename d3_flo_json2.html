@@ -1,0 +1,177 @@
+<button id="ajaxButton" type="button">Make a request</button>
+
+<script>
+(function() {
+  var httpRequest;
+  document.getElementById("ajaxButton").addEventListener('click', makeRequest);
+
+  function makeRequest() {
+    httpRequest = new XMLHttpRequest();
+
+    if (!httpRequest) {
+      alert('Giving up :( Cannot create an XMLHTTP instance');
+      return false;
+    }
+    httpRequest.onreadystatechange = alertContents;
+    httpRequest.open('POST', 'http://rohittripathy:rohittripathypassword@127.0.0.1:7313',true);
+    httpRequest.setRequestHeader("contentType": "application/json");
+    var data = '{"jsonrpc": "2.0", "method": "Input.Up", "id": "1"}';
+   	httpRequest.send(data);
+
+
+    httpRequest.send();
+  }
+
+  function alertContents() {
+    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+      if (httpRequest.status === 200) {
+        alert(httpRequest.responseText);
+      } else {
+        alert('There was a problem with the request.');
+      }
+    }
+  }
+})();
+</script>
+
+<script>
+
+/**
+ * Send Ajax
+ * @param {{
+*  type: {String},
+*  url: {String},
+*  [success]: {Function},
+*  [error]: {Function},
+*  [beforeSend]: {Function},
+*  [cache]: {Boolean}
+* }} params
+ */
+var MAX_XHR_WAITING_TIME = 5000;// in ms
+
+var sendAjax = function (params) {
+    var xhr = new XMLHttpRequest(),
+            url = params.cache ? params.url + '?' + new Date().getTime() : params.url,
+            timer = setTimeout(function () {// if xhr won't finish after timeout-> trigger fail
+                xhr.abort();
+                params.error && params.error();
+                params.complete && params.complete();
+            }, MAX_XHR_WAITING_TIME);
+    xhr.open(params.type, url);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            clearTimeout(timer);
+            if (xhr.status === 200 || xhr.status === 0) {// 0 when files are loaded locally (e.g., cordova/phonegap app.)
+                params.success && params.success(xhr.responseText);
+                params.complete && params.complete();
+            } else {
+                params.error && params.error(xhr.responseText);
+                params.complete && params.complete();
+            }
+        }
+    };
+    params.beforeSend && params.beforeSend(xhr);
+    xhr.send();
+};
+
+/**
+ * Get JSON by url
+ @param {{
+*  url: {String},
+*  [success]: {Function},
+*  [error]: {Function},
+*  [complete]: {Function}
+* }} params
+ */
+var getJSON = function (params) {
+    sendAjax({
+        type: 'get',
+        url: params.url,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Accept', 'application/json, text/javascript');
+        },
+        success: function (res) {
+            params.success && params.success(JSON.parse(res));
+        },
+        error: params.error,
+        complete: params.complete,
+        cache: true
+    });
+};
+
+// INVOKE
+getJSON({
+    url: 'https://api.github.com/users/malyw',
+    success: function(json){
+      console.log('getJSON success');
+      console.log(json);
+    },
+    error: function(error){
+      console.error('An error occured');
+      console.error(error);
+    },
+    complete: function(){
+      console.log('I\'m invoked in any case after success/error');
+    }
+});
+
+</script>
+
+
+<script>
+
+var xhr_object = null;
+
+   if(window.XMLHttpRequest) // Firefox
+      xhr_object = new XMLHttpRequest();
+   else if(window.ActiveXObject) // Internet Explorer
+      xhr_object = new ActiveXObject("Microsoft.XMLHTTP");
+   else { // XMLHttpRequest non supporté par le navigateur
+      alert("Votre navigateur ne supporte pas les objets XMLHTTPRequest...");
+      return;
+   }
+
+   xhr_object.open("POST", "http://"+add+":9000/jsonrpc", false);
+
+   xhr_object.onreadystatechange = function() {
+      if(xhr_object.readyState == 4)
+      var json = xhr_object.responseText;
+         alert(xhr_object.responseType)
+         alert("("+json+")");
+   }
+   xhr_object.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+   var data = '{"jsonrpc": "2.0", "method": "Input.Up", "id": "1"}';
+   xhr_object.send(data);
+
+
+</script>
+
+
+<script>
+
+    // post json-rpc command to ethereum client https://gist.github.com/tinybike/63835393fcaba9ba9561
+    function json_rpc(command, callback, async) {
+        var xhr = null;
+        if (window.XMLHttpRequest) {
+            xhr = new XMLHttpRequest();
+        } else {
+            xhr = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        if (async) {
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    parse(JSON.parse(xhr.responseText), callback);
+                }
+            };
+            xhr.open("POST", rpc_url, true);
+            xhr.setRequestHeader("Content-type", "application/json");
+            xhr.send(JSON.stringify(command));
+        } else {            
+            xhr.open("POST", rpc_url, false);
+            xhr.setRequestHeader("Content-type", "application/json");
+            xhr.send(JSON.stringify(command));
+            return parse(JSON.parse(xhr.responseText), callback);
+        }
+
+
+</script>	

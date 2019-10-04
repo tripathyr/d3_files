@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <style>
+        div {
+            height: 100px;
+            width: 100px;
+            background-color: steelblue;
+            margin:5px;
+        }
+    </style>
+    <script src="d3.js"></script>
+</head>
+<body>
+
+<script>
+//Define the dispatch
+var ABC = d3.dispatch("statechange1");
+
+//Attach the callback function
+ABC.on('statechange1', function(e){ console.log(e) })
+
+//Call the dispatch function when needed
+//setTimeout(function(){ABC.call("statechange1",this,"Hello, world!")}, 1000);
+//console.log(this);
+ABC.call("statechange1",this,"Hello, Blockchain World!")
+
+</script>
+</body>
+</html>

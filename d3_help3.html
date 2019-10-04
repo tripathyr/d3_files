@@ -1,0 +1,122 @@
+<html lang="en"><head>
+
+<title>CodePen - move-into-view demo</title>
+<style>
+      body {
+  margin: 50px;
+}
+input[type=range] {
+  width: 620px;
+}
+.scroller1 {
+  margin: 40px 0px;
+  position: relative;
+  height: 92px;
+  width: 620px;
+  overflow: hidden;
+}
+
+.wrapper1 {
+  position: absolute;
+  white-space: nowrap;
+}
+
+.wrapper1 .child {
+  display: inline-block;
+  width: 90px;
+  height: 90px;
+  margin: 0px 6px;
+  border: 1px solid steelblue;
+  text-align: center;
+  line-height: 90px;
+}
+
+.scroller2 {
+  margin: 40px 0px;
+  position: relative;
+  height: 392px;
+  width: 90px;
+  overflow: hidden;
+}
+
+.wrapper2 {
+  position: absolute;
+}
+
+.wrapper2 .child {
+  width: 88px;
+  height: 90px;
+  margin: 6px 0px;
+  border: 1px solid steelblue;
+  text-align: center;
+  line-height: 90px;
+}
+
+.active {
+  background: steelblue;
+  color: #fff;
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="scroller1">
+<div id="scrollr" class="wrapper1" style="left: -990px;"><div class="child">0</div><div class="child">1</div><div class="child">2</div><div class="child">3</div><div class="child">4</div><div class="child">5</div><div class="child">6</div><div class="child">7</div><div class="child">8</div><div class="child">9</div><div class="child">10</div><div class="child">11</div><div class="child active">12</div><div class="child">13</div><div class="child">14</div><div class="child">15</div><div class="child">16</div><div class="child">17</div><div class="child">18</div><div class="child">19</div><div class="child">20</div><div class="child">21</div><div class="child">22</div><div class="child">23</div><div class="child">24</div><div class="child">25</div><div class="child">26</div><div class="child">27</div><div class="child">28</div><div class="child">29</div><div class="child">30</div><div class="child">31</div><div class="child">32</div><div class="child">33</div><div class="child">34</div><div class="child">35</div><div class="child">36</div><div class="child">37</div><div class="child">38</div><div class="child">39</div><div class="child">40</div><div class="child">41</div><div class="child">42</div><div class="child">43</div><div class="child">44</div><div class="child">45</div><div class="child">46</div><div class="child">47</div><div class="child">48</div><div class="child">49</div><div class="child">50</div><div class="child">51</div><div class="child">52</div><div class="child">53</div><div class="child">54</div><div class="child">55</div><div class="child">56</div><div class="child">57</div><div class="child">58</div><div class="child">59</div><div class="child">60</div><div class="child">61</div><div class="child">62</div><div class="child">63</div><div class="child">64</div><div class="child">65</div><div class="child">66</div><div class="child">67</div><div class="child">68</div><div class="child">69</div><div class="child">70</div><div class="child">71</div><div class="child">72</div><div class="child">73</div><div class="child">74</div><div class="child">75</div><div class="child">76</div><div class="child">77</div><div class="child">78</div><div class="child">79</div><div class="child">80</div><div class="child">81</div><div class="child">82</div><div class="child">83</div><div class="child">84</div><div class="child">85</div><div class="child">86</div><div class="child">87</div><div class="child">88</div><div class="child">89</div><div class="child">90</div><div class="child">91</div><div class="child">92</div><div class="child">93</div><div class="child">94</div><div class="child">95</div><div class="child">96</div><div class="child">97</div><div class="child">98</div><div class="child">99</div></div>
+</div>
+<div>
+<input type="radio" name="ratio" value="0"> 0<br>
+<input type="radio" name="ratio" value="0.5" checked=""> 0.5<br>
+<input type="radio" name="ratio" value="1"> 1<br>
+<br>
+</div>
+<input type="range" id="slide1" min="0" value="0" max="99" step="1">
+<div class="scroller2">
+<div id="scrollp" class="wrapper2" style="top: -1032px;"><div class="child">0</div><div class="child">1</div><div class="child">2</div><div class="child">3</div><div class="child">4</div><div class="child">5</div><div class="child">6</div><div class="child">7</div><div class="child">8</div><div class="child">9</div><div class="child">10</div><div class="child">11</div><div class="child active">12</div><div class="child">13</div><div class="child">14</div><div class="child">15</div><div class="child">16</div><div class="child">17</div><div class="child">18</div><div class="child">19</div><div class="child">20</div><div class="child">21</div><div class="child">22</div><div class="child">23</div><div class="child">24</div><div class="child">25</div><div class="child">26</div><div class="child">27</div><div class="child">28</div><div class="child">29</div><div class="child">30</div><div class="child">31</div><div class="child">32</div><div class="child">33</div><div class="child">34</div><div class="child">35</div><div class="child">36</div><div class="child">37</div><div class="child">38</div><div class="child">39</div><div class="child">40</div><div class="child">41</div><div class="child">42</div><div class="child">43</div><div class="child">44</div><div class="child">45</div><div class="child">46</div><div class="child">47</div><div class="child">48</div><div class="child">49</div><div class="child">50</div><div class="child">51</div><div class="child">52</div><div class="child">53</div><div class="child">54</div><div class="child">55</div><div class="child">56</div><div class="child">57</div><div class="child">58</div><div class="child">59</div><div class="child">60</div><div class="child">61</div><div class="child">62</div><div class="child">63</div><div class="child">64</div><div class="child">65</div><div class="child">66</div><div class="child">67</div><div class="child">68</div><div class="child">69</div><div class="child">70</div><div class="child">71</div><div class="child">72</div><div class="child">73</div><div class="child">74</div><div class="child">75</div><div class="child">76</div><div class="child">77</div><div class="child">78</div><div class="child">79</div><div class="child">80</div><div class="child">81</div><div class="child">82</div><div class="child">83</div><div class="child">84</div><div class="child">85</div><div class="child">86</div><div class="child">87</div><div class="child">88</div><div class="child">89</div><div class="child">90</div><div class="child">91</div><div class="child">92</div><div class="child">93</div><div class="child">94</div><div class="child">95</div><div class="child">96</div><div class="child">97</div><div class="child">98</div><div class="child">99</div></div>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://unpkg.com/move-into-view@0.0.5/miw.min.js"></script>
+<script id="rendered-js">
+      var s = document.getElementById('scrollr');
+var d = document.getElementById('scrollp');
+
+for (var i = 0; i < 100; i++) {if (window.CP.shouldStopExecution(0)) break;
+  var r = document.createElement('div');
+  var p = document.createElement('div');
+  p.textContent = i;
+  p.classList.add('child');
+  r.textContent = i;
+  r.classList.add('child');
+  s.appendChild(r);
+  d.appendChild(p);
+}window.CP.exitedLoop(0);
+
+document.getElementById('slide1').addEventListener('input', function (e) {
+  var childs = document.querySelectorAll('.child');
+  var ratio = Number(document.querySelector('input[type=radio]:checked').value);
+
+  childs.forEach(function (c) {c.classList.remove('active');});
+
+  var child = childs[Number(e.target.value)];
+
+
+  child.classList.add('active');
+  child.moveIntoView({ x: ratio });
+
+  var child2 = childs[Number(e.target.value) + 100];
+  child2.classList.add('active');
+  child2.moveIntoView({ y: ratio });
+});
+      //# sourceURL=pen.js
+    </script>
+
+
+
+</body></html>

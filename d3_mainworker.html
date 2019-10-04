@@ -1,0 +1,8 @@
+<script>
+const worker = new Worker('webworker.js'); // create our worker
+worker.postMessage({ firstNum: 4, secondNum: 6 }); // post a message to our worker
+
+worker.onmessage = event => { // listen for events from the worker
+    console.log(`Result is: ${event.data}`);
+};
+</script>

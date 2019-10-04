@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+    <style>
+        div {
+            height: 100px;
+            width: 100px;
+            background-color: steelblue;
+            margin:5px;
+        }
+    </style>
+    <script src="d3.js"></script>
+</head>
+<body>
+<div> </div>
+<div></div>
+<script>
+    var index = 0;
+    testme = function(){ console.log("I was invoked "+ index++);};
+
+    d3.selectAll("div")
+      .on("click",testme)
+
+      .on("mouseover", function(){
+          d3.select(this)
+            .style("background-color", "orange")})
+
+      .on("mouseout", function(){ d3.select(this).style("background-color", "steelblue")})
+</script>
+</body>
+</html>

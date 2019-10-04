@@ -1,0 +1,63 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+
+<title>Glass Box</title>
+<style>
+      body {
+      	overflow:hidden;
+		background:radial-gradient(#000 16%, transparent 17%),radial-gradient(#444 16%, transparent 17%) 0px 1px,
+		radial-gradient(#000 16%, transparent 17%) 8px 8px,radial-gradient(#444 16%, transparent 17%) 8px 9px;
+  		background-color:#482828;background-size: 16px 16px;}
+
+		.stage {position:absolute;top:0;left:0;right:0;bottom:0;margin:auto;
+		-webkit-perspective:800px;}
+
+		.card {position:absolute;top:0;left:0;right:0;bottom:0;margin:auto;
+		width:300px;height:400px;overflow:hidden;
+		display: grid;
+  		place-items: center center;
+		border-radius:5px;border:1px solid rgba(150,150,150,.2);box-sizing:border-box;
+		background:-webkit-linear-gradient(top, rgba(255, 255, 255, 0.1), transparent);
+		-webkit-box-shadow:4px 9px 20px rgba(0, 0, 0, .2), 5px 18px 40px rgba(0, 0, 0, .6),inset 0px 5px 10px rgba(255, 255, 255, 0.1);
+		-webkit-transform-style:preserve-3d;
+		-webkit-animation: shimmy 60s ease-in-out infinite;  
+		}
+
+		@-webkit-keyframes shimmy {
+		0%,100% {-webkit-transform:rotateY(0deg);}
+		50% {-webkit-transform:rotateY(30deg);}
+		}
+
+		.card:after {content:'';position:absolute;margin-left:-100px;
+		width:1000px;height:100px;
+		background:-webkit-linear-gradient(top, transparent, rgba(200, 200, 200, 0.1), transparent);  
+		-webkit-transform:rotate(30deg);  
+		-webkit-animation:shine 6s ease-in-out infinite;}
+
+		@-webkit-keyframes shine {
+		0%,100% {margin-top:-600px;}
+		50% {margin-top:800px;}
+
+		.helptext {
+		color:red;
+		background-color: blue;
+		}
+}
+
+</style>
+
+
+</head>
+<body>
+<div class="stage">
+<div class="card" onclick="clickMe()"><div style="color:white;margin-left:30px">Hello I am your help text. I am here to tell you what to do</div></div>
+</div>
+
+<div id="tries">Hiyaaa </div>
+
+<script>
+function clickMe(){
+window.location.hash = '#tries'; }
+</script>
+
+</body></html>

@@ -1,0 +1,140 @@
+<html><head>
+<title>scrollIntoView</title>
+<style>
+      html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'arial narrow', arial;
+  text-align: center;
+}
+
+.wrapper {
+  position: relative;
+  top: 800px;
+  color: white;
+}
+
+.block {
+  position: relative;
+  height: 500px;
+}
+
+.block--yellow {
+  background: #fc0;
+}
+
+.block--purple {
+  background: purple;
+}
+
+.block--purple {
+  background: purple;
+}
+
+.block--green {
+  background: green;
+}
+
+.block--blue {
+  background: cornflowerblue;
+}
+
+.block--orange {
+  background: orange;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 5rem;
+}
+
+.block a {
+  color: white;
+}
+
+.nav-list {
+  list-style: none;
+}
+
+    </style>
+
+</head>
+<body>
+<ul class="nav-list">
+<li><a href="#block-1">Block 1</a></li>
+<li><a href="#block-2">Block 2</a></li>
+<li><a href="#block-3">Block 3</a></li>
+<li><a href="#block-4">Block 4</a></li>
+<li><a href="#block-5">Block 5</a></li>
+</ul>
+<p>
+<a href="https://caniuse.com/#search=scrollintoview">caniuse.com/#search=scrollintoview</a>
+</p>
+<div class="wrapper">
+<div id="block-1" class="block block--yellow">
+<h2>1</h2>
+<ul class="nav-list">
+<li><a href="#block-1">Block 1</a></li>
+<li><a href="#block-2">Block 2</a></li>
+<li><a href="#block-3">Block 3</a></li>
+<li><a href="#block-4">Block 4</a></li>
+<li><a href="#block-5">Block 5</a></li>
+</ul>
+</div>
+<div id="block-2" class="block block--purple">
+<h2>2</h2>
+<ul class="nav-list">
+<li><a href="#block-1">Block 1</a></li>
+<li><a href="#block-2">Block 2</a></li>
+<li><a href="#block-3">Block 3</a></li>
+<li><a href="#block-4">Block 4</a></li>
+<li><a href="#block-5">Block 5</a></li>
+</ul>
+</div>
+<div id="block-3" class="block block--green">
+<h2>3</h2>
+<ul class="nav-list">
+<li><a href="#block-1">Block 1</a></li>
+<li><a href="#block-2">Block 2</a></li>
+<li><a href="#block-3">Block 3</a></li>
+<li><a href="#block-4">Block 4</a></li>
+<li><a href="#block-5">Block 5</a></li>
+</ul>
+</div>
+<div id="block-4" class="block block--blue">
+<h2>4</h2>
+<ul class="nav-list">
+<li><a href="#block-1">Block 1</a></li>
+<li><a href="#block-2">Block 2</a></li>
+<li><a href="#block-3">Block 3</a></li>
+<li><a href="#block-4">Block 4</a></li>
+<li><a href="#block-5">Block 5</a></li>
+</ul>
+</div>
+<div id="block-5" class="block block--orange">
+<h2>5</h2>
+<ul class="nav-list">
+<li><a href="#block-1">Block 1</a></li>
+<li><a href="#block-2">Block 2</a></li>
+<li><a href="#block-3">Block 3</a></li>
+<li><a href="#block-4">Block 4</a></li>
+<li><a href="#block-5">Block 5</a></li>
+</ul>
+</div>
+</div>
+
+<script id="rendered-js">
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const tgtId = e.target.getAttribute('href').substr(1),
+    tgtElm = document.getElementById(tgtId);
+    tgtElm.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+      //# sourceURL=pen.js
+    </script>
+
+
+</body></html>

@@ -1,0 +1,90 @@
+<style>
+/* Looks */
+
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body {  
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+}
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  padding: 1em;
+  background: #f59231;
+  transition: all 0.2s ease-in-out 0s;
+  text-transform: uppercase;
+}
+.btn:hover {
+  background: #e8780b;
+}
+/* Required */
+
+.banner { 
+  position: relative; 
+  float: left; 
+  width: 100%; 
+}
+.banner img { 
+  display: block; 
+  width: 100%; 
+  height: auto; 
+}
+.banner .blur { 
+  position: absolute; 
+  left: 0; 
+  top: 0; 
+  width: 100%; 
+  height: 100%; 
+}
+.banner .blur image { 
+  width: 100%; 
+  height: 100%; 
+}
+.banner .wrap { 
+  position: absolute; 
+  left: 0; 
+  right: 0; 
+  top: 0; 
+  width: 100%; 
+  height: 100%; 
+  max-width: 1500px; 
+  position: absolute; 
+  padding: 3em 0; 
+  box-sizing: border-box; 
+  display: flex; 
+  align-items: center; 
+  z-index: 1; 
+  margin: auto; 
+  justify-content: flex-start; 
+}
+.banner .pad { 
+  float: left; 
+  width: 100%; 
+  padding: 3em; 
+  box-sizing: border-box; 
+}  
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<section class="banner">
+  <svg class="blur" viewBox="0 0 1920 700" preserveAspectRatio="xMinYMid">
+    <defs>
+      <filter id="blur">
+        <feGaussianBlur stdDeviation="20" />
+      </filter>
+    </defs>
+    <image xlink:href="https://www.wcg.de/fileadmin/masterTemplate/Resources/Public/Images/site-wcg/banner/banner-waves-01.jpg" width="1920" height="700" filter="url(#blur)"></image>
+  </svg>
+  <img src="https://www.wcg.de/fileadmin/masterTemplate/Resources/Public/Images/site-wcg/banner/banner-waves-01.jpg" width="1920" height="700" alt="Waves" />
+  <div class="wrap">
+    <div class="inner">
+        <div class="pad">
+            <a class="btn" href="https://www.wcg.de/blog/detail/cross-browser-frosted-glass-effect-with-html-css-and-jquery/" target="_blank">Cross-Browser Frosted Glass Effect</a>
+      </div>
+    </div>
+  </div>
+</section>

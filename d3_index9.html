@@ -1,0 +1,781 @@
+<html>
+<head>
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+
+</head>
+
+<body onload="rePaint()" onresize="rePaint()">
+
+<style>
+
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block;}audio,canvas,video{display:inline-block;}audio:not([controls]){display:none;height:0;}[hidden]{display:none;}html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}body{margin:0;}a:focus{outline:thin dotted;}a:active,a:hover{outline:0;}h1{font-size:2em;margin:0.67em 0;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:bold;}dfn{font-style:italic;}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0;}mark{background:#ff0;color:#000;}code,kbd,pre,samp{font-family:monospace,serif;font-size:1em;}pre{white-space:pre-wrap;}q{quotes:"\201C" "\201D" "\2018" "\2019";}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-0.5em;}sub{bottom:-0.25em;}img{border:0;}svg:not(:root){overflow:hidden;}figure{margin:0;}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em;}legend{border:0;padding:0;}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0;}button,input{line-height:normal;}button,select{text-transform:none;}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer;}button[disabled],html input[disabled]{cursor:default;}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0;}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}textarea{overflow:auto;vertical-align:top;}table{border-collapse:collapse;border-spacing:0;}
+
+
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+
+
+/*These settings will go to all divs */
+#rootDiv {
+  box-sizing: border-box;  
+  position:relative;
+  top:0px;
+  font-family: 'Titillium Web', Arial, sans-serif;
+  font-weight: 300;
+  font-size: 1.05em; 
+  margin: 0;
+  text-align:justify;
+}
+
+.baseDiv {
+    border-color: #e3e3e3;
+    border-style: solid;
+    border-width: 1px;
+    margin-left: -1px;
+    margin-top: -1px;
+    
+  
+}
+
+i {
+font-size: 1em;
+  font-weight: 400;
+  padding: 0 0 15px;
+  line-height: 36px;
+  
+}
+
+h1 {
+
+
+  font-size: 28px;
+  font-weight: 400;
+  padding: 0 0 15px;
+}  
+
+
+.flexcontainer {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+align-items: center;
+align-content: space-around;
+
+
+}
+
+
+
+
+
+
+</style>  
+
+<!--Entire Document is mounted here -->
+<div id="rootDiv"></div>
+
+
+<script id="userNonPresentationData">
+  //User Data Section. Keep things that will fetch user non-presentation data here. These will be called only once
+  //Do not put presentation elements here. Presentation elements will need rePainting when screens are resized. Put them in next script tag UserPresentationCode under function rePaintUserData() 
+
+
+
+
+
+
+  function test(){
+    console.log("test works");
+    }
+  test();
+
+
+
+//This function will be called by framework for you
+  function userDataNeedingNoRePaint(){
+
+    function test(){
+      console.log("test works inside userDataNeedingNoRePaint");
+    }
+
+
+    test();
+    
+    
+
+  }
+
+</script>
+
+<script id="SystemConfiguration">
+ 
+   var screenAlpha ={};
+   screenAlpha.codeOrderDivList = [];
+   screenAlpha.userDivSpan = {};
+  //Main configuration for number of boxes in grid. You only have to define minimum width, minimum height and total number of boxes. Positioning will be taken care of by the code
+  screenAlpha.boxMinimumWidth = 340;
+  screenAlpha.boxMinimumHeight = 390;
+  screenAlpha.totalBoxes = 50;
+    
+  //Turn them false when layout job is done
+  screenAlpha.lastUserDivShouldCoverWholeLine  = false;
+  screenAlpha.showBaseDivNumber = false  ;
+  screenAlpha.showBaseDivBackground = false;
+  screenAlpha.showLastOverLayDivBackground = false;
+  
+  //Styling Information for base Div grid, and overlay Div grid 
+  screenAlpha.baseDivGridBackground = "white";
+  screenAlpha.OverlayDivGridBackground =["pink"]
+  screenAlpha.OverlayDivOpacity ="0.8";
+
+  
+</script>
+
+
+<script id="UserPresentationCode">
+/*
+  
+  1. You can create your own overlay divs, and put user HTML/Javascript code inside it. Give it space by calling createUserDiv(baseDivNumber,howManyAdjacentDivs,heightMultiplier)
+  2. Keep static calculations outside rePainting zone in <script id="script_userNonPresentationData"> section
+  3. Keep all the screen specific display in <script id="script_UserPresentationData"> zone
+  4. All user presentation code should strictly be inside the function rePaintUserData()
+*/
+
+  function rePaintUserData(){
+  //createUserDiv(baseDivNumber,howManyAdjacentDivs,heightMultiplier)
+ /* 
+  //Creates a user div which spans the entire line with id div_overlay_2 which be used to style and put content inside the div. Positioning has been taken care of
+    createUserDiv(6,"full_line",1);
+
+  //Creates a user div which spans 2 adjacent divs or end of line if those adjacent divs are could not be placed. The height is 3 row of divs. Div id is div_overlay_7
+    createUserDiv(15,2,3);
+
+   // You get last overly div ID for free if screenAlpha.lastUserDivShouldCoverWholeLine  = true; 
+    if(screenAlpha.lastBaseDivNumber) document.getElementById("div_overlay_"+screenAlpha.lastBaseDivNumber).innerHTML="Last overlay DIV takes the whole row if configured that way";
+
+ // You will get the height you request .. but not the width .. width will be clipped to available space
+
+ */   
+    screenAlpha.codeOrderDivList = [];
+
+
+ 
+
+
+
+    var x0 = createFlexUserDiv(0,"full_line",1);
+   // x0.style.backgroundColor = "#222";
+    x0.innerHTML = `
+<svg width="100" height="130" viewBox = "0 0 100 130">
+  
+  <g id="layer1" transform="translate(470,140)">
+    <path transform="translate(-350,-850)" id="path5165"
+       d="M -166.99971,804.55875 V 484.41291 H 153.14614 473.29202 V 804.55875 1124.7046 H 153.14614 -166.99971 Z m 639.93893,0 V 484.76569 H 153.14614 -166.64693 v 319.79306 319.79305 h 319.79307 319.79308 z m -168.4514,189.02282 m 10.5778,-228.53393 m -37.9181,8.56292  z m -332.434261,52.76162 c -0.12935,-0.12935 -0.23519,-1.28253 -0.23519,-2.56262 0,-6.67058 -5.44905,-13.20481 -16.4463,-19.72158 -1.96345,-1.1635 -4.3447,-2.4643 -5.29166,-2.89067 -4.957,-2.23185 -12.62447,-6.25072 -15.28525,-8.0117 -12.030489,-7.96211 -12.658389,-16.35177 -1.98645,-26.54198 1.73209,-1.65391 4.64828,-4.43585 6.48042,-6.1821 6.95926,-6.63302 10.68624,-12.58985 11.25673,-17.99167 l 0.22355,-2.11667 -1.9948,2.35011 c -3.79112,4.46638 -7.61404,7.1861 -11.52814,8.20141 -2.21719,0.57513 -2.64903,0.29106 -3.26536,-2.14806 l -0.46168,-1.82711 -2.28178,1.4509 c -2.41829,1.5377 -6.723749,3.18611 -7.521859,2.87985 -0.26212,-0.10059 -0.6859,-1.05542 -0.94173,-2.12185 -0.25584,-1.06643 -0.57694,-2.00805 -0.71357,-2.09249 -0.13663,-0.0844 -0.87878,0.3031 -1.64922,0.8612 -1.94063,1.40579 -3.46509,2.15893 -5.81469,2.8727 -2.51574,0.76424 -2.8946,0.5237 -3.62066,-2.29869 -0.88387,-3.43588 -0.92652,-3.36547 2.03806,-3.36547 6.83587,0 13.43345,-5.38116 19.896059,-16.22778 2.20502,-3.70081 3.98333,-7.22308 3.98333,-7.88969 0,-1.65984 2.6604,-0.47757 8.74073,3.88434 0.44177,0.31692 0.84002,0.51434 0.885,0.4387 0.62242,-1.04661 2.02564,-4.11571 2.02146,-4.4213 -0.0103,-0.75676 1.09171,-0.826 2.39614,-0.15054 0.71638,0.37096 2.5618,1.54517 4.10094,2.60937 l 2.79843,1.9349 0.97993,-1.81886 c 0.53896,-1.00037 0.98623,-2.08598 0.99393,-2.41245 0.0309,-1.3126 1.35752,-1.06195 4.32379,0.81695 8.04593,5.09648 12.84596,10.33008 15.13027,16.49691 0.65604,1.77111 0.54891,7.26086 -0.18316,9.38529 -1.79642,5.21312 -4.92116,9.58274 -11.10003,15.52222 -10.2817,9.88334 -11.67023,11.50598 -12.92312,15.10198 -0.68891,1.97729 -0.66829,5.81002 0.0404,7.52091 0.62466,1.50789 2.49336,3.99328 4.16986,5.54596 2.19595,2.03378 6.9095,4.82907 13.96149,8.27964 17.53725,8.58104 24.94403,14.81547 27.39109,23.05562 0.506,1.70388 0.50176,1.87158 -0.0577,2.28064 -0.71748,0.52463 -5.11519,1.57632 -5.52706,1.32176 -0.1578,-0.0975 -0.28691,-1.24175 -0.28691,-2.54272 0,-5.44225 -3.46174,-10.63587 -10.63355,-15.95345 -4.28094,-3.17412 -6.86259,-4.60768 -19.35256,-10.74621 -8.02659,-3.94489 -13.56038,-8.39151 -15.44245,-12.40863 -0.79591,-1.6988 -0.96172,-2.53931 -0.96172,-4.87494 0,-2.42145 0.15442,-3.14785 1.08741,-5.11528 1.21505,-2.56222 3.52772,-5.46919 6.89222,-8.66337 9.99629,-9.49026 11.81397,-11.48021 14.18898,-15.53373 2.29842,-3.92278 2.87861,-5.90728 2.87861,-9.84596 0,-3.92937 -0.49788,-5.6762 -2.54551,-8.93109 -1.8328,-2.91338 -8.45442,-9.23697 -9.67231,-9.23697 -0.43533,0 -2.1296,3.4982 -1.88553,3.89311 0.11519,0.18638 1.08106,1.16322 2.14638,2.17076 4.62673,4.37576 6.94442,9.15024 6.92646,14.26857 -0.0223,6.34079 -3.45437,12.37338 -11.41304,20.0606 -9.7573,9.4245 -11.14838,10.9574 -12.50702,13.78212 -2.47712,5.15014 -1.60256,9.72788 2.65929,13.9197 2.6136,2.57065 6.13507,4.85438 11.78566,7.64316 11.49487,5.67317 12.94902,6.46058 17.33578,9.38711 7.7164,5.14782 12.40171,10.85444 13.10107,15.95683 l 0.20905,1.52525 -1.54375,0.40093 c -0.84906,0.22051 -2.08448,0.54356 -2.74536,0.71789 -0.66089,0.17434 -1.31163,0.24898 -1.44609,0.16588 -0.13446,-0.0831 -0.3448,-1.4521 -0.46742,-3.04221 -0.26667,-3.45806 -1.40409,-6.14134 -3.94386,-9.30386 -3.96382,-4.93576 -9.19258,-8.50743 -21.29726,-14.54777 -10.55708,-5.26806 -14.28068,-7.62481 -17.44215,-11.0395 -3.01368,-3.25504 -3.88596,-5.42067 -3.69007,-9.16134 0.23445,-4.47716 2.12333,-7.63031 7.8192,-13.05278 8.17821,-7.78566 11.42793,-11.23684 13.39849,-14.2291 1.10432,-1.67689 2.09734,-3.32853 2.20672,-3.67032 0.10937,-0.34177 0.33606,-0.93891 0.50374,-1.32697 0.7565,-1.75067 1.39503,-4.69838 1.39503,-6.44002 0,-2.55009 -1.43409,-6.695 -3.23286,-9.3438 l -1.45314,-2.13983 -0.52062,1.02432 c -0.28634,0.56338 -0.96031,1.75163 -1.4977,2.64056 l -0.97709,1.61622 1.06017,2.44072 c 0.94532,2.17632 1.06006,2.82288 1.05923,5.9685 -7e-4,3.32326 -0.081,3.71278 -1.3819,6.71897 -2.5028,5.78351 -6.08366,10.11439 -15.51794,18.76826 -5.95936,5.46639 -8.3221,9.472 -8.29561,14.06375 0.0168,2.90596 1.30197,5.60636 3.9078,8.21083 2.8565,2.85503 6.15357,4.89263 14.68085,9.0728 7.6367,3.7436 13.15045,6.8861 16.95694,9.66442 3.2897,2.40112 7.59877,6.96715 8.90278,9.43366 1.27429,2.41032 2.20493,5.48363 1.83953,6.07484 -0.12755,0.2064 -1.3702,0.6907 -2.76143,1.07623 -2.89845,0.8032 -2.70184,0.77276 -3.00882,0.46578 z m -41.33331,-82.80985 c 4.23101,-2.09108 7.92503,-5.83754 12.53542,-12.7134 l 1.87844,-2.80148 -2.0919,-1.91409 c -2.52447,-2.30991 -4.72208,-3.76207 -5.08615,-3.36088 -0.14704,0.16203 -1.02759,1.80273 -1.95679,3.64599 -3.56684,7.07558 -6.30491,11.4598 -9.998129,16.00908 l -2.2568,2.77991 2.13626,-0.15453 c 1.543029,-0.11161 2.886999,-0.52555 4.839649,-1.4906 z m 10.43136,0.54182 c 2.0284,-0.77999 7.31893,-4.77496 8.55423,-6.45945 l 0.69272,-0.9446 -1.4792,-2.986 c -1.32469,-2.67412 -2.64562,-4.48681 -2.97976,-4.08907 -0.0669,0.0797 -0.72265,1.25608 -1.45719,2.61427 -1.84339,3.40851 -4.45047,7.27559 -6.98968,10.36783 l -2.14053,2.60672 1.91711,-0.17701 c 1.05442,-0.0974 2.80145,-0.51707 3.8823,-0.93269 z m 13.86858,-13.83041 c 0.70178,-1.17807 1.27596,-2.21029 1.27596,-2.29383 0,-0.26334 -2.57037,-2.6013 -4.51637,-4.108 -2.11433,-1.63702 -2.27705,-1.58756 -3.40635,1.0354 l -0.64041,1.48745 2.78226,2.98903 c 1.53024,1.64397 2.88277,2.99868 3.00561,3.01047 0.12284,0.0118 0.79753,-0.94244 1.4993,-2.12052 z" style="fill:#000000;stroke-width:0.35277778" />
+  </g>
+</svg>
+<h1>Ranchi Mall </h1>
+
+
+
+    `;
+
+
+
+
+ 
+
+  
+
+
+     var x1 = createUserDiv(nextAvailableUserDivNumber(),"full_line",1);
+      x1.style.backgroundColor = "#678";
+      x1.style.opacity = 0.8;
+      x1.innerHTML = `<div class="flexcontainer" style="height:${screenAlpha.boxMinimumHeight}">
+
+      <div style="width:200px">Hello .. Checking this. what happens when I put a lot of text here. You see, I am getting really confused here. Are you not ?</div>
+      
+      <svg width="100" height="130" viewBox = "0 0 100 130" >
+  
+        <g id="layer1" transform="translate(470,140)">
+          <path transform="translate(-350,-850)" id="path5165"
+             d="M -166.99971,804.55875 V 484.41291 H 153.14614 473.29202 V 804.55875 1124.7046 H 153.14614 -166.99971 Z m 639.93893,0 V 484.76569 H 153.14614 -166.64693 v 319.79306 319.79305 h 319.79307 319.79308 z m -168.4514,189.02282 m 10.5778,-228.53393 m -37.9181,8.56292  z m -332.434261,52.76162 c -0.12935,-0.12935 -0.23519,-1.28253 -0.23519,-2.56262 0,-6.67058 -5.44905,-13.20481 -16.4463,-19.72158 -1.96345,-1.1635 -4.3447,-2.4643 -5.29166,-2.89067 -4.957,-2.23185 -12.62447,-6.25072 -15.28525,-8.0117 -12.030489,-7.96211 -12.658389,-16.35177 -1.98645,-26.54198 1.73209,-1.65391 4.64828,-4.43585 6.48042,-6.1821 6.95926,-6.63302 10.68624,-12.58985 11.25673,-17.99167 l 0.22355,-2.11667 -1.9948,2.35011 c -3.79112,4.46638 -7.61404,7.1861 -11.52814,8.20141 -2.21719,0.57513 -2.64903,0.29106 -3.26536,-2.14806 l -0.46168,-1.82711 -2.28178,1.4509 c -2.41829,1.5377 -6.723749,3.18611 -7.521859,2.87985 -0.26212,-0.10059 -0.6859,-1.05542 -0.94173,-2.12185 -0.25584,-1.06643 -0.57694,-2.00805 -0.71357,-2.09249 -0.13663,-0.0844 -0.87878,0.3031 -1.64922,0.8612 -1.94063,1.40579 -3.46509,2.15893 -5.81469,2.8727 -2.51574,0.76424 -2.8946,0.5237 -3.62066,-2.29869 -0.88387,-3.43588 -0.92652,-3.36547 2.03806,-3.36547 6.83587,0 13.43345,-5.38116 19.896059,-16.22778 2.20502,-3.70081 3.98333,-7.22308 3.98333,-7.88969 0,-1.65984 2.6604,-0.47757 8.74073,3.88434 0.44177,0.31692 0.84002,0.51434 0.885,0.4387 0.62242,-1.04661 2.02564,-4.11571 2.02146,-4.4213 -0.0103,-0.75676 1.09171,-0.826 2.39614,-0.15054 0.71638,0.37096 2.5618,1.54517 4.10094,2.60937 l 2.79843,1.9349 0.97993,-1.81886 c 0.53896,-1.00037 0.98623,-2.08598 0.99393,-2.41245 0.0309,-1.3126 1.35752,-1.06195 4.32379,0.81695 8.04593,5.09648 12.84596,10.33008 15.13027,16.49691 0.65604,1.77111 0.54891,7.26086 -0.18316,9.38529 -1.79642,5.21312 -4.92116,9.58274 -11.10003,15.52222 -10.2817,9.88334 -11.67023,11.50598 -12.92312,15.10198 -0.68891,1.97729 -0.66829,5.81002 0.0404,7.52091 0.62466,1.50789 2.49336,3.99328 4.16986,5.54596 2.19595,2.03378 6.9095,4.82907 13.96149,8.27964 17.53725,8.58104 24.94403,14.81547 27.39109,23.05562 0.506,1.70388 0.50176,1.87158 -0.0577,2.28064 -0.71748,0.52463 -5.11519,1.57632 -5.52706,1.32176 -0.1578,-0.0975 -0.28691,-1.24175 -0.28691,-2.54272 0,-5.44225 -3.46174,-10.63587 -10.63355,-15.95345 -4.28094,-3.17412 -6.86259,-4.60768 -19.35256,-10.74621 -8.02659,-3.94489 -13.56038,-8.39151 -15.44245,-12.40863 -0.79591,-1.6988 -0.96172,-2.53931 -0.96172,-4.87494 0,-2.42145 0.15442,-3.14785 1.08741,-5.11528 1.21505,-2.56222 3.52772,-5.46919 6.89222,-8.66337 9.99629,-9.49026 11.81397,-11.48021 14.18898,-15.53373 2.29842,-3.92278 2.87861,-5.90728 2.87861,-9.84596 0,-3.92937 -0.49788,-5.6762 -2.54551,-8.93109 -1.8328,-2.91338 -8.45442,-9.23697 -9.67231,-9.23697 -0.43533,0 -2.1296,3.4982 -1.88553,3.89311 0.11519,0.18638 1.08106,1.16322 2.14638,2.17076 4.62673,4.37576 6.94442,9.15024 6.92646,14.26857 -0.0223,6.34079 -3.45437,12.37338 -11.41304,20.0606 -9.7573,9.4245 -11.14838,10.9574 -12.50702,13.78212 -2.47712,5.15014 -1.60256,9.72788 2.65929,13.9197 2.6136,2.57065 6.13507,4.85438 11.78566,7.64316 11.49487,5.67317 12.94902,6.46058 17.33578,9.38711 7.7164,5.14782 12.40171,10.85444 13.10107,15.95683 l 0.20905,1.52525 -1.54375,0.40093 c -0.84906,0.22051 -2.08448,0.54356 -2.74536,0.71789 -0.66089,0.17434 -1.31163,0.24898 -1.44609,0.16588 -0.13446,-0.0831 -0.3448,-1.4521 -0.46742,-3.04221 -0.26667,-3.45806 -1.40409,-6.14134 -3.94386,-9.30386 -3.96382,-4.93576 -9.19258,-8.50743 -21.29726,-14.54777 -10.55708,-5.26806 -14.28068,-7.62481 -17.44215,-11.0395 -3.01368,-3.25504 -3.88596,-5.42067 -3.69007,-9.16134 0.23445,-4.47716 2.12333,-7.63031 7.8192,-13.05278 8.17821,-7.78566 11.42793,-11.23684 13.39849,-14.2291 1.10432,-1.67689 2.09734,-3.32853 2.20672,-3.67032 0.10937,-0.34177 0.33606,-0.93891 0.50374,-1.32697 0.7565,-1.75067 1.39503,-4.69838 1.39503,-6.44002 0,-2.55009 -1.43409,-6.695 -3.23286,-9.3438 l -1.45314,-2.13983 -0.52062,1.02432 c -0.28634,0.56338 -0.96031,1.75163 -1.4977,2.64056 l -0.97709,1.61622 1.06017,2.44072 c 0.94532,2.17632 1.06006,2.82288 1.05923,5.9685 -7e-4,3.32326 -0.081,3.71278 -1.3819,6.71897 -2.5028,5.78351 -6.08366,10.11439 -15.51794,18.76826 -5.95936,5.46639 -8.3221,9.472 -8.29561,14.06375 0.0168,2.90596 1.30197,5.60636 3.9078,8.21083 2.8565,2.85503 6.15357,4.89263 14.68085,9.0728 7.6367,3.7436 13.15045,6.8861 16.95694,9.66442 3.2897,2.40112 7.59877,6.96715 8.90278,9.43366 1.27429,2.41032 2.20493,5.48363 1.83953,6.07484 -0.12755,0.2064 -1.3702,0.6907 -2.76143,1.07623 -2.89845,0.8032 -2.70184,0.77276 -3.00882,0.46578 z m -41.33331,-82.80985 c 4.23101,-2.09108 7.92503,-5.83754 12.53542,-12.7134 l 1.87844,-2.80148 -2.0919,-1.91409 c -2.52447,-2.30991 -4.72208,-3.76207 -5.08615,-3.36088 -0.14704,0.16203 -1.02759,1.80273 -1.95679,3.64599 -3.56684,7.07558 -6.30491,11.4598 -9.998129,16.00908 l -2.2568,2.77991 2.13626,-0.15453 c 1.543029,-0.11161 2.886999,-0.52555 4.839649,-1.4906 z m 10.43136,0.54182 c 2.0284,-0.77999 7.31893,-4.77496 8.55423,-6.45945 l 0.69272,-0.9446 -1.4792,-2.986 c -1.32469,-2.67412 -2.64562,-4.48681 -2.97976,-4.08907 -0.0669,0.0797 -0.72265,1.25608 -1.45719,2.61427 -1.84339,3.40851 -4.45047,7.27559 -6.98968,10.36783 l -2.14053,2.60672 1.91711,-0.17701 c 1.05442,-0.0974 2.80145,-0.51707 3.8823,-0.93269 z m 13.86858,-13.83041 c 0.70178,-1.17807 1.27596,-2.21029 1.27596,-2.29383 0,-0.26334 -2.57037,-2.6013 -4.51637,-4.108 -2.11433,-1.63702 -2.27705,-1.58756 -3.40635,1.0354 l -0.64041,1.48745 2.78226,2.98903 c 1.53024,1.64397 2.88277,2.99868 3.00561,3.01047 0.12284,0.0118 0.79753,-0.94244 1.4993,-2.12052 z" style="fill:#000000;stroke-width:0.35277778" />
+         </g>
+        </svg>
+
+      </div>`;
+
+
+   
+
+
+
+
+ 
+  
+
+
+       var x2 = createFlexUserDiv(nextAvailableUserDivNumber(),2,1);
+      x2.style.backgroundColor = "#39b";
+      x2.style.opacity = 0.8;
+      x2.innerHTML = `<div>Hello Viv!! Whats Up </div><input type="submit" value="Submit">`; 
+
+
+
+      var x3 = createFlexUserDiv(nextAvailableUserDivNumber(),5,1);
+      x3.style.backgroundColor = "#b9b";
+      x3.style.opacity = 0.8;
+      x3.innerHTML = `<div style="text-align:justify;margin:20 auto;width:200px">Hello Me </div>`; 
+
+
+
+
+
+   
+      var x4 = createUserDiv(nextAvailableUserDivNumber(),2,1);
+      x4.style.backgroundColor = "#99b";
+      x4.style.opacity = 0.9;
+      x4.innerHTML = `<div style="text-align:justify;margin:20 auto;width:200px">Pine Forest </div>`;  
+  
+
+
+      
+
+   
+
+
+
+ 
+
+
+      var x5 = createUserDiv(nextAvailableUserDivNumber(),"full_line",1);
+      x5.style.backgroundColor = "#f9b";
+      x5.style.opacity = 0.8;
+      x5.innerHTML = `<div style="text-align:justify;margin:20 auto;width:200px">Golf Course </div>`;  
+
+
+      var x6 = createUserDiv(nextAvailableUserDivNumber(),"full_line",2);
+      x6.style.backgroundColor = "#123";
+      x6.style.opacity = 0.5;
+      x6.innerHTML = `<div style="text-align:justify;margin:20 auto;width:200px">Bison </div>`;  
+
+
+ 
+    
+    var x7 = createUserDiv(nextAvailableUserDivNumber(),"full_line",1);
+      x7.style.backgroundColor = "#323";
+      x7.style.opacity = 0.8;
+      x7.innerHTML = `<div style="text-align:justify;margin:20 auto;width:200px">Pink FLoyd </div>`;
+
+
+
+
+
+//On repainting .. it creates that number again .. and updates getLastUserDivNumber ..
+//screenAlpha.codeOrderDivList = [];
+deleteBaseDiv(nextAvailableUserDivNumber());
+anotherDivCleanUp();
+} // Main function end
+</script>  
+
+<script id="script_last">
+//Positioning section 
+//Keep this script tag section as the last tag
+
+//Do not touch these settings
+  screenAlpha.widthAdjustment = 18;
+  screenAlpha.heightAdjustment = 20;
+  screenAlpha.baseDivIdList = [];
+  screenAlpha.userDivIdList = [];
+  screenAlpha.lastBaseDivNumber = screenAlpha.totalBoxes -1;
+  screenAlpha.lastUserDivNumber = 0;
+
+
+//One time tasks not needing repainting
+  oneTimeTasks();
+
+  function oneTimeTasks(){
+    createAllBaseDivs(screenAlpha.totalBoxes);
+    userDataNeedingNoRePaint();
+  }
+
+  function createAllBaseDivs(totalBoxes){
+      var index;
+      for (index = 0; index < totalBoxes; index++) { 
+      var divId = "div_"+index;
+      createSingleBaseDiv(divId);
+      screenAlpha.baseDivIdList.push(divId);
+    }
+  }
+
+  function createSingleBaseDiv(divId){
+   var divCreated = document.createElement("div");
+   divCreated.id=divId;
+   divCreated.style.position = "absolute";
+   if(screenAlpha.showBaseDivBackground) {
+      divCreated.classList.add("baseDiv");
+      }
+   rootDiv.appendChild(divCreated);
+ }
+
+//Tasks needing repainting
+  function rePaint(){
+    screenAlpha.boxDetails = boxesPerRowData(screenAlpha.boxMinimumWidth,screenAlpha.boxMinimumHeight);
+    rootDivSetDimensions("rootDiv");
+    positionTheBaseDivs();
+    if(screenAlpha.lastUserDivShouldCoverWholeLine ) lastBaseDivOverlay();
+    if(screenAlpha.showBaseDivBackground) {
+      document.getElementById("rootDiv").style.backgroundColor = screenAlpha.baseDivGridBackground;
+      }
+
+    rePaintUserData();
+    }
+
+  function rootDivSetDimensions (rootElementId){
+    var divSelected = document.getElementById(rootElementId);
+    divSelected.style.width = (window.innerWidth-screenAlpha.widthAdjustment);
+    divSelected.style.height = Math.ceil(screenAlpha.totalBoxes/screenAlpha.boxDetails.numberOfBoxesInRow)*screenAlpha.boxMinimumHeight;
+    }
+
+  function boxesPerRowData(boxMinimumWidth, boxMinimumHeight){
+    var boxDetails = {};
+    var numberOfBoxesInRow = Math.floor((window.innerWidth-screenAlpha.widthAdjustment)/boxMinimumWidth);
+    var spillOverPerRow = (window.innerWidth-screenAlpha.widthAdjustment) - numberOfBoxesInRow*boxMinimumWidth;
+    if (numberOfBoxesInRow == 0) {numberOfBoxesInRow = 1}; //to solve Divide by Zero problem
+    var spillOverPerBox = spillOverPerRow/numberOfBoxesInRow;
+    var boxEffectiveWidth = boxMinimumWidth + spillOverPerBox;
+    boxDetails.numberOfBoxesInRow = numberOfBoxesInRow;
+    boxDetails.boxEffectiveWidth = boxEffectiveWidth;
+    screenAlpha.previousNumberOfBoxesInRow = screenAlpha.numberOfBoxesInRow;
+    screenAlpha.numberOfBoxesInRow = numberOfBoxesInRow;
+    screenAlpha.boxEffectiveWidth = boxEffectiveWidth;
+    return boxDetails;
+  }
+ 
+ function topAndLeftPositionOfBaseDivs(divNumber){
+    heightPositionMultiplier = Math.floor(divNumber/screenAlpha.boxDetails.numberOfBoxesInRow);
+    widthPositionMultiplier = divNumber % screenAlpha.boxDetails.numberOfBoxesInRow;
+    topPosition = screenAlpha.boxMinimumHeight*heightPositionMultiplier;
+    leftPosition = screenAlpha.boxDetails.boxEffectiveWidth*widthPositionMultiplier;
+    screenAlpha["div_"+divNumber+"_topPosition"] = topPosition;
+    screenAlpha["div_"+divNumber+"_leftPosition"] = leftPosition;
+  }
+
+  function positionTheBaseDivs(){
+    var index;
+    for (index = 0; index < screenAlpha.baseDivIdList.length; index++) {
+    topAndLeftPositionOfBaseDivs(index);
+    var divId = "div_"+index;
+    document.getElementById(divId).style.position = "absolute";
+    document.getElementById(divId).style.top=screenAlpha["div_"+index+"_topPosition"]+"px";
+    document.getElementById(divId).style.left=screenAlpha["div_"+index+"_leftPosition"]+"px";
+    document.getElementById(divId).style.width=screenAlpha.boxDetails.boxEffectiveWidth+"px";
+    document.getElementById(divId).style.height = screenAlpha.boxMinimumHeight+"px"; 
+    if(screenAlpha.showBaseDivNumber) document.getElementById(divId).innerHTML = index; 
+      }
+    }
+
+   function createUserDiv(baseDivNumber,howManyAdjacentDivs=1,heightMultiplier=1){
+
+      //Adjusting baseDivNumber for forward overlaps
+      baseDivNumber = forwardOverlapCheck(baseDivNumber,howManyAdjacentDivs,heightMultiplier);
+
+      screenAlpha.codeOrderDivList.push(baseDivNumber);
+      screenAlpha["div_overlay_"+baseDivNumber+"_howManyAdjacentDivs"]=howManyAdjacentDivs;
+      screenAlpha["div_overlay_"+baseDivNumber+"_heightMultiplier"]=heightMultiplier;
+
+
+     var topPosition = screenAlpha["div_"+baseDivNumber+"_topPosition"];
+     if (howManyAdjacentDivs == "full_line") {
+       var divWidth = screenAlpha.boxEffectiveWidth*screenAlpha.numberOfBoxesInRow;
+       var leftPosition = "0";
+       
+       } 
+     else
+     {
+       var originalLeftPosition = screenAlpha["div_"+baseDivNumber+"_leftPosition"];
+       //Obtain the lowest width of 3 possibilities for overlay  
+       var divWidth1 = screenAlpha.boxEffectiveWidth*screenAlpha.numberOfBoxesInRow;
+       var divWidth2 = howManyAdjacentDivs*screenAlpha.boxEffectiveWidth;
+       var divWidth3 = divWidth1 - screenAlpha["div_"+baseDivNumber+"_leftPosition"];
+       var divWidthTemp = (divWidth1 > divWidth2) ? divWidth2 : divWidth1;
+       var divWidth = (divWidthTemp > divWidth3) ? divWidth3 : divWidthTemp;
+       
+     }
+     var divHeight = screenAlpha.boxMinimumHeight*heightMultiplier;
+     var divId="div_overlay_"+baseDivNumber;
+
+     screenAlpha[divId+"_lineDivCount"]=divWidth/screenAlpha.boxEffectiveWidth;
+      var i;var j;
+      var lineDivCount = screenAlpha[divId+"_lineDivCount"];
+     screenAlpha.userDivSpan[baseDivNumber]=[];
+
+      for(j=0;j<heightMultiplier;j++){
+              for (i = 0; i < lineDivCount; i++) { 
+              screenAlpha.userDivSpan[baseDivNumber].push(screenAlpha.numberOfBoxesInRow*j+baseDivNumber+i);
+            }
+      }
+ 
+    if (!document.getElementById(divId)){
+     var overlayDiv = document.createElement("div");
+     overlayDiv.id=divId;
+     overlayDiv.style.position = "absolute";
+     document.getElementById("rootDiv").appendChild(overlayDiv)
+    }
+     var overlayDiv = document.getElementById(divId);
+     overlayDiv.style.position = "absolute";overlayDiv.style.top = topPosition+"px";screenAlpha[divId+"_top"]=topPosition;
+     if(howManyAdjacentDivs == "full_line") {screenAlpha[divId+"_left"]=0 } else {overlayDiv.style.left=originalLeftPosition+"px";screenAlpha[divId+"_left"]=originalLeftPosition};
+     overlayDiv.style.width=divWidth+"px";screenAlpha[divId+"_width"]=divWidth;
+     overlayDiv.style.height=divHeight+"px";screenAlpha[divId+"_height"]=divHeight;
+     if(screenAlpha.showLastOverLayDivBackground) { 
+      overlayDiv.style.backgroundColor=screenAlpha.OverlayDivGridBackground[baseDivNumber%screenAlpha.OverlayDivGridBackground.length];
+      overlayDiv.style.opacity=screenAlpha.OverlayDivOpacity;
+      if(screenAlpha.showBaseDivNumber) {
+        overlayDiv.innerHTML="<span style='position:relative;left:20px'>Overlay Div Number "+baseDivNumber+"</span>";}
+     }
+     if(!screenAlpha.userDivIdList.includes(divId)) {
+      screenAlpha.userDivIdList.push(divId);
+      }
+     
+     if (!document.getElementById("flexcontainer"+baseDivNumber)){
+     var flexContainerDiv = document.createElement("div");
+     flexContainerDiv.id = "flexcontainer"+baseDivNumber;
+     flexContainerDiv.class = "flexcontainer";
+     flexContainerDiv.style.height = screenAlpha.boxMinimumHeight;
+     document.getElementById("div_overlay_"+baseDivNumber).innerHTML = "";
+     document.getElementById("div_overlay_"+baseDivNumber).appendChild(flexContainerDiv);  
+    }
+
+     return document.getElementById("div_overlay_"+baseDivNumber);
+   }
+
+      function createFlexUserDiv(baseDivNumber,howManyAdjacentDivs=1,heightMultiplier=1){
+
+      //Adjusting baseDivNumber for forward overlaps
+      baseDivNumber = forwardOverlapCheck(baseDivNumber,howManyAdjacentDivs,heightMultiplier);
+
+      screenAlpha.codeOrderDivList.push(baseDivNumber);
+      screenAlpha["div_overlay_"+baseDivNumber+"_howManyAdjacentDivs"]=howManyAdjacentDivs;
+      screenAlpha["div_overlay_"+baseDivNumber+"_heightMultiplier"]=heightMultiplier;
+
+
+     var topPosition = screenAlpha["div_"+baseDivNumber+"_topPosition"];
+     if (howManyAdjacentDivs == "full_line") {
+       var divWidth = screenAlpha.boxEffectiveWidth*screenAlpha.numberOfBoxesInRow;
+       var leftPosition = "0";
+       
+       } 
+     else
+     {
+       var originalLeftPosition = screenAlpha["div_"+baseDivNumber+"_leftPosition"];
+       //Obtain the lowest width of 3 possibilities for overlay  
+       var divWidth1 = screenAlpha.boxEffectiveWidth*screenAlpha.numberOfBoxesInRow;
+       var divWidth2 = howManyAdjacentDivs*screenAlpha.boxEffectiveWidth;
+       var divWidth3 = divWidth1 - screenAlpha["div_"+baseDivNumber+"_leftPosition"];
+       var divWidthTemp = (divWidth1 > divWidth2) ? divWidth2 : divWidth1;
+       var divWidth = (divWidthTemp > divWidth3) ? divWidth3 : divWidthTemp;
+       
+     }
+     var divHeight = screenAlpha.boxMinimumHeight*heightMultiplier;
+     var divId="div_overlay_"+baseDivNumber;
+
+     screenAlpha[divId+"_lineDivCount"]=divWidth/screenAlpha.boxEffectiveWidth;
+      var i;var j;
+      var lineDivCount = screenAlpha[divId+"_lineDivCount"];
+     screenAlpha.userDivSpan[baseDivNumber]=[];
+
+      for(j=0;j<heightMultiplier;j++){
+              for (i = 0; i < lineDivCount; i++) { 
+              screenAlpha.userDivSpan[baseDivNumber].push(screenAlpha.numberOfBoxesInRow*j+baseDivNumber+i);
+            }
+      }
+ 
+    if (!document.getElementById(divId)){
+     var overlayDiv = document.createElement("div");
+     overlayDiv.id=divId;
+     overlayDiv.style.position = "absolute";
+     document.getElementById("rootDiv").appendChild(overlayDiv)
+    }
+     var overlayDiv = document.getElementById(divId);
+     overlayDiv.style.position = "absolute";overlayDiv.style.top = topPosition+"px";screenAlpha[divId+"_top"]=topPosition;
+     if(howManyAdjacentDivs == "full_line") {screenAlpha[divId+"_left"]=0 } else 
+
+      {
+        overlayDiv.style.left=originalLeftPosition+"px";
+        screenAlpha[divId+"_left"]=originalLeftPosition
+      };
+     
+     overlayDiv.style.width=divWidth+"px";screenAlpha[divId+"_width"]=divWidth;
+     overlayDiv.style.height=divHeight+"px";screenAlpha[divId+"_height"]=divHeight;
+     if(screenAlpha.showLastOverLayDivBackground) { 
+      overlayDiv.style.backgroundColor=screenAlpha.OverlayDivGridBackground[baseDivNumber%screenAlpha.OverlayDivGridBackground.length];
+      overlayDiv.style.opacity=screenAlpha.OverlayDivOpacity;
+    /*  if(screenAlpha.showBaseDivNumber==100) {
+        overlayDiv.innerHTML="<span style='position:relative;left:20px'>Overlay Div Number "+baseDivNumber+"</span>";} This feature is not available in flexContainerDiv */
+     }
+     if(!screenAlpha.userDivIdList.includes(divId)) {
+      screenAlpha.userDivIdList.push(divId);
+      }
+     
+     if (!document.getElementById("flexcontainer"+baseDivNumber)){
+     var flexContainerDiv = document.createElement("div");
+     flexContainerDiv.id = "flexcontainer"+baseDivNumber;
+     flexContainerDiv.classList.add("flexcontainer");
+     flexContainerDiv.style.height = screenAlpha.boxMinimumHeight;
+     document.getElementById("div_overlay_"+baseDivNumber).innerHTML = "";
+     document.getElementById("div_overlay_"+baseDivNumber).appendChild(flexContainerDiv);  
+    }
+
+     return document.getElementById("flexcontainer"+baseDivNumber);
+   }
+
+
+
+   function getUserDivDimensions(userDivNumber){
+     var x = {};
+     x.height = screenAlpha["div_overlay_"+userDivNumber+"_height"];
+     x.width = screenAlpha["div_overlay_"+userDivNumber+"_width"];
+     x.top = screenAlpha["div_overlay_"+userDivNumber+"_top"];
+     x.left = screenAlpha["div_overlay_"+userDivNumber+"_left"];
+     return x;
+    }
+
+   function lastBaseDivOverlay(){
+    //Last div will take over the whole line if the screenAlpha.lastUserDivShouldCoverWholeLine  configuration allows is
+    var lastBaseDivNumber = screenAlpha.totalBoxes - 1 ;
+    createUserDiv(lastBaseDivNumber,"full_line",1)
+   } 
+
+   function removeLargest(arr) {
+     var min = Math.max.apply(null, arr);
+     return arr.filter((e) => {return e != min});
+    }
+
+
+   function getLastUserDivNumber(){
+     
+
+     
+      var extractNumbers = screenAlpha.userDivIdList.map(x => {return parseInt(x.replace("div_overlay_",""))});
+      if (screenAlpha.lastUserDivShouldCoverWholeLine) extractNumbers = removeLargest(extractNumbers);
+      if (typeof extractNumbers !== 'undefined' && extractNumbers.length > 0) { var highestValue = extractNumbers.reduce((a,b)=>{return a>b?a:b;});} else {highestValue = 0};
+      
+    // This condition is screwing me  
+    //  if (highestValue >= screenAlpha.lastUserDivNumber) {return "All base divs are taken" } else {return highestValue+1};
+     return highestValue;
+   }
+
+
+   function deleteUserDiv(divNumber){
+    //check the code .. find original divs .. delete the other userDivs
+   
+if(typeof(divNumber) != 'undefined' && divNumber != null){
+
+    delete screenAlpha["div_overlay_"+divNumber+"_height"]
+    delete screenAlpha["div_overlay_"+divNumber+"_heightMultiplier"]
+    delete screenAlpha["div_overlay_"+divNumber+"_howManyAdjacentDivs"]
+    delete screenAlpha["div_overlay_"+divNumber+"_left"]
+    delete screenAlpha["div_overlay_"+divNumber+"_top"]
+    delete screenAlpha["div_overlay_"+divNumber+"_width"]
+
+    delete screenAlpha.userDivSpan[divNumber];
+    
+    //remove div_overlay_divNumber from userDivIdList
+   for( var i = 0; i < screenAlpha.userDivIdList.length; i++){ 
+   if ( screenAlpha.userDivIdList[i] == "div_overlay_"+divNumber) {
+     screenAlpha.userDivIdList.splice(i, 1); 
+   }
+  }
+
+  var element = document.getElementById("div_overlay_"+divNumber);
+   if(typeof(element) != 'undefined' && element != null){
+        element.style="";
+        element.innerHTML="";}
+   
+  }
+}
+
+
+   function deleteBaseDiv(divNumber){
+  
+  //alert("Start deleting from "+divNumber);     
+  var startDiv = divNumber;
+  while (divNumber < screenAlpha.totalBoxes ) {
+
+  var element = document.getElementById("div_"+divNumber);
+   if(typeof(element) != 'undefined' && element != null){
+        element.style="";
+        element.innerHTML="";
+        //console.log("Deleted Base Div number "+divNumber);
+      }
+  divNumber++;      
+   
+  }
+
+  //console.log("divNumber is "+startDiv);
+  var divSelected = document.getElementById("rootDiv");
+  divSelected.style.height = Math.ceil(startDiv/screenAlpha.boxDetails.numberOfBoxesInRow)*screenAlpha.boxMinimumHeight;
+
+ }
+
+
+function myFunction(item,index){
+      if (!(screenAlpha.codeOrderDivList.includes(item))) {deleteUserDiv(item)};
+    }
+
+function anotherDivCleanUp(){
+    var extractNumbers = screenAlpha.userDivIdList.map(x => {return parseInt(x.replace("div_overlay_",""))});
+    if (screenAlpha.lastUserDivShouldCoverWholeLine) extractNumbers = removeLargest(extractNumbers);
+    //Pick an element from extractNumbers. Check if it is included in screenAlpha.codeOrderDivList. If not, delete it
+    extractNumbers.forEach(myFunction);
+
+  }
+
+function nextAvailableUserDivNumber(){
+  
+    
+     var nextAvailableDivNumber;
+     var boundaryLimit;
+     var udiv1 = screenAlpha.codeOrderDivList[screenAlpha.codeOrderDivList.length-1]; //last element upto now
+
+     var n1 = screenAlpha.boxDetails.numberOfBoxesInRow;
+     var h1 = screenAlpha["div_overlay_"+udiv1+"_howManyAdjacentDivs"]; if (h1=="full_line") {h1 = n1};
+     var heightMultiplier = screenAlpha["div_overlay_"+udiv1+"_heightMultiplier"];
+    
+//Full Line Cases .. if the previous element is full line .. then take the next line. Here we want if the current element is full line
+     if ((h1 == "full_line") || ((udiv1 % n1) + h1 > n1-1) ){
+      var current_k = Math.floor(udiv1/n1);
+      var new_k = current_k + heightMultiplier;
+      nextAvailableDivNumber = new_k*n1;
+
+      //Check for overlap here. If there is a overlap jump to next free boundary number. 
+      //First check for overlap .. if the the resultant number is not on boundary .. increment it by boundary steps till no overlap is found
+
+
+      }
+//Non full line cases
+    else
+    {
+    nextAvailableDivNumber = udiv1+h1;
+    }  
+
+//global processing
+    //This rule is now deleting my previous legitimate div .. I need to fix this .. at least I know the problem
+    //I am down to this delete logic .. how to delete .. done
+    if (screenAlpha.previousDivNumber != nextAvailableDivNumber) {
+       // debugger;
+        if ((!screenAlpha.codeOrderDivList.includes(screenAlpha.previousDivNumber))){ deleteUserDiv(screenAlpha.previousDivNumber)};
+        
+        //if (udiv1 != screenAlpha.previousDivNumber){ deleteUserDiv(screenAlpha.previousDivNumber)};
+
+       // deleteUserDiv(screenAlpha.previousDivNumber);
+    }
+    
+  //Check if any of the previous guys have occupied a div. If yes, shift the div to the next vacant slot
+    nextAvailableDivNumber = adjustForOverlap(nextAvailableDivNumber);
+
+    screenAlpha.previousDivNumber = nextAvailableDivNumber;
+    return nextAvailableDivNumber;
+      
+    }
+
+
+
+ function adjustForOverlap(divNumber) {
+
+      do
+      {
+      var overlap =0; 
+      for (index = 0; index < screenAlpha.codeOrderDivList.length; index++) { 
+        if(screenAlpha.userDivSpan[screenAlpha.codeOrderDivList[index]].includes(divNumber)){overlap=1 }; 
+        }
+
+        if(overlap == 1) {divNumber++;}
+        }
+    while (overlap !=0); //this condition has to be false to exit do while loop .. ie ovelap must be 0 .. until then keep on increasing nextAvailableDivNumber and check no overlap exists, If condition is true, repeat the loop.
+
+    return divNumber;
+
+
+ } 
+
+ function forwardOverlapCheck (baseDivNumber,howManyAdjacentDivs,heightMultiplier){
+
+
+       
+     if (howManyAdjacentDivs == "full_line") {
+       var divWidth = screenAlpha.boxEffectiveWidth*screenAlpha.numberOfBoxesInRow;
+       
+       
+       } 
+     else
+     {
+       
+       //Obtain the lowest width of 3 possibilities for overlay  
+       var divWidth1 = screenAlpha.boxEffectiveWidth*screenAlpha.numberOfBoxesInRow;
+       var divWidth2 = howManyAdjacentDivs*screenAlpha.boxEffectiveWidth;
+       var divWidth3 = divWidth1 - screenAlpha["div_"+baseDivNumber+"_leftPosition"];
+       var divWidthTemp = (divWidth1 > divWidth2) ? divWidth2 : divWidth1;
+       var divWidth = (divWidthTemp > divWidth3) ? divWidth3 : divWidthTemp;
+       
+     }
+     var divHeight = screenAlpha.boxMinimumHeight*heightMultiplier;
+          
+     var i;var j;
+     var lineDivCount = divWidth/screenAlpha.boxEffectiveWidth;
+     screenAlpha.temp=[];
+
+      for(j=0;j<heightMultiplier;j++){
+              for (i = 0; i < lineDivCount; i++) { 
+              screenAlpha.temp.push(screenAlpha.numberOfBoxesInRow*j+baseDivNumber+i);
+            }
+      }
+
+      var x = []; var y=[]; var index; 
+      var j = screenAlpha.temp.length;
+
+      
+      for (index = 0; index < j; index++) { 
+      x.push(adjustForOverlap(screenAlpha.temp[index]));
+      x[index] = adjustForOverlap(screenAlpha.temp[index]);
+      if(x[index] != screenAlpha.temp[index]){y.push(x[index])}
+
+      }
+    
+      //Inserting divNumber twice so that at least we have two numbers to compare in array
+      y.push(baseDivNumber);
+      y.push(baseDivNumber);
+
+
+    var largest = y.reduce(function(a, b) {
+    return Math.max(a, b);
+    });
+
+    
+    var nextlargest;
+
+    //So right now I have the next available divNumber .. Now I will do full line test
+      if (howManyAdjacentDivs == "full_line") {
+            if ( largest%screenAlpha.numberOfBoxesInRow != 0 ) {
+                largest = largest - largest % screenAlpha.numberOfBoxesInRow;
+                
+                do {
+                nextlargest = adjustForOverlap(largest);
+                if(nextlargest != largest ){largest = largest + screenAlpha.numberOfBoxesInRow;}
+                } while (nextlargest != largest)
+                
+            }
+
+      }
+
+      screenAlpha.temp=[];
+      return largest;
+
+ }
+
+//End of positioning code
+</script>
+
+</body>
+</html>

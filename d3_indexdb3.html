@@ -1,0 +1,203 @@
+<html>
+<body>
+<script>
+
+
+function appDB(databaseName="appDatabase",objectStoreName="appObjectStore"){
+    
+    this.databaseName = databaseName;
+    this.lastObjectStoreName = objectStoreName;
+    if(!this.objectStoreNameArray) this.objectStoreNameArray = [];this.objectStoreNameArray.push(objectStoreName);
+    if(!this.databaseVersion) this.databaseVersion = 1;
+    
+
+    this.addObjectStore = function (objectStoreName=this.lastObjectStoreName){
+      
+      
+      if(!(this.objectStoreNameArray.includes(objectStoreName))) {this.objectStoreNameArray.push(objectStoreName); this.databaseVersion += 1;}
+
+      var that = this;   
+      request = window.indexedDB.open(that.databaseName,that.databaseVersion);
+
+      request.onupgradeneeded = function(event){ 
+         var db = event.target.result;
+         
+        if (!db.objectStoreNames.contains(objectStoreName))  {
+          
+         var objectStore = db.createObjectStore(objectStoreName,{ autoIncrement : true });
+         console.log(`${objectStoreName} Object Store Successfully created with version number ${that.databaseVersion}`);
+         that.lastObjectStoreName = objectStoreName; 
+                                                              }
+        console.log(`${objectStoreName} Object Store Successfully added with version number ${that.databaseVersion}`);
+                                                                           
+                    
+                                                 };
+                                        
+      request.onsuccess = function(event){
+        db = event.target.result;
+        console.log(`${objectStoreName} Object Store in ${that.databaseName} successfully opened with version number ${that.databaseVersion}`);
+        db.close();
+                                         };
+
+      request.onerror = function(event) {
+        console.log("Why didn't you allow my web app to use IndexedDB?!"+event.target.errorCode);
+                                        };
+
+ 
+                                                }
+        this.addObjectStore();                                        
+                                                  }
+
+
+
+//Everything else will be prototype now. I will freeze appDB
+
+//Data to be added has to be an array of objects, or a single object
+appDB.prototype.addData = function (dataArray=[],objectStoreName=this.lastObjectStoreName){
+      
+      var that = this;   
+      request = window.indexedDB.open(that.databaseName,that.databaseVersion);
+
+
+        request.onsuccess = function(event){
+        db = event.target.result;
+        console.log(`${objectStoreName} Object Store in ${that.databaseName} successfully opened with version number ${that.databaseVersion}`);
+        
+                                         
+
+      var tx = db.transaction(objectStoreName, "readwrite");
+      var store = tx.objectStore(objectStoreName);
+
+    //  dataArray=[`{title: "Quarry Memories", author: "Fred", isbn: 123456}`,`{title: "Water Buffaloes", author: "Fred", isbn: 234567}`,`title: "Bedrock Nights", author: "Barney", isbn: 345678}`];
+      if (dataArray.constructor===Array){
+      dataArray.forEach(function(value, key) {
+          store.add(value);
+      });
+                                        }
+     if (typeof dataArray == "object") {store.add(dataArray)};
+
+      db.close();
+
+      tx.oncomplete = function() {
+        console.log("All requests have succeeded and the transaction has committed");
+                                  };
+
+                                            };
+                                                                                  }
+
+
+appDB.prototype.getData = function (dataKey,objectStoreName=this.lastObjectStoreName){
+      
+      var that = this;   
+      request = window.indexedDB.open(that.databaseName,that.databaseVersion);
+
+
+        request.onsuccess = function(event){
+        db = event.target.result;
+                                            
+
+          var tx = db.transaction(objectStoreName, "readwrite");
+          var store = tx.objectStore(objectStoreName);
+
+          var dataRequest = store.get(dataKey);
+          db.close();
+
+          dataRequest.onsuccess = function(dataEvent) {
+          console.log(dataRequest.result);
+                                      };
+
+
+                                            };
+                                                                                  }
+
+
+
+appDB.prototype.updateData = function (dataKey,updatedData,objectStoreName=this.lastObjectStoreName){
+      
+      var that = this;   
+      request = window.indexedDB.open(that.databaseName,that.databaseVersion);
+
+
+        request.onsuccess = function(event){
+        var db = event.target.result;
+                                            
+
+          var tx = db.transaction(objectStoreName, "readwrite");
+          var store = tx.objectStore(objectStoreName);
+
+          var dataRequest = store.get(dataKey);
+          
+
+          dataRequest.onsuccess = function(dataEvent) {
+          var oldData = dataEvent.target.result;
+          var newData = updatedData;
+          var requestUpdate = store.put(newData,dataKey);
+             requestUpdate.onsuccess = function(event) {
+                  console.log("Data is successfully updated");
+                  db.close();
+                                                        };                            
+
+
+
+                                                        };
+
+
+                                            };
+                                                                                                      }
+
+
+
+appDB.prototype.getAllData = function (objectStoreName=this.lastObjectStoreName){
+      
+      var that = this;   
+      request = window.indexedDB.open(that.databaseName,that.databaseVersion);
+
+
+        request.onsuccess = function(event){
+        db = event.target.result;
+                                            
+
+          var tx = db.transaction(objectStoreName, "readwrite");
+          var store = tx.objectStore(objectStoreName);
+
+          var dataRequest = store.getAll();
+          db.close();
+
+          dataRequest.onsuccess = function(dataEvent) {
+          console.log(dataRequest.result);
+                                      };
+
+
+                                            };
+
+                                                                                };
+
+
+
+appDB.prototype.deleteData = function (dataKey,objectStoreName=this.lastObjectStoreName){
+      
+      var that = this;   
+      request = window.indexedDB.open(that.databaseName,that.databaseVersion);
+
+
+        request.onsuccess = function(event){
+        db = event.target.result;
+                                            
+
+          var tx = db.transaction(objectStoreName, "readwrite");
+          var store = tx.objectStore(objectStoreName);
+
+          var dataRequest = store.delete(dataKey);
+          db.close();
+
+          dataRequest.onsuccess = function(dataEvent) {
+          console.log("Data was deleted");
+                                      };
+
+
+                                            };
+                                                                                  }
+
+</script>
+</body>
+</html>

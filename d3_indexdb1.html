@@ -1,0 +1,77 @@
+<html>
+<body>
+<script id="userNonPresentationData">
+  //User Data Section. Keep things that will fetch user non-presentation data here
+  //Do not put presentation elements here. Presentation elements will need rePainting when screens are resized. Put them in next script tag UserPresentationCode under function rePaintUserData() 
+
+
+/*
+
+configureIndexedDB
+addIntoIndexedDB
+getFromIndexedDB
+updateIntoIndexedDB
+deleteFromIndexedDB
+createIndexIntoIndexedDB
+runTheCursorOnIndexedDB
+
+*/
+//databaseVErsion is 1 initially. If you want to add or remove a objectStore, then database version must change. If you add a keypath to an objectStore, then version number must change. 
+
+//So we needd to create an Object .. just not a function
+
+function appDB(databaseName,objectStoreName,objectStoreKey){
+    this.databaseName = databaseName;
+    this.objectStoreName = objectStoreName;
+    this.objectStoreKey = objectStoreKey;
+    
+    //When I add an object or key path, I can update the database version directly there, and trigger onupgradeevent
+    this.databaseVersion = 1;
+
+
+    this.configureIndexedDb = function (){
+      
+      var that = this;   
+      var request = window.indexedDB.open(that.databaseName, that.databaseVersion);
+      
+
+// debugger;
+      request.onupgradeneeded = function(event){ 
+         var db = event.target.result;
+         var objectStore = db.createObjectStore(that.objectStoreName,{keyPath: that.objectStoreKey});
+        console.log(`${that.objectStoreName} Object Store Successfully created with version number ${that.databaseVersion}`);
+                                   
+                    
+                                                 };
+
+
+                                        
+      request.onsuccess = function(event){
+        db = event.target.result;
+        console.log(`${that.objectStoreName} Object Store in ${that.databaseName} successfully opened with version number ${that.databaseVersion}`);
+                                         };
+
+      request.onerror = function(event) {
+        alert("Why didn't you allow my web app to use IndexedDB?!"+event.target.errorCode);
+                                        };
+
+
+                                                  
+
+
+
+
+ 
+                                                }
+                                                  }
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

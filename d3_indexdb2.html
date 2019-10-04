@@ -1,0 +1,59 @@
+<html>
+<body>
+<script>
+
+
+function appDB(databaseName,objectStoreName,objectStoreKey){
+    
+    this.databaseName = databaseName;
+    this.objectStoreName = objectStoreName;
+    this.objectStoreKey = objectStoreKey;
+    this.databaseVersion = 1;
+
+
+    this.configureIndexedDb = function (){
+      
+      var that = this;   
+      var request = window.indexedDB.open(that.databaseName, that.databaseVersion);
+      
+
+// debugger;
+      request.onupgradeneeded = function(event){ 
+         var db = event.target.result;
+         var objectStore = db.createObjectStore(that.objectStoreName,{keyPath: that.objectStoreKey});
+        console.log(`${that.objectStoreName} Object Store Successfully created with version number ${that.databaseVersion}`);
+                                   
+                    
+                                                 };
+
+
+                                        
+      request.onsuccess = function(event){
+        db = event.target.result;
+        console.log(`${that.objectStoreName} Object Store in ${that.databaseName} successfully opened with version number ${that.databaseVersion}`);
+                                         };
+
+      request.onerror = function(event) {
+        alert("Why didn't you allow my web app to use IndexedDB?!"+event.target.errorCode);
+                                        };
+
+
+                                                  
+
+
+
+
+ 
+                                                }
+                                                  }
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

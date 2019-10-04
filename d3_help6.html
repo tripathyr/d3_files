@@ -1,0 +1,352 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+
+<title>Help System Design</title>
+<style>
+      	html {
+  scroll-behavior: smooth;
+}
+
+      body {
+
+    /*	overflow:hidden; */
+		background:radial-gradient(#000 16%, transparent 17%),radial-gradient(#444 16%, transparent 17%) 0px 1px,
+		radial-gradient(#000 16%, transparent 17%) 8px 8px,radial-gradient(#444 16%, transparent 17%) 8px 9px;
+  		background-color:#482828;background-size: 16px 16px;}
+
+  		.overall {
+  		display: grid;
+  		place-items: center right; 
+		
+
+  		}
+		
+		.card {
+		width:300px;height:400px;overflow:hidden;
+		display: grid;
+  		place-items: center center; 
+		border-radius:5px;border:1px solid rgba(150,150,150,.2);box-sizing:border-box;
+		background:-webkit-linear-gradient(top, rgba(255, 255, 255, 0.1), transparent);
+		-webkit-box-shadow:4px 9px 20px rgba(0, 0, 0, .2), 5px 18px 40px rgba(0, 0, 0, .6),inset 0px 5px 10px rgba(255, 255, 255, 0.1);
+		-webkit-transform-style:preserve-3d;
+		-webkit-animation: shimmy 60s ease-in-out infinite;  
+		}
+
+		@-webkit-keyframes shimmy {
+		0%,100% {-webkit-transform:rotateY(0deg);}
+		50% {-webkit-transform:rotateY(30deg);}
+		}
+
+
+		.card:after {content:'';position:absolute;margin-left:-100px;
+		width:1000px;height:100px;
+		background:-webkit-linear-gradient(top, transparent, rgba(200, 200, 200, 0.1), transparent);  
+		-webkit-transform:rotate(30deg);  
+		-webkit-animation:shine 6s ease-in-out infinite;
+		}
+
+		@-webkit-keyframes shine {
+		0%,100% {top:-800px;}
+		50% {top:800px;} }
+
+		.typewriter  {
+    color: #fff;
+    font-family: monospace;
+    font-size: 30px;
+    overflow: hidden;
+    /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid #fff;
+    /* The typwriter cursor */
+  /*  white-space: nowrap; */
+    /* Keeps the content on a single line */
+    margin: 0 auto;
+    /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em;
+    /* Adjust as needed */
+    animation:
+        typing 3s steps(20, end),
+        blink-caret .5s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+
+    0% {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: #fff
+    }
+}
+
+.helptext {
+  color: red;
+  margin-left: 30px;
+
+}
+
+.box {
+width:400px;
+height:400px;
+margin-top:10px;
+margin-right:10px;
+display: inline-block;
+}
+
+a:visited {
+	color:white;
+}
+
+</style>
+
+</head>
+<body>
+
+<script>
+
+if (typeof reactor == "undefined" || !reactor) {
+   (function () {
+
+function Event(name){
+  this.name = name;
+  this.callbacks = [];
+}
+Event.prototype.registerCallback = function(callback){
+  this.callbacks.push(callback);
+};
+ 
+function Reactor(){
+  this.events = {};
+}
+ 
+Reactor.prototype.registerEvent = function(eventName){
+  var event = new Event(eventName);
+  this.events[eventName] = event;
+};
+ 
+Reactor.prototype.dispatchEvent = function(eventName, eventArgs){
+  this.events[eventName].callbacks.forEach(function(callback){
+    callback(eventArgs);
+  });
+};
+ 
+Reactor.prototype.addEventListener = function(eventName, callback){
+  this.events[eventName].registerCallback(callback);
+};
+
+window.reactor = new Reactor();
+
+})();
+}
+
+
+
+</script>	
+
+<script>
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const tgtId = e.target.getAttribute('href').substr(1),
+    tgtElm = document.getElementById(tgtId);
+    tgtElm.scrollIntoView({behavior: "smooth", block: "center",inline: "center"});
+  });
+});
+      
+</script>
+
+
+<div class="box" style="background-color: blue" id="box_1">Box 1 </div>
+<div class="box" style="background-color: pink" id="box_2">Box 2 </div>
+<div class="box" style="background-color: orange" id="box_3">Box 3 </div>
+<div class="box" style="background-color: yellow" id="box_4">Box 4 </div>
+<div class="box" style="background-color: red" id="box_5">Box 5 </div>
+
+
+<script>
+
+
+reactor.registerEvent('contextHelp');
+reactor.addEventListener('contextHelp', contextHelpF);
+
+function contextHelpF(someObject){
+ console.log('contextHelp fired with data '+ someObject);
+}
+
+//Contextual Help System
+var helpData = "";
+var helpSystem = true;
+
+function helpText (data,navigationData) {
+if (helpSystem) { helpData = data  }
+//trigger event system
+reactor.dispatchEvent('contextHelp',helpData)
+//further processing will happen in contextHelpF function
+
+//Navigation Data will be done here
+}
+
+
+helpText("Create your own FLO Key Here!!","home,keygenerator");
+
+</script>	
+
+
+<script>
+//Navigation Design Section
+/*
+
+
+To navigate, you can only go to an ID ...
+
+Possibilities
+The web page moves to the ID
+ID comes to the active mirror display element
+User is redirected to the new location
+
+At every point, back to help has to be there
+To bring where the person already was
+
+Every functionality needs to have a unique identifier .. and should be possible to pass parameters to it .. and back 
+
+NAVIGATION DESIGN
+
+It will have 2 sections: Base Help Data ... and courses of actions
+
+
+A. Base Help Data
+You can use this to send Data into FLO Blockchain. You will need FLO and RMT balance
+Base help can come in contextual help section
+
+B. Courses of action
+Get FLO Balance => FLO_Balance_Request_ID (ID of FLO Balance Request)
+If you want to generate keys, go here => Key_Generator_ID
+If you want RMT balance, go here =>RMT_Balance_Request_ID
+
+Every help point will have these things
+In addition, all functionality will be available in some control panel accessible all the time
+
+Every element is an ID .. and we can shift between IDs
+Div ID is a position. And it is a functionality
+Comes with its own layout and positioning
+
+YOU ARE NOT NAVIGATING
+THE SCREEN IS COMING TO YOU
+
+x0 = document.getElementByID(id_selected);
+toBeDisplayed = x0.innerHTML;
+
+document.getElementByID("display_section").innerHTML = toBeDisplayed;
+Lets do it now 
+
+HOw can you make an ID data copied
+
+C. Contextual Navigation 
+
+List of if then else statements
+
+if(FLO Balance not available)
+Oops, you do not have FLO balance => get_flo_balance
+
+if( ABC)
+Do this
+
+For multiple conditions ..
+DO THIS AND DO THIS AND DO THIS
+
+===
+
+
+
+
+location.href
+Or innerHTML of relevant ID
+
+*/
+</script>	
+
+
+<script>
+
+//Initial Help System
+
+
+var activeCounter =  1;
+var nextCounter = 2;
+var index;
+var initialHelpText = ["First Help Snippet 1","Second Help Snippet 2","Third Help Snippet 3","Fourth Help Snippet 4","Fifth Help Snippet 5"];
+
+
+//Creating framework for success condition
+var floID1 = ""; var floID2 = ""; var floID3 = ""; var floID4 = ""; var floID5 = "";
+if (successCondition(activeCounter)) {activeCounter = activeCounter+1;};
+
+
+
+//VISIBILITY METHOD
+//visibility hidden for everything
+for (index = 1; index <= 5; index++) {
+  //document.getElementById("box_"+index).style.visibility = "hidden";
+  document.getElementById("box_"+index).style.opacity = "0.5";
+  document.getElementById("box_"+index).style.pointerEvents = "none";
+}
+
+//visibility active for activeCounter
+//document.getElementById("box_"+activeCounter).style.visibility = "visible";
+
+
+//TEXT METHOD
+document.getElementById("box_"+activeCounter).style.pointerEvents = "auto";
+document.getElementById("box_"+activeCounter).style.visibility = "visible";
+document.getElementById("box_"+activeCounter).style.opacity = "1";
+document.getElementById("box_"+activeCounter).innerHTML = initialHelpText[activeCounter-1];
+
+
+
+
+
+function successCondition(activeCounter){
+
+	var result = false; 
+	if (activeCounter==1) { if (floID1) { result =true} };
+	if (activeCounter==2) { if (floID2) { result =true} };
+	if (activeCounter==3) { if (floID3) { result =true} };
+	if (activeCounter==4) { if (floID4) { result =true} };
+	if (activeCounter==5) { if (floID5) { result =true} };
+
+return result;
+
+}
+
+</script>
+
+	
+<div class="overall">
+<div class="card" id="help"style="margin-top:30px"><div class="typewriter helptext">Hello I am your help box. I am here to tell you what to do<a href="#id_1"> Block 1</a><a href="#id_2"> Block 2</a><a href="#id_3"> Block 3</a></div></div></div>
+
+<div class="box" style="background-color: blue;margin-top:800px;margin-left:400px;" id="id_1">ID 1 <a href="#help"> GO BACK TO HELP</a></div>
+<div class="box" style="background-color: green;margin-top:1000px;margin-left:600px" id="id_2">ID 2<a href="#help"> GO BACK TO HELP</a></div>
+<div class="box" style="background-color: red;margin-top:1200px;margin-left:400px" id="id_3">ID 3<a href="#help"> GO BACK TO HELP</a></div>
+
+
+
+<!--
+<div class="typewriter" style="color:white;margin-left:30px"><h1>Hello I am your help text. I am here to tell you what to do</h1></div>
+-->
+
+
+
+
+</body></html>

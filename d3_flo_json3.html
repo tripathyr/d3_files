@@ -1,0 +1,50 @@
+<script>
+/*In Ubuntu start Chrome with to avoid CORS control google-chrome --disable-web-security  --user-data-dir="/home/rohit" --allow-file-access-from-file 
+
+Remember to close Google Chrome before running the command
+*/
+
+(function() {
+  var httpRequest;
+
+  function makeRequest() {
+    httpRequest = new XMLHttpRequest();
+
+    if (!httpRequest) {
+      console.log('Giving up :( Cannot create an XMLHTTP instance');
+      return false;
+    } else console.log("All ok till now");
+    httpRequest.onreadystatechange = logContents;
+    httpRequest.open('POST', 'http://rohittripathy:rohittripathypassword@127.0.0.1:7313',true);
+    httpRequest.setRequestHeader("contentType", "text/plain");
+    var data = '{"jsonrpc": "1.0", "id":"curltest", "method": "getblockchaininfo", "params": [] }';
+   	httpRequest.send(data);
+      }
+
+  function logContents() {
+    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+      if (httpRequest.status === 200) {
+        console.log(httpRequest.responseText);
+      } else {
+        console.log('There was a problem with the request.');
+      }
+    }
+  }
+
+  makeRequest();
+
+})();
+
+/*
+httpRequest = new XMLHttpRequest();
+httpRequest.onreadystatechange = logContents;
+httpRequest.open('POST', 'http://rohittripathy:rohittripathypassword@127.0.0.1:7313',true);
+httpRequest.setRequestHeader("contentType", "text/plain");
+var data = '{"jsonrpc": "1.0", "id":"curltest", "method": "getblockchaininfo", "params": [] }';
+httpRequest.send(data);
+*/
+
+//You got to run the funtion on the page of http://127.0.0.1
+
+</script>
+

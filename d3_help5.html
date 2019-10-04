@@ -1,0 +1,216 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+
+<title>Help System Design</title>
+<style>
+      	html {
+  scroll-behavior: smooth;
+}
+
+      body {
+
+    	overflow:hidden;
+		background:radial-gradient(#000 16%, transparent 17%),radial-gradient(#444 16%, transparent 17%) 0px 1px,
+		radial-gradient(#000 16%, transparent 17%) 8px 8px,radial-gradient(#444 16%, transparent 17%) 8px 9px;
+  		background-color:#482828;background-size: 16px 16px;}
+
+  		.overall {
+  		display: grid;
+  		place-items: center right; 
+		
+
+  		}
+		
+		.card {
+		width:300px;height:400px;overflow:hidden;
+		display: grid;
+  		place-items: center center; 
+		border-radius:5px;border:1px solid rgba(150,150,150,.2);box-sizing:border-box;
+		background:-webkit-linear-gradient(top, rgba(255, 255, 255, 0.1), transparent);
+		-webkit-box-shadow:4px 9px 20px rgba(0, 0, 0, .2), 5px 18px 40px rgba(0, 0, 0, .6),inset 0px 5px 10px rgba(255, 255, 255, 0.1);
+		-webkit-transform-style:preserve-3d;
+		-webkit-animation: shimmy 60s ease-in-out infinite;  
+		}
+
+		@-webkit-keyframes shimmy {
+		0%,100% {-webkit-transform:rotateY(0deg);}
+		50% {-webkit-transform:rotateY(30deg);}
+		}
+
+
+		.card:after {content:'';position:absolute;margin-left:-100px;
+		width:1000px;height:100px;
+		background:-webkit-linear-gradient(top, transparent, rgba(200, 200, 200, 0.1), transparent);  
+		-webkit-transform:rotate(30deg);  
+		-webkit-animation:shine 6s ease-in-out infinite;
+		}
+
+		@-webkit-keyframes shine {
+		0%,100% {top:-800px;}
+		50% {top:800px;} }
+
+		.typewriter  {
+    color: #fff;
+    font-family: monospace;
+    font-size: 30px;
+    overflow: hidden;
+    /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid #fff;
+    /* The typwriter cursor */
+  /*  white-space: nowrap; */
+    /* Keeps the content on a single line */
+    margin: 0 auto;
+    /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em;
+    /* Adjust as needed */
+    animation:
+        typing 3s steps(20, end),
+        blink-caret .5s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+
+    0% {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: #fff
+    }
+}
+
+.helptext {
+  color: red;
+  margin-left: 30px;
+
+}
+
+.box {
+width:400px;
+height:400px;
+margin-top:10px;
+margin-right:10px;
+}
+
+a:visited {
+	color:white;
+}
+
+</style>
+
+</head>
+<body>
+
+<script>
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const tgtId = e.target.getAttribute('href').substr(1),
+    tgtElm = document.getElementById(tgtId);
+    tgtElm.scrollIntoView({behavior: "smooth", block: "center",inline: "center"});
+  });
+});
+      
+</script>
+
+	
+<div class="overall">
+<div class="card" id="help"style="margin-top:30px"><div class="typewriter helptext">Hello I am your help box. I am here to tell you what to do<a href="#id_1"> Block 1</a><a href="#id_2"> Block 2</a><a href="#id_3"> Block 3</a></div></div></div>
+
+<div class="box" style="background-color: blue;margin-top:800px;margin-left:800px;" id="id_1">ID 1 <a href="#help"> GO BACK TO HELP</a></div>
+<div class="box" style="background-color: green;margin-top:1600px;margin-left:1600px" id="id_2">ID 2<a href="#help"> GO BACK TO HELP</a></div>
+<div class="box" style="background-color: red;margin-top:2400px;margin-left:2400px" id="id_3">ID 3<a href="#help"> GO BACK TO HELP</a></div>
+
+
+
+<!--
+<div class="typewriter" style="color:white;margin-left:30px"><h1>Hello I am your help text. I am here to tell you what to do</h1></div>
+-->
+
+
+<script>
+
+if (typeof reactor == "undefined" || !reactor) {
+   (function () {
+
+function Event(name){
+  this.name = name;
+  this.callbacks = [];
+}
+Event.prototype.registerCallback = function(callback){
+  this.callbacks.push(callback);
+};
+ 
+function Reactor(){
+  this.events = {};
+}
+ 
+Reactor.prototype.registerEvent = function(eventName){
+  var event = new Event(eventName);
+  this.events[eventName] = event;
+};
+ 
+Reactor.prototype.dispatchEvent = function(eventName, eventArgs){
+  this.events[eventName].callbacks.forEach(function(callback){
+    callback(eventArgs);
+  });
+};
+ 
+Reactor.prototype.addEventListener = function(eventName, callback){
+  this.events[eventName].registerCallback(callback);
+};
+
+window.reactor = new Reactor();
+
+})();
+}
+
+
+
+reactor.registerEvent('added');
+reactor.addEventListener('added', function(someObject){
+  console.log('Added fired with data '+ someObject);
+});
+
+reactor.registerEvent('removed');
+reactor.addEventListener('removed', function(someObject){
+  console.log('Removed fired with data '+ someObject);
+});
+
+reactor.registerEvent('updated');
+reactor.addEventListener('updated', function(someObject){
+  console.log('Updated fired with data '+ someObject);
+});
+
+
+
+//Sample Usage
+//Creating and defining the event
+reactor.registerEvent('big bang');
+reactor.addEventListener('big bang', function(someObject){
+  console.log('This is big bang listener yo!'+ someObject.a);
+});
+
+//Firing the event
+reactor.dispatchEvent('big bang');
+reactor.dispatchEvent('big bang',{a:1});
+reactor.dispatchEvent('big bang',{a:55});
+
+
+
+
+</script>	
+
+</body></html>

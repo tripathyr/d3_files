@@ -1,0 +1,15 @@
+<head></head>
+
+<script>
+   function load_js()
+   {
+      var head= document.getElementsByTagName('head')[0];
+      var script= document.createElement('script');
+      script.src= 'data.js';
+      head.appendChild(script);
+   }
+   
+</script>
+
+<button onclick="load_js()">Click me</button>
+

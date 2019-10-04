@@ -1,0 +1,27 @@
+<html>
+
+<body>
+
+
+      
+    <svg version="1.1" style="position: absolute; width: 796px; height: 475px; left: -0.476562px;">
+      <defs>
+         
+         <filter id="shadow" width="150%" height="150%">
+          <feOffset result="offOut" in="SourceAlpha" dx="2" dy="2"></feOffset>
+          <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10"></feGaussianBlur>
+          <feColorMatrix result="blurOut" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .2 0"></feColorMatrix>
+          <feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>
+        </filter>
+
+      </defs>
+      
+      <g transform="translate(0,0)">
+        <rect x="300" y="0.5" width="72" height="444" rx="0" ry="0" stroke-width="0" fill="#FFFFFF" stroke="#FFFFFF" fill-opacity="0.5" stroke-opacity="1" filter="url(#shadow)"></rect>
+      </g>
+    </svg>
+  
+
+
+</body>
+</html>

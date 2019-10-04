@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+    <style>
+        div {
+            height: 100px;
+            width: 100px;
+            background-color: steelblue;
+            margin:5px;
+        }
+    </style>
+    <script src="d3.js"></script>
+</head>
+<body>
+
+<script>
+//Define the dispatch
+var ABC = d3.dispatch("statechange");
+
+//Attach the callback function
+ABC.on('statechange', function(e){ console.log(e) })
+
+//Call the dispatch function when needed
+setTimeout(function(){ABC.call("statechange",this,"Hello, world!")}, 3000);
+      
+</script>
+</body>
+</html>

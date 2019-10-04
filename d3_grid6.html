@@ -1,0 +1,604 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Dynamic Grid with Transitions | Demo 2</title>
+    <meta name="description" content="Dynamic Grid with CSS Transitions inspired by the Google Trends Grid Visualization" />
+    <meta name="keywords" content="google trends, dynamic grid, css transitions, javascript, responsive, fluid, layout" />
+    <meta name="author" content="Codrops" />
+    
+
+    <script>
+      /* Modernizr 2.6.2 (Custom Build) | MIT & BSD
+ * Build: http://modernizr.com/download/#-touch-shiv-cssclasses-teststyles-prefixes-css_calc-load
+ */
+;window.Modernizr=function(a,b,c){function w(a){j.cssText=a}function x(a,b){return w(m.join(a+";")+(b||""))}function y(a,b){return typeof a===b}function z(a,b){return!!~(""+a).indexOf(b)}function A(a,b,d){for(var e in a){var f=b[a[e]];if(f!==c)return d===!1?a[e]:y(f,"function")?f.bind(d||b):f}return!1}var d="2.6.2",e={},f=!0,g=b.documentElement,h="modernizr",i=b.createElement(h),j=i.style,k,l={}.toString,m=" -webkit- -moz- -o- -ms- ".split(" "),n={},o={},p={},q=[],r=q.slice,s,t=function(a,c,d,e){var f,i,j,k,l=b.createElement("div"),m=b.body,n=m||b.createElement("body");if(parseInt(d,10))while(d--)j=b.createElement("div"),j.id=e?e[d]:h+(d+1),l.appendChild(j);return f=["&#173;",'<style id="s',h,'">',a,"</style>"].join(""),l.id=h,(m?l:n).innerHTML+=f,n.appendChild(l),m||(n.style.background="",n.style.overflow="hidden",k=g.style.overflow,g.style.overflow="hidden",g.appendChild(n)),i=c(l,a),m?l.parentNode.removeChild(l):(n.parentNode.removeChild(n),g.style.overflow=k),!!i},u={}.hasOwnProperty,v;!y(u,"undefined")&&!y(u.call,"undefined")?v=function(a,b){return u.call(a,b)}:v=function(a,b){return b in a&&y(a.constructor.prototype[b],"undefined")},Function.prototype.bind||(Function.prototype.bind=function(b){var c=this;if(typeof c!="function")throw new TypeError;var d=r.call(arguments,1),e=function(){if(this instanceof e){var a=function(){};a.prototype=c.prototype;var f=new a,g=c.apply(f,d.concat(r.call(arguments)));return Object(g)===g?g:f}return c.apply(b,d.concat(r.call(arguments)))};return e}),n.touch=function(){var c;return"ontouchstart"in a||a.DocumentTouch&&b instanceof DocumentTouch?c=!0:t(["@media (",m.join("touch-enabled),("),h,")","{#modernizr{top:9px;position:absolute}}"].join(""),function(a){c=a.offsetTop===9}),c};for(var B in n)v(n,B)&&(s=B.toLowerCase(),e[s]=n[B](),q.push((e[s]?"":"no-")+s));return e.addTest=function(a,b){if(typeof a=="object")for(var d in a)v(a,d)&&e.addTest(d,a[d]);else{a=a.toLowerCase();if(e[a]!==c)return e;b=typeof b=="function"?b():b,typeof f!="undefined"&&f&&(g.className+=" "+(b?"":"no-")+a),e[a]=b}return e},w(""),i=k=null,function(a,b){function k(a,b){var c=a.createElement("p"),d=a.getElementsByTagName("head")[0]||a.documentElement;return c.innerHTML="x<style>"+b+"</style>",d.insertBefore(c.lastChild,d.firstChild)}function l(){var a=r.elements;return typeof a=="string"?a.split(" "):a}function m(a){var b=i[a[g]];return b||(b={},h++,a[g]=h,i[h]=b),b}function n(a,c,f){c||(c=b);if(j)return c.createElement(a);f||(f=m(c));var g;return f.cache[a]?g=f.cache[a].cloneNode():e.test(a)?g=(f.cache[a]=f.createElem(a)).cloneNode():g=f.createElem(a),g.canHaveChildren&&!d.test(a)?f.frag.appendChild(g):g}function o(a,c){a||(a=b);if(j)return a.createDocumentFragment();c=c||m(a);var d=c.frag.cloneNode(),e=0,f=l(),g=f.length;for(;e<g;e++)d.createElement(f[e]);return d}function p(a,b){b.cache||(b.cache={},b.createElem=a.createElement,b.createFrag=a.createDocumentFragment,b.frag=b.createFrag()),a.createElement=function(c){return r.shivMethods?n(c,a,b):b.createElem(c)},a.createDocumentFragment=Function("h,f","return function(){var n=f.cloneNode(),c=n.createElement;h.shivMethods&&("+l().join().replace(/\w+/g,function(a){return b.createElem(a),b.frag.createElement(a),'c("'+a+'")'})+");return n}")(r,b.frag)}function q(a){a||(a=b);var c=m(a);return r.shivCSS&&!f&&!c.hasCSS&&(c.hasCSS=!!k(a,"article,aside,figcaption,figure,footer,header,hgroup,nav,section{display:block}mark{background:#FF0;color:#000}")),j||p(a,c),a}var c=a.html5||{},d=/^<|^(?:button|map|select|textarea|object|iframe|option|optgroup)$/i,e=/^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i,f,g="_html5shiv",h=0,i={},j;(function(){try{var a=b.createElement("a");a.innerHTML="<xyz></xyz>",f="hidden"in a,j=a.childNodes.length==1||function(){b.createElement("a");var a=b.createDocumentFragment();return typeof a.cloneNode=="undefined"||typeof a.createDocumentFragment=="undefined"||typeof a.createElement=="undefined"}()}catch(c){f=!0,j=!0}})();var r={elements:c.elements||"abbr article aside audio bdi canvas data datalist details figcaption figure footer header hgroup mark meter nav output progress section summary time video",shivCSS:c.shivCSS!==!1,supportsUnknownElements:j,shivMethods:c.shivMethods!==!1,type:"default",shivDocument:q,createElement:n,createDocumentFragment:o};a.html5=r,q(b)}(this,b),e._version=d,e._prefixes=m,e.testStyles=t,g.className=g.className.replace(/(^|\s)no-js(\s|$)/,"$1$2")+(f?" js "+q.join(" "):""),e}(this,this.document),function(a,b,c){function d(a){return"[object Function]"==o.call(a)}function e(a){return"string"==typeof a}function f(){}function g(a){return!a||"loaded"==a||"complete"==a||"uninitialized"==a}function h(){var a=p.shift();q=1,a?a.t?m(function(){("c"==a.t?B.injectCss:B.injectJs)(a.s,0,a.a,a.x,a.e,1)},0):(a(),h()):q=0}function i(a,c,d,e,f,i,j){function k(b){if(!o&&g(l.readyState)&&(u.r=o=1,!q&&h(),l.onload=l.onreadystatechange=null,b)){"img"!=a&&m(function(){t.removeChild(l)},50);for(var d in y[c])y[c].hasOwnProperty(d)&&y[c][d].onload()}}var j=j||B.errorTimeout,l=b.createElement(a),o=0,r=0,u={t:d,s:c,e:f,a:i,x:j};1===y[c]&&(r=1,y[c]=[]),"object"==a?l.data=c:(l.src=c,l.type=a),l.width=l.height="0",l.onerror=l.onload=l.onreadystatechange=function(){k.call(this,r)},p.splice(e,0,u),"img"!=a&&(r||2===y[c]?(t.insertBefore(l,s?null:n),m(k,j)):y[c].push(l))}function j(a,b,c,d,f){return q=0,b=b||"j",e(a)?i("c"==b?v:u,a,b,this.i++,c,d,f):(p.splice(this.i++,0,a),1==p.length&&h()),this}function k(){var a=B;return a.loader={load:j,i:0},a}var l=b.documentElement,m=a.setTimeout,n=b.getElementsByTagName("script")[0],o={}.toString,p=[],q=0,r="MozAppearance"in l.style,s=r&&!!b.createRange().compareNode,t=s?l:n.parentNode,l=a.opera&&"[object Opera]"==o.call(a.opera),l=!!b.attachEvent&&!l,u=r?"object":l?"script":"img",v=l?"script":u,w=Array.isArray||function(a){return"[object Array]"==o.call(a)},x=[],y={},z={timeout:function(a,b){return b.length&&(a.timeout=b[0]),a}},A,B;B=function(a){function b(a){var a=a.split("!"),b=x.length,c=a.pop(),d=a.length,c={url:c,origUrl:c,prefixes:a},e,f,g;for(f=0;f<d;f++)g=a[f].split("="),(e=z[g.shift()])&&(c=e(c,g));for(f=0;f<b;f++)c=x[f](c);return c}function g(a,e,f,g,h){var i=b(a),j=i.autoCallback;i.url.split(".").pop().split("?").shift(),i.bypass||(e&&(e=d(e)?e:e[a]||e[g]||e[a.split("/").pop().split("?")[0]]),i.instead?i.instead(a,e,f,g,h):(y[i.url]?i.noexec=!0:y[i.url]=1,f.load(i.url,i.forceCSS||!i.forceJS&&"css"==i.url.split(".").pop().split("?").shift()?"c":c,i.noexec,i.attrs,i.timeout),(d(e)||d(j))&&f.load(function(){k(),e&&e(i.origUrl,h,g),j&&j(i.origUrl,h,g),y[i.url]=2})))}function h(a,b){function c(a,c){if(a){if(e(a))c||(j=function(){var a=[].slice.call(arguments);k.apply(this,a),l()}),g(a,j,b,0,h);else if(Object(a)===a)for(n in m=function(){var b=0,c;for(c in a)a.hasOwnProperty(c)&&b++;return b}(),a)a.hasOwnProperty(n)&&(!c&&!--m&&(d(j)?j=function(){var a=[].slice.call(arguments);k.apply(this,a),l()}:j[n]=function(a){return function(){var b=[].slice.call(arguments);a&&a.apply(this,b),l()}}(k[n])),g(a[n],j,b,n,h))}else!c&&l()}var h=!!a.test,i=a.load||a.both,j=a.callback||f,k=j,l=a.complete||f,m,n;c(h?a.yep:a.nope,!!i),i&&c(i)}var i,j,l=this.yepnope.loader;if(e(a))g(a,0,l,0);else if(w(a))for(i=0;i<a.length;i++)j=a[i],e(j)?g(j,0,l,0):w(j)?B(j):Object(j)===j&&h(j,l);else Object(a)===a&&h(a,l)},B.addPrefix=function(a,b){z[a]=b},B.addFilter=function(a){x.push(a)},B.errorTimeout=1e4,null==b.readyState&&b.addEventListener&&(b.readyState="loading",b.addEventListener("DOMContentLoaded",A=function(){b.removeEventListener("DOMContentLoaded",A,0),b.readyState="complete"},0)),a.yepnope=k(),a.yepnope.executeStack=h,a.yepnope.injectJs=function(a,c,d,e,i,j){var k=b.createElement("script"),l,o,e=e||B.errorTimeout;k.src=a;for(o in d)k.setAttribute(o,d[o]);c=j?h:c||f,k.onreadystatechange=k.onload=function(){!l&&g(k.readyState)&&(l=1,c(),k.onload=k.onreadystatechange=null)},m(function(){l||(l=1,c(1))},e),i?k.onload():n.parentNode.insertBefore(k,n)},a.yepnope.injectCss=function(a,c,d,e,g,i){var e=b.createElement("link"),j,c=i?h:c||f;e.href=a,e.rel="stylesheet",e.type="text/css";for(j in d)e.setAttribute(j,d[j]);g||(n.parentNode.insertBefore(e,n),m(c,0))}}(this,document),Modernizr.load=function(){yepnope.apply(window,[].slice.call(arguments,0))},Modernizr.addTest("csscalc",function(){var a="width:",b="calc(10px);",c=document.createElement("div");return c.style.cssText=a+Modernizr._prefixes.join(b+a),!!c.style.length});
+    </script>
+  
+  </head>
+
+
+<style>
+
+/* General Demo Style */
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Merriweather+Sans:300,700);
+
+
+*, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+body, html { font-size: 100%; padding: 0; margin: 0; height: 100%; }
+
+/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before, .clearfix:after { content: " "; display: table; }
+.clearfix:after { clear: both; }
+
+body {
+  font-family: 'Merriweather Sans', sans-serif;
+  color: #fff;
+  background: #333;
+}
+
+a {
+  color: #000;
+  color: rgba(0,0,0,0.5);
+  text-decoration: none;
+}
+
+a:hover,
+a:active {
+  color: #fff;
+}
+
+.container {
+  height: 100%;
+}
+
+/* To Navigation Style */
+.codrops-top {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.69em;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.codrops-top a {
+  letter-spacing: 1px;
+  display: block;
+  padding: 0 1em 1em;
+}
+
+
+/* Demo Buttons Style */
+a.current-demo {
+  color: rgba(0,0,0,0.3);
+}
+
+/* Grid style; make sure parent containers have full height */
+.gt-grid {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  -webkit-backface-visibility: hidden;
+}
+
+.gt-grid > div {
+  width: 20%;
+  height: 20%;
+  float: left;
+  background-color: #ddd;
+  position: relative;
+  opacity: 1;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+}
+
+.gt-grid > div:hover:before,
+.gt-grid > div.special:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.03);
+}
+
+.gt-grid > div:hover:before {
+  background: rgba(0,0,0,0.05);
+}
+
+.gt-grid > div.gt-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.gt-grid > div.gt-visible {
+  z-index: 999;
+}
+
+/* Some content styles */
+.gt-grid > div:first-child {
+  background-image: url(changeme.png);
+  background-repeat: no-repeat;
+  background-position: 45px 10px;
+}
+
+.gt-grid > div h1,
+.gt-grid > div h3 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  cursor: default;
+}
+
+.gt-grid > div h1 {
+  padding: 0.5em;
+  line-height: 0.9;
+  font-weight: 300;
+  text-align: right;
+}
+
+.gt-grid > div h3 {
+  font-size: 1.05em;
+  padding: 1em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* The little grid to control the number of items */
+.gt-grid-control {
+  position: fixed;
+  z-index: 1000;
+  cursor: pointer;
+  top: 10px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.gt-grid-icon {
+  margin: 5px;
+  display: block;
+  font-size: 23px;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+
+.gt-grid-icon:before {
+  font-family: 'minicons-webalys';
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.1);
+  content: '\e000';
+  color: #000;
+  color: rgba(0,0,0,0.35);
+}
+
+.gt-grid-select {
+  width: 112px;
+  height: 112px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  border: 1px solid rgba(0,0,0,0.3);
+}
+
+.gt-grid-select > div {
+  width: 22px;
+  height: 22px;
+  background: rgba(0,0,0,0.3);
+  float: left;
+  border: 1px solid rgba(0,0,0,0.3);
+}
+
+.no-touch .gt-grid-control:hover .gt-grid-icon,
+.gt-grid-control.gt-grid-control-open .gt-grid-icon {
+  opacity: 0;
+}
+
+.no-touch .gt-grid-control:hover .gt-grid-select,
+.gt-grid-control.gt-grid-control-open .gt-grid-select {
+  visibility: visible;
+  opacity: 1;
+}
+
+.gt-grid-select .gt-grid-selected {
+  background: rgba(0,0,0,0.4);
+}
+
+.gt-grid-select .gt-grid-hover {
+  box-shadow: inset 0 0 0 10px rgba(255,255,255,0.1);
+}
+
+/* Different colors and effects for demos */
+/* Demo 1: No transition, no delays */
+.demo-1 .gt-grid > div {
+  background-color: #ed4e6e;
+}
+
+/* Demo 2: Transition, no delays */
+.demo-2 .gt-grid > div {
+  background-color: #fc654d;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  transform: scale(1);
+}
+
+.demo-2 .gt-grid > div.gt-hidden {
+  background-color: #fcdd4d;
+  -webkit-transform: scale(.8);
+  -moz-transform: scale(.8);
+  transform: scale(.8);
+}
+
+/* Demo 3: Transition and delays */
+.demo-3 .gt-grid > div {
+  background-color: #1abc89;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  transform: scale(1);
+}
+
+.demo-3 .gt-grid > div.gt-hidden {
+  -webkit-transform: scale(.6) rotate(45deg);
+  -moz-transform: scale(.6);
+  transform: scale(.6);
+}
+
+</style>
+
+
+  <body>
+    <div class="container demo-2">
+      <div id="gt-grid-selector" class="gt-grid-control">
+        <span class="gt-grid-icon"></span>
+        <div class="gt-grid-select">
+          <div></div><div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div><div></div>
+        </div>
+      </div>
+      <div id="gt-grid" class="gt-grid">
+        <div><h1>Ranchi Mall Interns</h1></div>
+        <div>
+          <div class="codrops-top">
+            <a class="codrops-icon codrops-icon-prev" href="#"><span>Previous Interns</span></a>
+            <span class="right"><a class="codrops-icon codrops-icon-drop" href="#"><span>Ranchi Mall Home</span></a></span>
+          </div>
+        </div>
+        <div><h3>wakame</h3></div>
+        <div><h3>lettuce water</h3></div>
+        <div><h3>turnip maize</h3></div>
+        <div ><h3><a href="#">Internship Blockchain Contract</a></h3></div>
+        <div ><h3><a class="current-demo" href="#">List of Projects</a></h3></div>
+        <div ><h3><a href="#">Intern Ratings</a></h3></div>
+        <div ><h3>bunya nuts</h3></div>
+        <div><h3>celery</h3></div>
+        <div><h3>greens lotus</h3></div>
+        <div><h3>arugula beet</h3></div>
+        <div><h3>desert raisin</h3></div>
+        <div><h3>mustard burdock</h3></div>
+        <div><h3>potato bush</h3></div>
+        <div><h3>catsear</h3></div>
+        <div><h3>water chestnut</h3></div>
+        <div><h3>bok choy</h3></div>
+        <div><h3>pea sprouts</h3></div>
+        <div><h3>gumbo parsley</h3></div>
+        <div><h3>bitterleaf</h3></div>
+        <div><h3>spinach rock</h3></div>
+        <div><h3>tigernut garlic</h3></div>
+        <div><h3>caulie</h3></div>
+        <div><h3>seakale</h3></div>
+      </div>
+
+    </div><!-- /container -->
+    <!-- classie.js by @desandro: https://github.com/desandro/classie -->
+    <script>
+      /*!
+ * classie - class helper functions
+ * from bonzo https://github.com/ded/bonzo
+ * 
+ * classie.has( elem, 'my-class' ) -> true/false
+ * classie.add( elem, 'my-new-class' )
+ * classie.remove( elem, 'my-unwanted-class' )
+ * classie.toggle( elem, 'my-class' )
+ */
+
+/*jshint browser: true, strict: true, undef: true */
+/*global define: false */
+
+( function( window ) {
+
+'use strict';
+
+// class helper functions from bonzo https://github.com/ded/bonzo
+
+function classReg( className ) {
+  return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
+}
+
+// classList support for class management
+// altho to be fair, the api sucks because it won't accept multiple classes at once
+var hasClass, addClass, removeClass;
+
+if ( 'classList' in document.documentElement ) {
+  hasClass = function( elem, c ) {
+    return elem.classList.contains( c );
+  };
+  addClass = function( elem, c ) {
+    elem.classList.add( c );
+  };
+  removeClass = function( elem, c ) {
+    elem.classList.remove( c );
+  };
+}
+else {
+  hasClass = function( elem, c ) {
+    return classReg( c ).test( elem.className );
+  };
+  addClass = function( elem, c ) {
+    if ( !hasClass( elem, c ) ) {
+      elem.className = elem.className + ' ' + c;
+    }
+  };
+  removeClass = function( elem, c ) {
+    elem.className = elem.className.replace( classReg( c ), ' ' );
+  };
+}
+
+function toggleClass( elem, c ) {
+  var fn = hasClass( elem, c ) ? removeClass : addClass;
+  fn( elem, c );
+}
+
+var classie = {
+  // full names
+  hasClass: hasClass,
+  addClass: addClass,
+  removeClass: removeClass,
+  toggleClass: toggleClass,
+  // short names
+  has: hasClass,
+  add: addClass,
+  remove: removeClass,
+  toggle: toggleClass
+};
+
+// transport
+if ( typeof define === 'function' && define.amd ) {
+  // AMD
+  define( classie );
+} else {
+  // browser global
+  window.classie = classie;
+}
+
+})( window );
+</script>
+
+
+    <script>
+      /**
+ * gridSelector.js v1.0.0
+ * http://www.codrops.com
+ *
+ * Licensed under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ * 
+ * Copyright 2013, Codrops
+ * http://www.codrops.com
+ */
+;( function( window ) {
+  
+  'use strict';
+
+  function extend( a, b ) {
+    for( var key in b ) { 
+      if( b.hasOwnProperty( key ) ) {
+        a[key] = b[key];
+      }
+    }
+    return a;
+  }
+
+  function gridSelector( el, options ) {  
+    this.el = el;
+    this.options = extend( this.defaults, options );
+    this._init();
+  }
+
+  gridSelector.prototype = {
+    defaults : {
+      rows : 5,
+      columns : 5,
+      maxcolumns : 5,
+      onClick : function() { return false; }
+    },
+    _init : function() {
+      this.trigger =  this.el.querySelector( 'span.gt-grid-icon' );
+      this.gridItems = Array.prototype.slice.call( this.el.querySelectorAll( 'div.gt-grid-select > div' ) );
+      this._setRowsColumns( this.options.rows, this.options.columns );
+      this.maxcolumns = this.options.maxcolumns;
+      this.gridItems.forEach( function( el, i ) {
+        classie.add( el, 'gt-grid-selected' );
+      } );
+      this._initEvents();
+    },
+    _initEvents : function() {
+      
+      var self = this;
+
+      if( Modernizr.touch ) {
+        this.trigger.addEventListener( 'click', function( ev ) { classie.add( self.el, 'gt-grid-control-open' ); } );
+      }
+
+      this.gridItems.forEach( function( el, i ) {
+        el.addEventListener( 'mouseover', function(ev) {
+          self._highlightGridItems( self.gridItems.indexOf( this ) );
+        } );
+
+        el.addEventListener( 'click', function(ev) {
+          self._selectGridItems( self.gridItems.indexOf( this ) );
+          if( Modernizr.touch ) {
+            classie.remove( self.el, 'gt-grid-control-open' );
+          }
+        } );
+      } );
+
+    },
+    _highlightGridItems : function( pos ) {
+
+      // item's row and column
+      var self = this,
+        itemRow = Math.floor( pos / this.options.maxcolumns ),
+        itemColumn = pos - itemRow * this.options.maxcolumns;
+
+      this.gridItems.forEach( function( el, i ) {
+        // el's row and column
+        var elpos = self.gridItems.indexOf( el ),
+          elRow = Math.floor( elpos / self.options.maxcolumns ),
+          elColumn = elpos - elRow * self.options.maxcolumns;
+
+        if( elRow <= itemRow && elColumn <= itemColumn) {
+          classie.add( el, 'gt-grid-hover' );
+        }
+        else {
+          classie.remove( el, 'gt-grid-hover' );
+        }
+      } );
+
+    },
+    _selectGridItems : function( pos ) {
+      var self = this;
+      this.gridItems.forEach( function( el, i ) {
+        if( classie.has( el, 'gt-grid-hover' ) ) {
+          classie.add( el, 'gt-grid-selected' );
+        }
+        else {
+          classie.remove( el, 'gt-grid-selected' );
+        }
+      } );
+      var r = this.rows = Math.floor( pos / this.options.maxcolumns ),
+        c = this.columns = pos - this.rows * this.options.maxcolumns;
+      
+      this._setRowsColumns( r + 1, c + 1 );
+      this.options.onClick();
+    },
+    _setRowsColumns : function( rows, columns ) {
+      this.rows = rows;
+      this.columns = columns;
+    }
+  }
+
+  // add to global namespace
+  window.gridSelector = gridSelector;
+
+} )( window );
+
+    </script>
+    <script>
+      var Grid = (function() {
+
+  function extend( a, b ) {
+    for( var key in b ) { 
+      if( b.hasOwnProperty( key ) ) {
+        a[key] = b[key];
+      }
+    }
+    return a;
+  }
+
+  var config = {
+      items : Array.prototype.slice.call( document.querySelectorAll( '#gt-grid > div' ) ),
+      gridSel : new gridSelector( document.getElementById( 'gt-grid-selector' ), {
+        onClick : function() { initGrid(); }
+      } )
+    },
+    defaults = {
+      transition : false,
+      speed : 300,
+      delay : 0
+    };
+
+  function init( options ) {
+    config.options = extend( defaults, options );
+    initGrid();
+    if( config.options.transition ) {
+      setTimeout( function() {
+        config.items.forEach( function( el, i ) {
+          el.style.WebkitTransition = 'all ' + config.options.speed + 'ms ' + ( i * config.options.delay ) + 'ms';
+          el.style.MozTransition = 'all ' + config.options.speed + 'ms ' + ( i * config.options.delay ) + 'ms';
+          el.style.transition = 'all ' + config.options.speed + 'ms ' + ( i * config.options.delay ) + 'ms';
+        } );
+      }, 25 );
+    }
+  }
+
+  function initGrid() {
+    var rows = config.gridSel.rows,
+      columns = config.gridSel.columns;
+    
+    config.items.forEach( function( el, i ) {
+      el.style.position = 'absolute';
+
+      var elpos = config.items.indexOf( el ),
+        current_row = Math.floor( elpos / config.gridSel.maxcolumns ),
+        current_column = elpos - current_row * config.gridSel.maxcolumns,
+        width =  100 / columns,
+        height = 100 / rows;
+
+      if( current_row < rows && current_column < columns ) {
+        //if( Modernizr.csscalc ) {
+        //  el.style.width = '-webkit-calc(' + width + '% + 1px)';
+        //  el.style.height = '-webkit-calc(' + height + '% + 1px)';
+        //  el.style.width = '-moz-calc(' + width + '% + 1px)';
+        //  el.style.height = '-moz-calc(' + height + '% + 1px)';
+        //  el.style.width = 'calc(' + width + '% + 1px)';
+        //  el.style.height = 'calc(' + height + '% + 1px)';
+        //}
+        //else  {
+          el.style.width = width + .5 + '%';
+          el.style.height = height + .5 + '%';
+        //}
+        
+        el.style.left = width * ( current_column ) + '%';
+        el.style.top = height * ( current_row ) + '%';
+
+        classie.remove( el, 'gt-hidden' );
+        classie.add( el, 'gt-visible' );
+      }
+      else {
+        classie.remove( el, 'gt-visible' );
+        classie.add( el, 'gt-hidden' );
+      }
+    } );
+  }
+
+  return { init : init };
+
+})();
+
+
+    </script>
+    <script>
+      Grid.init( {
+        transition : true
+      } );
+    </script>
+  </body>
+</html>
