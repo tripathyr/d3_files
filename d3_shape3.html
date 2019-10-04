@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+  <title>Line generator (render to canvas element)</title>
+</head>
+
+<style>
+</style>
+
+<body>
+  <canvas width="600" height="150"></canvas>
+
+  <script src="d3.js"></script>
+  <script>
+var context = d3.select('canvas').node().getContext('2d');
+
+var lineGenerator = d3.line()
+  .context(context);
+
+var points = [
+  [0, 80],
+  [100, 100],
+  [200, 30],
+  [300, 50],
+  [400, 40],
+  [500, 80]
+];
+
+context.strokeStyle = '#999';
+context.beginPath();
+lineGenerator(points);
+context.stroke();
+
+  </script>
+</body>
+</html>

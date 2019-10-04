@@ -1,0 +1,229 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Bitcoin Wallet</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<style>
+      @import url('https://fonts.googleapis.com/css?family=Abel|Courgette|Cormorant+Garamond');
+
+.mobilebody {
+  width: 300px;
+  height: 550px;
+  padding: 50px 0px 0px 0px;
+  background:#fff;
+  border-radius:25px;
+  border:2px solid #dadada;
+  margin:0 auto;
+  position: relative;
+}
+
+.mobile {
+  width: 280px;
+  height: 480px;
+  margin: 0 auto;
+  position: relative;
+  background: #2e323a;
+  overflow: auto;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-family: Abel, sans-serif;
+  line-height: 15px;
+  letter-spacing: 1px;
+  font-size: 13px;
+  font-weight: ligther;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+.user-info p {
+  margin: 2px;
+  color: white;  
+}
+
+#cog {
+  color: white;
+}
+
+.interface {
+  padding: 10px;
+  height: 250px;
+}
+
+.readout {
+  display: flex;
+  flex-directon: row;
+}
+
+.balance {
+  font-family: Cormorant Garamond;
+  color: #f5d6ad;
+  font-size: 100px;
+  text-shadow: 15px 10px 20px black;
+  padding-left: 10%;
+}
+
+.balance-info {
+  padding-top: 60px;
+  color: white;
+  font-family: Abel, sans-serif;
+  line-height: 3px;
+  letter-spacing: 1px;
+  font-size: 13px;
+  font-weight: ligther;
+}
+
+.units {
+  color: #f5d6ad;
+}
+
+.send-receive {
+  margin-top: 80px;
+  margin-right: 4px;
+  float: right;
+}
+
+.send-receive button {
+  background-color: transparent;
+  border: 1px solid #f5d6ad;
+  padding: 15px;
+  color: #f5d6ad;
+  letter-spacing: 0.7px;
+  font-size: 12px;
+  width: 130px;
+}
+
+.send-receive button:hover {
+  box-shadow: 5px 5px 20px 5px black;
+  transform: scale(1.02);
+  transition: 0.3s ease-in-out;
+}
+
+.history {
+  color: white;
+  font-size: 13px;
+  line-height: 3px;
+  font-family: Abel, sans-sarif;
+  margin: 10px;
+}
+
+.entry {
+  display: flex;
+  justify-content: space-between;
+}
+.transfer-amount-neg {
+  color: #ff4646;
+}
+
+.transfer-amount-pos {
+  color: lightgreen;
+}
+
+.transfer-conv {
+  text-align: right;
+}
+
+hr { 
+  height: 1px;
+  color: gray;
+  background-color: gray;
+  border: none;
+}
+
+
+
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+
+
+<div class="mobilebody">
+<div class="mobile">
+<div class="nav">
+<div class="user-info">
+<p class="user-name">Geoffrey's account</p>
+<p class="currency">Bitcoin (BTC)</p>
+</div>
+<i id="cog" class="fas fa-cog fa-2x"></i>
+</div>
+<div class="interface">
+<div class="readout">
+<div class="balance">
+2.7
+</div>
+<div class="balance-info">
+<p class="units">BTC</p>
+<p class="conversion">US$21,600</p>
+</div>
+</div>
+<div class="send-receive">
+<button>Send / Receive</button>
+</div>
+</div>
+<hr>
+<div class="history">
+<div class="entry">
+<div class="column1">
+<p class="timestamp">30m</p>
+<p class="address">to fhlkj4h53kl...</p>
+</div>
+<div class="column2">
+<p class="transfer-amount-neg">-0.002 BTC</p>
+<p class="transfer-conv">$16</p>
+</div>
+</div>
+<hr>
+<div class="entry">
+<div class="column1">
+<p class="timestamp">Fri</p>
+<p class="address">from kj34h5l34k...</p>
+</div>
+<div class="column2">
+<p class="transfer-amount-pos">+0.37 BTC</p>
+<p class="transfer-conv">$2,960</p>
+</div>
+</div>
+<hr>
+<div class="entry">
+<div class="column1">
+<p class="timestamp">Wed</p>
+<p class="address">to ghlkw3uh9...</p>
+</div>
+<div class="column2">
+<p class="transfer-amount-neg">-0.03 BTC</p>
+<p class="transfer-conv">$227</p>
+</div>
+</div>
+<hr>
+<div class="entry">
+<div class="column1">
+<p class="timestamp">Mon</p>
+<p class="address">to q345ih9g...</p>
+</div>
+<div class="column2">
+<p class="transfer-amount-neg">-0.06 BTC</p>
+<p class="transfer-conv">$454</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+
+  <rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:1;stroke:rgb(0,0,0)" id="myrect" onclick="doRectClick()" />
+
+   <text x="60" y="40" fill="white" font-size="40" onclick="doRectClick();">Click Me</text>
+
+</svg>
+
+<div id="go1" style="height:800px">
+<!--  content -->
+Section 1
+</div>
+
+<div id="go2" style="height:900px;border:2px">
+<!-- content -->
+Section 2
+</div>
+
+<div id="go3" style="height:900px">
+<!-- content -->
+Section 3
+</div>
+
+<a href = "#go1">GO 1 </a>
+<a href = "#go2">GO 2 </a>
+<a href = "#go3">GO 3 </a>
+
+<script>
+function doRectClick(){
+    var myrect = document.getElementById('myrect');
+    var r = Math.floor(Math.random() * 255);
+    var g = Math.floor(Math.random() * 255);
+    var b = Math.floor(Math.random() * 255);
+    myrect.style.fill = 'rgb(' + r + ', ' + g + ' , ' + b + ')';
+}
+</script>

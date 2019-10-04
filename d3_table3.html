@@ -1,0 +1,242 @@
+<style>
+/* FIRST STYLE
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {background-color:#f5f5f5;}*/
+
+
+/* SECOND STYLE
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+*/
+
+
+/* THIRD STYLE
+*{padding:0; 
+  margin:0;
+  font-family:helvetica;
+  box-sizing: border-box;
+  font-size: 12px;
+  color: #2cb8d2;
+  transisition: 0.5s;
+}
+
+table {
+  
+  padding: 10px;
+}
+
+
+
+table  {
+  position:absolute;
+  left:10%;
+  top:10%;
+  border: 1px solid #2cb8d2;
+  border-collapse: collapse;
+  width: 60%;
+}
+th{
+  padding: 10px;
+  font-size: 15px;
+  letter-spacing: 1px;
+  font-family: “HelveticaNeueLTPro-BdCn”, HelveticaNeue-CondensedBold, "Oswald";
+}
+
+td {
+  border: 1px solid #2cb8d2;
+  padding: 10px;
+  color: #24537f;
+  font-weight: bold;
+}
+
+td + td{
+  color: #747474;
+  text-align: center;
+  font-weight: normal;
+}
+tr{
+  background-color: white;
+    transition: 0.5s;
+}
+
+tr:nth-child(even){
+  background-color: #efefef;
+}
+tr+tr:hover{
+  background-color:#D5F1F6;
+  cursor:default;
+  transition: none;
+}
+tr + tr {
+  height: 50px;
+}*/
+
+
+
+/* FOURTH STYLE
+
+table {
+    font-family: lucida sans unicode,lucida grande,Sans-Serif;
+    font-size: 12px;
+    background: #fff;
+    width: 480px;
+    border-collapse: collapse;
+    text-align: left;
+    margin: 20px;
+}
+
+td {
+    color: #669;
+    padding: 9px 8px 0;
+}
+
+tr {
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    font-size: 14px;
+    font-weight: 400;
+    color: #039;
+    border-bottom: 2px solid #6678b1;
+    padding: 10px 8px;
+}*/
+
+
+table {
+    font-family: lucida sans unicode, lucida grande, Sans-Serif;
+    font-size: 12px;
+    width: 480px;
+    text-align: left;
+    border-collapse: collapse;
+    margin: 30px 30px 30px 15px;
+}
+
+th {
+    font-weight: 400;
+    font-size: 14px;
+    border-bottom: 2px solid #6678b1;
+    border-right: 30px solid #fff;
+    border-left: 30px solid #fff;
+    color: #039;
+    padding: 8px 2px;
+}
+
+
+
+tr {
+    border-bottom: 1px solid #ddd;
+}
+
+tr td {
+    transition: all 2s ease
+}
+
+tr:hover td {
+    background-color: #e7e4b1
+}
+
+td {
+    border-right: 30px solid #fff;
+    border-left: 30px solid #fff;
+    color: #669;
+    padding: 12px 2px 0;
+}
+</style>
+<div id="container">
+</div>
+<script>
+var rows = [{ "firstName": "John", "last Name": "Doe", "age": "46" },
+    { "firstName": "James", "last Name": "Blanc", "age": "24" }
+];
+
+
+var rows =
+
+
+    [{ participantAddress: "FGyDAHZ3AU5TqRV2zrTju9DBCbKWZtearf", tokenAmount: 0.001, transactionHash: "26f08763cd177e2d55080041637527a7769eb3507b023a25bc9edbe8649c2fe2", userChoice: "narendra modi wins", winningAmount: 0.0013333333333333337 },
+
+        { participantAddress: "F6WPx2WFdmVQ6AMutZ2FJzpyiwdxqLyd2z", tokenAmount: 0.001, transactionHash: "511f16a69c5f62ad1cce70a2f9bfba133589e3ddc560d406c4fbf3920eae8469", userChoice: "narendra modi wins", winningAmount: 0.0013333333333333337 },
+
+        { participantAddress: "FEDUxQPznerYapqhdiBDT54rGhAdRikqJA", tokenAmount: 0.001, transactionHash: "e92bf6a8bddf177a5e2d793fa86c7ad059c89157f683f90f02b3590c0e4282c5", userChoice: "narendra modi wins", winningAmount: 0.0013333333333333337 },
+
+        { participantAddress: "FNfkXGXSyw1gpiyzn4gvVFKgHd8jh1c2FV", tokenAmount: 0.001, transactionHash: "dfbc183b45762d7db565eeb0eddce74232acbc8a2c00a68a6ef628c16bb95a93", userChoice: "narendra modi loses", winningAmount: null },
+
+        { participantAddress: "F7k7bTPStxr6wKCzUNVW48j3N2tN3PVgxZ", tokenAmount: 0.001, transactionHash: "dd5512594a0402b914e8d852c918a3b0017e888deea1324512c62f62420a27e0", userChoice: "narendra modi wins", winningAmount: 0.0013333333333333337 }, { participantAddress: "FEZ4UriH7MPXV7c2vdxKoVgAs5nPjYyhLv", tokenAmount: 0.001, transactionHash: "78f6e1dbb2eb8de746395d5c35b47ab91f51076bf3a134afa5fe5b0a44eba5e0", userChoice: "narendra modi loses", winningAmount: null }, { participantAddress: "FLbewsiKzPQEg5ENsvmsEjaYryafaPZ5Py", tokenAmount: 0.001, transactionHash: "eec02efef5a505e141f5551604d401a872e33837edfcbb7e5895a9951c50aa2a", userChoice: "narendra modi wins", winningAmount: 0.0013333333333333337 }, { participantAddress: "FCLFXw9NXnTYkhAnLxMRP5Mmo7Xhh3FeS2", tokenAmount: 0.001, transactionHash: "3b8c7d37e16a2f7446411feebe9d141fda6edd4886998033bb3405a08c6026a7", userChoice: "narendra modi wins", winningAmount: 0.0013333333333333337 }, { participantAddress: "F6EMAHjivqrcrdAHNABq2R1FLNkx8xfEaT", tokenAmount: 0.001, transactionHash: "0727f232cee6f4c1e10f7b281c8c5c7bb2e90c2c0fc50c8b1160f383840a8ae5", userChoice: "narendra modi wins", winningAmount: 0.0013333333333333337 }, { participantAddress: "FPwJipBvaozf6P3i7Vg5z15c7rdLaAMG5M", tokenAmount: 0.001, transactionHash: "d5e61452a5fc98cac6a0c2c8eb5dc45c345513f2bb27240d66ef3d47a11c46bc", userChoice: "narendra modi wins", winningAmount: 0.0013333333333333337 }, { participantAddress: "FGYbnpkK8cnNmXoDVYSt3KgWm3ECJNoRja", tokenAmount: 0.001, transactionHash: "2cbc28088cfb983b9b8fd7ec7ee5abcac5cdef07e706413d4094c2caa7020753", userChoice: "narendra modi wins", winningAmount: 0.0013333333333333337 }, { participantAddress: "FTS3FXu8kWHeFbd1V22w2D6P5BYYzEW8iC", tokenAmount: 0.001, transactionHash: "f38996915cd00f7bb6ab33ca522168739e4af41ac718ec77b9e7974687f48ec6", userChoice: "narendra modi wins", winningAmount: 0.0013333333333333337 }, { participantAddress: "FB8HVgtK1vXYzpiJsxsMABMUHKoLRTtxuA", tokenAmount: 0.001, transactionHash: "4db4f56b711720b1769a70d834ef3138b599143d0dcf82c1d3e22e44201cc1b4", userChoice: "narendra modi loses", winningAmount: null }, { participantAddress: "FHBsZzRJAGYLn8UERYfkU3v9FGXeoLmU5G", tokenAmount: 0.001, transactionHash: "ad50d8bffe7214473b6f8f454f55749d23a26ab3fc854d63e1ccc808045d98ba", userChoice: "narendra modi loses", winningAmount: null }, { participantAddress: "FCMLYTNBUXiC8R3xwnGJVaDzoUYkJMqHKd", tokenAmount: 0.001, transactionHash: "5a36fce4646358c751b5403ec5c7465f1b11c8dca6d86e8a9cd4e26184e07b1a", userChoice: "narendra modi wins", winningAmount: 0.0013333333333333337 }, { participantAddress: "FFXX4i986DzDYZsGYXoozm6714WHtHZSod", tokenAmount: 0.001, transactionHash: "3520cda2de65249f7629683c4b8f3efb15479076fe9521250aba2f1abe3f2ce9", userChoice: "narendra modi wins", winningAmount: null }
+    ];
+
+//We have to json.stingify the result
+
+
+
+var html = '<table>';
+html += '<tr>';
+for (var j in rows[0]) {
+    html += '<th>' + j + '</th>';
+}
+html += '</tr>';
+for (var i = 0; i < rows.length; i++) {
+    html += '<tr>';
+    for (var j in rows[i]) {
+        html += '<td>' + rows[i][j] + '</td>';
+    }
+    html += '</tr>';
+}
+html += '</table>';
+
+/*
+//For Object of objects
+ var html = '<table>';
+ html += '<tr>';
+ for( var j in rows[0] ) {
+  html += '<th>' + j + '</th>';
+ }
+ html += '</tr>';
+ for( var i = 0; i < Object.keys(rows).length; i++) {
+  html += '<tr>';
+  for( var j in rows[i] ) {
+    html += '<td>' + rows[i][j] + '</td>';
+  }
+  html += '</tr>';
+ }
+ html += '</table>';
+*/
+
+/* var html = '<div class="topOne">';
+ html += '<div class="heading">';
+ for( var j in rows[0] ) {
+  html += '<span>'+' ' + j + '</span>';
+ }
+ html += '</div>';
+ for( var i = 0; i < rows.length; i++) {
+  html += '<div class="myRow">';
+  for( var j in rows[i] ) {
+    html += '<span>' +' '+ rows[i][j] + '</span>';
+  }
+  html += '</div>';
+ }
+ html += '</div>';*/
+
+document.getElementById('container').innerHTML = html;
+</script>

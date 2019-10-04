@@ -1,0 +1,1163 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Cryptocurrency Tracker</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/97621/functional-modifiers.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<style>
+      @charset "UTF-8";
+@import url("https://codepen.io/ericthayer/pen/vemEYm.scss");
+@import url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/97621/_variables.scss");
+/*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
+/* Document
+   ========================================================================== */
+/**
+ * 1. Change the default font family in all browsers (opinionated).
+ * 2. Correct the line height in all browsers.
+ * 3. Prevent adjustments of font size after orientation changes in
+ *    IE on Windows Phone and in iOS.
+ */
+@import url("https://fonts.googleapis.com/css?family=Unica+One");
+html {
+  font-family: sans-serif;
+  /* 1 */
+  line-height: 1.15;
+  /* 2 */
+  -ms-text-size-adjust: 100%;
+  /* 3 */
+  -webkit-text-size-adjust: 100%;
+  /* 3 */
+  box-sizing: border-box;
+  overflow-y: scroll;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* Sections
+   ========================================================================== */
+/**
+ * Remove the margin in all browsers (opinionated).
+ */
+body {
+  margin: 0;
+}
+
+/**
+ * Add the correct display in IE 9-.
+ */
+article,
+aside,
+footer,
+header,
+nav,
+section {
+  display: block;
+}
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+h1 {
+  margin-bottom: 0.67em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+}
+
+/* Grouping content
+   ========================================================================== */
+/**
+ * Add the correct display in IE 9-.
+ * 1. Add the correct display in IE.
+ */
+figcaption,
+figure,
+main {
+  /* 1 */
+  display: block;
+}
+
+/**
+ * Add the correct margin in IE 8.
+ */
+figure {
+  margin: 0 auto 1em;
+}
+
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+hr {
+  box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+pre {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * 1. Remove the gray background on active links in IE 10.
+ * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
+ */
+a {
+  background-color: transparent;
+  /* 1 */
+  -webkit-text-decoration-skip: objects;
+  /* 2 */
+}
+
+/**
+ * Remove the outline on focused links when they are also active or hovered
+ * in all browsers (opinionated).
+ */
+a:active,
+a:hover {
+  outline-width: 0;
+}
+
+/**
+ * 1. Remove the bottom border in Firefox 39-.
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+abbr[title] {
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+  /* 2 */
+}
+
+/**
+ * Prevent the duplicate application of `bolder` by the next rule in Safari 6.
+ */
+b,
+strong {
+  font-weight: inherit;
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/**
+ * Add the correct font style in Android 4.3-.
+ */
+dfn {
+  font-style: italic;
+}
+
+/**
+ * Add the correct background and color in IE 9-.
+ */
+mark {
+  background-color: #ff0;
+  color: #000;
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+/**
+ * Add the correct display in IE 9-.
+ */
+audio,
+video {
+  display: inline-block;
+}
+
+/**
+ * Add the correct display in iOS 4-7.
+ */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+ * Remove the border on images inside links in IE 10-.
+ */
+img {
+  border-style: none;
+  max-width: 100%;
+}
+
+/**
+ * Hide the overflow in IE.
+ */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* Forms
+   ========================================================================== */
+/**
+ * 1. Change the font styles in all browsers (opinionated).
+ * 2. Remove the margin in Firefox and Safari.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: sans-serif;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+button,
+input {
+  /* 1 */
+  border: none;
+  overflow: visible;
+}
+
+button:not(:focus),
+input:not(:focus) {
+  outline: 0;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+
+/**
+ * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`
+ *    controls in Android 4.
+ * 2. Correct the inability to style clickable types in iOS and Safari.
+ * 3. Remove new default UA CSS property in Chrome.
+ */
+button,
+html [type="button"],
+[type="reset"],
+[type="submit"] {
+  border: none;
+  /* 3 */
+  border-radius: 0;
+  /* 3 */
+  -webkit-appearance: button;
+  /* 2 */
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Change the border, margin, and padding in all browsers (opinionated).
+ */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+legend {
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */
+}
+
+/**
+ * 1. Add the correct display in IE 9-.
+ * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+progress {
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */
+}
+
+/**
+ * Remove the default vertical scrollbar in IE.
+ */
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10-.
+ * 2. Remove the padding in IE 10-.
+ */
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/**
+ * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.
+ */
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/* Interactive
+   ========================================================================== */
+/*
+ * Add the correct display in IE 9-.
+ * 1. Add the correct display in Edge, IE, and Firefox.
+ */
+details,
+menu {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+summary {
+  display: list-item;
+}
+
+/* Scripting
+   ========================================================================== */
+/**
+ * Add the correct display in IE 9-.
+ */
+canvas {
+  display: inline-block;
+}
+
+/**
+ * Add the correct display in IE.
+ */
+template {
+  display: none;
+}
+
+/* Hidden
+   ========================================================================== */
+/**
+ * Add the correct display in IE 10-.
+ */
+[hidden] {
+  display: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+address {
+  font-style: normal;
+  word-wrap: break-word;
+}
+
+dl,
+ol,
+ul {
+  margin-top: 0;
+  padding-left: 2em;
+}
+
+nav ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+p {
+  margin-top: 0;
+}
+
+.curr-popup {
+  position: fixed;
+  margin: 2rem;
+  z-index: -1;
+  background: #3a434f;
+  width: calc(100% - 4rem);
+  height: calc(100% - 4rem);
+  border: 1px solid #48505d;
+  opacity: 0;
+}
+.curr-popup.show {
+  opacity: 1;
+  z-index: 10;
+}
+.curr-popup .close-popup {
+  float: right;
+  font-size: 22px;
+  margin: 2rem;
+  color: #fff;
+  display: inline-block;
+}
+.curr-popup:before {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  content: ' ';
+  background: rgba(0, 0, 0, 0.3);
+}
+.curr-popup h3 {
+  padding: 2rem;
+  display: inline-block;
+  font-size: 26px;
+  letter-spacing: 1px;
+  font-weight: 100;
+}
+.curr-popup ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  clear: both;
+  overflow: scroll;
+}
+.curr-popup ul li {
+  padding: 1.5rem;
+  font-size: 16px;
+  letter-spacing: 1px;
+  font-weight: 300;
+  cursor: pointer;
+}
+.curr-popup ul li:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.05);
+}
+.curr-popup ul li:before {
+  font-family: FontAwesome;
+  content: '\f00c';
+  opacity: 0.25;
+  margin-right: 10px;
+}
+.curr-popup ul li.active:before {
+  color: #7ce1c4;
+  opacity: 1;
+}
+
+body {
+  overflow-x: hidden;
+  background: #2b333f;
+  color: #fff;
+}
+body.gbp .usd, body.gbp .eur {
+  display: none;
+}
+body.usd .gbp, body.usd .eur {
+  display: none;
+}
+body.eur .usd, body.eur .gbp {
+  display: none;
+}
+
+[class*='col-'] {
+  padding: 0;
+}
+
+header {
+  border-bottom: 1px solid #48505d;
+  padding: 1rem 0;
+  text-align: center;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.2);
+}
+header a.add-curr {
+  float: left;
+  height: 44px;
+  width: 44px;
+  font-size: 22px;
+  z-index: 6;
+  color: #fff;
+  text-transform: uppercase;
+  height: 44px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid #48505d;
+  border-raius: 3px;
+  background: #222932;
+  padding: 6px 0 0 0;
+  text-align: center;
+  margin: 0;
+}
+header a.add-curr:hover, header a.add-curr:focus {
+  text-decoration: none;
+}
+header .currency {
+  float: right;
+}
+header .currency a.change-curr {
+  float: left;
+  height: 44px;
+  width: 44px;
+  display: block;
+  margin-right: 10px;
+  color: #fff;
+  font-size: 22px;
+  padding: 3px;
+}
+header .currency a.change-curr:hover, header .currency a.change-curr:focus {
+  text-decoration: none;
+}
+header .currency a.change-curr.active-curr {
+  color: #7ce1c4;
+}
+header .logo {
+  font-weight: 200;
+  font-size: 32px;
+  color: #7ce1c4;
+  text-transform: uppercase;
+  font-family: 'Unica One', cursive;
+  letter-spacing: 1px;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+h2.price {
+  text-align: right;
+  font-weight: 100;
+  font-size: 38px;
+  margin: 0;
+  letter-spacing: 1px;
+}
+h2.price sup {
+  vertical-align: baseline;
+  font-size: 22px;
+  opacity: 0.5;
+  font-weight: 300;
+}
+h2.price.eur:before {
+  content: '€';
+  vertical-align: baseline;
+  font-size: 22px;
+  margin-right: 0.25rem;
+  opacity: 0.5;
+  font-weight: 300;
+}
+h2.price.gbp:before {
+  content: '£';
+  vertical-align: baseline;
+  font-size: 22px;
+  opacity: 0.5;
+  font-weight: 300;
+  margin-right: 0.25rem;
+}
+h2.price.usd:before {
+  content: '$';
+  vertical-align: baseline;
+  font-size: 22px;
+  opacity: 0.5;
+  margin-right: 0.25rem;
+  font-weight: 300;
+}
+
+.curr-row {
+  border-bottom: 1px solid #48505d;
+}
+
+h3 {
+  font-weight: 300;
+  margin: 0;
+  font-size: 18px;
+}
+h3 span {
+  font-weight: 300;
+  display: block;
+  color: #abbdcb;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: px;
+  display: block;
+  margin-top: 0.75rem;
+}
+
+footer {
+  padding: 2rem;
+}
+footer .donate p {
+  font-weight: 200;
+  display: block;
+  color: #abbdcb;
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-style: italic;
+  text-align: center;
+}
+footer .donate p span {
+  display: block;
+}
+
+.purge {
+  -webkit-transform: translateX(-88px);
+          transform: translateX(-88px);
+}
+
+.swipe {
+  transition: all 0.25s ease-in-out;
+  z-index: 1;
+  padding: 2rem;
+  position: relative;
+  background: #2b333f;
+  overflow: hidden;
+}
+
+.row {
+  margin: 0;
+}
+
+.curr-row {
+  position: relative;
+}
+
+.delete-btn {
+  font-size: 22px;
+}
+.delete-btn i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+}
+
+.ui-btn {
+  display: block;
+  position: relative;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+}
+
+.behind {
+  width: 88px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.behind a.ui-btn {
+  width: 88px;
+  margin: 0px;
+  float: right;
+  height: 100%;
+  border: none;
+}
+
+.behind a.delete-btn, .behind a.delete-btn:active, .behind a.delete-btn:visited, .behind a.delete-btn:focus, .behind a.delete-btn:hover {
+  color: white;
+  background-color: #a61919;
+  text-shadow: none;
+}
+
+.language-select {
+  display: inline-flex;
+  flex-direction: column;
+  right: 0;
+  position: absolute;
+  z-index: 6;
+  color: #fff;
+  text-transform: uppercase;
+  height: 44px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid #48505d;
+  border-raius: 3px;
+  background: #222932;
+  padding: 0;
+  text-align: center;
+  margin: 0;
+  width: 44px;
+}
+.language-select li {
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  order: 2;
+  min-height: 40px;
+  font-size: 22px;
+}
+.language-select li:hover {
+  cursor: pointer;
+}
+
+.language-select.open {
+  height: auto;
+}
+
+.language-select li.active {
+  order: 1;
+  pointer-events: none;
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no" class="gbp">
+
+
+<body class="gbp">
+  
+  <div class="curr-popup">
+    <h3>Select Currencies</h3>
+    <a href="#" class="close-popup"><i class="fa fa-close"></i></a>
+    <ul>
+      <li class="btc-cur active"  data-unit="btc">Bitcoin</li>
+      <li class="ltc-cur active" data-unit="ltc">Litecoin</li>
+      <li class="eth-cur active" data-unit="eth">Ethereum</li>
+      <li class="etc-cur active" data-unit="etc">Ethereum Classic</li>
+      <li class="xmr-cur active" data-unit="xmr">Monero</li>
+      <li class="dash-cur active" data-unit="dash">Dash</li>
+      <li class="xrp-cur active" data-unit="xrp">Ripple XRP</li>
+      <li class="doge-cur active" data-unit="doge">Dogecoin</li>
+    </ul>
+  </div>
+
+  <header>
+    <div class="row">
+      <div class="col-xs-12">
+        <a href="#" class="add-curr"><i class="fa fa-plus"></i></a>
+        <div class="logo">MNTCKR</div>
+        <div class="currency">
+          <ul class="language-select"> 
+            <li class="active change-curr gbp-cur"><i class="fa fa-gbp"></i></li>
+            <li class="change-curr eur-cur "><i class="fa fa-eur"></i></li> 
+            <li class="change-curr usd-cur"><i class="fa fa-usd"></i></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <div id="sortable">
+  <div class="row curr-row">
+    <div class="behind">
+      <a href="#" class="ui-btn delete-btn" data-unit="ltc"><i class="fa fa-trash-o"></i></a>
+    </div>
+    <div class="swipe">
+      <div class="col-xs-6">
+        <h3 class="curr">
+          Litecoin<span>LTC</span>
+        </h3>
+      </div>
+      <div class="col-xs-6">
+        <h2 class="price eur ltc-eur"></h2>
+        <h2 class="price gbp ltc-gbp"></h2>
+        <h2 class="price usd ltc-usd"></h2>
+      </div>
+      </div>
+  </div>
+
+  <div class="row curr-row">
+      <div class="behind">
+      <a href="#" class="ui-btn delete-btn" data-unit="dash"><i class="fa fa-trash-o"></i></a>
+    </div>
+    <div class="swipe">
+    <div class="col-xs-6">
+      <h3 class="curr">
+        DASH<span>DASH</span>
+      </h3>
+    </div>
+    <div class="col-xs-6">
+      <h2 class="price eur dash-eur"></h2>
+      <h2 class="price gbp dash-gbp"></h2>
+      <h2 class="price usd dash-usd"></h2>
+    </div> </div>
+  </div>
+
+  <div class="row curr-row">
+      <div class="behind">
+      <a href="#" class="ui-btn delete-btn"data-unit="xmr"><i class="fa fa-trash-o"></i></a>
+    </div>
+    <div class="swipe">
+    <div class="col-xs-6">
+      <h3 class="curr">
+        Monero<span>XMR</span>
+      </h3>
+    </div>
+    <div class="col-xs-6">
+      <h2 class="price eur xmr-eur"></h2>
+      <h2 class="price gbp xmr-gbp"></h2>
+      <h2 class="price usd xmr-usd"></h2>
+    </div> </div>
+  </div>
+
+  <div class="row curr-row">
+      <div class="behind">
+      <a href="#" class="ui-btn delete-btn" data-unit="btc"><i class="fa fa-trash-o"></i></a>
+    </div>
+    <div class="swipe">
+    <div class="col-xs-6">
+      <h3 class="curr">
+        Bitcoin<span>BTC</span>
+      </h3>
+    </div>
+    <div class="col-xs-6">
+      <h2 class="price eur btc-eur"></h2>
+      <h2 class="price gbp btc-gbp"></h2>
+      <h2 class="price usd btc-usd"></h2>
+    </div> </div>
+  </div>
+
+  <div class="row curr-row">
+      <div class="behind">
+      <a href="#" class="ui-btn delete-btn" data-unit="eth"><i class="fa fa-trash-o"></i></a>
+    </div>
+    <div class="swipe">
+    <div class="col-xs-6">
+      <h3 class="curr">
+        Ethereum<span>ETH</span>
+      </h3>
+    </div>
+    <div class="col-xs-6">
+      <h2 class="price eur eth-eur"></h2>
+      <h2 class="price gbp eth-gbp"></h2>
+      <h2 class="price usd eth-usd"></h2>
+    </div> </div>
+  </div>
+
+  <div class="row curr-row">
+      <div class="behind">
+      <a href="#" class="ui-btn delete-btn" data-unit="etc"><i class="fa fa-trash-o"></i></a>
+    </div>
+    <div class="swipe">
+    <div class="col-xs-6">
+      <h3 class="curr">
+        Ethereum Classic<span>ETC</span>
+      </h3>
+    </div>
+    <div class="col-xs-6">
+      <h2 class="price eur etc-eur"></h2>
+      <h2 class="price gbp etc-gbp"></h2>
+      <h2 class="price usd etc-usd"></h2>
+    </div> </div>
+  </div>
+
+  <div class="row curr-row">
+      <div class="behind">
+      <a href="#" class="ui-btn delete-btn" data-unit="doge"><i class="fa fa-trash-o"></i></a>
+    </div>
+    <div class="swipe">
+    <div class="col-xs-6">
+      <h3 class="curr">
+        DogeCoin<span>DOGE</span>
+      </h3>
+    </div>
+    <div class="col-xs-6">
+      <h2 class="price eur doge-eur"></h2>
+      <h2 class="price gbp doge-gbp"></h2>
+      <h2 class="price usd doge-usd"></h2>
+    </div> </div>
+  </div>
+
+  <div class="row curr-row">
+      <div class="behind">
+      <a href="#" class="ui-btn delete-btn" data-unit="xrp"><i class="fa fa-trash-o"></i></a>
+    </div>
+    <div class="swipe">
+    <div class="col-xs-6">
+      <h3 class="curr">
+        Ripple XRP<span>XRP</span>
+      </h3>
+    </div>
+    <div class="col-xs-6">
+      <h2 class="price eur xrp-eur"></h2>
+      <h2 class="price gbp xrp-gbp"></h2>
+      <h2 class="price usd xrp-usd"></h2>
+    </div> </div>
+  </div>
+
+
+</div>
+
+  <footer>
+    <div class="row">
+      <div class="col-xs-12 donate">
+        <p>Donations Welcome<span>LTC - LiUyTiw88Sz1R2K1QSkfb1ycVySUv6vWZY</span></p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script id="rendered-js">
+      function getData(prefix, url) {
+  $.getJSON(url, function (data) {
+    $.each(data, function (key, val) {
+      $('.' + prefix + '-' + key.toLowerCase()).html(val);
+    });
+  });
+}
+
+// Gets BTC Price in 3 currencies 
+setInterval(function () {
+  getData('btc', 'https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,EUR,GBP');
+}, 500);
+
+// Gets ETH Price in 3 currencies
+setInterval(function () {
+  getData('eth', 'https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD,EUR,GBP');
+}, 500);
+
+// Gets LTC Price in 3 currencies
+setInterval(function () {
+  getData('ltc', 'https://min-api.cryptocompare.com/data/price?fsym=LTC&tsyms=USD,EUR,GBP');
+}, 500);
+
+// Gets ETC Price in 3 currencies
+setInterval(function () {
+  getData('etc', 'https://min-api.cryptocompare.com/data/price?fsym=ETC&tsyms=USD,EUR,GBP');
+}, 500);
+
+// Gets DOGE Price in 3 currencies
+setInterval(function () {
+  getData('doge', 'https://min-api.cryptocompare.com/data/price?fsym=DOGE&tsyms=USD,EUR,GBP');}, 500);
+
+// Gets XRP Price in 3 currencies
+setInterval(function () {
+  getData('xrp', 'https://min-api.cryptocompare.com/data/price?fsym=XRP&tsyms=USD,EUR,GBP');}, 500);
+
+// Gets dash Price in 3 currencies
+setInterval(function () {
+  getData('dash', 'https://min-api.cryptocompare.com/data/price?fsym=DASH&tsyms=USD,EUR,GBP');}, 500);
+
+// Gets xmr Price in 3 currencies
+setInterval(function () {
+  getData('xmr', 'https://min-api.cryptocompare.com/data/price?fsym=XMR&tsyms=USD,EUR,GBP');}, 500);
+
+
+
+
+
+
+
+
+$('.change-curr').on('click', function (e) {
+  e.preventDefault();
+  $('.active-curr').removeClass('active-curr');
+  $(this).addClass('active-curr');
+  if ($(this).hasClass('gbp-cur')) {
+    $('body').removeClass().addClass('gbp');
+  } else if ($(this).hasClass('eur-cur')) {
+    $('body').removeClass().addClass('eur');
+  } else if ($(this).hasClass('usd-cur')) {
+    $('body').removeClass().addClass('usd');
+  }
+});
+
+$(".delete-btn").on('click', function (e) {
+  e.preventDefault();
+  $(this).parent().parent().slideUp(200, function () {
+    $(this).addClass('hidden');
+  });
+  var el = $(this).data('unit') + '-cur';
+  $('.' + el).removeClass('active');
+});
+
+
+$('.swipe').on('click', function () {
+  $(this).toggleClass('purge');
+});
+
+
+$('.language-select').click(function () {
+  $(this).toggleClass('open');
+});
+
+$('.language-select li').click(function () {
+  $('ul li').removeClass('active');
+  $(this).toggleClass('active');
+});
+
+var ulheight = $('.curr-popup').height() - $('.curr-popup h3').height();
+
+
+$('.close-popup').on('click', function () {
+  $('.curr-popup').removeClass('show');
+});
+
+$('.add-curr').on('click', function () {
+  $('.curr-popup').addClass('show');
+  $('.curr-popup ul').css('height', ulheight - 35);
+});
+
+
+$('.curr-popup ul li').on('click', function () {
+  $(this).toggleClass('active');
+  var element = $(this).data("unit");
+  $('.delete-btn[data-unit="' + element + '"]').parent().next().removeClass('purge');
+  $('.delete-btn[data-unit="' + element + '"]').parent().parent().removeClass('hidden').show();
+});
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

@@ -1,0 +1,1015 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>RIBC UI Redesign</title>
+    <meta name="author" content="you">
+    <meta name="web_author" content="Alberto Hartzet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <style>
+        /* The basic stuff to make it work */
+.contenedor {
+  width: 100vw;
+  height: 100vh;
+  background: deeppink;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.contenedor form {
+  box-sizing: border-box;
+  text-align: center;
+  padding: 22px;
+  display: inline-flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+  justify-content: center;
+}
+.contenedor form input {
+  height: 0;
+  margin: 12px 0;
+  z-index: 1;
+}
+.contenedor form input:checked {
+  outline: 0;
+  border: 0;
+}
+.contenedor form input:before {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.81);
+  border-radius: 11px;
+  cursor: pointer;
+  transition: all 0.25s linear;
+}
+.contenedor form input:checked:before {
+  background-color: white;
+}
+.contenedor form input:after {
+  content: "" attr(titulo) "";
+  position: relative;
+  left: 30px;
+  opacity: 0;
+  color: white;
+  font-size: 9px;
+  display: block;
+  min-width: 80px;
+  transition: all 0.25s linear;
+}
+.contenedor form input:checked:after {
+  opacity: 1;
+  left: 20px;
+}
+.contenedor form input:hover:after:not(label) {
+  opacity: 1;
+}
+.contenedor form input:nth-of-type(1):checked ~ .labels label {
+  -webkit-transform: translateY(-0%);
+          transform: translateY(-0%);
+}
+.contenedor form input:nth-of-type(2):checked ~ .labels label {
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+}
+.contenedor form input:nth-of-type(3):checked ~ .labels label {
+  -webkit-transform: translateY(-200%);
+          transform: translateY(-200%);
+}
+.contenedor form input:nth-of-type(4):checked ~ .labels label {
+  -webkit-transform: translateY(-300%);
+          transform: translateY(-300%);
+}
+.contenedor form input:nth-of-type(5):checked ~ .labels label {
+  -webkit-transform: translateY(-400%);
+          transform: translateY(-400%);
+}
+.contenedor form input:nth-of-type(6):checked ~ .labels label {
+  -webkit-transform: translateY(-500%);
+          transform: translateY(-500%);
+}
+.contenedor form input:nth-of-type(7):checked ~ .labels label {
+  -webkit-transform: translateY(-600%);
+          transform: translateY(-600%);
+}
+.contenedor form .labels {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.contenedor form .labels label {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #2B2B38;
+  z-index: 0;
+  transition: all 0.75s cubic-bezier(0.75, 0.25, 0, 1.05);
+}
+.contenedor form .labels label:nth-child(odd) {
+  background-color: #F5004F;
+  color: white !important;
+}
+
+/* Fancy style */
+body {
+  font-family: "Open sans", sans-serif;
+  font-size: 16px;
+  font-weight: 100;
+  color: white;
+}
+
+.content {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 110px;
+}
+.content .block {
+  width: inherit;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 42px 0;
+  display: flex;
+  justify-content: center;
+}
+.content .block span, .content .block span i {
+  margin: 0 42px;
+}
+.content .block span i {
+  margin-bottom: 22px;
+}
+.content .block span i:before {
+  font-size: 30px;
+}
+
+.Slide:nth-child(even) .content .block {
+  color: #717171;
+}
+
+.icon {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  font-size: 11px;
+  text-align: center;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+}
+
+#Slide5 .content .block {
+  flex-direction: column;
+}
+#Slide5 .content .block i {
+  margin: 0 12px;
+  vertical-align: middle;
+}
+
+strong {
+  font-weight: 400;
+}
+
+h1 {
+  text-transform: uppercase;
+}
+
+ol {
+  text-align: left;
+  list-style-type: decimal;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s linear;
+}
+a:hover {
+  color: rebeccapurple;
+}
+
+
+/* Circular percentages */
+
+@import url(https://fonts.googleapis.com/css?family=Lato:100,400);
+@-webkit-keyframes load {
+  0% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes load {
+  0% {
+    stroke-dashoffset: 0;
+  }
+}
+.progress {
+  position: relative;
+  display: inline-block;
+  padding: 0;
+  text-align: center;
+}
+.progress > li {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  color: #FFFFFF;
+  font-family: Lato;
+  font-weight: 100;
+  margin: 2rem;
+}
+.progress > li:before {
+  content: attr(data-name);
+  position: absolute;
+  width: 100%;
+  bottom: -2rem;
+  font-weight: 400;
+}
+.progress > li:after {
+  content: attr(data-percent);
+  position: absolute;
+  width: 100%;
+  top: 3.7rem;
+  left: 0;
+  font-size: 2rem;
+  text-align: center;
+}
+.progress svg {
+  width: 10rem;
+  height: 10rem;
+}
+.progress svg:nth-child(2) {
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
+.progress svg:nth-child(2) path {
+  fill: none;
+  stroke-width: 15;
+  stroke-dasharray: 629;
+  stroke: #fff;
+  opacity: .9;
+  -webkit-animation: load 10s;
+          animation: load 10s;
+}
+
+
+/* Hexagon */
+
+.hexagon {
+  position: relative;
+  display: inline-block;
+  /* left/right margin approx. 25% of .hexagon width + spacing */
+  margin: 1px 18px;
+  background-color: hsl(220, 75%, 75%);
+  text-align: center;
+}
+.hexagon, .hexagon::before, .hexagon::after {
+  /* easy way: height is width * 1.732
+  actual formula is 2*(width/(2*Math.tan(Math.PI/6)))
+  remove border-radius for sharp corners on hexagons */
+  width: 67px;
+  height: 116px;
+  border-radius: 20%/5%;
+}
+.hexagon::before {
+  background-color: inherit;
+  content: "";
+  position: absolute;
+  left: 0;
+  -webkit-transform: rotate(-60deg);
+          transform: rotate(-60deg);
+}
+.hexagon::after {
+  background-color: inherit;
+  content: "";
+  position: absolute;
+  left: 0;
+  -webkit-transform: rotate(60deg);
+          transform: rotate(60deg);
+}
+.hexagon:nth-child(even) {
+  /* top approx. 50% of .hexagon height + spacing */
+  top: 59px;
+}
+.hexagon:hover {
+  background-color: hsla(60, 75%, 75%, 1.0);
+  cursor: pointer;
+  z-index: 105;
+}
+.hexagon:active {
+  background-color: hsla(60, 75%, 50%, 1.0);
+  z-index: 110;
+}
+.hexanone {
+  position: relative;
+  display: inline-block;
+  width: 67px;
+  height: 116px;
+  margin: 1px 18px;
+}
+.hexanone:nth-child(even) {
+  top: 59px;
+}
+.hexagontent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 140%;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  z-index: 100;
+}
+.ibws-fix {
+  /* inline-block whitespace fix */
+  font-size: 0;
+}
+.honeycomb {
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+/* Dial tool */
+
+    .main {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navigation-circle {
+        display: block;
+        position: relative;
+        height: 320px;
+        width: 320px;
+        margin: auto;
+    }
+
+    .navigation-circle__inner {
+        display: block;
+        position: relative;
+        height: 100%;
+        width: 100%;
+    }
+
+    .navigation-circle__list {
+        display: block;
+        position: absolute;
+        height: 320px;
+        width: 320px;
+        transform: rotate(-90deg);
+        animation: 2.2s cubic-bezier(0.25, -0.25, 0.35, 1) 0 1 animate-in-list forwards;
+    }
+
+    .navigation-circle-svg {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform: rotateZ(-90deg);
+    }
+
+    .navigation-circle-svg--opaque {
+        opacity: 0.5;
+    }
+
+    .navigation-circle-svg--mask circle {
+        transition: all 0.5s ease;
+        transition-delay: 0.5s;
+        animation: 2.2s ease 0 1 animate-in-svg-circle-mask backwards;
+    }
+
+    .navigation-circle-list-item {
+        display: block;
+        position: absolute;
+        height: 0;
+        width: calc(50% + 16px);
+        top: 50%;
+        left: 50%;
+        list-style: none;
+        transform-origin: 0 0;
+    }
+
+    .navigation-circle-list-item__point {
+        display: block;
+        position: absolute;
+        height: 32px;
+        width: 32px;
+        top: -16px;
+        right: 2px;
+        cursor: pointer;
+        transform: scale(0);
+    }
+
+    .navigation-circle-list-item__point:before {
+        content: "•";
+        display: block;
+        position: absolute;
+        height: 32px;
+        width: 32px;
+        top: 0;
+        color: #c644fc;
+        background-color: #000;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 32px;
+        text-align: center;
+        border: 2px solid #c644fc;
+        border-radius: 50%;
+        box-shadow: inset 0px 0px 0px 0px #c644fc;
+        transform: scale(0.75);
+        transition: all 0.5s ease;
+    }
+
+    .navigation-circle-list-item__point:after {
+        content: "";
+        display: block;
+        position: absolute;
+        height: 1px;
+        width: 0px;
+        top: 18px;
+        left: 31px;
+        background-color: #c644fc;
+        transition: all 0.5s ease;
+    }
+
+    .navigation-circle-list-item__meta {
+        display: block;
+        position: absolute;
+        overflow: hidden;
+        opacity: 0;
+        transform-origin: center;
+        margin-left: 78px;
+        min-width: 68px;
+        padding: 4px;
+    }
+
+    .navigation-circle-list-item__title {
+        display: block;
+        color: #f7f7f7;
+        text-align: left;
+        font-size: 10px;
+        border-bottom: 1px solid #f7f7f7;
+        padding-bottom: 4px;
+        margin-bottom: 6px;
+    }
+
+    .navigation-circle-list-item__subtitle {
+        display: block;
+        color: #f7f7f7;
+        text-align: center;
+        font-weight: 200;
+        font-size: 8px;
+    }
+
+    .navigation-circle-list-item:nth-of-type(1) {
+        transform: rotateZ(calc((360deg / 7) * 1));
+    }
+
+    .navigation-circle-list-item:nth-of-type(1) .navigation-circle-list-item__meta {
+        transform: rotateZ(38.5714285714deg);
+    }
+
+    .navigation-circle-list-item:nth-of-type(1) .navigation-circle-list-item__point {
+        animation: 1s cubic-bezier(0.55, -0.3, 0.6, 1.5) 0s 1 animate-in-list-item-point forwards;
+    }
+
+    .navigation-circle-list-item:nth-of-type(2) {
+        transform: rotateZ(calc((360deg / 7) * 2));
+    }
+
+    .navigation-circle-list-item:nth-of-type(2) .navigation-circle-list-item__meta {
+        transform: rotateZ(-12.8571428571deg);
+    }
+
+    .navigation-circle-list-item:nth-of-type(2) .navigation-circle-list-item__point {
+        animation: 1s cubic-bezier(0.55, -0.3, 0.6, 1.5) 0.2s 1 animate-in-list-item-point forwards;
+    }
+
+    .navigation-circle-list-item:nth-of-type(3) {
+        transform: rotateZ(calc((360deg / 7) * 3));
+    }
+
+    .navigation-circle-list-item:nth-of-type(3) .navigation-circle-list-item__meta {
+        transform: rotateZ(-64.2857142857deg);
+    }
+
+    .navigation-circle-list-item:nth-of-type(3) .navigation-circle-list-item__point {
+        animation: 1s cubic-bezier(0.55, -0.3, 0.6, 1.5) 0.4s 1 animate-in-list-item-point forwards;
+    }
+
+    .navigation-circle-list-item:nth-of-type(4) {
+        transform: rotateZ(calc((360deg / 7) * 4));
+    }
+
+    .navigation-circle-list-item:nth-of-type(4) .navigation-circle-list-item__meta {
+        transform: rotateZ(-115.7142857143deg);
+    }
+
+    .navigation-circle-list-item:nth-of-type(4) .navigation-circle-list-item__point {
+        animation: 1s cubic-bezier(0.55, -0.3, 0.6, 1.5) 0.6s 1 animate-in-list-item-point forwards;
+    }
+
+    .navigation-circle-list-item:nth-of-type(5) {
+        transform: rotateZ(calc((360deg / 7) * 5));
+    }
+
+    .navigation-circle-list-item:nth-of-type(5) .navigation-circle-list-item__meta {
+        transform: rotateZ(-167.1428571429deg);
+    }
+
+    .navigation-circle-list-item:nth-of-type(5) .navigation-circle-list-item__point {
+        animation: 1s cubic-bezier(0.55, -0.3, 0.6, 1.5) 0.8s 1 animate-in-list-item-point forwards;
+    }
+
+    .navigation-circle-list-item:nth-of-type(6) {
+        transform: rotateZ(calc((360deg / 7) * 6));
+    }
+
+    .navigation-circle-list-item:nth-of-type(6) .navigation-circle-list-item__meta {
+        transform: rotateZ(-218.5714285714deg);
+    }
+
+    .navigation-circle-list-item:nth-of-type(6) .navigation-circle-list-item__point {
+        animation: 1s cubic-bezier(0.55, -0.3, 0.6, 1.5) 1s 1 animate-in-list-item-point forwards;
+    }
+
+    .navigation-circle-list-item:nth-of-type(7) {
+        transform: rotateZ(calc((360deg / 7) * 7));
+    }
+
+    .navigation-circle-list-item:nth-of-type(7) .navigation-circle-list-item__meta {
+        transform: rotateZ(-270deg);
+    }
+
+    .navigation-circle-list-item:nth-of-type(7) .navigation-circle-list-item__point {
+        animation: 1s cubic-bezier(0.55, -0.3, 0.6, 1.5) 1.2s 1 animate-in-list-item-point forwards;
+    }
+
+    .navigation-circle-list-item:hover .navigation-circle-list-item__point:before {
+        transform: scale(1);
+        font-size: 16px;
+    }
+
+    .navigation-circle-list-item:hover .navigation-circle-list-item__point:after {
+        width: 32px;
+        left: 34px;
+    }
+
+    .navigation-circle-list-item:hover .navigation-circle-list-item__meta {
+        opacity: 1;
+    }
+
+    .navigation-circle-list-item:active .navigation-circle-list-item__point:before,
+    .navigation-circle-list-item.active .navigation-circle-list-item__point:before {
+        transform: scale(0.85);
+        color: #000;
+        box-shadow: inset 0px 0px 0px 16px #c644fc;
+        border-color: transparent;
+    }
+
+    .navigation-circle-list-item:active .navigation-circle-list-item__point:after,
+    .navigation-circle-list-item.active .navigation-circle-list-item__point:after {
+        width: 34px;
+        left: 32px;
+    }
+
+    .navigation-circle-list-item:active .navigation-circle-list-item__meta,
+    .navigation-circle-list-item.active .navigation-circle-list-item__meta {
+        opacity: 1;
+    }
+
+    @keyframes animate-in-list {
+        0% {
+            transform: rotate(-540deg);
+        }
+
+        100% {
+            transform: rotate(-90deg);
+        }
+    }
+
+    @keyframes animate-in-svg-circle-mask {
+        0% {
+            stroke-dashoffset: 1005;
+        }
+
+        100% {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    @keyframes animate-in-list-item-point {
+        0% {
+            transform: scale(0);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+  </style>
+</head>
+
+<body>
+    <div class="contenedor">
+        <form>
+            <input type="radio" id="Slide1" name="slider" titulo="Home" autofocus="autofocus" checked="checked">
+            <input type="radio" id="Slide2" name="slider" titulo="Features">
+            <input type="radio" id="Slide3" name="slider" titulo="Adding pages">
+            <input type="radio" id="Slide4" name="slider" titulo="More">
+            <input type="radio" id="Slide5" name="slider" titulo="About">
+            <input type="radio" id="Slide6" name="slider" titulo="Dummy page1">
+            <input type="radio" id="Slide7" name="slider" titulo="Dummy page2">
+            <div class="labels">
+                <label class="Slide" for="Slide1" id="Slide1">
+                    <div class="content">
+                        <ul class="progress">
+                            <li data-name="Project 1 Progress" data-percent="13%">
+                                <svg viewBox="-10 -10 220 220">
+                                    <g fill="none" stroke-width="3" transform="translate(100,100)">
+                                        <path d="M 0,-100 A 100,100 0 0,1 86.6,-50" stroke="url(#cl1)"></path>
+                                        <path d="M 86.6,-50 A 100,100 0 0,1 86.6,50" stroke="url(#cl2)"></path>
+                                        <path d="M 86.6,50 A 100,100 0 0,1 0,100" stroke="url(#cl3)"></path>
+                                        <path d="M 0,100 A 100,100 0 0,1 -86.6,50" stroke="url(#cl4)"></path>
+                                        <path d="M -86.6,50 A 100,100 0 0,1 -86.6,-50" stroke="url(#cl5)"></path>
+                                        <path d="M -86.6,-50 A 100,100 0 0,1 0,-100" stroke="url(#cl6)"></path>
+                                    </g>
+                                </svg>
+                                <svg viewBox="-10 -10 220 220">
+                                    <path d="M200,100 C200,44.771525 155.228475,0 100,0 C44.771525,0 0,44.771525 0,100 C0,155.228475 44.771525,200 100,200 C155.228475,200 200,155.228475 200,100 Z" stroke-dashoffset="81"></path>
+                                </svg>
+                            </li>
+                            <li data-name="Token Valuation" data-percent="87%">
+                                <svg viewBox="-10 -10 220 220">
+                                    <g fill="none" stroke-width="2" transform="translate(100,100)">
+                                        <path d="M 0,-100 A 100,100 0 0,1 86.6,-50" stroke="url(#cl1)"></path>
+                                        <path d="M 86.6,-50 A 100,100 0 0,1 86.6,50" stroke="url(#cl2)"></path>
+                                        <path d="M 86.6,50 A 100,100 0 0,1 0,100" stroke="url(#cl3)"></path>
+                                        <path d="M 0,100 A 100,100 0 0,1 -86.6,50" stroke="url(#cl4)"></path>
+                                        <path d="M -86.6,50 A 100,100 0 0,1 -86.6,-50" stroke="url(#cl5)"></path>
+                                        <path d="M -86.6,-50 A 100,100 0 0,1 0,-100" stroke="url(#cl6)"></path>
+                                    </g>
+                                </svg>
+                                <svg viewBox="-10 -10 220 220">
+                                    <path d="M200,100 C200,44.771525 155.228475,0 100,0 C44.771525,0 0,44.771525 0,100 C0,155.228475 44.771525,200 100,200 C155.228475,200 200,155.228475 200,100 Z" stroke-dashoffset="547"></path>
+                                </svg>
+                            </li>
+                            <li data-name="Intern Activity" data-percent="13%">
+                                <svg viewBox="-10 -10 220 220">
+                                    <g fill="none" stroke-width="12" transform="translate(100,100)">
+                                        <path d="M 0,-100 A 100,100 0 0,1 86.6,-50" stroke="url(#cl1)"></path>
+                                        <path d="M 86.6,-50 A 100,100 0 0,1 86.6,50" stroke="url(#cl2)"></path>
+                                        <path d="M 86.6,50 A 100,100 0 0,1 0,100" stroke="url(#cl3)"></path>
+                                        <path d="M 0,100 A 100,100 0 0,1 -86.6,50" stroke="url(#cl4)"></path>
+                                        <path d="M -86.6,50 A 100,100 0 0,1 -86.6,-50" stroke="url(#cl5)"></path>
+                                        <path d="M -86.6,-50 A 100,100 0 0,1 0,-100" stroke="url(#cl6)"></path>
+                                    </g>
+                                </svg>
+                                <svg viewBox="-10 -10 220 220">
+                                    <path d="M200,100 C200,44.771525 155.228475,0 100,0 C44.771525,0 0,44.771525 0,100 C0,155.228475 44.771525,200 100,200 C155.228475,200 200,155.228475 200,100 Z" stroke-dashoffset="81"></path>
+                                </svg>
+                            </li>
+                            <li data-name="Error Rate" data-percent="97%">
+                                <svg viewBox="-10 -10 220 220">
+                                    <g fill="none" stroke-width="9" transform="translate(100,100)">
+                                        <path d="M 0,-100 A 100,100 0 0,1 86.6,-50" stroke="url(#cl1)"></path>
+                                        <path d="M 86.6,-50 A 100,100 0 0,1 86.6,50" stroke="url(#cl2)"></path>
+                                        <path d="M 86.6,50 A 100,100 0 0,1 0,100" stroke="url(#cl3)"></path>
+                                        <path d="M 0,100 A 100,100 0 0,1 -86.6,50" stroke="url(#cl4)"></path>
+                                        <path d="M -86.6,50 A 100,100 0 0,1 -86.6,-50" stroke="url(#cl5)"></path>
+                                        <path d="M -86.6,-50 A 100,100 0 0,1 0,-100" stroke="url(#cl6)"></path>
+                                    </g>
+                                </svg>
+                                <svg viewBox="-10 -10 220 220">
+                                    <path d="M200,100 C200,44.771525 155.228475,0 100,0 C44.771525,0 0,44.771525 0,100 C0,155.228475 44.771525,200 100,200 C155.228475,200 200,155.228475 200,100 Z" stroke-dashoffset="610"></path>
+                                </svg>
+                            </li>
+                            <li data-name="Average Grades" data-percent="58%">
+                                <svg viewBox="-10 -10 220 220">
+                                    <g fill="none" stroke-width="6" transform="translate(100,100)">
+                                        <path d="M 0,-100 A 100,100 0 0,1 86.6,-50" stroke="url(#cl1)"></path>
+                                        <path d="M 86.6,-50 A 100,100 0 0,1 86.6,50" stroke="url(#cl2)"></path>
+                                        <path d="M 86.6,50 A 100,100 0 0,1 0,100" stroke="url(#cl3)"></path>
+                                        <path d="M 0,100 A 100,100 0 0,1 -86.6,50" stroke="url(#cl4)"></path>
+                                        <path d="M -86.6,50 A 100,100 0 0,1 -86.6,-50" stroke="url(#cl5)"></path>
+                                        <path d="M -86.6,-50 A 100,100 0 0,1 0,-100" stroke="url(#cl6)"></path>
+                                    </g>
+                                </svg>
+                                <svg viewBox="-10 -10 220 220">
+                                    <path d="M200,100 C200,44.771525 155.228475,0 100,0 C44.771525,0 0,44.771525 0,100 C0,155.228475 44.771525,200 100,200 C155.228475,200 200,155.228475 200,100 Z" stroke-dashoffset="364"></path>
+                                </svg>
+                            </li>
+                            <li data-name="Design Performance" data-percent="100%">
+                                <svg viewBox="-10 -10 220 220">
+                                    <g fill="none" stroke-width="6" transform="translate(100,100)">
+                                        <path d="M 0,-100 A 100,100 0 0,1 86.6,-50" stroke="url(#cl1)"></path>
+                                        <path d="M 86.6,-50 A 100,100 0 0,1 86.6,50" stroke="url(#cl2)"></path>
+                                        <path d="M 86.6,50 A 100,100 0 0,1 0,100" stroke="url(#cl3)"></path>
+                                        <path d="M 0,100 A 100,100 0 0,1 -86.6,50" stroke="url(#cl4)"></path>
+                                        <path d="M -86.6,50 A 100,100 0 0,1 -86.6,-50" stroke="url(#cl5)"></path>
+                                        <path d="M -86.6,-50 A 100,100 0 0,1 0,-100" stroke="url(#cl6)"></path>
+                                    </g>
+                                </svg>
+                                <svg viewBox="-10 -10 220 220">
+                                    <path d="M200,100 C200,44.771525 155.228475,0 100,0 C44.771525,0 0,44.771525 0,100 C0,155.228475 44.771525,200 100,200 C155.228475,200 200,155.228475 200,100 Z" stroke-dashoffset="629"></path>
+                                </svg>
+                            </li>
+                        </ul>
+                        <svg width="0" height="0">
+                            <defs>
+                                <linearGradient id="cl1" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="1" y2="1">
+                                    <stop stop-color="#FF7F00"></stop>
+                                    <stop offset="100%" stop-color="#FF7F00"></stop>
+                                </linearGradient>
+                                <linearGradient id="cl2" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="0" y2="1">
+                                    <stop stop-color="#FF7F00"></stop>
+                                    <stop offset="100%" stop-color="#FF7F00"></stop>
+                                </linearGradient>
+                                <linearGradient id="cl3" gradientUnits="objectBoundingBox" x1="1" y1="0" x2="0" y2="1">
+                                    <stop stop-color="#FF7F00"></stop>
+                                    <stop offset="100%" stop-color="#FF7F00"></stop>
+                                </linearGradient>
+                                <linearGradient id="cl4" gradientUnits="objectBoundingBox" x1="1" y1="1" x2="0" y2="0">
+                                    <stop stop-color="#FF7F00"></stop>
+                                    <stop offset="100%" stop-color="#FF7F00"></stop>
+                                </linearGradient>
+                                <linearGradient id="cl5" gradientUnits="objectBoundingBox" x1="0" y1="1" x2="0" y2="0">
+                                    <stop stop-color="#FF7F00"></stop>
+                                    <stop offset="100%" stop-color="#FF7F00"></stop>
+                                </linearGradient>
+                                <linearGradient id="cl6" gradientUnits="objectBoundingBox" x1="0" y1="1" x2="1" y2="0">
+                                    <stop stop-color="#FF7F00"></stop>
+                                    <stop offset="100%" stop-color="#FF7F00"></stop>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                </label>
+                <label class="Slide" for="Slide2" id="Slide2">
+                    <div class="content">
+                        <div class="honeycomb">
+                            <div class="ibws-fix">
+                                <div class="hexagon">
+                                    <div class="hexagontent">IF you can keep your head when all about you</div>
+                                </div>
+                                <div class="hexagon">
+                                    <div class="hexagontent">Are losing theirs and blaming it on you,</div>
+                                </div>
+                                <div class="hexagon">
+                                    <div class="hexagontent">If you can trust yourself when all men doubt you,</div>
+                                </div>
+                                <div class="hexagon">
+                                    <div class="hexagontent">But make allowance for their doubting too;</div>
+                                </div>
+                                <div class="hexagon">
+                                    <div class="hexagontent">If you can wait and not be tired by waiting,</div>
+                                </div>
+                                <div class="hexagon">
+                                    <div class="hexagontent">Or being lied about, don't deal in lies,</div>
+                                </div>
+                                <div class="hexagon">
+                                    <div class="hexagontent">Or being hated, don't give way to hating,</div>
+                                </div>
+                                <div class="hexagon">
+                                    <div class="hexagontent">And yet don't look too good, nor talk too wise:</div>
+                                </div>
+                            </div>
+                            <div class="ibws-fix">
+                                <div class="hexagon">
+                                    <div class="hexagontent">If you can dream - and not make dreams your master;</div>
+                                </div>
+                                <div class="hexagon">
+                                    <div class="hexagontent">If you can think - and not make thoughts your aim;</div>
+                                </div>
+                                <div class="hexagon">
+                                    <div class="hexagontent">If you can meet with Triumph and Disaster</div>
+                                </div>
+                                <div class="hexagon">
+                                    <div class="hexagontent">And treat those two impostors just the same;</div>
+                                </div>
+                                <div class="hexagon">
+                                    <div class="hexagontent">If you can bear to hear the truth you've spoken</div>
+                                </div>
+                                <div class="hexagon">
+                                    <div class="hexagontent">Twisted by knaves to make a trap for fools,</div>
+                                </div>
+                                <div class="hexagon">
+                                    <div class="hexagontent">Or watch the things you gave your life to, broken,</div>
+                                </div>
+                                <div class="hexagon">
+                                    <div class="hexagontent">And stoop and build 'em up with worn-out tools:</div>
+                                </div>
+                            </div>
+                            <div class="ibws-fix">
+                                <div class="hexagon">
+                                    <div class="hexagontent">
+                                        <h1>IF</h1>
+                                    </div>
+                                </div>
+                                <div class="hexagon">
+                                    <div class="hexagontent">— Rudyard Kipling</div>
+                                </div>
+                                <div class="hexanone">
+                                    <div class="hexagontent"></div>
+                                </div>
+                                <div class="hexagon">
+                                    <div class="hexagontent">If you can meet with Triumph and Disaster</div>
+                                </div>
+                                <div class="hexagon">
+                                    <div class="hexagontent">If you can meet with Triumph and Disaster</div>
+                                </div>
+                                <div class="hexanone">
+                                    <div class="hexagontent"></div>
+                                </div>
+                                <div class="hexagon">
+                                    <div class="hexagontent">If you can meet with Triumph and Disaster</div>
+                                </div>
+                                <div class="hexagon">
+                                    <div class="hexagontent">If you can meet with Triumph and Disaster</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="Slide" for="Slide3" id="Slide3">
+                    <div class="content">
+                        <h1>Adding pages</h1>
+                        <div class="block">
+                            <ol>
+                                <li>Add the pages title in the pageTitle array in the HTML editor to generate pages</li>
+                                <li>Add the number of pages in the $npages variable in the CSS editor</li>
+                            </ol>
+                        </div>
+                    </div>
+                </label>
+                <label class="Slide" for="Slide4" id="Slide4">
+                    <div class="content">
+                        <div class="main">
+                            <div class="navigation-circle">
+                                <div class="navigation-circle__inner">
+                                    <svg class="navigation-circle-svg navigation-circle-svg--opaque" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 320 320" style="enable-background:new 0 0 320 320;">
+                                        <circle cx="160" cy="160" r="158" fill="none" stroke-width="1" stroke="#c644fc" stroke-linecap="round" stroke-miterlimit="10" style="stroke-dashoffset:0;stroke-dasharray:none;"></circle>
+                                    </svg>
+                                    <svg class="navigation-circle-svg navigation-circle-svg--mask" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 320 320" style="enable-background:new 0 0 320 320;">
+                                        <circle id="mask-circle" cx="160" cy="160" r="158" fill="none" stroke-width="2" stroke="#c644fc" stroke-linecap="round" stroke-miterlimit="10" style="stroke-dasharray: 1005.31px; stroke-dashoffset: 861.694px;"></circle>
+                                    </svg>
+                                    <ul class="navigation-circle__list">
+                                        <li class="navigation-circle-list-item active"><a class="navigation-circle-list-item__point" onclick="onClick(1)" onmouseenter="calculateOffset(1)" onmouseleave="onMouseLeave()">
+                                                <div class="navigation-circle-list-item__meta">
+                                                    <h3 class="navigation-circle-list-item__title">Item #1
+                                                    </h3>
+                                                    <h4 class="navigation-circle-list-item__subtitle">It just goes round and round</h4>
+                                                </div>
+                                            </a></li>
+                                        <li class="navigation-circle-list-item"><a class="navigation-circle-list-item__point" onclick="onClick(2)" onmouseenter="calculateOffset(2)" onmouseleave="onMouseLeave()">
+                                                <div class="navigation-circle-list-item__meta">
+                                                    <h3 class="navigation-circle-list-item__title">Item #2
+                                                    </h3>
+                                                    <h4 class="navigation-circle-list-item__subtitle">It just goes round and round</h4>
+                                                </div>
+                                            </a></li>
+                                        <li class="navigation-circle-list-item"><a class="navigation-circle-list-item__point" onclick="onClick(3)" onmouseenter="calculateOffset(3)" onmouseleave="onMouseLeave()">
+                                                <div class="navigation-circle-list-item__meta">
+                                                    <h3 class="navigation-circle-list-item__title">Item #3
+                                                    </h3>
+                                                    <h4 class="navigation-circle-list-item__subtitle">It just goes round and round</h4>
+                                                </div>
+                                            </a></li>
+                                        <li class="navigation-circle-list-item"><a class="navigation-circle-list-item__point" onclick="onClick(4)" onmouseenter="calculateOffset(4)" onmouseleave="onMouseLeave()">
+                                                <div class="navigation-circle-list-item__meta">
+                                                    <h3 class="navigation-circle-list-item__title">Item #4
+                                                    </h3>
+                                                    <h4 class="navigation-circle-list-item__subtitle">It just goes round and round</h4>
+                                                </div>
+                                            </a></li>
+                                        <li class="navigation-circle-list-item"><a class="navigation-circle-list-item__point" onclick="onClick(5)" onmouseenter="calculateOffset(5)" onmouseleave="onMouseLeave()">
+                                                <div class="navigation-circle-list-item__meta">
+                                                    <h3 class="navigation-circle-list-item__title">Item #5
+                                                    </h3>
+                                                    <h4 class="navigation-circle-list-item__subtitle">It just goes round and round</h4>
+                                                </div>
+                                            </a></li>
+                                        <li class="navigation-circle-list-item"><a class="navigation-circle-list-item__point" onclick="onClick(6)" onmouseenter="calculateOffset(6)" onmouseleave="onMouseLeave()">
+                                                <div class="navigation-circle-list-item__meta">
+                                                    <h3 class="navigation-circle-list-item__title">Item #6
+                                                    </h3>
+                                                    <h4 class="navigation-circle-list-item__subtitle">It just goes round and round</h4>
+                                                </div>
+                                            </a></li>
+                                        <li class="navigation-circle-list-item"><a class="navigation-circle-list-item__point" onclick="onClick(7)" onmouseenter="calculateOffset(7)" onmouseleave="onMouseLeave()">
+                                                <div class="navigation-circle-list-item__meta">
+                                                    <h3 class="navigation-circle-list-item__title">Item #7
+                                                    </h3>
+                                                    <h4 class="navigation-circle-list-item__subtitle">It just goes round and round</h4>
+                                                </div>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <script id="rendered-js">
+                        const pointCount = 7;
+                        const circleRadius = 160;
+                        const startAnimDelta = 5;
+                        const circumference = Math.PI * circleRadius * 2;
+
+                        var selectedItemIndex = -1;
+
+                        var circlePath = document.getElementById('mask-circle');
+
+                        /**
+                         * @description On Mouse Leave event handler for points
+                         */
+                        const onMouseLeave = () => {
+                            let index = selectedItemIndex !== -1 ? selectedItemIndex : 0;
+                            calculateOffset(index);
+                        };
+
+                        /**
+                         * @description On Click event handler for points
+                         * @param {Number} index - Index of list item
+                         */
+                        const onClick = index => {
+                            //If already selected, deselect
+                            selectedItemIndex = selectedItemIndex === index ? -1 : index;
+                            calculateOffset(index);
+
+                            //Find active item, deselect
+                            let activeListItem = document.querySelectorAll('.navigation-circle-list-item.active');
+                            if (activeListItem.length > 0) activeListItem[0].classList.remove('active');
+
+                            //Find new item by index, select
+                            let listItem = document.querySelectorAll('.navigation-circle-list-item:nth-of-type(' + selectedItemIndex + ')');
+                            if (listItem.length > 0) listItem[0].classList.add('active');
+                        };
+
+                        /**
+                         * @description - Calculate offset for circle path by index of list item
+                         * @param {Number} index - Index of list item
+                         */
+                        const calculateOffset = (index = 0) => {
+                            let offset = 0;
+
+                            if (index !== 0) offset = circumference / pointCount * (pointCount - index);
+
+                            circlePath.style.strokeDashoffset = `${offset}px`;
+                        };
+
+                        // INTRO
+
+                        let buffer = 500;
+                        let delay = 1000 * (1 + pointCount / startAnimDelta - 1 / startAnimDelta) + buffer;
+
+                        setTimeout(() => onClick(1), delay);
+                        //# sourceURL=pen.js
+                        </script>
+                    </div>
+                </label>
+                <label class="Slide" for="Slide5" id="Slide5">
+                    <div class="content">
+                        <h1>About</h1>
+                        <div class="block"><span><a href="https://dribbble.com/albertohartzet" target="_blank"><i class="fa fa-dribbble"> </i>Dribbble me</a></span><span><a href="https://twitter.com/hrtzt" target="_blank"><i class="fa fa-twitter"></i>Tweet me</a></span></div>
+                    </div>
+                </label>
+                <label for="Slide6" id="Slide6">
+                    <div class="content">
+                        <h1>Dummy page</h1>
+                        <div class="block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto numquam, totam iusto officia earum perferendis</div>
+                    </div>
+                </label>
+                <label for="Slide7" id="Slide7">
+                    <div class="content">
+                        <h1>Dummy page</h1>
+                        <div class="block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto numquam, totam iusto officia earum perferendis</div>
+                    </div>
+                </label>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

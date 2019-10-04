@@ -1,0 +1,33 @@
+
+<!-- C takes 2 coontrol points, and one end point .. it start where the last graphic finished
+<svg width="1900" height="1600" xmlns="http://www.w3.org/2000/svg">
+ <path d="M10 10 C 20 20, 40 20, 50 10" stroke="black" fill="transparent"/>
+  <path d="M10 10 L 20 20" stroke="black" fill="transparent"/>
+  <path d="M40 20 L 50 10" stroke="black" fill="transparent"/>
+  <path d="M10 10 L 50 10" stroke="black" fill="transparent"/>
+  <path d="M70 10 C 70 20, 120 20, 120 10" stroke="black" fill="transparent"/>
+  <path d="M130 10 C 120 20, 180 20, 170 10" stroke="black" fill="transparent"/>
+  <path d="M10 60 C 20 80, 40 80, 50 60" stroke="black" fill="transparent"/>
+  <path d="M70 60 C 70 80, 110 80, 110 60" stroke="black" fill="transparent"/>
+  <path d="M130 60 C 120 80, 180 80, 170 60" stroke="black" fill="transparent"/>
+  <path d="M10 110 C 20 140, 40 140, 50 110" stroke="black" fill="transparent"/>
+  <path d="M70 110 C 70 140, 110 140, 110 110" stroke="black" fill="transparent"/>
+  <path d="M130 110 C 120 140, 180 140, 170 110" stroke="black" fill="transparent"/>
+ 
+</svg> -->
+
+<!-- S takes reflection of the previous control point as first control point. Second cpntrol point, and end point has to be specified-->
+
+<!-- <svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" stroke="black" fill="transparent"/>
+</svg> -->
+
+<!-- Q takes only one control point as reference for both start and end point-->
+<!-- <svg width="1900" height="1600" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 400 Q 650 90 1300 400" stroke="black" fill="transparent"/>
+</svg> -->
+
+
+<svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 80 Q 52.5 10, 95 80 T 180 80" stroke="black" fill="transparent"/>
+</svg>

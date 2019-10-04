@@ -1,0 +1,62 @@
+<h1>Linear vs. Paced vs. Discrete SVG/SMIL Animation</h1>
+
+<svg width="100%" height="100%" viewBox="0 0 600 600" preserveAspectRatio="xMidYMin meet">
+  <g id="graphics" font-size="30">
+    <rect width="100%" height="100%" fill="lightyellow"/>
+  <g>
+    <circle cx="50" cy="100" r="100" fill="gray">
+      <animate attributeName="cx" attributeType="XML" 
+               begin="0;graphics.click"
+               values="50;500;300;400;50" 
+               dur="20s"
+               calcMode="linear" />
+      <animate attributeName="fill" attributeType="XML"  
+               begin="0;graphics.click"
+               dur="20s" 
+               values="gray;darkred;red;cyan;lightcyan;green;purple;gray"
+               calcMode="linear" />
+    </circle>
+    <text x="50" y="100">linear</text>
+  </g>
+  <g>
+    <circle cx="50" cy="300" r="100" fill="gray">
+      <animate attributeName="cx" attributeType="XML" 
+               begin="0;graphics.click"
+               values="50;500;300;400;50" 
+               dur="20s"
+               calcMode="paced"/>
+      <animate attributeName="fill" attributeType="XML"  
+               begin="0;graphics.click"
+               dur="20s" 
+               values="gray;darkred;red;cyan;lightcyan;green;purple;gray"
+               calcMode="paced" />
+    </circle>
+    <text x="50" y="300">paced</text>
+  </g>
+  <g>
+    <circle cx="50" cy="500" r="100" fill="gray">
+      <animate attributeName="cx" attributeType="XML"  
+               begin="0;graphics.click"
+               values="50;500;300;400;50" 
+               dur="20s"
+               calcMode="discrete" />
+      <animate attributeName="fill" attributeType="XML" 
+               begin="0;graphics.click"
+               dur="20s" 
+               values="gray;darkred;red;cyan;lightcyan;green;purple;gray"
+               calcMode="discrete" />
+    </circle>
+    <text x="50" y="500">discrete</text>
+  </g>
+  </g>
+</svg>
+<strong>Click the SVG to restart the animations.</strong>
+<p>The SVG/SMIL <code>calcMode</code> attribute on animation elements defines how to interpolate between multiple values in a single animation.
+</p>
+<p><b>Linear</b> animation (the default) divides up the time evenly between multiple specified values, and then progresses between each stop point in an even manner.  So if you have 5 values, the time will be divided into 4 transitions between each successive pair of values.  You can specify different timings with a <code>keyTimes</code> attribute, but each step will still interpolate linearly.  For <code>keyTimes</code>, use another semi-colon separated list with the same number of entries as your <code>values</code> list.  The first time must be 0 and the last time 1; other times are given as decimals (representing a proportion of total time), in numerical order.
+</p>
+<p><b>Paced</b> animation calculates the distance between each values, and divides up the time accordingly to create an even speed of change throughout the entire animation.  Key times are ignored.  Only certain types of values can be paced: colours or simple numbers/lengths.  You can't pace a path or a dasharray, for example, because there's no clear way to compare the "distances" between two sets of values. 
+</p>
+<p><b>Discrete</b> animation jumps from one value to the next.  By default it spends equal time on each, but you can change that with <code>keyTimes</code>.  Note that for discrete animation—unlike linear—a list of 5 values result in 5 time periods.  The <code>keyTimes</code> values are the start time of each setting, so while the first time still has to be zero, the last time does not have to be 1.
+</p>
+<p><b>Spline</b> animation (not shown) allows you to change the rate at which the animation transitions between two values.  The time devoted to each stage of the  animation is divided the same as for linear animation. A <code>keySplines</code> attribute defines the easing function for each transition.</p>

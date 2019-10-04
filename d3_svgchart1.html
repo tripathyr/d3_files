@@ -1,0 +1,260 @@
+<html>
+<head>
+<style>
+
+
+#chartdiv {
+	width		: 96%;
+	height		: 475px;
+	font-size	: 11px;
+ 	margin-left: auto;
+    margin-right: auto;  
+  	margin-top:15px;
+
+}	
+
+.amcharts-graph-g1 .amcharts-graph-fill {
+  filter: url(#blur);
+}
+
+.amcharts-graph-g2 .amcharts-graph-fill {
+  filter: url(#blur);
+}
+
+.amcharts-cursor-fill {
+  filter: url(#shadow);
+}	
+
+	
+svg { 
+	cursor: url(#myRect),pointer; 
+}
+		  		
+						
+</style>
+</head>
+<body>
+
+<div id="chartdiv" style="overflow: hidden; text-align: left;">
+	<div class="amcharts-main-div" style="position: relative;">
+		<div class="amcharts-chart-div" style="overflow: hidden; position: relative; text-align: left; width: 796px; height: 475px; cursor: default;">
+		  
+		  <svg version="1.1" style="position: absolute; width: 796px; height: 475px; left: -0.476562px;">
+				
+		  	
+				<desc>JavaScript chart by amCharts 3.15.0</desc>
+			<defs>
+
+				<filter x="-50%" y="-50%" width="200%" height="200%" id="blur"><feGaussianBlur in="SourceGraphic" stdDeviation="50"></feGaussianBlur>
+				</filter>
+				
+				<filter id="shadow" width="150%" height="150%">
+					<feOffset result="offOut" in="SourceAlpha" dx="2" dy="2"></feOffset>
+					<feGaussianBlur result="blurOut" in="offOut" stdDeviation="10"></feGaussianBlur>
+					<feColorMatrix result="blurOut" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .2 0"></feColorMatrix>
+					<feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>
+				</filter>
+
+			</defs>
+			<g>
+				<path cs="100,100" d="M0.5,0.5 L795.5,0.5 L795.5,474.5 L0.5,474.5 Z" fill="#FFFFFF" stroke="#000000" fill-opacity="0" stroke-width="1" stroke-opacity="0" class="amcharts-bg"></path> <!--Boundary-->
+				<path cs="100,100" d="M0.5,0.5 L794.5,0.5 L794.5,444.5 L0.5,444.5 L0.5,0.5 Z" fill="#FFFFFF" stroke="#000000" fill-opacity="0" stroke-width="1" stroke-opacity="0" class="amcharts-plot-area" transform="translate(0,0)"></path> <!--Another Boundary-->
+			</g>
+			<g>
+				<g class="amcharts-category-axis" transform="translate(0,0)">
+					<g><!--Vertical axis lines left to right-->
+						<path cs="100,100" d="M72.5,444.5 L72.5,444.5 L72.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.07" stroke="#000000" class="amcharts-axis-grid"></path>
+					</g>
+					<g>
+						<path cs="100,100" d="M216.5,444.5 L216.5,444.5 L216.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.07" stroke="#000000" class="amcharts-axis-grid"></path>
+					</g>
+					<g>
+						<path cs="100,100" d="M361.5,444.5 L361.5,444.5 L361.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.07" stroke="#000000" class="amcharts-axis-grid"></path>
+					</g>
+					<g>
+						<path cs="100,100" d="M505.5,444.5 L505.5,444.5 L505.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.07" stroke="#000000" class="amcharts-axis-grid"></path>
+					</g>
+					<g>
+						<path cs="100,100" d="M650.5,444.5 L650.5,444.5 L650.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.07" stroke="#000000" class="amcharts-axis-grid"></path>
+					</g>
+					<g>
+						<path cs="100,100" d="M794.5,444.5 L794.5,444.5 L794.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.07" stroke="#000000" class="amcharts-axis-grid"></path>
+					</g>
+				</g>
+				<g class="amcharts-value-axis value-axis-valueAxisAuto0_1548004058621" transform="translate(0,0)" visibility="visible">
+					<g><!--Horizontal Axis lines bottoms up-->
+						<path cs="100,100" d="M0.5,444.5 L0.5,444.5 L794.5,444.5" fill="none" stroke-width="1" stroke-opacity="0.07" stroke="#000000" class="amcharts-axis-grid"></path>
+					</g>
+					<g>
+						<path cs="100,100" d="M0.5,370.5 L0.5,370.5 L794.5,370.5" fill="none" stroke-width="1" stroke-opacity="0.07" stroke="#000000" class="amcharts-axis-grid"></path>
+					</g>
+					<g>
+						<path cs="100,100" d="M0.5,296.5 L0.5,296.5 L794.5,296.5" fill="none" stroke-width="1" stroke-opacity="0.07" stroke="#000000" class="amcharts-axis-grid"></path>
+					</g>
+					<g>
+						<path cs="100,100" d="M0.5,222.5 L0.5,222.5 L794.5,222.5" fill="none" stroke-width="1" stroke-opacity="0.07" stroke="#000000" class="amcharts-axis-grid"></path>
+					</g>
+					<g>
+						<path cs="100,100" d="M0.5,148.5 L0.5,148.5 L794.5,148.5" fill="none" stroke-width="1" stroke-opacity="0.07" stroke="#000000" class="amcharts-axis-grid"></path>
+					</g>
+					<g>
+						<path cs="100,100" d="M0.5,74.5 L0.5,74.5 L794.5,74.5" fill="none" stroke-width="1" stroke-opacity="0.07" stroke="#000000" class="amcharts-axis-grid"></path>
+					</g>
+					<g>
+						<path cs="100,100" d="M0.5,0.5 L0.5,0.5 L794.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.07" stroke="#000000" class="amcharts-axis-grid"></path>
+					</g>
+				</g>
+			</g>
+			<g transform="translate(0,0)"><!--The wonder rectangle on top visibility:"hidden" removed-->
+				<rect x="500" y="0.5" width="72" height="444" rx="0" ry="0" stroke-width="0" fill="#FFFFFF" stroke="#FFFFFF" fill-opacity="1" stroke-opacity="1" class="amcharts-cursor-fill" id="myRect"  style="pointer-events: none;"></rect>
+			</g>
+			<g></g>
+			<g></g>
+			<g></g>
+			<g>
+				<g transform="translate(0,0)" class="amcharts-graph-line amcharts-graph-g1">
+					<g></g>
+					<g></g>
+					<g clip-path="url(#AmChartsEl-18)"><!--The middle graph shape outline blurred-->
+						<path cs="100,100" d="M-35.5,194.5 L36.5,281.5 L108.5,300.5 L180.5,260.5 L253.5,264.5 L325.5,161.5 L397.5,252.5 L469.5,280.5 L541.5,331.5 L614.5,275.5 L686.5,272.5 L758.5,181.5 L830.5,210.5 M0,0 L0,0" fill="none" stroke-width="1" stroke-opacity="0" stroke="#FF6600" class="amcharts-graph-stroke"></path>
+						<path cs="100,100" d="M-35.5,194.5 L36.5,281.5 L108.5,300.5 L180.5,260.5 L253.5,264.5 L325.5,161.5 L397.5,252.5 L469.5,280.5 L541.5,331.5 L614.5,275.5 L686.5,272.5 L758.5,181.5 L830.5,210.5 L830.5,444.5 L758.5,444.5 L686.5,444.5 L614.5,444.5 L541.5,444.5 L469.5,444.5 L397.5,444.5 L325.5,444.5 L253.5,444.5 L180.5,444.5 L108.5,444.5 L36.5,444.5 L-35.5,444.5 Z" fill="url(#AmChartsEl-17)" stroke="#000" fill-opacity="0.8" stroke-width="1" stroke-opacity="0" class="amcharts-graph-fill"></path>
+						<linearGradient id="AmChartsEl-17" x1="0%" x2="0%" y1="0%" y2="100%">
+							<stop offset="0%" stop-color="#0066e3"></stop>
+							<stop offset="100%" stop-color="#802ea9"></stop>
+						</linearGradient>
+					</g>
+					<clipPath id="AmChartsEl-18">
+						<rect x="0" y="0" width="796" height="446" rx="0" ry="0" stroke-width="0"></rect>
+					</clipPath>
+				</g>
+				<g transform="translate(0,0)" class="amcharts-graph-line amcharts-graph-g2">
+					<g>
+						
+					</g>
+					<g>
+						
+					</g>
+					<g clip-path="url(#AmChartsEl-19)"><!--The upper outer graph shape outline blurred-->
+						<path cs="100,100" d="M-35.5,85.5 L36.5,181.5 L108.5,201.5 L180.5,164.5 L253.5,169.5 L325.5,141.5 L397.5,160.5 L469.5,278.5 L541.5,296.5 L614.5,242.5 L686.5,242.5 L758.5,168.5 L830.5,168.5 M0,0 L0,0" fill="none" stroke-width="1" stroke-opacity="0" stroke="#5bb5ea" class="amcharts-graph-stroke">
+							
+						</path>
+
+						<!--This path selects outline of both middle graphs outline together again -->
+						<path cs="100,100" d="M-35.5,85.5 L36.5,181.5 L108.5,201.5 L180.5,164.5 L253.5,169.5 L325.5,141.5 L397.5,160.5 L469.5,278.5 L541.5,296.5 L614.5,242.5 L686.5,242.5 L758.5,168.5 L830.5,168.5 L830.5,210.5 L758.5,181.5 L686.5,272.5 L614.5,275.5 L541.5,331.5 L469.5,280.5 L397.5,252.5 L325.5,161.5 L253.5,264.5 L180.5,260.5 L108.5,300.5 L36.5,281.5 L-35.5,194.5 Z" fill="#5bb5ea" stroke="#000" fill-opacity="0.8" stroke-width="1" stroke-opacity="0" class="amcharts-graph-fill">
+							
+						</path>
+					</g>
+					<clipPath id="AmChartsEl-19"><!-- This is a large clipping path for upper graph outline that is blurred -->
+						<rect x="0" y="0" width="796" height="446" rx="0" ry="0" stroke-width="10">
+							
+						</rect>
+					</clipPath>
+				</g>
+				<g transform="translate(0,0)" class="amcharts-graph-line amcharts-graph-g3">
+					<g>
+						
+					</g>
+					<g>
+						
+					</g>
+					<g clip-path="url(#AmChartsEl-20)"> <!-- the actual graph lines -->
+						<path cs="100,100" d="M36.5,161.5 L108.5,345.5 L180.5,306.5 L253.5,379.5 L325.5,182.5 L397.5,323.5 L469.5,289.5 L541.5,348.5 L614.5,329.5 L686.5,340.5 L758.5,226.5 M0,0 L0,0" fill="none" stroke-width="10" stroke-dasharray="2" stroke-opacity="0.5" stroke="#FFFFFF" class="amcharts-graph-stroke"></path>
+					</g>
+					<clipPath id="AmChartsEl-20">
+						<rect x="0" y="0" width="796" height="446" rx="0" ry="0" stroke-width="0"></rect>
+					</clipPath>
+				</g>
+			</g>
+			<g></g>
+			<g>
+				<path cs="100,100" d="M0.5,444.5 L794.5,444.5 L794.5,444.5" fill="none" stroke-width="1" stroke-opacity="0.14" stroke="#000000" transform="translate(0,0)" class="amcharts-axis-zero-grid-valueAxisAuto0_1548004058621 amcharts-axis-zero-grid"> <!-- Bottom horizontal axis -->
+					
+				</path>
+				<g class="amcharts-category-axis"> <!-- Bottom horizontal axis again-->
+					<path cs="100,100" d="M0.5,0.5 L794.5,0.5" fill="none" stroke-width="1" stroke-opacity="1" stroke="#DADADA" transform="translate(0,444)" class="amcharts-axis-line"></path>
+				</g>
+				<g class="amcharts-value-axis value-axis-valueAxisAuto0_1548004058621"><!--left vertical axis -->
+					<path cs="100,100" d="M0.5,0.5 L0.5,444.5" fill="none" stroke-width="1" stroke-opacity="0" stroke="#000000" transform="translate(0,0)" class="amcharts-axis-line" visibility="visible"></path>
+				</g>
+			</g>
+			<g>
+				<g transform="translate(0,0)" visibility="hidden"></g>
+			</g>
+			<g></g>
+			<g>
+				<g transform="translate(0,0)" class="amcharts-graph-line amcharts-graph-g1"></g>
+				<g transform="translate(0,0)" class="amcharts-graph-line amcharts-graph-g2"></g>
+				<g transform="translate(0,0)" class="amcharts-graph-line amcharts-graph-g3">
+					<circle r="7.5" cx="0" cy="0" fill="#5d7ad9" stroke="#FFFFFF" fill-opacity="1" stroke-width="3" stroke-opacity="1" transform="translate(36,161)" class="amcharts-graph-bullet"></circle>
+					<circle r="7.5" cx="0" cy="0" fill="#5d7ad9" stroke="#FFFFFF" fill-opacity="1" stroke-width="3" stroke-opacity="1" transform="translate(108,345)" class="amcharts-graph-bullet"></circle>
+					<circle r="7.5" cx="0" cy="0" fill="#5d7ad9" stroke="#FFFFFF" fill-opacity="1" stroke-width="3" stroke-opacity="1" transform="translate(180,306)" class="amcharts-graph-bullet"></circle>
+					<circle r="7.5" cx="0" cy="0" fill="#5d7ad9" stroke="#FFFFFF" fill-opacity="1" stroke-width="3" stroke-opacity="1" transform="translate(253,379)" class="amcharts-graph-bullet"></circle>
+					<circle r="7.5" cx="0" cy="0" fill="#5d7ad9" stroke="#FFFFFF" fill-opacity="1" stroke-width="3" stroke-opacity="1" transform="translate(325,182)" class="amcharts-graph-bullet"></circle>
+					<circle r="7.5" cx="0" cy="0" fill="#5d7ad9" stroke="#FFFFFF" fill-opacity="1" stroke-width="3" stroke-opacity="1" transform="translate(397,323)" class="amcharts-graph-bullet"></circle>
+					<circle r="7.5" cx="0" cy="0" fill="#5d7ad9" stroke="#FFFFFF" fill-opacity="1" stroke-width="3" stroke-opacity="1" transform="translate(469,289) scale(1)" class="amcharts-graph-bullet"></circle>
+					<circle r="7.5" cx="0" cy="0" fill="#5d7ad9" stroke="#FFFFFF" fill-opacity="1" stroke-width="3" stroke-opacity="1" transform="translate(541,348)" class="amcharts-graph-bullet"></circle>
+					<circle r="7.5" cx="0" cy="0" fill="#5d7ad9" stroke="#FFFFFF" fill-opacity="1" stroke-width="3" stroke-opacity="1" transform="translate(614,329)" class="amcharts-graph-bullet"></circle>
+					<circle r="7.5" cx="0" cy="0" fill="#5d7ad9" stroke="#FFFFFF" fill-opacity="1" stroke-width="3" stroke-opacity="1" transform="translate(686,340)" class="amcharts-graph-bullet"></circle>
+					<circle r="7.5" cx="0" cy="0" fill="#5d7ad9" stroke="#FFFFFF" fill-opacity="1" stroke-width="3" stroke-opacity="1" transform="translate(758,226)" class="amcharts-graph-bullet"></circle>
+				</g>
+			</g>
+			<g>
+				<g class="amcharts-category-axis" transform="translate(0,0)">
+					<text y="8" fill="#000000" font-family="Lato" font-size="15" opacity="1" text-anchor="start" transform="translate(75,459)" class="amcharts-axis-label"><!--Bottom axis text -->
+						<tspan y="8" x="0" style="font-size: 15px;">2002</tspan>
+					</text>
+					<text y="8" fill="#000000" font-family="Lato" font-size="15" opacity="1" text-anchor="start" transform="translate(219,459)" class="amcharts-axis-label">
+						<tspan y="8" x="0" style="font-size: 15px;">2004</tspan>
+					</text>
+					<text y="8" fill="#000000" font-family="Lato" font-size="15" opacity="1" text-anchor="start" transform="translate(364,459)" class="amcharts-axis-label">
+						<tspan y="8" x="0" style="font-size: 15px;">2006</tspan>
+					</text>
+					<text y="8" fill="#000000" font-family="Lato" font-size="15" opacity="1" text-anchor="start" transform="translate(508,459)" class="amcharts-axis-label">
+						<tspan y="8" x="0" style="font-size: 15px;">2008</tspan>
+					</text>
+					<text y="8" fill="#000000" font-family="Lato" font-size="15" opacity="1" text-anchor="start" transform="translate(653,459)" class="amcharts-axis-label">
+						<tspan y="8" x="0" style="font-size: 15px;">2010</tspan>
+					</text>
+				</g>
+				<g class="amcharts-value-axis value-axis-valueAxisAuto0_1548004058621" transform="translate(0,0)" visibility="visible"> <!-- Left vertical axis text -->
+					<text y="8" fill="#000000" font-family="Lato" font-size="15" opacity="1" text-anchor="start" transform="translate(9,436)" class="amcharts-axis-label"><!-- LAbels on vertical axis -->
+						<tspan y="8" x="0" style="font-size: 15px;">0</tspan>
+					</text>
+					<text y="8" fill="#000000" font-family="Lato" font-size="15" opacity="1" text-anchor="start" transform="translate(9,362)" class="amcharts-axis-label">
+						<tspan y="8" x="0" style="font-size: 15px;">500
+						</tspan>
+					</text>
+					<text y="8" fill="#000000" font-family="Lato" font-size="15" opacity="1" text-anchor="start" transform="translate(9,288)" class="amcharts-axis-label">
+						<tspan y="8" x="0" style="font-size: 15px;">1,000
+						</tspan>
+					</text>
+					<text y="8" fill="#000000" font-family="Lato" font-size="15" opacity="1" text-anchor="start" transform="translate(9,214)" class="amcharts-axis-label">
+						<tspan y="8" x="0" style="font-size: 15px;">1,500
+						</tspan>
+					</text>
+					<text y="8" fill="#000000" font-family="Lato" font-size="15" opacity="1" text-anchor="start" transform="translate(9,140)" class="amcharts-axis-label">
+						<tspan y="8" x="0" style="font-size: 15px;">2,000
+						</tspan>
+					</text>
+					<text y="8" fill="#000000" font-family="Lato" font-size="15" opacity="1" text-anchor="start" transform="translate(9,66)" class="amcharts-axis-label">
+						<tspan y="8" x="0" style="font-size: 15px;">2,500
+						</tspan>
+					</text>
+				</g>
+			</g>
+			<g>
+				<g></g>
+			</g>
+			<g></g>
+			<g></g>
+			<g></g>
+		</svg>
+	
+		<a href="http://www.amcharts.com/javascript-charts/" title="JavaScript charts" style="position: absolute; text-decoration: none; color: rgb(0, 0, 0); font-family: Lato; font-size: 15px; opacity: 0.7; display: block; left: 5px; top: 5px;">Tutorials Point</a>
+	
+	</div>
+  </div>
+</div>
+
+</body>
+</html>

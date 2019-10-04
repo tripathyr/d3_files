@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function show_coords(event) {
+  var x = event.clientX;
+  var y = event.clientY;
+
+var x1 = event.pageX;
+  var y1 = event.pageY;
+
+var x2 = event.screenX;
+  var y2 = event.screenY;
+
+
+console.log("X coords: " + x +" "+x1+" "+x2+", "+"Y coords: " + y +" "+y1+" "+y2);
+}
+</script>
+</head>
+<body>
+<p onmousedown="show_coords(event)">Click this paragraph, and console log will show the x and y coordinates of the mouse pointer.</p>
+
+</body>
+</html>

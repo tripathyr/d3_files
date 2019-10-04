@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+  <title>General update pattern</title>
+</head>
+
+<style>
+body {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+#menu {
+  margin: 10px;
+}
+#content div {
+  display: inline-block;
+  margin: 2px;
+  background-color: orange;
+  color: white;
+  padding: 8px;
+  width: 14px;
+  height: 14px;
+  text-align: center;
+}
+</style>
+
+<body>
+  <div id="menu">
+    <button onClick="doUpdate();">Update</button>
+  </div>
+
+  <div id="content">
+  </div>
+
+
+  <script src="d3.js"></script>
+  <script>
+var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+function doUpdate() {
+  var rand = Math.floor( Math.random() * 26 );
+  var myData = letters.slice(0, rand).split('');
+  update(myData);
+}
+
+function update(data) {
+  var u = d3.select('#content')
+    .selectAll('div')
+    .data(data);
+
+  u.enter()
+    .append('div')
+    .merge(u)
+    .text(function(d) {
+      return d;
+    });
+
+  u.exit().remove();
+}
+
+doUpdate();
+  </script>
+</body>
+</html>

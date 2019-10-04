@@ -1,0 +1,606 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Cryptocurrency Mining Dashboard</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.1.0/css/all.css">
+<style>
+      @import url('https://fonts.googleapis.com/css?family=Anton');
+
+body {
+  background: #f4f4f4;
+}
+
+#outter-shell {
+  background: #fff;
+  max-width: 1650px;
+  margin: 2% auto 0;
+  padding: 10px;
+}
+
+.container {
+  background: #fff;
+  max-width: 1650px; 
+}
+
+.main-menu {
+  background: #f1f1f1;
+  border-right: 1px solid #eee;
+}
+
+.main-menu li {
+  height: 60px;
+  padding: 0;
+  width: 60px;
+  margin: 20px auto 0;
+}
+
+.main-menu a {
+  color: #c2c2c2;
+  padding: 15px 0;
+  text-align: center;
+}
+
+.logo-item {
+  height: 35px !important;
+  width: 35px !important;
+  margin-bottom: 10px !important;
+}
+
+.logo-item a {
+  background: #3c89f3 !important;
+  border-radius: 100px;
+  color: #fff !important;
+  padding: 6px;
+  box-shadow: -5px 0px 0px 6px #cce0f9;
+}
+
+.active,
+.main-menu a:hover {
+  background: #fff;
+  color: #3c89f3 !important;
+}
+
+.logo-item a:hover {
+  color: #fff !important;
+}
+
+.main-content {
+  background: #fff;
+  background-image: linear-gradient(#fff, #f2f2f2);
+}
+
+.main-top-row {
+  border-bottom: solid 1px #eee;
+  padding: 20px 10px;
+}
+
+#page-title {
+  color: #334050;
+  font-family: 'Anton', sans-serif;
+  font-size: 32px;
+  text-transform: uppercase;
+}
+
+.top-menu {
+  margin-top: 8px;
+}
+
+.top-menu a {
+  color: #c2c2c2;
+  padding: 5px 20px;
+  vertical-align: center;
+}
+
+.active-top {
+  color: #1a1d24;
+}
+
+.total {
+  color: #c2c2c2;
+}
+
+.total span {
+  color: #1a1d24;
+}
+
+#join-us {
+  background: #3c89f3;
+  color: #fff;
+  padding: 10px 35px;
+  float: right;
+}
+
+.bitcoins,
+.ethereum,
+.viacoin {
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px;
+}
+
+.bitcoins {
+  background: #3a84ed;
+}
+
+.ethereum,
+.viacoin {
+  background: #fff;
+}
+
+.summary-name {
+  color: #7bb9ff;
+}
+
+.summary-amount {
+  color: #fff;
+  float: left;
+  margin-right: 25px;
+}
+
+.summary-percent {
+  color: #fff;
+  position: relative;
+  top: 5px;
+}
+
+.fa-bitcoin {
+  color: #fff;
+  transform: rotate(-13deg);
+  position: relative;
+  top: -5px;
+  left: -3px;
+}
+
+#bit-icon {
+  background: #3a84ed;
+  border: 20px solid #fff;
+  border-radius: 50px;
+  float: left;
+  padding 20px;
+  margin-right: 25px;
+  height: 65px;
+  width: 65px;
+}
+
+#eth-icon {
+  border: 1px solid #464646;
+  border-radius: 50px;
+  float: left;
+  padding 20px;
+  margin-right: 25px;
+  height: 65px;
+  width: 65px;
+}
+
+.fa-ethereum {
+  color: #464646;
+  position: relative;
+  top: 13px;
+  left: 21px;
+}
+
+.eth {
+  color: #464646;
+}
+
+.eth-per {
+  color: #ad4f57;
+}
+
+#via-icon {
+  border: 1px solid #f9bc5f;
+  border-radius: 50px;
+  float: left;
+  padding 20px;
+  margin-right: 25px;
+  height: 65px;
+  width: 65px;
+}
+
+.fa-viacoin {
+  color: #f9bc5f;
+  position: relative;
+  top: 16px;
+  left: 20px;
+}
+
+.via {
+  color: #454545;
+}
+
+.via-per {
+  color: #63b4ae;
+}
+
+.tools-area {
+  background: #3c89f3;
+  color: #fff;
+  padding: 30px;
+}
+
+#exchange-icon {
+  border: 1px solid #fff;
+  border-radius: 50px;
+  height: 20px;
+  width: 20px;
+  margin: 0 auto 8px;
+  transform: rotate(90deg);
+}
+
+.fa-exchange {
+  position: relative;
+  bottom: 4px;
+  left: 2px;
+}
+
+/* Random Bootstap Changes */
+
+.input-group-text {
+  background: #fff;
+  border: none;
+  border-radius: 0;
+  padding: 12px;
+}
+
+.form-control {
+  background: #5095f4;
+  border: none;
+  border-radius: 0;
+}
+
+.form-control::placeholder {
+    color: #fff;
+    opacity: 1;
+}
+
+.exchange-btn {
+  background: #fff;
+  border-radius: 0;
+  color: #3c89f3;
+  padding: 12px;
+  width: 100%;
+}
+
+.history-box {
+  background: #5095f4;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+}
+
+#see-all {
+  float: right;
+  text-align: right;
+}
+
+#see-all a,
+.history-date {
+  color: #94cbff;
+}
+
+#history-title {
+  margin: 6px 0 -2px;
+}
+
+#history-tag {
+  color: #a9a9a9;
+}
+
+#history-icon {
+  background: #fff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  padding: 20px;
+  float: left;
+  margin-right: 15px;
+}
+
+#history-icon .fa-dollar-sign {
+  position: relative;
+  left: 7px;
+  top: -2px;
+  font-weight: bold;
+}
+
+#historyChart {
+  height: 500px;
+}
+
+#credit {
+  color: #aaa;
+  text-align: right;
+  padding: 0 20px;
+}
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div id="outter-shell">
+<!-- Start Main Container -->
+<div class="container">
+  <!-- Start Row -->
+  <div class="row">
+    
+    <!-- Main Menu -->
+    <div class="main-menu col-1">
+      <ul class="nav flex-column">
+        <li class="nav-item logo-item">
+          <a class="nav-link" href="#">
+            <i class="fal fa-dollar-sign fa-sm"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#">
+            <i class="fal fa-home fa-lg"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fal fa-sync fa-lg"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fal fa-wallet fa-lg"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fal fa-cog fa-lg"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fal fa-clipboard fa-lg"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content col-8">
+      <div class="row main-top-row">
+        <!-- Page Title -->
+        <div class="col-2">
+          <h1 id="page-title"><em>Dashboard</em></h1>
+        </div>
+        <!-- Menu -->
+        <div class="col-sm">
+          <div class="top-menu">
+            <a class="active-top" href="#">Bitcoin</a>
+            <a href="#">Ethereum</a>
+            <a href="#">Blockchain</a>
+          </div>
+        </div>
+        <!-- Total -->
+        <div class="col-2 total">
+          <small>Total Balance</small><br>
+          <small><span>0 PLBT  0.000000 ETH</span></small>
+        </div>
+        <!-- Join Us -->
+        <div class="col-2">
+          <a id="join-us" href="">Join Us</a>
+        </div>
+        
+      </div> <!-- END Row -->
+      
+      <div class="row">
+        <!-- Bitcoin -->
+        <div class="col-sm bitcoins">
+          <div id="bit-icon">
+            <i class="fab fa-bitcoin fa-2x"></i>
+          </div>
+          <span class="summary-name">Bitcoin Coins<span><br>
+            <h4 class="summary-amount">$5.760</h4>
+            <span class="summary-percent">
+              <span>35%</span>
+            </span>
+        </div>
+        <!-- Ethereum -->
+        <div class="col-sm ethereum">
+          <div id="eth-icon">
+            <i class="fab fa-ethereum fa-2x"></i>
+          </div>
+          <span class="summary-name eth">Ethereum Coins<span><br>
+            <h4 class="summary-amount eth">$2000</h4>
+            <span class="summary-percent eth-per">
+              <span>14%</span>
+            </span>
+        </div>
+        <!-- Viacoin -->
+        <div class="col-sm viacoin">
+          <div id="via-icon">
+            <i class="fab fa-viacoin fa-2x"></i>
+          </div>
+          <span class="summary-name via">Viacoin Coins<span><br>
+            <h4 class="summary-amount via">$1.349</h4>
+            <span class="summary-percent via-per">
+              <span>10%</span>
+            </span>
+        </div>
+      </div> <!-- END Row -->
+      
+      <!-- Start Chart Section -->
+      <div class="row">
+        <div class="col-sm">
+          <div id="history-icon">
+            <i class="fal fa-dollar-sign fa-sm"></i>
+          </div>
+          <h5 id="history-title">History mining coins</h5>
+          <small id="history-tag">Your History</small>
+          <canvas id="historyChart"></canvas>
+        </div>
+      </div><!-- END Row -->
+      
+    </div> <!-- END Main Content -->
+            
+    <!-- Main Content -->
+    <div class="tools-area col-3">
+        Exchange your currency coins
+        <br><br>
+        <form>
+          <!-- Curreny Amount One -->
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">USD</div>
+            </div>
+            <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="$225.000">
+          </div>
+
+          <div id="exchange-icon">
+            <i class="fas fa-exchange fa-xs"></i>
+          </div>
+
+          <!-- Curreny Amount Two -->
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">EUR</div>
+            </div>
+            <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="&euro;200.00">
+          </div>
+
+          <button type="submit" class="exchange-btn btn btn-primary mb-2">Exchange</button>
+        </form>
+      <br>
+      Transaction History <div id="see-all"><a href="#">See All</a></div>
+      <br><br>
+      <div class="history-box">
+        <small class="history-date">08/26/2018</small><br>
+        Previously the standard was set to PSR2, you can set...
+      </div>
+      
+      <div class="history-box">
+        <small class="history-date">08/26/2018</small><br>
+        Previously the standard was set to PSR2, you can set...
+      </div>
+      
+      <div class="history-box">
+        <small class="history-date">08/26/2018</small><br>
+        Previously the standard was set to PSR2, you can set...
+      </div>
+    </div>
+    
+  </div> <!-- END Row -->
+</div> <!-- END Main Container -->
+</div> <!-- END Outter Shell -->
+
+          <br><br>
+<div id="credit">
+  <small>Based on the Dribble by M Rizky Edriansyah</small>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script id="rendered-js">
+      var chartColors = {
+  blue: 'rgb(60, 137, 243)',
+  brown: 'rgb(70, 70, 70)',
+  yellow: 'rgb(249, 188, 95)' };
+
+
+var randomScalingFactor = function () {
+  return (Math.random() > 0.5 ? 1.0 : -1.0) * Math.round(Math.random() * 100);
+};
+var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var config = {
+  type: 'line',
+  data: {
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    datasets: [{
+      label: "Bitcoin",
+      backgroundColor: chartColors.blue,
+      borderColor: chartColors.blue,
+      data: [
+      randomScalingFactor(),
+      randomScalingFactor(),
+      randomScalingFactor(),
+      randomScalingFactor(),
+      randomScalingFactor(),
+      randomScalingFactor(),
+      randomScalingFactor()],
+
+      fill: false },
+    {
+      label: "Ethereum",
+      fill: false,
+      backgroundColor: chartColors.brown,
+      borderColor: chartColors.brown,
+      data: [
+      randomScalingFactor(),
+      randomScalingFactor(),
+      randomScalingFactor(),
+      randomScalingFactor(),
+      randomScalingFactor(),
+      randomScalingFactor(),
+      randomScalingFactor()] },
+
+    {
+      label: "Viacoin",
+      fill: false,
+      backgroundColor: chartColors.yellow,
+      borderColor: chartColors.yellow,
+      data: [
+      randomScalingFactor(),
+      randomScalingFactor(),
+      randomScalingFactor(),
+      randomScalingFactor(),
+      randomScalingFactor(),
+      randomScalingFactor(),
+      randomScalingFactor()] }] },
+
+
+
+  options: {
+    responsive: true,
+    title: {
+      display: false },
+
+    tooltips: {
+      mode: 'label' },
+
+    hover: {
+      mode: 'nearest',
+      intersect: true },
+
+    scales: {
+      xAxes: [{
+        display: true,
+        gridLines: {
+          display: false },
+
+        scaleLabel: {
+          display: false } }],
+
+
+      yAxes: [{
+        display: false,
+        gridLines: {
+          display: false },
+
+        scaleLabel: {
+          display: false } }] } } };
+
+
+
+
+
+
+
+var ctx = document.getElementById("historyChart").getContext("2d");
+window.myLine = new Chart(ctx, config);
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>
