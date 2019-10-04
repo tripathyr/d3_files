@@ -1,0 +1,288 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Color Squares to Wheel</title>
+<style>
+    div .color-container {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  margin-left: -25px;
+  -webkit-transform-origin: center 300px;
+}
+div .color-container:hover {
+  z-index: 5;
+}
+div .color-container .color {
+  height: 70px;
+  width: 45px;
+  padding: 5px;
+  border-top-left-radius: 50% 3%;
+  border-top-right-radius: 50% 3%;
+  -webkit-transform: perspective(6em) rotateX(-20deg);
+  cursor: pointer;
+}
+div .color-container .color:hover {
+  -webkit-transition: all 300ms ease-out;
+  -webkit-transform: scale(1.8) perspective(6em) rotateX(-20deg);
+}
+div .color-container .color:hover span {
+  opacity: 1;
+}
+div .color-container .label {
+  -webkit-transition: all 300ms ease-out;
+  opacity: 0;
+  font-family: Gentona, "Myriad Pro", helvetica;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 100%;
+  display: block;
+  text-align: center;
+  position: absolute;
+  bottom: -120px;
+}
+div .color-container:hover .label {
+  opacity: 1;
+}
+
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<script id="colors" type="text/json">
+[
+    {
+        "name": "Newer HUT Glass",
+        "families": ["reds", "communications"],
+        "pms": "179 C",
+        "rgb": [224, 60, 49]
+    },
+    {
+        "name": "Red Clay",
+        "families": ["reds", "newly-added"],
+        "pms": "7623 C",
+        "rgb": [138, 42, 43]
+    },
+    {
+        "name": "Burnt Orange",
+        "families": ["oranges", "newly-added"],
+        "pms": "173 C",
+        "rgb": [207, 69, 32]
+    },
+    {
+        "name": "Tangerine",
+        "families": ["oranges", "eric-added", "newly-added"],
+        "pms": "1505 C",
+        "rgb": [255, 105, 0]
+    },
+    {
+        "name": "Creamsicle",
+        "families": ["oranges", "newly-added"],
+        "pms": "1375 C",
+        "rgb": [255, 158, 27]
+    },
+    {
+        "name": "Sunlight",
+        "families": ["yellows", "for-review", "newly-added"],
+        "pms": "1215 C",
+        "rgb": [251, 216, 114]
+    },
+    {
+        "name": "New Academic Gold",
+        "families": ["yellows", "for-review", "newly-added"],
+        "pms": "116 C",
+        "rgb": [255, 205, 0]
+    },
+    {
+        "name": "Lemon",
+        "families": ["yellows", "newly-added", "for-review"],
+        "pms": "101 C",
+        "rgb": [247, 234, 72]
+    },
+    {
+        "name": "CTY Green",
+        "families": ["greens", "cty", "newly-added"],
+        "pms": "584 C",
+        "rgb": [210, 215, 85]
+    },
+    {
+        "name": "Java",
+        "families": ["greens", "bloomberg"],
+        "pms": "574 C",
+        "rgb": [78, 91, 49],
+        "bloomberg-rgb": [83, 87, 29]
+    },
+    {
+        "name": "Oak Leaves",
+        "families": ["greens", "campus"],
+        "pms": "7489 C",
+        "rgb": [116, 170, 80]
+    },
+    {
+        "name": "Magnolia Leaves (DEP)",
+        "families": ["greens", "campus"],
+        "pms": "7743 C",
+        "rgb": [68, 105, 61]
+    },
+    {
+        "name": "Spearmint",
+        "families": ["greens", "newly-added"],
+        "pms": "341 C",
+        "rgb": [0, 122, 83]
+    },
+    {
+        "name": "Bright Turquoise",
+        "families": ["teals", "eric-added", "newly-added"],
+        "pms": "3268 C",
+        "rgb": [0, 171, 142]
+    },
+    {
+        "name": "New Copper Petina",
+        "families": ["teals", "campus"],
+        "pms": "564 C",
+        "rgb": [134, 200, 188]
+    },
+    {
+        "name": "Basin",
+        "families": ["blues", "bloomberg"],
+        "pms": "548 C",
+        "rgb": [0, 61, 76],
+        "bloomberg-rgb": [0, 51, 86]
+    },
+    {
+        "name": "Stained Glass",
+        "families": ["blues", "campus"],
+        "pms": "7696 C",
+        "rgb": [99, 153, 174]
+    },
+    {
+        "name": "Brody Chair",
+        "families": ["blues", "campus"],
+        "pms": "300 C",
+        "rgb": [0, 94, 184]
+    },
+    {
+        "name": "Baby Boy",
+        "families": ["blues", "newly-added"],
+        "pms": "292 C",
+        "rgb": [105, 179, 231]
+    },
+    {
+        "name": "Brody Wall/Jay Blue",
+        "families": ["blues", "campus"],
+        "pms": "279 C",
+        "rgb": [65, 143, 222]
+    },
+    {
+        "name": "Slate",
+        "families": ["blues", "communications"],
+        "pms": "651 C",
+        "rgb": [167, 188, 214]
+    },
+    {
+        "name": "Light Purple",
+        "families": ["indigos", "purples", "communications"],
+        "pms": "7675 C",
+        "rgb": [124, 127, 171]
+    },
+    {
+        "name": "Ballpoint",
+        "families": ["indigos", "purples", "newly-added"],
+        "pms": "273 C",
+        "rgb": [36, 19, 95]
+    },
+    {
+        "name": "New Beet",
+        "families": ["violets", "purples", "newly-added"],
+        "pms": "2617 C",
+        "rgb": [71, 10, 104]
+    },
+    {
+        "name": "Pathway Brick",
+        "families": ["violets", "purples", "campus"],
+        "pms": "5205 C",
+        "rgb": [134, 100, 122]
+    },
+    {
+        "name": "New Medical Gloves",
+        "families": ["violets", "purples", "campus", "newly-added"],
+        "pms": "7656 C",
+        "rgb": [142, 58, 128]
+    },
+    {
+        "name": "Ron/Tricia Pants",
+        "families": ["pinks", "newly-added"],
+        "pms": "505 C",
+        "rgb": [111, 44, 63]
+    },
+    {
+        "name": "Bubblegum",
+        "families": ["pinks", "newly-added"],
+        "pms": "1915 C",
+        "rgb": [239, 74, 129]
+    },
+    {
+        "name": "Copper Roof",
+        "families": ["reds", "campus"],
+        "pms": "486 C",
+        "rgb": [232, 146, 124]
+    },
+    {
+        "name": "Barista",
+        "families": ["browns", "bloomberg"],
+        "pms": "732 C",
+        "rgb": [98, 52, 18],
+        "bloomberg-rgb": [79, 51, 20]
+    }
+  ]
+</script>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://rawgithub.com/jasonrhodes/8552724/raw/e0dbb4be54ca3943020dc65e43bdaa38bd2070b2/colorConverter.js"></script>
+<script id="rendered-js">
+      var $ = jQuery;
+var html = $("<div>");
+var colors = JSON.parse($("#colors").text());
+var n = colors.length;
+var converter = new ColorConverter();
+
+colors = colors.map(function (c) {
+  c.hsl = converter.rgbToHsl(c.rgb);
+  return c;
+}).sort(function (a,b) {
+  return a.hsl[0] < b.hsl[0] ? -1 : 1;
+});
+
+$.each(colors, function (i, color) {
+  var hue = color.hsl[0];
+  var rotation = 360 / n * (i + 1);
+  
+  var container = $("<div>").addClass('color-container').css({ transform: "rotate(" + rotation + "deg)" });
+  
+  var spoke = $("<div>").addClass('color').css({ 
+    backgroundColor: "hsl(" + color.hsl.join(",") + ")"
+  });
+  
+  var label = $("<span>").addClass('label').css({
+    transform: "rotate(" + (rotation * -1) + "deg)"
+  }).text(color.name);
+   
+  container.append(spoke);
+  container.append(label);
+  html.append(container);
+});
+
+$("body").append(html);
+      //# sourceURL=pen.js
+    </script><div><div class="color-container" style="transform: rotate(12deg);"><div class="color" style="background-color: rgb(225, 62, 51);"></div><span class="label" style="transform: rotate(-12deg);">Newer HUT Glass</span></div><div class="color-container" style="transform: rotate(24deg);"><div class="color" style="background-color: rgb(232, 146, 125);"></div><span class="label" style="transform: rotate(-24deg);">Copper Roof</span></div><div class="color-container" style="transform: rotate(36deg);"><div class="color" style="background-color: rgb(207, 70, 32);"></div><span class="label" style="transform: rotate(-36deg);">Burnt Orange</span></div><div class="color-container" style="transform: rotate(48deg);"><div class="color" style="background-color: rgb(255, 106, 0);"></div><span class="label" style="transform: rotate(-48deg);">Tangerine</span></div><div class="color-container" style="transform: rotate(60deg);"><div class="color" style="background-color: rgb(99, 53, 18);"></div><span class="label" style="transform: rotate(-60deg);">Barista</span></div><div class="color-container" style="transform: rotate(72deg);"><div class="color" style="background-color: rgb(255, 156, 26);"></div><span class="label" style="transform: rotate(-72deg);">Creamsicle</span></div><div class="color-container" style="transform: rotate(84deg);"><div class="color" style="background-color: rgb(251, 217, 116);"></div><span class="label" style="transform: rotate(-84deg);">Sunlight</span></div><div class="color-container" style="transform: rotate(96deg);"><div class="color" style="background-color: rgb(255, 204, 0);"></div><span class="label" style="transform: rotate(-96deg);">New Academic Gold</span></div><div class="color-container" style="transform: rotate(108deg);"><div class="color" style="background-color: rgb(247, 236, 74);"></div><span class="label" style="transform: rotate(-108deg);">Lemon</span></div><div class="color-container" style="transform: rotate(120deg);"><div class="color" style="background-color: rgb(211, 215, 86);"></div><span class="label" style="transform: rotate(-120deg);">CTY Green</span></div><div class="color-container" style="transform: rotate(132deg);"><div class="color" style="background-color: rgb(76, 90, 48);"></div><span class="label" style="transform: rotate(-132deg);">Java</span></div><div class="color-container" style="transform: rotate(144deg);"><div class="color" style="background-color: rgb(116, 170, 80);"></div><span class="label" style="transform: rotate(-144deg);">Oak Leaves</span></div><div class="color-container" style="transform: rotate(156deg);"><div class="color" style="background-color: rgb(69, 107, 61);"></div><span class="label" style="transform: rotate(-156deg);">Magnolia Leaves (DEP)</span></div><div class="color-container" style="transform: rotate(168deg);"><div class="color" style="background-color: rgb(0, 122, 84);"></div><span class="label" style="transform: rotate(-168deg);">Spearmint</span></div><div class="color-container" style="transform: rotate(180deg);"><div class="color" style="background-color: rgb(133, 199, 187);"></div><span class="label" style="transform: rotate(-180deg);">New Copper Petina</span></div><div class="color-container" style="transform: rotate(192deg);"><div class="color" style="background-color: rgb(0, 173, 145);"></div><span class="label" style="transform: rotate(-192deg);">Bright Turquoise</span></div><div class="color-container" style="transform: rotate(204deg);"><div class="color" style="background-color: rgb(0, 61, 77);"></div><span class="label" style="transform: rotate(-204deg);">Basin</span></div><div class="color-container" style="transform: rotate(216deg);"><div class="color" style="background-color: rgb(100, 154, 175);"></div><span class="label" style="transform: rotate(-216deg);">Stained Glass</span></div><div class="color-container" style="transform: rotate(228deg);"><div class="color" style="background-color: rgb(106, 179, 231);"></div><span class="label" style="transform: rotate(-228deg);">Baby Boy</span></div><div class="color-container" style="transform: rotate(240deg);"><div class="color" style="background-color: rgb(0, 95, 184);"></div><span class="label" style="transform: rotate(-240deg);">Brody Chair</span></div><div class="color-container" style="transform: rotate(252deg);"><div class="color" style="background-color: rgb(64, 143, 221);"></div><span class="label" style="transform: rotate(-252deg);">Brody Wall/Jay Blue</span></div><div class="color-container" style="transform: rotate(264deg);"><div class="color" style="background-color: rgb(168, 189, 214);"></div><span class="label" style="transform: rotate(-264deg);">Slate</span></div><div class="color-container" style="transform: rotate(276deg);"><div class="color" style="background-color: rgb(124, 127, 171);"></div><span class="label" style="transform: rotate(-276deg);">Light Purple</span></div><div class="color-container" style="transform: rotate(288deg);"><div class="color" style="background-color: rgb(35, 19, 94);"></div><span class="label" style="transform: rotate(-288deg);">Ballpoint</span></div><div class="color-container" style="transform: rotate(300deg);"><div class="color" style="background-color: rgb(70, 10, 102);"></div><span class="label" style="transform: rotate(-300deg);">New Beet</span></div><div class="color-container" style="transform: rotate(312deg);"><div class="color" style="background-color: rgb(141, 58, 127);"></div><span class="label" style="transform: rotate(-312deg);">New Medical Gloves</span></div><div class="color-container" style="transform: rotate(324deg);"><div class="color" style="background-color: rgb(135, 100, 123);"></div><span class="label" style="transform: rotate(-324deg);">Pathway Brick</span></div><div class="color-container" style="transform: rotate(336deg);"><div class="color" style="background-color: rgb(239, 72, 128);"></div><span class="label" style="transform: rotate(-336deg);">Bubblegum</span></div><div class="color-container" style="transform: rotate(348deg);"><div class="color" style="background-color: rgb(109, 44, 62);"></div><span class="label" style="transform: rotate(-348deg);">Ron/Tricia Pants</span></div><div class="color-container" style="transform: rotate(360deg);"><div class="color" style="background-color: rgb(137, 42, 44);"></div><span class="label" style="transform: rotate(-360deg);">Red Clay</span></div></div>
+
+
+</body></html>

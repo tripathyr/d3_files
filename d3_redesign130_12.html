@@ -1,0 +1,515 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Websafe colors meet CSS Grid (auto-placement demo)</title>
+<style>
+    * { box-sizing: border-box; }
+
+body {
+  font: 90% Helvetica, Arial, sans-serif;
+  background-color: #000;
+  color: #fff;
+}
+
+h1 {
+  margin: 20px 0 40px 0;
+}
+
+.colors {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(80px, 1fr));
+  grid-gap: 2px;
+  grid-auto-rows: minmax(80px, auto);
+  grid-auto-flow: dense;
+}
+
+.colors li {
+  border-radius: 1em;
+  padding: 20px 10px;
+  text-align: center;
+}
+
+/* these are placed on the grid */
+.white {
+  grid-column: 1 / -1;
+  grid-row: 3;
+}
+
+.black {
+  grid-column: 1 / -1;
+  grid-row: 6;
+}
+
+/*these just have some rules about how many tracks they span.*/
+
+.span2 {
+  grid-column-end: span 2;
+  grid-row-end: span 2;
+}
+
+.span3 {
+  grid-column-end: span 3;
+  grid-row-end: span 3;
+}
+
+.tall4 {
+  grid-row-end: span 4;
+}
+
+
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="chart">
+<h1>Grid auto-placement</h1>
+<ul class="colors">
+<li style="background-color:#FFFFFF;color:black" class="white">FFF FFF
+</li>
+<li style="background-color:#CCCCCC;color:black">CCC CCC
+</li>
+<li style="background-color:#999999;color:black" class="span3">999 999
+</li>
+<li style="background-color:#666666;color:white">666 666
+</li>
+<li style="background-color:#333333;color:white">333 333
+</li>
+<li style="background-color:#000000;color:white" class="black">000 000
+</li>
+<li style="background-color:#FFCC00;color:black" class="span2">FFC C00
+</li>
+<li style="background-color:#FF9900;color:black" class="span2">FF9 900
+</li>
+<li style="background-color:#FF6600;color:black" class="span2">FF6 600
+</li>
+<li style="background-color:#FF3300;color:white" class="span2">FF3 300
+</li>
+<li style="background-color:#99CC00;color:black" class="span2">99C C00
+</li>
+
+<li style="background-color:#CC9900;color:black" class="span2">CC9 900
+</li>
+<li style="background-color:#FFCC33;color:black">FFC C33
+</li>
+<li style="background-color:#FFCC66;color:black">FFC C66
+</li>
+<li style="background-color:#FF9966;color:black">FF9 966
+</li>
+<li style="background-color:#FF6633;color:black">FF6 633
+</li>
+<li style="background-color:#CC3300;color:white" class="span2">CC3 300
+</li>
+<li style="background-color:#CC0033;color:white">CC0 033
+</li>
+<li style="background-color:#CCFF00;color:black" class="span2">CCF F00
+</li>
+<li style="background-color:#CCFF33;color:black">CCF F33
+</li>
+<li style="background-color:#333300;color:white" class="span2">333 300
+</li>
+<li style="background-color:#666600;color:white" class="span2">666 600
+</li>
+<li style="background-color:#999900;color:black" class="span2">999 900
+</li>
+<li style="background-color:#CCCC00;color:black" class="span2">CCC C00
+</li>
+<li style="background-color:#FFFF00;color:black" class="span2">FFF F00
+</li>
+<li style="background-color:#CC9933;color:black">CC9 933
+</li>
+<li style="background-color:#CC6633;color:white">CC6 633
+</li>
+<li style="background-color:#330000;color:white" class="span2">330 000
+</li>
+<li style="background-color:#660000;color:white" class="span2">660 000
+</li>
+<li style="background-color:#990000;color:white" class="span2">990 000
+</li>
+<li style="background-color:#CC0000;color:white" class="span2">CC0 000
+</li>
+<li style="background-color:#FF0000;color:white" class="span2">FF0 000
+</li>
+<li style="background-color:#FF3366;color:white">FF3 366
+</li>
+<li style="background-color:#FF0033;color:white">FF0 033
+</li>
+<li style="background-color:#99FF00;color:black" class="span2">99F F00
+</li>
+<li style="background-color:#CCFF66;color:black">CCF F66
+</li>
+<li style="background-color:#99CC33;color:black">99C C33
+</li>
+<li style="background-color:#666633;color:white">666 633
+</li>
+<li style="background-color:#999933;color:black">999 933
+</li>
+<li style="background-color:#CCCC33;color:black">CCC C33
+</li>
+<li style="background-color:#FFFF33;color:black">FFF F33
+</li>
+<li style="background-color:#996600;color:white" class="span2">996 600
+</li>
+<li style="background-color:#993300;color:white" class="span2">993 300
+</li>
+<li style="background-color:#663333;color:white" class="span2">663 333
+</li>
+<li style="background-color:#993333;color:white">993 333
+</li>
+<li style="background-color:#CC3333;color:white">CC3 333
+</li>
+<li style="background-color:#FF3333;color:white">FF3 333
+</li>
+<li style="background-color:#CC3366;color:white">CC3 366
+</li>
+<li style="background-color:#FF6699;color:black" class="span3">FF6 699
+</li>
+<li style="background-color:#FF0066;color:white">FF0 066
+</li>
+<li style="background-color:#66FF00;color:black" class="span2">66F F00
+</li>
+<li style="background-color:#99FF66;color:black">99F F66
+</li>
+<li style="background-color:#66CC33;color:black">66C C33
+</li>
+<li style="background-color:#669900;color:white" class="span2">669 900
+</li>
+<li style="background-color:#999966;color:black">999 966
+</li>
+<li style="background-color:#CCCC66;color:black">CCC C66
+</li>
+<li style="background-color:#FFFF66;color:black">FFF F66
+</li>
+<li style="background-color:#996633;color:white">996 633
+</li>
+<li style="background-color:#663300;color:white" class="span2">663 300
+</li>
+<li style="background-color:#996666;color:white">996 666
+</li>
+<li style="background-color:#CC6666;color:black">CC6 666
+</li>
+<li style="background-color:#FF6666;color:black">FF6 666
+</li>
+<li style="background-color:#990033;color:white">990 033
+</li>
+<li style="background-color:#CC3399;color:white" class="span3">CC3 399
+</li>
+<li style="background-color:#FF66CC;color:black">FF6 6CC
+</li>
+<li style="background-color:#FF0099;color:white" class="span3">FF0 099
+</li>
+<li style="background-color:#33FF00;color:black" class="span2">33F F00
+</li>
+<li style="background-color:#66FF33;color:black">66F F33
+</li>
+<li style="background-color:#339900;color:white" class="span2">339 900
+</li>
+<li style="background-color:#66CC00;color:black" class="span2">66C C00
+</li>
+<li style="background-color:#99FF33;color:black">99F F33
+</li>
+<li style="background-color:#CCCC99;color:black" class="span3">CCC C99
+</li>
+<li style="background-color:#FFFF99;color:black" class="span3">FFF F99
+</li>
+<li style="background-color:#CC9966;color:black">CC9 966
+</li>
+<li style="background-color:#CC6600;color:white" class="span2">CC6 600
+</li>
+<li style="background-color:#CC9999;color:black" class="span3">CC9 999
+</li>
+<li style="background-color:#FF9999;color:black" class="span3">FF9 999
+</li>
+<li style="background-color:#FF3399;color:white" class="span3">FF3 399
+</li>
+<li style="background-color:#CC0066;color:white">CC0 066
+</li>
+<li style="background-color:#990066;color:white">990 066
+</li>
+<li style="background-color:#FF33CC;color:black">FF3 3CC
+</li>
+<li style="background-color:#FF00CC;color:white">FF0 0CC
+</li>
+<li style="background-color:#00CC00;color:white" class="span2">00C C00
+</li>
+<li style="background-color:#33CC00;color:black" class="span2">33C C00
+</li>
+<li style="background-color:#336600;color:white" class="span2">336 600
+</li>
+<li style="background-color:#669933;color:white">669 933
+</li>
+<li style="background-color:#99CC66;color:black">99C C66
+</li>
+<li style="background-color:#CCFF99;color:black" class="span3">CCF F99
+</li>
+<li style="background-color:#FFFFCC;color:black">FFF FCC
+</li>
+<li style="background-color:#FFCC99;color:black" class="span3">FFC C99
+</li>
+<li style="background-color:#FF9933;color:black">FF9 933
+</li>
+<li style="background-color:#FFCCCC;color:black">FFC CCC
+</li>
+<li style="background-color:#FF99CC;color:black">FF9 9CC
+</li>
+<li style="background-color:#CC6699;color:black" class="span3">CC6 699
+</li>
+<li style="background-color:#993366;color:white">993 366
+</li>
+<li style="background-color:#660033;color:white">660 033
+</li>
+<li style="background-color:#CC0099;color:white" class="span3">CC0 099
+</li>
+<li style="background-color:#330033;color:white">330 033
+</li>
+<li style="background-color:#33CC33;color:black">33C C33
+</li>
+<li style="background-color:#66CC66;color:black">66C C66
+</li>
+<li style="background-color:#00FF00;color:black" class="span2">00F F00
+</li>
+<li style="background-color:#33FF33;color:black">33F F33
+</li>
+<li style="background-color:#66FF66;color:black">66F F66
+</li>
+<li style="background-color:#99FF99;color:black" class="span3">99F F99
+</li>
+<li style="background-color:#CCFFCC;color:black">CCF FCC
+</li>
+<li style="background-color:#CC99CC;color:black">CC9 9CC
+</li>
+<li style="background-color:#996699;color:white" class="span3">996 699
+</li>
+<li style="background-color:#993399;color:white" class="span3">993 399
+</li>
+<li style="background-color:#990099;color:white" class="span3">990 099
+</li>
+<li style="background-color:#663366;color:white">663 366
+</li>
+<li style="background-color:#660066;color:white">660 066
+</li>
+<li style="background-color:#006600;color:white" class="span2">006 600
+</li>
+<li style="background-color:#336633;color:white">336 633
+</li>
+<li style="background-color:#009900;color:white" class="span2">009 900
+</li>
+<li style="background-color:#339933;color:white">339 933
+</li>
+<li style="background-color:#669966;color:black">669 966
+</li>
+<li style="background-color:#99CC99;color:black" class="span3">99C C99
+</li>
+<li style="background-color:#FFCCFF;color:black" class="tall4">FFC CFF
+</li>
+<li style="background-color:#FF99FF;color:black" class="tall4">FF9 9FF
+</li>
+<li style="background-color:#FF66FF;color:black" class="tall4">FF6 6FF
+</li>
+<li style="background-color:#FF33FF;color:black" class="tall4">FF3 3FF
+</li>
+<li style="background-color:#FF00FF;color:white" class="tall4">FF0 0FF
+</li>
+<li style="background-color:#CC66CC;color:black">CC6 6CC
+</li>
+<li style="background-color:#CC33CC;color:white">CC3 3CC
+</li>
+<li style="background-color:#003300;color:white" class="span2">003 300
+</li>
+<li style="background-color:#00CC33;color:white">00C C33
+</li>
+<li style="background-color:#006633;color:white">006 633
+</li>
+<li style="background-color:#339966;color:white">339 966
+</li>
+<li style="background-color:#66CC99;color:black" class="span3">66C C99
+</li>
+<li style="background-color:#99FFCC;color:black">99F FCC
+</li>
+<li style="background-color:#CCFFFF;color:black" class="tall4">CCF FFF
+</li>
+<li style="background-color:#3399FF;color:black" class="tall4">339 9FF
+</li>
+<li style="background-color:#99CCFF;color:black" class="tall4">99C CFF
+</li>
+<li style="background-color:#CCCCFF;color:black" class="tall4">CCC CFF
+</li>
+<li style="background-color:#CC99FF;color:black" class="tall4">CC9 9FF
+</li>
+<li style="background-color:#9966CC;color:black">996 6CC
+</li>
+<li style="background-color:#663399;color:white" class="span3">663 399
+</li>
+<li style="background-color:#330066;color:white">330 066
+</li>
+<li style="background-color:#9900CC;color:white">990 0CC
+</li>
+<li style="background-color:#CC00CC;color:white">CC0 0CC
+</li>
+<li style="background-color:#00FF33;color:black">00F F33
+</li>
+<li style="background-color:#33FF66;color:black">33F F66
+</li>
+<li style="background-color:#009933;color:white">009 933
+</li>
+<li style="background-color:#00CC66;color:black">00C C66
+</li>
+<li style="background-color:#33FF99;color:black" class="span3">33F F99
+</li>
+<li style="background-color:#99FFFF;color:black" class="tall4">99F FFF
+</li>
+<li style="background-color:#99CCCC;color:black">99C CCC
+</li>
+<li style="background-color:#0066CC;color:white">006 6CC
+</li>
+<li style="background-color:#6699CC;color:black">669 9CC
+</li>
+<li style="background-color:#9999FF;color:black" class="tall4">999 9FF
+</li>
+<li style="background-color:#9999CC;color:black">999 9CC
+</li>
+<li style="background-color:#9933FF;color:white" class="tall4">993 3FF
+</li>
+<li style="background-color:#6600CC;color:white">660 0CC
+</li>
+<li style="background-color:#660099;color:white" class="span3">660 099
+</li>
+<li style="background-color:#CC33FF;color:white" class="tall4">CC3 3FF
+</li>
+<li style="background-color:#CC00FF;color:white" class="tall4">CC0 0FF
+</li>
+<li style="background-color:#00FF66;color:black">00F F66
+</li>
+<li style="background-color:#66FF99;color:black" class="span3">66F F99
+</li>
+<li style="background-color:#33CC66;color:black">33C C66
+</li>
+<li style="background-color:#009966;color:white">009 966
+</li>
+<li style="background-color:#66FFFF;color:black" class="tall4">66F FFF
+</li>
+<li style="background-color:#66CCCC;color:black">66C CCC
+</li>
+<li style="background-color:#669999;color:black" class="span3">669 999
+</li>
+<li style="background-color:#003366;color:white">003 366
+</li>
+<li style="background-color:#336699;color:white" class="span3">336 699
+</li>
+<li style="background-color:#6666FF;color:white" class="tall4">666 6FF
+</li>
+<li style="background-color:#6666CC;color:white">666 6CC
+</li>
+<li style="background-color:#666699;color:white" class="span3">666 699
+</li>
+<li style="background-color:#330099;color:white" class="span3">330 099
+</li>
+<li style="background-color:#9933CC;color:white">993 3CC
+</li>
+<li style="background-color:#CC66FF;color:black" class="tall4">CC6 6FF
+</li>
+<li style="background-color:#9900FF;color:white" class="tall4">990 0FF
+</li>
+<li style="background-color:#00FF99;color:black" class="span3">00F F99
+</li>
+<li style="background-color:#66FFCC;color:black">66F FCC
+</li>
+<li style="background-color:#33CC99;color:black" class="span3">33C C99
+</li>
+<li style="background-color:#33FFFF;color:black" class="tall4">33F FFF
+</li>
+<li style="background-color:#33CCCC;color:black">33C CCC
+</li>
+<li style="background-color:#339999;color:white" class="span3">339 999
+</li>
+<li style="background-color:#336666;color:white">336 666
+</li>
+<li style="background-color:#006699;color:white" class="span3">006 699
+</li>
+<li style="background-color:#003399;color:white" class="span3">003 399
+</li>
+<li style="background-color:#3333FF;color:white" class="tall4">333 3FF
+</li>
+<li style="background-color:#3333CC;color:white">333 3CC
+</li>
+<li style="background-color:#333399;color:white" class="span3">333 399
+</li>
+<li style="background-color:#333366;color:white">333 366
+</li>
+<li style="background-color:#6633CC;color:white">663 3CC
+</li>
+<li style="background-color:#9966FF;color:black" class="tall4">996 6FF
+</li>
+<li style="background-color:#6600FF;color:white" class="tall4">660 0FF
+</li>
+<li style="background-color:#00FFCC;color:black">00F FCC
+</li>
+<li style="background-color:#33FFCC;color:black">33F FCC
+</li>
+<li style="background-color:#00FFFF;color:black" class="tall4">00F FFF
+</li>
+<li style="background-color:#00CCCC;color:black">00C CCC
+</li>
+<li style="background-color:#009999;color:white" class="span3">009 999
+</li>
+<li style="background-color:#006666;color:white">006 666
+</li>
+<li style="background-color:#003333;color:white">003 333
+</li>
+<li style="background-color:#3399CC;color:black">339 9CC
+</li>
+<li style="background-color:#3366CC;color:white">336 6CC
+</li>
+<li style="background-color:#0000FF;color:white" class="tall4">000 0FF
+</li>
+<li style="background-color:#0000CC;color:white">000 0CC
+</li>
+<li style="background-color:#000099;color:white" class="span3">000 099
+</li>
+<li style="background-color:#000066;color:white">000 066
+</li>
+<li style="background-color:#000033;color:white">000 033
+</li>
+<li style="background-color:#6633FF;color:white" class="tall4">663 3FF
+</li>
+<li style="background-color:#3300FF;color:white" class="tall4">330 0FF
+</li>
+<li style="background-color:#00CC99;color:black" class="span3">00C C99
+</li>
+<li style="background-color:#0099CC;color:white">009 9CC
+</li>
+<li style="background-color:#33CCFF;color:black" class="tall4">33C CFF
+</li>
+<li style="background-color:#66CCFF;color:black" class="tall4">66C CFF
+</li>
+<li style="background-color:#6699FF;color:black" class="tall4">669 9FF
+</li>
+<li style="background-color:#3366FF;color:white" class="tall4">336 6FF
+</li>
+<li style="background-color:#0033CC;color:white">003 3CC
+</li>
+<li style="background-color:#3300CC;color:white">330 0CC
+</li>
+<li style="background-color:#00CCFF;color:black" class="tall4">00C CFF
+</li>
+<li style="background-color:#0099FF;color:white" class="tall4">009 9FF
+</li>
+<li style="background-color:#0066FF;color:white" class="tall4">006 6FF
+</li>
+<li style="background-color:#0033FF;color:white" class="tall4">003 3FF
+</li>
+</ul>
+</div>
+
+
+</body></html>

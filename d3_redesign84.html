@@ -1,0 +1,63 @@
+<style>
+
+body {
+  background: #000;
+  height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: center center;
+  background: radial-gradient(
+    circle at top right,
+    #16222A, #3A6073
+  )
+}
+
+.examples {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  
+  --light: #5d1674;
+  --dark: #2f0047;
+}
+.examples > div {
+  width: 100px;
+  height: 100px;
+  box-shadow: 5px -10px 15px -5px rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+}
+
+.one {
+  background: radial-gradient(
+    at top left,
+    var(--light), var(--dark)
+  )
+}
+
+.two {
+  background: radial-gradient(
+    at top right,
+    var(--light), var(--dark)
+  )
+}
+.three {
+  background: radial-gradient(
+    at bottom left,
+    var(--light), var(--dark)
+  )
+}
+.four {
+  background: radial-gradient(
+    at bottom right,
+    var(--light), var(--dark)
+  )
+}
+
+</style>
+
+<div class="examples">
+  <div class="one"></div>
+  <div class="two"></div>
+  <div class="three"></div>
+  <div class="four"></div>
+</div>

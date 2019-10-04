@@ -1,0 +1,1593 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - CSS Font Generator | Input</title>
+<style>
+      body {
+  background-color: yellow;
+  overflow: hidden;
+  height: 100vh;
+}
+
+p {
+  font-family: sans-serif;
+  padding-top: 30px;
+  font-weight: bold;
+}
+
+.boxHeadline {
+  display: flex;
+  width: calc(100vw - 170px);
+}
+
+svg {
+  width: 30%;
+  margin-top: 10px;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.header .header__filter {
+  margin-right: 20px;
+}
+
+.filter .filter__headline {
+  margin-bottom: 2px;
+  font-family: sans-serif;
+  font-size: 1em;
+}
+.filter .filter__box {
+  padding: 10px;
+  margin-bottom: 20px;
+  position: absolute;
+  top: 0;
+  right: -20px;
+  width: 150px;
+  color: #fff;
+}
+.filter .filter__box .filter__button {
+  background-color: #000;
+  margin-bottom: 2px;
+  margin-top: 5px;
+  font-family: sans-serif;
+  padding: 8px;
+  font-size: 0.8em;
+  margin-right: 10px;
+  font-weight: bold;
+  display: block;
+}
+.filter .filter__box .filter__button.active {
+  background-color: white;
+  color: black;
+}
+
+h1 {
+  font-family: sans-serif;
+  font-size: 1em;
+}
+
+input {
+  width: 50vw;
+  margin-bottom: 20px;
+  outline: none;
+  padding: 5px;
+  border: 0;
+}
+
+.bg {
+  width: calc(100vw - 170px);
+  margin-bottom: 20px;
+  outline: none;
+  color: transparent;
+  border: 0;
+  background-color: #fff;
+  height: 100vh;
+  position: absolute;
+  z-index: 0;
+  top: 200px;
+}
+
+.box {
+  width: calc(100vw - 170px);
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  position: absolute;
+  z-index: 1;
+  top: 170px;
+  padding: 15px;
+  padding-right: 50px;
+}
+.box .letter {
+  margin-bottom: 10px;
+}
+
+.letterCenter {
+  left: calc(100% * 0.5 - (0.5px * 10));
+}
+
+.letter {
+  position: relative;
+  height: calc(7px * 10);
+  transition: all 1s;
+  margin-right: 10px;
+}
+.letter .letter__elemnt {
+  width: calc(0px * 10);
+  height: calc(0px * 10);
+  position: absolute;
+  display: block;
+  background-color: #000;
+  transition-timing-function: linear !important;
+  width: calc(1px * 10);
+  height: calc(1px * 10);
+}
+.letter .letter__elemnt.letterStart, .letter .letter__elemnt.letterLeft {
+  left: calc(0px * 10);
+}
+.letter .letter__elemnt.letterEnd, .letter .letter__elemnt.letterRight {
+  right: calc(0px * 10);
+}
+.letter .letter__elemnt.letterStart, .letter .letter__elemnt.letterEnd {
+  bottom: 0;
+  transition: width calc(1 * 0.01s);
+}
+.letter .letter__elemnt.letterStart.active, .letter .letter__elemnt.letterEnd.active {
+  width: calc(1px * 10);
+}
+.letter.crypto {
+  height: calc(12px * 10);
+}
+.letter.letter1 {
+  width: calc(1px * 10);
+}
+.letter.letter1.allConnection {
+  width: calc(3px * 10);
+}
+.letter.letter1.connectionEnd {
+  width: calc(2px * 10);
+}
+.letter.letter2 {
+  width: calc(2px * 10);
+}
+.letter.letter2.allConnection {
+  width: calc(3px * 10);
+}
+.letter.letter2.connectionEnd {
+  width: calc(2px * 10);
+}
+.letter.letter2.connectionEnd .letterEnd {
+  width: calc(0px * 10);
+}
+.letter.letter3 {
+  width: calc(3px * 10);
+}
+.letter.letter3.allConnection {
+  width: calc(5px * 10);
+}
+.letter.letter3.connectionEnd {
+  width: calc(4px * 10);
+}
+.letter.letter5 {
+  width: calc(5px * 10);
+}
+.letter.letter5.allConnection {
+  width: calc(7px * 10);
+}
+.letter.letter5.connectionEnd {
+  width: calc(6px * 10);
+}
+.letter.allConnection {
+  margin-right: 0px;
+}
+.letter.allConnection .letterLeft {
+  left: calc(1px * 10);
+}
+.letter.allConnection .letterRight {
+  right: calc(1px * 10);
+}
+.letter.connectionEnd {
+  margin-right: 0px;
+}
+.letter.connectionEnd .letterLeft {
+  left: calc(0px * 10);
+}
+.letter.connectionEnd .letterRight {
+  right: calc(1px * 10);
+}
+.letter.connectionEnd .letterCenter {
+  right: calc(100% * 0.5 ) !important;
+  left: auto;
+}
+.letter.letterTopMiddle .letterStart, .letter.letterTopMiddle .letterEnd {
+  top: calc(2px * 10);
+}
+.letter.letterBottom .letterStart, .letter.letterBottom .letterEnd {
+  bottom: calc(0px * 10);
+}
+.letter.letterBottomMiddle .letterStart, .letter.letterBottomMiddle .letterEnd {
+  bottom: calc(2px * 10);
+}
+
+.f + .letter:not(.allConnection) .letterStart, .r + .letter:not(.allConnection) .letterStart {
+  width: calc(0px * 10);
+}
+
+.f .letterEnd, .r .letterEnd, .t .letterEnd {
+  display: none;
+}
+.f.allConnection .letterEnd, .f .conectionEnd .letterEnd, .r.allConnection .letterEnd, .r .conectionEnd .letterEnd, .t.allConnection .letterEnd, .t .conectionEnd .letterEnd {
+  display: block;
+}
+
+.space {
+  width: calc(2.5px * 10);
+}
+
+.point .point1 {
+  bottom: calc(0px * 10);
+  height: calc(1px * 10);
+}
+
+.douplePoint .douplePoint1 {
+  bottom: calc(0px * 10);
+  height: calc(1px * 10);
+}
+.douplePoint .douplePoint2 {
+  top: calc(4px * 10);
+  height: calc(1px * 10);
+}
+
+.comma .comma1 {
+  height: calc(2px * 10);
+  bottom: calc(-1px * 10);
+}
+
+.a .a2 {
+  bottom: calc(0px * 10);
+  height: calc(5px * 10);
+}
+.a .a3 {
+  bottom: calc(4px * 10);
+  width: calc(3px * 10);
+}
+.a .a4 {
+  top: calc(2px * 10);
+  height: calc(5px * 10);
+}
+.a .a5 {
+  bottom: calc(2px * 10);
+  width: calc(3px * 10);
+}
+
+.b .b2 {
+  bottom: calc(0px * 10);
+  height: calc(7px * 10);
+}
+.b .b3 {
+  bottom: calc(0px * 10);
+  width: calc(3px * 10);
+}
+.b .b4 {
+  top: calc(2px * 10);
+  height: calc(5px * 10);
+}
+.b .b5 {
+  top: calc(2px * 10);
+  width: calc(3px * 10);
+}
+
+.c .c2 {
+  bottom: calc(0px * 10);
+  height: calc(5px * 10);
+}
+.c .c3 {
+  top: calc(2px * 10);
+  width: calc(3px * 10);
+}
+.c .c4 {
+  bottom: calc(0px * 10);
+  width: calc(3px * 10);
+}
+
+.d .d2 {
+  top: calc(2px * 10);
+  height: calc(5px * 10);
+}
+.d .d3 {
+  bottom: calc(0px * 10);
+  width: calc(3px * 10);
+}
+.d .d4 {
+  bottom: calc(0px * 10);
+  height: calc(7px * 10);
+}
+.d .d5 {
+  top: calc(2px * 10);
+  width: calc(3px * 10);
+}
+
+.e .e2 {
+  bottom: calc(0px * 10);
+  height: calc(5px * 10);
+}
+.e .e3 {
+  bottom: calc(4px * 10);
+  width: calc(3px * 10);
+}
+.e .e4 {
+  top: calc(2px * 10);
+  height: calc(3px * 10);
+}
+.e .e5 {
+  bottom: calc(2px * 10);
+  width: calc(3px * 10);
+}
+.e .e6 {
+  bottom: calc(0px * 10);
+  width: calc(3px * 10);
+}
+
+.f .f2 {
+  bottom: calc(0px * 10);
+  height: calc(7px * 10);
+}
+.f .f3 {
+  top: calc(2px * 10);
+  width: calc(2px * 10);
+}
+.f .f4 {
+  top: calc(0px * 10);
+  width: calc(2px * 10);
+}
+
+.g .g2 {
+  top: calc(2px * 10);
+  height: calc(5px * 10);
+}
+.g .g3 {
+  bottom: calc(0px * 10);
+  width: calc(3px * 10);
+}
+.g .g4 {
+  top: calc(2px * 10);
+  height: calc(7px * 10);
+}
+.g .g5 {
+  top: calc(2px * 10);
+  width: calc(3px * 10);
+}
+.g .g6 {
+  bottom: calc(-2px * 10);
+  width: calc(3px * 10);
+}
+
+.h .h2 {
+  bottom: calc(0px * 10);
+  height: calc(7px * 10);
+}
+.h .h4 {
+  top: calc(2px * 10);
+  height: calc(5px * 10);
+}
+.h .h5 {
+  top: calc(2px * 10);
+  width: calc(3px * 10);
+}
+
+.i .i2 {
+  top: calc(0px * 10);
+  height: calc(1px * 10);
+}
+.i .i3 {
+  bottom: calc(0px * 10);
+  height: calc(5px * 10);
+}
+
+.j .j4 {
+  top: calc(2px * 10);
+  height: calc(7px * 10);
+}
+.j .j6 {
+  bottom: calc(-2px * 10);
+  width: calc(2px * 10);
+}
+
+.k .k2 {
+  bottom: calc(0px * 10);
+  height: calc(7px * 10);
+}
+.k .k4 {
+  top: calc(2px * 10);
+  height: calc(5px * 10);
+}
+.k .k5 {
+  bottom: calc(2px * 10);
+  width: calc(3px * 10);
+}
+
+.l .l3 {
+  bottom: calc(0px * 10);
+  height: calc(7px * 10);
+}
+
+.m .m2 {
+  bottom: calc(0px * 10);
+  height: calc(5px * 10);
+}
+.m .m3 {
+  top: calc(2px * 10);
+  width: calc(3px * 10);
+}
+.m .m4 {
+  top: calc(2px * 10);
+  right: calc(2px * 10);
+  height: calc(5px * 10);
+}
+.m .m5 {
+  top: calc(2px * 10);
+  width: calc(3px * 10);
+}
+.m .m6 {
+  top: calc(2px * 10);
+  height: calc(5px * 10);
+}
+
+.n .n2 {
+  bottom: calc(0px * 10);
+  height: calc(5px * 10);
+}
+.n .n3 {
+  top: calc(2px * 10);
+  width: calc(3px * 10);
+}
+.n .n5 {
+  top: calc(2px * 10);
+  height: calc(5px * 10);
+}
+
+.o .o2 {
+  bottom: calc(0px * 10);
+  height: calc(5px * 10);
+}
+.o .o3 {
+  top: calc(2px * 10);
+  width: calc(3px * 10);
+}
+.o .o4 {
+  bottom: calc(0px * 10);
+  width: calc(3px * 10);
+}
+.o .o5 {
+  top: calc(2px * 10);
+  height: calc(5px * 10);
+}
+.o .letterEnd {
+  top: calc(2px * 10);
+}
+
+.p .p2 {
+  top: calc(2px * 10);
+  height: calc(7px * 10);
+}
+.p .p3 {
+  bottom: calc(0px * 10);
+  width: calc(3px * 10);
+}
+.p .p4 {
+  top: calc(2px * 10);
+  height: calc(5px * 10);
+}
+.p .p5 {
+  top: calc(2px * 10);
+  width: calc(3px * 10);
+}
+
+.q .q2 {
+  top: calc(2px * 10);
+  height: calc(7px * 10);
+}
+.q .q3 {
+  bottom: calc(0px * 10);
+  width: calc(3px * 10);
+}
+.q .q4 {
+  top: calc(2px * 10);
+  height: calc(5px * 10);
+}
+.q .q5 {
+  top: calc(2px * 10);
+  width: calc(3px * 10);
+}
+
+.r .r2 {
+  bottom: calc(0px * 10);
+  height: calc(5px * 10);
+}
+.r .r3 {
+  top: calc(2px * 10);
+  width: calc(2px * 10);
+}
+
+.s .s2 {
+  bottom: calc(2px * 10);
+  height: calc(3px * 10);
+}
+.s .s3 {
+  bottom: calc(4px * 10);
+  width: calc(3px * 10);
+}
+.s .s4 {
+  bottom: calc(2px * 10);
+  width: calc(3px * 10);
+}
+.s .s5 {
+  bottom: calc(0px * 10);
+  height: calc(3px * 10);
+}
+.s .s6 {
+  bottom: calc(0px * 10);
+  width: calc(3px * 10);
+}
+
+.t .t2 {
+  bottom: calc(0px * 10);
+  height: calc(7px * 10);
+}
+.t .t3 {
+  top: calc(2px * 10);
+  width: calc(2px * 10);
+}
+
+.u .u2 {
+  bottom: calc(0px * 10);
+  height: calc(5px * 10);
+}
+.u .u3 {
+  bottom: calc(0px * 10);
+  width: calc(3px * 10);
+}
+.u .u5 {
+  top: calc(2px * 10);
+  height: calc(5px * 10);
+}
+
+.v .v2 {
+  bottom: calc(1px * 10);
+  height: calc(4px * 10);
+}
+.v .v3 {
+  bottom: calc(0px * 10);
+  width: calc(1px * 10);
+}
+.v .v5 {
+  top: calc(2px * 10);
+  height: calc(4px * 10);
+}
+.v .letterStart, .v .letterEnd {
+  top: calc(2px * 10);
+}
+
+.w .w2 {
+  bottom: calc(0px * 10);
+  height: calc(5px * 10);
+}
+.w .w3 {
+  top: calc(6px * 10);
+  width: calc(3px * 10);
+}
+.w .w4 {
+  top: calc(2px * 10);
+  right: calc(2px * 10);
+  height: calc(5px * 10);
+}
+.w .w5 {
+  bottom: calc(0px * 10);
+  width: calc(3px * 10);
+}
+.w .w6 {
+  top: calc(2px * 10);
+  height: calc(5px * 10);
+}
+
+.x .x2 {
+  bottom: calc(0px * 10);
+  height: calc(2px * 10);
+}
+.x .x3 {
+  bottom: calc(2px * 10);
+  width: calc(1px * 10);
+}
+.x .x5 {
+  top: calc(2px * 10);
+  height: calc(2px * 10);
+}
+.x .x6 {
+  top: calc(2px * 10);
+  height: calc(2px * 10);
+}
+.x .x7 {
+  bottom: calc(0px * 10);
+  height: calc(2px * 10);
+}
+
+.y .y2 {
+  top: calc(2px * 10);
+  height: calc(5px * 10);
+}
+.y .y3 {
+  bottom: calc(0px * 10);
+  width: calc(3px * 10);
+}
+.y .y4 {
+  top: calc(2px * 10);
+  height: calc(7px * 10);
+}
+.y .y6 {
+  bottom: calc(-2px * 10);
+  width: calc(3px * 10);
+}
+
+.z .z2 {
+  bottom: calc(3px * 10);
+  height: calc(2px * 10);
+}
+.z .z3 {
+  bottom: calc(4px * 10);
+  width: calc(3px * 10);
+}
+.z .z4 {
+  bottom: calc(2px * 10);
+  width: calc(3px * 10);
+}
+.z .z5 {
+  bottom: calc(0px * 10);
+  height: calc(2px * 10);
+}
+.z .z6 {
+  bottom: calc(0px * 10);
+  width: calc(3px * 10);
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+
+<div class="boxHeadline">
+  <div class="letter f letter2 connectionEnd">
+          <div class="letter__elemnt letterStart active"></div>
+          <div class="letter__elemnt letterLeft f2 active"></div> 
+          <div class="letter__elemnt letterLeft f3 active"></div>
+          <div class="letter__elemnt letterLeft f4 active"></div>
+          <div class="letter__elemnt letterEnd active"></div>
+        </div>
+  <div class="letter o letter3 connectionEnd">
+          <div class="letter__elemnt letterStart"></div>
+          <div class="letter__elemnt letterLeft o2"></div> 
+          <div class="letter__elemnt letterLeft o3"></div>
+        <div class="letter__elemnt letterRight o4"></div>
+          <div class="letter__elemnt letterRight o5"></div>
+          <div class="letter__elemnt letterEnd"></div>
+        </div>
+  <div class="letter n letter3 connectionEnd">
+          <div class="letter__elemnt letterStart"></div>
+          <div class="letter__elemnt letterLeft n2"></div> 
+          <div class="letter__elemnt letterLeft n3"></div>
+          <div class="letter__elemnt letterRight n5"></div>
+          <div class="letter__elemnt letterEnd"></div>
+        </div>
+  <div class="letter t letter2 connectionEnd">
+          <div class="letter__elemnt letterStart"></div>
+          <div class="letter__elemnt letterLeft t2"></div>
+          <div class="letter__elemnt letterLeft t3"></div>
+          <div class="letter__elemnt letterLeft t4"></div>
+          <div class="letter__elemnt letterEnd"></div>
+        </div>
+  <div class="space"></div>
+  <div class="letter g letter3 connectionEnd">
+    <div class="letter__elemnt letterStart"></div>
+    <div class="letter__elemnt letterLeft g2"></div> 
+    <div class="letter__elemnt letterLeft g3"></div>
+    <div class="letter__elemnt letterRight g4"></div>
+    <div class="letter__elemnt letterRight g5"></div>
+    <div class="letter__elemnt letterRight g6"></div>
+    <div class="letter__elemnt letterEnd"></div>
+</div>
+  <div class="letter e letter3 connectionEnd">
+    <div class="letter__elemnt letterStart active"></div>
+    <div class="letter__elemnt letterLeft e2 active"></div>
+    <div class="letter__elemnt letterLeft e3 active"></div>
+    <div class="letter__elemnt letterRight e4 active"></div>
+    <div class="letter__elemnt letterRight e5 active"></div>
+    <div class="letter__elemnt letterRight e6 active"></div>
+    <div class="letter__elemnt letterEnd active"></div>
+</div>
+  <div class="letter n letter3 connectionEnd">
+          <div class="letter__elemnt letterStart"></div>
+          <div class="letter__elemnt letterLeft n2"></div> 
+          <div class="letter__elemnt letterLeft n3"></div>
+          <div class="letter__elemnt letterRight n5"></div>
+          <div class="letter__elemnt letterEnd"></div>
+        </div>
+  <div class="letter e letter3 connectionEnd">
+    <div class="letter__elemnt letterStart active"></div>
+    <div class="letter__elemnt letterLeft e2 active"></div>
+    <div class="letter__elemnt letterLeft e3 active"></div>
+    <div class="letter__elemnt letterRight e4 active"></div>
+    <div class="letter__elemnt letterRight e5 active"></div>
+    <div class="letter__elemnt letterRight e6 active"></div>
+    <div class="letter__elemnt letterEnd active"></div>
+</div>
+  <div class="letter r letter2 connectionEnd">
+          <div class="letter__elemnt letterStart"></div>
+          <div class="letter__elemnt letterLeft r2"></div>
+          <div class="letter__elemnt letterLeft r3"></div>
+          <div class="letter__elemnt letterEnd"></div>
+        </div>
+  <div class="letter a letter3 connectionEnd">
+          <div class="letter__elemnt letterStart"></div>
+          <div class="letter__elemnt letterLeft a2"></div>
+          <div class="letter__elemnt letterLeft a3"></div>
+          <div class="letter__elemnt letterRight a4"></div>
+          <div class="letter__elemnt letterRight a5"></div>
+          <div class="letter__elemnt letterEnd active"></div>
+        </div>
+  <div class="letter t letter2 connectionEnd">
+          <div class="letter__elemnt letterStart"></div>
+          <div class="letter__elemnt letterLeft t2"></div>
+          <div class="letter__elemnt letterLeft t3"></div>
+          <div class="letter__elemnt letterLeft t4"></div>
+          <div class="letter__elemnt letterEnd"></div>
+        </div>
+  <div class="letter o letter3 connectionEnd">
+          <div class="letter__elemnt letterStart"></div>
+          <div class="letter__elemnt letterLeft o2"></div> 
+          <div class="letter__elemnt letterLeft o3"></div>
+        <div class="letter__elemnt letterRight o4"></div>
+          <div class="letter__elemnt letterRight o5"></div>
+          <div class="letter__elemnt letterEnd"></div>
+        </div>
+  <div class="letter r letter2 connectionEnd">
+          <div class="letter__elemnt letterStart"></div>
+          <div class="letter__elemnt letterLeft r2"></div>
+          <div class="letter__elemnt letterLeft r3"></div>
+          <div class="letter__elemnt letterEnd"></div>
+        </div>
+</div>
+<p>Try it out</p>
+<div class="header">
+  <div class="header__filter filter filter--connection">
+    <div class="filter__box">
+      <span class="filter__button">No Connection</span>
+      <span class="filter__button">Long Connection</span>
+      <span class="filter__button active">Connectet</span>
+      <span class="filter__button">Crypto</span>
+      <!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92.13 106.3"><defs><style>.cls-1{fill #000;}</style></defs><title>Element 8</title><g id="Ebene_2" data-name="Ebene 2"><g id="icon"><polygon class="cls-1" points="77.95 35.43 77.95 77.95 49.61 77.95 49.61 63.78 35.43 63.78 21.26 77.95 21.26 92.13 35.43 106.3 49.61 106.3 49.61 92.13 77.95 92.13 92.13 92.13 92.13 77.95 92.13 35.43 77.95 35.43"/><polygon class="cls-1" points="42.52 28.35 42.52 42.52 56.69 42.52 70.87 28.35 70.87 14.17 56.69 0 42.52 0 42.52 14.17 14.17 14.17 0 14.17 0 28.35 0 70.87 14.17 70.87 14.17 28.35 42.52 28.35"/></g></g></svg>-->
+    </div>
+  </div>
+</div>
+
+<input type="text" id="name" name="name" required minlength="1" maxlength="1000" autocomplete="off" autofocus spellcheck="false">
+
+<div class="box"></div>
+<div class="bg"></div>
+
+
+
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      var input = document.querySelector('input');
+var box = document.querySelector('.box');
+
+var buttonsConnection = document.querySelectorAll('.filter--connection span');
+
+var inputValue = document.querySelector('input').value;
+
+/*input.addEventListener('keyup', function(key) {
+                                                          if (key.code !== "Backspace"){
+                                                            if (key.code == "Space"){
+                                                              box.innerHTML +=
+                                                               '<div class="space">' +
+                                                               '</div>'
+                                                            }
+                                                            if (input.value[input.value.length - 1] === "a"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter a letter3">' +
+                                                                  '<div class="letter__elemnt letterStart"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft a2"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft a3"></div>' +
+                                                                  '<div class="letter__elemnt letterRight a4"></div>' +
+                                                                  '<div class="letter__elemnt letterRight a5"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd active"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            if (input.value[input.value.length - 1] === "b"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter b letter3">' +
+                                                                  '<div class="letter__elemnt letterStart active"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft b2 active"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft b3 active"></div>' +
+                                                                  '<div class="letter__elemnt letterRight b4 active"></div>' +
+                                                                  '<div class="letter__elemnt letterRight b5 active"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd active"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                            if (input.value[input.value.length - 1] === "c"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter c letter3">' +
+                                                                  '<div class="letter__elemnt letterStart active"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft c2 active"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft c3 active"></div>' +
+                                                                  '<div class="letter__elemnt letterRight c4 active"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd active"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                            if (input.value[input.value.length - 1] === "d"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter d letter3">' +
+                                                                  '<div class="letter__elemnt letterStart active"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft d2 active"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft d3 active"></div>' +
+                                                                  '<div class="letter__elemnt letterRight d4 active"></div>' +
+                                                                '<div class="letter__elemnt letterRight d5 active"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd active"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                            if (input.value[input.value.length - 1] === "e"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter e letter3">' +
+                                                                  '<div class="letter__elemnt letterStart active"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft e2 active"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft e3 active"></div>' +
+                                                                  '<div class="letter__elemnt letterRight e4 active"></div>' +
+                                                                  '<div class="letter__elemnt letterRight e5 active"></div>' +
+                                                                  '<div class="letter__elemnt letterRight e6 active"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd active"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                            if (input.value[input.value.length - 1] === "f"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter f letter2">' +
+                                                                  '<div class="letter__elemnt letterStart active"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft f2 active"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft f3 active"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft f4 active"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd active"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                            if (input.value[input.value.length - 1] === "g"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter g letter3">' +
+                                                                  '<div class="letter__elemnt letterStart"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft g2"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft g3"></div>' +
+                                                                  '<div class="letter__elemnt letterRight g4"></div>' +
+                                                                  '<div class="letter__elemnt letterRight g5"></div>' +
+                                                                  '<div class="letter__elemnt letterRight g6"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                            if (input.value[input.value.length - 1] === "h"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter h letter3">' +
+                                                                  '<div class="letter__elemnt letterStart"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft h2"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft h3"></div>' +
+                                                                  '<div class="letter__elemnt letterRight h4"></div>' +
+                                                                  '<div class="letter__elemnt letterRight h5"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                             if (input.value[input.value.length - 1] === "i"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter i letter1">' +
+                                                                  '<div class="letter__elemnt letterStart"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft i2"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft i3"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                             if (input.value[input.value.length - 1] === "j"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter j letter2">' +
+                                                                  '<div class="letter__elemnt letterStart"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft j4"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft j5"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft j6"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            if (input.value[input.value.length - 1] === "k"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter k letter3">' +
+                                                                  '<div class="letter__elemnt letterStart"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft k2"></div>' + 
+                                                                  '<div class="letter__elemnt letterRight k4"></div>' +
+                                                                  '<div class="letter__elemnt letterRight k5"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                            if (input.value[input.value.length - 1] === "l"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter l letter1">' +
+                                                                  '<div class="letter__elemnt letterStart"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft l3"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                            if (input.value[input.value.length - 1] === "m"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter m letter5">' +
+                                                                  '<div class="letter__elemnt letterStart"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft m2"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft m3"></div>' +
+                                                                  '<div class="letter__elemnt letterRight m4"></div>' +
+                                                                  '<div class="letter__elemnt letterRight m5"></div>' +
+                                                                  '<div class="letter__elemnt letterCenter m6"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                            if (input.value[input.value.length - 1] === "n"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter n letter3">' +
+                                                                  '<div class="letter__elemnt letterStart"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft n2"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft n3"></div>' +
+                                                                  '<div class="letter__elemnt letterRight n5"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                            if (input.value[input.value.length - 1] === "o"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter o letter3">' +
+                                                                  '<div class="letter__elemnt letterStart"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft o2"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft o3"></div>' +
+                                                                '<div class="letter__elemnt letterRight o4"></div>' +
+                                                                  '<div class="letter__elemnt letterRight o5"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                            if (input.value[input.value.length - 1] === "p"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter p letter3">' +
+                                                                  '<div class="letter__elemnt letterStart"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft p2"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft p3"></div>' +
+                                                                '<div class="letter__elemnt letterRight p4"></div>' +
+                                                                  '<div class="letter__elemnt letterRight p5"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                            if (input.value[input.value.length - 1] === "q"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter q letter3">' +
+                                                                  '<div class="letter__elemnt letterStart"></div>' +
+                                                                  '<div class="letter__elemnt letterRight q2"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft q3"></div>' +
+                                                                '<div class="letter__elemnt letterLeft q4"></div>' +
+                                                                  '<div class="letter__elemnt letterRight q5"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            if (input.value[input.value.length - 1] === "r"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter r letter2">' +
+                                                                  '<div class="letter__elemnt letterStart"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft r2"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft r3"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            if (input.value[input.value.length - 1] === "s"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter s letter3">' +
+                                                                  '<div class="letter__elemnt letterStart"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft s2"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft s3"></div>' +   
+                                                                  '<div class="letter__elemnt letterRight s4"></div>' +
+                                                                  '<div class="letter__elemnt letterRight s5"></div>' +
+                                                                  '<div class="letter__elemnt letterRight s6"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                            if (input.value[input.value.length - 1] === "t"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter t letter2">' +
+                                                                  '<div class="letter__elemnt letterStart"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft t2"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft t3"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft t4"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                            if (input.value[input.value.length - 1] === "u"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter u letter3">' +
+                                                                  '<div class="letter__elemnt letterStart"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft u2"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft u3"></div>' +
+                                                                  '<div class="letter__elemnt letterRight u5"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                            if (input.value[input.value.length - 1] === "v"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter v letter3">' +
+                                                                  '<div class="letter__elemnt letterStart"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft v2"></div>' + 
+                                                                  '<div class="letter__elemnt letterCenter v3"></div>' +
+                                                                  '<div class="letter__elemnt letterRight v5"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                            if (input.value[input.value.length - 1] === "w"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter w letter5">' +
+                                                                  '<div class="letter__elemnt letterStart"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft w2"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft w3"></div>' +
+                                                                  '<div class="letter__elemnt letterRight w4"></div>' +
+                                                                  '<div class="letter__elemnt letterRight w5"></div>' +
+                                                                  '<div class="letter__elemnt letterCenter w6"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                            if (input.value[input.value.length - 1] === "x"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter x letter3">' +
+                                                                  '<div class="letter__elemnt letterStart"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft x2"></div>' + 
+                                                                  '<div class="letter__elemnt lettercenter x3"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft x5"></div>' +
+                                                                  '<div class="letter__elemnt letterRight x6"></div>' +
+                                                                '<div class="letter__elemnt letterRight x6"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                             if (input.value[input.value.length - 1] === "y"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter y letter3">' +
+                                                                  '<div class="letter__elemnt letterStart"></div>' +
+                                                                  '<div class="letter__elemnt letterLeft y2"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft y3"></div>' +
+                                                                  '<div class="letter__elemnt letterRight y4"></div>' +
+                                                                '<div class="letter__elemnt letterRight y6"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                            if (input.value[input.value.length - 1] === "z"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter z letter3">' +
+                                                                  '<div class="letter__elemnt letterStart"></div>' +
+                                                                  '<div class="letter__elemnt letterRight z2"></div>' + 
+                                                                  '<div class="letter__elemnt letterLeft z3"></div>' +
+                                                                  '<div class="letter__elemnt letterRight z4"></div>' +
+                                                                '<div class="letter__elemnt letterLeft z5"></div>' +
+                                                                '<div class="letter__elemnt letterRight z6"></div>' +
+                                                                  '<div class="letter__elemnt letterEnd"></div>' +
+                                                                '</div>';
+                                                            }
+                                                            
+                                                            if (input.value[input.value.length - 1] === "."){
+                                                              box.innerHTML +=
+                                                               '<div class="letter point letter1">' +
+                                                                  '<div class="letter__elemnt letterRight point1"></div>' + 
+                                                                '</div>';
+                                                            }
+                                                            
+                                                            if (input.value[input.value.length - 1] === ","){
+                                                              box.innerHTML +=
+                                                               '<div class="letter comma letter1">' +
+                                                                  '<div class="letter__elemnt letterRight comma1"></div>' + 
+                                                                '</div>';
+                                                            }
+                                                            
+                                                            if (input.value[input.value.length - 1] === ":"){
+                                                              box.innerHTML +=
+                                                               '<div class="letter signSentence douplePoint letter1">' +
+                                                                  '<div class="letter__elemnt letterRight douplePoint1"></div>' + 
+                                                                '<div class="letter__elemnt letterRight douplePoint2"></div>' + 
+                                                                '</div>';
+                                                            }
+                                                              
+                                                          } else {
+                                                            document.querySelector('.box > div:last-child').remove(); 
+                                                          }
+                                                          
+                                                          var letter = document.querySelectorAll('.box .letter');
+                                                          console.log(letter);
+                                                          
+                                                          for (let i = 0; i < letter.length; i++){
+                                                            letter[i].classList.add('.connectionEnd');
+                                                          };
+                                                        
+                                                          for (let i = 0; i < buttonsConnection.length; i++) {
+                                                             buttonsConnection[i].addEventListener('click', function() {
+                                                               for (let i = 0; i < buttonsConnection.length; i++) {
+                                                                  if (buttonsConnection[i].classList.contains("active")){
+                                                                    buttonsConnection[i].classList.remove("active");
+                                                                  }
+                                                               }
+                                                               buttonsConnection[i].classList.add('active');
+                                                               if(buttonsConnection[i] === buttonsConnection[0] ){
+                                                                 console.log("remove Connection");
+                                                                 for (let i = 0; i < letter.length; i++) {
+                                                                    if (letter[i].classList.contains("allConnection")){
+                                                                      letter[i].classList.remove("allConnection");
+                                                                    }
+                                                                   if (letter[i].classList.contains("connectionEnd")){
+                                                                      letter[i].classList.remove("connectionEnd");
+                                                                    }
+                                                                 } 
+                                                               }
+                                                               if(buttonsConnection[i]  ===  buttonsConnection[1] ){
+                                                                 console.log("add allConnections");
+                                                                 for (let i = 0; i < letter.length; i++) {
+                                                                    letter[i].classList.add('allConnection');
+                                                                    if (letter[i].classList.contains("connectionEnd")){
+                                                                      letter[i].classList.remove("connectionEnd");
+                                                                    }
+                                                                 }  
+                                                               }
+                                                               if(buttonsConnection[i]  ===  buttonsConnection[2] ){
+                                                                 console.log("add connectionEnd");
+                                                                 for (let i = 0; i < letter.length; i++) {
+                                                                    letter[i].classList.add('connectionEnd');
+                                                                   if (letter[i].classList.contains("allConnection")){
+                                                                      letter[i].classList.remove("allConnection");
+                                                                    }
+                                                                 } 
+                                                        
+                                                               }
+                                                        
+                                                            }); 
+                                                          }
+                                                        });*/
+
+input.addEventListener('keyup', function (key) {
+  if (key.code !== "Backspace") {
+    if (key.code == "Space") {
+      box.innerHTML +=
+      '<div class="space">' +
+      '</div>';
+    }
+    if (key.code == "shiftKey") {
+      box.innerHTML +=
+      '';
+    }
+    if (input.value[input.value.length - 1].toLowerCase() === "a") {
+      box.innerHTML +=
+      '<div class="letter a letter3">' +
+      '<div class="letter__elemnt letterStart"></div>' +
+      '<div class="letter__elemnt letterLeft a2"></div>' +
+      '<div class="letter__elemnt letterLeft a3"></div>' +
+      '<div class="letter__elemnt letterRight a4"></div>' +
+      '<div class="letter__elemnt letterRight a5"></div>' +
+      '<div class="letter__elemnt letterEnd active"></div>' +
+      '</div>';
+    }
+    if (input.value[input.value.length - 1].toLowerCase() === "b") {
+      box.innerHTML +=
+      '<div class="letter b letter3">' +
+      '<div class="letter__elemnt letterStart active"></div>' +
+      '<div class="letter__elemnt letterLeft b2 active"></div>' +
+      '<div class="letter__elemnt letterLeft b3 active"></div>' +
+      '<div class="letter__elemnt letterRight b4 active"></div>' +
+      '<div class="letter__elemnt letterRight b5 active"></div>' +
+      '<div class="letter__elemnt letterEnd active"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1].toLowerCase() === "c") {
+      box.innerHTML +=
+      '<div class="letter c letter3">' +
+      '<div class="letter__elemnt letterStart active"></div>' +
+      '<div class="letter__elemnt letterLeft c2 active"></div>' +
+      '<div class="letter__elemnt letterLeft c3 active"></div>' +
+      '<div class="letter__elemnt letterRight c4 active"></div>' +
+      '<div class="letter__elemnt letterEnd active"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1].toLowerCase() === "d") {
+      box.innerHTML +=
+      '<div class="letter d letter3">' +
+      '<div class="letter__elemnt letterStart active"></div>' +
+      '<div class="letter__elemnt letterLeft d2 active"></div>' +
+      '<div class="letter__elemnt letterLeft d3 active"></div>' +
+      '<div class="letter__elemnt letterRight d4 active"></div>' +
+      '<div class="letter__elemnt letterRight d5 active"></div>' +
+      '<div class="letter__elemnt letterEnd active"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1].toLowerCase() === "e") {
+      box.innerHTML +=
+      '<div class="letter e letter3">' +
+      '<div class="letter__elemnt letterStart active"></div>' +
+      '<div class="letter__elemnt letterLeft e2 active"></div>' +
+      '<div class="letter__elemnt letterLeft e3 active"></div>' +
+      '<div class="letter__elemnt letterRight e4 active"></div>' +
+      '<div class="letter__elemnt letterRight e5 active"></div>' +
+      '<div class="letter__elemnt letterRight e6 active"></div>' +
+      '<div class="letter__elemnt letterEnd active"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1].toLowerCase() === "f") {
+      box.innerHTML +=
+      '<div class="letter f letter2">' +
+      '<div class="letter__elemnt letterStart active"></div>' +
+      '<div class="letter__elemnt letterLeft f2 active"></div>' +
+      '<div class="letter__elemnt letterLeft f3 active"></div>' +
+      '<div class="letter__elemnt letterLeft f4 active"></div>' +
+      '<div class="letter__elemnt letterEnd active"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1].toLowerCase() === "g") {
+      box.innerHTML +=
+      '<div class="letter g letter3">' +
+      '<div class="letter__elemnt letterStart"></div>' +
+      '<div class="letter__elemnt letterLeft g2"></div>' +
+      '<div class="letter__elemnt letterLeft g3"></div>' +
+      '<div class="letter__elemnt letterRight g4"></div>' +
+      '<div class="letter__elemnt letterRight g5"></div>' +
+      '<div class="letter__elemnt letterRight g6"></div>' +
+      '<div class="letter__elemnt letterEnd"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1].toLowerCase() === "h") {
+      box.innerHTML +=
+      '<div class="letter h letter3">' +
+      '<div class="letter__elemnt letterStart"></div>' +
+      '<div class="letter__elemnt letterLeft h2"></div>' +
+      '<div class="letter__elemnt letterLeft h3"></div>' +
+      '<div class="letter__elemnt letterRight h4"></div>' +
+      '<div class="letter__elemnt letterRight h5"></div>' +
+      '<div class="letter__elemnt letterEnd"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1].toLowerCase() === "i") {
+      box.innerHTML +=
+      '<div class="letter i letter1">' +
+      '<div class="letter__elemnt letterStart"></div>' +
+      '<div class="letter__elemnt letterLeft i2"></div>' +
+      '<div class="letter__elemnt letterLeft i3"></div>' +
+      '<div class="letter__elemnt letterEnd"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1].toLowerCase() === "j") {
+      box.innerHTML +=
+      '<div class="letter j letter2">' +
+      '<div class="letter__elemnt letterStart"></div>' +
+      '<div class="letter__elemnt letterLeft j4"></div>' +
+      '<div class="letter__elemnt letterLeft j5"></div>' +
+      '<div class="letter__elemnt letterLeft j6"></div>' +
+      '<div class="letter__elemnt letterEnd"></div>' +
+      '</div>';
+    }
+    if (input.value[input.value.length - 1].toLowerCase() === "k") {
+      box.innerHTML +=
+      '<div class="letter k letter3">' +
+      '<div class="letter__elemnt letterStart"></div>' +
+      '<div class="letter__elemnt letterLeft k2"></div>' +
+      '<div class="letter__elemnt letterRight k4"></div>' +
+      '<div class="letter__elemnt letterRight k5"></div>' +
+      '<div class="letter__elemnt letterEnd"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1].toLowerCase() === "l") {
+      box.innerHTML +=
+      '<div class="letter l letter1">' +
+      '<div class="letter__elemnt letterStart"></div>' +
+      '<div class="letter__elemnt letterLeft l3"></div>' +
+      '<div class="letter__elemnt letterEnd"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1].toLowerCase() === "m") {
+      box.innerHTML +=
+      '<div class="letter m letter5">' +
+      '<div class="letter__elemnt letterStart"></div>' +
+      '<div class="letter__elemnt letterLeft m2"></div>' +
+      '<div class="letter__elemnt letterLeft m3"></div>' +
+      '<div class="letter__elemnt letterRight m4"></div>' +
+      '<div class="letter__elemnt letterRight m5"></div>' +
+      '<div class="letter__elemnt letterCenter m6"></div>' +
+      '<div class="letter__elemnt letterEnd"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1].toLowerCase() === "n") {
+      box.innerHTML +=
+      '<div class="letter n letter3">' +
+      '<div class="letter__elemnt letterStart"></div>' +
+      '<div class="letter__elemnt letterLeft n2"></div>' +
+      '<div class="letter__elemnt letterLeft n3"></div>' +
+      '<div class="letter__elemnt letterRight n5"></div>' +
+      '<div class="letter__elemnt letterEnd"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1].toLowerCase() === "o") {
+      box.innerHTML +=
+      '<div class="letter o letter3">' +
+      '<div class="letter__elemnt letterStart"></div>' +
+      '<div class="letter__elemnt letterLeft o2"></div>' +
+      '<div class="letter__elemnt letterLeft o3"></div>' +
+      '<div class="letter__elemnt letterRight o4"></div>' +
+      '<div class="letter__elemnt letterRight o5"></div>' +
+      '<div class="letter__elemnt letterEnd"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1].toLowerCase() === "p") {
+      box.innerHTML +=
+      '<div class="letter p letter3">' +
+      '<div class="letter__elemnt letterStart"></div>' +
+      '<div class="letter__elemnt letterLeft p2"></div>' +
+      '<div class="letter__elemnt letterLeft p3"></div>' +
+      '<div class="letter__elemnt letterRight p4"></div>' +
+      '<div class="letter__elemnt letterRight p5"></div>' +
+      '<div class="letter__elemnt letterEnd"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1].toLowerCase() === "q") {
+      box.innerHTML +=
+      '<div class="letter q letter3">' +
+      '<div class="letter__elemnt letterStart"></div>' +
+      '<div class="letter__elemnt letterRight q2"></div>' +
+      '<div class="letter__elemnt letterLeft q3"></div>' +
+      '<div class="letter__elemnt letterLeft q4"></div>' +
+      '<div class="letter__elemnt letterRight q5"></div>' +
+      '<div class="letter__elemnt letterEnd"></div>' +
+      '</div>';
+    }
+    if (input.value[input.value.length - 1].toLowerCase() === "r") {
+      box.innerHTML +=
+      '<div class="letter r letter2">' +
+      '<div class="letter__elemnt letterStart"></div>' +
+      '<div class="letter__elemnt letterLeft r2"></div>' +
+      '<div class="letter__elemnt letterLeft r3"></div>' +
+      '<div class="letter__elemnt letterEnd"></div>' +
+      '</div>';
+    }
+    if (input.value[input.value.length - 1].toLowerCase() === "s") {
+      box.innerHTML +=
+      '<div class="letter s letter3">' +
+      '<div class="letter__elemnt letterStart"></div>' +
+      '<div class="letter__elemnt letterLeft s2"></div>' +
+      '<div class="letter__elemnt letterLeft s3"></div>' +
+      '<div class="letter__elemnt letterRight s4"></div>' +
+      '<div class="letter__elemnt letterRight s5"></div>' +
+      '<div class="letter__elemnt letterRight s6"></div>' +
+      '<div class="letter__elemnt letterEnd"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1].toLowerCase() === "t") {
+      box.innerHTML +=
+      '<div class="letter t letter2">' +
+      '<div class="letter__elemnt letterStart"></div>' +
+      '<div class="letter__elemnt letterLeft t2"></div>' +
+      '<div class="letter__elemnt letterLeft t3"></div>' +
+      '<div class="letter__elemnt letterLeft t4"></div>' +
+      '<div class="letter__elemnt letterEnd"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1].toLowerCase() === "u") {
+      box.innerHTML +=
+      '<div class="letter u letter3">' +
+      '<div class="letter__elemnt letterStart"></div>' +
+      '<div class="letter__elemnt letterLeft u2"></div>' +
+      '<div class="letter__elemnt letterLeft u3"></div>' +
+      '<div class="letter__elemnt letterRight u5"></div>' +
+      '<div class="letter__elemnt letterEnd"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1].toLowerCase() === "v") {
+      box.innerHTML +=
+      '<div class="letter v letter3">' +
+      '<div class="letter__elemnt letterStart"></div>' +
+      '<div class="letter__elemnt letterLeft v2"></div>' +
+      '<div class="letter__elemnt letterCenter v3"></div>' +
+      '<div class="letter__elemnt letterRight v5"></div>' +
+      '<div class="letter__elemnt letterEnd"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1].toLowerCase() === "w") {
+      box.innerHTML +=
+      '<div class="letter w letter5">' +
+      '<div class="letter__elemnt letterStart"></div>' +
+      '<div class="letter__elemnt letterLeft w2"></div>' +
+      '<div class="letter__elemnt letterLeft w3"></div>' +
+      '<div class="letter__elemnt letterRight w4"></div>' +
+      '<div class="letter__elemnt letterRight w5"></div>' +
+      '<div class="letter__elemnt letterCenter w6"></div>' +
+      '<div class="letter__elemnt letterEnd"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1].toLowerCase() === "x") {
+      box.innerHTML +=
+      '<div class="letter x letter3">' +
+      '<div class="letter__elemnt letterStart"></div>' +
+      '<div class="letter__elemnt letterLeft x2"></div>' +
+      '<div class="letter__elemnt lettercenter x3"></div>' +
+      '<div class="letter__elemnt letterLeft x5"></div>' +
+      '<div class="letter__elemnt letterRight x6"></div>' +
+      '<div class="letter__elemnt letterRight x6"></div>' +
+      '<div class="letter__elemnt letterEnd"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1].toLowerCase() === "y") {
+      box.innerHTML +=
+      '<div class="letter y letter3">' +
+      '<div class="letter__elemnt letterStart"></div>' +
+      '<div class="letter__elemnt letterLeft y2"></div>' +
+      '<div class="letter__elemnt letterLeft y3"></div>' +
+      '<div class="letter__elemnt letterRight y4"></div>' +
+      '<div class="letter__elemnt letterRight y6"></div>' +
+      '<div class="letter__elemnt letterEnd"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1].toLowerCase() === "z") {
+      box.innerHTML +=
+      '<div class="letter z letter3">' +
+      '<div class="letter__elemnt letterStart"></div>' +
+      '<div class="letter__elemnt letterRight z2"></div>' +
+      '<div class="letter__elemnt letterLeft z3"></div>' +
+      '<div class="letter__elemnt letterRight z4"></div>' +
+      '<div class="letter__elemnt letterLeft z5"></div>' +
+      '<div class="letter__elemnt letterRight z6"></div>' +
+      '<div class="letter__elemnt letterEnd"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1] === ".") {
+      box.innerHTML +=
+      '<div class="letter point letter1">' +
+      '<div class="letter__elemnt letterRight point1"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1] === ",") {
+      box.innerHTML +=
+      '<div class="letter comma letter1">' +
+      '<div class="letter__elemnt letterRight comma1"></div>' +
+      '</div>';
+    }
+
+    if (input.value[input.value.length - 1] === ":") {
+      box.innerHTML +=
+      '<div class="letter signSentence douplePoint letter1">' +
+      '<div class="letter__elemnt letterRight douplePoint1"></div>' +
+      '<div class="letter__elemnt letterRight douplePoint2"></div>' +
+      '</div>';
+    }
+
+  } else {
+    document.querySelector('.box > div:last-child').remove();
+  }
+
+  var letter = document.querySelectorAll('.box .letter');
+
+  for (let i = 0; i < letter.length; i++) {if (window.CP.shouldStopExecution(0)) break;
+    letter[i].classList.add('connectionEnd');
+  }window.CP.exitedLoop(0);;
+
+  for (let i = 0; i < buttonsConnection.length; i++) {if (window.CP.shouldStopExecution(1)) break;
+    buttonsConnection[i].addEventListener('click', function () {
+      for (let i = 0; i < buttonsConnection.length; i++) {if (window.CP.shouldStopExecution(2)) break;
+        if (buttonsConnection[i].classList.contains("active")) {
+          buttonsConnection[i].classList.remove("active");
+        }
+      }window.CP.exitedLoop(2);
+      buttonsConnection[i].classList.add('active');
+      if (buttonsConnection[i] === buttonsConnection[0]) {
+        console.log("remove Connection");
+        for (let i = 0; i < letter.length; i++) {if (window.CP.shouldStopExecution(3)) break;
+          if (letter[i].classList.contains("allConnection")) {
+            letter[i].classList.remove("allConnection");
+          }
+          if (letter[i].classList.contains("connectionEnd")) {
+            letter[i].classList.remove("connectionEnd");
+          }
+          if (letter[i].classList.contains("crypto")) {
+            letter[i].classList.remove("crypto");
+          }
+        }window.CP.exitedLoop(3);
+      }
+      if (buttonsConnection[i] === buttonsConnection[1]) {
+        console.log("add allConnections");
+        for (let i = 0; i < letter.length; i++) {if (window.CP.shouldStopExecution(4)) break;
+          letter[i].classList.add('allConnection');
+          if (letter[i].classList.contains("connectionEnd")) {
+            letter[i].classList.remove("connectionEnd");
+          }
+          if (letter[i].classList.contains("crypto")) {
+            letter[i].classList.remove("crypto");
+          }
+        }window.CP.exitedLoop(4);
+      }
+      if (buttonsConnection[i] === buttonsConnection[2]) {
+        console.log("add connectionEnd");
+        for (let i = 0; i < letter.length; i++) {if (window.CP.shouldStopExecution(5)) break;
+          letter[i].classList.add('connectionEnd');
+          if (letter[i].classList.contains("allConnection")) {
+            letter[i].classList.remove("allConnection");
+          }
+          if (letter[i].classList.contains("crypto")) {
+            letter[i].classList.remove("crypto");
+          }
+        }window.CP.exitedLoop(5);
+
+      }
+      if (buttonsConnection[i] === buttonsConnection[3]) {
+        console.log("add crypto");
+        for (let i = 0; i < letter.length; i++) {if (window.CP.shouldStopExecution(6)) break;
+          letter[i].classList.add('crypto');
+          if (letter[i].classList.contains("allConnection")) {
+            letter[i].classList.remove("allConnection");
+          }
+          if (letter[i].classList.contains("connectionEnd")) {
+            letter[i].classList.remove("connectionEnd");
+          }
+        }window.CP.exitedLoop(6);
+      }
+
+    });
+  }window.CP.exitedLoop(1);
+});
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

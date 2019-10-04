@@ -1,0 +1,198 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Div with Gradient Drop Shadow</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+<style>
+      .wrapper {
+  font-family: sans-serif;
+  margin: 5% auto;
+  width: 400px;
+}
+
+.screenshot {
+  display: inline-block;
+  margin: 30px;
+  color: #fff;
+  position: relative;
+}
+
+.screenshot:before {
+  background: #52A0FD;
+  background: linear-gradient(to right, #136ff7 0%, #7526fb 100%);
+  content: '';
+  display: inline-block;
+  width: 230px;
+  height: 450px;
+  position: absolute;
+  bottom: -20px;
+  z-index: -1;
+  border-radius: 20px;
+  -webkit-filter: blur(20px) brightness(0.95);
+  filter: blur(20px) brightness(0.95);
+}
+
+.s-container {
+  display: grid;
+  border-radius: 20px;
+  height: 450px;
+  width: 230px;
+  position: relative;
+  z-index: 2;
+  background: #121422;
+  grid-template-rows: auto 50px;
+}
+.s-container main {
+  display: block;
+  background-image: url("https://source.unsplash.com/dxk6tMxNkJY/900x1600/");
+  background-size: cover;
+  border-radius: 20px 20px 0 0;
+  padding: 16px;
+}
+.s-container main .header {
+  display: grid;
+  grid-template-columns: 40px auto;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.s-container main .header h1 {
+  font-weight: 900;
+  font-size: 14px;
+}
+.s-container main .value {
+  display: block;
+  width: 100%;
+  line-height: 20px;
+  padding: 10px 0;
+  font-size: 24px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+.s-container main .value::first-letter {
+  font-size: 12px;
+}
+.s-container main .chart {
+  background: #111321;
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  opacity: .9;
+}
+.s-container main .box {
+  padding: 10px 5px;
+  border-radius: 5px;
+  background-color: #1a202d;
+}
+.s-container main .box .crypto-info {
+  width: 100%;
+  font-size: 10px;
+  padding: 5px 5px 15px;
+}
+.s-container main .box .crypto-info .crypto {
+  width: 50%;
+  float: left;
+}
+.s-container main .box .crypto-info .price {
+  width: 50%;
+  float: left;
+  text-align: right;
+}
+.s-container nav {
+  background: #1763e7;
+  /* Old browsers */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #1763e7 0%, #7626f7 84%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1763e7', endColorstr='#7626f7',GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */
+  border-radius: 0 0 20px 20px;
+}
+.s-container nav ul {
+  height: 90%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.s-container nav ul li {
+  font-size: 14px;
+  align-self: center;
+  justify-self: center;
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+
+<div class="wrapper">
+<div class="screenshot">
+<div class="s-container">
+<main>
+<div class="header">
+<div class="hamburger"><i class="fas fa-bars"></i></div>
+<h1>BTC Balance</h1>
+</div>
+<div class="value">
+$12,359
+</div>
+<div class="chart">
+<canvas id="theChart" style="width: 198px; height: 165px;" width="396" height="330"></canvas>
+</div>
+<div class="box">
+<div class="crypto-info">
+<p class="crypto">BTC</p>
+ <p class="price">$2,893.01</p>
+</div>
+</div>
+</main>
+<nav>
+<ul>
+<li><i class="fa fa-id-card"></i></li>
+<li><i class="fa fa-shopping-cart"></i></li>
+<li><i class="fa fa-chart-line"></i></li>
+<li><i class="fa fa-chart-pie"></i></li>
+<li><i class="fas fa-at"></i></li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<script id="rendered-js">
+      var lineChartData = {
+  labels: ["0", "5", "7.5"],
+  datasets: [{
+    label: "",
+    fillColor: "rgba(255,255,255,0)",
+    strokeColor: "#1763e7",
+    pointColor: "rgba(16,133,135,1)",
+    pointStrokeColor: "#1763e7",
+    pointHighlightFill: "#1763e7",
+    pointHighlightStroke: "rgba(16,133,135,1)",
+    data: ["128.940", "125.667", "150.554"] }] };
+
+
+
+
+window.onload = function () {
+  var ctx = document.getElementById("theChart").getContext("2d");
+  window.myLine = new Chart(ctx).Line(lineChartData, {
+    responsive: true });
+
+};
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

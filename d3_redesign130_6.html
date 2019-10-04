@@ -1,0 +1,280 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<title>CodePen - CSS only: timed pop up</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<style>
+    /* fonts */
+@font-face {
+  font-family: 'Lobster';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lobster Regular'), local('Lobster-Regular'), url(https://fonts.gstatic.com/s/lobster/v22/neILzCirqoswsqX9zoKmNg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lora Regular'), local('Lora-Regular'), url(https://fonts.gstatic.com/s/lora/v14/0QIvMX1D_JOuMwr7Jg.ttf) format('truetype');
+}
+/* mixins */
+.trim {
+  margin: 0;
+  padding: 0;
+}
+.text {
+  font-family: Lora, sans-serif;
+  font-size: 25px;
+  line-height: 1.5;
+  color: black;
+}
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url(https://images.unsplash.com/photo-1445888834731-95b3d5539bf9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=31b8f64a6140b00217027291760b216e);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100%;
+  width: 100%;
+}
+body header {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+body header .circle {
+  align-items: center;
+  align-self: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  height: 250px;
+  width: 250px;
+  text-align: center;
+  font-family: Lobster, serif;
+  font-size: 50px;
+  color: black;
+  padding: 20px;
+}
+body header .circle h1 {
+  font-size: 45px;
+  opacity: 0.8;
+}
+body main {
+  box-sizing: padding-box;
+  background-color: white;
+  font-family: Lora, sans-serif;
+  padding: 100px;
+}
+body main article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+body main article h2 {
+  font-family: Lobster, serif;
+  font-size: 45px;
+  margin: 0 auto 100px auto;
+  max-width: 450px;
+  text-align: center;
+}
+body main article p {
+  font-family: Lora, sans-serif;
+  font-size: 25px;
+  line-height: 1.5;
+  color: black;
+  margin: 0 auto;
+  max-width: 800px;
+}
+/* POP UP */
+@keyframes pop {
+  0% {
+    height: 0%;
+  }
+  50% {
+    height: 0%;
+  }
+  100% {
+    height: 100%;
+  }
+}
+@keyframes show-text {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.pop-up {
+  animation: pop 0.8s ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  height: 0;
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+  z-index: 30;
+}
+.pop-up .content {
+  align-self: center;
+  background-color: white;
+  padding: 100px;
+  width: 500px;
+}
+.pop-up .content p {
+  font-family: Lora, sans-serif;
+  font-size: 25px;
+  line-height: 1.5;
+  color: black;
+  animation: show-text 1s ease 3.3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  font-family: Lobster, serif;
+  font-size: 50px;
+  opacity: 0;
+  text-align: center;
+}
+/* POP UP close button */
+input[type="checkbox"] {
+  display: none;
+}
+label {
+  animation: show-text 0.8s ease 5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  color: white;
+  cursor: pointer;
+  font-size: 24px;
+  right: 30px;
+  opacity: 0;
+  position: fixed;
+  top: 20px;
+  z-index: 40;
+}
+input[type="checkbox"]:checked ~ div.pop-up {
+  display: none;
+}
+input[type="checkbox"]:checked ~ label {
+  display: none;
+}
+/* HEART */
+@keyframes beat {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.2, 1.2);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+#heart {
+  animation: beat 1s ease 4.3s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  height: 100px;
+  width: 100px;
+  margin: 50px auto;
+  position: relative;
+}
+#heart:before {
+  background-color: palevioletred;
+  border-radius: 50% 50% 0 20px;
+  content: "";
+  display: block;
+  height: 110px;
+  left: 25px;
+  position: absolute;
+  transform: rotate(45deg);
+  width: 75px;
+}
+#heart:after {
+  background-color: palevioletred;
+  border-radius: 50% 50% 20px 0;
+  content: "";
+  display: block;
+  height: 110px;
+  position: absolute;
+  right: 25px;
+  transform: rotate(-45deg);
+  width: 75px;
+}
+
+  </style>
+
+</head>
+<body translate="no">
+
+<input type="checkbox" id="close" name="close">
+<label for="close">close</label>
+<div class="pop-up">
+<div class="content">
+<p>CSS magic!</p>
+<div id="heart">
+</div>
+</div>
+</div>
+<header>
+<div class="circle">
+<h1>CSS only pop up</h1>
+</div>
+</header>
+<main>
+<article>
+<h2>While you're waiting for the magic to happen..</h2>
+<p>A cone (in formal botanical usage: strobilus, plural strobili) is an organ on plants in the division Pinophyta (conifers) that contains the reproductive structures. The familiar woody cone is the female cone, which produces seeds. The male cones,
+which produce pollen, are usually herbaceous and much less conspicuous even at full maturity. The name "cone" derives from the fact that the shape in some species resembles a geometric cone. The individual plates of a cone are known as scales.<br>
+<br>
+</p>
+<p>The male cone ('microstrobilus or pollen cone) is structurally similar across all conifers, differing only in small ways (mostly in scale arrangement) from species to species. Extending out from a central axis are microsporophylls (modified leaves).
+Under each microsporophyll is one or several microsporangia (pollen sacs).<br>
+<br>
+</p>
+<p>The female cone (megastrobilus, seed cone, or ovulate cone) contains ovules which, when fertilized by pollen, become seeds. The female cone structure varies more markedly between the different consonifer families, and is often crucial for the identification
+of many specianous of conifers...<a href="https://en.wikipedia.org/wiki/Conifer_cone" target="_blank">more</a>
+</p>
+</article>
+</main>
+
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      /*
+
+This is CSS only timed fullscreen pop up 
+
+Essential ingredients:
+CSS animation property
+@keyframes
+input checkbox
+
+Cooking instructions: 
+
+First, we create two @keyframes:
+pop - changes the height of the pop-up container form 0% to 100%.
+show-text - changes the opacity of the text in the pop-up from 0 to 1.
+
+Second, we use the created @keyframes to create the animations. The pop @keyframe is applied to the pop-up container 3s after the page is loaded with duration 0.8s, the show-text @keyframes is applied to the pop-up content container 3.3s after the page is loaded (0.3s after the pop-up container animation starts) with duration 1s. Thus, the text appears slightly after the pop-up container shows.
+
+Third, we need a close button. It is actually an input with "close" label. It uses the same show-text @keyframes but appears 5s after the page is loaded, so around 1.5s after the text in the pop-up shows.
+
+*/
+      //# sourceURL=pen.js
+    </script>
+
+
+</body></html>

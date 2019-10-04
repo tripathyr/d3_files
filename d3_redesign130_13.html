@@ -1,0 +1,331 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - NoJs Side-Menu Experiment.</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+<style>
+    :root {
+  font-family: 'Open Sans';
+  font-size: 16px;
+  background-color: #1a242f;
+  background-image: linear-gradient(-180deg, #2c3e50, transparent);
+  background-repeat: no-repeat;
+  background-size: 100% 75vh;
+  -webkit-perspective: 12in;
+          perspective: 12in;
+}
+#nav-active {
+  left: -100vw;
+  position: absolute;
+}
+[for='nav-active'] {
+  cursor: pointer;
+  position: relative;
+  z-index: 5;
+}
+#nav-active:checked + .menu {
+  opacity: 1;
+  -webkit-transform: scale(1, 1);
+          transform: scale(1, 1);
+}
+#nav-active:checked + .menu + .main {
+  box-shadow: -20px 20px 50px rgba(0, 0, 0, 0.5);
+  -webkit-transform: translateZ(-150px) translateX(250px) rotateY(-47.5deg);
+          transform: translateZ(-150px) translateX(250px) rotateY(-47.5deg);
+}
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 250px;
+  padding: 0.25em 0.75em;
+  box-sizing: border-box;
+  opacity: 0;
+  min-height: 100vh;
+  -webkit-transform: scale(0.8, 0.8);
+          transform: scale(0.8, 0.8);
+  transition: opacity 333ms, -webkit-transform 333ms;
+  transition: transform 333ms, opacity 333ms;
+  transition: transform 333ms, opacity 333ms, -webkit-transform 333ms;
+}
+.menu ul {
+  font-weight: 200;
+  padding: 0.5em 0;
+}
+.menu ul.primary {
+  color: #ecf0f1;
+  font-size: 1.5rem;
+}
+.menu ul.secondary {
+  color: #7f8c8d;
+  font-size: 1rem;
+}
+.menu hr {
+  height: 0;
+  border: 0;
+  border-bottom: 1px dotted #34495e;
+  border-top: 1px dotted #1f2c39;
+}
+.menu li {
+  padding: 0.333em 0;
+}
+.menu li.active {
+  color: #3498db;
+}
+.close {
+  color: #7f8c8d;
+  position: absolute;
+  bottom: 1em;
+  right: 0;
+}
+.main {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #ecf0f1;
+  transition: box-shadow 333ms, -webkit-transform 333ms;
+  transition: transform 333ms, box-shadow 333ms;
+  transition: transform 333ms, box-shadow 333ms, -webkit-transform 333ms;
+  -webkit-transform-origin: 0% center;
+          transform-origin: 0% center;
+  box-shadow: 0 0 0 transparent;
+}
+.main > nav {
+  color: white;
+  padding: 1rem;
+  background-color: #f39c12;
+  border-bottom: 0.1em solid #e67e22;
+  font-size: 2rem;
+  position: relative;
+  box-shadow: 0 5px 5px rgba(0, 0, 25, 0.25);
+  z-index: 2;
+}
+.main > nav h1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  line-height: 4rem;
+  font-weight: 200;
+}
+.timeline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 4.25rem;
+  overflow: auto;
+  padding-bottom: 2em;
+}
+.timeline:before {
+  position: absolute;
+  content: "";
+  left: 50%;
+  width: 0.33em;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  top: 0;
+  bottom: 0;
+  background-color: #95a5a6;
+}
+.timeline > li:before {
+  position: absolute;
+  content: "";
+  border: 0.275em solid #7f8c8d;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.165em #ecf0f1;
+  left: 50%;
+  top: -0.66em;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.timeline > li {
+  position: relative;
+  width: 50vw;
+  margin: 0 auto;
+  margin-top: 2em;
+  border-bottom: 1px solid #ccc;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0 0.25em 0.25em rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.timeline > li > header {
+  font-size: 0.75em;
+  height: 1.25rem;
+  position: relative;
+  margin-bottom: 0.5em;
+}
+.timeline .type,
+.timeline .time,
+.timeline .task {
+  line-height: 1rem;
+  position: absolute;
+  top: 0;
+  font-weight: 200;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+.timeline .task {
+  text-align: left;
+  left: 0;
+  right: 66%;
+  color: #e67e22;
+}
+.timeline .type {
+  text-align: right;
+  left: 66%;
+  right: 0;
+  color: #2ecc71;
+}
+.timeline .time {
+  text-align: center;
+  left: 33%;
+  right: 33%;
+  color: #bdc3c7;
+}
+.timeline .subject {
+  font-size: 2em;
+  padding: 0.5em 0;
+}
+
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<input type="checkbox" id="nav-active" checked="">
+<nav class="menu">
+<hr>
+<ul class="primary">
+<li class="active">
+<i class="fa fa-fw fa-clock-o"></i>
+Timeline
+</li>
+<li>
+<i class="fa fa-fw fa-dashboard"></i>
+Dashboard
+</li>
+<li>
+<i class="fa fa-fw fa-github"></i>
+Projects
+</li>
+<li>
+<i class="fa fa-fw fa-file-text-o"></i>
+Resume
+</li>
+<li>
+<i class="fa fa-fw fa-sitemap"></i>
+Jobs
+</li>
+</ul>
+<hr>
+<ul class="secondary">
+<li>
+<i class="fa fa-fw fa-comment-o"></i>
+feedback
+</li>
+<li>
+<i class="fa fa-fw fa-share"></i>
+tell a field
+</li>
+<li>
+<i class="fa fa-fw fa-question-circle"></i>
+help
+</li>
+<li>
+<i class="fa fa-fw fa-shopping-cart"></i>
+store
+</li>
+<li>
+<i class="fa fa-fw fa-gears"></i>
+settings
+</li>
+</ul>
+<label for="nav-active" class="close">
+<i class="fa fa-fw fa-reply fa-rotate-180"></i> Return
+</label>
+</nav>
+<div class="main">
+<nav>
+<label for="nav-active">
+<i class="fa fa-bars"></i>
+</label>
+<h1>Timeline – Today</h1>
+</nav>
+<ol class="timeline">
+<li>
+<header>
+<span class="task">Snowshoeing at Estes</span>
+<span class="time">3:11 PM</span>
+<span class="type">Prep</span>
+</header>
+You added a new task:
+<div class="subject">
+Get Maps
+</div>
+</li>
+<li>
+<header>
+<span class="task">Snowshoeing at Estes</span>
+<span class="time">2:49 PM</span>
+<span class="type">Packing</span>
+</header>
+You added a new task:
+<div class="subject">
+Pack snowshoes
+</div>
+</li>
+<li>
+<header>
+<span class="task">Rockclimbing at Steamboat</span>
+<span class="time">2:33 PM</span>
+<span class="type">Packing</span>
+</header>
+You added a new task:
+<div class="subject">
+Pack harness
+</div>
+</li>
+<li>
+<header>
+<span class="task">Backpacking at Grand Canyon</span>
+<span class="time">2:33 PM</span>
+<span class="type">Prep</span>
+</header>
+You added a new task:
+<div class="subject">
+Make reservations
+</div>
+</li>
+<li>
+<header>
+<span class="time">11:14 AM</span>
+</header>
+You created a new Destination:
+<div class="subject">
+Snowshoeing at Estes
+</div>
+</li>
+</ol>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      // NoJs
+      //# sourceURL=pen.js
+    </script>
+
+
+</body></html>

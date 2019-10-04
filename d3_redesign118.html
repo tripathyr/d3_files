@@ -1,0 +1,401 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Crypto-currency</title>
+<style>
+      * {
+    margin: 0;
+    padding: 0;
+}
+ul{
+    list-style:none;
+}
+a{
+    text-decoration:none;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    /*padding-top: calc(100vh*0.08);*/
+}
+.warp {
+    width: 100%;
+    max-width: 1920px;
+    background: url('https://i.postimg.cc/zDWhkbpv/image.png') no-repeat 50% 0;
+    margin: auto;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+.wrapper {
+    max-width: 985px;
+    margin: auto;
+    margin: 3.5% 25% 14% 25%;
+}
+.sel {
+    background: rgba(31,40,48,0.2);
+    width: 100%;
+    max-height: calc(100vW*0.05); /*5% это процент от высоты блока в макете 100px/1080px */
+    border: solid 1px rgb(43,59,69);
+    border-radius: 7px;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+}
+
+@media screen and (max-width:1366px) {
+    .wrapper {
+        max-width: 700px;        
+    }
+}
+@media screen and (max-width:1280px){
+    .wrapper {
+        max-width: 655px;       
+    }
+}
+
+@media screen and (max-width:800px) {
+    .wrapper {
+        max-width: 410px;
+    }
+}
+
+/*переделать размеры под более узкие экраны */
+
+@media screen and (max-width:640px) {
+    .wrapper {
+        max-width: 328px;
+    }
+
+}
+@media screen and (max-width:320px) {
+    .wrapper {
+        max-width: 164px;
+    }
+
+}
+
+.txt {
+    font-size: calc( (100vw - 320px)/(1920 - 320) * (32 - 4) + 4px);
+    /*font-size: 200%; 32px;*/
+    font-weight: 500;
+    margin: 2.7% 0% 0% 14%;
+}
+.dropdown-menu {
+    border: solid 1px rgb(43,59,69);
+    border-radius: 7px;
+    background: rgb(20, 34, 44);
+    margin: 2% 2% 2% 0%;
+    padding: 2% 0% 2% 0%;
+    z-index: 2;
+    width: 30%;
+    color: #c3c5c6;    
+}
+    .dropdown-menu ul {
+        margin-top: 8%;
+        padding:4% 0% 2% 4%;
+        border: solid 1px rgb(146,232,254);
+        border-radius: 7px;
+        display: none;
+        background: rgb(20, 34, 44);        
+    }
+
+        .dropdown-menu ul li {
+            background: rgb(20, 34, 44);
+            padding-bottom:2%;
+            border-radius: 7px;
+            margin: 0.5%;
+        }
+
+            .dropdown-menu ul li a {
+                display: block;
+                width: 100%;
+                font-size: calc( (100vw - 320px)/(1920 - 320) * (16 - 4) + 4px);
+                /*font-size: 100%; 16px;*/
+                font-weight: lighter;
+                color: #c3c5c6;
+            }
+
+    .dropdown-menu .title {
+        font-size: calc( (100vw - 320px)/(1920 - 320) * (16 - 4) + 4px);
+        width: 89.5%;
+        cursor: pointer;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        display: flex;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        align-items: center;
+        padding: 0% 5%;
+    }
+#str {
+    width: 70%;
+}
+
+.dropdown-menu.open {
+    border: solid 1px rgb(146,232,254);
+}
+
+.dropdown-menu.open ul {
+    display: block;
+}
+
+
+.cont {
+    width: 100%;    
+    margin-top: 5%;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+    .cont > div {
+        width: 31%; /*308px;*/
+        padding-bottom: 6%;
+        max-height: 33%;
+    }
+.e {
+    background: url('https://i.postimg.cc/5ycCVb9f/Ethereum.png') no-repeat 50% 0;
+    background-size: contain;
+    z-index: 1;
+}
+.l {
+    background: url('https://i.postimg.cc/d1ZypLYW/Litecoin.png') no-repeat 50% 0;
+    background-size: contain;
+    z-index: 1;
+}
+.b {
+    background: url('https://i.postimg.cc/LsbPxjrY/Bitcoin.png') no-repeat 50% 0;
+    background-size: contain;    
+    z-index: 1;
+}
+.cont > div > div {
+    width: 80%;
+}
+.curName {
+    font-size: calc( (100vw - 320px)/(1920 - 320) * (22 - 4) + 4px);
+    /*font-size: 140%; 22px;*/
+    font-weight: bold;
+    margin: 5% 10% 0% 10%;
+    text-align: center;
+}
+.price {
+    font-size: calc( (100vw - 320px)/(1920 - 320) * (20 - 4) + 4px);
+    /*font-size: 125%; 20px;*/
+    font-weight: bold;
+    margin: 47% 10% 0% 10%;
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+.pchange {
+    font-size: calc( (100vw - 320px)/(1920 - 320) * (14 - 4) + 4px);
+    /*font-size: 87.5%; 14px;*/
+    font-weight: bold;
+    margin: 4% 10% 0% 10%;
+}
+.rad {
+    float: right;
+    width:14%;
+}
+.otherCh {
+    margin: 3% 10% 0% 10%;
+}
+.otherCh > div {
+    width: 100%;
+}
+.changes {    
+    margin-top:1.5%;
+    font-weight: bold;
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+    .changes > p {
+        font-size: calc( (100vw - 320px)/(1920 - 320) * (14 - 2) + 2px);
+        /*font-size: 87.5%; 14px;*/
+        color: rgb(110,110,110);
+    }
+    .changes > span {
+        font-size: calc( (100vw - 320px)/(1920 - 320) * (16 - 2) + 2px);
+        /*font-size: 100%; /*16px;*/
+        color: rgb(112,196,70);
+    }
+
+
+
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+
+<body> 
+    <div class="warp">
+        <div class="wrapper">
+            <div class="sel">
+                <div class="txt"><span>Select currency to exchange: </span></div>
+                <div id="dropdown-menu" class="dropdown-menu">
+                    <div class="title">
+                        <span class="tit">USD</span>
+                        <span id="arrow">
+                            <img src="https://i.postimg.cc/7ZX0TF9N/select_icon.png"/>
+                        </span>
+                    </div>
+                    <ul>
+                        <li><a href="#">USD</a></li>
+                        <li><a href="#">EUR</a></li>
+                        <li><a href="#">RUB</a></li>
+                        <li><a href="#">GBP</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="cont">
+                <div class="e">
+                    <div class="curName">Ethereum</div>
+                    <div class="price"><span>Price:</span> <span>$22 526.92</span></div>
+                    <div class="pchange">Percent change <img class="rad" src="https://i.postimg.cc/q7Rnc1ZH/radio_off.png" /></div>
+                    <div class="otherCh">
+                        <div>
+                            <div class="changes">
+                                <p>Hour change</p>
+                                <span>+266%</span>
+                            </div>
+                            <div class="changes">
+                                <p>Day change</p>
+                                <span>+266%</span>
+                            </div>
+                            <div class="changes">
+                                <p>Week change</p>
+                                <span>+266%</span>
+                            </div>
+                            <div class="changes">
+                                <p>Month change</p>
+                                <span>+266%</span>
+                            </div>
+                        </div>                       
+                    </div>
+                </div>
+                <div class="l">
+                    <div class="curName">Litecoin</div>
+                    <div class="price"><span>Price:</span> <span>$22 526.92</span></div>
+                    <div class="pchange">Percent change <img class="rad" src="https://i.postimg.cc/6pBCqWr3/radio_on.png" /></div>
+                    <div class="otherCh">
+                        <div>
+                            <div class="changes">
+                                <p>Hour change</p>
+                                <span>+266%</span>
+                            </div>
+                            <div class="changes">
+                                <p>Day change</p>
+                                <span>+266%</span>
+                            </div>
+                            <div class="changes">
+                                <p>Week change</p>
+                                <span>+266%</span>
+                            </div>
+                            <div class="changes">
+                                <p>Month change</p>
+                                <span>+266%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="b">
+                    <div class="curName">Bitcoin</div>
+                    <div class="price"><span>Price:</span> <span>$22 526.92</span></div>
+                    <div class="pchange">Percent change <img class="rad" src="https://i.postimg.cc/6pBCqWr3/radio_on.png" /></div>
+                    <div class="otherCh">
+                        <div>
+                            <div class="changes">
+                                <p>Hour change</p>
+                                <span>+266%</span>
+                            </div>
+                            <div class="changes">
+                                <p>Day change</p>
+                                <span>+266%</span>
+                            </div>
+                            <div class="changes">
+                                <p>Week change</p>
+                                <span>+266%</span>
+                            </div>
+                            <div class="changes">
+                                <p>Month change</p>
+                                <span>+266%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      function DropDown(el) {
+  this.dd = el;
+  this.placeholder = this.dd.children('span');
+  this.opts = this.dd.find('ul.dropdown > li');
+  this.val = '';
+  this.index = -1;
+  this.initEvents();
+}
+DropDown.prototype = {
+  initEvents: function () {
+    var obj = this;
+    obj.dd.on('click', function (event) {
+      $(this).toggleClass('active');
+      return false;
+    });
+
+    obj.opts.on('click', function () {
+      var opt = $(this);
+      obj.val = opt.text();
+      obj.index = opt.index();
+      obj.placeholder.text(obj.val);
+    });
+  },
+  getValue: function () {
+    return this.val;
+  },
+  getIndex: function () {
+    return this.index;
+  } };
+
+
+window.onload = function () {
+  var menuElem = document.getElementById('dropdown-menu'),
+  titleElem = menuElem.querySelector('.tit');
+  document.onclick = function (event) {
+    var target = elem = event.target;
+    while (target != this) {if (window.CP.shouldStopExecution(0)) break;
+      if (target == menuElem) {
+        if (elem.tagName == 'A') titleElem.innerHTML = elem.textContent;
+        menuElem.classList.toggle('open');
+        return;
+      }
+      target = target.parentNode;
+    }window.CP.exitedLoop(0);
+    menuElem.classList.remove('open');
+  };
+};
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

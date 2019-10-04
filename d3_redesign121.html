@@ -1,0 +1,120 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Coin Market API Test</title>
+<style>
+      tr th{
+      font-size: 28px;
+    }
+table{  
+     border-collapse: separate !important;
+     border-spacing: 0 5px !important;
+}
+ul{ 
+  list-style-type: none;
+}     
+li{       
+   background-color: #dbd8d8;
+   margin-top: 8px;
+}
+td{
+   font-size: 20px;
+   width: 30%;
+}
+@media screen and (max-width: 800px){
+  
+table thead tr th{
+   font-size:23px;
+}
+td{
+   font-size: 17px
+   }
+}
+
+   
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+
+
+<html>
+<head>
+  <title>CoinMarket API Test</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- Bootstrap  -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!--JQUERY -->
+</head>
+<body>
+<table id="example" class="display table" width="75%" cellspacing="0" style="margin: auto; width: 80%;">
+  <thead>
+    <tr>
+       <th>Rank</th>
+       <th>Name </th>
+       <th>USD Price</th>
+       <th>1 hour percent change</th>
+    </tr>
+  </thead>
+  
+  <tbody id="example1">
+    <tr> </tr>
+  </tbody>
+       
+</table>
+
+
+</body>
+</html>
+
+
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      $(document).ready(function () {
+  function refresh() {//function refresh to keep refreshing the div so new info can be loaded in
+    $.ajax({
+      type: 'GET',
+      url: 'https://api.coinmarketcap.com/v1/ticker/', //api link
+      cache: true,
+      success: function (data) {
+        console.log("success"); // logs "success" to see if the divs refresh
+        $('#example1').empty(); //empties the div so when div is refreshed by setinterval, it wont add the new data at the bottom of the page
+        $.each(data, function (i, name) {//loops through the JSON data 
+          if (data[i].percent_change_1h < 0) {//checks if a percentage is negative or positive then based on that, use bootstrap classes to highlight red or green i.e class="bg-danger" || class="bg-success"
+            $('#example1').append('<tr class="bg-danger">' + //appends or puts in the data inside the table row and table data 
+            '<td>' + data[i].rank + '</td>' + //rank of crypto currency
+            '<td>' + data[i].name + '</td>' + //Crypto Name
+            '<td>$ ' + data[i].price_usd + '</td>' + //USD prices
+            '<td class="text-center">' + data[i].percent_change_1h + '%</td>' + //percentage change
+            '</tr'); // table row ends
+          } //if ends here
+          else
+            {//if the percentage is positive then make background green for <tr>
+              $('#example1').append('<tr class="bg-success">' + //table row starts and to be filled with <td> 
+              '<td>' + data[i].rank + '</td>' + //rank of crypto currency
+              '<td>' + data[i].name + '</td>' + //Crypto Name
+              '<td>$ ' + data[i].price_usd + '</td>' + //USD prices
+              '<td class="text-center">' + data[i].percent_change_1h + '%</td>' + //percentage change
+              '</tr'); // table row ends
+            } //else ends here
+        }); // $.each ends here
+      } //sucess function ends here
+    }); //ajax ends here
+  }; //refresh ends here
+
+  refresh(); //call function right away before setInterval starts refreshing, if not called the page will be blank for 5 seconds
+  setInterval(refresh, 5000); //refreshes ajax every 5 seconds to update the prices of crypto currency
+});
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

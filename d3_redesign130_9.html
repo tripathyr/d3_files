@@ -1,0 +1,169 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Circle Packing</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<style>
+    #canvas {
+  position: fixed;
+}
+
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<canvas id="canvas" width="3200" height="528" style="width: 1600px; height: 264px;"></canvas>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      console.clear();
+var log = console.log.bind(console);
+
+var canvas = document.getElementById("canvas");
+var context = canvas.getContext("2d");
+var resolution = window.devicePixelRatio || 1;
+
+var pad = 3;
+var min = 4;
+var max = 125;
+var maxAttempts = 500;
+
+var checks = 0;
+var collisions = 0;
+
+var circles = [];
+
+var vw, vh;
+resize();
+
+var generateStart = performance.now();
+generateCircles();
+var generateTime = performance.now() - generateStart;
+
+circles.sort(sortSize);
+
+drawCircles();
+
+log("CIRCLES", circles.length);
+log("CHECKS", checks);
+log("COLLISIONS", collisions);
+log("GENERATE TIME", Math.round(generateTime * 100) / 100);
+
+function sortSize(a, b) {
+  return a.radius - b.radius;
+}
+
+function generateCircles() {
+
+  var x = 0;
+  var y = 0;
+  var radius = 0;
+  var counter = 0;
+
+  do {if (window.CP.shouldStopExecution(0)) break;
+
+    counter++;
+
+    x = randomInt(vw);
+    y = randomInt(vh);
+    radius = getRadius(x, y);
+
+  } while (radius < min && counter < maxAttempts);window.CP.exitedLoop(0);
+
+  if (counter < maxAttempts) {
+
+    circles.push({
+      radius: radius - pad,
+      x: x,
+      y: y });
+
+
+    generateCircles();
+  }
+}
+
+function getRadius(x, y) {
+
+  var maxRadius = max;
+
+  for (var i = 0; i < circles.length; i++) {if (window.CP.shouldStopExecution(1)) break;
+
+    checks++;
+
+    var circle = circles[i];
+
+    var dx = circle.x - x;
+    var dy = circle.y - y;
+
+    var minDist = circle.radius + min;
+
+    var dist = Math.sqrt(dx * dx + dy * dy);
+
+    if (dist <= minDist) {
+      collisions++;
+      return 0;
+    }
+
+    var radius = min + (dist - minDist);
+
+    if (radius < maxRadius) {
+      maxRadius = radius;
+    }
+  }window.CP.exitedLoop(1);
+
+  return Math.floor(maxRadius);
+}
+
+function drawCircles() {
+
+  context.scale(resolution, resolution);
+  context.strokeStyle = "rgba(0,0,0,0.7)";
+  context.shadowColor = "rgba(0,0,0,0.75)";
+  context.shadowOffsetX = 2.5;
+  context.shadowOffsetY = 2.5;
+  context.shadowBlur = 5;
+
+  for (var i = 0; i < circles.length; i++) {if (window.CP.shouldStopExecution(2)) break;
+
+    var c = circles[i];
+
+    var h = Math.round(200 + c.radius / max * 25);
+    var l = randomInt(50, 70);
+    var color = "hsl(" + h + ",80%," + l + "%)";
+    context.fillStyle = color;
+
+    context.beginPath();
+    context.arc(c.x, c.y, c.radius, 0, Math.PI * 2);
+    context.fill();
+  }window.CP.exitedLoop(2);
+}
+
+function resize() {
+
+  vw = window.innerWidth;
+  vh = window.innerHeight;
+
+  canvas.width = vw * resolution;
+  canvas.height = vh * resolution;
+
+  canvas.style.width = vw + "px";
+  canvas.style.height = vh + "px";
+}
+
+function randomInt(min, max) {
+  if (max == null) {max = min;min = 0;}
+  if (min > max) {var tmp = min;min = max;max = tmp;}
+  return Math.floor(min + (max - min + 1) * Math.random());
+}
+      //# sourceURL=pen.js
+    </script>
+
+
+</body></html>

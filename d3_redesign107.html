@@ -1,0 +1,98 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Crypto Rates</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css">
+<style>
+      .crypto-rates {
+  margin-top: 20px;
+  list-style: none;
+}
+.crypto-rates li {
+  line-height: 2;
+}
+.crypto-rates span {
+  margin-right: 15px;
+  display: inline-block;
+}
+.crypto-rates__name {
+  font-weight: 700;
+  width: 100px;
+}
+.crypto-rates__price {
+  min-width: 90px;
+}
+.crypto-rates__percent--up {
+  color: green;
+}
+.crypto-rates__percent--down {
+  color: red;
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+ <ul class="crypto-rates">
+    
+ </ul>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script id="rendered-js">
+      (function ($) {
+
+  var $cryptoRates = $('.crypto-rates');
+
+  $.ajax({
+    type: 'GET',
+    url: 'https://api.coinmarketcap.com/v1/ticker/?limit=100',
+    dataType: 'json',
+    success: function (response) {
+      renderData(response);
+    },
+    error: function (jqXHR, textStatus) {
+      console.log(textStatus);
+    } });
+
+
+  function renderData(data) {
+    var html = '';
+    var percentChange = '';
+    var minusRE = '';
+
+    for (var i = 0; i < data.length; i++) {if (window.CP.shouldStopExecution(0)) break;
+      html += "<li>" + "<img src='" + data[i].id + "_icon.png'/>" + "<span class='crypto-rates__name'>" + data[i].name + "</span>" + "<span class='crypto-rates__price'>" + data[i].price_usd + "</span>";
+
+      percentChange = data[i].percent_change_1h;
+      minusRE = percentChange.search(/\-/);
+
+      html += "<span class='crypto-rates__percent " + priceChange() + "'>" + data[i].percent_change_1h + "%</span>" + "</li>";
+    }
+
+    //  Find minus
+    window.CP.exitedLoop(0);function priceChange() {
+      if (minusRE === 0) {
+        return 'crypto-rates__percent--down';
+      } else {
+        return 'crypto-rates__percent--up';
+      }
+    }
+    priceChange();
+    $cryptoRates.append(html);
+  }
+
+})(jQuery);
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

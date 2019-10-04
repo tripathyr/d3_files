@@ -1,0 +1,659 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Web Crypto API Playground</title>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no" class="p2 max-width-4 mx-auto teal">
+
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/ace-css/css/ace.min.css">
+<title>Web Crypto API Playground</title>
+<style type="text/css">
+    @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono');
+    a { color: inherit; }
+    body, html { min-height: 100vh; }
+    body {
+      background: hsla(197, 100%, 12%, 1);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    .border-teal { border-color: rgba(57, 204, 204, 0.5); }
+    .bg-none { background: transparent; }
+    .fade-in { transition: opacity 1s ease-out; }
+    .fade-in.invisible { opacity: 0; }
+    .input:focus {
+      outline: none;
+      background-color: hsla(0,0%,100%,.0625);
+    }
+    ::selection {
+      background-color: #39cccc;
+      color: white;
+    }
+    </style>
+
+
+<div class="fade-in" id="root"><div><h1 class="mt2 mb3 center">Web Crypto API Playground</h1><p class="center"><a class="center yellow" href="https://demo.mundpropaganda.net/web-crypto/ecdh.html">Click here if it doesn't work for you!</a><br><span class="h5">(CodePen's ES7-Support seems a bit shakey)</span></p><p><span>Test the </span><a href="https://developer.mozilla.org/en-US/docs/Web/API/Crypto">Web Cryptography API</a><span> of your web browser.</span><span> It should work in all modern browsers like Chrome, Edge, Firefox, Safari etc. It would even </span><a href="https://github.com/vibornoff/webcrypto-shim">work in IE11 to some extend</a><span>, just not with </span><a href="https://diafygi.github.io/webcrypto-examples/">algorithms currently recommended</a><span> and used here.</span></p><p>Instructions:</p><ol class="m0"><li>Generate or import your ECDH key pair ("d", "x" and "y")</li><li>Import ECDH public key from other party (leave "d" blank, insert "x" and "y")</li><li>Derive AES-GCM key</li></ol><div class="md-flex mxn2"><div class="md-col-7 mx2"><p>Sender:</p><ol class="m0" start="4"><li>Type message to be encrypted into "in"</li><li>Encrypt. The result will be base64-encoded for easier handling.</li><li>Give your ECDH public key ("x" and "y"), the encrypted message ("out") and the dedicated "iv" to the recipient</li></ol></div><div class="md-col-5 mx2"><p>Recipient:</p><ol class="m0" start="4"><li>Insert base64-encoded encrypted message into "in"</li><li>Insert "iv"</li><li>Decrypt</li></ol></div></div><p><span>Check out the </span><a href="https://demo.mundpropaganda.net/web-crypto/ecdh.js">source</a><span> – it's plain JavaScript without any compilation step!</span></p><h3 class="m0 mb3"><a href="https://mundpropaganda.net" style="color: inherit; text-decoration: none;"><span>🔐💛 by {M/</span><span class="red">P</span><span>}</span></a></h3><div class="border border-teal rounded my2 p2"><h2 class="m0">ECDH keys</h2><p class="red">Status: No keys loaded</p><div class="md-flex mxn1"><div class="mx1 flex-auto"><label class="block"><span class="label">d</span><input class="input bg-none white border-teal"></label></div><div class="mx1 flex-auto"><label class="block"><span class="label">x</span><input class="input bg-none white border-teal"></label></div><div class="mx1 flex-auto"><label class="block"><span class="label">y</span><input class="input bg-none white border-teal"></label></div></div><div class="flex mxn1"><button class="btn btn-primary bg-teal navy mx1">generateEcdhKeys</button><button class="btn btn-primary bg-teal navy mx1">importEcdhKeys</button></div><small class="block mt1">(Leave "d" blank to just import the publicKey and keep the previous privateKey)</small></div><div class="border border-teal rounded my3 p2"><h2 class="m0">AES-GCM key</h2><p class="red">Status: No key loaded</p><label class="block"><span class="label">k</span><input class="input bg-none border-teal white"></label><div class="flex mxn1"><button class="btn btn-primary bg-teal navy mx1">deriveAesGcmKey</button></div></div><div class="border border-teal rounded my2 p2"><h2 class="m0">Encrypt/decrypt</h2><p>Status: Waiting…</p><label class="block"><span class="label">iv</span><input class="input bg-none border-teal white"></label><div class="md-flex mxn1"><div class="mx1 flex-auto"><label class="block"><span class="label">in</span><input class="input bg-none border-teal white"></label></div><div class="mx1 flex-auto"><label class="block"><span class="label">out</span><input class="input bg-none border-teal white" readonly="true"></label></div></div><div class="flex mxn1 items-end mb2"><div class="mx1"><button class="btn btn-primary bg-teal navy" type="button">encrypt</button></div><div class="mx1"><button class="btn btn-primary bg-teal navy" type="button">decrypt</button></div></div><div></div></div></div></div>
+<script src="https://unpkg.com/hyperapp" type="text/javascript"></script>
+<script src="https://unpkg.com/@hyperapp/html" type="text/javascript">
+    </script>
+<script src="https://demo.mundpropaganda.net/libs/lodash.set.js" type="text/javascript">
+    </script>
+<script src="ecdh.js" type="text/javascript"></script>
+
+
+
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      'use strict';
+const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+const lookup = new Uint8Array(256);
+const rootElement = window.document.getElementById('root');
+const { h, app } = window.hyperapp;
+const {
+  a,
+  button,
+  br,
+  div,
+  form,
+  h1,
+  h2,
+  h3,
+  input,
+  label,
+  li,
+  ol,
+  pre,
+  select,
+  small,
+  span,
+  option,
+  p } =
+window.hyperappHtml;
+
+//
+// Utility
+//
+
+for (let i = 0; i < chars.length; i++) {if (window.CP.shouldStopExecution(0)) break;
+  lookup[chars.charCodeAt(i)] = i;
+}window.CP.exitedLoop(0);
+
+const arrayBufferToBase64 = arrayBuffer => {
+  const bytes = new Uint8Array(arrayBuffer);
+  let base64 = '';
+
+  for (let i = 0; i < bytes.length; i += 3) {if (window.CP.shouldStopExecution(1)) break;
+    base64 += chars[bytes[i] >> 2];
+    base64 += chars[(bytes[i] & 3) << 4 | bytes[i + 1] >> 4];
+    base64 += chars[(bytes[i + 1] & 15) << 2 | bytes[i + 2] >> 6];
+    base64 += chars[bytes[i + 2] & 63];
+  }window.CP.exitedLoop(1);
+
+  if (bytes.length % 3 === 2) {
+    base64 = base64.substring(0, base64.length - 1) + '=';
+  } else if (bytes.length % 3 === 1) {
+    base64 = base64.substring(0, base64.length - 2) + '==';
+  }
+
+  return base64;
+};
+
+const base64ToArrayBuffer = base64 => {
+  let bufferLength = base64.length * 0.75;
+  let p = 0;
+  let encoded1;
+  let encoded2;
+  let encoded3;
+  let encoded4;
+
+  if (base64[base64.length - 1] === '=') {
+    bufferLength--;
+    if (base64[base64.length - 2] === '=') {
+      bufferLength--;
+    }
+  }
+
+  const arrayBuffer = new ArrayBuffer(bufferLength);
+  const bytes = new Uint8Array(arrayBuffer);
+
+  for (let i = 0; i < base64.length; i += 4) {if (window.CP.shouldStopExecution(2)) break;
+    encoded1 = lookup[base64.charCodeAt(i)];
+    encoded2 = lookup[base64.charCodeAt(i + 1)];
+    encoded3 = lookup[base64.charCodeAt(i + 2)];
+    encoded4 = lookup[base64.charCodeAt(i + 3)];
+
+    bytes[p++] = encoded1 << 2 | encoded2 >> 4;
+    bytes[p++] = (encoded2 & 15) << 4 | encoded3 >> 2;
+    bytes[p++] = (encoded3 & 3) << 6 | encoded4 & 63;
+  }window.CP.exitedLoop(2);
+
+  return arrayBuffer;
+};
+
+//
+// Hyperapp
+//
+
+const state = {
+  aesGcm: {
+    key: {},
+    status: 'No key loaded',
+    statusClass: 'red' },
+
+
+  conversion: {
+    in: '',
+    iv: '',
+    out: '',
+    status: 'Waiting…',
+    statusClass: undefined },
+
+
+  ecdh: {
+    d: '',
+    keys: {
+      privateKey: {},
+      publicKey: {} },
+
+    status: 'No keys loaded',
+    statusClass: 'red',
+    x: '',
+    y: '' },
+
+
+  exportBlob: {} };
+
+
+const actions = {
+  decrypt: () => async ({ aesGcm, conversion }, { setState }) => {
+    const changes = [];
+    try {
+      const data = await window.crypto.subtle.decrypt(
+      {
+        name: 'AES-GCM',
+        iv: conversion.iv },
+
+      aesGcm.key,
+      base64ToArrayBuffer(conversion.in));
+
+      changes.push(
+      {
+        path: 'conversion.out',
+        value: new TextDecoder('utf-8').decode(data) },
+
+      { path: 'conversion.status', value: 'Decryption successful!' },
+      { path: 'conversion.statusClass', value: undefined });
+
+    } catch (error) {
+      console.error(error);
+      changes.push(
+      {
+        path: 'conversion.status',
+        value: `Error decrypting (${error.message || error.toString()})` },
+
+      {
+        path: 'conversion.statusClass',
+        value: 'red' });
+
+
+    } finally {
+      setState(changes);
+    }
+  },
+
+  deriveAesGcmKey: () => async ({ ecdh }, { setState }) => {
+    const changes = [];
+    try {
+      const key = await window.crypto.subtle.deriveKey(
+      {
+        name: 'ECDH',
+        namedCurve: 'P-256',
+        public: ecdh.keys.publicKey },
+
+      ecdh.keys.privateKey,
+      {
+        name: 'AES-GCM',
+        length: 256 },
+
+      true,
+      ['decrypt', 'encrypt']);
+
+
+      const { k } = await window.crypto.subtle.exportKey('jwk', key);
+
+      changes.push(
+      { path: 'aesGcm.k', value: k },
+      { path: 'aesGcm.key', value: key },
+      { path: 'aesGcm.status', value: `Key derived` },
+      { path: 'aesGcm.statusClass', value: undefined });
+
+    } catch (error) {
+      console.error(error);
+      changes.push(
+      {
+        path: 'aesGcm.status',
+        value: `Error deriving key (${error.message || error.toString()})` },
+
+      {
+        path: 'aesGcm.statusClass',
+        value: 'red' });
+
+
+    } finally {
+      setState(changes);
+    }
+  },
+
+  encrypt: () => async ({ aesGcm, ecdh, conversion }, { setState }) => {
+    const changes = [];
+    const iv = window.crypto.getRandomValues(new Uint8Array(12));
+    try {
+      const data = await window.crypto.subtle.encrypt(
+      { name: 'AES-GCM', iv },
+      aesGcm.key,
+      new TextEncoder('utf-8').encode(conversion.in));
+
+      const out = arrayBufferToBase64(data);
+
+      const { x, y } = await window.crypto.subtle.exportKey(
+      'jwk',
+      ecdh.keys.privateKey);
+
+
+      changes.push(
+      { path: 'conversion.iv', value: iv },
+      { path: 'conversion.out', value: out },
+      { path: 'conversion.status', value: 'Encryption successful!' },
+      { path: 'conversion.statusClass', value: undefined },
+      { path: 'exportBlob.iv', value: iv },
+      { path: 'exportBlob.out', value: out },
+      { path: 'exportBlob.x', value: x },
+      { path: 'exportBlob.y', value: y });
+
+    } catch (error) {
+      console.error(error);
+      changes.push(
+      {
+        path: 'conversion.status',
+        value: `Error encrypting (${error.message || error.toString()})` },
+
+      {
+        path: 'conversion.statusClass',
+        value: 'red' });
+
+
+    } finally {
+      setState(changes);
+    }
+  },
+
+  generateEcdhKeys: () => async (state, { setState }) => {
+    const changes = [];
+    try {
+      const keys = await window.crypto.subtle.generateKey(
+      { name: 'ECDH', namedCurve: 'P-256' },
+      true,
+      ['deriveKey']);
+
+
+      const { d, x, y } = await window.crypto.subtle.exportKey(
+      'jwk',
+      keys.privateKey);
+
+
+      changes.push(
+      { path: 'ecdh.d', value: d },
+      { path: 'ecdh.keys', value: keys },
+      { path: 'ecdh.x', value: x },
+      { path: 'ecdh.y', value: y },
+      { path: 'ecdh.status', value: `Key pair generated` },
+      { path: 'ecdh.statusClass', value: undefined });
+
+    } catch (error) {
+      console.error(error);
+      changes.push(
+      {
+        path: 'ecdh.status',
+        value: `Error generating key (${error.message || error.toString()})` },
+
+      { path: 'ecdh.statusClass', value: 'red' });
+
+    } finally {
+      setState(changes);
+    }
+  },
+
+  importEcdhKeys: () => async ({ ecdh }, { setState }) => {
+    const changes = [];
+    try {
+      if (ecdh.d) {
+        changes.push({
+          path: 'ecdh.keys.privateKey',
+          value: await window.crypto.subtle.importKey(
+          'jwk',
+          {
+            crv: 'P-256',
+            d: ecdh.d,
+            ext: true,
+            kty: 'EC',
+            x: ecdh.x,
+            y: ecdh.y },
+
+          {
+            name: 'ECDH',
+            namedCurve: 'P-256' },
+
+          true,
+          ['deriveKey']) });
+
+
+      }
+
+      changes.push(
+      {
+        path: 'ecdh.keys.publicKey',
+        value: await window.crypto.subtle.importKey(
+        'jwk',
+        {
+          crv: 'P-256',
+          ext: true,
+          kty: 'EC',
+          x: ecdh.x,
+          y: ecdh.y },
+
+        {
+          name: 'ECDH',
+          namedCurve: 'P-256' },
+
+        true,
+        []) },
+
+
+      {
+        path: 'ecdh.status',
+        value: `${ecdh.d ? 'Key pair' : 'Public key'} imported` },
+
+      {
+        path: 'ecdh.statusClass',
+        value: undefined });
+
+
+    } catch (error) {
+      console.error(error);
+      changes.push(
+      {
+        path: 'ecdh.status',
+        value: `Error importing key (${error.message || error.toString()})` },
+
+      { path: 'ecdh.statusClass', value: 'red' });
+
+    } finally {
+      setState(changes);
+    }
+  },
+
+  setState: changes => oldState => {
+    const draftState = { ...oldState };
+    changes.forEach(change => _.set(draftState, change.path, change.value));
+    return draftState;
+  } };
+
+
+const view = ({ aesGcm, conversion, ecdh, exportBlob }, actions) =>
+div({ oncreate: rootElement.classList.remove('invisible') }, [
+h1({ class: 'mt2 mb3 center' }, 'Web Crypto API Playground'),
+p({ class: 'center' }, [
+a({ class: 'center yellow', href: 'https://demo.mundpropaganda.net/web-crypto/ecdh.html' }, `Click here if it doesn't work for you!`),
+br(),
+span({ class: 'h5' }, `(CodePen's ES7-Support seems a bit shakey)`)]),
+
+p([
+span('Test the '),
+a(
+{ href: 'https://developer.mozilla.org/en-US/docs/Web/API/Crypto' },
+'Web Cryptography API'),
+
+span(' of your web browser.'),
+span(
+' It should work in all modern browsers like Chrome, Edge, Firefox, Safari etc. It would even '),
+
+a(
+{ href: 'https://github.com/vibornoff/webcrypto-shim' },
+'work in IE11 to some extend'),
+
+span(', just not with '),
+a(
+{ href: 'https://diafygi.github.io/webcrypto-examples/' },
+'algorithms currently recommended'),
+
+span(' and used here.')]),
+
+p('Instructions:'),
+ol({ class: 'm0' }, [
+li('Generate or import your ECDH key pair ("d", "x" and "y")'),
+li(
+'Import ECDH public key from other party (leave "d" blank, insert "x" and "y")'),
+
+li('Derive AES-GCM key')]),
+
+div({ class: 'md-flex mxn2' }, [
+div({ class: 'md-col-7 mx2' }, [
+p('Sender:'),
+ol({ class: 'm0', start: '4' }, [
+li('Type message to be encrypted into "in"'),
+li(
+'Encrypt. The result will be base64-encoded for easier handling.'),
+
+li(
+'Give your ECDH public key ("x" and "y"), the encrypted message ("out") and the dedicated "iv" to the recipient')])]),
+
+
+
+div({ class: 'md-col-5 mx2' }, [
+p('Recipient:'),
+ol({ class: 'm0', start: '4' }, [
+li('Insert base64-encoded encrypted message into "in"'),
+li('Insert "iv"'),
+li('Decrypt')])])]),
+
+
+
+p([
+span('Check out the '),
+a(
+{ href: 'https://demo.mundpropaganda.net/web-crypto/ecdh.js' },
+'source'),
+
+span(` – it's plain JavaScript without any compilation step!`)]),
+
+
+h3({ class: 'm0 mb3' }, [
+a(
+{
+  href: 'https://mundpropaganda.net',
+  style: {
+    color: 'inherit',
+    textDecoration: 'none' } },
+
+
+[span('🔐💛 by {M/'), span({ class: 'red' }, 'P'), span('}')])]),
+
+
+
+div({ class: 'border border-teal rounded my2 p2' }, [
+h2({ class: 'm0' }, 'ECDH keys'),
+p({ class: ecdh.statusClass }, 'Status: ' + ecdh.status),
+div(
+{ class: 'md-flex mxn1' },
+['d', 'x', 'y'].map((val) =>
+div({ class: 'mx1 flex-auto' }, [
+label({ class: 'block' }, [
+span({ class: 'label' }, val),
+input({
+  class: 'input bg-none white border-teal',
+  onchange: ({ target }) =>
+  actions.setState([
+  { path: 'ecdh.' + val, value: target.value }]),
+
+  onfocus: ({ currentTarget }) => currentTarget.select(),
+  value: ecdh[val] })])]))),
+
+
+
+
+
+div(
+{ class: 'flex mxn1' },
+['generateEcdhKeys', 'importEcdhKeys'].map((action) =>
+button(
+{
+  class: 'btn btn-primary bg-teal navy mx1',
+  onclick: actions[action] },
+
+action))),
+
+
+
+small(
+{ class: 'block mt1' },
+'(Leave "d" blank to just import the publicKey and keep the previous privateKey)')]),
+
+
+
+div({ class: 'border border-teal rounded my3 p2' }, [
+h2({ class: 'm0' }, 'AES-GCM key'),
+p({ class: aesGcm.statusClass }, 'Status: ' + aesGcm.status),
+label({ class: 'block' }, [
+span({ class: 'label' }, 'k'),
+input({
+  class: 'input bg-none border-teal white',
+  onfocus: ({ currentTarget }) => currentTarget.select(),
+  value: aesGcm.k })]),
+
+
+div(
+{ class: 'flex mxn1' },
+['deriveAesGcmKey'].map((action) =>
+button(
+{
+  class: 'btn btn-primary bg-teal navy mx1',
+  onclick: actions[action] },
+
+action)))]),
+
+
+
+
+
+div({ class: 'border border-teal rounded my2 p2' }, [
+h2({ class: 'm0' }, 'Encrypt/decrypt'),
+p({ class: conversion.statusClass }, 'Status: ' + conversion.status),
+label({ class: 'block' }, [
+span({ class: 'label' }, 'iv'),
+input({
+  class: 'input bg-none border-teal white',
+  onchange: ({ target }) =>
+  actions.setState([
+  {
+    path: 'conversion.iv',
+    value: new Uint8Array(target.value.split(',')) }]),
+
+
+  onfocus: ({ target }) => target.select(),
+  value: conversion.iv })]),
+
+
+div({ class: 'md-flex mxn1' }, [
+div({ class: 'mx1 flex-auto' }, [
+label({ class: 'block' }, [
+span({ class: 'label' }, 'in'),
+input({
+  class: 'input bg-none border-teal white',
+  onchange: ({ target }) =>
+  actions.setState([
+  { path: 'conversion.in', value: target.value }]),
+
+  onfocus: ({ target }) => target.value = '',
+  value: conversion.in })])]),
+
+
+
+div({ class: 'mx1 flex-auto' }, [
+label({ class: 'block' }, [
+span({ class: 'label' }, 'out'),
+input({
+  class: 'input bg-none border-teal white',
+  onfocus: ({ target }) => target.select(),
+  readonly: true,
+  value: conversion.out })])])]),
+
+
+
+
+div({ class: 'flex mxn1 items-end mb2' }, [
+div({ class: 'mx1' }, [
+button(
+{
+  class: 'btn btn-primary bg-teal navy',
+  onclick: actions.encrypt,
+  type: 'button' },
+
+'encrypt')]),
+
+
+div({ class: 'mx1' }, [
+button(
+{
+  class: 'btn btn-primary bg-teal navy',
+  onclick: actions.decrypt,
+  type: 'button' },
+
+'decrypt')])]),
+
+
+
+div(
+Object.keys(exportBlob).length > 0 ?
+[
+label({ class: 'block' }, [
+span({ class: 'label' }, 'Blob to be exported/stored'),
+pre(
+{ class: 'white' },
+Object.keys(exportBlob).length > 0 ?
+window.JSON.stringify(
+{
+  iv: exportBlob.iv.toString(),
+  out: exportBlob.out,
+  x: exportBlob.x,
+  y: exportBlob.y },
+
+null,
+'  ') :
+
+'')])] :
+
+
+
+undefined)])]);
+
+
+
+
+app(state, actions, view, rootElement);
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

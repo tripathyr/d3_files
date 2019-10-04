@@ -1,0 +1,395 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Benford's Law Analysis</title>
+<style>
+      @import url(https://fonts.googleapis.com/css?family=Roboto:400,700,300,100);
+.clearfix::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #333333;
+  font-family: "Roboto", "Tahoma", "Verdana", sans-serif;
+  font-weight: normal;
+  font-size: 10pt;
+  color: white;
+}
+body #container {
+  width: 610px;
+  margin: 2em auto;
+}
+body h1, body h2 {
+  font-size: 10pt;
+  font-weight: 300;
+  border-bottom: #cecece 1px solid;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+body h1 {
+  width: 100%;
+  font-size: 14pt;
+  font-weight: 400;
+  margin-top: 1em;
+  border-bottom-width: 0;
+}
+body h1:before {
+  display: block;
+  content: '';
+  background: #32e650;
+  position: absolute;
+  width: 4px;
+  margin-left: -6px;
+  height: 1em;
+  margin-top: 0.1em;
+}
+body div.graph {
+  width: 300px;
+  float: left;
+}
+body div.graph div.legend {
+  position: relative;
+}
+body div.graph div.legend ul.line-legend {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+body div.graph div.legend ul.line-legend span {
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  margin-right: 3px;
+}
+body div.graph:nth-of-type(even) {
+  margin-left: 10px;
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div id="container">
+<h1>Benford's Law</h1>
+<p>
+Benford's Law states that the probability of a number starting with digit <em>d</em> in a large set of
+numbers with distribution over several orders of magnitude equals log<sub>10</sub>(1 + 1 / <em>d</em>).
+I wanted to put this law to the test on several datasets, and see how different data plots onto a graph
+together with a plot of the actual Benford's Law set.
+</p>
+<p>
+In the graphs below, the green lines represent the ideal Benford's Law occurrences. This is a plot of the
+formula described above. The other line is a plot of the data that has been analysed by taking the first
+digit of each number in a set and calculating its occurrence in the set it came from. If a line is more red,
+it means the average difference between the ideal graph and the analysis result is quite large. If a line is
+more blue, it means that the average difference was rather small.
+</p>
+<h1>Real-life data</h1>
+<div class="graph-list clearfix" id="real-data"><div class="graph"><h2>World country population data as of 2014</h2><div class="legend" id="l-population-data"><ul class="line-legend"><li><span style="background-color:rgba(16, 80, 239, 1)"></span>Country population</li><li><span style="background-color:rgba(50, 230, 80, 1)"></span>Benford's Law</li></ul></div><canvas id="population-data" width="600" height="350" style="width: 300px; height: 175px;"></canvas></div><div class="graph"><h2>File sizes of random directory</h2><div class="legend" id="l-filesize-data"><ul class="line-legend"><li><span style="background-color:rgba(29, 80, 226, 1)"></span>Filesizes</li><li><span style="background-color:rgba(50, 230, 80, 1)"></span>Benford's Law</li></ul></div><canvas id="filesize-data" width="600" height="350" style="width: 300px; height: 175px;"></canvas></div><div class="graph"><h2>Distances from earth to 119,613 stars</h2><div class="legend" id="l-star-data"><ul class="line-legend"><li><span style="background-color:rgba(66, 80, 189, 1)"></span>Distance in pc</li><li><span style="background-color:rgba(50, 230, 80, 1)"></span>Benford's Law</li></ul></div><canvas id="star-data" width="600" height="350" style="width: 300px; height: 175px;"></canvas></div><div class="graph"><h2>PostModernJukebox's views as of 29 June 2015</h2><div class="legend" id="l-pmj-data"><ul class="line-legend"><li><span style="background-color:rgba(71, 80, 184, 1)"></span>Video views</li><li><span style="background-color:rgba(50, 230, 80, 1)"></span>Benford's Law</li></ul></div><canvas id="pmj-data" width="600" height="350" style="width: 300px; height: 175px;"></canvas></div><div class="graph"><h2>Some website's pageload data on blog posts</h2><div class="legend" id="l-site-data"><ul class="line-legend"><li><span style="background-color:rgba(109, 80, 146, 1)"></span>Pageloads</li><li><span style="background-color:rgba(50, 230, 80, 1)"></span>Benford's Law</li></ul></div><canvas id="site-data" width="600" height="350" style="width: 300px; height: 175px;"></canvas></div><div class="graph"><h2>Prime numbers up to 1,234,567</h2><div class="legend" id="l-prime-data"><ul class="line-legend"><li><span style="background-color:rgba(113, 80, 142, 1)"></span>Prime numbers</li><li><span style="background-color:rgba(50, 230, 80, 1)"></span>Benford's Law</li></ul></div><canvas id="prime-data" width="600" height="350" style="width: 300px; height: 175px;"></canvas></div><div class="graph"><h2>Lines of code in a game project (Disrupt)</h2><div class="legend" id="l-game-lines"><ul class="line-legend"><li><span style="background-color:rgba(128, 80, 127, 1)"></span>Lines of code</li><li><span style="background-color:rgba(50, 230, 80, 1)"></span>Benford's Law</li></ul></div><canvas id="game-lines" width="600" height="350" style="width: 300px; height: 175px;"></canvas></div><div class="graph"><h2>Image pixelcount of arbitrary 'Pictures' library</h2><div class="legend" id="l-image-data"><ul class="line-legend"><li><span style="background-color:rgba(184, 80, 71, 1)"></span>No. of pixels</li><li><span style="background-color:rgba(50, 230, 80, 1)"></span>Benford's Law</li></ul></div><canvas id="image-data" width="600" height="350" style="width: 300px; height: 175px;"></canvas></div><div class="graph"><h2>Views on pens and blogs at CodePen</h2><div class="legend" id="l-codepen-data"><ul class="line-legend"><li><span style="background-color:rgba(191, 80, 64, 1)"></span>CodePen.io/ImagineProgramming</li><li><span style="background-color:rgba(50, 230, 80, 1)"></span>Benford's Law</li></ul></div><canvas id="codepen-data" width="600" height="350" style="width: 300px; height: 175px;"></canvas></div></div>
+<h1>Pseudo-random data (should never follow Benford)</h1>
+<div class="graph-list clearfix" id="random-data"><div class="graph"><h2>Regular browser-specific built-in Math.random()</h2><div class="legend" id="l-regular-prng"><ul class="line-legend"><li><span style="background-color:rgba(214, 80, 41, 1)"></span>Math.random</li><li><span style="background-color:rgba(50, 230, 80, 1)"></span>Benford's Law</li></ul></div><canvas id="regular-prng" width="600" height="350" style="width: 300px; height: 175px;"></canvas></div><div class="graph"><h2>SmallPRNG Pseudo-random number generator</h2><div class="legend" id="l-small-prng"><ul class="line-legend"><li><span style="background-color:rgba(216, 80, 39, 1)"></span>SmallPRNG Random</li><li><span style="background-color:rgba(50, 230, 80, 1)"></span>Benford's Law</li></ul></div><canvas id="small-prng" width="600" height="350" style="width: 300px; height: 175px;"></canvas></div><div class="graph"><h2>ISAAC Crypto Pseudo-random number generator</h2><div class="legend" id="l-isaac-cprng"><ul class="line-legend"><li><span style="background-color:rgba(218, 80, 37, 1)"></span>ISAAC Random</li><li><span style="background-color:rgba(50, 230, 80, 1)"></span>Benford's Law</li></ul></div><canvas id="isaac-cprng" width="600" height="350" style="width: 300px; height: 175px;"></canvas></div></div>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://codepen.io/ImagineProgramming/pen/CIseE.js"></script>
+<script src="https://codepen.io/ImagineProgramming/pen/bcmyD.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/188512/benford-test-data.min.js"></script>
+<script id="rendered-js">
+      // Benford's law
+// all data imported from benford-test-data.min.js
+(function (root) {
+  'use strict';
+
+  var BenfordAnalyser = function BenfordAnalyser() {
+    this.digitCount = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 };
+    this.digitPercentages = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 };
+    this.processedInput = [];
+  };
+
+  BenfordAnalyser.prototype.update = function (input) {
+    if (Object.prototype.toString.call(input) !== "[object Array]") {
+      throw new TypeError("Array full of numbers required as input data");
+    }
+
+    return this.analyze(input);
+  };
+
+  BenfordAnalyser.prototype.analyze = function (input) {
+    var index, value, digit;
+    for (index = 0; index < input.length; index += 1) {if (window.CP.shouldStopExecution(0)) break;
+      value = input[index];
+      if (typeof value !== "number") {
+        throw new TypeError("Please provide numbers only");
+      }
+
+      digit = +new String(value).substring(0, 1);
+      if (this.digitCount.hasOwnProperty(digit)) {
+        this.digitCount[digit] += 1;
+        this.processedInput.push(value);
+      }
+    }window.CP.exitedLoop(0);
+
+    return this; // chainability
+  };
+
+  BenfordAnalyser.prototype.finalize = function () {
+    var i;
+    for (i = 1; i <= 9; i += 1) {if (window.CP.shouldStopExecution(1)) break;
+      this.digitPercentages[i] = Math.round(100 * (this.digitCount[i] / this.processedInput.length) * 10000) / 10000;
+    }window.CP.exitedLoop(1);
+
+    return this; // chainability
+  };
+
+  BenfordAnalyser.prototype.getPercentages = function () {
+    return this.digitPercentages;
+  };
+
+  BenfordAnalyser.prototype.getCount = function () {
+    return this.digitCount;
+  };
+
+  BenfordAnalyser.prototype.getMaxPercentage = function () {
+    var max = 0,i;
+    for (i = 1; i <= 9; i += 1) {if (window.CP.shouldStopExecution(2)) break;
+      max = Math.max(this.digitPercentages[i], max);
+    }window.CP.exitedLoop(2);
+
+    return max;
+  };
+
+  BenfordAnalyser.prototype.getMinPercentage = function () {
+    var min = 100,i;
+    for (i = 1; i <= 9; i += 1) {if (window.CP.shouldStopExecution(3)) break;
+      min = Math.min(this.digitPercentages[i], min);
+    }window.CP.exitedLoop(3);
+
+    return min;
+  };
+
+  root.BenfordAnalyser = BenfordAnalyser;
+})(window);
+
+// constants
+;(function (root) {
+  'use strict';
+
+  // the Benford's Law model
+  function p(d) {// benford's law for one digit
+    return Math.log10(1 + 1 / d);
+  }
+
+  function pp(d) {// call p(d) and round to a percentage with 1 decimal
+    return Math.round(p(d) * 1000) / 10;
+  }
+
+  root.BENFORD_MODEL = {};
+  for (var i = 1; i <= 9; i += 1) {if (window.CP.shouldStopExecution(4)) break;
+    root.BENFORD_MODEL[i] = pp(i);
+  }
+
+  // the chart options
+  window.CP.exitedLoop(4);root.CHART_OPTIONS = {
+    scaleShowGridLines: true,
+    scaleGridLineColor: "rgba(255, 255, 255, .05)",
+    scaleGridLineWidth: 1,
+    bezierCurve: true,
+    bezierCurveTension: 0.4,
+    pointDot: true,
+    pointDotRadius: 4,
+    pointDotStrokeWidth: 1,
+    pointHitDetectionRadius: 10,
+    datasetStroke: true,
+    datasetStrokeWidth: 2,
+    datasetFill: true,
+    legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>" };
+
+
+  // Benford's Law analysis result object to array.
+  root.toa = function toa(o) {
+    var a = [],i;
+    for (i = 1; i <= 9; i += 1) {if (window.CP.shouldStopExecution(5)) break;
+      a[i - 1] = o[i];
+    }window.CP.exitedLoop(5);
+
+    return a;
+  };
+
+  // Average difference between two Benford's Law analysis result objects
+  root.adiff = function adiff(o1, o2) {
+    var sum = 0,i;
+    for (i = 1; i <= 9; i += 1) {if (window.CP.shouldStopExecution(6)) break;
+      sum += Math.abs(o1[i] - o2[i]);
+    }window.CP.exitedLoop(6);
+
+    return sum / 9;
+  };
+})(window);
+
+;(function (root) {
+  'use strict';
+
+  var BenfordAnalysisGraph = function (identifier, data, heading, label) {
+    this.id = identifier;
+    this.data = data;
+    this.heading = heading;
+    this.label = label;
+    this.width = 300;
+    this.height = 175;
+    this.context = null;
+    this.legend = null;
+
+    this.benford = new BenfordAnalyser().update(this.data).finalize().getPercentages();
+    this.avgdif = adiff(this.benford, BENFORD_MODEL);
+  };
+
+  BenfordAnalysisGraph.prototype.render = function (parent) {
+    var div, heading, legend, canvas, context;
+
+    // container
+    div = document.createElement("div");
+    div.className = "graph";
+
+    // heading with description
+    heading = document.createElement("h2");
+    heading.innerHTML = this.heading;
+    div.appendChild(heading);
+
+    // the graph legend
+    legend = document.createElement("div");
+    legend.className = "legend";
+    legend.id = "l-" + this.id;
+    div.appendChild(legend);
+
+    // add the canvas
+    canvas = document.createElement("canvas");
+    canvas.id = this.id;
+    canvas.width = String(this.width);
+    canvas.height = String(this.height);
+    div.appendChild(canvas);
+
+    // obtain a context
+    this.context = canvas.getContext("2d");
+
+    // store the legend element
+    this.legend = legend;
+
+    // add the whole deal to the parent container
+    parent.appendChild(div);
+
+    this.graph();
+  };
+
+  BenfordAnalysisGraph.prototype.graph = function () {
+    // color a line according to the average difference. More blue means more Benford's Law
+    var differenceFactor = this.avgdif / 7,
+    color = { r: Math.floor(differenceFactor * 255), g: 80, b: 255 - Math.floor(differenceFactor * 255) },
+    scolor = "rgba(" + color.r + ", " + color.g + ", " + color.b + ", 1)",
+    acolor = "rgba(" + color.r + ", " + color.g + ", " + color.b + ", 0.2)",
+    chart;
+
+    // create a line chart that shows the ideal benford data and the data from the analyser.
+    chart = new Chart(this.context).Line({
+      labels: "123456789".split(""),
+      datasets: [{
+        label: this.label,
+        fillColor: acolor,
+        strokeColor: scolor,
+        pointColor: scolor,
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: scolor,
+        data: toa(this.benford) },
+      {
+        label: "Benford's Law",
+        fillColor: "rgba(50, 230, 80, 0.2)",
+        strokeColor: "rgba(50, 230, 80, 1)",
+        pointColor: "rgba(50, 230, 80, 1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(50, 230, 80 ,1)",
+        data: toa(BENFORD_MODEL) }] },
+
+    CHART_OPTIONS);
+
+    this.legend.innerHTML = chart.generateLegend();
+
+    chart.resize().update();
+  };
+
+  root.BenfordAnalysisGraph = BenfordAnalysisGraph;
+})(window);
+
+window.addEventListener('load', function () {
+  'use strict';
+
+  // all the stuff will be sorted based on the average difference between the Benford's Law data and the analysed data, ascending.
+  var analysis = [
+  {
+    parent: document.getElementById("real-data"),
+    sets: [
+    { id: "site-data", data: benfordData.siteVisitorData.p, title: "Some website's pageload data on blog posts", label: "Pageloads" },
+    { id: "codepen-data", data: benfordData.codepenData, title: "Views on pens and blogs at CodePen", label: "CodePen.io/ImagineProgramming" },
+    { id: "filesize-data", data: benfordData.fileSizeData, title: "File sizes of random directory", label: "Filesizes" },
+    { id: "pmj-data", data: benfordData.pmjData, title: "PostModernJukebox's views as of 29 June 2015", label: "Video views" },
+    { id: "image-data", data: benfordData.imageData, title: "Image pixelcount of arbitrary 'Pictures' library", label: "No. of pixels" },
+    { id: "star-data", data: benfordData.starData, title: "Distances from earth to 119,613 stars", label: "Distance in pc" },
+    { id: "game-lines", data: benfordData.gameLines, title: "Lines of code in a game project (Disrupt)", label: "Lines of code" },
+    { id: "population-data", data: benfordData.populationData, title: "World country population data as of 2014", label: "Country population" },
+    { id: "prime-data", data: benfordData.primeData.primes, title: "Prime numbers up to 1,234,567", label: "Prime numbers" }] },
+
+  {
+    parent: document.getElementById("random-data"),
+    sets: [
+    { id: "isaac-cprng", data: benfordData.isaacData, title: "ISAAC Crypto Pseudo-random number generator", label: "ISAAC Random" },
+    { id: "small-prng", data: benfordData.smallData, title: "SmallPRNG Pseudo-random number generator", label: "SmallPRNG Random" },
+    { id: "regular-prng", data: benfordData.randomData, title: "Regular browser-specific built-in Math.random()", label: "Math.random" }] }],
+
+
+  setIndex,index,set;
+
+  // go through the sets
+  for (setIndex = 0; setIndex < analysis.length; setIndex += 1) {if (window.CP.shouldStopExecution(7)) break;
+
+    // generate the graphs in this set
+    for (index = 0; index < analysis[setIndex].sets.length; index += 1) {if (window.CP.shouldStopExecution(8)) break;
+      set = analysis[setIndex].sets[index];
+      set.graph = new BenfordAnalysisGraph(set.id, set.data, set.title, set.label);
+    }
+
+    // sort the graphs in this set
+    window.CP.exitedLoop(8);analysis[setIndex].sets.sort(function (a, b) {
+      return a.graph.avgdif - b.graph.avgdif;
+    });
+
+    // display all the graphs in this set.
+    for (index = 0; index < analysis[setIndex].sets.length; index += 1) {if (window.CP.shouldStopExecution(9)) break;
+      analysis[setIndex].sets[index].graph.render(analysis[setIndex].parent);
+    }window.CP.exitedLoop(9);
+  }window.CP.exitedLoop(7);
+});
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

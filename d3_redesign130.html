@@ -1,0 +1,588 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<title>RIBC Page Design</title>
+<style>
+      @import url("https://fonts.googleapis.com/css?family=Catamaran");
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+html {
+  position: absolute;
+  width: 100%;
+  margin: 0 auto;
+  display: inline-flex;
+}
+
+body {
+  position: absolute;
+  width: 100%;
+  margin: 0 auto;
+  font-family: 'Catamaran', sans-serif;
+  background-color: #46465a;
+  color: white;
+}
+
+header {
+  width: 100%;
+  margin: 20px auto;
+}
+header h1 {
+  margin-left: 120px;
+}
+header .debugSwitch {
+  position: absolute;
+  top: -25px;
+  right: -50px;
+  width: 140px;
+  height: 70px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  background-color: black;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+header .debugSwitch span {
+  position: absolute;
+  top: 40px;
+  right: 35px;
+}
+header .logo {
+  width: 40px;
+  height: 40px;
+  left: 40px;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 30px;
+  border: 2px solid white;
+}
+
+card {
+  width: 20vw;
+  display: block;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 20px;
+  align: center;
+  background-color: #64b4dc;
+  color: white;
+  text-align: center;
+}
+
+.cryptoCard span {
+  clear: both;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  font-size: 80px;
+  font-weight: 1000;
+  text-transform: uppercase;
+  color: rgba(100, 100, 100, 0.4);
+  z-index: 0;
+}
+.cryptoCard p {
+  position: relative;
+  z-index: 10;
+}
+
+h2 {
+  text-align: center;
+}
+
+h3 {
+  line-height: normal;
+  display: inline;
+}
+
+img {
+  margin: 0 auto;
+}
+
+hr {
+  border: none;
+  height: 4px;
+  margin-top: 40px;
+  background-color: white;
+}
+
+.autocomplete {
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: inline-block;
+}
+
+form {
+  width: 70vw;
+  margin: 0 auto;
+  text-align: center;
+}
+
+input {
+  margin: 0 auto;
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+::-webkit-input-placeholder {
+  text-align: center;
+  color: #46465a;
+  text-transform: lowercase;
+}
+
+:-ms-input-placeholder {
+  text-align: center;
+  color: #46465a;
+  text-transform: lowercase;
+}
+
+::-ms-input-placeholder {
+  text-align: center;
+  color: #46465a;
+  text-transform: lowercase;
+}
+
+::placeholder {
+  text-align: center;
+  color: #46465a;
+  text-transform: lowercase;
+}
+
+input[type=text] {
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: rgba(70, 70, 90, 0.7);
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: DodgerBlue;
+}
+
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 600px) {
+  .logo {
+    clear: both;
+    position: relative;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  card {
+    width: auto;
+    border-radius: 0;
+  }
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+  <header>
+    <img class="logo" src="https://www.financemagnates.com/wp-content/uploads/2018/05/1_zRG6qf7RAIbhMNitQbZzUw.png"></img>
+    <h1>Coinmarketcap API Cheatsheet
+      <a onclick="jsfunction()" href="#" class="debugSwitch"><span>Debug</span></a>
+    </h1>
+    <hr></hr>
+  </header>
+  <h2>Market Variables</h2>
+  <card id="marketCap">Market Capitalization</card>
+  <card id="marketVol">Market Volume</card>
+  <card id="marketDom">Dominance</card>
+  <card id="coinQuant">Coins</card>
+  <card id="marketQuant">Markets</card>
+  <div class="chart"></div>
+  <hr></hr>
+  </br>
+
+  <h2>Coin Variables</h2>
+  <form autocomplete="off">
+    <div class="autocomplete" style="width:300px;">
+      <input id="coinSelect" type="text" name="coinSelect" placeholder="Select a coin">
+    </div>
+  </form>
+  <card id="coinSymbol" class="statCard">Symbol:</card>
+<card id="coinLogo" class="statCard"><h3 style="margin-bottom:20px;">Logo:</h3></br><img style=""></img></card>
+  <card id="coinName" class="statCard">Name:</card>
+  <card id="circSupply" class="statCard">Circulating Supply:</card>
+  <card id="maxSupply" class="statCard">Max Supply:</card>
+  <card id="totalSupply" class="statCard">Total Supply:</card>
+  <card id="coinRank" class="statCard">Rank:</card>
+  <card id="coinPrice" class="statCard">Price:</card>
+  <card id="coinCap" class="statCard">Coin Market Cap:</card>
+  <card id="coinVol" class="statCard">24hr Volume:</card>
+  <card id="coinChangeH" class="statCard">1hr Change</card>
+  <card id="coinChangeD" class="statCard">24hr Change:</card>
+  <card id="coinChangeW" class="statCard">7d Change:</card>
+
+  <hr></hr>
+  </br>
+
+  <h2>Crypto Info Cards</h2>
+  <card id="FLO" class="cryptoCard"></card>
+  <card id="ADA" class="cryptoCard"></card>
+  <card id="EOS" class="cryptoCard"></card>
+
+  <hr></hr>
+  </br>
+
+<!--  <h2>Exchange Variables</h2>
+  <card>Name:</card>
+  <card>Rank:</card>
+  <card>Volume:</card> -->
+
+<!-- market ticker is a horizontal bar with x currency pairs delta   -->
+<footer><div class="marketTicker"></div></footer>
+
+
+
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script id="rendered-js">
+      // CMC Variables
+var btcMarketDom;
+var activeCoins;
+var activeExch;
+var marketCap;
+var volume;
+var coins = [];
+var symbols = [];
+// Options
+var updateInterval = 1 * 60000;
+const DEBUG = true;
+
+// Style & format functions
+function mapNum(x, in_min, in_max, out_min, out_max) {
+  return parseInt((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
+}
+
+function addCommas(nStr) {
+  nStr += "";
+  x = nStr.split(".");
+  x1 = x[0];
+  x2 = x.length > 1 ? "." + x[1] : "";
+  var rgx = /(\d+)(\d{3})/;
+  while (rgx.test(x1)) {
+    x1 = x1.replace(rgx, "$1" + "," + "$2");
+  }
+  return x1 + x2;
+}
+function color_gradient(i) {
+  var r = mapNum(i, 0, 101, 0, 255);
+  var g = mapNum(i, 101, 0, 0, 255);
+  if (DEBUG == true) {console.log("Rank: " + i, "Red: " + r, "Green: " + g);};
+  return r + "," + g + "," + 0 + "," + 1;
+}
+// Card Builder Formatting Function
+function make_card(js) {
+  return (
+    "<h3>" + js["name"] + "</br>" +
+    "Price: </h3>" + "$" + addCommas(js["quotes"]["USD"]["price"].toFixed(2)) + "</br>" +
+    "<h3>Market Cap: </h3>" + "$" + addCommas(js["quotes"]["USD"]["market_cap"]) + "</br>" +
+    "<h3>1hr &Delta;: </h3>" + js["quotes"]["USD"]["percent_change_1h"] + "</br>" +
+    "<h3>24hr &Delta;: </h3>" + js["quotes"]["USD"]["percent_change_24h"] + "</br>");
+
+}
+// Card Builder & Update Function
+function update_cards() {
+  $("card").each(function (index, element) {
+    if ($.inArray(element.id, window.symbols) > -1) {
+      if (DEBUG == true) {console.log("Update_Cards" + $(this).attr("id"));};
+      $(this).html("<span></span><p></p><img></img>");
+      $(this).find("p").html(make_card(coins[element.id]));
+      $(this).find("span").html(element.id);
+      $(this).find("span").attr("font-size", "80px");
+      /*$(this).find("img").attr("src", "https://github.com/dziungles/cryptocurrency-logos/blob/master/coins/64x64/" + coins[element.id]["name"].toLowerCase().replace(/\s/g, '-') + ".png?raw=true");
+   */   var x = 1;
+    }
+  });
+  if (x == 1) {
+    if (DEBUG == true) {console.log("Crypto_Cards failed to update");};
+  }
+}
+
+//REST API Functions
+function market_data() {
+  // $.get("https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest","X-CMC_PRO_API_KEY=fe231f8e-6d40-49c8-a22b-231123a7543a", function(data){
+  //  console.log("success");
+  // });
+
+  //Market Data
+  $.get(
+  "https://api.coinmarketcap.com/v2/global/?CMC_PRO_API_KEY=fe231f8e-6d40-49c8-a22b-231123a7543a",
+  function (data, status) {
+    btcMarketDom = data.data["bitcoin_percentage_of_market_cap"];
+    console.log("BTC Market Dominance", btcMarketDom);
+    $("#marketDom").html("<h3>BTC Market Dominance:</h3></br> " + btcMarketDom);
+
+    activeCoins = data.data["active_cryptocurrencies"];
+    console.log("Active Currencies", activeCoins);
+    $("#coinQuant").html("<h3>Coins:</h3></br> " + activeCoins);
+
+    activeExch = data.data["active_markets"];
+    console.log("Active exchanges", activeExch);
+    $("#marketQuant").html("<h3>Exchanges:</h3></br> " + activeExch);
+
+    marketCap = data.data["quotes"]["USD"]["total_market_cap"];
+    console.log("Market Capitalization", marketCap);
+    $("#marketCap").html(
+    "<h3>Market Capitalization:</h3></br> $" + addCommas(marketCap));
+
+
+    marketVol = data.data["quotes"]["USD"]["total_volume_24h"];
+    console.log("24hr Volume", marketVol);
+    $("#marketVol").html(
+    "<h3>Market Volume:</h3></br> $" + addCommas(marketVol));
+
+  });
+
+}
+function coin_data() {
+  //Coin Data
+  for (var x = 1; x <= 301; x = x + 100) {
+    $.get(
+    "https://api.coinmarketcap.com/v2/ticker/",
+    "CMC_PRO_API_KEY=fe231f8e-6d40-49c8-a22b-231123a7543a&sort=rank&start=" +
+    x +
+    "&limit=300",
+    function (data, status) {
+      if (data) {
+        for (var key in data.data) {
+          var coin = data.data[key];
+          coins[coin.symbol] = coin;
+          symbols.push(coin.symbol);
+        }
+      } else {
+        console.log("API Error, coin update" + status);
+      }
+    });
+
+  }
+  if (DEBUG == true) {console.log(symbols);};
+  return symbols;
+}
+//Form fill Function - requires autocomplete
+function coin_select(entry) {
+  if (DEBUG == true) {console.log("Coin_Select" + entry);};
+  $("#circSupply").html("<h3>Circulating Supply:</h3></br>" + addCommas(coins[entry]["circulating_supply"]));
+  $("#maxSupply").html(
+  "<h3>Max Supply:</h3></br>" + addCommas(coins[entry]["max_supply"]));
+
+  $("#totalSupply").html(
+  "<h3>Total Supply:</h3></br>" + addCommas(coins[entry]["total_supply"]));
+
+  $("#coinName").html("<h3>Name:</h3></br>" + coins[entry]["name"]);
+  $("#coinSymbol").html("<h3>Symbol:</h3></br>" + coins[entry]["symbol"]);
+  $("#coinLogo").find("img").attr("src", "https://github.com/dziungles/cryptocurrency-logos/blob/master/coins/64x64/" + coins[entry]["name"].toLowerCase().replace(/\s/g, '-') + ".png?raw=true");
+  $("#coinRank").html("<h3>Rank:</h3></br>" + coins[entry]["rank"]);
+  $("#coinRank").css("background-color", "rgba(" + color_gradient(coins[entry]["rank"]) + ")");
+  $("#coinPrice").html(
+  "<h3>Price:</h3></br>" + addCommas(coins[entry]["quotes"]["USD"]["price"]));
+
+  $("#coinCap").html(
+  "<h3>Market Capitalization:</h3></br>" +
+  addCommas(coins[entry]["quotes"]["USD"]["market_cap"]));
+
+  $("#coinVol").html(
+  "<h3>24hr Volume:</h3></br>" +
+  addCommas(coins[entry]["quotes"]["USD"]["volume_24h"]));
+
+  $("#coinChangeH").html(
+  "<h3>1hr Change:</h3></br>" +
+  coins[entry]["quotes"]["USD"]["percent_change_1h"] +
+  "%");
+
+  if (coins[entry]["quotes"]["USD"]["percent_change_1h"] <= 0) {
+    $("#coinChangeH").css("background-color", "red");
+  }
+  if (coins[entry]["quotes"]["USD"]["percent_change_1h"] > 0) {
+    $("#coinChangeH").css("background-color", "green");
+  }
+  $("#coinChangeD").html(
+  "<h3>24hr Change:</h3></br>" +
+  coins[entry]["quotes"]["USD"]["percent_change_24h"] +
+  "%");
+
+  if (coins[entry]["quotes"]["USD"]["percent_change_24h"] <= 0) {
+    $("#coinChangeD").css("background-color", "red");
+  }
+  if (coins[entry]["quotes"]["USD"]["percent_change_24h"] > 0) {
+    $("#coinChangeD").css("background-color", "green");
+  }
+  $("#coinChangeW").html(
+  "<h3>7d Change:</h3></br>" +
+  coins[entry]["quotes"]["USD"]["percent_change_7d"] +
+  "%");
+
+  if (coins[entry]["quotes"]["USD"]["percent_change_7d"] <= 0) {
+    $("#coinChangeW").css("background-color", "red");
+  }
+  if (coins[entry]["quotes"]["USD"]["percent_change_7d"] > 0) {
+    $("#coinChangeW").css("background-color", "green");
+  }
+}
+function update() {
+  market_data();
+  setTimeout(coin_data, 200);
+  setTimeout(update_cards, 400);
+}
+// Autocomplete
+function autocomplete(inp, arr) {
+  /*the autocomplete function takes two arguments,
+                                  the text field element and an array of possible autocompleted values:*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function (e) {
+    var a,
+    b,
+    i,
+    val = this.value;
+    /*close any already open lists of autocompleted values*/
+    closeAllLists();
+    if (!val) {
+      return false;
+    }
+    currentFocus = -1;
+    /*create a DIV element that will contain the items (values):*/
+    a = document.createElement("DIV");
+    a.setAttribute("id", this.id + "autocomplete-list");
+    a.setAttribute("class", "autocomplete-items");
+    /*append the DIV element as a child of the autocomplete container:*/
+    this.parentNode.appendChild(a);
+    /*for each item in the array...*/
+    for (i = 0; i < arr.length; i++) {
+      /*check if the item starts with the same letters as the text field value:*/
+      if (arr[i].substr(0, val.length) == val.toUpperCase()) {
+        /*create a DIV element for each matching element:*/
+        b = document.createElement("DIV");
+        /*make the matching letters bold:*/
+        b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+        b.innerHTML += arr[i].substr(val.length);
+        /*insert a input field that will hold the current array item's value:*/
+        b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+        /*execute a function when someone clicks on the item value (DIV element):*/
+        b.addEventListener("click", function (e) {
+          /*insert the value for the autocomplete text field:*/
+          inp.value = this.getElementsByTagName("input")[0].value;
+          /*update coin information. This shouldnt really be here, but the change() function is not playing well with autocomplete*/
+          coin_select(inp.value);
+          /*close the list of autocompleted values,
+                                           (or any other open lists of autocompleted values:*/
+          closeAllLists();
+        });
+        a.appendChild(b);
+      }
+    }
+
+  });
+
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener("keydown", function (e) {
+    var x = document.getElementById(this.id + "autocomplete-list");
+    if (x) x = x.getElementsByTagName("div");
+    if (e.keyCode == 40) {
+      /*If the arrow DOWN key is pressed,
+                               increase the currentFocus variable:*/
+      currentFocus++;
+      /*and and make the current item more visible:*/
+      addActive(x);
+    } else if (e.keyCode == 38) {
+      //up
+      /*If the arrow UP key is pressed,
+           decrease the currentFocus variable:*/
+      currentFocus--;
+      /*and and make the current item more visible:*/
+      addActive(x);
+    } else if (e.keyCode == 13) {
+      /*If the ENTER key is pressed, prevent the form from being submitted,*/
+      e.preventDefault();
+      if (currentFocus > -1) {
+        /*and simulate a click on the "active" item:*/
+        if (x) x[currentFocus].click();
+      }
+    }
+  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = x.length - 1;
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+    coin_select(x[currentFocus].value());
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+                                   except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+      }
+    }
+  }
+
+  /*execute a function when someone clicks in the document:*/
+  document.addEventListener("click", function (e) {
+    closeAllLists(e.target);
+  });
+}
+
+//Main script
+if (DEBUG == true) {console.log("Updating every " + updateInterval / 1000 / 60 + " minutes");};
+update();
+setInterval(update, updateInterval);
+$("#coinSelect").change(function () {coin_select($("#coinSelect").val().toUpperCase());});
+autocomplete(document.getElementById("coinSelect"), symbols);
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

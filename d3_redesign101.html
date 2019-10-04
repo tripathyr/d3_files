@@ -1,0 +1,202 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Minimal Responsive Navigation Menu</title>
+<style>
+      html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #6fdeff;
+  font-size: 16px;
+  text-align: center;
+}
+
+.nav {
+  display: block;
+  height: 50%;
+  margin: auto;
+  padding: 1em;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+}
+
+.nav__title {
+  font-size: 1.25em;
+  float: left;
+  padding: 0 0 0.75em 0;
+  text-align: left;
+  width: 100%;
+}
+@media (min-width: 33em) {
+  .nav__title {
+    display: none;
+  }
+}
+
+.nav__title--icon {
+  float: right;
+  margin-top: 0.5em;
+  position: relative;
+  transition: background 1.111s;
+}
+
+.nav__title--icon,
+.nav__title--icon::before,
+.nav__title--icon::after {
+  background: black;
+  border-radius: 0.25rem;
+  height: 0.25rem;
+  width: 1.75rem;
+}
+
+.nav__title--icon::before,
+.nav__title--icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  transition: top .666s, -webkit-transform .666s;
+  transition: transform .666s, top .666s;
+  transition: transform .666s, top .666s, -webkit-transform .666s;
+}
+
+.nav__title--icon::before {
+  top: -0.5rem;
+}
+
+.nav__title--icon::after {
+  top: 0.5rem;
+}
+
+/** hide checkbox */
+.nav__title--check {
+  position: absolute;
+  left: -666px;
+}
+@media (min-width: 33em) {
+  .nav__title--check {
+    display: none;
+  }
+}
+
+.nav__menu {
+  border-top: 2px solid black;
+  float: left;
+  list-style: none;
+  max-height: 0;
+  /** hide when not checked */
+  overflow: hidden;
+  width: 100%;
+}
+@media (min-width: 33em) {
+  .nav__menu {
+    border-top: 1px solid black;
+    max-height: 100%;
+    overflow: visible;
+  }
+}
+@media (min-width: 44em) {
+  .nav__menu {
+    border-bottom: 1px solid black;
+  }
+}
+.nav__menu .nav__menu--item {
+  border-bottom: 1px solid black;
+  padding: 1em;
+}
+.nav__menu .nav__menu--item a {
+  color: black;
+  text-decoration: none;
+}
+.nav__menu .nav__menu--item a:hover {
+  text-decoration: underline;
+}
+@media (min-width: 44em) {
+  .nav__menu .nav__menu--item {
+    border: none;
+    display: inline-block;
+  }
+}
+
+.nav__title--check ~ .nav__menu {
+  max-height: 0;
+  transition: max-height .666s;
+  /** reset max-height when checkbox (.nav__title--check) not needed */
+}
+@media (min-width: 33em) {
+  .nav__title--check ~ .nav__menu {
+    max-height: 100%;
+  }
+}
+
+.nav__title--check:checked ~ .nav__menu {
+  max-height: 100%;
+  transition: max-height 1.111s;
+}
+
+.nav__title--check:checked ~ .nav__title .nav__title--icon {
+  background: transparent;
+  transition: background .666s;
+}
+.nav__title--check:checked ~ .nav__title .nav__title--icon::before, .nav__title--check:checked ~ .nav__title .nav__title--icon::after {
+  top: 0;
+  transition: top .666s, -webkit-transform .666s;
+  transition: transform .666s, top .666s;
+  transition: transform .666s, top .666s, -webkit-transform .666s;
+}
+.nav__title--check:checked ~ .nav__title .nav__title--icon::before {
+  -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg);
+}
+.nav__title--check:checked ~ .nav__title .nav__title--icon::after {
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="nav">
+<input class="nav__title--check" type="checkbox" id="navTitleCheck">
+<label class="nav__title" for="navTitleCheck">menu
+<div class="nav__title--icon"> </div>
+</label>
+<ul class="nav__menu">
+<li class="nav__menu--item"><a href="#">item 1</a></li>
+<li class="nav__menu--item"><a href="#">item 2</a></li>
+<li class="nav__menu--item"><a href="#">item 3</a></li>
+</ul>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      /*
+
+Resize the browser and click on the 'menu' bar to see it in action!
+
+*/
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

@@ -1,0 +1,106 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Circle Packing - p5js p5.js</title>
+<style>
+    html, body {
+  margin: 0;
+  padding: 0;
+}
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.min.js"></script>
+<script id="rendered-js">
+      var circles = [];
+var startingR = 64;
+var currentR = startingR;
+var maxLoops = 1000;
+
+function setup() {
+  windowResized();
+  colorMode(HSB);
+  background(0);
+  generateCircles();
+}
+
+function draw() {
+  background(0);
+
+  for (var i = 0; i < circles.length; i++) {if (window.CP.shouldStopExecution(0)) break;
+    circles[i].draw();
+  }window.CP.exitedLoop(0);
+
+}
+
+function windowResized() {
+  resizeCanvas(window.innerWidth, window.innerHeight);
+  circles = [];
+  generateCircles();
+  // Reset variables here
+}
+
+function generateCircles() {
+  currentR = startingR;
+  var loopCycle = maxLoops;
+
+  while (loopCycle > 0) {if (window.CP.shouldStopExecution(1)) break;
+    var circle = new Circle(random(width), random(height), currentR);
+
+    var available = true;
+    for (var j = 0; j < circles.length; j++) {if (window.CP.shouldStopExecution(2)) break;
+      var other = circles[j];
+      if (dist(circle.x, circle.y, other.x, other.y) < circle.r + other.r) {
+        available = false;
+        break;
+      }
+    }window.CP.exitedLoop(2);
+
+    if (available) {
+      circles.push(circle);
+    }
+
+    loopCycle--;
+    if (loopCycle === 0) {
+      if (currentR > 1) {
+        currentR = currentR - 1;
+        console.log('Reduced Radius: ' + currentR, 'Circles: ' + circles.length);
+        loopCycle = maxLoops;
+      }
+    }
+  }window.CP.exitedLoop(1);
+}
+
+function Circle(x, y, r) {
+
+  this.x = x;
+  this.y = y;
+  this.r = r;
+
+}
+
+Circle.prototype.draw = function () {
+  push();
+  noStroke();
+  fill(map(this.r, 0, startingR, 0, 255), 255, 255);
+  ellipse(this.x, this.y, this.r * 2, this.r * 2);
+
+  fill(255);
+  textAlign(CENTER);
+  pop();
+};
+      //# sourceURL=pen.js
+    </script>
+
+
+<canvas id="defaultCanvas0" width="1662" height="528" style="width: 831px; height: 264px;"></canvas></body></html>

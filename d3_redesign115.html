@@ -1,0 +1,272 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Daily UI #019 — Leaderboard</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+<style>
+      body {
+  background-color: #f0f0f0;
+  font-family: sans-serif;
+}
+#app {
+  display: flex;
+  justify-content: center;
+}
+.main {
+  width: 400px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.header {
+  height: 120px;
+  display: flex;
+  background-color: #cb0065;
+  color: #ffffff;
+  align-items: center;
+  padding: 0em 3em;
+}
+.header-logo img {
+  width: 40px;
+  height: 40px;
+}
+.header-text {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1em;
+  text-transform: uppercase;
+}
+.header-text-title {
+  font-size: .8em;
+}
+.header-text-subtitle {
+  font-size: 1em;
+}
+.content {
+  padding: 0 3em;
+}
+.list {
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1 1 auto;
+}
+.row {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  border-bottom: 1px solid #f8f8f8;
+  padding: 1em 0;
+}
+.column {
+  display: flex;
+  flex-flow: row nowrap;
+  flex-grow: 1;
+  flex-basis: 0;
+  padding: 0.5em;
+}
+.flex-grow-2 {
+  flex-grow: 2;
+}
+.divider-2 {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  width: 64px;
+}
+.logo i {
+  font-size: 35px;
+  width: 40px;
+  text-align: center;
+}
+.price {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 3;
+}
+.column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.column i.fa-sort-up {
+  margin-top: 5px;
+}
+.column i.fa-sort-down {
+  margin-bottom: 5px;
+}
+.footer {
+  padding: 1em 3em;
+  text-align: center;
+}
+.footer-text {
+  color: #ccc;
+  font-weight: 600;
+  font-size: 14px;
+}
+/* colors */
+.red {
+  color: red;
+}
+.green {
+  color: green;
+}
+.yellow {
+  color: #f89f34;
+}
+.black {
+  color: #121111;
+}
+.grey {
+  color: #ccc;
+}
+.bold {
+  font-weight: 900;
+}
+/* size */
+.size-16 {
+  font-size: 16px;
+}
+.size-13 {
+  font-size: 13px;
+}
+/* helpers */
+.border {
+  border: 1px solid blue;
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div id="app"></div>
+
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/css/all.css"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.4.2/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.2/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+<script id="rendered-js">
+      /* Dribble Design */
+/* https://dribbble.com/shots/4998808-Daily-UI-019-Leaderboard */
+
+class Main extends React.Component {
+  render() {
+    return (
+      React.createElement("div", { class: "main" },
+      this.props.children));
+
+
+  }}
+
+
+class Header extends React.Component {
+  render() {
+    return (
+      React.createElement("div", { className: "header" },
+      React.createElement("div", { className: "header-logo" },
+      React.createElement("img", { src: "https://seeklogo.com/images/B/binance-coin-bnb-logo-97F9D55608-seeklogo.com.png", alt: "logo" })),
+
+      React.createElement("div", { className: "header-text" },
+      React.createElement("span", { className: "header-text-title" }, "Cryptocurrency"),
+      React.createElement("span", { className: "header-text-subtitle bold" }, "Leaderboard"))));
+
+
+
+  }}
+
+
+class List extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: null };
+
+  }
+
+  componentDidMount() {
+    const data = [];
+    fetch(`https://api.coinmarketcap.com/v2/ticker/?limit=10`).
+    then(d => d.json()).
+    then(crypto => {
+
+      for (const prop in crypto.data) {
+        data.push(crypto.data[prop]);
+      }
+
+      data.sort((a, b) => {
+        return a.rank - b.rank;
+      });
+
+      this.setState({
+        data: data });
+
+    });
+  }
+
+  checkPositive(item) {
+    return item[0] !== '-';
+  }
+
+  renderElements() {
+    return this.state.data.map((item, index) => {
+      return React.createElement("div", { className: "row" },
+      React.createElement("div", { className: "column-left flex-grow-2" },
+      React.createElement("div", { className: "divider-2" },
+      React.createElement("div", { className: "logo" },
+      React.createElement("img", { src: `https://s2.coinmarketcap.com/static/img/coins/32x32/${item.id}.png`, alt: `${item.name}` })),
+
+      React.createElement("div", { className: "price" },
+      React.createElement("span", { className: "bold size-16" }, item.name),
+      React.createElement("span", { className: "size-13" }, numeral(item.quotes.USD.price).format('0,0.000'))))),
+
+
+
+      React.createElement("div", { className: `column ${this.checkPositive(String(item.quotes.USD.percent_change_1h)) ? "green" : "red"}` },
+      React.createElement("i", { className: "fas fa-sort-up" }),
+      React.createElement("span", null, item.quotes.USD.percent_change_1h, "%")));
+
+
+    });
+  }
+
+  render() {
+    console.log(this.state);
+    return (
+      React.createElement("div", { className: "content" },
+      this.state.data ? this.renderElements() : null));
+
+
+  }}
+
+
+
+class Card extends React.Component {
+  render() {
+    return (
+      React.createElement(Main, null,
+      React.createElement(Header, null),
+      React.createElement(List, null)));
+
+
+  }}
+
+ReactDOM.render(React.createElement(Card, null), document.getElementById('app'));
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

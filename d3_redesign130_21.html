@@ -1,0 +1,175 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<title>Craft Beer CSS Daily Img </title>
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Cookie");
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+body {
+  background: #96d7d0;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Cookie', cursive;
+}
+
+h2 {
+  text-align: center;
+  font-family: 'Cookie', cursive;
+  font-size: 1.7rem;
+}
+
+p {
+  padding-top: 1em;
+  position: relative;
+  top: 40%;
+  text-align: center;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  font-family: 'Raleway', sans-serif;
+}
+
+.box1 {
+  position: relative;
+  width: 750px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.beer {
+  position: absolute;
+  width: 40%;
+  left: 30%;
+  height: 30%;
+  top: 20%;
+  background: #F8F753;
+  border-top: 20px solid white;
+  border-bottom: 10px solid white;
+}
+
+.glass {
+  position: absolute;
+  width: 10%;
+  left: 70%;
+  height: 15%;
+  top: 30%;
+  background: transparent;
+  border-right: 10px solid white;
+  border-top: 10px solid white;
+  border-bottom: 10px solid white;
+  border-radius: 0 20px 20px 0;
+}
+
+.pilsner {
+  position: absolute;
+  width: 250px;
+  height: 300px;
+}
+
+.pilsner > .beer {
+  background: #F8F753;
+}
+
+.lager {
+  position: absolute;
+  width: 250px;
+  height: 300px;
+  left: 250px;
+}
+
+.lager > .beer {
+  background: yellow;
+}
+
+.bock {
+  position: absolute;
+  width: 250px;
+  height: 300px;
+  left: 500px;
+}
+
+.bock > .beer {
+  background: #5D341A;
+}
+
+.box2 {
+  position: relative;
+  width: 750px;
+  height: 300px;
+  margin: 50px auto;
+}
+
+.porter {
+  position: absolute;
+  width: 250px;
+  height: 300px;
+}
+
+.porter > .beer {
+  background: #D5BC26;
+}
+
+.weisbir {
+  position: absolute;
+  width: 250px;
+  height: 300px;
+  left: 250px;
+}
+
+.weisbir > .beer {
+  background: #BF923B;
+}
+
+.stout {
+  position: absolute;
+  width: 250px;
+  height: 300px;
+  left: 500px;
+}
+
+.stout > .beer {
+  background: #0F0B0A;
+}
+
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="box1">
+<div class="pilsner"><h2>Pilsener</h2>
+<div class="glass"></div>
+<div class="beer"></div><p><strong>Bitterness:</strong> medium+<br><strong> Alcohol:</strong> 4-4,5%;<br> Has characteristic super clear color<br></p>
+</div>
+<div class="lager"><h2>Lager</h2>
+<div class="glass"></div>
+<div class="beer"></div><p><strong>Bitterness:</strong> light<br><strong> Alcohol:</strong> 4,5-4,5%;<br> If you order "a beer", you'll get lager.<br></p>
+</div>
+<div class="bock"><h2>Bock</h2>
+<div class="glass"></div>
+<div class="beer"></div><p><strong>Bitterness:</strong> medium<br><strong> Alcohol:</strong> 6-8%;<br> Ordering an eisbock will get you beer that was frozen.<br></p>
+</div>
+</div>
+<div class="box2">
+<div class="porter"><h2>Indian Pale Ale</h2>
+<div class="glass"></div>
+<div class="beer"></div><p><strong>Bitterness:</strong> deadly serious<br><strong> Alcohol:</strong> 5-9%;<br> You can just as well eat hopps<br></p>
+</div>
+<div class="weisbir"><h2>Wheat beer</h2>
+<div class="glass"></div>
+<div class="beer"></div><p><strong>Bitterness:</strong> for babies<br><strong> Alcohol:</strong> 4,3-5,6%;<br> The oldest of them all. Lots of bubbles<br></p>
+</div>
+<div class="stout"><h2>Stout</h2>
+<div class="glass"></div>
+<div class="beer"></div><p><strong>Bitterness:</strong> rather strong<br><strong> Alcohol:</strong> 4-5%;<br> Think the most famous Irish beer<br></p>
+</div>
+</div>
+
+
+</body></html>

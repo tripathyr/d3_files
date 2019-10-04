@@ -1,0 +1,58 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Circle Packing</title>
+<style>
+    html {
+  background: #444;
+}
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<canvas id="canvas" class="canvas" width="10000" height="650"></canvas>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      function draw() {
+  var ctx = document.getElementById('canvas').getContext('2d');
+  for (var i = 0; i < 6; i++) {if (window.CP.shouldStopExecution(0)) break;
+    for (var j = 0; j < 10; j++) {if (window.CP.shouldStopExecution(1)) break;
+      if (i % 2 == 0) {
+        var x = 60 + j * 102;
+        var y = 60 + i * 88.6;
+      } else {
+        var x = 110 + j * 102;
+        var y = 60 + i * 88.6;
+      }
+      var r = 50;
+      var start = 0;
+      var end = Math.PI * 2;
+      var noclock = false;
+
+      ctx.strokeStyle = 'rgba(' + Math.floor(255 - 42.5 * i) + ',' +
+      Math.floor(255 - 21.1666 * j) + ',' + Math.floor(255 - 255 / (i + 1)) + ',0.7)';
+      if (i % 2 != 0 && j == 9) {
+
+      } else {
+        ctx.beginPath();
+        ctx.arc(x, y, r, start, end, noclock);
+        ctx.stroke();
+      }
+    }window.CP.exitedLoop(1);
+  }window.CP.exitedLoop(0);
+}
+
+draw();
+      //# sourceURL=pen.js
+    </script>
+
+
+</body></html>

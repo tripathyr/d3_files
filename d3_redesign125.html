@@ -1,0 +1,715 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - CMC Crypto Ticker</title>
+<style>
+      *{
+  padding:0;
+  margin:0;
+}
+body{
+  padding:0;
+  margin:0;
+}
+@-webkit-keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+  100% {
+    -webkit-transform: translate3d(-140%, 0, 0);
+    transform: translate3d(-180%, 0, 0);
+  }
+}
+
+@keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+  100% {
+    -webkit-transform: translate3d(-140%, 0, 0);
+    transform: translate3d(-180%, 0, 0);
+  }
+}
+
+.tickercontainer {
+    height: 69px !important;
+    background: #f7f7f7;
+    border-top: 2px solid #c1c1c1;
+    border-bottom: 2px solid #c1c1c1;
+    z-index: 3;
+    position: relative;
+    /* box-shadow: black 0px 0px 6px 0px; */
+}
+
+.ticker-wrap {
+  position: relative;
+  left: 0;
+  overflow: hidden;
+  height: 7rem;
+  background-color: rgb(247, 247, 247);
+  padding-left: 100%;
+  box-sizing: content-box;
+  border-top: 2px solid #d4d4d4;
+  border-bottom: 2px solid #d4d4d4;
+}
+
+.ticker-wrap .ticker {
+  display: inline-block;
+  height: 4rem;
+  line-height: 4rem;
+  white-space: nowrap;
+  padding-right: 100%;
+  box-sizing: content-box;
+/*
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-name: ticker;
+  animation-name: ticker;
+  -webkit-animation-duration: 30s;
+  animation-duration: 30s;
+*/
+}
+
+.ticker__item {
+  display: inline-block;
+/*  padding: 0 8rem !important;*/
+  font-size: 2rem;
+  color: white;
+  line-height: 4rem !important;
+}
+li.ticker__item::before {
+    content:"";
+    background:rgba(0, 0, 0, 0.10);
+    height:140px;
+    width:1px;
+    display:block;
+    position:absolute;
+    margin-left:-5rem;
+    margin-top:auto;
+    margin-bottom:auto;
+    top:0;
+    bottom:0;
+    }
+
+p.crypto {
+    color: #2b5065;
+}
+
+span.value.negative {
+    color: #de5880;
+}
+
+span.value.positive {
+    color: #58de5e;
+}
+
+
+p.amount {
+    color: #133954;
+    font-weight: 500;
+    margin-top: -25px;
+    font-size: 1.4rem;
+}
+span.curr {
+    font-weight: 700;
+    font-size: 1.2rem;
+    float: right;
+}
+
+.cryptoimage
+{
+  display: inline-block;
+  vertical-align: sub;
+  width:100%;
+  max-width: 65px;
+  padding-right: 13px;
+}
+
+
+.quote {
+/*  width: 100%;*/
+ width: 200px;
+  font-family: 'Montserrat';
+}
+
+.quote h4 {
+  font-size: 2.2rem;
+  margin: auto;
+  padding-left: 2.6rem;
+  text-align: left;
+  font-weight:600;
+  color: black;
+  margin-top: 1rem;
+  letter-spacing:0.25rem;
+}
+.quote > h5 {
+  font-size: 0.4rem;
+  /*   float:left; */
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.price-up {
+  animation-duration: 1.5s;
+  animation-name: price-up;
+}
+.price-down {
+  animation-duration: 1.5s;
+  animation-name: price-down;
+}
+@keyframes price-up {
+  0% {
+    color: black;
+  }
+  5% {
+    color: green;
+  }
+  15% {
+    color: green;
+  }
+  100% {
+    color: black;
+  }
+}
+@keyframes price-down {
+  0% {
+    color: black;
+  }
+  5% {
+    color: red;
+  }
+  15% {
+    color: red;
+  }
+  100% {
+    color: black;
+  }
+}
+
+.quote > h5 {
+  text-align: left;
+  width: 100%;
+  display: block;
+  padding: 0;
+  margin: auto;
+  color: black;
+  font-size: 1.7rem;
+}
+
+.quote > h5 > span {
+  width: 81px;
+  text-align: right;
+  padding-left: 25px;
+}
+.positivePer {
+  color: green;
+}
+
+.negativePer {
+  color: red;
+}
+
+.neutralPer {
+  color: yellow;
+}
+
+.quote img
+{
+    margin-right: 1.4rem;
+    float: left;
+    vertical-align: middle;
+    text-align: center;
+    max-width: 47px;
+    width: 100%;
+    display: table-cell;
+    position:relative;
+    top:-0.4rem;
+}
+
+/*
+ .unloaded
+{
+    display: none !important;
+}*/
+
+p.crypto{
+  font-size:1rem;
+  margin-bottom:-2.7rem;
+  padding-bottom:0;
+  display:block;
+  width:120px;
+}
+p.amount{
+  margin-top:0;
+  padding-top:0;
+}
+.cryptoimage{
+  vertical-align:middle;
+  margin-top:1.7rem;
+}
+.coinmarketcap-currency-widget{
+  margin-bottom:2rem;
+  padding-bottom:2rem;
+  display:block;
+  padding-top:0;
+  margin-top:-0.5rem;
+}
+
+.ticker{
+    overflow-x: hidden;
+    position: relative;
+}
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script></head>
+<body translate="no">
+
+<!-- <div class="marquee3k" data-speed="20.25" >
+        <h1>Some marquee content</h2>
+    </div> -->
+<div class="ticker_wrap">
+<ul class="ticker">
+
+  <li class="ticker__item">
+    <div class="quote">
+      <div class="coinmarketcap-currency-widget" data-currencyid="1" data-base="USD" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
+    </div>
+
+  </li>
+
+  <li class="ticker__item">
+
+    <div class="quote">
+      <div class="coinmarketcap-currency-widget" data-currencyid="1831" data-base="USD" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
+    </div>
+
+  </li>
+
+  <li class="ticker__item">
+    <div class="quote">
+      <div class="coinmarketcap-currency-widget" data-currencyid="1808" data-base="USD" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
+    </div>
+
+  </li>
+
+  <li class="ticker__item">
+    <div class="quote">
+      <div class="coinmarketcap-currency-widget" data-currencyid="1104" data-base="USD" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
+    </div>
+
+  </li>
+
+  <li class="ticker__item">
+
+    <div class="quote">
+      <div class="coinmarketcap-currency-widget" data-currencyid="1697" data-base="USD" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
+    </div>
+
+  </li>
+
+  <li class="ticker__item">
+
+    <div class="quote">
+      <div class="coinmarketcap-currency-widget" data-currencyid="2373" data-base="USD" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
+    </div>
+
+  </li>
+
+  <li class="ticker__item">
+
+    <div class="quote">
+      <div class="coinmarketcap-currency-widget" data-currencyid="1896" data-base="USD" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
+    </div>
+
+  </li>
+
+  <li class="ticker__item">
+
+    <div class="quote">
+      <div class="coinmarketcap-currency-widget" data-currencyid="1027" data-base="USD" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
+    </div>
+
+  </li>
+
+  <li class="ticker__item">
+
+    <div class="quote">
+      <div class="coinmarketcap-currency-widget" data-currencyid="2" data-base="USD" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
+    </div>
+
+  </li>
+
+</ul>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.marquee/1.4.0/jquery.marquee.min.js"></script>
+<script id="rendered-js">
+      $('.ticker').marquee({
+  //speed in milliseconds of the marquee
+  duration: 15000,
+  //gap in pixels between the tickers
+  gap: 150,
+  //time in milliseconds before the marquee will start animating
+  delayBeforeStart: 0,
+  //'left' or 'right'
+  direction: 'left',
+  //true or false - should the marquee be duplicated to show an effect of continues flow
+  duplicated: true });
+
+!function () {
+  var e;
+  if (void 0 === window.jQuery || "1.11.1" !== window.jQuery.fn.jquery) {
+    var t = document.createElement("script");
+    t.setAttribute("type", "text/javascript"),
+    t.setAttribute(
+    "src",
+    "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"),
+
+    t.readyState ?
+    t.onreadystatechange = function () {
+      "complete" != this.readyState && "loaded" != this.readyState ||
+      a();
+    } :
+    t.onload = a,
+    (
+    document.getElementsByTagName("head")[0] || document.documentElement).
+    appendChild(t);
+  } else e = window.jQuery, r();
+
+  function a() {
+    e = window.jQuery.noConflict(!0), r();
+  }
+
+  function i(e) {
+    var t = " " + document.cookie,
+    a = " " + e + "=",
+    i = null,
+    r = 0,
+    n = 0;
+    return (
+      0 < t.length &&
+      -1 != (r = t.indexOf(a)) && (
+      r += a.length,
+      -1 == (n = t.indexOf(";", r)) && (n = t.length),
+      i = unescape(t.substring(r, n))),
+      i);
+
+  }
+
+  function r() {
+    var s,
+    d,
+    L = (s = i("_locale") || void 0,
+    d = !(
+    "object" != typeof Intl ||
+    !Intl ||
+    "function" != typeof Intl.NumberFormat),
+
+    {
+      toLocaleString: function (e, t) {
+        var a = Number(e);
+        if (isNaN(a)) return e;
+        var i,
+        r,
+        n,
+        o,
+        c = t && t.minDecimalPlaces,
+        l = t && t.maxDecimalPlaces;
+        return void 0 === c || void 0 === l ? (
+        i = a, d ? i.toLocaleString(s) : i.toLocaleString()) : (
+        r = a,
+        n = c,
+        o = l,
+        d ?
+        r.toLocaleString(s, {
+          minimumFractionDigits: n,
+          maximumFractionDigits: o }) :
+
+        r.toFixed(o));
+      } });
+
+
+    function k(e, t) {
+      var a = t;
+      t = Math.pow(10, t);
+      for (var i = ["K", "M", "B", "T"], r = i.length - 1; 0 <= r; r--) {if (window.CP.shouldStopExecution(0)) break;
+        var n = Math.pow(10, 3 * (r + 1));
+        if (n <= e) {
+          1e3 == (e = Math.round(e * t / n) / t) &&
+          r < i.length - 1 && (
+          e = 1, r++),
+          e = L.toLocaleString(Number(e), {
+            minDecimalPlaces: a,
+            maxDecimalPlaces: a }),
+
+          e += " " + i[r];
+          break;
+        }
+      }window.CP.exitedLoop(0);
+      return e;
+    }
+
+    function P(e, t) {
+      return "BTC" == t ?
+      function (e) {
+        e =
+        1e3 <= e ?
+        L.toLocaleString(Math.round(e)) :
+        1 <= e ?
+        L.toLocaleString(e, {
+          minDecimalPlaces: 2,
+          maxDecimalPlaces: 5 }) :
+
+        e < 1e-8 ?
+        Number(e).toExponential(4) :
+        L.toLocaleString(e, {
+          minDecimalPlaces: 2,
+          maxDecimalPlaces: 5 });
+
+        return e;
+      }(e) :
+      function (e) {
+        e =
+        1 <= e ?
+        1e5 <= e ?
+        L.toLocaleString(Math.round(e)) :
+        L.toLocaleString(e, {
+          minDecimalPlaces: 2,
+          maxDecimalPlaces: 5 }) :
+
+        e < 1e-6 ?
+        Number(e).toExponential(2) :
+        L.toLocaleString(e, {
+          minDecimalPlaces: 2,
+          maxDecimalPlaces: 5 });
+
+        return e;
+      }(e);
+    }
+
+    function C(e, t, a) {
+      var i = t,
+      r = {
+        btc: "à¸¿",
+        usd: "$",
+        eur: "â‚¬",
+        cny: "Â¥",
+        gbp: "Â£",
+        cad: "$",
+        rub: "<img src='/static/img/fiat/ruble.gif'/>",
+        hkd: "$",
+        jpy: "Â¥",
+        aud: "$",
+        brl: "R$",
+        inr: "â‚¹",
+        krw: "â‚©",
+        mxn: "$",
+        idr: "Rp",
+        chf: "Fr" };
+
+      return (
+        e.toLowerCase() in r && (i = r[e.toLowerCase()] + i),
+        a && (
+        i =
+        i + ' <span style="font-size:9px">' + e.toUpperCase() + "</span>"),
+        i);
+
+    }
+
+    function S(e, t, a, i, r, n, o, c, l, s, d, p, m, u, h, g, v, f) {
+      var x = f ?
+      "https://s2.coinmarketcap.com/static/img/coins/64x64/" + f + ".png" :
+      "https://files.coinmarketcap.com/static/widget/coins_legacy/64x64/" +
+      e +
+      ".png",
+      b = "#009e73";
+      l < 0 && (b = "#d94040"),
+      l = L.toLocaleString(l, {
+        minDecimalPlaces: 2,
+        maxDecimalPlaces: 2 }),
+
+      valTickerHTML = m ? a : "",
+      valPrice = n ? P(n, i) : "?",
+      valPercentHTML = l ? '<span style="color:' + b + '">' + l + "%" : "",
+      valMarketCap = s ? k(s, 2) : "?",
+      valVolume = d ? k(d, 2) : "?",
+      o ? (
+      mainLineHeight = 25,
+      valPriceSecondary = c ? P(c, o) : "?",
+      secondaryHTML =
+      '<br><span style="font-size: 12px; color: rgba(39, 52, 64, 0.5)">' +
+      valPriceSecondary +
+      " " +
+      o +
+      " </span>") : (
+      mainLineHeight = 30, secondaryHTML = "");
+      var y =
+      "utm_medium=widget&utm_campaign=cmcwidget&utm_source=" +
+      location.hostname +
+      "&utm_content=" +
+      e;
+
+      //          var w = '<div style="border:0px solid #e1e5ea;border-radius: 10px;font-family: \'Helvetica Neue\',Helvetica,Arial,sans-serif;color: rgba(23, 24, 27, 0.85);">    <div>        <div style="border: none;text-align:left;line-height:' + mainLineHeight + 'px;">            <span style="font-size: 18px;"><a>' + t + " " + valTickerHTML + '</a></span> <br>            <span style="font-size: 16px;">' + valPrice + " " + i + " " + valPercentHTML + "</span></span>            " + secondaryHTML + '        </div>        <div style="text-align:center;padding:5px 0px;width:33%;"></div>    </div>';
+      //
+
+      //          var w = '<p class="crypto">' + valTickerHTML +'/'+ i + '<span class="value negative"> ' + valPercentHTML + '</span></p><p class="amount">' + valPrice + ' ' + '<span class="curr">' + i + '</span></p>';
+
+      var w =
+      '<img alt="' +
+      valTickerHTML +
+      '" class="cryptoimage" src="' +
+      x +
+      '"/><div style="display:inline-block"><p class="crypto">' +
+      "$" +
+      valPrice +
+      '<span class="value negative"></span></p><p class="amount">' +
+      valTickerHTML +
+      '<span class="curr">' +
+      valPercentHTML +
+      "</span></p></div>";
+
+      return (
+        w += function (e, t, a, i, r, n, o, c) {
+          var l = 0,
+          s = 0,
+          d = "",
+          p = "",
+          m = "";
+          if (e && l++, t && l++, a && l++, 0 == l) return "";
+          1 == l && (s = 100),
+          2 == l && (s = 49.8),
+          3 == l && (s = 33),
+          e && (
+          borderWidth = 0,
+          (a || t) && (borderWidth = 0),
+          d =
+          '                    <div style="text-align:center;float:left;width:' +
+          s +
+          "%;font-size:12px;padding:12px 0;border-right:" +
+          borderWidth +
+          'px solid #e1e5ea;line-height:1.25em;">                        RANK                        <br><br>                        <span style="font-size: 17px; ">' +
+          n +
+          "</span>                    </div>");
+          a && (
+          borderWidth = 0,
+          t && (borderWidth = 0),
+          p =
+          '                    <div style="text-align:center;float:left;width:' +
+          s +
+          "%;font-size:12px;padding:12px 0 16px 0;border-right:" +
+          borderWidth +
+          'px solid #e1e5ea;line-height:1.25em;">                        MARKET CAP                        <br><br>                        <span style="font-size: 14px; ">' +
+          C(r, o, i) +
+          "</span>                    </div>");
+          t && (
+          m =
+          '                    <div style="text-align:center;float:left;width:' +
+          s +
+          '%;font-size:12px;padding:12px 0 16px 0;line-height:1.25em;">                        VOLUME (24H)                        <br><br>                        <span style="font-size: 14px; ">' +
+          C(r, c, i) +
+          "</span>                    </div>");
+          return (
+            detailedHTML =
+            '<div style="border-top: 1px solid #e1e5ea;clear:both;">' +
+            d +
+            p +
+            m +
+            "</div>",
+            detailedHTML);
+
+        }(u, h, g, v, r, p, valMarketCap, valVolume),
+        w += "    </div>");
+
+    }
+    e(document).ready(function (M) {
+      M(".coinmarketcap-currency-widget").each(function () {
+        var v = M(this).attr("data-currency"),
+        f = M(this).data("currencyid"),
+        x = M(this).
+        attr("data-base").
+        toUpperCase(),
+        b = M(this).attr("data-secondary");
+        b = "BTC" == (b = b ? b.toUpperCase() : null) || "USD" == b ? b : null;
+        var y = M(this).attr("data-stats");
+        y = (y = y ? y.toUpperCase() : null) == x ? x : "USD";
+        var e,
+        w = !1 !== M(this).data("ticker"),
+        L = !1 !== M(this).data("rank"),
+        k = !1 !== M(this).data("marketcap"),
+        P = !1 !== M(this).data("volume"),
+        C = !1 !== M(this).data("statsticker"),
+        _ = this;
+        e = f ?
+        "https://widgets.coinmarketcap.com/v2/ticker/" +
+        f +
+        "/?ref=widget&convert=" +
+        x :
+        "https://widgets.coinmarketcap.com/v1/ticker/" +
+        v +
+        "/?ref=widget&convert=" +
+        x,
+        M.get({
+          url: e,
+          success: function (e) {
+            if (
+            e = e.length ? e[0] : e.data, v || (v = e.website_slug), f)
+
+            var t = e.quotes[x.toUpperCase()],
+            a = b ? e.quotes[b.toUpperCase()] : null,
+            i = parseFloat(t.price),
+            r = a ? parseFloat(a.price) : null,
+            n = parseInt(t.market_cap),
+            o = parseInt(t.volume_24h),
+            c = Number(t.percent_change_24h);else
+            {
+              var l = "price_" + x.toLowerCase(),
+              s = b ? "price_" + b.toLowerCase() : null,
+              d = "market_cap_" + y.toLowerCase(),
+              p = "24h_volume_" + y.toLowerCase();
+              i = parseFloat(e[l]),
+              r = s ? parseFloat(e[s]) : null,
+              n = parseInt(e[d]),
+              o = parseInt(e[p]),
+              c = Number(e.percent_change_24h);
+            }
+            var m = e.name,
+            u = e.symbol,
+            h = e.rank,
+            g = S(v, m, u, x, y, i, b, r, c, n, o, h, w, L, P, k, C, f);
+            M(_).html(g),
+            M(_).
+            find("a").
+            css({
+              "text-decoration": "none",
+              color: "#1070e0" });
+
+          } });
+
+      });
+    });
+  }
+}();
+
+$('.ticker1').ticker();
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

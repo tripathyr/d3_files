@@ -1,0 +1,247 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - circlePacking_II_d3.js</title>
+<style>
+     body {
+   width: 100vw;
+   height: 100vh;
+   text-align: center;
+ }
+ 
+ #container {
+   margin: auto;
+   display: flex;
+   flex-flow: row nowrap;
+   justify-content: space-between;
+ }
+ 
+ #chart,
+ #text1,
+ #text2 {
+   flex: 1 100%;
+   text-align: justify;
+ }
+ 
+ #chart {
+   flex: 5 0px;
+ }
+ 
+ #text1 {
+   order: 1;
+ }
+ 
+ #chart {
+   order: 2;
+ }
+ 
+ #text2 {
+   order: 3;
+ }
+ 
+ .node {
+   cursor: pointer;
+ }
+ 
+ .node:hover {
+   stroke: #000;
+   stroke-width: 1.5px;
+ }
+ 
+ .node--leaf {
+   fill: yellow;
+ }
+ 
+ .label {
+   font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+   text-anchor: middle;
+   text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+ }
+ 
+ .label,
+ .node--root,
+ .node--leaf {
+   pointer-events: none;
+ }
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no" style="background: rgb(230, 85, 13);">
+<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/565729/underscore-min.js">
+</script>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<h1> Assists Per Year - La Liga</h1>
+<h2> A Zoomable Circle Packing Visualization</h2>
+<div id="container">
+<div id="text1">This visualization employs <a href="https://en.wikipedia.org/wiki/Circle_packing#Unequal_circles">Circle Packing of Circles of Unequal Sizes</a>. Where the sizes of the circles are determined by the size of the contents. In this case, the contents are the number of assists per year by the top players in La Liga.
+<br> <br>
+For example, from the visualization, we can see that 2015 was the year with the most assists and 2010 was the year with the fewest. The yellow circles signify players and the size of the circles signifies the number of assists that each player had in that year.
+</div>
+<div id="chart"><svg width="960" height="960"><g transform="translate(480,480)"><circle class="node node--preppedData" transform="translate(0,0)" r="430" style="fill: rgb(49, 130, 189);"></circle><circle class="node" transform="translate(8.334288751532538,-15.875392473605869)" r="129.6821290131202" style="fill: rgb(107, 174, 214);"></circle><circle class="node" transform="translate(96.15688357080488,17.055642436266904)" r="35.88841269360689" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(77.7276204035354,17.055642436266904)" r="17.459149526337377" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(77.7276204035354,17.055642436266904)" r="17.459149526337377"></circle><circle class="node" transform="translate(114.58614673807436,17.055642436266904)" r="17.459149526337377" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(114.58614673807436,17.055642436266904)" r="17.459149526337377"></circle><circle class="node" transform="translate(35.78857847718381,17.055642436266904)" r="22.53966511814993" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(35.78857847718381,17.055642436266904)" r="22.53966511814993" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(35.78857847718381,17.055642436266904)" r="22.53966511814993"></circle><circle class="node" transform="translate(-50.654804917543736,-4.955802414801666)" r="64.72191384380292" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(-83.50081865991125,-4.955802414801666)" r="31.875900101435402" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(-83.50081865991125,-4.955802414801666)" r="31.875900101435402"></circle><circle class="node" transform="translate(-17.80879117517622,-4.955802414801666)" r="31.875900101435402" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(-17.80879117517622,-4.955802414801666)" r="31.875900101435402"></circle><circle class="node" transform="translate(49.62734787845147,-48.75088869373183)" r="42.76600768248119" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(49.62734787845147,-48.75088869373183)" r="42.76600768248119" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(49.62734787845147,-48.75088869373183)" r="42.76600768248119"></circle><circle class="node" transform="translate(131.7466390119359,-248.5174680024769)" r="131.7271139972062" style="fill: rgb(107, 174, 214);"></circle><circle class="node" transform="translate(165.26110337684267,-267.86480907018785)" r="26.669291424664483" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(165.26110337684267,-267.86480907018785)" r="26.669291424664483" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(165.26110337684267,-267.86480907018785)" r="26.669291424664483"></circle><circle class="node" transform="translate(222.38129387169224,-267.86480907018785)" r="28.5106717883208" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(222.38129387169224,-267.86480907018785)" r="28.5106717883208" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(222.38129387169224,-267.86480907018785)" r="28.5106717883208"></circle><circle class="node" transform="translate(191.84165334749636,-322.1967541083733)" r="31.875900101435402" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(191.84165334749636,-322.1967541083733)" r="31.875900101435402" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(191.84165334749636,-322.1967541083733)" r="31.875900101435402"></circle><circle class="node" transform="translate(83.40802411014054,-211.44087538947676)" r="70.80671174628165" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(47.51961141653367,-211.44087538947676)" r="34.918299052674755" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(47.51961141653367,-211.44087538947676)" r="34.918299052674755"></circle><circle class="node" transform="translate(119.29643680374748,-211.44087538947676)" r="34.918299052674755" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(119.29643680374748,-211.44087538947676)" r="34.918299052674755"></circle><circle class="node" transform="translate(119.14634734531954,-317.36092719153504)" r="39.039845170223636" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(119.14634734531954,-317.36092719153504)" r="39.039845170223636" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(119.14634734531954,-317.36092719153504)" r="39.039845170223636"></circle><circle class="node" transform="translate(284.71813432120956,-15.875392473605869)" r="144.7614892746926" style="fill: rgb(107, 174, 214);"></circle><circle class="node" transform="translate(322.6877236441339,39.349308674884576)" r="26.669291424664483" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(322.6877236441339,39.349308674884576)" r="26.669291424664483" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(322.6877236441339,39.349308674884576)" r="26.669291424664483"></circle><circle class="node" transform="translate(383.17314245209803,39.349308674884576)" r="31.875900101435402" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(383.17314245209803,39.349308674884576)" r="31.875900101435402" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(383.17314245209803,39.349308674884576)" r="31.875900101435402"></circle><circle class="node" transform="translate(344.4044808827122,-54.61691398202924)" r="67.83356578047868" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(310.0026411720068,-54.61691398202924)" r="33.431726069773276" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(310.0026411720068,-54.61691398202924)" r="33.431726069773276"></circle><circle class="node" transform="translate(378.80632059341764,-54.61691398202924)" r="33.431726069773276" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(378.80632059341764,-54.61691398202924)" r="33.431726069773276"></circle><circle class="node" transform="translate(225.19393783516736,19.892983069014573)" r="70.80671174628165" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(189.30552514156042,19.892983069014573)" r="34.918299052674755" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(189.30552514156042,19.892983069014573)" r="34.918299052674755"></circle><circle class="node" transform="translate(261.08235052877427,19.892983069014573)" r="34.918299052674755" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(261.08235052877427,19.892983069014573)" r="34.918299052674755"></circle><circle class="node" transform="translate(-137.36793951709134,-239.86495839525503)" r="135.58629806376004" style="fill: rgb(107, 174, 214);"></circle><circle class="node" transform="translate(-119.42492545884407,-246.29184992088204)" r="28.5106717883208" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(-119.42492545884407,-246.29184992088204)" r="28.5106717883208" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(-119.42492545884407,-246.29184992088204)" r="28.5106717883208"></circle><circle class="node" transform="translate(-191.1749230710212,-188.86552100778502)" r="61.450381714049016" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(-222.38517074851177,-188.86552100778502)" r="30.24013403655844" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(-222.38517074851177,-188.86552100778502)" r="30.24013403655844"></circle><circle class="node" transform="translate(-159.9646753935306,-188.86552100778502)" r="30.24013403655844" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(-159.9646753935306,-188.86552100778502)" r="30.24013403655844"></circle><circle class="node" transform="translate(-55.54230031888573,-246.29184992088204)" r="33.431726069773276" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(-55.54230031888573,-246.29184992088204)" r="33.431726069773276" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(-55.54230031888573,-246.29184992088204)" r="33.431726069773276"></circle><circle class="node" transform="translate(-93.12484479144841,-311.99459878136275)" r="40.320178715411245" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(-93.12484479144841,-311.99459878136275)" r="40.320178715411245" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(-93.12484479144841,-311.99459878136275)" r="40.320178715411245"></circle><circle class="node" transform="translate(-174.64980075388448,-292.5080761105334)" r="41.5610889218554" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(-174.64980075388448,-292.5080761105334)" r="41.5610889218554" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(-174.64980075388448,-292.5080761105334)" r="41.5610889218554"></circle><circle class="node" transform="translate(-81.46750376095723,240.35533792143653)" r="139.88924407824663" style="fill: rgb(107, 174, 214);"></circle><circle class="node" transform="translate(-70.60552640572296,225.71847123093514)" r="26.669291424664483" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(-70.60552640572296,225.71847123093514)" r="26.669291424664483" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(-70.60552640572296,225.71847123093514)" r="26.669291424664483"></circle><circle class="node" transform="translate(-131.6492332421993,296.31891143890726)" r="64.72191384380292" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(-164.49524698456682,296.31891143890726)" r="31.875900101435402" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(-164.49524698456682,296.31891143890726)" r="31.875900101435402"></circle><circle class="node" transform="translate(-98.8032194998318,296.31891143890726)" r="31.875900101435402" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(-98.8032194998318,296.31891143890726)" r="31.875900101435402"></circle><circle class="node" transform="translate(-4.2799340675531985,225.71847123093514)" r="37.71607363164099" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(-4.2799340675531985,225.71847123093514)" r="37.71607363164099" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(-4.2799340675531985,225.71847123093514)" r="37.71607363164099"></circle><circle class="node" transform="translate(-49.84317815700785,159.99002927557407)" r="40.320178715411245" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(-49.84317815700785,159.99002927557407)" r="40.320178715411245" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(-49.84317815700785,159.99002927557407)" r="40.320178715411245"></circle><circle class="node" transform="translate(-130.4999622769649,186.89679791596924)" r="42.76600768248119" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(-130.4999622769649,186.89679791596924)" r="42.76600768248119" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(-130.4999622769649,186.89679791596924)" r="42.76600768248119"></circle><circle class="node" transform="translate(-275.4383554709664,16.939127295792897)" r="154.04126812493575" style="fill: rgb(107, 174, 214);"></circle><circle class="node" transform="translate(-227.6474301026482,66.77441635966004)" r="26.669291424664483" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(-227.6474301026482,66.77441635966004)" r="26.669291424664483" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(-227.6474301026482,66.77441635966004)" r="26.669291424664483"></circle><circle class="node" transform="translate(-165.6061853263462,66.77441635966004)" r="33.431726069773276" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(-165.6061853263462,66.77441635966004)" r="33.431726069773276" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(-165.6061853263462,66.77441635966004)" r="33.431726069773276"></circle><circle class="node" transform="translate(-207.83162839099046,-30.6469410522061)" r="70.80671174628165" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(-243.72004108459734,-30.6469410522061)" r="34.918299052674755" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(-243.72004108459734,-30.6469410522061)" r="34.918299052674755"></circle><circle class="node" transform="translate(-171.94321569738358,-30.6469410522061)" r="34.918299052674755" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(-171.94321569738358,-30.6469410522061)" r="34.918299052674755"></circle><circle class="node" transform="translate(-337.0917806136053,53.721436318318915)" r="81.61047107175462" style="fill: rgb(158, 202, 225);"></circle><circle class="node" transform="translate(-378.3820729699487,53.721436318318915)" r="40.320178715411245" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(-378.3820729699487,53.721436318318915)" r="40.320178715411245"></circle><circle class="node" transform="translate(-295.80148825726195,53.721436318318915)" r="40.320178715411245" style="fill: rgb(198, 219, 239);"></circle><circle class="node node--leaf" transform="translate(-295.80148825726195,53.721436318318915)" r="40.320178715411245"></circle><text class="label" transform="translate(0,0)" style="fill-opacity: 0.15; display: inline; font-size: 6px;"></text><text class="label" transform="translate(8.334288751532538,-15.875392473605869)" style="fill-opacity: 1; display: inline; font-size: 24px;">2010</text><text class="label" transform="translate(96.15688357080488,17.055642436266904)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">3</text><text class="label" transform="translate(77.7276204035354,17.055642436266904)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Luis Suarez</text><text class="label" transform="translate(77.7276204035354,17.055642436266904)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Luis Suarez</text><text class="label" transform="translate(114.58614673807436,17.055642436266904)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Gareth Bale</text><text class="label" transform="translate(114.58614673807436,17.055642436266904)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Gareth Bale</text><text class="label" transform="translate(35.78857847718381,17.055642436266904)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">5</text><text class="label" transform="translate(35.78857847718381,17.055642436266904)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Karim Benzema</text><text class="label" transform="translate(35.78857847718381,17.055642436266904)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Karim Benzema</text><text class="label" transform="translate(-50.654804917543736,-4.955802414801666)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">10</text><text class="label" transform="translate(-83.50081865991125,-4.955802414801666)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Christiano Ronaldo</text><text class="label" transform="translate(-83.50081865991125,-4.955802414801666)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Christiano Ronaldo</text><text class="label" transform="translate(-17.80879117517622,-4.955802414801666)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Neymar Jr.</text><text class="label" transform="translate(-17.80879117517622,-4.955802414801666)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Neymar Jr.</text><text class="label" transform="translate(49.62734787845147,-48.75088869373183)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">18</text><text class="label" transform="translate(49.62734787845147,-48.75088869373183)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Lionel Messi</text><text class="label" transform="translate(49.62734787845147,-48.75088869373183)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Lionel Messi</text><text class="label" transform="translate(131.7466390119359,-248.5174680024769)" style="fill-opacity: 1; display: inline; font-size: 24px;">2011</text><text class="label" transform="translate(165.26110337684267,-267.86480907018785)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">7</text><text class="label" transform="translate(165.26110337684267,-267.86480907018785)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Karim Benzema</text><text class="label" transform="translate(165.26110337684267,-267.86480907018785)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Karim Benzema</text><text class="label" transform="translate(222.38129387169224,-267.86480907018785)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">8</text><text class="label" transform="translate(222.38129387169224,-267.86480907018785)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Luis Suarez</text><text class="label" transform="translate(222.38129387169224,-267.86480907018785)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Luis Suarez</text><text class="label" transform="translate(191.84165334749636,-322.1967541083733)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">10</text><text class="label" transform="translate(191.84165334749636,-322.1967541083733)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Gareth Bale</text><text class="label" transform="translate(191.84165334749636,-322.1967541083733)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Gareth Bale</text><text class="label" transform="translate(83.40802411014054,-211.44087538947676)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">12</text><text class="label" transform="translate(47.51961141653367,-211.44087538947676)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Christiano Ronaldo</text><text class="label" transform="translate(47.51961141653367,-211.44087538947676)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Christiano Ronaldo</text><text class="label" transform="translate(119.29643680374748,-211.44087538947676)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Neymar Jr.</text><text class="label" transform="translate(119.29643680374748,-211.44087538947676)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Neymar Jr.</text><text class="label" transform="translate(119.14634734531954,-317.36092719153504)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">15</text><text class="label" transform="translate(119.14634734531954,-317.36092719153504)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Lionel Messi</text><text class="label" transform="translate(119.14634734531954,-317.36092719153504)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Lionel Messi</text><text class="label" transform="translate(284.71813432120956,-15.875392473605869)" style="fill-opacity: 1; display: inline; font-size: 24px;">2012</text><text class="label" transform="translate(322.6877236441339,39.349308674884576)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">7</text><text class="label" transform="translate(322.6877236441339,39.349308674884576)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Gareth Bale</text><text class="label" transform="translate(322.6877236441339,39.349308674884576)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Gareth Bale</text><text class="label" transform="translate(383.17314245209803,39.349308674884576)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">10</text><text class="label" transform="translate(383.17314245209803,39.349308674884576)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Christiano Ronaldo</text><text class="label" transform="translate(383.17314245209803,39.349308674884576)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Christiano Ronaldo</text><text class="label" transform="translate(344.4044808827122,-54.61691398202924)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">11</text><text class="label" transform="translate(310.0026411720068,-54.61691398202924)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Neymar Jr.</text><text class="label" transform="translate(310.0026411720068,-54.61691398202924)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Neymar Jr.</text><text class="label" transform="translate(378.80632059341764,-54.61691398202924)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Karim Benzema</text><text class="label" transform="translate(378.80632059341764,-54.61691398202924)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Karim Benzema</text><text class="label" transform="translate(225.19393783516736,19.892983069014573)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">12</text><text class="label" transform="translate(189.30552514156042,19.892983069014573)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Lionel Messi</text><text class="label" transform="translate(189.30552514156042,19.892983069014573)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Lionel Messi</text><text class="label" transform="translate(261.08235052877427,19.892983069014573)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Luis Suarez</text><text class="label" transform="translate(261.08235052877427,19.892983069014573)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Luis Suarez</text><text class="label" transform="translate(-137.36793951709134,-239.86495839525503)" style="fill-opacity: 1; display: inline; font-size: 24px;">2013</text><text class="label" transform="translate(-119.42492545884407,-246.29184992088204)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">8</text><text class="label" transform="translate(-119.42492545884407,-246.29184992088204)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Neymar Jr.</text><text class="label" transform="translate(-119.42492545884407,-246.29184992088204)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Neymar Jr.</text><text class="label" transform="translate(-191.1749230710212,-188.86552100778502)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">9</text><text class="label" transform="translate(-222.38517074851177,-188.86552100778502)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Christiano Ronaldo</text><text class="label" transform="translate(-222.38517074851177,-188.86552100778502)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Christiano Ronaldo</text><text class="label" transform="translate(-159.9646753935306,-188.86552100778502)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Karim Benzema</text><text class="label" transform="translate(-159.9646753935306,-188.86552100778502)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Karim Benzema</text><text class="label" transform="translate(-55.54230031888573,-246.29184992088204)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">11</text><text class="label" transform="translate(-55.54230031888573,-246.29184992088204)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Lionel Messi</text><text class="label" transform="translate(-55.54230031888573,-246.29184992088204)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Lionel Messi</text><text class="label" transform="translate(-93.12484479144841,-311.99459878136275)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">16</text><text class="label" transform="translate(-93.12484479144841,-311.99459878136275)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Gareth Bale</text><text class="label" transform="translate(-93.12484479144841,-311.99459878136275)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Gareth Bale</text><text class="label" transform="translate(-174.64980075388448,-292.5080761105334)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">17</text><text class="label" transform="translate(-174.64980075388448,-292.5080761105334)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Luis Suarez</text><text class="label" transform="translate(-174.64980075388448,-292.5080761105334)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Luis Suarez</text><text class="label" transform="translate(-81.46750376095723,240.35533792143653)" style="fill-opacity: 1; display: inline; font-size: 24px;">2014</text><text class="label" transform="translate(-70.60552640572296,225.71847123093514)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">7</text><text class="label" transform="translate(-70.60552640572296,225.71847123093514)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Neymar Jr.</text><text class="label" transform="translate(-70.60552640572296,225.71847123093514)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Neymar Jr.</text><text class="label" transform="translate(-131.6492332421993,296.31891143890726)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">10</text><text class="label" transform="translate(-164.49524698456682,296.31891143890726)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Karim Benzema</text><text class="label" transform="translate(-164.49524698456682,296.31891143890726)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Karim Benzema</text><text class="label" transform="translate(-98.8032194998318,296.31891143890726)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Gareth Bale</text><text class="label" transform="translate(-98.8032194998318,296.31891143890726)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Gareth Bale</text><text class="label" transform="translate(-4.2799340675531985,225.71847123093514)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">14</text><text class="label" transform="translate(-4.2799340675531985,225.71847123093514)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Luis Suarez</text><text class="label" transform="translate(-4.2799340675531985,225.71847123093514)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Luis Suarez</text><text class="label" transform="translate(-49.84317815700785,159.99002927557407)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">16</text><text class="label" transform="translate(-49.84317815700785,159.99002927557407)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Christiano Ronaldo</text><text class="label" transform="translate(-49.84317815700785,159.99002927557407)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Christiano Ronaldo</text><text class="label" transform="translate(-130.4999622769649,186.89679791596924)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">18</text><text class="label" transform="translate(-130.4999622769649,186.89679791596924)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Lionel Messi</text><text class="label" transform="translate(-130.4999622769649,186.89679791596924)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Lionel Messi</text><text class="label" transform="translate(-275.4383554709664,16.939127295792897)" style="fill-opacity: 1; display: inline; font-size: 24px;">2015</text><text class="label" transform="translate(-227.6474301026482,66.77441635966004)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">7</text><text class="label" transform="translate(-227.6474301026482,66.77441635966004)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Karim Benzema</text><text class="label" transform="translate(-227.6474301026482,66.77441635966004)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Karim Benzema</text><text class="label" transform="translate(-165.6061853263462,66.77441635966004)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">11</text><text class="label" transform="translate(-165.6061853263462,66.77441635966004)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Christiano Ronaldo</text><text class="label" transform="translate(-165.6061853263462,66.77441635966004)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Christiano Ronaldo</text><text class="label" transform="translate(-207.83162839099046,-30.6469410522061)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">12</text><text class="label" transform="translate(-243.72004108459734,-30.6469410522061)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Neymar Jr.</text><text class="label" transform="translate(-243.72004108459734,-30.6469410522061)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Neymar Jr.</text><text class="label" transform="translate(-171.94321569738358,-30.6469410522061)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Gareth Bale</text><text class="label" transform="translate(-171.94321569738358,-30.6469410522061)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Gareth Bale</text><text class="label" transform="translate(-337.0917806136053,53.721436318318915)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">16</text><text class="label" transform="translate(-378.3820729699487,53.721436318318915)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Lionel Messi</text><text class="label" transform="translate(-378.3820729699487,53.721436318318915)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Lionel Messi</text><text class="label" transform="translate(-295.80148825726195,53.721436318318915)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Luis Suarez</text><text class="label" transform="translate(-295.80148825726195,53.721436318318915)" style="fill-opacity: 0.15; display: inline; font-size: 6px;">Luis Suarez</text></g></svg></div>
+<div id="text2">Click on the inner circles to zoom in</div>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      // This is a more complicated version.
+
+// The Dataset consists of:
+// year,player,appearance,goals,goals_per_game, assists,assists_per_game  
+
+// If you click on the year, it will zoom in.
+
+// Basic Options
+var margin = 100,
+diameter = 960;
+
+var color = d3.scale.category20c();
+var pack = d3.layout.pack().padding(2).size([diameter - margin, diameter - margin]).value(function (d) {
+  return d.assists;
+});
+
+var svg = d3.select("#chart").append("svg").attr("width", diameter).attr("height", diameter).append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
+
+//*************************************************
+// GET THE CSV DATA
+//*************************************************
+d3.csv("https://s3-us-west-2.amazonaws.com/s.cdpn.io/565729/Football_Data.csv", function (error, data) {
+
+  _.each(data, function (element, index, list) {
+    element.pop = +element.pop;
+  });
+
+  //*************************************************
+  // THE FUNCTION to turn your data from CSV into
+  // nested data object (this does the work for you)
+  //*************************************************
+  function genJSON(csvData, groups) {
+
+    var genGroups = function (data) {
+      return _.map(data, function (element, index) {
+        return {
+          name: index,
+          children: element };
+
+      });
+    };
+
+    var nest = function (node, curIndex) {
+      if (curIndex === 0) {
+        node.children = genGroups(_.groupBy(csvData, groups[0]));
+        _.each(node.children, function (child) {
+          nest(child, curIndex + 1);
+        });
+      } else {
+        if (curIndex < groups.length) {
+          node.children = genGroups(_.groupBy(node.children, groups[curIndex]));
+          _.each(node.children, function (child) {
+            nest(child, curIndex + 1);
+          });
+        }
+      }
+      return node;
+    };
+    return nest({}, 0);
+  }
+
+  //*************************************************
+  // CALL FUNCTION WITH ARRAY OF GROUPS
+  //*************************************************
+  // Unlike before, this controls the circles.
+  // You don't change any other options.
+  var preppedData = genJSON(data, ['year', 'assists', 'player']);
+
+
+  //*************************************************
+  // YOUR DATA VISUALIZATION CODE HERE
+  //*************************************************
+  var focus = preppedData,
+  nodes = pack.nodes(preppedData),
+  view;
+
+  console.log(nodes);
+
+  var circle = svg.selectAll("circle").data(nodes).enter().append("circle").attr("class", function (d) {
+    return d.parent ? d.children ? "node" : "node node--leaf" : "node node--preppedData";
+  }).style("fill", function (d) {
+    return d.children ? color(d.depth) : null;
+  }).on("click", function (d) {
+    if (focus !== d)
+    zoom(d), d3.event.stopPropagation();
+  });
+
+  var text = svg.selectAll("text").data(nodes).enter().append("text").attr("class", "label").style("fill-opacity", function (d) {
+    return d.parent === preppedData ? 1 : 0.15;
+  }).style("display", function (d) {
+    return d.parent === preppedData ? "inline" : "inline";
+  }).style("font-size", function (d) {
+    return d.parent === preppedData ? "24px" : "6px";
+  }).text(function (d) {
+    if (typeof d.player != 'undefined') {
+      var textName = d.player;
+    } else {
+      var textName = d.name;
+    }
+    return textName;
+  });
+
+  var node = svg.selectAll("circle,text");
+
+  d3.select("body").style("background", color(-1)).on("click", function () {
+    zoom(preppedData);
+  });
+
+  zoomTo([preppedData.x, preppedData.y, preppedData.r * 2 + margin]);
+
+  function zoom(d) {
+    var focus0 = focus;
+    focus = d;
+
+    var transition = d3.transition().duration(d3.event.altKey ? 7500 : 750).tween("zoom", function (d) {
+      var i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2 + margin]);
+      return function (t) {
+        zoomTo(i(t));
+      };
+    });
+
+    transition.selectAll("text").filter(function (d) {
+      return d.parent === focus || this.style.display === "inline";
+    }).style("fill-opacity", function (d) {
+      return d.parent === focus ? 1 : 0.15;
+    }).style("font-size", function (d) {
+      return d.parent === focus ? "24px" : "6px";
+    }).each("start", function (d) {
+      if (d.parent === focus)
+      this.style.display = "inline";
+    }).each("end", function (d) {
+      if (d.parent !== focus)
+      this.style.display = "inline";
+    });
+  }
+
+  function zoomTo(v) {
+    var k = diameter / v[2];
+    view = v;
+    node.attr("transform", function (d) {
+      return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")";
+    });
+    circle.attr("r", function (d) {
+      return d.r * k;
+    });
+  }
+
+});
+
+d3.select(self.frameElement).style("height", diameter + "px");
+      //# sourceURL=pen.js
+    </script>
+
+
+</body></html>

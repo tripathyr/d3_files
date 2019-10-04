@@ -1,0 +1,51 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Very Minimal Loading Bar</title>
+<style>
+      html{background-color:#111}
+
+#barcontainer{
+  width: 300px;
+  margin: 200px auto;
+}
+
+#meter{
+  position: absolute;
+  width: 0px;
+  height: 0.5px;
+  border-right: 5px solid white;
+  background-color: #5CE6E6;
+  box-shadow: 0 0 10px #5CE6E6;
+  -webkit-transition: width 0.5s;
+  -webkit-animation: loading 2.5s ease-out infinite;
+}
+
+@-webkit-keyframes loading{
+  0%{
+    width: 0px;}
+
+  100%{
+    opacity: 0;
+    width: 300px;
+  }
+}
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div id="barcontainer">
+<div id="meter"></div>
+</div>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

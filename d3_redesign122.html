@@ -1,0 +1,113 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Symmetric Cryptography</title>
+<meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+
+
+
+<title>Symmetric Cryptography</title>
+<meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/core-min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/sha256.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+
+
+<div class="container">
+<div class="row" style="padding-top: 50px;">
+
+<div class="col-12 col-md-6" style="padding-bottom: 40px;">
+<h1 style="color: #2a2945; padding-bottom: 2px;">Encryption</h1>
+<form id="encrypt" action="index.html">
+<div class="form-group">
+<textarea class="form-control" id="message" placeholder="Enter message here..."></textarea>
+</div>
+<div class="form-group">
+<input type="text" class="form-control" name="secret" id="secret" placeholder="Enter secret key...">
+</div>
+<div class="form-group">
+<button type="submit" class="btn btn-block" style="background-color: #2a2945; color: white;">Encrypt Message</button>
+</div>
+</form>
+<label for="cipher">Cipher Text</label>
+<textarea class="form-control" id="ciphertext" type="text" name="cipher" readonly=""></textarea>
+</div>
+
+<div class="col-12 col-md-6">
+<h1 style="color: #2a2945; padding-bottom: 2px;">Decryption</h1>
+<form id="decrypt">
+<div class="form-group">
+<textarea class="form-control" id="cipher2" placeholder="Enter cipher here..."></textarea>
+</div>
+<div class="form-group">
+<input type="text" class="form-control" name="secret" id="secret2" placeholder="Enter secret key...">
+</div>
+<div class="form-group">
+<button type="submit" class="btn btn-block" style="background-color: #2a2945; color: white;">Decrypt Message</button>
+</div>
+</form>
+<label for="cipher">Original Message</label>
+<textarea class="form-control" type="text" name="cipher" id="result" readonly=""></textarea>
+</div>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script type="text/javascript" src="./main.js"></script>
+
+
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      $(document).ready(function () {
+
+  $("#encrypt").submit(function (event) {
+
+    var message = $("#message").val();
+    var secret = $("#secret").val();
+    var encrypted = CryptoJS.AES.encrypt(message, secret).toString();
+
+    $("#ciphertext").val(encrypted);
+    event.preventDefault();
+
+  });
+
+  $("#decrypt").submit(function (event) {
+
+    var cipher = $("#cipher2").val();
+    var secret = $("#secret2").val();
+
+    var decrypted = CryptoJS.AES.decrypt(cipher, secret).toString(CryptoJS.enc.Utf8);
+
+
+    if ($("#message").val() != decrypted) {
+      $("#result").val("Did not decrypt.  Check your secret key!");
+      $("#result").toggleClass("bg-danger text-white");
+    } else {
+      $("#result").val(decrypted);
+    }
+
+    event.preventDefault();
+
+  });
+
+});
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

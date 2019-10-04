@@ -1,0 +1,177 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Horizontal bin packing with Packery hack</title>
+<style>
+    * {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+body {
+  height: 955px;
+}
+ul {
+  width: 995px;
+  top: 995px;
+  list-style: none;
+  overflow: hidden;
+  -webkit-transform: rotate(-90deg);
+  -webkit-transform-origin: 0 0;
+  -moz-transform: rotate(-90deg);
+  -moz-transform-origin: 0 0;
+  transform: rotate(-90deg);
+  transform-origin: 0 0;
+}
+li {
+  float: left;
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  background: #ccc;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 100px;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  transform: rotate(90deg);
+  -webkit-transition: background-color 4s;
+  -moz-transition: background-color 4s;
+  transition: background-color 4s;
+}
+li:hover {
+  background-color: red;
+}
+li:nth-child(2n) {
+  width: 210px;
+  height: 210px;
+  line-height: 210px;
+}
+li:nth-child(16n) {
+  width: 430px;
+  height: 430px;
+  line-height: 430px;
+}
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<ul id="blocks" style="position: relative; height: 4070px;">
+<li style="position: absolute; left: 0px; top: 0px;">1</li>
+<li style="position: absolute; left: 110px; top: 0px;">2</li>
+<li style="position: absolute; left: 330px; top: 0px;">3</li>
+<li style="position: absolute; left: 440px; top: 0px;">4</li>
+<li style="position: absolute; left: 660px; top: 0px;">5</li>
+<li style="position: absolute; left: 770px; top: 0px;">6</li>
+<li style="position: absolute; left: 0px; top: 110px;">7</li>
+<li style="position: absolute; left: 0px; top: 220px;">8</li>
+<li style="position: absolute; left: 330px; top: 110px;">9</li>
+<li style="position: absolute; left: 220px; top: 220px;">10</li>
+<li style="position: absolute; left: 660px; top: 110px;">11</li>
+<li style="position: absolute; left: 440px; top: 220px;">12</li>
+<li style="position: absolute; left: 660px; top: 220px;">13</li>
+<li style="position: absolute; left: 770px; top: 220px;">14</li>
+<li style="position: absolute; left: 660px; top: 330px;">15</li>
+<li style="position: absolute; left: 0px; top: 440px;">16</li>
+<li style="position: absolute; left: 440px; top: 440px;">17</li>
+<li style="position: absolute; left: 550px; top: 440px;">18</li>
+<li style="position: absolute; left: 770px; top: 440px;">19</li>
+<li style="position: absolute; left: 770px; top: 550px;">20</li>
+<li style="position: absolute; left: 880px; top: 440px;">21</li>
+<li style="position: absolute; left: 440px; top: 660px;">22</li>
+<li style="position: absolute; left: 440px; top: 550px;">23</li>
+<li style="position: absolute; left: 660px; top: 770px;">24</li>
+<li style="position: absolute; left: 660px; top: 660px;">25</li>
+<li style="position: absolute; left: 0px; top: 880px;">26</li>
+<li style="position: absolute; left: 880px; top: 770px;">27</li>
+<li style="position: absolute; left: 220px; top: 880px;">28</li>
+<li style="position: absolute; left: 440px; top: 880px;">29</li>
+<li style="position: absolute; left: 440px; top: 990px;">30</li>
+<li style="position: absolute; left: 550px; top: 880px;">31</li>
+<li style="position: absolute; left: 0px; top: 1100px;">32</li>
+<li style="position: absolute; left: 880px; top: 880px;">33</li>
+<li style="position: absolute; left: 660px; top: 990px;">34</li>
+<li style="position: absolute; left: 880px; top: 990px;">35</li>
+<li style="position: absolute; left: 440px; top: 1210px;">36</li>
+<li style="position: absolute; left: 880px; top: 1100px;">37</li>
+<li style="position: absolute; left: 660px; top: 1210px;">38</li>
+<li style="position: absolute; left: 880px; top: 1210px;">39</li>
+<li style="position: absolute; left: 440px; top: 1430px;">40</li>
+<li style="position: absolute; left: 880px; top: 1320px;">41</li>
+<li style="position: absolute; left: 660px; top: 1430px;">42</li>
+<li style="position: absolute; left: 880px; top: 1430px;">43</li>
+<li style="position: absolute; left: 0px; top: 1540px;">44</li>
+<li style="position: absolute; left: 220px; top: 1540px;">45</li>
+<li style="position: absolute; left: 220px; top: 1650px;">46</li>
+<li style="position: absolute; left: 330px; top: 1540px;">47</li>
+<li style="position: absolute; left: 440px; top: 1650px;">48</li>
+<li style="position: absolute; left: 880px; top: 1540px;">49</li>
+<li style="position: absolute; left: 0px; top: 1760px;">50</li>
+<li style="position: absolute; left: 880px; top: 1650px;">51</li>
+<li style="position: absolute; left: 220px; top: 1870px;">52</li>
+<li style="position: absolute; left: 880px; top: 1760px;">53</li>
+<li style="position: absolute; left: 0px; top: 1980px;">54</li>
+<li style="position: absolute; left: 880px; top: 1870px;">55</li>
+<li style="position: absolute; left: 220px; top: 2090px;">56</li>
+<li style="position: absolute; left: 880px; top: 1980px;">57</li>
+<li style="position: absolute; left: 440px; top: 2090px;">58</li>
+<li style="position: absolute; left: 660px; top: 2090px;">59</li>
+<li style="position: absolute; left: 770px; top: 2090px;">60</li>
+<li style="position: absolute; left: 0px; top: 2200px;">61</li>
+<li style="position: absolute; left: 0px; top: 2310px;">62</li>
+<li style="position: absolute; left: 110px; top: 2200px;">63</li>
+<li style="position: absolute; left: 220px; top: 2310px;">64</li>
+<li style="position: absolute; left: 660px; top: 2200px;">65</li>
+<li style="position: absolute; left: 660px; top: 2310px;">66</li>
+<li style="position: absolute; left: 880px; top: 2310px;">67</li>
+<li style="position: absolute; left: 0px; top: 2530px;">68</li>
+<li style="position: absolute; left: 880px; top: 2420px;">69</li>
+<li style="position: absolute; left: 660px; top: 2530px;">70</li>
+<li style="position: absolute; left: 880px; top: 2530px;">71</li>
+<li style="position: absolute; left: 0px; top: 2750px;">72</li>
+<li style="position: absolute; left: 880px; top: 2640px;">73</li>
+<li style="position: absolute; left: 220px; top: 2750px;">74</li>
+<li style="position: absolute; left: 440px; top: 2750px;">75</li>
+<li style="position: absolute; left: 550px; top: 2750px;">76</li>
+<li style="position: absolute; left: 770px; top: 2750px;">77</li>
+<li style="position: absolute; left: 770px; top: 2860px;">78</li>
+<li style="position: absolute; left: 880px; top: 2750px;">79</li>
+<li style="position: absolute; left: 0px; top: 2970px;">80</li>
+<li style="position: absolute; left: 440px; top: 2860px;">81</li>
+<li style="position: absolute; left: 440px; top: 2970px;">82</li>
+<li style="position: absolute; left: 660px; top: 2970px;">83</li>
+<li style="position: absolute; left: 660px; top: 3080px;">84</li>
+<li style="position: absolute; left: 880px; top: 3080px;">85</li>
+<li style="position: absolute; left: 440px; top: 3190px;">86</li>
+<li style="position: absolute; left: 880px; top: 3190px;">87</li>
+<li style="position: absolute; left: 660px; top: 3300px;">88</li>
+<li style="position: absolute; left: 880px; top: 3300px;">89</li>
+<li style="position: absolute; left: 0px; top: 3410px;">90</li>
+<li style="position: absolute; left: 220px; top: 3410px;">91</li>
+<li style="position: absolute; left: 330px; top: 3410px;">92</li>
+<li style="position: absolute; left: 550px; top: 3410px;">93</li>
+<li style="position: absolute; left: 550px; top: 3520px;">94</li>
+<li style="position: absolute; left: 880px; top: 3410px;">95</li>
+<li style="position: absolute; left: 0px; top: 3630px;">96</li>
+<li style="position: absolute; left: 220px; top: 3520px;">97</li>
+<li style="position: absolute; left: 770px; top: 3520px;">98</li>
+<li style="position: absolute; left: 440px; top: 3630px;">99</li>
+<li style="position: absolute; left: 440px; top: 3740px;">100</li>
+</ul>
+<script src="https://packery.metafizzy.co/packery.pkgd.min.js"></script>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      new Packery(document.getElementById('blocks'));
+      //# sourceURL=pen.js
+    </script>
+
+
+</body></html>

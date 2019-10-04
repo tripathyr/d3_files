@@ -1,0 +1,140 @@
+<head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Cryptocurrency Api with coin market cap (DataTables)</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.4.0/r-2.2.2/rg-1.0.3/rr-1.2.4/sc-1.5.0/sl-1.2.6/datatables.min.css">
+</head>
+<style>
+      .crypto {
+  padding:20px;
+}
+
+.small {
+  max-width:30px;
+}
+
+table thead  tr  th {
+  background:#444;
+  text-align:left;
+  color:#fff;
+  padding:10px;
+  font-weight:200;
+}
+
+td.number {
+  text-align:right;
+}
+
+input {
+  border:3px solid #444; 
+  padding:5px 10px;
+  
+}
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+
+<style>
+.crypto {
+  padding:20px;
+}
+
+.small {
+  max-width:30px;
+}
+
+table thead  tr  th {
+  background:#444;
+  text-align:left;
+  color:#fff;
+  padding:10px;
+  font-weight:200;
+}
+
+td.number {
+  text-align:right;
+}
+
+input {
+  border:3px solid #444; 
+  padding:5px 10px;
+  
+}
+
+</style>
+
+<section class="crypto">
+<div class="container-fluid">
+  <table id="example" class="display table table-borderd" cellspacing="0" width="100%">
+    </table>
+      
+ </div>
+  </section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.4.0/r-2.2.2/rg-1.0.3/rr-1.2.4/sc-1.5.0/sl-1.2.6/datatables.min.js"></script>
+
+ <script>
+ 
+$('#example').DataTable( {
+        ajax: {
+          "url": 'https://api.coinmarketcap.com/v1/ticker/?limit=100',
+          "dataSrc": ""
+        },
+        autoWidth: true,
+        fixedHeader: {
+            header: true,
+            footer: true
+        },
+      columns: [
+         { data: "rank",
+          title:"#",
+          class: "small"
+        },
+        { data: "name",
+          title:"Name"
+        },
+        { data : "symbol",
+          title: "Short name"
+        },{ data: "price_usd",
+            title:"USD"
+        },{ data: "price_btc",
+            title:"BTC"
+        },{ data: "price_usd",
+            title:"USD"
+        } ,{ data: "percent_change_7d",
+            title:"7 days"
+        }   
+      ],
+        initComplete: function() {
+      var api = this.api();
+
+      // Apply the search
+      api.columns().every(function() {
+        var that = this;
+        $('input', this.footer()).on('keyup change', function() {
+          if (that.search() !== this.value) {
+            that
+              .search(this.value)
+              .draw();
+          }
+        });
+      }); 
+    }   
+    } );
+
+
+
+
+ </script>   
