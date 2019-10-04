@@ -1,0 +1,170 @@
+<script id="userNonPresentationData">
+  //User Data Section. Keep things that will fetch user non-presentation data here
+  //Do not put presentation elements here. Presentation elements will need rePainting when screens are resized. Put them in next script tag UserPresentationCode under function rePaintUserData() 
+
+const mainnet = `https://livenet.flocha.in`;
+const testnet = `https://testnet.flocha.in`;
+let server = mainnet;
+
+  getData();
+  function ajax(method, uri){
+    var request = new XMLHttpRequest();
+    var url = `${server}/${uri}`
+    console.log(url)
+    var result;
+    request.open(method,url , false);
+    request.onload = function () {
+      if (request.readyState == 4 && request.status == 200)
+        result = this.response;
+      else {
+        console.log('error');
+        result = false;
+      }
+    };
+    request.send();
+    console.log(result);
+    return result;
+  }
+
+  var waitForGlobal = function(param, callback) {
+    if (!window[param]) {
+      callback();
+    } else {
+      setTimeout(function() {
+        waitForGlobal(param, callback);
+      }, 100);
+    }
+  };
+
+function storedata(appdata){
+  var idb = indexedDB.open("FLO_AppStore");
+  idb.onerror = function(event) {
+      event.preventDefault();
+      console.log(event.target.error.name,event.target.error.message);
+  };
+  idb.onsuccess = function(event) {
+      var db = event.target.result;
+      var obs = db.transaction('apps', "readwrite").objectStore('apps');
+      console.log(appdata)
+      obs.put(appdata);
+      db.close();
+  }
+}
+
+  function getData(){
+
+   var addrList = ["FT9qkvuWXWBDRhHd42tDr5nMYFSx7bEhV7"]
+    var idb = indexedDB.open("FLO_AppStore");
+    idb.onerror = function(event) {
+        event.preventDefault();
+        console.log(event);
+    };
+
+idb.onupgradeneeded = function(event) {
+ var results = event.target.result;
+
+ if(!results.objectStoreNames.contains("apps")){     
+           var objectStore = event.target.result.createObjectStore("apps", { keyPath: "id" });
+           objectStore.createIndex("name", "name", { unique: false });
+           objectStore.createIndex("icon", "icon", { unique: false });
+           objectStore.createIndex("url", "url", { unique: false });
+           objectStore.createIndex("description", "description", { unique: false });
+           if(!results.objectStoreNames.contains("lastTx")) var objectStore2 = event.target.result.createObjectStore("lastTx");
+    }
+ }   ;
+      idb.onsuccess = function(event) {
+           var db = event.target.result;
+           var lastTx = db.transaction('lastTx', "readwrite").objectStore('lastTx');
+           addrList.forEach(function(addr){
+             console.log(addr);
+             var lastTxReq = lastTx.get(addr);
+             var lasttx;
+             window["wait"] = true
+             lastTxReq.onsuccess = function(event){
+                lasttx = event.target.result
+                if(lasttx === undefined){
+                    lasttx = 0;
+                    console.log(lasttx);
+                }
+                window["wait"] = false
+              };
+              waitForGlobal("wait", function() {
+                var response = ajax("GET",`api/addrs/${addr}/txs`);
+                var nRequired = JSON.parse(response).totalItems - lasttx;
+                console.log(nRequired);
+                while(true && nRequired){
+                  var response = ajax("GET",`api/addrs/${addr}/txs?from=0&to=${nRequired}`);
+                  response = JSON.parse(response);
+                  if (nRequired + lasttx != response.totalItems ){
+                    nRequired = response.totalItems - lasttx;
+                    continue;
+                  }
+                  response.items.reverse().forEach(function(tx){
+                    try {
+                      appdata = JSON.parse(tx.floData).Dapp
+                      if(appdata.description === undefined)
+                        appdata.description = 'NIL';
+
+                      if(appdata.type == 'Webapp')
+                        storedata({id : appdata.id, name : appdata.name, icon : appdata.icon, url:appdata.url, description:appdata.description});
+                    } catch (e) {
+                      //console.log(e)
+                    }
+                  });
+                  var idb2 = indexedDB.open("FLO_AppStore");
+                  idb2.onerror = function(event) {
+                      console.log("Error in opening IndexedDB!");
+                  };
+                  idb2.onsuccess = function(event) {
+                    var db = event.target.result;
+                    var obs = db.transaction('lastTx', "readwrite").objectStore('lastTx');
+                    obs.put(response.totalItems,addr);
+                    db.close();
+                  }
+                  break;
+                }
+           });
+         });
+         db.close();
+       };
+       
+   }
+
+
+var floAppData = [];
+
+function getDisplayData(){
+  var idb3 = indexedDB.open("FLO_AppStore");
+              idb3.onerror = function(event) {
+                  console.log(event);
+              };
+              idb3.onsuccess = function(event) {
+                var db = event.target.result;
+                var obs = db.transaction('apps', "readwrite").objectStore('apps');
+                var cursorRequest = obs.openCursor();
+                var index = 0;
+                cursorRequest.onsuccess = function(event) {
+                  var cursor = event.target.result;
+                        if(cursor) {
+        floAppData[index]={};
+        floAppData[index].url = cursor.value.url;
+        floAppData[index].name = cursor.value.name;
+        floAppData[index].description = cursor.value.description;
+        index++;
+        cursor.continue();
+      }
+                };
+                db.close();
+              }
+}
+
+/*var app = document.createElement('div');
+        app.setAttribute("class", "tooltip box");
+        app.innerHTML = `<a href=${cursor.value.url} target="_blank">${cursor.value.name}</a><span>${cursor.value.description}</span>`;
+        dispMsg.appendChild(app);
+*/        
+
+getDisplayData();
+console.log(floAppData);
+
+</script>

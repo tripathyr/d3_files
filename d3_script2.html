@@ -1,0 +1,33 @@
+<html>
+<meta charset="utf-8">
+<head>
+  <title>DOM Manipulation</title>
+
+
+
+</head>
+
+
+
+<body>
+
+
+<script type="application/javascript">
+function loadJS() {
+    // DOM: Create the script element
+    var jsElm = document.createElement("script");
+    // set the type attribute
+    jsElm.type = "application/javascript";
+    // make the script element load file
+    jsElm.innerHTML = console.log("It works");
+    // finally insert the element to the body element in order to load the script
+    document.body.appendChild(jsElm);
+}
+</script>
+<button onclick="loadJS();">Load D3.js</button>
+<button onclick="loadJS();">Load file2.js</button>
+
+
+</body>
+</html>
+

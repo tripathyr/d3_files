@@ -1,0 +1,336 @@
+<style>
+/*styles.css*/
+#container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+li {
+  margin-bottom: 1em;
+}
+</style>
+
+<style>
+/*main.css*/
+
+body {
+  background-color: #ffffff;
+  box-sizing: border-box;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+@media screen and (min-width: 832px) {
+  body {
+    width: 800px;
+    margin: 0 auto;
+  }
+}
+
+h1 {
+  margin-bottom: -0.3em;
+}
+
+h2 {
+  margin-top: 2em;
+}
+
+h3 {
+  margin-bottom: -0.2em;
+  margin-top: 2em;
+}
+
+.pageIcon {
+  height: 2.3em;
+  float: left;
+  margin-right: 0.5em;
+}
+
+.availability {
+  margin-bottom: 2em;
+}
+
+.output {
+  background-color: #f0f0f0;
+  border-radius: 0.75em;
+  display: block;
+  margin: 0.5em;
+  padding: 0.5em;
+}
+
+#status {
+  margin: .5em 0;
+  font-style: italic;
+}
+
+#log {
+  margin: .5em 0;
+  white-space: pre-wrap;
+}
+
+#status:empty, #log:empty, #content:empty {
+  display: none;
+}
+
+.highlight {
+  border-radius: 0.75em;
+  border: 1px solid #f0f0f0;
+  display: block;
+  margin: 0.5em;
+  overflow-x: auto;
+  padding: 0.5em;
+}
+
+code {
+  font-family: Inconsolata, Consolas, monospace;
+}
+
+.c { color: #999988; font-style: italic } /* Comment */
+.err { color: #a61717; background-color: #e3d2d2 } /* Error */
+.k { font-weight: bold } /* Keyword */
+.o { font-weight: bold } /* Operator */
+.cm { color: #999988; font-style: italic } /* Comment.Multiline */
+.cp { color: #999999; font-weight: bold } /* Comment.Preproc */
+.c1 { color: #999988; font-style: italic } /* Comment.Single */
+.cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
+.gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+.gd .x { color: #000000; background-color: #ffaaaa } /* Generic.Deleted.Specific */
+.ge { font-style: italic } /* Generic.Emph */
+.gr { color: #aa0000 } /* Generic.Error */
+.gh { color: #999999 } /* Generic.Heading */
+.gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+.gi .x { color: #000000; background-color: #aaffaa } /* Generic.Inserted.Specific */
+.go { color: #888888 } /* Generic.Output */
+.gp { color: #555555 } /* Generic.Prompt */
+.gs { font-weight: bold } /* Generic.Strong */
+.gu { color: #aaaaaa } /* Generic.Subheading */
+.gt { color: #aa0000 } /* Generic.Traceback */
+.kc { font-weight: bold } /* Keyword.Constant */
+.kd { font-weight: bold } /* Keyword.Declaration */
+.kp { font-weight: bold } /* Keyword.Pseudo */
+.kr { font-weight: bold } /* Keyword.Reserved */
+.kt { color: #445588; font-weight: bold } /* Keyword.Type */
+.m { color: #009999 } /* Literal.Number */
+.s { color: #d14 } /* Literal.String */
+.na { color: #008080 } /* Name.Attribute */
+.nb { color: #0086B3 } /* Name.Builtin */
+.nc { color: #445588; font-weight: bold } /* Name.Class */
+.no { color: #008080 } /* Name.Constant */
+.ni { color: #800080 } /* Name.Entity */
+.ne { color: #990000; font-weight: bold } /* Name.Exception */
+.nf { color: #990000; font-weight: bold } /* Name.Function */
+.nn { color: #555555 } /* Name.Namespace */
+.nt { color: #000080 } /* Name.Tag */
+.nv { color: #008080 } /* Name.Variable */
+.ow { font-weight: bold } /* Operator.Word */
+.w { color: #bbbbbb } /* Text.Whitespace */
+.mf { color: #009999 } /* Literal.Number.Float */
+.mh { color: #009999 } /* Literal.Number.Hex */
+.mi { color: #009999 } /* Literal.Number.Integer */
+.mo { color: #009999 } /* Literal.Number.Oct */
+.sb { color: #d14 } /* Literal.String.Backtick */
+.sc { color: #d14 } /* Literal.String.Char */
+.sd { color: #d14 } /* Literal.String.Doc */
+.s2 { color: #d14 } /* Literal.String.Double */
+.se { color: #d14 } /* Literal.String.Escape */
+.sh { color: #d14 } /* Literal.String.Heredoc */
+.si { color: #d14 } /* Literal.String.Interpol */
+.sx { color: #d14 } /* Literal.String.Other */
+.sr { color: #009926 } /* Literal.String.Regex */
+.s1 { color: #d14 } /* Literal.String.Single */
+.ss { color: #990073 } /* Literal.String.Symbol */
+.bp { color: #999999 } /* Name.Builtin.Pseudo */
+.vc { color: #008080 } /* Name.Variable.Class */
+.vg { color: #008080 } /* Name.Variable.Global */
+.vi { color: #008080 } /* Name.Variable.Instance */
+.il { color: #009999 } /* Literal.Number.Integer.Long */
+
+
+</style>
+
+<h3>Background</h3>
+<p>
+  This sample demonstrates a basic service worker that could be used as-is, or
+  as a starting point for further customization.
+</p>
+
+<h4>What It Does</h4>
+<ul>
+  <li>
+    Precaches the HTML, JavaScript, and CSS files needed to display this page offline.
+    (Try it out by reloading the page without a network connection!)
+  </li>
+  <li>Cleans up the previously precached entries when the cache name is updated.</li>
+  <li>Intercepts network requests, returning a cached response when available.</li>
+  <li>
+    If there's no cached response, fetches the response from the network and
+    adds it to the cache for future use.
+  </li>
+</ul>
+<p>
+  You can confirm the service worker's behavior using the
+  <a href="https://developers.google.com/web/tools/chrome-devtools/debug/progressive-web-apps/">Application panel</a>
+  of Chrome's DevTools.
+</p>
+
+<h4>What It Doesn't Do</h4>
+<ul>
+  <li>
+    Automatically version any of the precached resources.<br>
+    <em>
+      You must manually update the <code>CACHES.PRECACHE</code> name to pick up
+      new versions after updating anything!
+    </em>
+  </li>
+  <li>
+    Cache-bust the precaching requests.<br>
+    <em>
+      The <code>cache.addAll()</code> call may be fulfilled with responses from
+      the HTTP cache, depending on the HTTP caching headers you use. If you
+      are using
+      <a href="https://jakearchibald.com/2016/caching-best-practices/">HTTP caching</a>
+      and unversioned resources, it can be safer to
+      <a href="https://github.com/GoogleChrome/samples/blob/5c20f8d74d890fad3d867747d2c3fc853727700c/service-worker/prefetch/service-worker.js#L56">cache-bust</a>
+      your precaching requests.
+    </em>
+  </li>
+  <li>
+    Refresh the entries in the runtime cache.<br>
+    <em>
+      Once an entry is added to the runtime cache, it's used indefinitely,
+      without consulting the network to check for updates. If your runtime cache
+      is used for resources that might be updated, a different strategy, like
+      <a href="https://jakearchibald.com/2014/offline-cookbook/#stale-while-revalidate">stale-while-revalidate</a>
+      could be more appropriate.
+    </em>
+  </li>
+  <li>
+    Clean out the runtime cache.<br>
+    <em>
+      The runtime cache will grow as new resource URLs are requested. In this
+      example, there are only 5 different images that might be loaded, so the
+      cache size isn't a concern. If your web app might request an arbitrary
+      number of unique resource URLs, then using a library like
+      <a href="https://github.com/GoogleChrome/sw-toolbox"><code>sw-toolbox</code></a>
+      which provides
+      <a href="https://github.com/GoogleChrome/sw-toolbox/tree/master/recipes/cache-expiration-options">cache-expiration</a>
+      is recommended.
+    </em>
+  </li>
+</ul>
+
+<h3>Live Demo</h3>
+<p>
+  The following demo illustrates the service worker's runtime caching by loading
+  images in response to clicking the button below.
+</p>
+<p>
+  The first time a given image is requested, the service worker will be load it
+  from the network, but each subsequent time, it will be retrieved from the cache.
+</p>
+<label for="icons">Icons:</label>
+<select id="icons">
+  <option value="icons/ic_create_new_folder_black_48dp.png">New Folder</option>
+  <option value="icons/ic_file_upload_black_48dp.png">File Upload</option>
+  <option value="icons/ic_folder_black_48dp.png">Closed Folder</option>
+  <option value="icons/ic_folder_open_black_48dp.png">Open Folder</option>
+  <option value="icons/ic_folder_shared_black_48dp.png">Shared Folder</option>
+</select>
+<button id="show">Show Icon</button>
+<div id="container"></div>
+
+<script>
+/*demo.js*/	
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js');
+}
+
+document.querySelector('#show').addEventListener('click', () => {
+  const iconUrl = document.querySelector('select').selectedOptions[0].value;
+  let imgElement = document.createElement('img');
+  imgElement.src = iconUrl;
+  document.querySelector('#container').appendChild(imgElement);
+});
+</script>
+
+
+<script>
+/*serviceworker.js*/	
+/*
+ Copyright 2016 Google Inc. All Rights Reserved.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+     http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+*/
+
+// Names of the two caches used in this version of the service worker.
+// Change to v2, etc. when you update any of the local resources, which will
+// in turn trigger the install event again.
+const PRECACHE = 'precache-v1';
+const RUNTIME = 'runtime';
+
+// A list of local resources we always want to be cached.
+const PRECACHE_URLS = [
+  'index.html',
+  './', // Alias for index.html
+  'styles.css',
+  '/main.css',
+  'demo.js'
+];
+
+// The install handler takes care of precaching the resources we always need.
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(PRECACHE)
+      .then(cache => cache.addAll(PRECACHE_URLS))
+      .then(self.skipWaiting())
+  );
+});
+
+// The activate handler takes care of cleaning up old caches.
+self.addEventListener('activate', event => {
+  const currentCaches = [PRECACHE, RUNTIME];
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return cacheNames.filter(cacheName => !currentCaches.includes(cacheName));
+    }).then(cachesToDelete => {
+      return Promise.all(cachesToDelete.map(cacheToDelete => {
+        return caches.delete(cacheToDelete);
+      }));
+    }).then(() => self.clients.claim())
+  );
+});
+
+// The fetch handler serves responses for same-origin resources from a cache.
+// If no response is found, it populates the runtime cache with the response
+// from the network before returning it to the page.
+self.addEventListener('fetch', event => {
+  // Skip cross-origin requests, like those for Google Analytics.
+  if (event.request.url.startsWith(self.location.origin)) {
+    event.respondWith(
+      caches.match(event.request).then(cachedResponse => {
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+
+        return caches.open(RUNTIME).then(cache => {
+          return fetch(event.request).then(response => {
+            // Put a copy of the response in the runtime cache.
+            return cache.put(event.request, response.clone()).then(() => {
+              return response;
+            });
+          });
+        });
+      })
+    );
+  }
+});
+
+</script>

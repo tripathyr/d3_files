@@ -1,0 +1,58 @@
+<html>
+<meta charset="utf-8">
+<head>
+  <title>DOM Manipulation</title>
+
+<style>
+
+body {
+  font: 10px sans-serif;
+}
+
+svg {
+  padding: 10px 0 0 10px;
+}
+
+.legend {
+  vertical-align: top;
+}
+
+.label {
+  text-anchor: middle;
+}
+
+.label-name {
+  font-weight: bold;
+}
+
+</style>
+
+</head>
+
+
+
+<body id="item" onload="loadJS('d3.js')">
+
+<div id="grid"></div>
+
+
+
+<script type="application/javascript">
+function loadJS(file) {
+    // DOM: Create the script element
+    var jsElm = document.createElement("script");
+    // set the type attribute
+    jsElm.type = "application/javascript";
+    // make the script element load file
+    jsElm.src = file;
+    // finally insert the element to the body element in order to load the script
+    document.body.appendChild(jsElm);
+}
+</script>
+<button onclick="loadJS('d3.js');">Load D3.js</button>
+<button onclick="loadJS('file2.js');">Load file2.js</button>
+
+
+</body>
+</html>
+

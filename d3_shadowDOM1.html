@@ -1,0 +1,10 @@
+<button>Hello, world!</button>
+<script>
+var host = document.querySelector('button');
+var root = host.createShadowRoot();
+root.textContent = 'こんにちは、影の世界!';
+
+console.log(document.querySelector('button').textContent);
+//"Hello, world!"
+//Only the shadow DOM can access it, not the page Javascript 
+</script>

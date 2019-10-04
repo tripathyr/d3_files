@@ -1,0 +1,34 @@
+<html>
+<meta charset="utf-8">
+<head>
+  <title>DOM Manipulation</title>
+
+</head>
+
+
+<!-- IT HAS TO BE EVAL. THATS WHY IT FAILED. GETS EXECUTED INSITU -->
+<body id="item" onload="var x = console.log('It Works');loadJS(x);">
+
+
+<script type="application/javascript">
+
+
+
+function loadJS(jsData) {
+    // DOM: Create the script element
+    var jsElm = document.createElement("script");
+    // set the type attribute
+    jsElm.type = "application/javascript";
+    // make the script element load file
+    jsElm.innerHTML = jsData;
+    // finally insert the element to the body element in order to load the script
+    document.body.appendChild(jsElm);
+}
+</script>
+<button onclick="loadJS();">Load D3.js</button>
+<button onclick="loadJS();">Load file2.js</button>
+
+
+</body>
+</html>
+
