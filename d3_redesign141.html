@@ -1,0 +1,162 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Codevember 20 :: WebSOCKet Bitcoin Ticker</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<style>
+      @import url("https://fonts.googleapis.com/css?family=Ubuntu:300,700");
+:root {
+  --white: #fefefe;
+  --light: #4809AA;
+  --dark: #150036;
+  --accent: #ff2a61;
+}
+
+html, body {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  background-color: #eee;
+  font-family: 'Ubuntu', sans-serif;
+  margin: 0;
+}
+
+.card {
+  background-image: linear-gradient(to top left, #1a1a1a, #111111);
+  border: 1px solid currentcolor;
+  box-shadow: 10px 10px 30px rgba(27, 27, 27, 0.3);
+  border-radius: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  min-width: 300px;
+  min-height: 500px;
+}
+
+svg {
+  border-radius: 50%;
+  padding: .3rem;
+  margin-bottom: 1rem;
+}
+
+.symbol {
+  flex: 0 1 100%;
+  font-size: 2em;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.price {
+  font-size: 3rem;
+}
+
+.dollar {
+  position: relative;
+  display: inline-block;
+  font-size: 2rem;
+  top: -.5rem;
+  left: -.2rem;
+}
+
+.direction {
+  display: inline-block;
+  -webkit-transform: scale(0.5);
+          transform: scale(0.5);
+  line-height: 0;
+}
+
+.up {
+  color: #65d8c5;
+}
+
+.down {
+  color: var(--accent);
+}
+
+.status {
+  color: var(--accent);
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<p class="status">Connected to Bitfinex</p>
+<div class="card up">
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="96" height="96" version="1.1" viewBox="0 0 16500 16500" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<style type="text/css">
+            .str0 {stroke:currentcolor;stroke-width:400}
+            .str1 {stroke:currentcolor;stroke-width:700}
+            .fil0 {fill:none}
+            .fil1 {fill:currentcolor}
+            </style>
+</defs>
+<circle class="fil0 str0" cx="8249" cy="8250" r="6461"></circle>
+<path class="fil1" d="M8634 12767l0 -1044 -1392 0 0 1044 -1392 0 0 -1044 -1044 0 0 -1392 1044 0 0 -1740 -1044 0 0 -1392 1044 0 0 -1392 -1044 0 0 -1392 1044 0 0 -1044 1392 0 0 1044 1392 0 0 -1044 1392 0 0 1073c1004,171 1738,1040 1740,2058 -1,454 -152,895 -429,1256 688,598 949,1550 662,2415 -286,865 -1065,1473 -1973,1542l0 1050 -1392 0zm1218 -2435c480,0 870,-389 870,-870 0,-480 -389,-870 -870,-870l-2609 0 0 1740 2609 0zm-174 -3131c384,0 696,-312 696,-696 0,-384 -312,-696 -696,-696l-2435 0 0 1392 2435 0z"></path>
+<circle class="fil0 str1" cx="8249" cy="8250" r="7850"></circle>
+</svg>
+<div class="symbol">BTC</div>
+<div class="price"><span class="dollar">$</span>7,993.10 <span class="direction">▲</span></div>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      const wss = new WebSocket('wss://api.bitfinex.com/ws/2');
+const socketStatus = document.querySelector('.status');
+const card = document.querySelector('.card');
+
+wss.onmessage = trade => {
+  const parsed = JSON.parse(trade.data);
+  const getExecuted = parsed => {
+    const trade = parsed[2];
+    const price = parseFloat(trade[3]).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
+    const side = trade[2] > 0 ? 'up' : 'down';
+    const output = `<span class="dollar">$</span>${price} <span class="direction">${side === 'up' ? '▲' : '▼'}</span>`;
+
+    document.querySelector('.price').innerHTML = output;
+    if (side === 'up') {
+      card.classList.remove('down');
+      card.classList.add('up');
+    } else if (side === 'down') {
+      card.classList.remove('up');
+      card.classList.add('down');
+    }
+  };
+
+  if (parsed[1] === 'te') {
+    getExecuted(parsed);
+  }
+};
+
+let trade = JSON.stringify({
+  event: 'subscribe',
+  channel: 'trades',
+  symbol: 'tBTCUSD' });
+
+
+wss.onopen = () => {
+  socketStatus.innerHTML = 'Connected to Bitfinex';
+  wss.send(trade);
+};
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

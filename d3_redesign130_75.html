@@ -1,0 +1,1261 @@
+<html lang="en" style="" class="js flexbox flexboxlegacy canvas canvastext webgl touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths ng-scope" ng-app="cssBoxModel"><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - angular interactive box-model diagram</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400|Source+Code+Pro:300,400">
+<style>
+    html {
+  box-sizing: border-box;
+}
+
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+html, body {
+  height: 100%;
+}
+
+a img {
+  border: none;
+}
+
+blockquote {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 75%;
+}
+@media screen and (min-width: 40em) {
+  html {
+    font-size: 87.5%;
+  }
+}
+@media screen and (min-width: 50em) {
+  html {
+    font-size: 93.75%;
+  }
+}
+@media screen and (min-width: 64em) {
+  html {
+    font-size: 106.25%;
+  }
+}
+@media screen and (min-width: 100em) {
+  html {
+    font-size: 118.75%;
+  }
+}
+
+body {
+  background-color: #242930;
+  color: #808386;
+  overflow-x: hidden;
+  font-family: 'Source Sans Pro','Avenir Next', AvenirNext;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2rem;
+  font-size: 1.3333333333rem;
+}
+@media screen and (min-width: 40em) {
+  body {
+    font-size: 1.2142857143rem;
+  }
+}
+@media screen and (min-width: 50em) {
+  body {
+    font-size: 1.2rem;
+  }
+}
+@media screen and (min-width: 64em) {
+  body {
+    font-size: 1.1764705882rem;
+  }
+}
+@media screen and (min-width: 100em) {
+  body {
+    font-size: 1.1578947368rem;
+  }
+}
+
+main {
+  margin: 20px auto;
+  padding: 0 20px;
+  max-width: em(1088);
+  margin-left: auto;
+  margin-right: auto;
+}
+main::after {
+  clear: both;
+  content: "";
+  display: block;
+}
+@media screen and (max-width: 550px) {
+  main {
+    padding: 0;
+    margin-top: 10px;
+  }
+}
+
+@media screen and (min-width: 790px) {
+  .box-model {
+    float: left;
+    display: block;
+    margin-right: 4.347826087%;
+    width: 100%;
+  }
+  .box-model:last-child {
+    margin-right: 0;
+  }
+}
+@media screen and (min-width: 950px) {
+  .box-model {
+    float: left;
+    display: block;
+    margin-right: 2.1276595745%;
+    width: 57.4468085106%;
+  }
+  .box-model:last-child {
+    margin-right: 0;
+  }
+}
+@media screen and (min-width: 1245px) {
+  .box-model #content, .box-model #generated-size {
+    float: left;
+    display: block;
+    margin-right: 3.7037037037%;
+    width: 55.5555555556%;
+  }
+  .box-model #content:last-child, .box-model #generated-size:last-child {
+    margin-right: 0;
+  }
+}
+@media screen and (min-width: 1245px) {
+  .box-model #generated-size {
+    float: left;
+    display: block;
+    margin-right: 3.7037037037%;
+    width: 40.7407407407%;
+    margin-right: 0;
+  }
+  .box-model #generated-size:last-child {
+    margin-right: 0;
+  }
+}
+
+@media screen and (min-width: 790px) {
+  .controls {
+    float: left;
+    display: block;
+    margin-right: 4.347826087%;
+    width: 100%;
+  }
+  .controls:last-child {
+    margin-right: 0;
+  }
+}
+@media screen and (min-width: 950px) {
+  .controls {
+    float: left;
+    display: block;
+    margin-right: 2.1276595745%;
+    width: 40.4255319149%;
+  }
+  .controls:last-child {
+    margin-right: 0;
+  }
+}
+
+/* ************************************************************ */
+.box-padding:hover .box-property-vertical,
+.box-padding:hover .box-property-horizontal, .box-border:hover .box-property-vertical,
+.box-border:hover .box-property-horizontal, .box-margin:hover .box-property-vertical,
+.box-margin:hover .box-property-horizontal, .box-inner:hover .box-property-vertical,
+.box-inner:hover .box-property-horizontal {
+  opacity: 1;
+}
+
+/*****************************************
+* CONTROL STYLES
+******************************************/
+fieldset {
+  border: 1px solid #343434;
+  padding: 0 10px 5px;
+}
+
+#generated-size fieldset {
+  min-height: 114px;
+}
+
+legend {
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 1.3em;
+}
+
+#content legend {
+  color: #63BCF8;
+}
+
+#padding legend {
+  color: #C5D936;
+}
+
+#border legend {
+  color: #F8CC63;
+}
+
+#margin legend {
+  color: #DE6A63;
+}
+
+#box-sizing legend {
+  color: #8ADFE0;
+}
+
+#generated-size legend {
+  color: #63BCF8;
+}
+
+label, .value, .toggle-text {
+  font-size: 60%;
+  display: inline-block;
+  white-space: nowrap;
+  font-family: 'Source Sans Pro','Avenir Next', AvenirNext;
+  letter-spacing: 1.5px;
+}
+
+.control-set {
+  margin-top: 20px;
+  width: 100%;
+}
+.control-set label, .control-set .toggle-text {
+  width: 25%;
+  text-transform: uppercase;
+}
+.control-set .slider {
+  width: 65%;
+}
+@media screen and (min-width: 950px) {
+  .control-set .slider {
+    width: 55%;
+  }
+}
+@media screen and (min-width: 1245px) {
+  .control-set .slider {
+    width: 63%;
+  }
+}
+.control-set .value {
+  width: 7%;
+  text-align: right;
+}
+
+.box-model #content label {
+  width: 25%;
+}
+@media screen and (min-width: 950px) {
+  .box-model #content label {
+    width: 22%;
+  }
+}
+
+#box-sizing label {
+  width: 40%;
+}
+
+.radio {
+  position: relative;
+  margin: 0 1rem 0 0;
+  cursor: pointer;
+}
+.radio::before, .radio::after {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  content: "";
+  position: absolute;
+  top: -0.2rem;
+  left: -0.2rem;
+  z-index: 1;
+  width: 20px;
+  height: 20px;
+  background: #343434 !important;
+  border-radius: 50%;
+}
+.radio:checked::before, .radio.ng-valid-parse::before {
+  -webkit-transform: scale(0, 0);
+  -moz-transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  -o-transform: scale(0, 0);
+  transform: scale(0, 0);
+  border-color: #8ADFE0 !important;
+  border-width: 3px !important;
+}
+.radio:checked::after, .radio.ng-valid-parse::after {
+  border: 3px solid #8ADFE0 !important;
+  background: #242930 !important;
+}
+
+slider, [slider] {
+  display: inline-block;
+  position: relative;
+  height: 7px;
+  width: 63%;
+  vertical-align: middle;
+  margin: 5px;
+}
+slider div, [slider] div {
+  white-space: nowrap;
+  position: absolute;
+}
+slider div.handle, [slider] div.handle {
+  border: 3px solid;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  top: -8px;
+  background-color: #242930;
+  z-index: 2;
+  border-radius: 100%;
+}
+slider div.handle::after, [slider] div.handle::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  left: 6px;
+  border-radius: 100%;
+  background-color: transparent;
+}
+slider div.handle.active::after, [slider] div.handle.active::after {
+  background-color: transparent;
+}
+slider div.bar, [slider] div.bar {
+  width: 100%;
+  height: 100%;
+  border-radius: 7px;
+  background: #444;
+  overflow: hidden;
+}
+slider div.bar .selection, [slider] div.bar .selection {
+  width: 0;
+  height: 100%;
+}
+slider div.bubble, [slider] div.bubble {
+  display: none;
+  cursor: default;
+  top: -22px;
+  padding: 1px 3px;
+  font-size: 0.7em;
+}
+slider div.bubble.active, [slider] div.bubble.active {
+  display: inline-block;
+}
+slider div.bubble.limit, [slider] div.bubble.limit {
+  color: #777;
+}
+
+.bubble.value.low.ng-binding.active {
+  display: none;
+}
+
+.bar-color {
+  height: 20px;
+  border-right: 3px solid;
+  box-sizing: content-box;
+}
+
+#content .slider-selection, #content .bar-color {
+  background-color: #63BCF8;
+}
+#content .bar-color,
+#content .handle {
+  border-color: #63BCF8;
+}
+
+#padding .slider-selection, #padding .bar-color {
+  background-color: #C5D936;
+}
+#padding .bar-color,
+#padding .handle {
+  border-color: #C5D936;
+}
+
+#border .slider-selection, #border .bar-color {
+  background-color: #F8CC63;
+}
+#border .bar-color,
+#border .handle {
+  border-color: #F8CC63;
+}
+
+#margin .slider-selection, #margin .bar-color {
+  background-color: #DE6A63;
+}
+#margin .bar-color,
+#margin .handle {
+  border-color: #DE6A63;
+}
+
+@media (min-width: 951px) and (max-width: 1244px) {
+  .controls .sliders label {
+    display: block;
+    line-height: 1rem;
+  }
+  .controls .sliders label:first-of-type {
+    margin-top: 8px;
+  }
+  .controls slider, .controls [slider] {
+    width: 87%;
+  }
+}
+.toggle {
+  display: none;
+}
+.toggle, .toggle::after, .toggle::before, .toggle *, .toggle *::after, .toggle *::before, .toggle + .toggle-control {
+  box-sizing: border-box;
+}
+.toggle::selection, .toggle::after::selection, .toggle::before::selection, .toggle *::selection, .toggle *::after::selection, .toggle *::before::selection, .toggle + .toggle-control::selection {
+  background: none;
+}
+.toggle + .toggle-control {
+  outline: 0;
+  top: 10px;
+  margin-bottom: 8px;
+  width: 52px;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  padding: 3px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background: #242930;
+  border: 1.5px solid #444;
+  border-radius: 2em;
+}
+.toggle + .toggle-control::after, .toggle + .toggle-control::before {
+  position: relative;
+  display: block;
+  content: "";
+  width: 20px;
+  height: 20px;
+}
+.toggle + .toggle-control::after {
+  left: 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background: #343434;
+  border-radius: 50%;
+}
+.toggle + .toggle-control::before {
+  display: none;
+}
+.toggle:checked + .toggle-control {
+  border: 1.5px solid #444;
+}
+.toggle:checked + .toggle-control::after {
+  left: 50%;
+  height: 20px;
+  width: 20px;
+  background: #242930;
+  border: 3px solid #63BCF8;
+}
+
+.toggle-text {
+  vertical-align: text-bottom;
+  margin-left: 5px;
+}
+
+.generated-direction {
+  display: inline-block;
+  width: 150px;
+}
+
+.generated-width,
+.generated-height {
+  font-size: 60%;
+  white-space: nowrap;
+  font-family: 'Source Sans Pro','Avenir Next', AvenirNext;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  line-height: 3rem;
+}
+@media screen and (min-width: 790px) {
+  .generated-width,
+  .generated-height {
+    line-height: 2rem;
+  }
+}
+.generated-width .changes,
+.generated-height .changes {
+  text-transform: none;
+  display: inline-block;
+  line-height: 25px;
+  padding: 0 5px;
+  background: #2F353E;
+  border-radius: 3px;
+  color: #63BCF8;
+  -webkit-transition: color 0.4s ease-in-out, background 0.4s ease-in-out;
+  -moz-transition: color 0.4s ease-in-out, background 0.4s ease-in-out;
+  transition: color 0.4s ease-in-out, background 0.4s ease-in-out;
+}
+.generated-width .changes[class*="-add"],
+.generated-height .changes[class*="-add"] {
+  color: #054570;
+  background: #63BCF8;
+}
+.generated-width .changes.highlight.ng-enter,
+.generated-height .changes.highlight.ng-enter {
+  background: #2F353E;
+  color: #63BCF8;
+}
+.generated-width .changes.highlight.ng-enter.ng-enter-active,
+.generated-height .changes.highlight.ng-enter.ng-enter-active {
+  color: #054570;
+  background: #63BCF8;
+}
+.generated-width .changes.highlight.ng-leave,
+.generated-height .changes.highlight.ng-leave {
+  color: #054570;
+  background: #63BCF8;
+}
+.generated-width .changes.highlight.ng-leave.ng-leave-active,
+.generated-height .changes.highlight.ng-leave.ng-leave-active {
+  background: #2F353E;
+  color: #63BCF8;
+}
+
+/*****************************************
+* DIAGRAM STYLES
+******************************************/
+#diagram {
+  margin-left: 5px;
+  clear: left;
+  padding-top: 30px;
+}
+
+.box {
+  position: relative;
+}
+.box:hover .box-property {
+  background: #FFFFFF;
+}
+.box:hover .box-property-vertical,
+.box:hover .box-property-horizontal {
+  opacity: 0;
+}
+
+.box-property {
+  font-family: 'Source Code Pro', Menlo, monospace;
+  -webkit-transition: width 0.3s linear, height 0.3s linear;
+  -moz-transition: width 0.3s linear, height 0.3s linear;
+  transition: width 0.3s linear, height 0.3s linear;
+  position: absolute;
+}
+
+.box-padding {
+  background: #C5D936;
+  border: 1px dashed #f6f6f6;
+  text-shadow: 0px 1px 1px rgba(222, 233, 140, 0.7);
+}
+.box-padding span::before,
+.box-padding span::after {
+  color: #33380b;
+}
+.box-padding:hover {
+  background-color: #C5D936 !important;
+}
+.box-padding:hover .box-property-vertical,
+.box-padding:hover .box-property-horizontal {
+  opacity: 1;
+}
+.box-padding .box-property-vertical {
+  left: 40%;
+}
+.box-padding .box-property-horizontal {
+  top: 40%;
+}
+
+.box-border {
+  background: #F8CC63;
+  border: 1px solid #f6f6f6;
+  text-shadow: 0px 1px 1px rgba(252, 236, 197, 0.7);
+}
+.box-border span::before,
+.box-border span::after {
+  color: #896206;
+}
+.box-border:hover {
+  background-color: #F8CC63 !important;
+}
+.box-border:hover .box-property-vertical,
+.box-border:hover .box-property-horizontal {
+  opacity: 1;
+}
+.box-border .box-property-vertical {
+  left: 50%;
+}
+.box-border .box-property-horizontal {
+  top: 50%;
+}
+
+.box-margin {
+  background: #DE6A63;
+  border: 1px dashed #f6f6f6;
+  text-shadow: 0px 1px 1px rgba(240, 186, 183, 0.7);
+  /** To Decode this SVG image, paste the css here: www.svgeneration.com/tools/base-64-decoder */
+  background-color: #de6a63;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc3JyBoZWlnaHQ9JzE0JyB2aWV3Qm94PScwIDAgNSAxMCc+Cgk8cmVjdCB3aWR0aD0nMTEwJScgeD0nLTUlJyB5PSctNSUnIGhlaWdodD0nMTEwJScgZmlsbD0nI2RlNmE2MycvPgoJPGxpbmUgeDE9JzcnIHkxPScxJyB4Mj0nLTInIHkyPScxMCcgc3Ryb2tlPScjZWVhYWE1JyBzdHJva2Utd2lkdGg9JzAuMjknLz4KCTxsaW5lIHgxPSc3JyB5MT0nNicgeDI9Jy0yJyB5Mj0nMTUnIHN0cm9rZT0nI2VlYWFhNScgc3Ryb2tlLXdpZHRoPScwLjI5Jy8+Cgk8bGluZSB4MT0nNycgeTE9Jy00JyB4Mj0nLTInIHkyPSc1JyBzdHJva2U9JyNlZWFhYTUnIHN0cm9rZS13aWR0aD0nMC4yOScvPgo8L3N2Zz4=");
+}
+.box-margin span::before,
+.box-margin span::after {
+  color: #611914;
+}
+.box-margin:hover {
+  background-color: #DE6A63 !important;
+}
+.box-margin:hover .box-property-vertical,
+.box-margin:hover .box-property-horizontal {
+  opacity: 1;
+}
+.box-margin .box-property-vertical {
+  left: 60%;
+}
+.box-margin .box-property-horizontal {
+  top: 60%;
+}
+
+.box-inner {
+  background: #63BCF8;
+  border: 1px solid #f6f6f6;
+  text-shadow: 0px 1px 1px rgba(197, 230, 252, 0.7);
+  text-align: center;
+}
+.box-inner span::before,
+.box-inner span::after {
+  color: #065489;
+}
+.box-inner:hover {
+  background-color: #63BCF8 !important;
+}
+.box-inner:hover .box-property-vertical,
+.box-inner:hover .box-property-horizontal {
+  opacity: 1;
+}
+.box-inner::before {
+  color: #0763a1;
+  content: attr(data-width) " x " attr(data-height);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: .5em;
+  width: 100%;
+  font-size: .75em;
+  white-space: nowrap;
+}
+
+.property-label {
+  font-family: 'Source Sans Pro','Avenir Next', AvenirNext;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 2px;
+  font-size: 11px;
+  top: -6px;
+  left: 5px;
+  position: relative;
+}
+@media screen and (min-width: 790px) {
+  .property-label {
+    top: -12px;
+  }
+}
+.property-label#property-label-padding {
+  color: #93a41f;
+}
+.property-label#property-label-border {
+  color: #c38c09;
+}
+.property-label#property-label-margin {
+  color: #b52e26;
+}
+.property-label#property-label-content {
+  color: #0b90ea;
+  float: left;
+  top: -6px;
+}
+@media screen and (min-width: 790px) {
+  .property-label#property-label-content {
+    top: -8px;
+  }
+}
+
+#padding-v::before {
+  top: -8px;
+}
+
+.box-property-vertical, .box-property-horizontal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+}
+.box-property-vertical::before, .box-property-horizontal::before, .box-property-vertical::after, .box-property-horizontal::after {
+  position: absolute;
+  font-size: 0.75em;
+  text-align: center;
+}
+
+.box-property-vertical::before, .box-property-vertical::after {
+  left: -0.5em;
+  width: 100%;
+}
+
+.box-property-horizontal::before, .box-property-horizontal::after {
+  margin-top: -0.65em;
+  width: 2em;
+  height: 100%;
+}
+
+.box-property-vertical {
+  height: 100%;
+}
+.box-property-vertical::before {
+  content: attr(data-top);
+  top: -0.5em;
+}
+.box-property-vertical::after {
+  content: attr(data-bottom);
+  bottom: -0.5em;
+}
+
+.box-property-horizontal {
+  width: 100%;
+}
+.box-property-horizontal::before {
+  content: attr(data-left);
+  left: -1em;
+}
+.box-property-horizontal::after {
+  content: attr(data-right);
+  right: -1em;
+}
+
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+<style> #margin-v::before{top:-4.857142857142857px;}</style><style> #margin-v::after{bottom:-6.333333333333333px;}</style><style> #margin-h::after{right:-4.857142857142857px;}</style><style> #margin-h::before{left:-5.333333333333333px;}</style><style> #border-v::before{top:-6.642857142857142px;}</style><style> #border-v::after{bottom:-8px;}</style><style> #border-h::after{right:-6.642857142857142px;}</style><style> #border-h::before{left:-7px;}</style><style> #padding-v::before{top:-4.857142857142857px;}</style><style> #padding-v::after{bottom:-6.333333333333333px;}</style><style> #padding-h::after{right:-4.857142857142857px;}</style><style> #padding-h::before{left:-5.333333333333333px;}</style></head>
+<body translate="no">
+
+
+
+<meta charset="utf-8">
+<title>cssBoxModel</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.2/angular.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.2/angular-animate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.2/angular-sanitize.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/97151/ui.slider.js"></script>
+
+
+<!-- uiView: diagram --><div ui-view="diagram" class="ng-scope"><main class="ng-scope">
+  <section class="controls">
+    <div id="box-sizing" class="control-set">
+      <fieldset>
+        <legend id="bs">box-sizing</legend>
+        <label>
+          <input type="radio" ng-model="box.sizing" value="content-box" class="radio ng-pristine ng-untouched ng-valid" name="4">content-box
+        </label>
+        <label>
+          <input type="radio" ng-model="box.sizing" value="border-box" class="radio ng-pristine ng-untouched ng-valid" name="5">border-box
+        </label>
+      </fieldset>
+    </div>
+    <div id="padding" class="control-set">
+      <fieldset>
+        <legend>padding</legend>
+        <div class="sliders">
+          <label>padding-top</label>
+          <slider floor="0" ceiling="120" step="5" precision="1" ng-model="padding.top" highlight="left" class="ng-pristine ng-untouched ng-valid ng-isolate-scope"><div class="bar"><div class="bar-color" style="left: 0px; width: 75.8333px;"></div><div class="selection"></div></div>
+<div class="handle low" style="left: 75.8333px;"></div>
+<div class="bubble limit low ng-binding">0</div>
+<div class="bubble limit high ng-binding" style="left: 475px;">120</div>
+<div class="bubble value low ng-binding" style="left: 86px;">20</div>
+</slider>
+          <div class="value ng-binding">20px</div>
+          <label>padding-right</label>
+          <slider floor="0" ceiling="120" step="5" precision="1" ng-model="padding.right" highlight="left" class="ng-pristine ng-untouched ng-valid ng-isolate-scope"><div class="bar"><div class="bar-color" style="left: 0px; width: 75.8333px;"></div><div class="selection"></div></div>
+<div class="handle low" style="left: 75.8333px;"></div>
+<div class="bubble limit low ng-binding">0</div>
+<div class="bubble limit high ng-binding" style="left: 475px;">120</div>
+<div class="bubble value low ng-binding" style="left: 86px;">20</div>
+</slider>
+          <div class="value ng-binding">20px</div>
+          <label>padding-bottom</label>
+          <slider floor="0" ceiling="120" step="5" precision="1" ng-model="padding.bottom" highlight="left" class="ng-pristine ng-untouched ng-valid ng-isolate-scope"><div class="bar"><div class="bar-color" style="left: 0px; width: 75.8333px;"></div><div class="selection"></div></div>
+<div class="handle low" style="left: 75.8333px;"></div>
+<div class="bubble limit low ng-binding">0</div>
+<div class="bubble limit high ng-binding" style="left: 475px;">120</div>
+<div class="bubble value low ng-binding" style="left: 86px;">20</div>
+</slider>
+          <div class="value ng-binding">20px</div>
+          <label>padding-left</label>
+          <slider floor="0" ceiling="120" step="5" precision="1" ng-model="padding.left" highlight="left" class="ng-pristine ng-untouched ng-valid ng-isolate-scope"><div class="bar"><div class="bar-color" style="left: 0px; width: 75.8333px;"></div><div class="selection"></div></div>
+<div class="handle low" style="left: 75.8333px;"></div>
+<div class="bubble limit low ng-binding">0</div>
+<div class="bubble limit high ng-binding" style="left: 475px;">120</div>
+<div class="bubble value low ng-binding" style="left: 86px;">20</div>
+</slider>
+          <div class="value ng-binding">20px</div>
+        </div>
+      </fieldset>
+    </div>
+    <div id="border" class="control-set">
+      <fieldset>
+        <legend>border</legend>
+        <div class="sliders">
+          <label>border-top</label>
+          <slider floor="0" ceiling="120" step="5" precision="1" ng-model="border.top" highlight="left" class="ng-pristine ng-untouched ng-valid ng-isolate-scope"><div class="bar"><div class="bar-color" style="left: 0px; width: 56.875px;"></div><div class="selection"></div></div>
+<div class="handle low" style="left: 56.875px;"></div>
+<div class="bubble limit low ng-binding">0</div>
+<div class="bubble limit high ng-binding" style="left: 475px;">120</div>
+<div class="bubble value low ng-binding" style="left: 67px;">15</div>
+</slider>
+          <div class="value ng-binding">15px</div>
+          <label>border-right</label>
+          <slider floor="0" ceiling="120" step="5" precision="1" ng-model="border.right" highlight="left" class="ng-pristine ng-untouched ng-valid ng-isolate-scope"><div class="bar"><div class="bar-color" style="left: 0px; width: 56.875px;"></div><div class="selection"></div></div>
+<div class="handle low" style="left: 56.875px;"></div>
+<div class="bubble limit low ng-binding">0</div>
+<div class="bubble limit high ng-binding" style="left: 475px;">120</div>
+<div class="bubble value low ng-binding" style="left: 67px;">15</div>
+</slider>
+          <div class="value ng-binding">15px</div>
+          <label>border-bottom</label>
+          <slider floor="0" ceiling="120" step="5" precision="1" ng-model="border.bottom" highlight="left" class="ng-pristine ng-untouched ng-valid ng-isolate-scope"><div class="bar"><div class="bar-color" style="left: 0px; width: 56.875px;"></div><div class="selection"></div></div>
+<div class="handle low" style="left: 56.875px;"></div>
+<div class="bubble limit low ng-binding">0</div>
+<div class="bubble limit high ng-binding" style="left: 475px;">120</div>
+<div class="bubble value low ng-binding" style="left: 67px;">15</div>
+</slider>
+          <div class="value ng-binding">15px</div>
+          <label>border-left</label>
+          <slider floor="0" ceiling="120" step="5" precision="1" ng-model="border.left" highlight="left" class="ng-pristine ng-untouched ng-valid ng-isolate-scope"><div class="bar"><div class="bar-color" style="left: 0px; width: 56.875px;"></div><div class="selection"></div></div>
+<div class="handle low" style="left: 56.875px;"></div>
+<div class="bubble limit low ng-binding">0</div>
+<div class="bubble limit high ng-binding" style="left: 475px;">120</div>
+<div class="bubble value low ng-binding" style="left: 67px;">15</div>
+</slider>
+          <div class="value ng-binding">15px</div>
+        </div>
+      </fieldset>
+    </div>
+    <div id="margin" class="control-set">
+      <fieldset>
+        <legend>margin</legend>
+        <div class="sliders">
+          <label>margin-top</label>
+          <slider floor="0" ceiling="120" step="5" precision="1" ng-model="margin.top" highlight="left" class="ng-pristine ng-untouched ng-valid ng-isolate-scope"><div class="bar"><div class="bar-color" style="left: 0px; width: 75.8333px;"></div><div class="selection"></div></div>
+<div class="handle low" style="left: 75.8333px;"></div>
+<div class="bubble limit low ng-binding">0</div>
+<div class="bubble limit high ng-binding" style="left: 475px;">120</div>
+<div class="bubble value low ng-binding" style="left: 86px;">20</div>
+</slider>
+          <div class="value ng-binding">20px</div>
+          <label>margin-right</label>
+          <slider floor="0" ceiling="120" step="5" precision="1" ng-model="margin.right" highlight="left" class="ng-pristine ng-untouched ng-valid ng-isolate-scope"><div class="bar"><div class="bar-color" style="left: 0px; width: 75.8333px;"></div><div class="selection"></div></div>
+<div class="handle low" style="left: 75.8333px;"></div>
+<div class="bubble limit low ng-binding">0</div>
+<div class="bubble limit high ng-binding" style="left: 475px;">120</div>
+<div class="bubble value low ng-binding" style="left: 86px;">20</div>
+</slider>
+          <div class="value ng-binding">20px</div>
+          <label>margin-bottom</label>
+          <slider floor="0" ceiling="120" step="5" precision="1" ng-model="margin.bottom" highlight="left" class="ng-pristine ng-untouched ng-valid ng-isolate-scope"><div class="bar"><div class="bar-color" style="left: 0px; width: 75.8333px;"></div><div class="selection"></div></div>
+<div class="handle low" style="left: 75.8333px;"></div>
+<div class="bubble limit low ng-binding">0</div>
+<div class="bubble limit high ng-binding" style="left: 475px;">120</div>
+<div class="bubble value low ng-binding" style="left: 86px;">20</div>
+</slider>
+          <div class="value ng-binding">20px</div>
+          <label>margin-left</label>
+          <slider floor="0" ceiling="120" step="5" precision="1" ng-model="margin.left" highlight="left" class="ng-pristine ng-untouched ng-valid ng-isolate-scope"><div class="bar"><div class="bar-color" style="left: 0px; width: 75.8333px;"></div><div class="selection"></div></div>
+<div class="handle low" style="left: 75.8333px;"></div>
+<div class="bubble limit low ng-binding">0</div>
+<div class="bubble limit high ng-binding" style="left: 475px;">120</div>
+<div class="bubble value low ng-binding" style="left: 86px;">20</div>
+</slider>
+          <div class="value ng-binding">20px</div>
+        </div>
+      </fieldset>
+    </div>
+  </section>
+  <section class="box-model">
+    <div id="content" class="control-set">
+      <fieldset>
+        <legend>Dimensions</legend>
+        <div class="sliders">
+          <label>width</label>
+          <slider floor="0" ceiling="400" step="10" precision="1" ng-model="dimensions.width" highlight="left" class="ng-pristine ng-untouched ng-valid ng-isolate-scope"><div class="bar"><div class="bar-color" style="left: 0px; width: 250.25px;"></div><div class="selection"></div></div>
+<div class="handle low" style="left: 250.25px;"></div>
+<div class="bubble limit low ng-binding">0</div>
+<div class="bubble limit high ng-binding" style="left: 475px;">400</div>
+<div class="bubble value low ng-binding" style="left: 261px;">220</div>
+</slider>
+          <div class="value ng-binding">220px</div>
+          <label>height</label>
+          <slider floor="0" ceiling="400" step="10" precision="1" ng-model="dimensions.height" highlight="left" class="ng-pristine ng-untouched ng-valid ng-isolate-scope"><div class="bar"><div class="bar-color" style="left: 0px; width: 250.25px;"></div><div class="selection"></div></div>
+<div class="handle low" style="left: 250.25px;"></div>
+<div class="bubble limit low ng-binding">0</div>
+<div class="bubble limit high ng-binding" style="left: 475px;">400</div>
+<div class="bubble value low ng-binding" style="left: 261px;">220</div>
+</slider>
+          <div class="value ng-binding">220px</div>
+        </div>
+      </fieldset>
+    </div>
+    <div id="generated-size" class="control-set">
+      <fieldset>
+        <legend>Generated Size</legend>
+        <input id="toggle-include-margin" type="checkbox" checked="" ng-model="generatedIncludeMargin" ng-change="checkIncludeMargin()" class="toggle ng-pristine ng-untouched ng-valid">
+        <label for="toggle-include-margin" class="toggle-control"></label><span class="toggle-text">include margin</span>
+        <div class="generated-width"><span class="generated-direction">horizontal:</span> <span class="changes value-290">290px</span></div>
+        <div class="generated-height"><span class="generated-direction">vertical:</span> <span class="changes value-290">290px</span></div>
+      </fieldset>
+    </div>
+    <div id="diagram">
+      <div ng-style="{'top': boxPosition.top+'px', 'left': boxPosition.left+'px', 'width': dimensions.width+'px', 'height': dimensions.height+'px'}" class="box" style="top: 61px; left: 55px; width: 220px; height: 220px;">
+        <div ng-style="{'width': styleMargin.width+'px', 'height': styleMargin.height+'px', 'top': styleMargin.top+'px', 'left': styleMargin.left+'px'}" class="box-margin box-property" style="width: 332px; height: 332px; top: -55px; left: -55px;"><span id="property-label-margin" class="property-label">margin</span><span id="margin-v" data-id="margin-v" data-top="20" data-bottom="20" label-position-top="20" label-position-bottom="20" label-position-v="" class="box-property-vertical ng-isolate-scope"></span><span id="margin-h" data-id="margin-h" data-left="20" data-right="20" label-position-right="20" label-position-left="20" label-position-h="" class="box-property-horizontal ng-isolate-scope"></span></div>
+        <div ng-style="{'width': styleBorder.width+'px', 'height': styleBorder.height+'px', 'top': styleBorder.top+'px', 'left': styleBorder.left+'px'}" class="box-border box-property" style="width: 292px; height: 292px; top: -35px; left: -35px;"><span id="property-label-border" class="property-label">border</span><span id="border-v" data-id="border-v" data-top="15" data-bottom="15" label-position-top="15" label-position-bottom="15" label-position-v="" class="box-property-vertical ng-isolate-scope"></span><span id="border-h" data-id="border-h" data-left="15" data-right="15" label-position-right="15" label-position-left="15" label-position-h="" class="box-property-horizontal ng-isolate-scope"></span></div>
+        <div ng-style="{'width': stylePadding.width+'px', 'height': stylePadding.height+'px', 'top': stylePadding.top+'px', 'left': stylePadding.left+'px'}" class="box-padding box-property" style="width: 262px; height: 262px; top: -20px; left: -20px;"><span id="property-label-padding" class="property-label">padding</span><span id="padding-v" data-id="padding-v" data-top="20" data-bottom="20" label-position-top="20" label-position-bottom="20" label-position-v="" class="box-property-vertical ng-isolate-scope"></span><span id="padding-h" data-id="padding-h" data-left="20" data-right="20" label-position-right="20" label-position-left="20" label-position-h="" class="box-property-horizontal ng-isolate-scope"></span></div>
+        <div ng-style="{'width': innerContent.width+'px', 'height': innerContent.height+'px'}" data-height="220" data-width="220" class="box-inner box-property" style="width: 220px; height: 220px;"><span id="property-label-content" class="property-label">content</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+</div>
+
+
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      // code on GitHub
+// https://github.com/carolineartz/learning-box-model
+// http://car.oline.codes
+
+// rebound of this jQuery demo https://codepen.io/guyroutledge/pen/hgpez
+
+angular.module('cssBoxModel', ['ngAnimate', 'ngSanitize', 'ui.router', 'ui.slider']).
+
+
+config(['$stateProvider', '$locationProvider', function ($stateProvider, $locationProvider) {
+  $stateProvider.state('home', {
+    url: '',
+    controller: 'MainCtrl',
+    views: {
+      'diagram': {
+        templateUrl: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/97151/main.html',
+        controller: 'MainCtrl' } } });
+
+
+
+
+}]).
+
+directive('labelPositionV', function () {
+  return {
+    restrict: 'AE',
+    scope: {},
+    link: function (scope, element, attrs, ctrl) {
+      var id = attrs.id;
+      attrs.$observe('labelPositionTop', function (value) {
+        var styleTop = "<style> #" + id + "::before{top:" + (value / 2.8 - 12) + "px;}</style>";
+        angular.element(document).find('head').append(styleTop);
+      });
+      attrs.$observe('labelPositionBottom', function (value) {
+        var styleBottom = "<style> #" + id + "::after{bottom:" + (value / 3 - 13) + "px;}</style>";
+        angular.element(document).find('head').append(styleBottom);
+      });
+    } };
+
+}).
+
+directive('labelPositionH', function () {
+  return {
+    restrict: 'AE',
+    scope: {},
+    link: function (scope, element, attrs, ctrl) {
+      var id = attrs.id;
+      attrs.$observe('labelPositionRight', function (value) {
+        var styleRight = "<style> #" + id + "::after{right:" + 1 * (value / 2.8 - 12) + "px;}</style>";
+        angular.element(document).find('head').append(styleRight);
+      });
+      attrs.$observe('labelPositionLeft', function (value) {
+        var styleLeft = "<style> #" + id + "::before{left:" + 1 * (value / 3 - 12) + "px;}</style>";
+        angular.element(document).find('head').append(styleLeft);
+      });
+
+    } };
+
+});
+
+// Controller
+// **********************************************************************
+
+var app = angular.module('cssBoxModel');
+
+app.controller('MainCtrl', function ($scope) {
+
+  //models: default adjustable values
+  $scope.padding = {
+    top: 20,
+    right: 20,
+    bottom: 20,
+    left: 20,
+    v: function () {
+      return this.top + this.bottom;
+    },
+    h: function () {
+      return this.right + this.left;
+    } };
+
+
+  $scope.border = {
+    top: 15,
+    right: 15,
+    bottom: 15,
+    left: 15,
+    v: function () {
+      return this.top + this.bottom;
+    },
+    h: function () {
+      return this.right + this.left;
+    } };
+
+
+  $scope.margin = {
+    top: 20,
+    right: 20,
+    bottom: 20,
+    left: 20,
+    v: function () {
+      return this.top + this.bottom;
+    },
+    h: function () {
+      return this.right + this.left;
+    } };
+
+
+  $scope.box = {
+    sizing: 'content-box' };
+
+
+  $scope.dimensions = {
+    width: 220,
+    height: 220 };
+
+
+  $scope.innerContent = {
+    width: getInnerWidth(),
+    height: getInnerHeight() };
+
+
+  $scope.generatedIncludeMargin = false;
+
+  $scope.generatedBoxDimensions = {
+    width: getGeneratedBoxDimensionsWidth(),
+    height: getGeneratedBoxDimensionsHeight() };
+
+
+  $scope.checkIncludeMargin = function () {
+    $scope.generatedBoxDimensions.width = getGeneratedBoxDimensionsWidth();
+    $scope.generatedBoxDimensions.height = getGeneratedBoxDimensionsHeight();
+  };
+
+
+  //actual applied style values
+  $scope.boxPosition = {
+    left: 50,
+    top: 56 };
+
+
+  $scope.styleMargin = {
+    width: 300,
+    height: 300,
+    top: -50,
+    left: -50 };
+
+
+  $scope.styleBorder = {
+    width: 260,
+    height: 260,
+    top: -30,
+    left: -30 };
+
+
+  $scope.stylePadding = {
+    width: 242,
+    height: 242,
+    top: -20,
+    left: -20 };
+
+
+  //watch for changes applied to sliders and calculate rendered styles
+  $scope.$watch(function () {
+    $scope.boxPosition.top = calcBoxPositionTop() + 6;
+    $scope.boxPosition.left = calcBoxPositionLeft();
+
+    //Margin Styles
+    $scope.styleMargin.width = $scope.margin.h() + $scope.styleBorder.width;
+    $scope.styleMargin.height = $scope.margin.v() + $scope.styleBorder.height;
+    $scope.styleMargin.top = -calcBoxPositionTop();
+    $scope.styleMargin.left = -calcBoxPositionLeft();
+
+    //Border Styles
+    $scope.styleBorder.width = $scope.border.h() + $scope.stylePadding.width;
+    $scope.styleBorder.height = $scope.border.v() + $scope.stylePadding.height;
+    $scope.styleBorder.top = -($scope.border.top + $scope.padding.top);
+    $scope.styleBorder.left = -($scope.border.left + $scope.padding.left);
+
+    //Padding Styles
+    $scope.stylePadding.width = $scope.padding.h() + getInnerWidth() + 2;
+    $scope.stylePadding.height = $scope.padding.v() + getInnerHeight() + 2;
+    $scope.stylePadding.top = -$scope.padding.top;
+    $scope.stylePadding.left = -$scope.padding.left;
+
+    //Inner Content Styles- based on box-sizing
+    $scope.innerContent.width = getInnerWidth();
+    $scope.innerContent.height = getInnerHeight();
+
+    //Generated Dimensions- based on box-sizing
+    $scope.generatedBoxDimensions.width = getGeneratedBoxDimensionsWidth();
+    $scope.generatedBoxDimensions.height = getGeneratedBoxDimensionsHeight();
+  });
+
+  function getInnerWidth() {
+    var width;
+    if ($scope.box.sizing === 'border-box') {
+      width = $scope.dimensions.width -
+      $scope.border.h() -
+      $scope.padding.h();
+    } else {
+      width = $scope.dimensions.width;
+    }
+    return width > 0 ? width : 0;
+  }
+
+  function getInnerHeight() {
+    var height;
+    if ($scope.box.sizing === 'border-box') {
+      height = $scope.dimensions.height -
+      $scope.border.v() -
+      $scope.padding.v();
+    } else {
+      height = $scope.dimensions.height;
+    }
+    return height > 0 ? height : 0;
+  }
+
+
+  //if padding + border > dimension, return (padding + border - dimension) [+ margin]
+  function getGeneratedBoxDimensionsWidth() {
+    var width;
+    if ($scope.box.sizing === 'border-box') {
+      width = getInnerWidth() === 0 ? calcPaddingBorderWidth() : $scope.dimensions.width;
+    } else {
+      width = $scope.dimensions.width + calcPaddingBorderWidth();
+    }
+    return $scope.generatedIncludeMargin ? width + $scope.margin.h() : width;
+  }
+
+  function getGeneratedBoxDimensionsHeight() {
+    var height;
+    if ($scope.box.sizing === 'border-box') {
+      height = getInnerHeight() === 0 ? calcPaddingBorderHeight() : $scope.dimensions.height;
+    } else {
+      height = $scope.dimensions.height + calcPaddingBorderHeight();
+    }
+    return $scope.generatedIncludeMargin ? height + $scope.margin.v() : height;
+  }
+
+  /*
+     * Private: Helpers
+     */
+  function calcBoxPositionTop() {
+    return $scope.margin.top + $scope.border.top + $scope.padding.top;
+  }
+
+  function calcBoxPositionLeft() {
+    return $scope.margin.left + $scope.border.left + $scope.padding.left;
+  }
+
+  function calcPaddingBorderWidth() {
+    return $scope.padding.h() + $scope.border.h();
+  }
+
+  function calcPaddingBorderHeight() {
+    return $scope.padding.v() + $scope.border.v();
+  }
+
+});
+      //# sourceURL=pen.js
+    </script>
+
+
+</body></html>

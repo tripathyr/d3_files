@@ -1,0 +1,559 @@
+<html lang="en" class=" -webkit-"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - A Circular Form</title>
+<style media="" data-href="https://fonts.googleapis.com/css?family=Open+Sans:400,300">/* cyrillic-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN_r8OX-hpOqc.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN_r8OVuhpOqc.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN_r8OXuhpOqc.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN_r8OUehpOqc.woff2) format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN_r8OXehpOqc.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN_r8OXOhpOqc.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN_r8OUuhp.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFWJ0bbck.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFUZ0bbck.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFWZ0bbck.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVp0bbck.woff2) format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFWp0bbck.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFW50bbck.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0b.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style media="" data-href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">button,hr,input{overflow:visible}audio,canvas,progress,video{display:inline-block}progress,sub,sup{vertical-align:baseline}html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0} menu,article,aside,details,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{}button,select{text-transform:none}[type=submit], [type=reset],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}[hidden],template{display:none}/*# sourceMappingURL=normalize.min.css.map */</style>
+<style>
+    @charset "UTF-8";
+/* A Circular Form © Yogev Ahuvia  */
+/* ==============================  */
+/* This interface experiments      */
+/* with user input by implementing */
+/* a circular form, that rotates   */
+/* as the user advances through    */
+/* it's path.                      */
+.wheel {
+  width: 500px;
+  height: 500px;
+  top: 30px;
+  left: 50%;
+  margin-left: -250px;
+  border-radius: 100%;
+  position: absolute;
+  transition-delay: 0s;
+  transition-property: transform;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+  transform-origin: 50% 50%;
+  transform: rotate(-22.5deg);
+}
+.wheel button.submit {
+  font-family: 'Open Sans', sans-serif;
+  outline: none;
+  display: block;
+  color: #eee;
+  font-weight: 300;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  border: 0;
+  background: #222;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  left: 50%;
+  top: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
+  transition: opacity 1s, box-shadow 0.3s;
+  pointer-events: none;
+  opacity: 0;
+}
+.wheel button.submit:hover {
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+}
+.wheel button.submit:focus {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+ul > li {
+  width: 250px;
+  height: 250px;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top-left-radius: 250px;
+  border-top-right-radius: 0px;
+  transform-origin: 100% 100%;
+  pointer-events: none;
+  transition-delay: 0s;
+  transition-property: transform;
+  transition-duration: 3s;
+  transition-timing-function: ease-in-out;
+}
+ul > li:nth-child(1) {
+  transform: rotate(0deg);
+  z-index: 8;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=1, startColorstr='#FF14B190', endColorstr='#FFFFFFFF');
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjEuMCIgeDI9IjEuMCIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSI5OS40NDEzNCUiIHN0b3AtY29sb3I9IiMxNGIxOTAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMC4wIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background-size: 100%;
+  background-image: -moz-linear-gradient(45deg, #14b190 178px, rgba(255, 255, 255, 0) 179px);
+  background-image: -webkit-linear-gradient(45deg, #14b190 178px, rgba(255, 255, 255, 0) 179px);
+  background-image: linear-gradient(45deg, #14b190 178px, rgba(255, 255, 255, 0) 179px);
+}
+ul > li:nth-child(2) {
+  transform: rotate(45deg);
+  z-index: 7;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=1, startColorstr='#FF15B694', endColorstr='#FFFFFFFF');
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjEuMCIgeDI9IjEuMCIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSI5OS40NDEzNCUiIHN0b3AtY29sb3I9IiMxNWI2OTQiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMC4wIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background-size: 100%;
+  background-image: -moz-linear-gradient(45deg, #15b694 178px, rgba(255, 255, 255, 0) 179px);
+  background-image: -webkit-linear-gradient(45deg, #15b694 178px, rgba(255, 255, 255, 0) 179px);
+  background-image: linear-gradient(45deg, #15b694 178px, rgba(255, 255, 255, 0) 179px);
+}
+ul > li:nth-child(3) {
+  transform: rotate(90deg);
+  z-index: 6;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=1, startColorstr='#FF15BA97', endColorstr='#FFFFFFFF');
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjEuMCIgeDI9IjEuMCIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSI5OS40NDEzNCUiIHN0b3AtY29sb3I9IiMxNWJhOTciLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMC4wIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background-size: 100%;
+  background-image: -moz-linear-gradient(45deg, #15ba97 178px, rgba(255, 255, 255, 0) 179px);
+  background-image: -webkit-linear-gradient(45deg, #15ba97 178px, rgba(255, 255, 255, 0) 179px);
+  background-image: linear-gradient(45deg, #15ba97 178px, rgba(255, 255, 255, 0) 179px);
+}
+ul > li:nth-child(4) {
+  transform: rotate(135deg);
+  z-index: 5;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=1, startColorstr='#FF16BF9B', endColorstr='#FFFFFFFF');
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjEuMCIgeDI9IjEuMCIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSI5OS40NDEzNCUiIHN0b3AtY29sb3I9IiMxNmJmOWIiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMC4wIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background-size: 100%;
+  background-image: -moz-linear-gradient(45deg, #16bf9b 178px, rgba(255, 255, 255, 0) 179px);
+  background-image: -webkit-linear-gradient(45deg, #16bf9b 178px, rgba(255, 255, 255, 0) 179px);
+  background-image: linear-gradient(45deg, #16bf9b 178px, rgba(255, 255, 255, 0) 179px);
+}
+ul > li:nth-child(5) {
+  transform: rotate(180deg);
+  z-index: 4;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=1, startColorstr='#FF16C39F', endColorstr='#FFFFFFFF');
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjEuMCIgeDI9IjEuMCIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSI5OS40NDEzNCUiIHN0b3AtY29sb3I9IiMxNmMzOWYiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMC4wIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background-size: 100%;
+  background-image: -moz-linear-gradient(45deg, #16c39f 178px, rgba(255, 255, 255, 0) 179px);
+  background-image: -webkit-linear-gradient(45deg, #16c39f 178px, rgba(255, 255, 255, 0) 179px);
+  background-image: linear-gradient(45deg, #16c39f 178px, rgba(255, 255, 255, 0) 179px);
+}
+ul > li:nth-child(6) {
+  transform: rotate(225deg);
+  z-index: 3;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=1, startColorstr='#FF17C8A3', endColorstr='#FFFFFFFF');
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjEuMCIgeDI9IjEuMCIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSI5OS40NDEzNCUiIHN0b3AtY29sb3I9IiMxN2M4YTMiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMC4wIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background-size: 100%;
+  background-image: -moz-linear-gradient(45deg, #17c8a3 178px, rgba(255, 255, 255, 0) 179px);
+  background-image: -webkit-linear-gradient(45deg, #17c8a3 178px, rgba(255, 255, 255, 0) 179px);
+  background-image: linear-gradient(45deg, #17c8a3 178px, rgba(255, 255, 255, 0) 179px);
+}
+ul > li:nth-child(7) {
+  transform: rotate(270deg);
+  z-index: 2;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=1, startColorstr='#FF17CCA6', endColorstr='#FFFFFFFF');
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjEuMCIgeDI9IjEuMCIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSI5OS40NDEzNCUiIHN0b3AtY29sb3I9IiMxN2NjYTYiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMC4wIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background-size: 100%;
+  background-image: -moz-linear-gradient(45deg, #17cca6 178px, rgba(255, 255, 255, 0) 179px);
+  background-image: -webkit-linear-gradient(45deg, #17cca6 178px, rgba(255, 255, 255, 0) 179px);
+  background-image: linear-gradient(45deg, #17cca6 178px, rgba(255, 255, 255, 0) 179px);
+}
+ul > li:nth-child(8) {
+  transform: rotate(315deg);
+  z-index: 1;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=1, startColorstr='#FF18D1AA', endColorstr='#FFFFFFFF');
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjEuMCIgeDI9IjEuMCIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSI5OS40NDEzNCUiIHN0b3AtY29sb3I9IiMxOGQxYWEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMC4wIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background-size: 100%;
+  background-image: -moz-linear-gradient(45deg, #18d1aa 178px, rgba(255, 255, 255, 0) 179px);
+  background-image: -webkit-linear-gradient(45deg, #18d1aa 178px, rgba(255, 255, 255, 0) 179px);
+  background-image: linear-gradient(45deg, #18d1aa 178px, rgba(255, 255, 255, 0) 179px);
+}
+ul > li > input, ul > li > .sent-label {
+  font-family: 'Open Sans';
+  color: #eee;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  outline: none;
+  pointer-events: auto;
+  display: block;
+  position: absolute;
+  top: 75%;
+  left: 0px;
+  width: 250px;
+  border: 0;
+  text-align: left;
+  padding-left: 20px;
+  background: none;
+  transform-origin: 50%;
+  transform: rotate(22.5deg);
+}
+ul > li > .sent-label {
+  display: none;
+  opacity: 0;
+  font-size: 1.2em;
+}
+
+.closed li:nth-child(1) {
+  transform: rotateX(0deg);
+}
+.closed li:nth-child(2) {
+  transform: rotateX(0deg);
+}
+.closed li:nth-child(3) {
+  transform: rotateX(0deg);
+}
+.closed li:nth-child(4) {
+  transform: rotateX(0deg);
+}
+.closed li:nth-child(5) {
+  transform: rotateX(0deg);
+}
+.closed li:nth-child(6) {
+  transform: rotateX(0deg);
+}
+.closed li:nth-child(7) {
+  transform: rotateX(0deg);
+}
+.closed li:nth-child(8) {
+  transform: rotateX(0deg);
+}
+
+.sent.wheel {
+  transition-delay: 0s, 3s;
+  transition-property: transform, left;
+  transition-duration: 1s, 0.5s;
+  transition-timing-function: ease-in-out, ease-in;
+  left: 150%;
+}
+.sent .sent-label {
+  display: block;
+  transition: opacity 1s;
+  opacity: 1;
+}
+.sent input {
+  pointer-events: none;
+  transition: opacity 1s;
+  opacity: 0;
+}
+.sent input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  opacity: 0;
+}
+.sent input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  opacity: 0;
+}
+.sent input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  opacity: 0;
+}
+.sent input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  opacity: 0;
+}
+.sent li:nth-child(1) {
+  transform: rotateX(0deg);
+}
+.sent li:nth-child(2) {
+  transform: rotateX(0deg);
+}
+.sent li:nth-child(3) {
+  transform: rotateX(0deg);
+}
+.sent li:nth-child(4) {
+  transform: rotateX(0deg);
+}
+.sent li:nth-child(5) {
+  transform: rotateX(0deg);
+}
+.sent li:nth-child(6) {
+  transform: rotateX(0deg);
+}
+.sent li:nth-child(7) {
+  transform: rotateX(0deg);
+}
+.sent li:nth-child(8) {
+  transform: rotateX(0deg);
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  background: #222;
+  position: relative;
+}
+
+[type="submit"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #eee;
+  opacity: 1;
+}
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #eee;
+  opacity: 1;
+}
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #eee;
+  opacity: 1;
+}
+input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #eee;
+  opacity: 1;
+}
+
+input:not(:focus)::-webkit-input-placeholder {
+  /* WebKit browsers */
+  opacity: 0.4;
+}
+input:not(:focus):-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  opacity: 0.4;
+}
+input:not(:focus)::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  opacity: 0.4;
+}
+input:not(:focus):-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  opacity: 0.4;
+}
+
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="wrapper">
+<div class="wheel" style="transform: rotate(-22.5deg);">
+<form onsubmit="return false;">
+<ul>
+<li>
+<label class="sent-label">Thank You!</label>
+<input placeholder="Hi there! Press Tab..." tabindex="1">
+</li>
+<li>
+<input placeholder="This is," tabindex="2">
+</li>
+<li>
+<input placeholder="a circular form!" tabindex="3">
+</li>
+<li>
+<input placeholder="It lets you input data," tabindex="4">
+</li>
+<li>
+<input placeholder="or just read a list," tabindex="5">
+</li>
+<li>
+<input placeholder="through a path." tabindex="6">
+</li>
+<li>
+<input placeholder="When ready," tabindex="7">
+</li>
+<li>
+<input placeholder="press Enter to Send." tabindex="8">
+</li>
+</ul>
+<input type="submit">
+</form>
+</div>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script id="rendered-js">
+      function setWheelRotation(rotation) {
+  $('.wheel').css('transform', 'rotate(' + rotation + 'deg)');
+}
+
+function onSubmit() {
+  $('.wheel').addClass('sent');
+  setWheelRotation(697.5);
+  setTimeout(function () {
+    $('.wheel').removeClass('sent');
+    $('input').val('');
+    firstInputField().focus();
+  }, 5000);
+  return false;
+}
+
+function firstInputField() {
+  return $('.wheel li:first-child > input');
+}
+
+$('form').on('submit', function () {
+  onSubmit();
+});
+
+$('input').on('focus', function () {
+  var index = $(this).parent().index();
+  var rotation = -22.5 - 45 * index;
+  setWheelRotation(rotation);
+});
+
+var lastTabIndex = $('[tabindex]').length;
+
+$('[tabindex]').on('keydown', function (event) {
+  if (event.keyCode == 9) {// Tab pressed
+    event.preventDefault();
+    var currentElement = $(this).get(0);
+    var curIndex = currentElement.tabIndex;
+    if (event.shiftKey) {
+      if (curIndex == 1) {
+        return;
+      } else {
+        curIndex--;
+      }
+    } else {
+      if (curIndex == lastTabIndex) {
+        return;
+      } else {
+        curIndex++;
+      }
+    }
+
+    $('[tabindex=' + curIndex + ']').focus();
+  }
+});
+
+$(document).ready(function () {
+  $('.wheel').removeClass('closed');
+  firstInputField().focus();
+});
+      //# sourceURL=pen.js
+    </script>
+
+
+</body></html>

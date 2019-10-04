@@ -1,0 +1,125 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Crypto Dashboard</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+
+<div class="container">
+        <div>
+            <canvas id="priceChart" width="600" height="400"></canvas>
+            <canvas id="volChart" width="600" height="100"></canvas>
+        </div>
+        <!-- <canvas id="myChart"></canvas> -->
+</div>
+
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script id="rendered-js">
+      apiBTC = 'https://min-api.cryptocompare.com/data/histominute?fsym=FLO&tsym=USD&limit=60&aggregate=3&e=CCCAGG';
+data = [];
+getBTC();
+setInterval(function () {
+  // your code...
+  getBTC();
+}, 10000);
+/*getBTC(function(){
+            });*/
+
+
+function getBTC() {
+  $.getJSON(apiBTC, function (result) {
+    data = result;
+    console.log(result);
+    drawBTCgraph(data);
+  });
+}
+
+function drawBTCgraph(BTCdata) {
+  timeStamps = [], BTCvalues = [], BTCvolume = [];
+  for (i = 0; i < BTCdata.Data.length; i++) {
+    var utcSeconds = BTCdata.Data[i].time;
+    var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+    d.setUTCSeconds(utcSeconds);
+    timeStamps[i] = d.toLocaleString();
+    BTCvalues[i] = BTCdata.Data[i].close;
+    BTCvolume[i] = BTCdata.Data[i].volumeto / 1000;
+  }
+  console.log(timeStamps);
+  console.log(BTCvalues);
+  console.log(BTCvolume);
+  Chart.defaults.scale.gridLines.display = false;
+  var ctx = document.getElementById('priceChart').getContext('2d');
+  var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+      //labels: ["January", "February", "March", "April", "May", "June", "July"],
+      labels: timeStamps,
+      datasets: [{
+        label: "FLO/USD",
+        backgroundColor: 'rgba(255, 99, 132,.1)',
+        borderColor: 'rgb(255, 99, 132)',
+        //data: [0, 10, 5, 2, 20, 30, 45],
+        data: BTCvalues }] },
+
+
+
+    // Configuration options go here
+    options: {
+      animation: false,
+      gridlines: false,
+      scales: {
+        xAxes: [{
+          ticks: {
+            display: false //this will remove only the label
+          } }] } } });
+
+
+
+
+
+  var ctx = document.getElementById('volChart').getContext('2d');
+  var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+      //labels: ["January", "February", "March", "April", "May", "June", "July"],
+      labels: timeStamps,
+      datasets: [{
+        label: "Volume",
+        backgroundColor: 'rgb(255, 99, 132)',
+        //borderColor: 'rgb(255, 99, 132)',
+        //data: [0, 10, 5, 2, 20, 30, 45],
+        data: BTCvolume }] },
+
+
+
+    // Configuration options go here
+    options: {
+      animation: false,
+      gridlines: false } });
+
+
+}
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

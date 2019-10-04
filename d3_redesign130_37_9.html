@@ -1,0 +1,46 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Circle stroke-dashoffset</title>
+<style>
+    svg {
+  display: block;
+}
+
+  </style>
+
+</head>
+<body translate="no">
+<svg width="100" height="100" viewBox="0 0 100 100">
+<linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" stop-color="#2ed8a7"></stop>
+<stop offset="100%" stop-color="#a6ceff"></stop>
+</linearGradient>
+<circle stroke-linecap="round" cx="50" cy="50" r="48" stroke="url(#linear)" stroke-width="4" fill="none" stroke-dasharray="315" stroke-dashoffset="100" stroke-mitterlimit="0" transform="rotate(-90 ) translate(-100 0)"></circle>
+</svg>
+<div>
+<label for="stroke-dasharray">Stroke dasharray</label><br>
+<input type="range" min="0" max="315" value="315" id="stroke-dasharray">
+</div>
+<div>
+<label for="stroke-dashoffset">Stroke dashoffset</label><br>
+<input type="range" min="0" max="315" value="315" id="stroke-dashoffset">
+</div>
+<div id="output"></div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script id="rendered-js">
+      $('#stroke-dasharray').on('input', function () {
+  $('#output').html(this.value);
+  $('circle').attr('stroke-dasharray', this.value);
+});
+$('#stroke-dashoffset').on('input', function () {
+  $('#output').html(this.value);
+  $('circle').attr('stroke-dashoffset', this.value);
+});
+      //# sourceURL=pen.js
+    </script>
+
+
+</body></html>

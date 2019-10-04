@@ -1,0 +1,152 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Drag/Throw SVG Infographic UI Dial</title>
+<style>
+    body{
+  background-color:#181A19;
+  overflow:hidden;
+  width:100%;
+  height:100%;
+
+}
+
+#container{
+  position:absolute;
+  width:285px;
+  height:218.7px;
+}
+#dial-value, #info{
+  color:#ecf0f1;
+  font-size:56pt;
+  font-family:Oswald, sans-serif;
+  text-align:center;
+
+}
+#dial-value{
+  font-size:54pt;  
+  margin-top:20px;
+
+}
+
+#info{
+  font-size:22pt;
+  margin-top:150px;
+
+
+
+}
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no" style="user-select: none;">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css">
+<div id="null-object" style="position: absolute; transform: matrix(1, 0, 0, 1, 0, 0);"></div>
+<div id="dial-value" style="top: 50%; left: 50%; position: absolute; transform: translate(-50%, -50%) matrix(1, 0, 0, 1, 0, 0);">41</div>
+<div id="info" style="top: 50%; left: 50%; position: absolute; transform: translate(-50%, -50%) matrix(1, 0, 0, 1, 0, 0);">DRAG DIAL</div>
+<svg id="svg-node" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="284.1px" height="218.7px" viewBox="0 0 284.1 218.7" enable-background="new 0 0 284.1 218.7" xml:space="preserve" style="top: 50%; left: 50%; position: absolute; transform: translate(-50%, -50%) matrix(1, 0, 0, 1, 0, 0);">
+<defs>
+</defs>
+<path id="outline" fill="none" stroke="#FF0754" stroke-width="4" stroke-miterlimit="10" d="M209.8,184.7l47.6,31.2
+  c13.7-21.3,21.6-46.7,21.6-73.9c0-75.7-61.3-137-137-137S5,66.3,5,142c0,27.2,7.9,52.6,21.6,73.9l48-30.8"></path>
+<path id="dial-line" fill="none" stroke="#FF0754" stroke-width="60" stroke-miterlimit="10" d="M49.4,201.2
+  C38.4,184,32,163.7,32,141.8c0-60.8,49.2-110,110-110s110,49.2,110,110c0,21.9-6.4,42.2-17.4,59.4" style="opacity: 0.5; stroke-dashoffset: 277.775; stroke-dasharray: 472.158px, 482.158px;"></path>
+<path id="dial-line-bg" fill="none" stroke="#ecf0f1" stroke-width="60" stroke-miterlimit="10" d="M49.4,201.2
+  C38.4,184,32,163.7,32,141.8c0-60.8,49.2-110,110-110s110,49.2,110,110c0,21.9-6.4,42.2-17.4,59.4" style="opacity: 0.1; position: absolute;"></path>
+</svg>
+<div id="container" style="top: 50%; left: 50%; position: absolute; transform: translate(-50%, -50%) matrix3d(-0.36092, 0.932597, 0, 0, -0.932597, -0.36092, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); touch-action: none; user-select: none;">
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/ThrowPropsPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/utils/Draggable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js"></script>
+<script src="//s3-us-west-2.amazonaws.com/s.cdpn.io/16327/DrawSVGPlugin.js?r=12"></script>
+<script id="rendered-js">
+      
+maxRotation = 270;
+svgNode = document.getElementById('svg-node');
+container = document.getElementById('container');
+dialValue = document.getElementById('dial-value');
+dialLineBg = document.getElementById('dial-line-bg');
+info = document.getElementById('info');
+nullObject = document.getElementById('null-object');
+dialLine = document.getElementById('dial-line');
+outline = document.getElementById('outline');
+
+TweenMax.set(document.body, {
+  userSelect: 'none' });
+
+
+TweenMax.set(dialLine, {
+  drawSVG: '0%',
+  alpha: 0.5 });
+
+TweenMax.set([container, svgNode, dialValue, info], {
+  position: 'absolute',
+  left: '50%',
+  top: '50%',
+  xPercent: -50,
+  yPercent: -50 });
+
+
+
+TweenMax.set(nullObject, {
+  position: 'absolute',
+  x: 0 });
+
+TweenMax.set(dialLineBg, {
+  position: 'absolute',
+  alpha: 0.1 });
+
+
+Draggable.create(container, {
+  //trigger:container,
+  bounds: { maxRotation: maxRotation, minRotation: 0 },
+  type: 'rotation',
+  onPress: function (e) {
+
+    var rad = Math.atan2(e.layerY, e.layerX);
+    console.log(RadiansToDegrees(rad));
+    var cX = e.layerX + 285 / 2;
+    var cPercent = cX;
+    //console.log(cPercent)
+    TweenMax.to(container, 1, {
+      //rotation:cPercent,
+      //onUpdate:dragUpdate
+    });
+  },
+  throwProps: true,
+  onDrag: dragUpdate,
+  onThrowUpdate: dragUpdate });
+
+
+function dragUpdate() {
+  var val = container._gsTransform.rotation / maxRotation;
+  var percent = val * 100;
+  percent = percent > 100 ? 100 : percent;
+  percent = percent < 0 ? 0 : percent;
+  TweenMax.set(dialLine, {
+    drawSVG: percent + '%' });
+
+
+  dialValue.innerHTML = Math.floor(percent);
+
+}
+
+function RadiansToDegrees(valRad) {
+  return 360 / (2 * Math.PI) * valRad - 45;
+}
+      //# sourceURL=pen.js
+    </script>
+
+
+</body></html>

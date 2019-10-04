@@ -1,0 +1,191 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Bitcoin Rate Checker (XMLHttpRequest version)</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<style>
+      @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Open Sans', sans-serif;
+}
+h2{
+  color: #777;
+  font-size: 1.3em
+}
+a{text-decoration: none;}
+li{display: inline;}
+
+canvas{
+  min-width: 600px;
+  width: 40vw;
+}
+
+.logo{
+  font-size: 4em;
+  margin-top:20px;
+  color: #f0c011;
+}
+.rates{
+  margin: 20px;
+  font-size: 1.25em;
+}
+.currencies i{
+  color: steelblue;
+  font-size: 1.5em;
+  margin: 0 10px;
+}
+
+.currencies i:hover{
+  color:black;
+  cursor: pointer;
+}
+.footer{
+  margin-top: 80px;
+  margin-bottom: 20px;
+  color: #777;
+  font-size: 0.75em;
+}
+#btc-price{
+  color: green;
+  font-weight: bold;
+}
+
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+<style type="text/css">/* Chart.js */
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
+<body translate="no">
+<i class="fab fa-bitcoin logo"></i>
+<h1>Bitcoin Rate Checker</h1>
+<div class="currencies">
+<i class="fas fa-dollar-sign" id="usd-button" title="Change currency to USD"></i>
+<i class="fas fa-pound-sign" id="gbp-button" title="Change currency to GBP"></i>
+<i class="fas fa-euro-sign" id="eur-button" title="Change currency to EUR"></i>
+</div>
+<div class="rates">
+1 BTC = <span id="btc-price">7,127.6327 EUR</span>
+</div>
+<h2>Rate evolution over the last 31 days</h2>
+<div class="chart"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+<canvas id="myChart" width="1200" height="600" class="chartjs-render-monitor" style="display: block; height: 300px; width: 600px;"></canvas>
+</div>
+<div class="footer">
+<span>Powered by
+<a href="https://www.coindesk.com/price/">Coindesk</a>,
+<a href="https://www.chartjs.org/">Chart.js</a> and
+<a href="https://fontawesome.com/">Font Awesome</a>
+</span>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+<script id="rendered-js">
+      let btn = document.querySelector(".btn"),
+usdButton = document.querySelector("#usd-button"),
+eurButton = document.querySelector("#eur-button"),
+gbpButton = document.querySelector("#gbp-button"),
+currency = "USD",
+rateDisplay = document.querySelector("#btc-price");
+
+getRate("USD");
+getHistorical("USD");
+
+usdButton.addEventListener("click", function () {
+  getRate("USD");
+  getHistorical("USD");
+});
+
+gbpButton.addEventListener("click", function () {
+  getRate("GBP");
+  getHistorical("GBP");
+});
+
+eurButton.addEventListener("click", function () {
+  getRate("EUR");
+  getHistorical("EUR");
+
+});
+
+function getRate(code) {
+  let XHR = new XMLHttpRequest();
+  let url = "https://api.coindesk.com/v1/bpi/currentprice.json";
+
+  XHR.onreadystatechange = function () {
+    if (XHR.readyState == 4 && XHR.status == 200) {
+      let data = JSON.parse(XHR.responseText);
+      let rate = data.bpi[code].rate;
+      rateDisplay.innerHTML = rate + " " + code;
+    }
+  };
+  XHR.open("GET", url);
+  XHR.send();
+}
+
+function getHistorical(code) {
+
+  let XHR = new XMLHttpRequest();
+  let url = "https://api.coindesk.com/v1/bpi/historical/close.json?currency=" + code;
+
+  XHR.onreadystatechange = function () {
+    if (XHR.readyState == 4 && XHR.status == 200) {
+      let data = JSON.parse(XHR.responseText),
+      historicalRates = Object.values(data.bpi),
+      historicalDates = Object.keys(data.bpi);
+
+      createChart(historicalDates, historicalRates, code);
+    }
+  };
+  XHR.open("GET", url);
+  XHR.send();
+}
+
+//Chart.js
+function createChart(dates, rates, code) {
+  var ctx = document.getElementById("myChart").getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: dates,
+      datasets: [{
+        label: 'Bitcoin Rate in ' + code,
+        data: rates,
+        backgroundColor: 'rgba(29, 168, 215, 0.2)',
+        borderColor: 'rgba(22,130,166,1)',
+        borderWidth: 1 }] },
+
+
+    options: {
+      legend: {
+        labels: {
+          fontFamily: 'Open Sans' } },
+
+
+      scales: {
+        yAxes: [{
+          stacked: false,
+          ticks: {
+            beginAtZero: false } }] } } });
+
+
+
+
+
+
+}
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</div></body></html>

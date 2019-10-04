@@ -1,0 +1,1432 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - LiveCoinWatch</title>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+<style type="text/css">@keyframes scroll { 0% { transform: translate3d(1860px,0,0) } 100% { transform: translate3d(-180px,0,0) } }</style></head>
+<body translate="no">
+
+<!-- <div id='livecoinwatch-widget-1'
+     lcw-coin='eth'
+     lcw-base='usd'
+     lcw-secondary='btc'
+     lcw-theme='dark'
+     lcw-period='w'>
+</div>
+
+<div id='livecoinwatch-widget-2'
+     lcw-base='usd'
+     lcw-theme='dark'
+     lcw-period='q'>
+</div>
+
+<div id='livecoinwatch-widget-3'
+     lcw-base='usd'
+     lcw-d-head='true'
+     lcw-d-name='true'
+     lcw-d-code='true'
+     lcw-d-icon='true'
+     lcw-theme='dark'>
+</div>
+
+<div id='livecoinwatch-widget-4'
+     lcw-base='usd'
+     lcw-d-name='true'
+     lcw-d-code='true'
+     lcw-d-icon='true'
+     lcw-theme='dark'>
+</div> -->
+
+<div id='livecoinwatch-widget-5'
+     lcw-base='usd'
+     lcw-theme='light'
+     lcw-marquee-1='top10'
+     lcw-marquee-2='movers'>
+</div>
+
+
+
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      // -----------------------------------------------------------------------------
+// Live web widgets to be embedded on other sites.
+// AJAX updates every 15 seconds.
+//
+// TODO:  Dynamic uris
+//        Ellipsize longer names
+//        Better style handling
+//        Configurable timeout
+//        Replace elements on update instead of overwritting (?)
+//
+// Author: Danny Buonocore - Live Coin Watch, LLC
+// -----------------------------------------------------------------------------
+
+function load() {
+
+  if (typeof window === 'undefined')
+  return;
+
+  // ---------------------------------------------------------------------------
+  // Common
+  // ---------------------------------------------------------------------------
+  var TIMEOUT = 15 * 1000;
+  var DAY = 86400000;
+  var PERIODS = {
+    d: { l: 'Today', t: DAY },
+    h: { l: 'This Hour', t: DAY / 24 },
+    w: { l: 'This Week', t: DAY * 7 },
+    m: { l: 'This Month', t: DAY * 30 },
+    q: { l: 'This Quarter', t: DAY * 90 },
+    y: { l: 'This Year', t: DAY * 365 } };
+
+
+  var logo = '<svg width=32 height=20 viewBox=""><path fill-rule="evenodd" clip-rule="evenodd" fill="#4BC1BE" d="M25 3c-.9-.9-1.9-1.6-3.1-2.1-1.2-.5-2.6-.8-4-.8-1.5 0-2.8.3-4 .8-1.2.5-2.3 1.2-3.2 2.1-.9.9-1.6 2-2.1 3.2-.5 1.2-.7 2.5-.7 3.8 0 1.3.2 2.6.7 3.8.5 1.2 1.1 2.2 2 3l2.8-5.1 2.8 2.8 3.1-7.4-1.3-.6 1.8-1.3 1.8-1.3.3 2.2.3 2.2-1.3-.6-4 9.5-3-2.9-1.9 3.6c.6.5 1.3.8 2 1.1 1.2.5 2.6.8 4 .8 1.5 0 2.8-.3 4-.8 2.4-1 4.3-2.9 5.2-5.3.5-1.2.7-2.5.7-3.8 0-1.3-.2-2.6-.7-3.8-.7-1.2-1.4-2.2-2.2-3.1z"></path></svg>';
+
+  var dNoneStyle = 'display: none';
+  var dTableStyle = 'display: inline-table';
+  var mAutoStyle = 'margin: auto';
+  var pAbsoluteStyle = 'position: absolute';
+  var pRelativeStyle = 'position: relative';
+  var textLeftStyle = 'text-align: left';
+  var textRightStyle = 'text-align: right';
+  var textCenterStyle = 'text-align: center';
+
+  var redLight = '#fb0000';
+  var redDark = '#ff5a1c';
+  var greenLight = '#00b600';
+  var greenDark = '#26da71';
+
+  var widgetStyle = s([
+  'width: 380px',
+  'height: 200px',
+  'border-radius: 5px',
+  'border-style: solid',
+  'border-width: 1px',
+  'border-color: #d4d4d5',
+  'background-color: #fdfdfd',
+  'text-align: left',
+  'font-family: "Helvetica Neue", Helvetica, Arial, sans-serif',
+  'margin: 5px',
+  'overflow: hidden']);
+
+
+  var widgetTallStyle = s([
+  widgetStyle,
+  'height: 620px']);
+
+
+  var widgetBannerStyle = s([
+  widgetStyle,
+  'width: 100%',
+  'height: 72px',
+  'background-color: transparent',
+  'border-width: 0',
+  '-webkit-mask-image:linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1) 10%,rgba(0,0,0,1) 90%,rgba(0,0,0,0))']);
+
+
+  var widgetDarkStyle = s([
+  'background-color: #1f2434',
+  'border-color: transparent']);
+
+
+  var blockStyle = s([
+  'height: 48px',
+  'margin-left: 10px',
+  'float: left']);
+
+
+  var titleStyle = s([
+  blockStyle,
+  'margin-top: 3px']);
+
+
+  var imgStyle = s([
+  titleStyle,
+  'height: 37px']);
+
+
+  var smImgStyle = s([
+  imgStyle,
+  'height: 28px',
+  'padding-top: 1px',
+  'padding-left: 5px']);
+
+
+  var priceStyle = s([
+  titleStyle,
+  'float: right',
+  'margin-right: 10px',
+  'margin-left: 0']);
+
+
+  var rowStyle = s([
+  'width: 100%',
+  'height: 52px']);
+
+
+  var lgRowStyle = s([rowStyle, 'height: 64px']);
+  var smRowStyle = s([rowStyle, 'height: 42px']);
+  var vsRowStyle = s([rowStyle, 'height: 32px']);
+
+  var borderlessRowStyle = s([
+  rowStyle,
+  'height: 51px',
+  'line-height: 38px']);
+
+
+  var borderRowStyle = s([
+  rowStyle,
+  'height: 51px',
+  'line-height: 38px',
+  'border-style: solid',
+  'border-width: 1px',
+  'border-bottom: 0',
+  'border-left: 0',
+  'border-right: 0',
+  'border-color: #eee']);
+
+
+  var borderRowDark1Style = s([
+  rowStyle,
+  'line-height: 38px']);
+
+
+  var borderRowDark2Style = s([
+  rowStyle,
+  'line-height: 38px',
+  'background-color: #1b2030']);
+
+
+  var topStyle = s([
+  rowStyle,
+  'margin-top: 10px']);
+
+
+  var lgTopStyle = s([
+  topStyle,
+  'height: 40px',
+  'padding-top: 10px']);
+
+
+  var lgTopFullStyle = s([
+  topStyle,
+  'height: 66px',
+  'padding-top: 25px']);
+
+
+  var textStyle = s([
+  'margin-top: 0',
+  'margin-bottom: 0',
+  'color: #020202',
+  'text-shadow: none',
+  'line-height: 1em']);
+
+
+  var subtextStyle = s([
+  'color: #777']);
+
+
+  var textDarkStyle = s([
+  'color: white']);
+
+
+  var subtextDarkStyle = s([
+  'color: #606f89']);
+
+
+  var smTextStyle = s([
+  textStyle,
+  'font-size: 13px',
+  'line-height: 1em']);
+
+
+  var lgTextStyle = s([
+  textStyle,
+  'font-size: 18px',
+  'line-height: 1em']);
+
+
+  var ellipsisStyle = s([
+  'text-overflow: ellipsis',
+  'white-space: nowrap',
+  'overflow: hidden']);
+
+
+  var divHeaderStyle = s([
+  'width: 100%',
+  'text-align: center',
+  'border-top: 1px solid #000',
+  'line-height: 0.1em',
+  'border-color: #d4d4d5']);
+
+
+  var footerStyle = s([
+  'width: 100%',
+  'text-align: center',
+  'pointer-events: none']);
+
+
+  var leftStyle = s([
+  'display: inline-block',
+  'width: 40%',
+  'text-align: left']);
+
+
+  var rightStyle = s([
+  'display: inline-block',
+  'width: 60%',
+  'text-align: right',
+  'pointer-events: none']);
+
+
+  var anchorStyle = s([
+  'position: relative',
+  'left: 5px',
+  'top: -5px']);
+
+
+  var linkStyle = s([
+  'color: #4183c4',
+  'font-size: 12px',
+  'pointer-events: auto']);
+
+
+  var linkDarkStyle = s([
+  linkStyle,
+  'color: #58c7c5']);
+
+
+  var chartStyle = s([
+  'width: 380px',
+  'height: 110px']);
+
+
+  var marqueeStyle = s([
+  'display: inline',
+  'position: relative',
+  'width: 1800px',
+  'height: 64px',
+  'padding: 3px',
+  'white-space: nowrap',
+  'overflow: hidden',
+  'will-change: transform']);
+
+
+  var subMarqueeStyle = s([
+  marqueeStyle,
+  'height: 24px']);
+
+
+  var cellStyle = s([
+  'height: 24px',
+  'line-height: 24px']);
+
+
+  var smCellStyle = s([
+  'height: 16px',
+  'line-height: 16px']);
+
+
+  var marqueeCellStyle = s([
+  cellStyle,
+  'display: inline-block',
+  'width: 180px',
+  'height: 100%']);
+
+
+  // ---------------------------------------------------------------------------
+  // Scrolling ticker
+  // ---------------------------------------------------------------------------
+  (function () {
+
+    // Obtain widget reference and settings ------------------------------------
+    var widget = document.getElementById('livecoinwatch-widget-5');
+
+    if (!widget) return;
+
+    var base = (widget.getAttribute('lcw-base') || 'USD').toLowerCase();
+    var dark = (widget.getAttribute('lcw-theme') || 'light').toLowerCase() === 'dark';
+    var mrq1 = (widget.getAttribute('lcw-marquee-1') || 'top10').toLowerCase();
+    var mrq2 = (widget.getAttribute('lcw-marquee-2') || 'none').toLowerCase();
+
+    if (mrq1 !== 'top10' && mrq1 !== 'top20' && mrq1 !== 'movers') mrq1 = 'top10';
+    if (mrq2 !== 'top10' && mrq2 !== 'top20' && mrq2 !== 'movers') mrq2 = 'none';
+
+    // API urls ----------------------------------------------------------------
+    var topUrl = getTopUrl();
+    var moversUrl = getMoversUrl();
+
+    // Styles ------------------------------------------------------------------
+
+    // TODO: Possibility for non-transparent banner background (and borders).
+    var widgetTheme = s([dark ? widgetDarkStyle : '', widgetBannerStyle]);
+    var textTheme = dark ? textDarkStyle : '';
+    var subtextTheme = dark ? subtextDarkStyle : subtextStyle;
+    var linkTheme = dark ? linkDarkStyle : linkStyle;
+
+    var animation = document.createElement('style');
+    animation.type = 'text/css';
+    animation.innerHTML = '@keyframes scroll { 0% { transform: translate3d(1860px,0,0) } 100% { transform: translate3d(-180px,0,0) } }';
+
+    document.getElementsByTagName('head')[0].appendChild(animation);
+
+    // Append child divs -------------------------------------------------------
+    var row1 = c('div', vsRowStyle);
+    var row2 = c('div', vsRowStyle);
+
+    var marquees = [];
+    var subMarquees = [];
+
+    widget.innerHTML = '';
+    widget.setAttribute('style', widgetTheme);
+
+    append(widget, [row1, row2]);
+
+    window.addEventListener('resize', function () {
+      marquees.forEach(function (e) {
+        if (e.style.webkitAnimationPlayState === 'running') {
+          e.style.webkitAnimationPlayState = 'paused';
+          setTimeout(function () {
+            e.style.webkitAnimationPlayState = 'running';
+          }, 200);
+        }
+      });
+    });
+
+    widget.addEventListener('mouseover', function (e) {
+      marquees.forEach(function (e) {
+        if (e.style.webkitAnimationPlayState === 'running')
+        e.style.webkitAnimationPlayState = 'paused';
+      });
+    });
+
+    widget.addEventListener('mouseout', function (e) {
+      marquees.forEach(function (e) {
+        if (e.style.webkitAnimationPlayState === 'paused')
+        e.style.webkitAnimationPlayState = 'running';
+      });
+    });
+
+    // TODO: Dynamic uri
+    // anchor.href = 'https://www.livecoinwatch.com/';
+
+    if (mrq1 === 'top10') fetchPrice(row1, true);else
+    if (mrq1 === 'movers') fetchMovers(row1, true);
+
+    if (mrq2 === 'top10') fetchPrice(row2, false);else
+    if (mrq2 === 'movers') fetchMovers(row2, false);
+
+    // Fetch prices ------------------------------------------------------------
+    function fetchPrice(row, isMain) {
+      fetch(topUrl, function (data) {
+        // setTimeout(fetchPrice, TIMEOUT);
+        if (!data)
+        return console.log('Invalid marquee response!', url);
+
+        row.innerHTML = '';
+
+        data.forEach(function (e, i) {
+          var marquee = createMarquee(i, e.code, e.usd, 1 + e.change.dpc.usd / 100, isMain);
+          append(row, marquee);
+          marquees.push(marquee);
+        });
+
+      });
+    }
+
+    // Fetch gainers and losers -------------------------------------------------
+    function fetchMovers(row, isMain) {
+      fetch(moversUrl, function (data) {
+        // setTimeout(fetchMovers, TIMEOUT);
+        if (!data)
+        return console.log('Invalid marquee response!', url);else
+
+        console.log(moversUrl);
+
+        row.innerHTML = '';
+
+        data = data.gainers.concat(data.losers);
+        data.forEach(function (e, i) {
+          var marquee = createMarquee(i, e.code, e.price, 1 + e.change / 100, isMain);
+          append(row, marquee);
+          marquees.push(marquee);
+        });
+
+      });
+    }
+
+    // Create cell from coin ---------------------------------------------------
+    function createMarquee(i, code, usd, change, isMain) {
+      var marquee = c('div', [isMain ? marqueeStyle : subMarqueeStyle, pAbsoluteStyle, rl(-180), an(isMain ? 30 : 25), ad(i * (isMain ? 3 : 2.5))]);
+      var row = c('div', marqueeCellStyle);
+      var text = c('div', [cellStyle, dTableStyle]);
+      var price, delta;
+
+      // Main marquee has images and scrolls slower.
+      if (isMain) {
+        price = c('span', [textStyle, textTheme, pRelativeStyle, rt(12), rl(5)], formatPrice(usd, base));
+        delta = c('span', [smTextStyle, textTheme, pRelativeStyle, rt(10), rl(10)]);
+        var img = c('img', [smImgStyle, 'height: 24px', pt(9)]);
+        img.src = 'https://www.livecoinwatch.com/images/icons64/' + code.toLowerCase() + '.png';
+        append(row, img);
+      }
+
+      // Sub marquee has ticker symbols and scrolls quicker.
+      else {
+          price = c('span', [smTextStyle, textTheme, pRelativeStyle, rl(5)], formatPrice(usd, base));
+          delta = c('span', [smTextStyle, textTheme, pRelativeStyle, rl(10)]);
+          var symbol = c('span', [smTextStyle, textTheme], parseCode(code));
+          append(row, symbol);
+        }
+
+      append(text, [price, delta]);
+      append(row, text);
+      append(marquee, row);
+      append(widget, marquee);
+
+      formatDeltaInline(delta, change, dark);
+      return marquee;
+    }
+
+  })();
+
+  // ---------------------------------------------------------------------------
+  // Movers
+  // ---------------------------------------------------------------------------
+  (function () {
+
+    // Obtain widget reference and settings ------------------------------------
+    var widget = document.getElementById('livecoinwatch-widget-4');
+
+    if (!widget) return;
+
+    var base = (widget.getAttribute('lcw-base') || 'USD').toLowerCase();
+    var dark = (widget.getAttribute('lcw-theme') || 'light').toLowerCase() === 'dark';
+    var dHead = (widget.getAttribute('lcw-d-head') || 'false').toLowerCase() === 'true';
+    var dName = (widget.getAttribute('lcw-d-name') || 'true').toLowerCase() === 'true';
+    var dCode = (widget.getAttribute('lcw-d-code') || 'true').toLowerCase() === 'true';
+    var dIcon = (widget.getAttribute('lcw-d-icon') || 'true').toLowerCase() === 'true';
+
+    // Need to show something.
+    if (!dCode && !dIcon) dName = true;
+
+    // API urls ----------------------------------------------------------------
+    var moversUrl = getMoversUrl();
+
+    // Styles ------------------------------------------------------------------
+    var widgetTheme = widgetTallStyle + (dark ? ';' + widgetDarkStyle : '');
+    var textTheme = dark ? textDarkStyle : '';
+    var subtextTheme = dark ? subtextDarkStyle : subtextStyle;
+    var linkTheme = dark ? linkDarkStyle : linkStyle;
+
+    // Append child divs -------------------------------------------------------
+    var row1 = c('div', [lgTopStyle, pt(0)], getLargeLogo(dark));
+    var row2 = c('div', [smRowStyle, 'height: 16px', mt(15)]);
+    var row3 = c('div', [smRowStyle, 'height: 16px', mt(8)]);
+    var rows1 = c('div', '');
+    var rows2 = c('div', '');
+    var gainers = c('p', [divHeaderStyle, 'border-color: ' + (dark ? 'transparent' : '#d4d4d5')]);
+    var losers = c('p', [divHeaderStyle, 'border-color: ' + (dark ? 'transparent' : '#d4d4d5')]);
+    var gainLabel = c('div', mt(-10));
+    var loseLabel = c('div', dark ? mt(-2) : mt(-10));
+    var gainText = c('p', [smTextStyle, subtextStyle, subtextTheme, mAutoStyle, pt(3), wpx(85), bg(dark ? '#1f2434' : 'white')], 'GAINERS');
+    var loseText = c('p', [smTextStyle, subtextStyle, subtextTheme, mAutoStyle, pt(3), wpx(85), bg(dark ? '#1f2434' : 'white')], 'LOSERS');
+
+    widget.innerHTML = '';
+    widget.setAttribute('style', widgetTheme);
+
+    append(gainers, gainLabel);
+    append(losers, loseLabel);
+    append(gainLabel, gainText);
+    append(loseLabel, loseText);
+    append(row2, gainers);
+    append(row3, losers);
+
+    append(widget, [row1, row2, rows1, row3, rows2]);
+
+    // TODO: Dynamic uri
+    // anchor.href = 'https://www.livecoinwatch.com/';
+
+    // Fetch gainers and losers -------------------------------------------------
+    (function fetchMovers() {
+      fetch(moversUrl, function (data) {
+        // setTimeout(fetchMovers, TIMEOUT);
+        if (!data)
+        return console.log('Invalid top response!', topUrl);
+
+        rows1.innerHTML = '';
+        rows2.innerHTML = '';
+
+        data = data.gainers.concat(data.losers);
+
+        data.forEach(function (e, i) {
+
+          var themedRowStyle = dark ?
+          i % 2 ? borderRowDark1Style : borderRowDark2Style :
+          i % 5 ? borderRowStyle : borderlessRowStyle;
+
+          var row = c('div', themedRowStyle);
+          var imgCell = c('div', 'width: 10%');
+          var img = c('img', [smImgStyle, pt(8)]);
+          var title = c('div', [dTableStyle, pl(10), pRelativeStyle, !dName || !dCode ? rt(5) : '']);
+          var name = c('div', [textStyle, textTheme, ellipsisStyle, 'width: 140px'], dName ? e.name : parseCode(e.code));
+          var symbol = c('p', [smTextStyle, subtextTheme], parseCode(e.code));
+          var prices = c('div', [dTableStyle, pl(10), 'width: 25%; text-align: right']);
+          var price = c('p', [textStyle, textTheme, pRelativeStyle, rt(5)], formatPrice(e.price, base));
+          var deltas = c('div', [dTableStyle, pl(5), 'width: 15%']);
+          var delta = c('p', [smTextStyle, textTheme, smCellStyle, pRelativeStyle, rt(4)]);
+
+          if (dIcon)
+          img.src = 'https://www.livecoinwatch.com/images/icons64/' + e.code.toLowerCase() + '.png';
+
+          if (dName || dCode) append(title, name);
+          if (dName && dCode) append(title, symbol);
+
+          append(imgCell, img);
+          append(prices, price);
+          append(deltas, delta);
+          append(row, [imgCell, title, prices, deltas]);
+
+          if (i < 5) append(rows1, row);else
+          append(rows2, row);
+
+          formatDeltaInline(delta, 1 + e.change / 100, dark);
+
+        });
+
+      });
+    })();
+
+  })();
+
+  // ---------------------------------------------------------------------------
+  // Total market
+  // ---------------------------------------------------------------------------
+  (function () {
+
+    // Obtain widget reference and settings ------------------------------------
+    var widget = document.getElementById('livecoinwatch-widget-2');
+
+    if (!widget) return;
+
+    var base = (widget.getAttribute('lcw-base') || 'USD').toLowerCase();
+    var period = (widget.getAttribute('lcw-period') || 'd').toLowerCase();
+    var dark = (widget.getAttribute('lcw-theme') || 'light').toLowerCase() === 'dark';
+
+    // API urls ----------------------------------------------------------------
+    var histUrl = getTotalHistUrl(period);
+
+    // Styles ------------------------------------------------------------------
+    var widgetTheme = widgetStyle + (dark ? ';' + widgetDarkStyle : '');
+    var textTheme = dark ? textDarkStyle : '';
+    var subtextTheme = dark ? subtextDarkStyle : subtextStyle;
+    var linkTheme = dark ? linkDarkStyle : linkStyle;
+
+    // Append child divs -------------------------------------------------------
+    var row1 = c('div', topStyle);
+    var row2 = c('div', footerStyle);
+    var labels = c('div', titleStyle);
+    var capLabel = c('p', [smTextStyle, textTheme, cellStyle], 'MARKET CAP');
+    var volLabel = c('p', [smTextStyle, textTheme, cellStyle], '24H VOLUME');
+    var figures = c('div', priceStyle);
+    var cap = c('p', [lgTextStyle, textTheme, cellStyle], '-');
+    var vol = c('p', [lgTextStyle, textTheme, cellStyle], '-');
+    var deltas = c('div', priceStyle);
+    var delta = c('p', [smTextStyle, textTheme, cellStyle, 'text-align: right'], '-');
+    var delta2 = c('p', [smTextStyle, textTheme, cellStyle, 'text-align: right'], '-');
+    var leftCol = c('div', leftStyle, logo);
+    var rightCol = c('div', rightStyle);
+    var anchor = c('a', [anchorStyle, linkTheme], 'Crypto Analytics');
+    var label = c('p', [smTextStyle, subtextTheme, pr(5)], getPeriodLabel(period));
+    var chart = c('div', chartStyle);
+
+    widget.innerHTML = '';
+    widget.setAttribute('style', widgetTheme);
+
+    // TODO: Dynamic uri
+    anchor.href = 'https://www.livecoinwatch.com/';
+
+    append(labels, [capLabel, volLabel]);
+    append(figures, [cap, vol]);
+    append(deltas, [delta, delta2]);
+    append(leftCol, anchor);
+    append(rightCol, label);
+    append(row1, [labels, deltas, figures]);
+    append(row2, [leftCol, rightCol]);
+    append(widget, [row1, chart, row2]);
+
+    // Fetch historical prices -------------------------------------------------
+    (function fetchHist() {
+      fetch(histUrl, function (json) {
+
+        if (!json || json.hist.length === 0)
+        return;
+
+        // setTimeout(fetchHist, TIMEOUT);
+
+        var data = json.hist;
+        var stats = json.stats;
+        var points = [];
+        var min = Number.MAX_SAFE_INTEGER;
+        var max = 0;
+
+        // Current stats.
+        cap.innerHTML = formatUnit(formatAbr(stats.capNow), base);
+        vol.innerHTML = formatUnit(formatAbr(stats.volNow), base);
+
+        formatDeltaInline(delta, 1 + (stats.capNow - data[data.length - 2].cap) / stats.capNow, dark);
+        formatDeltaInline(delta2, 1 + (stats.volNow - data[data.length - 2].volume) / stats.volNow, dark);
+
+        // Splice the request period.
+        var startDate = new Date(new Date().getTime() - (PERIODS[period] || PERIODS[0]).t);
+        data = data.filter(function (e) {
+          return new Date(e.date).getTime() > startDate.getTime();
+        });
+
+        data.forEach(function (e, i) {
+          if (e.cap > max) max = e.cap;
+          if (e.cap < min) min = e.cap;
+        });
+
+        data.forEach(function (e, i) {
+          var range = max - min;
+          points.push({
+            x: i / data.length * 385,
+            y: 95 - Math.floor((e.cap - min) / range * 90),
+            cap: e.cap,
+            date: e.date });
+
+        });
+
+        // Add 4 points outside the bounds to fill the chart.
+        var textPoints = points.map(function (e) {
+          return e.x + ',' + (isNaN(e.y) ? 0 : e.y);
+        }).join(' ');
+        textPoints += ' 385,' + points[points.length - 1].y + ' 385,140 -5,140 -5,' + points[0].y;
+
+        var fill = dark ? '#283d4b' : '#d8f1f0';
+
+        var circle = cn('http://www.w3.org/2000/svg', 'circle', 'fill: #58c7c5;');
+        circle.setAttribute('r', 0);
+
+        // Create chart.
+        chart.innerHTML = '<svg height="150" width="380">' +
+        '<polyline style="fill:' + fill + '; stroke: #58c7c5; stroke-width: 2" points="' +
+        textPoints + '"/>' +
+        '</svg>';
+
+        append(chart.firstChild, circle);
+
+        // Highlight the point closest to the mouse position.
+        var pt = chart.firstChild.createSVGPoint();
+        chart.firstChild.addEventListener('mousemove', function (e) {
+          pt.x = e.clientX;
+          pt.y = e.clientY;
+          var point = pt.matrixTransform(chart.firstChild.getScreenCTM().inverse());
+
+          circle.setAttribute('r', 5);
+
+          var selected;
+          for (var i = 0; i < points.length; i++) {if (window.CP.shouldStopExecution(0)) break;
+            if (points[i].x > point.x) {
+              var below = points[Math.max(i - 1, 0)];
+              if (point.x - below < points[i].x - point.x) selected = points[i - 1];else
+              selected = points[i];
+              circle.setAttribute('cx', selected.x);
+              circle.setAttribute('cy', selected.y);
+              break;
+            }
+          }
+
+          // Display date and price in footer label.
+          window.CP.exitedLoop(0);label.innerHTML = formatDate(new Date(selected.date)) + '&nbsp;-&nbsp;' + formatAbr(selected.cap);
+
+        });
+
+        // Remove highlight on mouse out.
+        chart.firstChild.addEventListener('mouseout', function (e) {
+          circle.setAttribute('r', 0);
+          label.innerHTML = (PERIODS[period] || PERIODS[0]).l;
+        });
+
+      });
+    })();
+
+  })();
+
+  // ---------------------------------------------------------------------------
+  // Top 10 Coins
+  // ---------------------------------------------------------------------------
+  (function () {
+
+    // Obtain widget reference and settings ------------------------------------
+    var widget = document.getElementById('livecoinwatch-widget-3');
+
+    if (!widget) return;
+
+    var base = (widget.getAttribute('lcw-base') || 'USD').toLowerCase();
+    var dark = (widget.getAttribute('lcw-theme') || 'light').toLowerCase() === 'dark';
+    var dHead = (widget.getAttribute('lcw-d-head') || 'false').toLowerCase() === 'true';
+    var dName = (widget.getAttribute('lcw-d-name') || 'true').toLowerCase() === 'true';
+    var dCode = (widget.getAttribute('lcw-d-code') || 'true').toLowerCase() === 'true';
+    var dIcon = (widget.getAttribute('lcw-d-icon') || 'true').toLowerCase() === 'true';
+
+    // Need to show something.
+    if (!dCode && !dIcon) dName = true;
+
+    // API urls ----------------------------------------------------------------
+    var topUrl = getTopUrl();
+    var totalsUrl = getTotalsUrl();
+
+    // Styles ------------------------------------------------------------------
+    var widgetTheme = widgetTallStyle + (dark ? ';' + widgetDarkStyle : '');
+    var textTheme = dark ? textDarkStyle : '';
+    var subtextTheme = dark ? subtextDarkStyle : subtextStyle;
+    var linkTheme = dark ? linkDarkStyle : linkStyle;
+
+    // Append child divs -------------------------------------------------------
+    var row1 = c('div', dHead ? lgTopStyle : lgTopFullStyle, getLargeLogo(dark));
+    var row2 = c('div', [smRowStyle]);
+    var rows = c('div', '');
+    var col1 = c('div', [cellStyle, dTableStyle, 'width: 50%']);
+    var col2 = c('div', [cellStyle, dTableStyle, 'width: 50%']);
+    var capLabel = c('p', [smTextStyle, subtextTheme, textLeftStyle, ml(20), 'font-size: 10px'], 'MARKET CAP');
+    var volLabel = c('p', [smTextStyle, subtextTheme, textRightStyle, mr(20), 'font-size: 10px'], '24H VOLUME');
+    var cap = c('p', [smTextStyle, textTheme, textLeftStyle, pt(2), ml(20)], '-');
+    var vol = c('p', [smTextStyle, textTheme, textRightStyle, pt(2), mr(20)], '-');
+
+    widget.innerHTML = '';
+    widget.setAttribute('style', widgetTheme);
+
+    if (dHead) {
+      append(col1, [capLabel, cap]);
+      append(col2, [volLabel, vol]);
+      append(row2, [col1, col2]);
+    }
+
+    append(widget, row1);
+    if (dHead) append(widget, row2);
+    append(widget, rows);
+
+    // TODO: Dynamic uri
+    // anchor.href = 'https://www.livecoinwatch.com/';
+
+    // Fetch prices ------------------------------------------------------------
+    (function fetchPrice() {
+      fetch(topUrl, function (response) {
+        // setTimeout(fetchPrice, TIMEOUT);
+        if (!response)
+        return console.log('Invalid price response!', priceUrl);
+
+        var data = response;
+
+        rows.innerHTML = '';
+
+        data.forEach(function (e, i) {
+
+          var themedRowStyle = dark ? i % 2 ? borderRowDark1Style : borderRowDark2Style : borderRowStyle;
+
+          var row = c('div', themedRowStyle);
+          var imgCell = c('div', 'width: 10%');
+          var img = c('img', [smImgStyle, pt(8)]);
+          var title = c('div', [dTableStyle, pl(10), 'width: 40%', pRelativeStyle, !dName || !dCode ? rt(5) : '']);
+          var name = c('p', [textStyle, textTheme], dName ? e.name : parseCode(e.code));
+          var symbol = c('p', [smTextStyle, subtextTheme], parseCode(e.code));
+          var prices = c('div', [dTableStyle, pl(10), 'width: 25%; text-align: right']);
+          var price = c('p', [textStyle, textTheme, pRelativeStyle, rt(5)], formatPrice(e.usd, base));
+          var deltas = c('div', [dTableStyle, pl(5)]);
+          var delta = c('p', [smTextStyle, textTheme, smCellStyle, pRelativeStyle, rt(4)]);
+
+          if (dIcon)
+          img.src = 'https://www.livecoinwatch.com/images/icons64/' + e.code.toLowerCase() + '.png';
+
+          if (dName || dCode) append(title, name);
+          if (dName && dCode) append(title, symbol);
+
+          append(imgCell, img);
+          append(prices, price);
+          append(deltas, delta);
+          append(row, [imgCell, title, prices, deltas]);
+          append(rows, row);
+
+          formatDeltaInline(delta, 1 + e.change.dpc.usd / 100, dark);
+
+        });
+
+      });
+    })();
+
+    // Fetch totals ------------------------------------------------------------
+    (function fetchTotals() {
+      fetch(totalsUrl, function (response) {
+        setTimeout(fetchTotals, TIMEOUT);
+        if (!response || !response.totalCap || !response.totalVol)
+        return console.log('Invalid totals response!', totalsUrl);
+        cap.innerHTML = formatUnit(formatAbr(response.totalCap), base);
+        vol.innerHTML = formatUnit(formatAbr(response.totalVol), base);
+      });
+    })();
+
+  })();
+
+  // ---------------------------------------------------------------------------
+  // Single coin chart
+  // ---------------------------------------------------------------------------
+  (function () {
+
+    // Obtain widget reference and settings ------------------------------------
+    var widget = document.getElementById('livecoinwatch-widget-1');
+
+    if (!widget) return;
+
+    var coin = (widget.getAttribute('lcw-coin') || 'BTC').toLowerCase();
+    var base = (widget.getAttribute('lcw-base') || 'USD').toLowerCase();
+    var secondary = (widget.getAttribute('lcw-secondary') || 'none').toLowerCase();
+    var period = (widget.getAttribute('lcw-period') || 'd').toLowerCase();
+    var dark = (widget.getAttribute('lcw-theme') || 'light').toLowerCase() === 'dark';
+
+    // API urls ----------------------------------------------------------------
+    var priceUrl = getPriceUrl(coin, base, secondary);
+    var infoUrl = getInfoUrl(coin);
+    var histUrl = getHistUrl(coin, period);
+
+    // Styles ------------------------------------------------------------------
+    var widgetTheme = widgetStyle + (dark ? ';' + widgetDarkStyle : '');
+    var textTheme = dark ? textDarkStyle : '';
+    var subtextTheme = dark ? subtextDarkStyle : subtextStyle;
+    var linkTheme = dark ? linkDarkStyle : linkStyle;
+
+    // Append child divs -------------------------------------------------------
+    var row1 = c('div', topStyle);
+    var row2 = c('div', footerStyle);
+    var img = c('img', imgStyle);
+    var title = c('div', titleStyle);
+    var name = c('p', [lgTextStyle, textTheme], '-');
+    var symbol = c('p', [smTextStyle, subtextTheme], '-');
+    var prices = c('div', priceStyle);
+    var price = c('p', [lgTextStyle, textTheme], '-');
+    var deltas = c('div', priceStyle);
+    var delta = c('p', [smTextStyle, textTheme, smCellStyle], '-');
+    var delta2 = c('p', [smTextStyle, textTheme, smCellStyle], '-');
+    var price2 = c('p', [smTextStyle, subtextTheme]);
+    var leftCol = c('div', leftStyle, logo);
+    var rightCol = c('div', rightStyle);
+    var anchor = c('a', [anchorStyle, linkTheme], coin.toUpperCase() + ' Price Charts');
+    var label = c('p', [smTextStyle, subtextTheme, 'padding-right: 5px'], (PERIODS[period] || PERIODS[0]).l);
+    var chart = c('div', chartStyle);
+
+    widget.innerHTML = '';
+    widget.setAttribute('style', widgetTheme);
+
+    img.src = 'https://www.livecoinwatch.com/images/icons64/' + coin + '.png';
+
+    // TODO: Dynamic uri
+    anchor.href = 'https://www.livecoinwatch.com/';
+
+    append(title, [name, symbol]);
+    append(prices, [price, price2]);
+    append(deltas, [delta, delta2]);
+    append(leftCol, anchor);
+    append(rightCol, label);
+    append(row1, [img, title, deltas, prices]);
+    append(row2, [leftCol, rightCol]);
+    append(widget, [row1, chart, row2]);
+
+    // Fetch prices ------------------------------------------------------------
+    (function fetchPrice() {
+      fetch(priceUrl, function (response) {
+
+        if (!response || !response.success)
+        return console.log('Invalid price response!', priceUrl);
+
+        // setTimeout(fetchPrice, TIMEOUT);
+
+        var data = response.data.find(function (e) {return e.code === coin.toUpperCase();});
+        var data2 = response.data.find(function (e) {return e.code === secondary.toUpperCase();});
+
+        if (!data || secondary && secondary !== 'none' && !data2)
+        return;
+
+        // Price and main delta.
+        price.innerHTML = formatPrice(data.price, response.currency);
+        formatDeltaInline(delta, getDelta(data.delta, period), dark);
+
+        // Optional secondary price and delta.
+        if (secondary && secondary !== 'none') {
+
+          price2.innerHTML = (data.price / data2.price).toFixed(8);
+          if (secondary.toUpperCase() === 'BTC') price2.innerHTML = '₿ ' + price2.innerHTML;else
+          if (secondary.toUpperCase() === 'ETH') price2.innerHTML = 'Ξ ' + price2.innerHTML;else
+          price2.innerHTML += ' ' + secondary.toUpperCase();
+
+          var old = data.price / getDelta(data.delta, period);
+          var oldBase = data2.price / getDelta(data2.delta, period);
+
+          formatDeltaInline(delta2, data.price / data2.price / (old / oldBase), dark);
+
+        } else {
+          price2.innerHTML = '';
+          delta2.innerHTML = '';
+        }
+
+      });
+    })();
+
+    // Fetch information -------------------------------------------------------
+    fetch(infoUrl, function (json) {
+
+      if (!json || !json.success)
+      return;
+
+      var data = json.data;
+
+      name.innerHTML = data.name;
+      symbol.innerHTML = data.code;
+    });
+
+    // Fetch historical prices -------------------------------------------------
+    (function fetchHist() {
+      fetch(histUrl, function (json) {
+
+        if (!json || !json.success || json.data.length === 0)
+        return;
+
+        // setTimeout(fetchHist, TIMEOUT);
+
+        var data = json.data;
+        var points = [];
+        var min = Number.MAX_SAFE_INTEGER;
+        var max = 0;
+
+        data.forEach(function (e, i) {
+          if (!(i % 5)) {
+            if (e.rate > max) max = e.rate;
+            if (e.rate < min) min = e.rate;
+          }
+        });
+
+        data.forEach(function (e, i) {
+          if (!(i % 5)) {
+            var range = max - min;
+            points.push({
+              x: i / data.length * 385,
+              y: 95 - Math.floor((e.rate - min) / range * 90),
+              rate: e.rate,
+              date: e.date });
+
+          }
+        });
+
+        // Add 4 points outside the bounds to fill the chart.
+        var textPoints = points.map(function (e) {
+          return e.x + ',' + (isNaN(e.y) ? 0 : e.y);
+        }).join(' ');
+        textPoints += ' 385,' + points[points.length - 1].y + ' 385,140 -5,140 -5,' + points[0].y;
+
+        var fill = dark ? '#283d4b' : '#d8f1f0';
+
+        var circle = cn('http://www.w3.org/2000/svg', 'circle', 'fill: #58c7c5;');
+        circle.setAttribute('r', 0);
+
+        // Create chart.
+        chart.innerHTML = '<svg height="150" width="380">' +
+        '<polyline style="fill:' + fill + '; stroke: #58c7c5; stroke-width: 2" points="' +
+        textPoints + '"/>' +
+        '</svg>';
+
+        append(chart.firstChild, circle);
+
+        // Highlight the point closest to the mouse position.
+        var pt = chart.firstChild.createSVGPoint();
+        chart.firstChild.addEventListener('mousemove', function (e) {
+          pt.x = e.clientX;
+          pt.y = e.clientY;
+          var point = pt.matrixTransform(chart.firstChild.getScreenCTM().inverse());
+
+          circle.setAttribute('r', 5);
+
+          var selected;
+          for (var i = 0; i < points.length; i++) {if (window.CP.shouldStopExecution(1)) break;
+            if (points[i].x > point.x) {
+              var below = points[Math.max(i - 1, 0)];
+              if (point.x - below < points[i].x - point.x) selected = points[i - 1];else
+              selected = points[i];
+              circle.setAttribute('cx', selected.x);
+              circle.setAttribute('cy', selected.y);
+              break;
+            }
+          }
+
+          // Display date and price in footer label.
+          window.CP.exitedLoop(1);label.innerHTML = formatDateAndTime(selected.date) + '&nbsp;-&nbsp;' + formatPrice(selected.rate, 'USD');
+
+        });
+
+        // Remove highlight on mouse out.
+        chart.firstChild.addEventListener('mouseout', function (e) {
+          circle.setAttribute('r', 0);
+          label.innerHTML = (PERIODS[period] || PERIODS[0]).l;
+        });
+
+      });
+    })();
+
+  })();
+
+  // ---------------------------------------------------------------------------
+  // Helpers
+  // ---------------------------------------------------------------------------
+  function append(p, c) {
+    if (c.constructor === Array) {
+      c.forEach(function (e) {
+        p.appendChild(e);
+      });
+    } else p.appendChild(c);
+  }
+
+  function c(t, s, h) {
+    var e = document.createElement(t);
+    if (s) e.setAttribute('style', css() + ';' + (s.constructor === Array ? s.join(';') : s));
+    if (h) e.innerHTML = h;
+    return e;
+  }
+
+  function cn(n, t, s, h) {
+    var e = document.createElementNS(n, t);
+    if (s) e.setAttribute('style', s);
+    if (h) e.innerHTML = h;
+    return e;
+  }
+
+  function s(a) {
+    return a.join(';');
+  }
+
+  function getPriceUrl(coin, base, secondary) {
+    return 'https://alpha-api.livecoinwatch.com/coins?codes=' +
+    coin.toUpperCase() + (
+    secondary && secondary !== 'none' ? ',' + secondary.toUpperCase() : '') +
+    '&currency=' + base.toUpperCase();
+  }
+
+  function getInfoUrl(coin) {
+    return 'https://alpha-api.livecoinwatch.com/coins/' +
+    coin.toUpperCase() +
+    '/info';
+  }
+
+  function getTotalHistUrl(coin, p) {
+    return 'https://www.livecoinwatch.com/overview';
+  }
+
+  function getHistUrl(coin, p) {
+    var period = (PERIODS[p] || PERIODS[0]).t;
+    var end = new Date().getTime();
+    var start = end - period;
+    return 'https://alpha-api.livecoinwatch.com/coins/history/range' +
+    '?coin=' + coin.toUpperCase() +
+    '&start=' + start +
+    '&end=' + end;
+  }
+
+  function getTopUrl() {
+    return 'https://www.livecoinwatch.com/price/top/1';
+  }
+
+  function getTotalsUrl() {
+    return 'https://www.livecoinwatch.com/api/totals';
+  }
+
+  function getMoversUrl() {
+    return 'https://www.livecoinwatch.com/api/top-movers';
+  }
+
+  function fetch(url, cb) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+      if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+        if (xmlhttp.status == 200) {
+          cb(JSON.parse(xmlhttp.responseText));
+        } else {
+          cb(null);
+        }
+      }
+    };
+    xmlhttp.open('GET', url, true);
+    xmlhttp.send();
+  }
+
+  function getDelta(value, period) {
+    if (period === 'h') return value.hour;
+    if (period === 'w') return value.week;
+    if (period === 'm') return value.month;
+    return value.day;
+  }
+
+  function getPeriodLabel(period) {
+    return (PERIODS[period] || PERIODS[0]).l;
+  }
+
+  function getPeriodTime(period) {
+    return (PERIODS[period] || PERIODS[0]).t;
+  }
+
+  function formatPrice(value, base) {
+    var val = value < 1 ? value.toFixed(5) : value.toPrecision(6);
+    if (base.toUpperCase() === 'USD')
+    return '$ ' + val;
+    return val + ' ' + base.toUpperCase();
+  }
+
+  function formatDelta(e, data, arrows, dark) {
+    e.innerHTML = (100 * (data - 1)).toFixed(Math.abs(data) >= 2 ? 0 : 1) + '%';
+    var style = e.getAttribute('style');
+    var red = dark ? redDark : redLight;
+    var green = dark ? greenDark : redDark;
+    var color = e.innerHTML.startsWith('-') ? red : green;
+    e.setAttribute('style', style + ';' + 'color: ' + color);
+    if (arrows)
+    e.innerHTML = (e.innerHTML.startsWith('-') ? '↓ ' : '↑ ') + e.innerHTML.replace('-', '');else
+
+    e.innerHTML = (e.innerHTML.startsWith('-') ? '' : '+') + e.innerHTML;
+  }
+
+  function formatDeltaInline(e, data, dark) {
+    formatDelta(e, data, false, dark);
+    e.innerHTML = '(' + e.innerHTML + ')';
+  }
+
+  function formatAbr(value) {
+    const B = 1000000000;
+    const M = 1000000;
+    if (value >= B) return (value / B).toPrecision(4) + " B";
+    if (value >= M) return (value / M).toPrecision(4) + " M";
+    return (+value).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  function formatDateAndTime(value) {
+    const months = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    const date = new Date(value);
+    return months[date.getMonth()] +
+    ' ' + date.getDate() + ', ' + (
+    date.getHours() < 10 ? '0' : '') + date.getHours() + ':' + (
+    date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+  }
+
+  function formatDate(value) {
+    const parts = formatDateAndTime(value).split(' ');
+    return parts[0] + ' ' + parts[1];
+  }
+
+  function formatUnit(value, base) {
+    if (base.toUpperCase() === 'USD') return '$ ' + value;
+    if (base.toUpperCase() === 'BTC') return '₿ ' + value;
+    if (base.toUpperCase() === 'ETH') return 'Ξ ' + value;
+    return value + ' ' + base.toUpperCase();
+  }
+
+  function parseCode(code) {return code.replace(/^_*/, '');}
+
+  function p(v) {return 'padding:' + v + 'px';}
+  function pt(v) {return 'padding-top:' + v + 'px';}
+  function pr(v) {return 'padding-right:' + v + 'px';}
+  function pb(v) {return 'padding-bottom:' + v + 'px';}
+  function pl(v) {return 'padding-left:' + v + 'px';}
+
+  function m(v) {return 'margin:' + v + 'px';}
+  function mt(v) {return 'margin-top:' + v + 'px';}
+  function mr(v) {return 'margin-right:' + v + 'px';}
+  function mb(v) {return 'margin-bottom:' + v + 'px';}
+  function ml(v) {return 'margin-left:' + v + 'px';}
+
+  function rt(v) {return 'top:' + v + 'px';}
+  function rl(v) {return 'left:' + v + 'px';}
+
+  function wpx(v) {return 'width: ' + v + 'px';}
+  function wpc(v) {return 'width: ' + v + 'px';}
+
+  function bg(v) {return 'background-color: ' + v;}
+
+  function an(v) {return 'animation: scroll ' + v + 's linear infinite';}
+  function ad(v) {return 'animation-delay: -' + v + 's';}
+
+  function css() {
+    return s([
+    'animation : none',
+    'animation-delay : 0',
+    'animation-direction : normal',
+    'animation-duration : 0',
+    'animation-fill-mode : none',
+    'animation-iteration-count : 1',
+    'animation-name : none',
+    'animation-play-state : running',
+    'animation-timing-function : ease',
+    'backface-visibility : visible',
+    'background : 0',
+    'background-attachment : scroll',
+    'background-clip : border-box',
+    'background-color : transparent',
+    'background-image : none',
+    'background-origin : padding-box',
+    'background-position : 0 0',
+    'background-position-x : 0',
+    'background-position-y : 0',
+    'background-repeat : repeat',
+    'background-size : auto auto',
+    'border : 0',
+    'border-style : none',
+    'border-width : medium',
+    'border-color : inherit',
+    'border-bottom : 0',
+    'border-bottom-color : inherit',
+    'border-bottom-left-radius : 0',
+    'border-bottom-right-radius : 0',
+    'border-bottom-style : none',
+    'border-bottom-width : medium',
+    'border-collapse : separate',
+    'border-image : none',
+    'border-left : 0',
+    'border-left-color : inherit',
+    'border-left-style : none',
+    'border-left-width : medium',
+    'border-radius : 0',
+    'border-right : 0',
+    'border-right-color : inherit',
+    'border-right-style : none',
+    'border-right-width : medium',
+    'border-spacing : 0',
+    'border-top : 0',
+    'border-top-color : inherit',
+    'border-top-left-radius : 0',
+    'border-top-right-radius : 0',
+    'border-top-style : none',
+    'border-top-width : medium',
+    'bottom : auto',
+    'box-shadow : none',
+    'box-sizing : content-box',
+    'caption-side : top',
+    'clear : none',
+    'clip : auto',
+    'color : inherit',
+    'columns : auto',
+    'column-count : auto',
+    'column-fill : balance',
+    'column-gap : normal',
+    'column-rule : medium none currentColor',
+    'column-rule-color : currentColor',
+    'column-rule-style : none',
+    'column-rule-width : none',
+    'column-span : 1',
+    'column-width : auto',
+    'content : normal',
+    'counter-increment : none',
+    'counter-reset : none',
+    'cursor : auto',
+    'direction : ltr',
+    'empty-cells : show',
+    'float : none',
+    'font : normal',
+    'font-family : inherit',
+    'font-size : medium',
+    'font-style : normal',
+    'font-variant : normal',
+    'font-weight : normal',
+    'height : auto',
+    'hyphens : none',
+    'left : auto',
+    'letter-spacing : normal',
+    'line-height : normal',
+    'list-style : none',
+    'list-style-image : none',
+    'list-style-position : outside',
+    'list-style-type : disc',
+    'margin : 0',
+    'margin-bottom : 0',
+    'margin-left : 0',
+    'margin-right : 0',
+    'margin-top : 0',
+    'max-height : none',
+    'max-width : none',
+    'min-height : 0',
+    'min-width : 0',
+    'opacity : 1',
+    'orphans : 0',
+    'outline : 0',
+    'outline-color : invert',
+    'outline-style : none',
+    'outline-width : medium',
+    'overflow : visible',
+    'overflow-x : visible',
+    'overflow-y : visible',
+    'padding : 0',
+    'padding-bottom : 0',
+    'padding-left : 0',
+    'padding-right : 0',
+    'padding-top : 0',
+    'page-break-after : auto',
+    'page-break-before : auto',
+    'page-break-inside : auto',
+    'perspective : none',
+    'perspective-origin : 50% 50%',
+    'position : static',
+    'right : auto',
+    'tab-size : 8',
+    'table-layout : auto',
+    'text-align : inherit',
+    'text-align-last : auto',
+    'text-decoration : none',
+    'text-decoration-color : inherit',
+    'text-decoration-line : none',
+    'text-decoration-style : solid',
+    'text-indent : 0',
+    'text-shadow : none',
+    'text-transform : none',
+    'top : auto',
+    'transform : none',
+    'transform-style : flat',
+    'transition : none',
+    'transition-delay : 0s',
+    'transition-duration : 0s',
+    'transition-property : none',
+    'transition-timing-function : ease',
+    'unicode-bidi : normal',
+    'vertical-align : baseline',
+    'visibility : visible',
+    'white-space : normal',
+    'widows : 0',
+    'width : auto',
+    'word-spacing : normal',
+    'z-index : auto']);
+
+  }
+
+  function getLargeLogo(dark) {
+    return '<svg viewBox="-64 -10 410.55 50"><path fill-rule="evenodd" clip-rule="evenodd" fill="#4BC1BE" d="M116.9 3c-.9-.9-1.9-1.6-3.1-2.1-1.2-.5-2.6-.8-4-.8-1.5 0-2.8.3-4 .8-1.2.5-2.3 1.2-3.2 2.1-.9.9-1.6 2-2.1 3.2-.5 1.2-.7 2.5-.7 3.8 0 1.3.2 2.6.7 3.8.5 1.2 1.1 2.2 2 3l2.8-5.1 2.8 2.8 3.1-7.4-1.3-.6 1.8-1.3 1.8-1.3.3 2.2.3 2.2-1.3-.6-4 9.5-3-2.9-1.9 3.6c.6.5 1.3.8 2 1.1 1.2.5 2.6.8 4 .8 1.5 0 2.8-.3 4-.8 2.4-1 4.3-2.9 5.2-5.3.5-1.2.7-2.5.7-3.8 0-1.3-.2-2.6-.7-3.8-.7-1.2-1.4-2.2-2.2-3.1z"></path><path fill="' + (dark ? 'white' : 'black ') + '" d="M0 19.7h13.6v-3.1H3.4V.3H0v19.4zM18.7.3v19.3h3.4V.3h-3.4zm18 14.9L30.8.3H27l8 19.5h3L46 .3h-3.7l-5.6 14.9zM65.2.3H50.9v19.3h14.5v-3H54.3v-5.2H64v-3h-9.7v-5h10.9V.3zM149 13.7L138.6.3h-3.1v19.3h3.3V5.9l10.7 13.8h2.8V.3H149v13.4zm-53.1 2.9l-2.2-2.2c-.8.8-1.7 1.4-2.5 1.8-.8.5-1.9.7-3 .7-.9 0-1.8-.2-2.6-.5-.8-.4-1.5-.9-2-1.5-.6-.6-1-1.4-1.3-2.2-.3-.8-.5-1.7-.5-2.7 0-1 .2-1.9.5-2.7s.8-1.6 1.3-2.2c.6-.6 1.2-1.1 2-1.5.8-.4 1.6-.5 2.6-.5 1.1 0 2.1.2 3 .7.9.4 1.7 1 2.5 1.7L95.8 3c-.5-.4-.9-.8-1.5-1.2-.5-.4-1.1-.7-1.7-1-.6-.3-1.3-.5-2-.6-.7-.1-1.5-.2-2.4-.2-1.5 0-2.8.3-4 .8C83 1.3 81.9 2 81 2.9c-.9.9-1.6 2-2.1 3.2-.5 1.2-.7 2.5-.7 3.9s.2 2.7.7 3.9c.5 1.2 1.2 2.3 2.1 3.2.9.9 1.9 1.6 3.1 2.1 1.2.5 2.5.8 3.9.8.9 0 1.7-.1 2.5-.2.7-.2 1.4-.4 2.1-.7.6-.3 1.2-.7 1.8-1.1.5-.4 1-.9 1.5-1.4zM125.5.3v19.3h3.4V.3h-3.4zm48.3 14.4L169.2.4h-3.7l6.7 19.5h2.9l4.9-14 4.8 13.9h2.9L194.4.3h-3.6l-4.6 14.3L181.4.2h-2.9l-4.7 14.5zm33-14.5h-3.1l-8.5 19.5h3.5l2-4.7h9.1l2 4.7h3.6L206.8.2zm1.7 11.8h-6.7l3.3-7.7 3.4 7.7zm17.3-8.5h6.1V.3h-15.7v3.1h6.1v16.2h3.4V3.5h.1zm26.9 13.1l-2.2-2.2c-.8.8-1.7 1.4-2.5 1.8-.8.5-1.9.7-3 .7-.9 0-1.8-.2-2.6-.5-.8-.4-1.5-.9-2-1.5-.6-.6-1-1.4-1.3-2.2-.3-.8-.5-1.7-.5-2.7 0-1 .2-1.9.5-2.7.3-.8.8-1.6 1.3-2.2.6-.6 1.2-1.1 2-1.5.8-.4 1.6-.5 2.6-.5 1.1 0 2.1.2 3 .7.9.4 1.7 1 2.5 1.7l2.2-2.5c-.5-.4-.9-.8-1.5-1.2-.5-.4-1.1-.7-1.7-1-.6-.3-1.3-.5-2-.6-.8-.1-1.6-.2-2.5-.2-1.5 0-2.8.3-4 .8-1.2.5-2.3 1.2-3.1 2.2-.9.9-1.6 2-2.1 3.2-.5 1.2-.7 2.5-.7 3.9s.2 2.7.7 3.9c.5 1.2 1.2 2.3 2.1 3.2.9.9 1.9 1.6 3.1 2.1 1.2.5 2.5.8 3.9.8.9 0 1.7-.1 2.5-.2.7-.2 1.4-.4 2.1-.7.6-.3 1.2-.7 1.8-1.1.4-.5.9-1 1.4-1.5zm17.6-5.1v8.1h3.4V.3h-3.4v8h-9.2v-8h-3.4v19.3h3.4v-8.1h9.2z"></path></svg>';
+  }
+
+}
+
+function refresh() {
+  setTimeout(load, 200);
+}
+
+load();
+
+// export { refresh };
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

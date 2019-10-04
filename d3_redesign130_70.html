@@ -1,0 +1,405 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Circular menu touch</title>
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css">
+<style>
+    html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Source Sans Pro', Helvetica, sans-serif;
+  color: #333;
+  -webkit-font-smoothing: antialiased;
+  background-color: #222;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+
+*,
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#container {
+  width: 300px;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  margin-left: -150px;
+  margin-top: -150px;
+}
+
+.circular {
+  width: 100%;
+  font-size: 150%;
+}
+
+.circular,
+.circular li {
+  background-color: rgba(0, 0, 0, .2);
+}
+
+.circular a {
+  color: rgba(255, 131, 0, .8);
+}
+
+.circular li span {
+  background-color: rgba(255, 131, 0, 0.4);
+}
+
+.circular li.open > span,
+.circular li.open span:hover {
+  background-color: rgba(255, 131, 0, 0.8);
+}
+
+.circular li span:hover {
+  background-color: rgba(255, 131, 0, 0.6);
+}
+
+.circular,
+.circular ul {
+  padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  z-index: 1;
+  -webkit-transition: all .4s;
+  -moz-transition: all .4s;
+  -ms-transition: all .4s;
+  -o-transition: all .4s;
+  transition: all .4s;
+  left: 0;
+  top: 0;
+  position: absolute;
+}
+
+.circular li > ul {
+  font-size: 80%;
+  line-height: 80%;
+  width: 100%;
+  height: 100%;
+}
+
+.circular li {
+  -webkit-transition: all .2s;
+  -moz-transition: all .2s;
+  -o-transition: all .2s;
+  transition: all .2s;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  width: 40%;
+  height: 40%;
+  z-index: 2;
+  top: -20%;
+  left: -20%;
+}
+
+.circular a {
+  white-space: nowrap;
+  -webkit-transition: all ease-in-out .4s;
+  -moz-transition: all ease-in-out .4s;
+  -ms-transition: all ease-in-out .4s;
+  -o-transition: all ease-in-out .4s;
+  transition: all ease-in-out .4s;
+  padding: 10% 0;
+  text-decoration: none;
+  top: 30%;
+  height: 40%;
+  display: inline-block;
+  position: relative;
+  z-index: 1001;
+}
+
+.circular a {
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.open > ul > li > a {
+  left: 110%;
+  opacity: 1;
+  visibility: visible;
+}
+
+.circular li span {
+  position: absolute;
+  left: 15%;
+  top: 15%;
+  width: 70%;
+  height: 70%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-transition: all .4s;
+  -moz-transition: all .4s;
+  -ms-transition: all .4s;
+  -o-transition: all .4s;
+  transition: all .4s;
+  z-index: 100;
+}
+
+#footer-info {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 10px 15px;
+  background-color: rgba(255, 131, 0, 0.4);
+  color: #000;
+  font-size: 70%;
+}
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="David Foliti">
+<meta name="msapplication-tap-highlight" content="no">
+
+
+<div id="container" class="open">
+<ul class="circular" id="menu" style="height: 300px; touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); transform: translate3d(-4px, -6px, 0px) scale(0.342875, 0.342875) rotate3d(0, 0, 1, -11.4879deg);">
+<li style="transform: translate(300px, 150px) rotate(0rad);"><a href="#">Item N1</a></li>
+<li style="transform: translate(196.353px, 292.658px) rotate(1.25664rad);"><a href="#">Item N2</a></li>
+<li style="transform: translate(28.6475px, 238.168px) rotate(2.51327rad);"><a href="#">Item N3</a>
+<ul style="height: 120px;">
+<li style="transform: translate(120px, 60px) rotate(0rad);"><a href="#">Item N01</a></li>
+<li style="transform: translate(97.4094px, 106.91px) rotate(0.897598rad);"><a href="#">Item N01</a>
+<ul style="height: 48px;">
+<li style="transform: translate(48px, 24px) rotate(0rad);"><a href="#">Item N010</a></li>
+<li style="transform: translate(24px, 48px) rotate(1.5708rad);"><a href="#">Item N011</a></li>
+<li style="transform: translate(0px, 24px) rotate(3.14159rad);"><a href="#">Item N023</a></li>
+<li style="transform: translate(24px, 0px) rotate(4.71239rad);"><a href="#">Item N024</a>
+<ul style="height: 19px;">
+<li style="transform: translate(19px, 9.5px) rotate(0rad);"><a href="#">Item N010</a></li>
+</ul>
+<span style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></span></li>
+</ul>
+<span style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></span></li>
+<li style="transform: translate(46.6487px, 118.496px) rotate(1.7952rad);"><a href="#">Item N02</a></li>
+<li style="transform: translate(5.94187px, 86.033px) rotate(2.69279rad);"><a href="#">Item N01</a></li>
+<li style="transform: translate(5.94187px, 33.967px) rotate(3.59039rad);"><a href="#">Item N02</a></li>
+<li style="transform: translate(46.6487px, 1.50433px) rotate(4.48799rad);"><a href="#">Item N03</a>
+<ul style="height: 48px;">
+<li style="transform: translate(48px, 24px) rotate(0rad);"><a href="#">Item N010</a></li>
+<li style="transform: translate(12px, 44.7846px) rotate(2.0944rad);"><a href="#">Item N011</a></li>
+<li style="transform: translate(12px, 3.21539px) rotate(4.18879rad);"><a href="#">Item N022</a>
+<ul style="height: 19px;">
+<li style="transform: translate(19px, 9.5px) rotate(0rad);"><a href="#">Item N010</a></li>
+<li style="transform: translate(4.75px, 17.7272px) rotate(2.0944rad);"><a href="#">Item N011</a>
+<ul style="height: 8px;">
+<li style="transform: translate(8px, 4px) rotate(0rad);"><a href="#">Item N010</a></li>
+<li style="transform: translate(2px, 7.4641px) rotate(2.0944rad);"><a href="#">Item N011</a></li>
+<li style="transform: translate(2px, 0.535898px) rotate(4.18879rad);"><a href="#">Item N022</a></li>
+</ul>
+<span style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></span></li>
+<li style="transform: translate(4.75px, 1.27276px) rotate(4.18879rad);"><a href="#">Item N022</a></li>
+</ul>
+<span style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></span></li>
+</ul>
+<span style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></span></li>
+<li style="transform: translate(97.4094px, 13.0901px) rotate(5.38559rad);"><a href="#">Item N02</a></li>
+</ul>
+<span style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></span></li>
+<li style="transform: translate(28.6475px, 61.8322px) rotate(3.76991rad);"><a href="#">Item N5</a>
+<ul style="height: 120px;">
+<li style="transform: translate(120px, 60px) rotate(0rad);"><a href="#">Item N01</a></li>
+<li style="transform: translate(30px, 111.962px) rotate(2.0944rad);"><a href="#">Item N01</a></li>
+<li style="transform: translate(30px, 8.03848px) rotate(4.18879rad);"><a href="#">Item N02</a></li>
+</ul>
+<span style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></span></li>
+<li style="transform: translate(196.353px, 7.34152px) rotate(5.02655rad);"><a href="#">Item N6</a></li>
+</ul>
+</div>
+<div id="footer-info" style="display: block;">Hold <strong>Shift</strong> while <strong>dragging the mouse</strong> to emulate a pinch gesture on desktop; hold down <strong> two fingers </strong>for <strong> zoom </strong>and <strong> rotation </strong>in mobile device</div>
+<script src="https://cdn.rawgit.com/hammerjs/touchemulator/master/touch-emulator.js"></script>
+<script>TouchEmulator();</script>
+
+
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.4/hammer.min.js"></script>
+<script src="https://cdn.rawgit.com/hammerjs/jquery.hammer.js/master/jquery.hammer.js"></script>
+<script src="https://cdn.rawgit.com/marlenesco/a613696dd6ab66c095d1/raw/163b8fbf0c62091d5063768cc5f6226e959d580b/circular.js"></script>
+<script id="rendered-js">
+      /**
+Emulate touch on a desktop 
+https://hammerjs.github.io/touch-emulator/
+*/
+
+//Jquery DOM ready
+$(function () {
+  /**
+               Create circle using my circular.js gist
+               https://gist.github.com/marlenesco/a613696dd6ab66c095d1
+               */
+  new circular('#menu');
+});
+
+window.onload = function () {
+  //delete Hammer.defaults.cssProps.userSelect;
+  var el = document.getElementById('menu');
+  var ticking = false;
+  var initAngle = 0;
+  var initScale = 1;
+
+  var transform = {
+    translate: {
+      x: 0,
+      y: 0 },
+
+    scale: 1,
+    angle: 0,
+    rx: 0,
+    ry: 0,
+    rz: 0 };
+
+
+  var transformOriginal = {
+    translate: { x: 0, y: 0 } };
+
+
+  var mc = new Hammer(el);
+
+  mc.add(new Hammer.Pan({
+    threshold: 0,
+    pointers: 0 }));
+
+  mc.add(new Hammer.Swipe()).recognizeWith(mc.get('pan'));
+  mc.add(new Hammer.Rotate({
+    threshold: 0 })).
+  recognizeWith(mc.get('pan'));
+  mc.add(new Hammer.Pinch({
+    threshold: 0 })).
+  recognizeWith([mc.get('pan'), mc.get('rotate')]);
+  mc.add(new Hammer.Tap({
+    event: 'doubletap',
+    taps: 2 }));
+
+
+  mc.on("panstart panmove", onPan);
+  mc.on("rotatestart rotatemove", onRotate);
+  mc.on("pinchstart pinchmove", onPinch);
+  mc.on("doubletap", onDoubleTap);
+  mc.on("hammer.input", function (ev) {
+    if ($('#footer-info').is(':visible')) {
+      $('#footer-info').fadeOut('fast');
+    }
+    if (ev.isFinal) {
+      transformOriginal.translate.x = transform.translate.x;
+      transformOriginal.translate.y = transform.translate.y;
+      $('#footer-info').fadeIn('fast');
+    }
+  });
+
+  function onRotate(ev) {
+    if (ev.type == 'rotatestart') {
+      initAngle = transform.angle || 0;
+    }
+
+    transform.rz = 1;
+    transform.angle = initAngle + ev.rotation;
+    requestElementUpdate();
+  }
+
+  function onPinch(ev) {
+    if (ev.type == 'pinchstart') {
+      initScale = transform.scale || 1;
+    }
+
+    transform.scale = initScale * ev.scale;
+
+    requestElementUpdate();
+  }
+
+  function requestElementUpdate() {
+    if (!ticking) {
+      reqAnimationFrame(updateElementTransform);
+      ticking = true;
+    }
+  }
+
+  function onPan(ev) {
+    transform.translate = {
+      x: transformOriginal.translate.x + ev.deltaX,
+      y: transformOriginal.translate.y + ev.deltaY };
+
+
+    requestElementUpdate();
+  }
+
+  function onDoubleTap(ev) {
+    resetElement();
+  }
+
+  function resetElement() {
+    transform = {
+      translate: {
+        x: 0,
+        y: 0 },
+
+      scale: 1,
+      angle: 0,
+      rx: 0,
+      ry: 0,
+      rz: 0 };
+
+
+    requestElementUpdate();
+
+  }
+
+  function updateElementTransform() {
+    var value = [
+    'translate3d(' + transform.translate.x + 'px, ' + transform.translate.y + 'px, 0)',
+    'scale(' + transform.scale + ', ' + transform.scale + ')',
+    'rotate3d(' + transform.rx + ',' + transform.ry + ',' + transform.rz + ',' + transform.angle + 'deg)'];
+
+
+    //                $('#console').html(value);
+    value = value.join(" ");
+    el.style.webkitTransform = value;
+    el.style.mozTransform = value;
+    el.style.transform = value;
+    ticking = false;
+  }
+
+  var reqAnimationFrame = function () {
+    return window[Hammer.prefixed(window, 'requestAnimationFrame')] || function (callback) {
+      window.setTimeout(callback, 1000 / 60);
+    };
+  }();
+};
+      //# sourceURL=pen.js
+    </script>
+
+
+</body></html>

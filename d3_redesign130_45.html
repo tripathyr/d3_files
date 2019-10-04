@@ -1,0 +1,853 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Semantic-UI Icons Cheatsheet</title>
+<link rel="stylesheet" href="https://oss.maxcdn.com/semantic-ui/2.1.6/semantic.min.css">
+<style>
+    @font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0e.ttf) format('truetype');
+}
+html {
+  font-size: 16px;
+}
+body {
+  background: url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/linedpaper.png");
+  -webkit-font-smoothing: antialiased;
+  padding: 4em;
+  font-family: 'Open Sans';
+}
+.banner {
+  position: relative;
+  font-size: 4rem;
+  font-weight: bold;
+  line-height: 4.5rem;
+  text-shadow: 0 2px #ddd;
+}
+.banner .label {
+  text-shadow: none;
+  margin: 0;
+}
+.banner .ui.circular.label {
+  width: 2.25em;
+  height: 2.25em;
+  line-height: 1.25em;
+}
+#container {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  margin-top: 3em;
+  padding: 0;
+  list-style: none;
+}
+#container li > i.icon {
+  font-size: 2.5rem;
+  width: 6rem;
+  text-shadow: 0 1px #ddd;
+  cursor: pointer;
+  padding: 0.5em;
+  margin: 0.5em 0 0.5em 0;
+  position: relative;
+  text-align: center;
+}
+#container li > i.icon:hover {
+  color: #c00;
+  -webkit-animation-duration: 500ms;
+  animation-duration: 500ms;
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+}
+#container div {
+  font-size: 0.8rem;
+  width: 6rem;
+  text-shadow: 0 1px #ddd;
+  text-align: center;
+}
+#container div i {
+  display: inline;
+  color: #000;
+  font-weight: normal;
+  margin: 0 0.125rem;
+}
+#container div span {
+  color: #c00;
+  display: inline-block;
+  margin-left: 0 0.25rem;
+}
+#footer {
+  color: #000;
+  text-shadow: 0 1px #efefef;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 3em 0;
+  cursor: default;
+}
+#footer a {
+  margin: 0 0.25em;
+  padding: 0;
+}
+#footer:hover a {
+  -webkit-animation-duration: 500ms;
+  animation-duration: 500ms;
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+}
+#footer i.icons {
+  padding: 0;
+  margin: 0 0.25em;
+}
+
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="ui column centered grid">
+<div class="banner">
+<div>Semantic UI Icons</div>
+<div class="ui circular floating red large label ">2.1</div>
+</div>
+</div>
+<div class="ui two column centered grid">
+<div class="ui fluid search column">
+<div class="ui fluid big icon input">
+<input id="search" class="prompt" type="text" placeholder="Filter icons...">
+<i class="search icon"></i>
+</div>
+</div>
+</div>
+<ul id="container" class="column"><li data-icon="search"><i class="search icon"></i><div>search<span><i class="tiny angle left icon"></i>\f002<i class="tiny angle right icon"></i></span></div></li><li data-icon="mail outline"><i class="mail outline icon"></i><div>mail outline<span><i class="tiny angle left icon"></i>\f003<i class="tiny angle right icon"></i></span></div></li><li data-icon="external"><i class="external icon"></i><div>external<span><i class="tiny angle left icon"></i>\f08e<i class="tiny angle right icon"></i></span></div></li><li data-icon="signal"><i class="signal icon"></i><div>signal<span><i class="tiny angle left icon"></i>\f012<i class="tiny angle right icon"></i></span></div></li><li data-icon="setting"><i class="setting icon"></i><div>setting<span><i class="tiny angle left icon"></i>\f013<i class="tiny angle right icon"></i></span></div></li><li data-icon="home"><i class="home icon"></i><div>home<span><i class="tiny angle left icon"></i>\f015<i class="tiny angle right icon"></i></span></div></li><li data-icon="inbox"><i class="inbox icon"></i><div>inbox<span><i class="tiny angle left icon"></i>\f01c<i class="tiny angle right icon"></i></span></div></li><li data-icon="browser"><i class="browser icon"></i><div>browser<span><i class="tiny angle left icon"></i>\f022<i class="tiny angle right icon"></i></span></div></li><li data-icon="tag"><i class="tag icon"></i><div>tag<span><i class="tiny angle left icon"></i>\f02b<i class="tiny angle right icon"></i></span></div></li><li data-icon="tags"><i class="tags icon"></i><div>tags<span><i class="tiny angle left icon"></i>\f02c<i class="tiny angle right icon"></i></span></div></li><li data-icon="calendar"><i class="calendar icon"></i><div>calendar<span><i class="tiny angle left icon"></i>\f073<i class="tiny angle right icon"></i></span></div></li><li data-icon="comment"><i class="comment icon"></i><div>comment<span><i class="tiny angle left icon"></i>\f075<i class="tiny angle right icon"></i></span></div></li><li data-icon="comments"><i class="comments icon"></i><div>comments<span><i class="tiny angle left icon"></i>\f086<i class="tiny angle right icon"></i></span></div></li><li data-icon="shop"><i class="shop icon"></i><div>shop<span><i class="tiny angle left icon"></i>\f07a<i class="tiny angle right icon"></i></span></div></li><li data-icon="privacy"><i class="privacy icon"></i><div>privacy<span><i class="tiny angle left icon"></i>\f084<i class="tiny angle right icon"></i></span></div></li><li data-icon="settings"><i class="settings icon"></i><div>settings<span><i class="tiny angle left icon"></i>\f085<i class="tiny angle right icon"></i></span></div></li><li data-icon="trophy"><i class="trophy icon"></i><div>trophy<span><i class="tiny angle left icon"></i>\f091<i class="tiny angle right icon"></i></span></div></li><li data-icon="payment"><i class="payment icon"></i><div>payment<span><i class="tiny angle left icon"></i>\f09d<i class="tiny angle right icon"></i></span></div></li><li data-icon="feed"><i class="feed icon"></i><div>feed<span><i class="tiny angle left icon"></i>\f09e<i class="tiny angle right icon"></i></span></div></li><li data-icon="alarm outline"><i class="alarm outline icon"></i><div>alarm outline<span><i class="tiny angle left icon"></i>\f0a2<i class="tiny angle right icon"></i></span></div></li><li data-icon="tasks"><i class="tasks icon"></i><div>tasks<span><i class="tiny angle left icon"></i>\f0ae<i class="tiny angle right icon"></i></span></div></li><li data-icon="cloud"><i class="cloud icon"></i><div>cloud<span><i class="tiny angle left icon"></i>\f0c2<i class="tiny angle right icon"></i></span></div></li><li data-icon="lab"><i class="lab icon"></i><div>lab<span><i class="tiny angle left icon"></i>\f0c3<i class="tiny angle right icon"></i></span></div></li><li data-icon="mail"><i class="mail icon"></i><div>mail<span><i class="tiny angle left icon"></i>\f0e0<i class="tiny angle right icon"></i></span></div></li><li data-icon="idea"><i class="idea icon"></i><div>idea<span><i class="tiny angle left icon"></i>\f0eb<i class="tiny angle right icon"></i></span></div></li><li data-icon="dashboard"><i class="dashboard icon"></i><div>dashboard<span><i class="tiny angle left icon"></i>\f0e4<i class="tiny angle right icon"></i></span></div></li><li data-icon="sitemap"><i class="sitemap icon"></i><div>sitemap<span><i class="tiny angle left icon"></i>\f0e8<i class="tiny angle right icon"></i></span></div></li><li data-icon="alarm"><i class="alarm icon"></i><div>alarm<span><i class="tiny angle left icon"></i>\f0f3<i class="tiny angle right icon"></i></span></div></li><li data-icon="terminal"><i class="terminal icon"></i><div>terminal<span><i class="tiny angle left icon"></i>\f120<i class="tiny angle right icon"></i></span></div></li><li data-icon="code"><i class="code icon"></i><div>code<span><i class="tiny angle left icon"></i>\f121<i class="tiny angle right icon"></i></span></div></li><li data-icon="protect"><i class="protect icon"></i><div>protect<span><i class="tiny angle left icon"></i>\f132<i class="tiny angle right icon"></i></span></div></li><li data-icon="calendar outline"><i class="calendar outline icon"></i><div>calendar outline<span><i class="tiny angle left icon"></i>\f133<i class="tiny angle right icon"></i></span></div></li><li data-icon="ticket"><i class="ticket icon"></i><div>ticket<span><i class="tiny angle left icon"></i>\f145<i class="tiny angle right icon"></i></span></div></li><li data-icon="external square"><i class="external square icon"></i><div>external square<span><i class="tiny angle left icon"></i>\f14c<i class="tiny angle right icon"></i></span></div></li><li data-icon="map"><i class="map icon"></i><div>map<span><i class="tiny angle left icon"></i>\f14e<i class="tiny angle right icon"></i></span></div></li><li data-icon="bug"><i class="bug icon"></i><div>bug<span><i class="tiny angle left icon"></i>\f188<i class="tiny angle right icon"></i></span></div></li><li data-icon="mail square"><i class="mail square icon"></i><div>mail square<span><i class="tiny angle left icon"></i>\f199<i class="tiny angle right icon"></i></span></div></li><li data-icon="history"><i class="history icon"></i><div>history<span><i class="tiny angle left icon"></i>\f1da<i class="tiny angle right icon"></i></span></div></li><li data-icon="options"><i class="options icon"></i><div>options<span><i class="tiny angle left icon"></i>\f1de<i class="tiny angle right icon"></i></span></div></li><li data-icon="comment outline"><i class="comment outline icon"></i><div>comment outline<span><i class="tiny angle left icon"></i>\f0e5<i class="tiny angle right icon"></i></span></div></li><li data-icon="comments outline"><i class="comments outline icon"></i><div>comments outline<span><i class="tiny angle left icon"></i>\f0e6<i class="tiny angle right icon"></i></span></div></li><li data-icon="text telephone"><i class="text telephone icon"></i><div>text telephone<span><i class="tiny angle left icon"></i>\f1e4<i class="tiny angle right icon"></i></span></div></li><li data-icon="find"><i class="find icon"></i><div>find<span><i class="tiny angle left icon"></i>\f1e5<i class="tiny angle right icon"></i></span></div></li><li data-icon="wifi"><i class="wifi icon"></i><div>wifi<span><i class="tiny angle left icon"></i>\f1eb<i class="tiny angle right icon"></i></span></div></li><li data-icon="alarm slash"><i class="alarm slash icon"></i><div>alarm slash<span><i class="tiny angle left icon"></i>\f1f6<i class="tiny angle right icon"></i></span></div></li><li data-icon="alarm slash outline"><i class="alarm slash outline icon"></i><div>alarm slash outline<span><i class="tiny angle left icon"></i>\f1f7<i class="tiny angle right icon"></i></span></div></li><li data-icon="copyright"><i class="copyright icon"></i><div>copyright<span><i class="tiny angle left icon"></i>\f1f9<i class="tiny angle right icon"></i></span></div></li><li data-icon="at"><i class="at icon"></i><div>at<span><i class="tiny angle left icon"></i>\f1fa<i class="tiny angle right icon"></i></span></div></li><li data-icon="eyedropper"><i class="eyedropper icon"></i><div>eyedropper<span><i class="tiny angle left icon"></i>\f1fb<i class="tiny angle right icon"></i></span></div></li><li data-icon="paint brush"><i class="paint brush icon"></i><div>paint brush<span><i class="tiny angle left icon"></i>\f1fc<i class="tiny angle right icon"></i></span></div></li><li data-icon="heartbeat"><i class="heartbeat icon"></i><div>heartbeat<span><i class="tiny angle left icon"></i>\f21e<i class="tiny angle right icon"></i></span></div></li><li data-icon="download"><i class="download icon"></i><div>download<span><i class="tiny angle left icon"></i>\f019<i class="tiny angle right icon"></i></span></div></li><li data-icon="repeat"><i class="repeat icon"></i><div>repeat<span><i class="tiny angle left icon"></i>\f01e<i class="tiny angle right icon"></i></span></div></li><li data-icon="refresh"><i class="refresh icon"></i><div>refresh<span><i class="tiny angle left icon"></i>\f021<i class="tiny angle right icon"></i></span></div></li><li data-icon="lock"><i class="lock icon"></i><div>lock<span><i class="tiny angle left icon"></i>\f023<i class="tiny angle right icon"></i></span></div></li><li data-icon="bookmark"><i class="bookmark icon"></i><div>bookmark<span><i class="tiny angle left icon"></i>\f02e<i class="tiny angle right icon"></i></span></div></li><li data-icon="print"><i class="print icon"></i><div>print<span><i class="tiny angle left icon"></i>\f02f<i class="tiny angle right icon"></i></span></div></li><li data-icon="write"><i class="write icon"></i><div>write<span><i class="tiny angle left icon"></i>\f040<i class="tiny angle right icon"></i></span></div></li><li data-icon="theme"><i class="theme icon"></i><div>theme<span><i class="tiny angle left icon"></i>\f043<i class="tiny angle right icon"></i></span></div></li><li data-icon="adjust"><i class="adjust icon"></i><div>adjust<span><i class="tiny angle left icon"></i>\f042<i class="tiny angle right icon"></i></span></div></li><li data-icon="edit"><i class="edit icon"></i><div>edit<span><i class="tiny angle left icon"></i>\f044<i class="tiny angle right icon"></i></span></div></li><li data-icon="external share"><i class="external share icon"></i><div>external share<span><i class="tiny angle left icon"></i>\f045<i class="tiny angle right icon"></i></span></div></li><li data-icon="ban"><i class="ban icon"></i><div>ban<span><i class="tiny angle left icon"></i>\f05e<i class="tiny angle right icon"></i></span></div></li><li data-icon="mail forward"><i class="mail forward icon"></i><div>mail forward<span><i class="tiny angle left icon"></i>\f064<i class="tiny angle right icon"></i></span></div></li><li data-icon="share"><i class="share icon"></i><div>share<span><i class="tiny angle left icon"></i>\f064<i class="tiny angle right icon"></i></span></div></li><li data-icon="expand"><i class="expand icon"></i><div>expand<span><i class="tiny angle left icon"></i>\f065<i class="tiny angle right icon"></i></span></div></li><li data-icon="compress"><i class="compress icon"></i><div>compress<span><i class="tiny angle left icon"></i>\f066<i class="tiny angle right icon"></i></span></div></li><li data-icon="unhide"><i class="unhide icon"></i><div>unhide<span><i class="tiny angle left icon"></i>\f06e<i class="tiny angle right icon"></i></span></div></li><li data-icon="hide"><i class="hide icon"></i><div>hide<span><i class="tiny angle left icon"></i>\f070<i class="tiny angle right icon"></i></span></div></li><li data-icon="random"><i class="random icon"></i><div>random<span><i class="tiny angle left icon"></i>\f074<i class="tiny angle right icon"></i></span></div></li><li data-icon="retweet"><i class="retweet icon"></i><div>retweet<span><i class="tiny angle left icon"></i>\f079<i class="tiny angle right icon"></i></span></div></li><li data-icon="sign out"><i class="sign out icon"></i><div>sign out<span><i class="tiny angle left icon"></i>\f08b<i class="tiny angle right icon"></i></span></div></li><li data-icon="pin"><i class="pin icon"></i><div>pin<span><i class="tiny angle left icon"></i>\f08d<i class="tiny angle right icon"></i></span></div></li><li data-icon="sign in"><i class="sign in icon"></i><div>sign in<span><i class="tiny angle left icon"></i>\f090<i class="tiny angle right icon"></i></span></div></li><li data-icon="upload"><i class="upload icon"></i><div>upload<span><i class="tiny angle left icon"></i>\f093<i class="tiny angle right icon"></i></span></div></li><li data-icon="call"><i class="call icon"></i><div>call<span><i class="tiny angle left icon"></i>\f095<i class="tiny angle right icon"></i></span></div></li><li data-icon="call square"><i class="call square icon"></i><div>call square<span><i class="tiny angle left icon"></i>\f098<i class="tiny angle right icon"></i></span></div></li><li data-icon="remove bookmark"><i class="remove bookmark icon"></i><div>remove bookmark<span><i class="tiny angle left icon"></i>\f097<i class="tiny angle right icon"></i></span></div></li><li data-icon="unlock"><i class="unlock icon"></i><div>unlock<span><i class="tiny angle left icon"></i>\f09c<i class="tiny angle right icon"></i></span></div></li><li data-icon="configure"><i class="configure icon"></i><div>configure<span><i class="tiny angle left icon"></i>\f0ad<i class="tiny angle right icon"></i></span></div></li><li data-icon="filter"><i class="filter icon"></i><div>filter<span><i class="tiny angle left icon"></i>\f0b0<i class="tiny angle right icon"></i></span></div></li><li data-icon="wizard"><i class="wizard icon"></i><div>wizard<span><i class="tiny angle left icon"></i>\f0d0<i class="tiny angle right icon"></i></span></div></li><li data-icon="undo"><i class="undo icon"></i><div>undo<span><i class="tiny angle left icon"></i>\f0e2<i class="tiny angle right icon"></i></span></div></li><li data-icon="exchange"><i class="exchange icon"></i><div>exchange<span><i class="tiny angle left icon"></i>\f0ec<i class="tiny angle right icon"></i></span></div></li><li data-icon="cloud download"><i class="cloud download icon"></i><div>cloud download<span><i class="tiny angle left icon"></i>\f0ed<i class="tiny angle right icon"></i></span></div></li><li data-icon="cloud upload"><i class="cloud upload icon"></i><div>cloud upload<span><i class="tiny angle left icon"></i>\f0ee<i class="tiny angle right icon"></i></span></div></li><li data-icon="reply"><i class="reply icon"></i><div>reply<span><i class="tiny angle left icon"></i>\f112<i class="tiny angle right icon"></i></span></div></li><li data-icon="reply all"><i class="reply all icon"></i><div>reply all<span><i class="tiny angle left icon"></i>\f122<i class="tiny angle right icon"></i></span></div></li><li data-icon="erase"><i class="erase icon"></i><div>erase<span><i class="tiny angle left icon"></i>\f12d<i class="tiny angle right icon"></i></span></div></li><li data-icon="unlock alternate"><i class="unlock alternate icon"></i><div>unlock alternate<span><i class="tiny angle left icon"></i>\f13e<i class="tiny angle right icon"></i></span></div></li><li data-icon="archive"><i class="archive icon"></i><div>archive<span><i class="tiny angle left icon"></i>\f187<i class="tiny angle right icon"></i></span></div></li><li data-icon="translate"><i class="translate icon"></i><div>translate<span><i class="tiny angle left icon"></i>\f1ab<i class="tiny angle right icon"></i></span></div></li><li data-icon="recycle"><i class="recycle icon"></i><div>recycle<span><i class="tiny angle left icon"></i>\f1b8<i class="tiny angle right icon"></i></span></div></li><li data-icon="send"><i class="send icon"></i><div>send<span><i class="tiny angle left icon"></i>\f1d8<i class="tiny angle right icon"></i></span></div></li><li data-icon="send outline"><i class="send outline icon"></i><div>send outline<span><i class="tiny angle left icon"></i>\f1d9<i class="tiny angle right icon"></i></span></div></li><li data-icon="share alternate"><i class="share alternate icon"></i><div>share alternate<span><i class="tiny angle left icon"></i>\f1e0<i class="tiny angle right icon"></i></span></div></li><li data-icon="share alternate square"><i class="share alternate square icon"></i><div>share alternate square<span><i class="tiny angle left icon"></i>\f1e1<i class="tiny angle right icon"></i></span></div></li><li data-icon="wait"><i class="wait icon"></i><div>wait<span><i class="tiny angle left icon"></i>\f017<i class="tiny angle right icon"></i></span></div></li><li data-icon="write square"><i class="write square icon"></i><div>write square<span><i class="tiny angle left icon"></i>\f14b<i class="tiny angle right icon"></i></span></div></li><li data-icon="share square"><i class="share square icon"></i><div>share square<span><i class="tiny angle left icon"></i>\f14d<i class="tiny angle right icon"></i></span></div></li><li data-icon="add to cart"><i class="add to cart icon"></i><div>add to cart<span><i class="tiny angle left icon"></i>\f217<i class="tiny angle right icon"></i></span></div></li><li data-icon="in cart"><i class="in cart icon"></i><div>in cart<span><i class="tiny angle left icon"></i>\f218<i class="tiny angle right icon"></i></span></div></li><li data-icon="add user"><i class="add user icon"></i><div>add user<span><i class="tiny angle left icon"></i>\f234<i class="tiny angle right icon"></i></span></div></li><li data-icon="remove user"><i class="remove user icon"></i><div>remove user<span><i class="tiny angle left icon"></i>\f235<i class="tiny angle right icon"></i></span></div></li><li data-icon="help circle"><i class="help circle icon"></i><div>help circle<span><i class="tiny angle left icon"></i>\f059<i class="tiny angle right icon"></i></span></div></li><li data-icon="info circle"><i class="info circle icon"></i><div>info circle<span><i class="tiny angle left icon"></i>\f05a<i class="tiny angle right icon"></i></span></div></li><li data-icon="warning"><i class="warning icon"></i><div>warning<span><i class="tiny angle left icon"></i>\f12a<i class="tiny angle right icon"></i></span></div></li><li data-icon="warning circle"><i class="warning circle icon"></i><div>warning circle<span><i class="tiny angle left icon"></i>\f06a<i class="tiny angle right icon"></i></span></div></li><li data-icon="warning sign"><i class="warning sign icon"></i><div>warning sign<span><i class="tiny angle left icon"></i>\f071<i class="tiny angle right icon"></i></span></div></li><li data-icon="help"><i class="help icon"></i><div>help<span><i class="tiny angle left icon"></i>\f128<i class="tiny angle right icon"></i></span></div></li><li data-icon="info"><i class="info icon"></i><div>info<span><i class="tiny angle left icon"></i>\f129<i class="tiny angle right icon"></i></span></div></li><li data-icon="announcement"><i class="announcement icon"></i><div>announcement<span><i class="tiny angle left icon"></i>\f0a1<i class="tiny angle right icon"></i></span></div></li><li data-icon="birthday"><i class="birthday icon"></i><div>birthday<span><i class="tiny angle left icon"></i>\f1fd<i class="tiny angle right icon"></i></span></div></li><li data-icon="users"><i class="users icon"></i><div>users<span><i class="tiny angle left icon"></i>\f0c0<i class="tiny angle right icon"></i></span></div></li><li data-icon="doctor"><i class="doctor icon"></i><div>doctor<span><i class="tiny angle left icon"></i>\f0f0<i class="tiny angle right icon"></i></span></div></li><li data-icon="child"><i class="child icon"></i><div>child<span><i class="tiny angle left icon"></i>\f1ae<i class="tiny angle right icon"></i></span></div></li><li data-icon="user"><i class="user icon"></i><div>user<span><i class="tiny angle left icon"></i>\f007<i class="tiny angle right icon"></i></span></div></li><li data-icon="handicap"><i class="handicap icon"></i><div>handicap<span><i class="tiny angle left icon"></i>\f193<i class="tiny angle right icon"></i></span></div></li><li data-icon="student"><i class="student icon"></i><div>student<span><i class="tiny angle left icon"></i>\f19d<i class="tiny angle right icon"></i></span></div></li><li data-icon="spy"><i class="spy icon"></i><div>spy<span><i class="tiny angle left icon"></i>\f21b<i class="tiny angle right icon"></i></span></div></li><li data-icon="female"><i class="female icon"></i><div>female<span><i class="tiny angle left icon"></i>\f182<i class="tiny angle right icon"></i></span></div></li><li data-icon="male"><i class="male icon"></i><div>male<span><i class="tiny angle left icon"></i>\f183<i class="tiny angle right icon"></i></span></div></li><li data-icon="woman"><i class="woman icon"></i><div>woman<span><i class="tiny angle left icon"></i>\f221<i class="tiny angle right icon"></i></span></div></li><li data-icon="man"><i class="man icon"></i><div>man<span><i class="tiny angle left icon"></i>\f222<i class="tiny angle right icon"></i></span></div></li><li data-icon="non binary transgender"><i class="non binary transgender icon"></i><div>non binary transgender<span><i class="tiny angle left icon"></i>\f223<i class="tiny angle right icon"></i></span></div></li><li data-icon="intergender"><i class="intergender icon"></i><div>intergender<span><i class="tiny angle left icon"></i>\f224<i class="tiny angle right icon"></i></span></div></li><li data-icon="transgender"><i class="transgender icon"></i><div>transgender<span><i class="tiny angle left icon"></i>\f225<i class="tiny angle right icon"></i></span></div></li><li data-icon="lesbian"><i class="lesbian icon"></i><div>lesbian<span><i class="tiny angle left icon"></i>\f226<i class="tiny angle right icon"></i></span></div></li><li data-icon="gay"><i class="gay icon"></i><div>gay<span><i class="tiny angle left icon"></i>\f227<i class="tiny angle right icon"></i></span></div></li><li data-icon="heterosexual"><i class="heterosexual icon"></i><div>heterosexual<span><i class="tiny angle left icon"></i>\f228<i class="tiny angle right icon"></i></span></div></li><li data-icon="other gender"><i class="other gender icon"></i><div>other gender<span><i class="tiny angle left icon"></i>\f229<i class="tiny angle right icon"></i></span></div></li><li data-icon="other gender vertical"><i class="other gender vertical icon"></i><div>other gender vertical<span><i class="tiny angle left icon"></i>\f22a<i class="tiny angle right icon"></i></span></div></li><li data-icon="other gender horizontal"><i class="other gender horizontal icon"></i><div>other gender horizontal<span><i class="tiny angle left icon"></i>\f22b<i class="tiny angle right icon"></i></span></div></li><li data-icon="neuter"><i class="neuter icon"></i><div>neuter<span><i class="tiny angle left icon"></i>\f22c<i class="tiny angle right icon"></i></span></div></li><li data-icon="grid layout"><i class="grid layout icon"></i><div>grid layout<span><i class="tiny angle left icon"></i>\f00a<i class="tiny angle right icon"></i></span></div></li><li data-icon="list layout"><i class="list layout icon"></i><div>list layout<span><i class="tiny angle left icon"></i>\f00b<i class="tiny angle right icon"></i></span></div></li><li data-icon="block layout"><i class="block layout icon"></i><div>block layout<span><i class="tiny angle left icon"></i>\f009<i class="tiny angle right icon"></i></span></div></li><li data-icon="zoom"><i class="zoom icon"></i><div>zoom<span><i class="tiny angle left icon"></i>\f00e<i class="tiny angle right icon"></i></span></div></li><li data-icon="zoom out"><i class="zoom out icon"></i><div>zoom out<span><i class="tiny angle left icon"></i>\f010<i class="tiny angle right icon"></i></span></div></li><li data-icon="resize vertical"><i class="resize vertical icon"></i><div>resize vertical<span><i class="tiny angle left icon"></i>\f07d<i class="tiny angle right icon"></i></span></div></li><li data-icon="resize horizontal"><i class="resize horizontal icon"></i><div>resize horizontal<span><i class="tiny angle left icon"></i>\f07e<i class="tiny angle right icon"></i></span></div></li><li data-icon="maximize"><i class="maximize icon"></i><div>maximize<span><i class="tiny angle left icon"></i>\f0b2<i class="tiny angle right icon"></i></span></div></li><li data-icon="crop"><i class="crop icon"></i><div>crop<span><i class="tiny angle left icon"></i>\f125<i class="tiny angle right icon"></i></span></div></li><li data-icon="cocktail"><i class="cocktail icon"></i><div>cocktail<span><i class="tiny angle left icon"></i>\f000<i class="tiny angle right icon"></i></span></div></li><li data-icon="road"><i class="road icon"></i><div>road<span><i class="tiny angle left icon"></i>\f018<i class="tiny angle right icon"></i></span></div></li><li data-icon="flag"><i class="flag icon"></i><div>flag<span><i class="tiny angle left icon"></i>\f024<i class="tiny angle right icon"></i></span></div></li><li data-icon="book"><i class="book icon"></i><div>book<span><i class="tiny angle left icon"></i>\f02d<i class="tiny angle right icon"></i></span></div></li><li data-icon="gift"><i class="gift icon"></i><div>gift<span><i class="tiny angle left icon"></i>\f06b<i class="tiny angle right icon"></i></span></div></li><li data-icon="leaf"><i class="leaf icon"></i><div>leaf<span><i class="tiny angle left icon"></i>\f06c<i class="tiny angle right icon"></i></span></div></li><li data-icon="fire"><i class="fire icon"></i><div>fire<span><i class="tiny angle left icon"></i>\f06d<i class="tiny angle right icon"></i></span></div></li><li data-icon="plane"><i class="plane icon"></i><div>plane<span><i class="tiny angle left icon"></i>\f072<i class="tiny angle right icon"></i></span></div></li><li data-icon="magnet"><i class="magnet icon"></i><div>magnet<span><i class="tiny angle left icon"></i>\f076<i class="tiny angle right icon"></i></span></div></li><li data-icon="legal"><i class="legal icon"></i><div>legal<span><i class="tiny angle left icon"></i>\f0e3<i class="tiny angle right icon"></i></span></div></li><li data-icon="lemon"><i class="lemon icon"></i><div>lemon<span><i class="tiny angle left icon"></i>\f094<i class="tiny angle right icon"></i></span></div></li><li data-icon="world"><i class="world icon"></i><div>world<span><i class="tiny angle left icon"></i>\f0ac<i class="tiny angle right icon"></i></span></div></li><li data-icon="travel"><i class="travel icon"></i><div>travel<span><i class="tiny angle left icon"></i>\f0b1<i class="tiny angle right icon"></i></span></div></li><li data-icon="shipping"><i class="shipping icon"></i><div>shipping<span><i class="tiny angle left icon"></i>\f0d1<i class="tiny angle right icon"></i></span></div></li><li data-icon="money"><i class="money icon"></i><div>money<span><i class="tiny angle left icon"></i>\f0d6<i class="tiny angle right icon"></i></span></div></li><li data-icon="lightning"><i class="lightning icon"></i><div>lightning<span><i class="tiny angle left icon"></i>\f0e7<i class="tiny angle right icon"></i></span></div></li><li data-icon="rain"><i class="rain icon"></i><div>rain<span><i class="tiny angle left icon"></i>\f0e9<i class="tiny angle right icon"></i></span></div></li><li data-icon="treatment"><i class="treatment icon"></i><div>treatment<span><i class="tiny angle left icon"></i>\f0f1<i class="tiny angle right icon"></i></span></div></li><li data-icon="suitcase"><i class="suitcase icon"></i><div>suitcase<span><i class="tiny angle left icon"></i>\f0f2<i class="tiny angle right icon"></i></span></div></li><li data-icon="bar"><i class="bar icon"></i><div>bar<span><i class="tiny angle left icon"></i>\f0fc<i class="tiny angle right icon"></i></span></div></li><li data-icon="flag outline"><i class="flag outline icon"></i><div>flag outline<span><i class="tiny angle left icon"></i>\f11d<i class="tiny angle right icon"></i></span></div></li><li data-icon="flag checkered"><i class="flag checkered icon"></i><div>flag checkered<span><i class="tiny angle left icon"></i>\f11e<i class="tiny angle right icon"></i></span></div></li><li data-icon="puzzle"><i class="puzzle icon"></i><div>puzzle<span><i class="tiny angle left icon"></i>\f12e<i class="tiny angle right icon"></i></span></div></li><li data-icon="fire extinguisher"><i class="fire extinguisher icon"></i><div>fire extinguisher<span><i class="tiny angle left icon"></i>\f134<i class="tiny angle right icon"></i></span></div></li><li data-icon="rocket"><i class="rocket icon"></i><div>rocket<span><i class="tiny angle left icon"></i>\f135<i class="tiny angle right icon"></i></span></div></li><li data-icon="anchor"><i class="anchor icon"></i><div>anchor<span><i class="tiny angle left icon"></i>\f13d<i class="tiny angle right icon"></i></span></div></li><li data-icon="bullseye"><i class="bullseye icon"></i><div>bullseye<span><i class="tiny angle left icon"></i>\f140<i class="tiny angle right icon"></i></span></div></li><li data-icon="sun"><i class="sun icon"></i><div>sun<span><i class="tiny angle left icon"></i>\f185<i class="tiny angle right icon"></i></span></div></li><li data-icon="moon"><i class="moon icon"></i><div>moon<span><i class="tiny angle left icon"></i>\f186<i class="tiny angle right icon"></i></span></div></li><li data-icon="fax"><i class="fax icon"></i><div>fax<span><i class="tiny angle left icon"></i>\f1ac<i class="tiny angle right icon"></i></span></div></li><li data-icon="life ring"><i class="life ring icon"></i><div>life ring<span><i class="tiny angle left icon"></i>\f1cd<i class="tiny angle right icon"></i></span></div></li><li data-icon="bomb"><i class="bomb icon"></i><div>bomb<span><i class="tiny angle left icon"></i>\f1e2<i class="tiny angle right icon"></i></span></div></li><li data-icon="soccer"><i class="soccer icon"></i><div>soccer<span><i class="tiny angle left icon"></i>\f1e3<i class="tiny angle right icon"></i></span></div></li><li data-icon="calculator"><i class="calculator icon"></i><div>calculator<span><i class="tiny angle left icon"></i>\f1ec<i class="tiny angle right icon"></i></span></div></li><li data-icon="diamond"><i class="diamond icon"></i><div>diamond<span><i class="tiny angle left icon"></i>\f219<i class="tiny angle right icon"></i></span></div></li><li data-icon="crosshairs"><i class="crosshairs icon"></i><div>crosshairs<span><i class="tiny angle left icon"></i>\f05b<i class="tiny angle right icon"></i></span></div></li><li data-icon="asterisk"><i class="asterisk icon"></i><div>asterisk<span><i class="tiny angle left icon"></i>\f069<i class="tiny angle right icon"></i></span></div></li><li data-icon="certificate"><i class="certificate icon"></i><div>certificate<span><i class="tiny angle left icon"></i>\f0a3<i class="tiny angle right icon"></i></span></div></li><li data-icon="circle"><i class="circle icon"></i><div>circle<span><i class="tiny angle left icon"></i>\f111<i class="tiny angle right icon"></i></span></div></li><li data-icon="quote left"><i class="quote left icon"></i><div>quote left<span><i class="tiny angle left icon"></i>\f10d<i class="tiny angle right icon"></i></span></div></li><li data-icon="quote right"><i class="quote right icon"></i><div>quote right<span><i class="tiny angle left icon"></i>\f10e<i class="tiny angle right icon"></i></span></div></li><li data-icon="ellipsis horizontal"><i class="ellipsis horizontal icon"></i><div>ellipsis horizontal<span><i class="tiny angle left icon"></i>\f141<i class="tiny angle right icon"></i></span></div></li><li data-icon="ellipsis vertical"><i class="ellipsis vertical icon"></i><div>ellipsis vertical<span><i class="tiny angle left icon"></i>\f142<i class="tiny angle right icon"></i></span></div></li><li data-icon="cube"><i class="cube icon"></i><div>cube<span><i class="tiny angle left icon"></i>\f1b2<i class="tiny angle right icon"></i></span></div></li><li data-icon="cubes"><i class="cubes icon"></i><div>cubes<span><i class="tiny angle left icon"></i>\f1b3<i class="tiny angle right icon"></i></span></div></li><li data-icon="circle notched"><i class="circle notched icon"></i><div>circle notched<span><i class="tiny angle left icon"></i>\f1ce<i class="tiny angle right icon"></i></span></div></li><li data-icon="circle thin"><i class="circle thin icon"></i><div>circle thin<span><i class="tiny angle left icon"></i>\f1db<i class="tiny angle right icon"></i></span></div></li><li data-icon="square outline"><i class="square outline icon"></i><div>square outline<span><i class="tiny angle left icon"></i>\f096<i class="tiny angle right icon"></i></span></div></li><li data-icon="square"><i class="square icon"></i><div>square<span><i class="tiny angle left icon"></i>\f0c8<i class="tiny angle right icon"></i></span></div></li><li data-icon="checkmark"><i class="checkmark icon"></i><div>checkmark<span><i class="tiny angle left icon"></i>\f00c<i class="tiny angle right icon"></i></span></div></li><li data-icon="remove"><i class="remove icon"></i><div>remove<span><i class="tiny angle left icon"></i>\f00d<i class="tiny angle right icon"></i></span></div></li><li data-icon="checkmark box"><i class="checkmark box icon"></i><div>checkmark box<span><i class="tiny angle left icon"></i>\f046<i class="tiny angle right icon"></i></span></div></li><li data-icon="move"><i class="move icon"></i><div>move<span><i class="tiny angle left icon"></i>\f047<i class="tiny angle right icon"></i></span></div></li><li data-icon="add circle"><i class="add circle icon"></i><div>add circle<span><i class="tiny angle left icon"></i>\f055<i class="tiny angle right icon"></i></span></div></li><li data-icon="minus circle"><i class="minus circle icon"></i><div>minus circle<span><i class="tiny angle left icon"></i>\f056<i class="tiny angle right icon"></i></span></div></li><li data-icon="remove circle"><i class="remove circle icon"></i><div>remove circle<span><i class="tiny angle left icon"></i>\f057<i class="tiny angle right icon"></i></span></div></li><li data-icon="check circle"><i class="check circle icon"></i><div>check circle<span><i class="tiny angle left icon"></i>\f058<i class="tiny angle right icon"></i></span></div></li><li data-icon="remove circle outline"><i class="remove circle outline icon"></i><div>remove circle outline<span><i class="tiny angle left icon"></i>\f05c<i class="tiny angle right icon"></i></span></div></li><li data-icon="check circle outline"><i class="check circle outline icon"></i><div>check circle outline<span><i class="tiny angle left icon"></i>\f05d<i class="tiny angle right icon"></i></span></div></li><li data-icon="plus"><i class="plus icon"></i><div>plus<span><i class="tiny angle left icon"></i>\f067<i class="tiny angle right icon"></i></span></div></li><li data-icon="minus"><i class="minus icon"></i><div>minus<span><i class="tiny angle left icon"></i>\f068<i class="tiny angle right icon"></i></span></div></li><li data-icon="add square"><i class="add square icon"></i><div>add square<span><i class="tiny angle left icon"></i>\f0fe<i class="tiny angle right icon"></i></span></div></li><li data-icon="radio"><i class="radio icon"></i><div>radio<span><i class="tiny angle left icon"></i>\f10c<i class="tiny angle right icon"></i></span></div></li><li data-icon="selected radio"><i class="selected radio icon"></i><div>selected radio<span><i class="tiny angle left icon"></i>\f192<i class="tiny angle right icon"></i></span></div></li><li data-icon="minus square"><i class="minus square icon"></i><div>minus square<span><i class="tiny angle left icon"></i>\f146<i class="tiny angle right icon"></i></span></div></li><li data-icon="minus square outline"><i class="minus square outline icon"></i><div>minus square outline<span><i class="tiny angle left icon"></i>\f147<i class="tiny angle right icon"></i></span></div></li><li data-icon="check square"><i class="check square icon"></i><div>check square<span><i class="tiny angle left icon"></i>\f14a<i class="tiny angle right icon"></i></span></div></li><li data-icon="plus square outline"><i class="plus square outline icon"></i><div>plus square outline<span><i class="tiny angle left icon"></i>\f196<i class="tiny angle right icon"></i></span></div></li><li data-icon="toggle off"><i class="toggle off icon"></i><div>toggle off<span><i class="tiny angle left icon"></i>\f204<i class="tiny angle right icon"></i></span></div></li><li data-icon="toggle on"><i class="toggle on icon"></i><div>toggle on<span><i class="tiny angle left icon"></i>\f205<i class="tiny angle right icon"></i></span></div></li><li data-icon="film"><i class="film icon"></i><div>film<span><i class="tiny angle left icon"></i>\f008<i class="tiny angle right icon"></i></span></div></li><li data-icon="sound"><i class="sound icon"></i><div>sound<span><i class="tiny angle left icon"></i>\f025<i class="tiny angle right icon"></i></span></div></li><li data-icon="photo"><i class="photo icon"></i><div>photo<span><i class="tiny angle left icon"></i>\f030<i class="tiny angle right icon"></i></span></div></li><li data-icon="bar chart"><i class="bar chart icon"></i><div>bar chart<span><i class="tiny angle left icon"></i>\f080<i class="tiny angle right icon"></i></span></div></li><li data-icon="camera retro"><i class="camera retro icon"></i><div>camera retro<span><i class="tiny angle left icon"></i>\f083<i class="tiny angle right icon"></i></span></div></li><li data-icon="newspaper"><i class="newspaper icon"></i><div>newspaper<span><i class="tiny angle left icon"></i>\f1ea<i class="tiny angle right icon"></i></span></div></li><li data-icon="area chart"><i class="area chart icon"></i><div>area chart<span><i class="tiny angle left icon"></i>\f1fe<i class="tiny angle right icon"></i></span></div></li><li data-icon="pie chart"><i class="pie chart icon"></i><div>pie chart<span><i class="tiny angle left icon"></i>\f200<i class="tiny angle right icon"></i></span></div></li><li data-icon="line chart"><i class="line chart icon"></i><div>line chart<span><i class="tiny angle left icon"></i>\f201<i class="tiny angle right icon"></i></span></div></li><li data-icon="arrow circle outline down"><i class="arrow circle outline down icon"></i><div>arrow circle outline down<span><i class="tiny angle left icon"></i>\f01a<i class="tiny angle right icon"></i></span></div></li><li data-icon="arrow circle outline up"><i class="arrow circle outline up icon"></i><div>arrow circle outline up<span><i class="tiny angle left icon"></i>\f01b<i class="tiny angle right icon"></i></span></div></li><li data-icon="chevron left"><i class="chevron left icon"></i><div>chevron left<span><i class="tiny angle left icon"></i>\f053<i class="tiny angle right icon"></i></span></div></li><li data-icon="chevron right"><i class="chevron right icon"></i><div>chevron right<span><i class="tiny angle left icon"></i>\f054<i class="tiny angle right icon"></i></span></div></li><li data-icon="arrow left"><i class="arrow left icon"></i><div>arrow left<span><i class="tiny angle left icon"></i>\f060<i class="tiny angle right icon"></i></span></div></li><li data-icon="arrow right"><i class="arrow right icon"></i><div>arrow right<span><i class="tiny angle left icon"></i>\f061<i class="tiny angle right icon"></i></span></div></li><li data-icon="arrow up"><i class="arrow up icon"></i><div>arrow up<span><i class="tiny angle left icon"></i>\f062<i class="tiny angle right icon"></i></span></div></li><li data-icon="arrow down"><i class="arrow down icon"></i><div>arrow down<span><i class="tiny angle left icon"></i>\f063<i class="tiny angle right icon"></i></span></div></li><li data-icon="chevron up"><i class="chevron up icon"></i><div>chevron up<span><i class="tiny angle left icon"></i>\f077<i class="tiny angle right icon"></i></span></div></li><li data-icon="chevron down"><i class="chevron down icon"></i><div>chevron down<span><i class="tiny angle left icon"></i>\f078<i class="tiny angle right icon"></i></span></div></li><li data-icon="pointing right"><i class="pointing right icon"></i><div>pointing right<span><i class="tiny angle left icon"></i>\f0a4<i class="tiny angle right icon"></i></span></div></li><li data-icon="pointing left"><i class="pointing left icon"></i><div>pointing left<span><i class="tiny angle left icon"></i>\f0a5<i class="tiny angle right icon"></i></span></div></li><li data-icon="pointing up"><i class="pointing up icon"></i><div>pointing up<span><i class="tiny angle left icon"></i>\f0a6<i class="tiny angle right icon"></i></span></div></li><li data-icon="pointing down"><i class="pointing down icon"></i><div>pointing down<span><i class="tiny angle left icon"></i>\f0a7<i class="tiny angle right icon"></i></span></div></li><li data-icon="arrow circle left"><i class="arrow circle left icon"></i><div>arrow circle left<span><i class="tiny angle left icon"></i>\f0a8<i class="tiny angle right icon"></i></span></div></li><li data-icon="arrow circle right"><i class="arrow circle right icon"></i><div>arrow circle right<span><i class="tiny angle left icon"></i>\f0a9<i class="tiny angle right icon"></i></span></div></li><li data-icon="arrow circle up"><i class="arrow circle up icon"></i><div>arrow circle up<span><i class="tiny angle left icon"></i>\f0aa<i class="tiny angle right icon"></i></span></div></li><li data-icon="arrow circle down"><i class="arrow circle down icon"></i><div>arrow circle down<span><i class="tiny angle left icon"></i>\f0ab<i class="tiny angle right icon"></i></span></div></li><li data-icon="caret down"><i class="caret down icon"></i><div>caret down<span><i class="tiny angle left icon"></i>\f0d7<i class="tiny angle right icon"></i></span></div></li><li data-icon="caret up"><i class="caret up icon"></i><div>caret up<span><i class="tiny angle left icon"></i>\f0d8<i class="tiny angle right icon"></i></span></div></li><li data-icon="caret left"><i class="caret left icon"></i><div>caret left<span><i class="tiny angle left icon"></i>\f0d9<i class="tiny angle right icon"></i></span></div></li><li data-icon="caret right"><i class="caret right icon"></i><div>caret right<span><i class="tiny angle left icon"></i>\f0da<i class="tiny angle right icon"></i></span></div></li><li data-icon="angle double left"><i class="angle double left icon"></i><div>angle double left<span><i class="tiny angle left icon"></i>\f100<i class="tiny angle right icon"></i></span></div></li><li data-icon="angle double right"><i class="angle double right icon"></i><div>angle double right<span><i class="tiny angle left icon"></i>\f101<i class="tiny angle right icon"></i></span></div></li><li data-icon="angle double up"><i class="angle double up icon"></i><div>angle double up<span><i class="tiny angle left icon"></i>\f102<i class="tiny angle right icon"></i></span></div></li><li data-icon="angle double down"><i class="angle double down icon"></i><div>angle double down<span><i class="tiny angle left icon"></i>\f103<i class="tiny angle right icon"></i></span></div></li><li data-icon="angle left"><i class="angle left icon"></i><div>angle left<span><i class="tiny angle left icon"></i>\f104<i class="tiny angle right icon"></i></span></div></li><li data-icon="angle right"><i class="angle right icon"></i><div>angle right<span><i class="tiny angle left icon"></i>\f105<i class="tiny angle right icon"></i></span></div></li><li data-icon="angle up"><i class="angle up icon"></i><div>angle up<span><i class="tiny angle left icon"></i>\f106<i class="tiny angle right icon"></i></span></div></li><li data-icon="angle down"><i class="angle down icon"></i><div>angle down<span><i class="tiny angle left icon"></i>\f107<i class="tiny angle right icon"></i></span></div></li><li data-icon="chevron circle left"><i class="chevron circle left icon"></i><div>chevron circle left<span><i class="tiny angle left icon"></i>\f137<i class="tiny angle right icon"></i></span></div></li><li data-icon="chevron circle right"><i class="chevron circle right icon"></i><div>chevron circle right<span><i class="tiny angle left icon"></i>\f138<i class="tiny angle right icon"></i></span></div></li><li data-icon="chevron circle up"><i class="chevron circle up icon"></i><div>chevron circle up<span><i class="tiny angle left icon"></i>\f139<i class="tiny angle right icon"></i></span></div></li><li data-icon="chevron circle down"><i class="chevron circle down icon"></i><div>chevron circle down<span><i class="tiny angle left icon"></i>\f13a<i class="tiny angle right icon"></i></span></div></li><li data-icon="toggle down"><i class="toggle down icon"></i><div>toggle down<span><i class="tiny angle left icon"></i>\f150<i class="tiny angle right icon"></i></span></div></li><li data-icon="toggle up"><i class="toggle up icon"></i><div>toggle up<span><i class="tiny angle left icon"></i>\f151<i class="tiny angle right icon"></i></span></div></li><li data-icon="toggle right"><i class="toggle right icon"></i><div>toggle right<span><i class="tiny angle left icon"></i>\f152<i class="tiny angle right icon"></i></span></div></li><li data-icon="long arrow down"><i class="long arrow down icon"></i><div>long arrow down<span><i class="tiny angle left icon"></i>\f175<i class="tiny angle right icon"></i></span></div></li><li data-icon="long arrow up"><i class="long arrow up icon"></i><div>long arrow up<span><i class="tiny angle left icon"></i>\f176<i class="tiny angle right icon"></i></span></div></li><li data-icon="long arrow left"><i class="long arrow left icon"></i><div>long arrow left<span><i class="tiny angle left icon"></i>\f177<i class="tiny angle right icon"></i></span></div></li><li data-icon="long arrow right"><i class="long arrow right icon"></i><div>long arrow right<span><i class="tiny angle left icon"></i>\f178<i class="tiny angle right icon"></i></span></div></li><li data-icon="arrow circle outline right"><i class="arrow circle outline right icon"></i><div>arrow circle outline right<span><i class="tiny angle left icon"></i>\f18e<i class="tiny angle right icon"></i></span></div></li><li data-icon="arrow circle outline left"><i class="arrow circle outline left icon"></i><div>arrow circle outline left<span><i class="tiny angle left icon"></i>\f190<i class="tiny angle right icon"></i></span></div></li><li data-icon="toggle left"><i class="toggle left icon"></i><div>toggle left<span><i class="tiny angle left icon"></i>\f191<i class="tiny angle right icon"></i></span></div></li><li data-icon="power"><i class="power icon"></i><div>power<span><i class="tiny angle left icon"></i>\f011<i class="tiny angle right icon"></i></span></div></li><li data-icon="trash"><i class="trash icon"></i><div>trash<span><i class="tiny angle left icon"></i>\f1f8<i class="tiny angle right icon"></i></span></div></li><li data-icon="trash outline"><i class="trash outline icon"></i><div>trash outline<span><i class="tiny angle left icon"></i>\f014<i class="tiny angle right icon"></i></span></div></li><li data-icon="disk outline"><i class="disk outline icon"></i><div>disk outline<span><i class="tiny angle left icon"></i>\f0a0<i class="tiny angle right icon"></i></span></div></li><li data-icon="desktop"><i class="desktop icon"></i><div>desktop<span><i class="tiny angle left icon"></i>\f108<i class="tiny angle right icon"></i></span></div></li><li data-icon="laptop"><i class="laptop icon"></i><div>laptop<span><i class="tiny angle left icon"></i>\f109<i class="tiny angle right icon"></i></span></div></li><li data-icon="tablet"><i class="tablet icon"></i><div>tablet<span><i class="tiny angle left icon"></i>\f10a<i class="tiny angle right icon"></i></span></div></li><li data-icon="mobile"><i class="mobile icon"></i><div>mobile<span><i class="tiny angle left icon"></i>\f10b<i class="tiny angle right icon"></i></span></div></li><li data-icon="game"><i class="game icon"></i><div>game<span><i class="tiny angle left icon"></i>\f11b<i class="tiny angle right icon"></i></span></div></li><li data-icon="keyboard"><i class="keyboard icon"></i><div>keyboard<span><i class="tiny angle left icon"></i>\f11c<i class="tiny angle right icon"></i></span></div></li><li data-icon="plug"><i class="plug icon"></i><div>plug<span><i class="tiny angle left icon"></i>\f1e6<i class="tiny angle right icon"></i></span></div></li><li data-icon="folder"><i class="folder icon"></i><div>folder<span><i class="tiny angle left icon"></i>\f07b<i class="tiny angle right icon"></i></span></div></li><li data-icon="folder open"><i class="folder open icon"></i><div>folder open<span><i class="tiny angle left icon"></i>\f07c<i class="tiny angle right icon"></i></span></div></li><li data-icon="level up"><i class="level up icon"></i><div>level up<span><i class="tiny angle left icon"></i>\f148<i class="tiny angle right icon"></i></span></div></li><li data-icon="level down"><i class="level down icon"></i><div>level down<span><i class="tiny angle left icon"></i>\f149<i class="tiny angle right icon"></i></span></div></li><li data-icon="file"><i class="file icon"></i><div>file<span><i class="tiny angle left icon"></i>\f15b<i class="tiny angle right icon"></i></span></div></li><li data-icon="file outline"><i class="file outline icon"></i><div>file outline<span><i class="tiny angle left icon"></i>\f016<i class="tiny angle right icon"></i></span></div></li><li data-icon="file text"><i class="file text icon"></i><div>file text<span><i class="tiny angle left icon"></i>\f15c<i class="tiny angle right icon"></i></span></div></li><li data-icon="file text outline"><i class="file text outline icon"></i><div>file text outline<span><i class="tiny angle left icon"></i>\f0f6<i class="tiny angle right icon"></i></span></div></li><li data-icon="folder outline"><i class="folder outline icon"></i><div>folder outline<span><i class="tiny angle left icon"></i>\f114<i class="tiny angle right icon"></i></span></div></li><li data-icon="folder open outline"><i class="folder open outline icon"></i><div>folder open outline<span><i class="tiny angle left icon"></i>\f115<i class="tiny angle right icon"></i></span></div></li><li data-icon="file pdf outline"><i class="file pdf outline icon"></i><div>file pdf outline<span><i class="tiny angle left icon"></i>\f1c1<i class="tiny angle right icon"></i></span></div></li><li data-icon="file word outline"><i class="file word outline icon"></i><div>file word outline<span><i class="tiny angle left icon"></i>\f1c2<i class="tiny angle right icon"></i></span></div></li><li data-icon="file excel outline"><i class="file excel outline icon"></i><div>file excel outline<span><i class="tiny angle left icon"></i>\f1c3<i class="tiny angle right icon"></i></span></div></li><li data-icon="file powerpoint outline"><i class="file powerpoint outline icon"></i><div>file powerpoint outline<span><i class="tiny angle left icon"></i>\f1c4<i class="tiny angle right icon"></i></span></div></li><li data-icon="file image outline"><i class="file image outline icon"></i><div>file image outline<span><i class="tiny angle left icon"></i>\f1c5<i class="tiny angle right icon"></i></span></div></li><li data-icon="file archive outline"><i class="file archive outline icon"></i><div>file archive outline<span><i class="tiny angle left icon"></i>\f1c6<i class="tiny angle right icon"></i></span></div></li><li data-icon="file audio outline"><i class="file audio outline icon"></i><div>file audio outline<span><i class="tiny angle left icon"></i>\f1c7<i class="tiny angle right icon"></i></span></div></li><li data-icon="file video outline"><i class="file video outline icon"></i><div>file video outline<span><i class="tiny angle left icon"></i>\f1c8<i class="tiny angle right icon"></i></span></div></li><li data-icon="file code outline"><i class="file code outline icon"></i><div>file code outline<span><i class="tiny angle left icon"></i>\f1c9<i class="tiny angle right icon"></i></span></div></li><li data-icon="barcode"><i class="barcode icon"></i><div>barcode<span><i class="tiny angle left icon"></i>\f02a<i class="tiny angle right icon"></i></span></div></li><li data-icon="qrcode"><i class="qrcode icon"></i><div>qrcode<span><i class="tiny angle left icon"></i>\f029<i class="tiny angle right icon"></i></span></div></li><li data-icon="fork"><i class="fork icon"></i><div>fork<span><i class="tiny angle left icon"></i>\f126<i class="tiny angle right icon"></i></span></div></li><li data-icon="html5"><i class="html5 icon"></i><div>html5<span><i class="tiny angle left icon"></i>\f13b<i class="tiny angle right icon"></i></span></div></li><li data-icon="css3"><i class="css3 icon"></i><div>css3<span><i class="tiny angle left icon"></i>\f13c<i class="tiny angle right icon"></i></span></div></li><li data-icon="rss"><i class="rss icon"></i><div>rss<span><i class="tiny angle left icon"></i>\f09e<i class="tiny angle right icon"></i></span></div></li><li data-icon="rss square"><i class="rss square icon"></i><div>rss square<span><i class="tiny angle left icon"></i>\f143<i class="tiny angle right icon"></i></span></div></li><li data-icon="openid"><i class="openid icon"></i><div>openid<span><i class="tiny angle left icon"></i>\f19b<i class="tiny angle right icon"></i></span></div></li><li data-icon="database"><i class="database icon"></i><div>database<span><i class="tiny angle left icon"></i>\f1c0<i class="tiny angle right icon"></i></span></div></li><li data-icon="server"><i class="server icon"></i><div>server<span><i class="tiny angle left icon"></i>\f233<i class="tiny angle right icon"></i></span></div></li><li data-icon="heart"><i class="heart icon"></i><div>heart<span><i class="tiny angle left icon"></i>\f004<i class="tiny angle right icon"></i></span></div></li><li data-icon="star"><i class="star icon"></i><div>star<span><i class="tiny angle left icon"></i>\f005<i class="tiny angle right icon"></i></span></div></li><li data-icon="empty star"><i class="empty star icon"></i><div>empty star<span><i class="tiny angle left icon"></i>\f006<i class="tiny angle right icon"></i></span></div></li><li data-icon="thumbs outline up"><i class="thumbs outline up icon"></i><div>thumbs outline up<span><i class="tiny angle left icon"></i>\f087<i class="tiny angle right icon"></i></span></div></li><li data-icon="thumbs outline down"><i class="thumbs outline down icon"></i><div>thumbs outline down<span><i class="tiny angle left icon"></i>\f088<i class="tiny angle right icon"></i></span></div></li><li data-icon="star half"><i class="star half icon"></i><div>star half<span><i class="tiny angle left icon"></i>\f089<i class="tiny angle right icon"></i></span></div></li><li data-icon="empty heart"><i class="empty heart icon"></i><div>empty heart<span><i class="tiny angle left icon"></i>\f08a<i class="tiny angle right icon"></i></span></div></li><li data-icon="smile"><i class="smile icon"></i><div>smile<span><i class="tiny angle left icon"></i>\f118<i class="tiny angle right icon"></i></span></div></li><li data-icon="frown"><i class="frown icon"></i><div>frown<span><i class="tiny angle left icon"></i>\f119<i class="tiny angle right icon"></i></span></div></li><li data-icon="meh"><i class="meh icon"></i><div>meh<span><i class="tiny angle left icon"></i>\f11a<i class="tiny angle right icon"></i></span></div></li><li data-icon="star half empty"><i class="star half empty icon"></i><div>star half empty<span><i class="tiny angle left icon"></i>\f123<i class="tiny angle right icon"></i></span></div></li><li data-icon="thumbs up"><i class="thumbs up icon"></i><div>thumbs up<span><i class="tiny angle left icon"></i>\f164<i class="tiny angle right icon"></i></span></div></li><li data-icon="thumbs down"><i class="thumbs down icon"></i><div>thumbs down<span><i class="tiny angle left icon"></i>\f165<i class="tiny angle right icon"></i></span></div></li><li data-icon="music"><i class="music icon"></i><div>music<span><i class="tiny angle left icon"></i>\f001<i class="tiny angle right icon"></i></span></div></li><li data-icon="video play outline"><i class="video play outline icon"></i><div>video play outline<span><i class="tiny angle left icon"></i>\f01d<i class="tiny angle right icon"></i></span></div></li><li data-icon="volume off"><i class="volume off icon"></i><div>volume off<span><i class="tiny angle left icon"></i>\f026<i class="tiny angle right icon"></i></span></div></li><li data-icon="volume down"><i class="volume down icon"></i><div>volume down<span><i class="tiny angle left icon"></i>\f027<i class="tiny angle right icon"></i></span></div></li><li data-icon="volume up"><i class="volume up icon"></i><div>volume up<span><i class="tiny angle left icon"></i>\f028<i class="tiny angle right icon"></i></span></div></li><li data-icon="record"><i class="record icon"></i><div>record<span><i class="tiny angle left icon"></i>\f03d<i class="tiny angle right icon"></i></span></div></li><li data-icon="step backward"><i class="step backward icon"></i><div>step backward<span><i class="tiny angle left icon"></i>\f048<i class="tiny angle right icon"></i></span></div></li><li data-icon="fast backward"><i class="fast backward icon"></i><div>fast backward<span><i class="tiny angle left icon"></i>\f049<i class="tiny angle right icon"></i></span></div></li><li data-icon="backward"><i class="backward icon"></i><div>backward<span><i class="tiny angle left icon"></i>\f04a<i class="tiny angle right icon"></i></span></div></li><li data-icon="play"><i class="play icon"></i><div>play<span><i class="tiny angle left icon"></i>\f04b<i class="tiny angle right icon"></i></span></div></li><li data-icon="pause"><i class="pause icon"></i><div>pause<span><i class="tiny angle left icon"></i>\f04c<i class="tiny angle right icon"></i></span></div></li><li data-icon="stop"><i class="stop icon"></i><div>stop<span><i class="tiny angle left icon"></i>\f04d<i class="tiny angle right icon"></i></span></div></li><li data-icon="forward"><i class="forward icon"></i><div>forward<span><i class="tiny angle left icon"></i>\f04e<i class="tiny angle right icon"></i></span></div></li><li data-icon="fast forward"><i class="fast forward icon"></i><div>fast forward<span><i class="tiny angle left icon"></i>\f050<i class="tiny angle right icon"></i></span></div></li><li data-icon="step forward"><i class="step forward icon"></i><div>step forward<span><i class="tiny angle left icon"></i>\f051<i class="tiny angle right icon"></i></span></div></li><li data-icon="eject"><i class="eject icon"></i><div>eject<span><i class="tiny angle left icon"></i>\f052<i class="tiny angle right icon"></i></span></div></li><li data-icon="unmute"><i class="unmute icon"></i><div>unmute<span><i class="tiny angle left icon"></i>\f130<i class="tiny angle right icon"></i></span></div></li><li data-icon="mute"><i class="mute icon"></i><div>mute<span><i class="tiny angle left icon"></i>\f131<i class="tiny angle right icon"></i></span></div></li><li data-icon="video play"><i class="video play icon"></i><div>video play<span><i class="tiny angle left icon"></i>\f144<i class="tiny angle right icon"></i></span></div></li><li data-icon="closed captioning"><i class="closed captioning icon"></i><div>closed captioning<span><i class="tiny angle left icon"></i>\f20a<i class="tiny angle right icon"></i></span></div></li><li data-icon="marker"><i class="marker icon"></i><div>marker<span><i class="tiny angle left icon"></i>\f041<i class="tiny angle right icon"></i></span></div></li><li data-icon="coffee"><i class="coffee icon"></i><div>coffee<span><i class="tiny angle left icon"></i>\f0f4<i class="tiny angle right icon"></i></span></div></li><li data-icon="food"><i class="food icon"></i><div>food<span><i class="tiny angle left icon"></i>\f0f5<i class="tiny angle right icon"></i></span></div></li><li data-icon="building outline"><i class="building outline icon"></i><div>building outline<span><i class="tiny angle left icon"></i>\f0f7<i class="tiny angle right icon"></i></span></div></li><li data-icon="hospital"><i class="hospital icon"></i><div>hospital<span><i class="tiny angle left icon"></i>\f0f8<i class="tiny angle right icon"></i></span></div></li><li data-icon="emergency"><i class="emergency icon"></i><div>emergency<span><i class="tiny angle left icon"></i>\f0f9<i class="tiny angle right icon"></i></span></div></li><li data-icon="first aid"><i class="first aid icon"></i><div>first aid<span><i class="tiny angle left icon"></i>\f0fa<i class="tiny angle right icon"></i></span></div></li><li data-icon="military"><i class="military icon"></i><div>military<span><i class="tiny angle left icon"></i>\f0fb<i class="tiny angle right icon"></i></span></div></li><li data-icon="h"><i class="h icon"></i><div>h<span><i class="tiny angle left icon"></i>\f0fd<i class="tiny angle right icon"></i></span></div></li><li data-icon="location arrow"><i class="location arrow icon"></i><div>location arrow<span><i class="tiny angle left icon"></i>\f124<i class="tiny angle right icon"></i></span></div></li><li data-icon="space shuttle"><i class="space shuttle icon"></i><div>space shuttle<span><i class="tiny angle left icon"></i>\f197<i class="tiny angle right icon"></i></span></div></li><li data-icon="university"><i class="university icon"></i><div>university<span><i class="tiny angle left icon"></i>\f19c<i class="tiny angle right icon"></i></span></div></li><li data-icon="building"><i class="building icon"></i><div>building<span><i class="tiny angle left icon"></i>\f1ad<i class="tiny angle right icon"></i></span></div></li><li data-icon="paw"><i class="paw icon"></i><div>paw<span><i class="tiny angle left icon"></i>\f1b0<i class="tiny angle right icon"></i></span></div></li><li data-icon="spoon"><i class="spoon icon"></i><div>spoon<span><i class="tiny angle left icon"></i>\f1b1<i class="tiny angle right icon"></i></span></div></li><li data-icon="car"><i class="car icon"></i><div>car<span><i class="tiny angle left icon"></i>\f1b9<i class="tiny angle right icon"></i></span></div></li><li data-icon="taxi"><i class="taxi icon"></i><div>taxi<span><i class="tiny angle left icon"></i>\f1ba<i class="tiny angle right icon"></i></span></div></li><li data-icon="tree"><i class="tree icon"></i><div>tree<span><i class="tiny angle left icon"></i>\f1bb<i class="tiny angle right icon"></i></span></div></li><li data-icon="bicycle"><i class="bicycle icon"></i><div>bicycle<span><i class="tiny angle left icon"></i>\f206<i class="tiny angle right icon"></i></span></div></li><li data-icon="bus"><i class="bus icon"></i><div>bus<span><i class="tiny angle left icon"></i>\f207<i class="tiny angle right icon"></i></span></div></li><li data-icon="ship"><i class="ship icon"></i><div>ship<span><i class="tiny angle left icon"></i>\f21a<i class="tiny angle right icon"></i></span></div></li><li data-icon="motorcycle"><i class="motorcycle icon"></i><div>motorcycle<span><i class="tiny angle left icon"></i>\f21c<i class="tiny angle right icon"></i></span></div></li><li data-icon="street view"><i class="street view icon"></i><div>street view<span><i class="tiny angle left icon"></i>\f21d<i class="tiny angle right icon"></i></span></div></li><li data-icon="hotel"><i class="hotel icon"></i><div>hotel<span><i class="tiny angle left icon"></i>\f236<i class="tiny angle right icon"></i></span></div></li><li data-icon="train"><i class="train icon"></i><div>train<span><i class="tiny angle left icon"></i>\f238<i class="tiny angle right icon"></i></span></div></li><li data-icon="subway"><i class="subway icon"></i><div>subway<span><i class="tiny angle left icon"></i>\f239<i class="tiny angle right icon"></i></span></div></li><li data-icon="table"><i class="table icon"></i><div>table<span><i class="tiny angle left icon"></i>\f0ce<i class="tiny angle right icon"></i></span></div></li><li data-icon="columns"><i class="columns icon"></i><div>columns<span><i class="tiny angle left icon"></i>\f0db<i class="tiny angle right icon"></i></span></div></li><li data-icon="sort"><i class="sort icon"></i><div>sort<span><i class="tiny angle left icon"></i>\f0dc<i class="tiny angle right icon"></i></span></div></li><li data-icon="sort ascending"><i class="sort ascending icon"></i><div>sort ascending<span><i class="tiny angle left icon"></i>\f0de<i class="tiny angle right icon"></i></span></div></li><li data-icon="sort descending"><i class="sort descending icon"></i><div>sort descending<span><i class="tiny angle left icon"></i>\f0dd<i class="tiny angle right icon"></i></span></div></li><li data-icon="sort alphabet ascending"><i class="sort alphabet ascending icon"></i><div>sort alphabet ascending<span><i class="tiny angle left icon"></i>\f15d<i class="tiny angle right icon"></i></span></div></li><li data-icon="sort alphabet descending"><i class="sort alphabet descending icon"></i><div>sort alphabet descending<span><i class="tiny angle left icon"></i>\f15e<i class="tiny angle right icon"></i></span></div></li><li data-icon="sort content ascending"><i class="sort content ascending icon"></i><div>sort content ascending<span><i class="tiny angle left icon"></i>\f160<i class="tiny angle right icon"></i></span></div></li><li data-icon="sort content descending"><i class="sort content descending icon"></i><div>sort content descending<span><i class="tiny angle left icon"></i>\f161<i class="tiny angle right icon"></i></span></div></li><li data-icon="sort numeric ascending"><i class="sort numeric ascending icon"></i><div>sort numeric ascending<span><i class="tiny angle left icon"></i>\f162<i class="tiny angle right icon"></i></span></div></li><li data-icon="sort numeric descending"><i class="sort numeric descending icon"></i><div>sort numeric descending<span><i class="tiny angle left icon"></i>\f163<i class="tiny angle right icon"></i></span></div></li><li data-icon="font"><i class="font icon"></i><div>font<span><i class="tiny angle left icon"></i>\f031<i class="tiny angle right icon"></i></span></div></li><li data-icon="bold"><i class="bold icon"></i><div>bold<span><i class="tiny angle left icon"></i>\f032<i class="tiny angle right icon"></i></span></div></li><li data-icon="italic"><i class="italic icon"></i><div>italic<span><i class="tiny angle left icon"></i>\f033<i class="tiny angle right icon"></i></span></div></li><li data-icon="text height"><i class="text height icon"></i><div>text height<span><i class="tiny angle left icon"></i>\f034<i class="tiny angle right icon"></i></span></div></li><li data-icon="text width"><i class="text width icon"></i><div>text width<span><i class="tiny angle left icon"></i>\f035<i class="tiny angle right icon"></i></span></div></li><li data-icon="align left"><i class="align left icon"></i><div>align left<span><i class="tiny angle left icon"></i>\f036<i class="tiny angle right icon"></i></span></div></li><li data-icon="align center"><i class="align center icon"></i><div>align center<span><i class="tiny angle left icon"></i>\f037<i class="tiny angle right icon"></i></span></div></li><li data-icon="align right"><i class="align right icon"></i><div>align right<span><i class="tiny angle left icon"></i>\f038<i class="tiny angle right icon"></i></span></div></li><li data-icon="align justify"><i class="align justify icon"></i><div>align justify<span><i class="tiny angle left icon"></i>\f039<i class="tiny angle right icon"></i></span></div></li><li data-icon="list"><i class="list icon"></i><div>list<span><i class="tiny angle left icon"></i>\f03a<i class="tiny angle right icon"></i></span></div></li><li data-icon="outdent"><i class="outdent icon"></i><div>outdent<span><i class="tiny angle left icon"></i>\f03b<i class="tiny angle right icon"></i></span></div></li><li data-icon="indent"><i class="indent icon"></i><div>indent<span><i class="tiny angle left icon"></i>\f03c<i class="tiny angle right icon"></i></span></div></li><li data-icon="linkify"><i class="linkify icon"></i><div>linkify<span><i class="tiny angle left icon"></i>\f0c1<i class="tiny angle right icon"></i></span></div></li><li data-icon="cut"><i class="cut icon"></i><div>cut<span><i class="tiny angle left icon"></i>\f0c4<i class="tiny angle right icon"></i></span></div></li><li data-icon="copy"><i class="copy icon"></i><div>copy<span><i class="tiny angle left icon"></i>\f0c5<i class="tiny angle right icon"></i></span></div></li><li data-icon="attach"><i class="attach icon"></i><div>attach<span><i class="tiny angle left icon"></i>\f0c6<i class="tiny angle right icon"></i></span></div></li><li data-icon="save"><i class="save icon"></i><div>save<span><i class="tiny angle left icon"></i>\f0c7<i class="tiny angle right icon"></i></span></div></li><li data-icon="content"><i class="content icon"></i><div>content<span><i class="tiny angle left icon"></i>\f0c9<i class="tiny angle right icon"></i></span></div></li><li data-icon="unordered list"><i class="unordered list icon"></i><div>unordered list<span><i class="tiny angle left icon"></i>\f0ca<i class="tiny angle right icon"></i></span></div></li><li data-icon="ordered list"><i class="ordered list icon"></i><div>ordered list<span><i class="tiny angle left icon"></i>\f0cb<i class="tiny angle right icon"></i></span></div></li><li data-icon="strikethrough"><i class="strikethrough icon"></i><div>strikethrough<span><i class="tiny angle left icon"></i>\f0cc<i class="tiny angle right icon"></i></span></div></li><li data-icon="underline"><i class="underline icon"></i><div>underline<span><i class="tiny angle left icon"></i>\f0cd<i class="tiny angle right icon"></i></span></div></li><li data-icon="paste"><i class="paste icon"></i><div>paste<span><i class="tiny angle left icon"></i>\f0ea<i class="tiny angle right icon"></i></span></div></li><li data-icon="unlink"><i class="unlink icon"></i><div>unlink<span><i class="tiny angle left icon"></i>\f127<i class="tiny angle right icon"></i></span></div></li><li data-icon="superscript"><i class="superscript icon"></i><div>superscript<span><i class="tiny angle left icon"></i>\f12b<i class="tiny angle right icon"></i></span></div></li><li data-icon="subscript"><i class="subscript icon"></i><div>subscript<span><i class="tiny angle left icon"></i>\f12c<i class="tiny angle right icon"></i></span></div></li><li data-icon="header"><i class="header icon"></i><div>header<span><i class="tiny angle left icon"></i>\f1dc<i class="tiny angle right icon"></i></span></div></li><li data-icon="paragraph"><i class="paragraph icon"></i><div>paragraph<span><i class="tiny angle left icon"></i>\f1dd<i class="tiny angle right icon"></i></span></div></li><li data-icon="euro"><i class="euro icon"></i><div>euro<span><i class="tiny angle left icon"></i>\f153<i class="tiny angle right icon"></i></span></div></li><li data-icon="pound"><i class="pound icon"></i><div>pound<span><i class="tiny angle left icon"></i>\f154<i class="tiny angle right icon"></i></span></div></li><li data-icon="dollar"><i class="dollar icon"></i><div>dollar<span><i class="tiny angle left icon"></i>\f155<i class="tiny angle right icon"></i></span></div></li><li data-icon="rupee"><i class="rupee icon"></i><div>rupee<span><i class="tiny angle left icon"></i>\f156<i class="tiny angle right icon"></i></span></div></li><li data-icon="yen"><i class="yen icon"></i><div>yen<span><i class="tiny angle left icon"></i>\f157<i class="tiny angle right icon"></i></span></div></li><li data-icon="ruble"><i class="ruble icon"></i><div>ruble<span><i class="tiny angle left icon"></i>\f158<i class="tiny angle right icon"></i></span></div></li><li data-icon="won"><i class="won icon"></i><div>won<span><i class="tiny angle left icon"></i>\f159<i class="tiny angle right icon"></i></span></div></li><li data-icon="lira"><i class="lira icon"></i><div>lira<span><i class="tiny angle left icon"></i>\f195<i class="tiny angle right icon"></i></span></div></li><li data-icon="shekel"><i class="shekel icon"></i><div>shekel<span><i class="tiny angle left icon"></i>\f20b<i class="tiny angle right icon"></i></span></div></li><li data-icon="paypal"><i class="paypal icon"></i><div>paypal<span><i class="tiny angle left icon"></i>\f1ed<i class="tiny angle right icon"></i></span></div></li><li data-icon="paypal card"><i class="paypal card icon"></i><div>paypal card<span><i class="tiny angle left icon"></i>\f1f4<i class="tiny angle right icon"></i></span></div></li><li data-icon="google wallet"><i class="google wallet icon"></i><div>google wallet<span><i class="tiny angle left icon"></i>\f1ee<i class="tiny angle right icon"></i></span></div></li><li data-icon="visa"><i class="visa icon"></i><div>visa<span><i class="tiny angle left icon"></i>\f1f0<i class="tiny angle right icon"></i></span></div></li><li data-icon="mastercard"><i class="mastercard icon"></i><div>mastercard<span><i class="tiny angle left icon"></i>\f1f1<i class="tiny angle right icon"></i></span></div></li><li data-icon="discover"><i class="discover icon"></i><div>discover<span><i class="tiny angle left icon"></i>\f1f2<i class="tiny angle right icon"></i></span></div></li><li data-icon="american express"><i class="american express icon"></i><div>american express<span><i class="tiny angle left icon"></i>\f1f3<i class="tiny angle right icon"></i></span></div></li><li data-icon="stripe"><i class="stripe icon"></i><div>stripe<span><i class="tiny angle left icon"></i>\f1f5<i class="tiny angle right icon"></i></span></div></li><li data-icon="twitter square"><i class="twitter square icon"></i><div>twitter square<span><i class="tiny angle left icon"></i>\f081<i class="tiny angle right icon"></i></span></div></li><li data-icon="facebook square"><i class="facebook square icon"></i><div>facebook square<span><i class="tiny angle left icon"></i>\f082<i class="tiny angle right icon"></i></span></div></li><li data-icon="linkedin square"><i class="linkedin square icon"></i><div>linkedin square<span><i class="tiny angle left icon"></i>\f08c<i class="tiny angle right icon"></i></span></div></li><li data-icon="github square"><i class="github square icon"></i><div>github square<span><i class="tiny angle left icon"></i>\f092<i class="tiny angle right icon"></i></span></div></li><li data-icon="twitter"><i class="twitter icon"></i><div>twitter<span><i class="tiny angle left icon"></i>\f099<i class="tiny angle right icon"></i></span></div></li><li data-icon="facebook"><i class="facebook icon"></i><div>facebook<span><i class="tiny angle left icon"></i>\f09a<i class="tiny angle right icon"></i></span></div></li><li data-icon="github"><i class="github icon"></i><div>github<span><i class="tiny angle left icon"></i>\f09b<i class="tiny angle right icon"></i></span></div></li><li data-icon="pinterest"><i class="pinterest icon"></i><div>pinterest<span><i class="tiny angle left icon"></i>\f0d2<i class="tiny angle right icon"></i></span></div></li><li data-icon="pinterest square"><i class="pinterest square icon"></i><div>pinterest square<span><i class="tiny angle left icon"></i>\f0d3<i class="tiny angle right icon"></i></span></div></li><li data-icon="google plus square"><i class="google plus square icon"></i><div>google plus square<span><i class="tiny angle left icon"></i>\f0d4<i class="tiny angle right icon"></i></span></div></li><li data-icon="google plus"><i class="google plus icon"></i><div>google plus<span><i class="tiny angle left icon"></i>\f0d5<i class="tiny angle right icon"></i></span></div></li><li data-icon="linkedin"><i class="linkedin icon"></i><div>linkedin<span><i class="tiny angle left icon"></i>\f0e1<i class="tiny angle right icon"></i></span></div></li><li data-icon="github alternate"><i class="github alternate icon"></i><div>github alternate<span><i class="tiny angle left icon"></i>\f113<i class="tiny angle right icon"></i></span></div></li><li data-icon="maxcdn"><i class="maxcdn icon"></i><div>maxcdn<span><i class="tiny angle left icon"></i>\f136<i class="tiny angle right icon"></i></span></div></li><li data-icon="bitcoin"><i class="bitcoin icon"></i><div>bitcoin<span><i class="tiny angle left icon"></i>\f15a<i class="tiny angle right icon"></i></span></div></li><li data-icon="youtube square"><i class="youtube square icon"></i><div>youtube square<span><i class="tiny angle left icon"></i>\f166<i class="tiny angle right icon"></i></span></div></li><li data-icon="youtube"><i class="youtube icon"></i><div>youtube<span><i class="tiny angle left icon"></i>\f167<i class="tiny angle right icon"></i></span></div></li><li data-icon="xing"><i class="xing icon"></i><div>xing<span><i class="tiny angle left icon"></i>\f168<i class="tiny angle right icon"></i></span></div></li><li data-icon="xing square"><i class="xing square icon"></i><div>xing square<span><i class="tiny angle left icon"></i>\f169<i class="tiny angle right icon"></i></span></div></li><li data-icon="youtube play"><i class="youtube play icon"></i><div>youtube play<span><i class="tiny angle left icon"></i>\f16a<i class="tiny angle right icon"></i></span></div></li><li data-icon="dropbox"><i class="dropbox icon"></i><div>dropbox<span><i class="tiny angle left icon"></i>\f16b<i class="tiny angle right icon"></i></span></div></li><li data-icon="stack overflow"><i class="stack overflow icon"></i><div>stack overflow<span><i class="tiny angle left icon"></i>\f16c<i class="tiny angle right icon"></i></span></div></li><li data-icon="instagram"><i class="instagram icon"></i><div>instagram<span><i class="tiny angle left icon"></i>\f16d<i class="tiny angle right icon"></i></span></div></li><li data-icon="flickr"><i class="flickr icon"></i><div>flickr<span><i class="tiny angle left icon"></i>\f16e<i class="tiny angle right icon"></i></span></div></li><li data-icon="adn"><i class="adn icon"></i><div>adn<span><i class="tiny angle left icon"></i>\f170<i class="tiny angle right icon"></i></span></div></li><li data-icon="bitbucket"><i class="bitbucket icon"></i><div>bitbucket<span><i class="tiny angle left icon"></i>\f171<i class="tiny angle right icon"></i></span></div></li><li data-icon="bitbucket square"><i class="bitbucket square icon"></i><div>bitbucket square<span><i class="tiny angle left icon"></i>\f172<i class="tiny angle right icon"></i></span></div></li><li data-icon="tumblr"><i class="tumblr icon"></i><div>tumblr<span><i class="tiny angle left icon"></i>\f173<i class="tiny angle right icon"></i></span></div></li><li data-icon="tumblr square"><i class="tumblr square icon"></i><div>tumblr square<span><i class="tiny angle left icon"></i>\f174<i class="tiny angle right icon"></i></span></div></li><li data-icon="apple"><i class="apple icon"></i><div>apple<span><i class="tiny angle left icon"></i>\f179<i class="tiny angle right icon"></i></span></div></li><li data-icon="windows"><i class="windows icon"></i><div>windows<span><i class="tiny angle left icon"></i>\f17a<i class="tiny angle right icon"></i></span></div></li><li data-icon="android"><i class="android icon"></i><div>android<span><i class="tiny angle left icon"></i>\f17b<i class="tiny angle right icon"></i></span></div></li><li data-icon="linux"><i class="linux icon"></i><div>linux<span><i class="tiny angle left icon"></i>\f17c<i class="tiny angle right icon"></i></span></div></li><li data-icon="dribbble"><i class="dribbble icon"></i><div>dribbble<span><i class="tiny angle left icon"></i>\f17d<i class="tiny angle right icon"></i></span></div></li><li data-icon="skype"><i class="skype icon"></i><div>skype<span><i class="tiny angle left icon"></i>\f17e<i class="tiny angle right icon"></i></span></div></li><li data-icon="foursquare"><i class="foursquare icon"></i><div>foursquare<span><i class="tiny angle left icon"></i>\f180<i class="tiny angle right icon"></i></span></div></li><li data-icon="trello"><i class="trello icon"></i><div>trello<span><i class="tiny angle left icon"></i>\f181<i class="tiny angle right icon"></i></span></div></li><li data-icon="gittip"><i class="gittip icon"></i><div>gittip<span><i class="tiny angle left icon"></i>\f184<i class="tiny angle right icon"></i></span></div></li><li data-icon="vk"><i class="vk icon"></i><div>vk<span><i class="tiny angle left icon"></i>\f189<i class="tiny angle right icon"></i></span></div></li><li data-icon="weibo"><i class="weibo icon"></i><div>weibo<span><i class="tiny angle left icon"></i>\f18a<i class="tiny angle right icon"></i></span></div></li><li data-icon="renren"><i class="renren icon"></i><div>renren<span><i class="tiny angle left icon"></i>\f18b<i class="tiny angle right icon"></i></span></div></li><li data-icon="pagelines"><i class="pagelines icon"></i><div>pagelines<span><i class="tiny angle left icon"></i>\f18c<i class="tiny angle right icon"></i></span></div></li><li data-icon="stack exchange"><i class="stack exchange icon"></i><div>stack exchange<span><i class="tiny angle left icon"></i>\f18d<i class="tiny angle right icon"></i></span></div></li><li data-icon="vimeo"><i class="vimeo icon"></i><div>vimeo<span><i class="tiny angle left icon"></i>\f194<i class="tiny angle right icon"></i></span></div></li><li data-icon="slack"><i class="slack icon"></i><div>slack<span><i class="tiny angle left icon"></i>\f198<i class="tiny angle right icon"></i></span></div></li><li data-icon="wordpress"><i class="wordpress icon"></i><div>wordpress<span><i class="tiny angle left icon"></i>\f19a<i class="tiny angle right icon"></i></span></div></li><li data-icon="yahoo"><i class="yahoo icon"></i><div>yahoo<span><i class="tiny angle left icon"></i>\f19e<i class="tiny angle right icon"></i></span></div></li><li data-icon="google"><i class="google icon"></i><div>google<span><i class="tiny angle left icon"></i>\f1a0<i class="tiny angle right icon"></i></span></div></li><li data-icon="reddit"><i class="reddit icon"></i><div>reddit<span><i class="tiny angle left icon"></i>\f1a1<i class="tiny angle right icon"></i></span></div></li><li data-icon="reddit square"><i class="reddit square icon"></i><div>reddit square<span><i class="tiny angle left icon"></i>\f1a2<i class="tiny angle right icon"></i></span></div></li><li data-icon="stumbleupon circle"><i class="stumbleupon circle icon"></i><div>stumbleupon circle<span><i class="tiny angle left icon"></i>\f1a3<i class="tiny angle right icon"></i></span></div></li><li data-icon="stumbleupon"><i class="stumbleupon icon"></i><div>stumbleupon<span><i class="tiny angle left icon"></i>\f1a4<i class="tiny angle right icon"></i></span></div></li><li data-icon="delicious"><i class="delicious icon"></i><div>delicious<span><i class="tiny angle left icon"></i>\f1a5<i class="tiny angle right icon"></i></span></div></li><li data-icon="digg"><i class="digg icon"></i><div>digg<span><i class="tiny angle left icon"></i>\f1a6<i class="tiny angle right icon"></i></span></div></li><li data-icon="pied piper"><i class="pied piper icon"></i><div>pied piper<span><i class="tiny angle left icon"></i>\f1a7<i class="tiny angle right icon"></i></span></div></li><li data-icon="pied piper alternate"><i class="pied piper alternate icon"></i><div>pied piper alternate<span><i class="tiny angle left icon"></i>\f1a8<i class="tiny angle right icon"></i></span></div></li><li data-icon="drupal"><i class="drupal icon"></i><div>drupal<span><i class="tiny angle left icon"></i>\f1a9<i class="tiny angle right icon"></i></span></div></li><li data-icon="joomla"><i class="joomla icon"></i><div>joomla<span><i class="tiny angle left icon"></i>\f1aa<i class="tiny angle right icon"></i></span></div></li><li data-icon="behance"><i class="behance icon"></i><div>behance<span><i class="tiny angle left icon"></i>\f1b4<i class="tiny angle right icon"></i></span></div></li><li data-icon="behance square"><i class="behance square icon"></i><div>behance square<span><i class="tiny angle left icon"></i>\f1b5<i class="tiny angle right icon"></i></span></div></li><li data-icon="steam"><i class="steam icon"></i><div>steam<span><i class="tiny angle left icon"></i>\f1b6<i class="tiny angle right icon"></i></span></div></li><li data-icon="steam square"><i class="steam square icon"></i><div>steam square<span><i class="tiny angle left icon"></i>\f1b7<i class="tiny angle right icon"></i></span></div></li><li data-icon="spotify"><i class="spotify icon"></i><div>spotify<span><i class="tiny angle left icon"></i>\f1bc<i class="tiny angle right icon"></i></span></div></li><li data-icon="deviantart"><i class="deviantart icon"></i><div>deviantart<span><i class="tiny angle left icon"></i>\f1bd<i class="tiny angle right icon"></i></span></div></li><li data-icon="soundcloud"><i class="soundcloud icon"></i><div>soundcloud<span><i class="tiny angle left icon"></i>\f1be<i class="tiny angle right icon"></i></span></div></li><li data-icon="vine"><i class="vine icon"></i><div>vine<span><i class="tiny angle left icon"></i>\f1ca<i class="tiny angle right icon"></i></span></div></li><li data-icon="codepen"><i class="codepen icon"></i><div>codepen<span><i class="tiny angle left icon"></i>\f1cb<i class="tiny angle right icon"></i></span></div></li><li data-icon="jsfiddle"><i class="jsfiddle icon"></i><div>jsfiddle<span><i class="tiny angle left icon"></i>\f1cc<i class="tiny angle right icon"></i></span></div></li><li data-icon="rebel"><i class="rebel icon"></i><div>rebel<span><i class="tiny angle left icon"></i>\f1d0<i class="tiny angle right icon"></i></span></div></li><li data-icon="empire"><i class="empire icon"></i><div>empire<span><i class="tiny angle left icon"></i>\f1d1<i class="tiny angle right icon"></i></span></div></li><li data-icon="git square"><i class="git square icon"></i><div>git square<span><i class="tiny angle left icon"></i>\f1d2<i class="tiny angle right icon"></i></span></div></li><li data-icon="git"><i class="git icon"></i><div>git<span><i class="tiny angle left icon"></i>\f1d3<i class="tiny angle right icon"></i></span></div></li><li data-icon="hacker news"><i class="hacker news icon"></i><div>hacker news<span><i class="tiny angle left icon"></i>\f1d4<i class="tiny angle right icon"></i></span></div></li><li data-icon="tencent weibo"><i class="tencent weibo icon"></i><div>tencent weibo<span><i class="tiny angle left icon"></i>\f1d5<i class="tiny angle right icon"></i></span></div></li><li data-icon="qq"><i class="qq icon"></i><div>qq<span><i class="tiny angle left icon"></i>\f1d6<i class="tiny angle right icon"></i></span></div></li><li data-icon="wechat"><i class="wechat icon"></i><div>wechat<span><i class="tiny angle left icon"></i>\f1d7<i class="tiny angle right icon"></i></span></div></li><li data-icon="slideshare"><i class="slideshare icon"></i><div>slideshare<span><i class="tiny angle left icon"></i>\f1e7<i class="tiny angle right icon"></i></span></div></li><li data-icon="twitch"><i class="twitch icon"></i><div>twitch<span><i class="tiny angle left icon"></i>\f1e8<i class="tiny angle right icon"></i></span></div></li><li data-icon="yelp"><i class="yelp icon"></i><div>yelp<span><i class="tiny angle left icon"></i>\f1e9<i class="tiny angle right icon"></i></span></div></li><li data-icon="lastfm"><i class="lastfm icon"></i><div>lastfm<span><i class="tiny angle left icon"></i>\f202<i class="tiny angle right icon"></i></span></div></li><li data-icon="lastfm square"><i class="lastfm square icon"></i><div>lastfm square<span><i class="tiny angle left icon"></i>\f203<i class="tiny angle right icon"></i></span></div></li><li data-icon="ioxhost"><i class="ioxhost icon"></i><div>ioxhost<span><i class="tiny angle left icon"></i>\f208<i class="tiny angle right icon"></i></span></div></li><li data-icon="angellist"><i class="angellist icon"></i><div>angellist<span><i class="tiny angle left icon"></i>\f209<i class="tiny angle right icon"></i></span></div></li><li data-icon="meanpath"><i class="meanpath icon"></i><div>meanpath<span><i class="tiny angle left icon"></i>\f20c<i class="tiny angle right icon"></i></span></div></li><li data-icon="buysellads"><i class="buysellads icon"></i><div>buysellads<span><i class="tiny angle left icon"></i>\f20d<i class="tiny angle right icon"></i></span></div></li><li data-icon="connectdevelop"><i class="connectdevelop icon"></i><div>connectdevelop<span><i class="tiny angle left icon"></i>\f20e<i class="tiny angle right icon"></i></span></div></li><li data-icon="dashcube"><i class="dashcube icon"></i><div>dashcube<span><i class="tiny angle left icon"></i>\f210<i class="tiny angle right icon"></i></span></div></li><li data-icon="forumbee"><i class="forumbee icon"></i><div>forumbee<span><i class="tiny angle left icon"></i>\f211<i class="tiny angle right icon"></i></span></div></li><li data-icon="leanpub"><i class="leanpub icon"></i><div>leanpub<span><i class="tiny angle left icon"></i>\f212<i class="tiny angle right icon"></i></span></div></li><li data-icon="sellsy"><i class="sellsy icon"></i><div>sellsy<span><i class="tiny angle left icon"></i>\f213<i class="tiny angle right icon"></i></span></div></li><li data-icon="shirtsinbulk"><i class="shirtsinbulk icon"></i><div>shirtsinbulk<span><i class="tiny angle left icon"></i>\f214<i class="tiny angle right icon"></i></span></div></li><li data-icon="simplybuilt"><i class="simplybuilt icon"></i><div>simplybuilt<span><i class="tiny angle left icon"></i>\f215<i class="tiny angle right icon"></i></span></div></li><li data-icon="skyatlas"><i class="skyatlas icon"></i><div>skyatlas<span><i class="tiny angle left icon"></i>\f216<i class="tiny angle right icon"></i></span></div></li><li data-icon="whatsapp"><i class="whatsapp icon"></i><div>whatsapp<span><i class="tiny angle left icon"></i>\f232<i class="tiny angle right icon"></i></span></div></li><li data-icon="viacoin"><i class="viacoin icon"></i><div>viacoin<span><i class="tiny angle left icon"></i>\f237<i class="tiny angle right icon"></i></span></div></li><li data-icon="medium"><i class="medium icon"></i><div>medium<span><i class="tiny angle left icon"></i>\f23a<i class="tiny angle right icon"></i></span></div></li><li data-icon="like"><i class="like icon"></i><div>like<span><i class="tiny angle left icon"></i>\f004<i class="tiny angle right icon"></i></span></div></li><li data-icon="favorite"><i class="favorite icon"></i><div>favorite<span><i class="tiny angle left icon"></i>\f005<i class="tiny angle right icon"></i></span></div></li><li data-icon="video"><i class="video icon"></i><div>video<span><i class="tiny angle left icon"></i>\f008<i class="tiny angle right icon"></i></span></div></li><li data-icon="check"><i class="check icon"></i><div>check<span><i class="tiny angle left icon"></i>\f00c<i class="tiny angle right icon"></i></span></div></li><li data-icon="close"><i class="close icon"></i><div>close<span><i class="tiny angle left icon"></i>\f00d<i class="tiny angle right icon"></i></span></div></li><li data-icon="cancel"><i class="cancel icon"></i><div>cancel<span><i class="tiny angle left icon"></i>\f00d<i class="tiny angle right icon"></i></span></div></li><li data-icon="delete"><i class="delete icon"></i><div>delete<span><i class="tiny angle left icon"></i>\f00d<i class="tiny angle right icon"></i></span></div></li><li data-icon="x"><i class="x icon"></i><div>x<span><i class="tiny angle left icon"></i>\f00d<i class="tiny angle right icon"></i></span></div></li><li data-icon="user times"><i class="user times icon"></i><div>user times<span><i class="tiny angle left icon"></i>\f235<i class="tiny angle right icon"></i></span></div></li><li data-icon="user close"><i class="user close icon"></i><div>user close<span><i class="tiny angle left icon"></i>\f235<i class="tiny angle right icon"></i></span></div></li><li data-icon="user cancel"><i class="user cancel icon"></i><div>user cancel<span><i class="tiny angle left icon"></i>\f235<i class="tiny angle right icon"></i></span></div></li><li data-icon="user delete"><i class="user delete icon"></i><div>user delete<span><i class="tiny angle left icon"></i>\f235<i class="tiny angle right icon"></i></span></div></li><li data-icon="user x"><i class="user x icon"></i><div>user x<span><i class="tiny angle left icon"></i>\f235<i class="tiny angle right icon"></i></span></div></li><li data-icon="zoom in"><i class="zoom in icon"></i><div>zoom in<span><i class="tiny angle left icon"></i>\f00e<i class="tiny angle right icon"></i></span></div></li><li data-icon="magnify"><i class="magnify icon"></i><div>magnify<span><i class="tiny angle left icon"></i>\f00e<i class="tiny angle right icon"></i></span></div></li><li data-icon="shutdown"><i class="shutdown icon"></i><div>shutdown<span><i class="tiny angle left icon"></i>\f011<i class="tiny angle right icon"></i></span></div></li><li data-icon="clock"><i class="clock icon"></i><div>clock<span><i class="tiny angle left icon"></i>\f017<i class="tiny angle right icon"></i></span></div></li><li data-icon="time"><i class="time icon"></i><div>time<span><i class="tiny angle left icon"></i>\f017<i class="tiny angle right icon"></i></span></div></li><li data-icon="play circle outline"><i class="play circle outline icon"></i><div>play circle outline<span><i class="tiny angle left icon"></i>\f01d<i class="tiny angle right icon"></i></span></div></li><li data-icon="headphone"><i class="headphone icon"></i><div>headphone<span><i class="tiny angle left icon"></i>\f025<i class="tiny angle right icon"></i></span></div></li><li data-icon="camera"><i class="camera icon"></i><div>camera<span><i class="tiny angle left icon"></i>\f030<i class="tiny angle right icon"></i></span></div></li><li data-icon="video camera"><i class="video camera icon"></i><div>video camera<span><i class="tiny angle left icon"></i>\f03d<i class="tiny angle right icon"></i></span></div></li><li data-icon="picture"><i class="picture icon"></i><div>picture<span><i class="tiny angle left icon"></i>\f03e<i class="tiny angle right icon"></i></span></div></li><li data-icon="pencil"><i class="pencil icon"></i><div>pencil<span><i class="tiny angle left icon"></i>\f040<i class="tiny angle right icon"></i></span></div></li><li data-icon="compose"><i class="compose icon"></i><div>compose<span><i class="tiny angle left icon"></i>\f040<i class="tiny angle right icon"></i></span></div></li><li data-icon="point"><i class="point icon"></i><div>point<span><i class="tiny angle left icon"></i>\f041<i class="tiny angle right icon"></i></span></div></li><li data-icon="tint"><i class="tint icon"></i><div>tint<span><i class="tiny angle left icon"></i>\f043<i class="tiny angle right icon"></i></span></div></li><li data-icon="signup"><i class="signup icon"></i><div>signup<span><i class="tiny angle left icon"></i>\f044<i class="tiny angle right icon"></i></span></div></li><li data-icon="plus circle"><i class="plus circle icon"></i><div>plus circle<span><i class="tiny angle left icon"></i>\f055<i class="tiny angle right icon"></i></span></div></li><li data-icon="dont"><i class="dont icon"></i><div>dont<span><i class="tiny angle left icon"></i>\f05e<i class="tiny angle right icon"></i></span></div></li><li data-icon="minimize"><i class="minimize icon"></i><div>minimize<span><i class="tiny angle left icon"></i>\f066<i class="tiny angle right icon"></i></span></div></li><li data-icon="add"><i class="add icon"></i><div>add<span><i class="tiny angle left icon"></i>\f067<i class="tiny angle right icon"></i></span></div></li><li data-icon="eye"><i class="eye icon"></i><div>eye<span><i class="tiny angle left icon"></i>\f06e<i class="tiny angle right icon"></i></span></div></li><li data-icon="attention"><i class="attention icon"></i><div>attention<span><i class="tiny angle left icon"></i>\f06a<i class="tiny angle right icon"></i></span></div></li><li data-icon="cart"><i class="cart icon"></i><div>cart<span><i class="tiny angle left icon"></i>\f07a<i class="tiny angle right icon"></i></span></div></li><li data-icon="shuffle"><i class="shuffle icon"></i><div>shuffle<span><i class="tiny angle left icon"></i>\f074<i class="tiny angle right icon"></i></span></div></li><li data-icon="talk"><i class="talk icon"></i><div>talk<span><i class="tiny angle left icon"></i>\f075<i class="tiny angle right icon"></i></span></div></li><li data-icon="chat"><i class="chat icon"></i><div>chat<span><i class="tiny angle left icon"></i>\f075<i class="tiny angle right icon"></i></span></div></li><li data-icon="shopping cart"><i class="shopping cart icon"></i><div>shopping cart<span><i class="tiny angle left icon"></i>\f07a<i class="tiny angle right icon"></i></span></div></li><li data-icon="bar graph"><i class="bar graph icon"></i><div>bar graph<span><i class="tiny angle left icon"></i>\f080<i class="tiny angle right icon"></i></span></div></li><li data-icon="area graph"><i class="area graph icon"></i><div>area graph<span><i class="tiny angle left icon"></i>\f1fe<i class="tiny angle right icon"></i></span></div></li><li data-icon="pie graph"><i class="pie graph icon"></i><div>pie graph<span><i class="tiny angle left icon"></i>\f200<i class="tiny angle right icon"></i></span></div></li><li data-icon="line graph"><i class="line graph icon"></i><div>line graph<span><i class="tiny angle left icon"></i>\f201<i class="tiny angle right icon"></i></span></div></li><li data-icon="key"><i class="key icon"></i><div>key<span><i class="tiny angle left icon"></i>\f084<i class="tiny angle right icon"></i></span></div></li><li data-icon="cogs"><i class="cogs icon"></i><div>cogs<span><i class="tiny angle left icon"></i>\f085<i class="tiny angle right icon"></i></span></div></li><li data-icon="discussions"><i class="discussions icon"></i><div>discussions<span><i class="tiny angle left icon"></i>\f086<i class="tiny angle right icon"></i></span></div></li><li data-icon="like outline"><i class="like outline icon"></i><div>like outline<span><i class="tiny angle left icon"></i>\f087<i class="tiny angle right icon"></i></span></div></li><li data-icon="dislike outline"><i class="dislike outline icon"></i><div>dislike outline<span><i class="tiny angle left icon"></i>\f088<i class="tiny angle right icon"></i></span></div></li><li data-icon="heart outline"><i class="heart outline icon"></i><div>heart outline<span><i class="tiny angle left icon"></i>\f08a<i class="tiny angle right icon"></i></span></div></li><li data-icon="log out"><i class="log out icon"></i><div>log out<span><i class="tiny angle left icon"></i>\f08b<i class="tiny angle right icon"></i></span></div></li><li data-icon="thumb tack"><i class="thumb tack icon"></i><div>thumb tack<span><i class="tiny angle left icon"></i>\f08d<i class="tiny angle right icon"></i></span></div></li><li data-icon="winner"><i class="winner icon"></i><div>winner<span><i class="tiny angle left icon"></i>\f091<i class="tiny angle right icon"></i></span></div></li><li data-icon="bookmark outline"><i class="bookmark outline icon"></i><div>bookmark outline<span><i class="tiny angle left icon"></i>\f097<i class="tiny angle right icon"></i></span></div></li><li data-icon="phone"><i class="phone icon"></i><div>phone<span><i class="tiny angle left icon"></i>\f095<i class="tiny angle right icon"></i></span></div></li><li data-icon="phone square"><i class="phone square icon"></i><div>phone square<span><i class="tiny angle left icon"></i>\f098<i class="tiny angle right icon"></i></span></div></li><li data-icon="credit card"><i class="credit card icon"></i><div>credit card<span><i class="tiny angle left icon"></i>\f09d<i class="tiny angle right icon"></i></span></div></li><li data-icon="hdd outline"><i class="hdd outline icon"></i><div>hdd outline<span><i class="tiny angle left icon"></i>\f0a0<i class="tiny angle right icon"></i></span></div></li><li data-icon="bullhorn"><i class="bullhorn icon"></i><div>bullhorn<span><i class="tiny angle left icon"></i>\f0a1<i class="tiny angle right icon"></i></span></div></li><li data-icon="bell"><i class="bell icon"></i><div>bell<span><i class="tiny angle left icon"></i>\f0f3<i class="tiny angle right icon"></i></span></div></li><li data-icon="bell outline"><i class="bell outline icon"></i><div>bell outline<span><i class="tiny angle left icon"></i>\f0a2<i class="tiny angle right icon"></i></span></div></li><li data-icon="bell slash"><i class="bell slash icon"></i><div>bell slash<span><i class="tiny angle left icon"></i>\f1f6<i class="tiny angle right icon"></i></span></div></li><li data-icon="bell slash outline"><i class="bell slash outline icon"></i><div>bell slash outline<span><i class="tiny angle left icon"></i>\f1f7<i class="tiny angle right icon"></i></span></div></li><li data-icon="hand outline right"><i class="hand outline right icon"></i><div>hand outline right<span><i class="tiny angle left icon"></i>\f0a4<i class="tiny angle right icon"></i></span></div></li><li data-icon="hand outline left"><i class="hand outline left icon"></i><div>hand outline left<span><i class="tiny angle left icon"></i>\f0a5<i class="tiny angle right icon"></i></span></div></li><li data-icon="hand outline up"><i class="hand outline up icon"></i><div>hand outline up<span><i class="tiny angle left icon"></i>\f0a6<i class="tiny angle right icon"></i></span></div></li><li data-icon="hand outline down"><i class="hand outline down icon"></i><div>hand outline down<span><i class="tiny angle left icon"></i>\f0a7<i class="tiny angle right icon"></i></span></div></li><li data-icon="globe"><i class="globe icon"></i><div>globe<span><i class="tiny angle left icon"></i>\f0ac<i class="tiny angle right icon"></i></span></div></li><li data-icon="wrench"><i class="wrench icon"></i><div>wrench<span><i class="tiny angle left icon"></i>\f0ad<i class="tiny angle right icon"></i></span></div></li><li data-icon="briefcase"><i class="briefcase icon"></i><div>briefcase<span><i class="tiny angle left icon"></i>\f0b1<i class="tiny angle right icon"></i></span></div></li><li data-icon="group"><i class="group icon"></i><div>group<span><i class="tiny angle left icon"></i>\f0c0<i class="tiny angle right icon"></i></span></div></li><li data-icon="flask"><i class="flask icon"></i><div>flask<span><i class="tiny angle left icon"></i>\f0c3<i class="tiny angle right icon"></i></span></div></li><li data-icon="sidebar"><i class="sidebar icon"></i><div>sidebar<span><i class="tiny angle left icon"></i>\f0c9<i class="tiny angle right icon"></i></span></div></li><li data-icon="bars"><i class="bars icon"></i><div>bars<span><i class="tiny angle left icon"></i>\f0c9<i class="tiny angle right icon"></i></span></div></li><li data-icon="list ul"><i class="list ul icon"></i><div>list ul<span><i class="tiny angle left icon"></i>\f0ca<i class="tiny angle right icon"></i></span></div></li><li data-icon="list ol"><i class="list ol icon"></i><div>list ol<span><i class="tiny angle left icon"></i>\f0cb<i class="tiny angle right icon"></i></span></div></li><li data-icon="numbered list"><i class="numbered list icon"></i><div>numbered list<span><i class="tiny angle left icon"></i>\f0cb<i class="tiny angle right icon"></i></span></div></li><li data-icon="magic"><i class="magic icon"></i><div>magic<span><i class="tiny angle left icon"></i>\f0d0<i class="tiny angle right icon"></i></span></div></li><li data-icon="truck"><i class="truck icon"></i><div>truck<span><i class="tiny angle left icon"></i>\f0d1<i class="tiny angle right icon"></i></span></div></li><li data-icon="currency"><i class="currency icon"></i><div>currency<span><i class="tiny angle left icon"></i>\f0d6<i class="tiny angle right icon"></i></span></div></li><li data-icon="triangle down"><i class="triangle down icon"></i><div>triangle down<span><i class="tiny angle left icon"></i>\f0d7<i class="tiny angle right icon"></i></span></div></li><li data-icon="dropdown"><i class="dropdown icon"></i><div>dropdown<span><i class="tiny angle left icon"></i>\f0d7<i class="tiny angle right icon"></i></span></div></li><li data-icon="triangle up"><i class="triangle up icon"></i><div>triangle up<span><i class="tiny angle left icon"></i>\f0d8<i class="tiny angle right icon"></i></span></div></li><li data-icon="triangle left"><i class="triangle left icon"></i><div>triangle left<span><i class="tiny angle left icon"></i>\f0d9<i class="tiny angle right icon"></i></span></div></li><li data-icon="triangle right"><i class="triangle right icon"></i><div>triangle right<span><i class="tiny angle left icon"></i>\f0da<i class="tiny angle right icon"></i></span></div></li><li data-icon="envelope"><i class="envelope icon"></i><div>envelope<span><i class="tiny angle left icon"></i>\f0e0<i class="tiny angle right icon"></i></span></div></li><li data-icon="conversation"><i class="conversation icon"></i><div>conversation<span><i class="tiny angle left icon"></i>\f0e6<i class="tiny angle right icon"></i></span></div></li><li data-icon="umbrella"><i class="umbrella icon"></i><div>umbrella<span><i class="tiny angle left icon"></i>\f0e9<i class="tiny angle right icon"></i></span></div></li><li data-icon="clipboard"><i class="clipboard icon"></i><div>clipboard<span><i class="tiny angle left icon"></i>\f0ea<i class="tiny angle right icon"></i></span></div></li><li data-icon="lightbulb"><i class="lightbulb icon"></i><div>lightbulb<span><i class="tiny angle left icon"></i>\f0eb<i class="tiny angle right icon"></i></span></div></li><li data-icon="ambulance"><i class="ambulance icon"></i><div>ambulance<span><i class="tiny angle left icon"></i>\f0f9<i class="tiny angle right icon"></i></span></div></li><li data-icon="medkit"><i class="medkit icon"></i><div>medkit<span><i class="tiny angle left icon"></i>\f0fa<i class="tiny angle right icon"></i></span></div></li><li data-icon="fighter jet"><i class="fighter jet icon"></i><div>fighter jet<span><i class="tiny angle left icon"></i>\f0fb<i class="tiny angle right icon"></i></span></div></li><li data-icon="beer"><i class="beer icon"></i><div>beer<span><i class="tiny angle left icon"></i>\f0fc<i class="tiny angle right icon"></i></span></div></li><li data-icon="plus square"><i class="plus square icon"></i><div>plus square<span><i class="tiny angle left icon"></i>\f0fe<i class="tiny angle right icon"></i></span></div></li><li data-icon="computer"><i class="computer icon"></i><div>computer<span><i class="tiny angle left icon"></i>\f108<i class="tiny angle right icon"></i></span></div></li><li data-icon="circle outline"><i class="circle outline icon"></i><div>circle outline<span><i class="tiny angle left icon"></i>\f10c<i class="tiny angle right icon"></i></span></div></li><li data-icon="intersex"><i class="intersex icon"></i><div>intersex<span><i class="tiny angle left icon"></i>\f10c<i class="tiny angle right icon"></i></span></div></li><li data-icon="asexual"><i class="asexual icon"></i><div>asexual<span><i class="tiny angle left icon"></i>\f10c<i class="tiny angle right icon"></i></span></div></li><li data-icon="spinner"><i class="spinner icon"></i><div>spinner<span><i class="tiny angle left icon"></i>\f110<i class="tiny angle right icon"></i></span></div></li><li data-icon="gamepad"><i class="gamepad icon"></i><div>gamepad<span><i class="tiny angle left icon"></i>\f11b<i class="tiny angle right icon"></i></span></div></li><li data-icon="star half full"><i class="star half full icon"></i><div>star half full<span><i class="tiny angle left icon"></i>\f123<i class="tiny angle right icon"></i></span></div></li><li data-icon="question"><i class="question icon"></i><div>question<span><i class="tiny angle left icon"></i>\f128<i class="tiny angle right icon"></i></span></div></li><li data-icon="eraser"><i class="eraser icon"></i><div>eraser<span><i class="tiny angle left icon"></i>\f12d<i class="tiny angle right icon"></i></span></div></li><li data-icon="microphone"><i class="microphone icon"></i><div>microphone<span><i class="tiny angle left icon"></i>\f130<i class="tiny angle right icon"></i></span></div></li><li data-icon="microphone slash"><i class="microphone slash icon"></i><div>microphone slash<span><i class="tiny angle left icon"></i>\f131<i class="tiny angle right icon"></i></span></div></li><li data-icon="shield"><i class="shield icon"></i><div>shield<span><i class="tiny angle left icon"></i>\f132<i class="tiny angle right icon"></i></span></div></li><li data-icon="target"><i class="target icon"></i><div>target<span><i class="tiny angle left icon"></i>\f140<i class="tiny angle right icon"></i></span></div></li><li data-icon="play circle"><i class="play circle icon"></i><div>play circle<span><i class="tiny angle left icon"></i>\f144<i class="tiny angle right icon"></i></span></div></li><li data-icon="pencil square"><i class="pencil square icon"></i><div>pencil square<span><i class="tiny angle left icon"></i>\f14b<i class="tiny angle right icon"></i></span></div></li><li data-icon="compass"><i class="compass icon"></i><div>compass<span><i class="tiny angle left icon"></i>\f14e<i class="tiny angle right icon"></i></span></div></li><li data-icon="amex"><i class="amex icon"></i><div>amex<span><i class="tiny angle left icon"></i>\f1f3<i class="tiny angle right icon"></i></span></div></li><li data-icon="eur"><i class="eur icon"></i><div>eur<span><i class="tiny angle left icon"></i>\f153<i class="tiny angle right icon"></i></span></div></li><li data-icon="gbp"><i class="gbp icon"></i><div>gbp<span><i class="tiny angle left icon"></i>\f154<i class="tiny angle right icon"></i></span></div></li><li data-icon="usd"><i class="usd icon"></i><div>usd<span><i class="tiny angle left icon"></i>\f155<i class="tiny angle right icon"></i></span></div></li><li data-icon="inr"><i class="inr icon"></i><div>inr<span><i class="tiny angle left icon"></i>\f156<i class="tiny angle right icon"></i></span></div></li><li data-icon="cny"><i class="cny icon"></i><div>cny<span><i class="tiny angle left icon"></i>\f157<i class="tiny angle right icon"></i></span></div></li><li data-icon="rmb"><i class="rmb icon"></i><div>rmb<span><i class="tiny angle left icon"></i>\f157<i class="tiny angle right icon"></i></span></div></li><li data-icon="jpy"><i class="jpy icon"></i><div>jpy<span><i class="tiny angle left icon"></i>\f157<i class="tiny angle right icon"></i></span></div></li><li data-icon="rouble"><i class="rouble icon"></i><div>rouble<span><i class="tiny angle left icon"></i>\f158<i class="tiny angle right icon"></i></span></div></li><li data-icon="rub"><i class="rub icon"></i><div>rub<span><i class="tiny angle left icon"></i>\f158<i class="tiny angle right icon"></i></span></div></li><li data-icon="krw"><i class="krw icon"></i><div>krw<span><i class="tiny angle left icon"></i>\f159<i class="tiny angle right icon"></i></span></div></li><li data-icon="btc"><i class="btc icon"></i><div>btc<span><i class="tiny angle left icon"></i>\f15a<i class="tiny angle right icon"></i></span></div></li><li data-icon="sheqel"><i class="sheqel icon"></i><div>sheqel<span><i class="tiny angle left icon"></i>\f20b<i class="tiny angle right icon"></i></span></div></li><li data-icon="ils"><i class="ils icon"></i><div>ils<span><i class="tiny angle left icon"></i>\f20b<i class="tiny angle right icon"></i></span></div></li><li data-icon="try"><i class="try icon"></i><div>try<span><i class="tiny angle left icon"></i>\f195<i class="tiny angle right icon"></i></span></div></li><li data-icon="zip"><i class="zip icon"></i><div>zip<span><i class="tiny angle left icon"></i>\f187<i class="tiny angle right icon"></i></span></div></li><li data-icon="dot circle outline"><i class="dot circle outline icon"></i><div>dot circle outline<span><i class="tiny angle left icon"></i>\f192<i class="tiny angle right icon"></i></span></div></li><li data-icon="sliders"><i class="sliders icon"></i><div>sliders<span><i class="tiny angle left icon"></i>\f1de<i class="tiny angle right icon"></i></span></div></li><li data-icon="wi-fi"><i class="wi-fi icon"></i><div>wi-fi<span><i class="tiny angle left icon"></i>\f1eb<i class="tiny angle right icon"></i></span></div></li><li data-icon="graduation"><i class="graduation icon"></i><div>graduation<span><i class="tiny angle left icon"></i>\f19d<i class="tiny angle right icon"></i></span></div></li><li data-icon="weixin"><i class="weixin icon"></i><div>weixin<span><i class="tiny angle left icon"></i>\f1d7<i class="tiny angle right icon"></i></span></div></li><li data-icon="binoculars"><i class="binoculars icon"></i><div>binoculars<span><i class="tiny angle left icon"></i>\f1e5<i class="tiny angle right icon"></i></span></div></li><li data-icon="gratipay"><i class="gratipay icon"></i><div>gratipay<span><i class="tiny angle left icon"></i>\f184<i class="tiny angle right icon"></i></span></div></li><li data-icon="genderless"><i class="genderless icon"></i><div>genderless<span><i class="tiny angle left icon"></i>\f1db<i class="tiny angle right icon"></i></span></div></li><li data-icon="teletype"><i class="teletype icon"></i><div>teletype<span><i class="tiny angle left icon"></i>\f1e4<i class="tiny angle right icon"></i></span></div></li><li data-icon="power cord"><i class="power cord icon"></i><div>power cord<span><i class="tiny angle left icon"></i>\f1e6<i class="tiny angle right icon"></i></span></div></li><li data-icon="tty"><i class="tty icon"></i><div>tty<span><i class="tiny angle left icon"></i>\f1e4<i class="tiny angle right icon"></i></span></div></li><li data-icon="cc"><i class="cc icon"></i><div>cc<span><i class="tiny angle left icon"></i>\f20a<i class="tiny angle right icon"></i></span></div></li><li data-icon="plus cart"><i class="plus cart icon"></i><div>plus cart<span><i class="tiny angle left icon"></i>\f217<i class="tiny angle right icon"></i></span></div></li><li data-icon="arrow down cart"><i class="arrow down cart icon"></i><div>arrow down cart<span><i class="tiny angle left icon"></i>\f218<i class="tiny angle right icon"></i></span></div></li><li data-icon="detective"><i class="detective icon"></i><div>detective<span><i class="tiny angle left icon"></i>\f21b<i class="tiny angle right icon"></i></span></div></li><li data-icon="venus"><i class="venus icon"></i><div>venus<span><i class="tiny angle left icon"></i>\f221<i class="tiny angle right icon"></i></span></div></li><li data-icon="mars"><i class="mars icon"></i><div>mars<span><i class="tiny angle left icon"></i>\f222<i class="tiny angle right icon"></i></span></div></li><li data-icon="mercury"><i class="mercury icon"></i><div>mercury<span><i class="tiny angle left icon"></i>\f223<i class="tiny angle right icon"></i></span></div></li><li data-icon="venus double"><i class="venus double icon"></i><div>venus double<span><i class="tiny angle left icon"></i>\f226<i class="tiny angle right icon"></i></span></div></li><li data-icon="female homosexual"><i class="female homosexual icon"></i><div>female homosexual<span><i class="tiny angle left icon"></i>\f226<i class="tiny angle right icon"></i></span></div></li><li data-icon="mars double"><i class="mars double icon"></i><div>mars double<span><i class="tiny angle left icon"></i>\f227<i class="tiny angle right icon"></i></span></div></li><li data-icon="male homosexual"><i class="male homosexual icon"></i><div>male homosexual<span><i class="tiny angle left icon"></i>\f227<i class="tiny angle right icon"></i></span></div></li><li data-icon="venus mars"><i class="venus mars icon"></i><div>venus mars<span><i class="tiny angle left icon"></i>\f228<i class="tiny angle right icon"></i></span></div></li><li data-icon="mars stroke"><i class="mars stroke icon"></i><div>mars stroke<span><i class="tiny angle left icon"></i>\f229<i class="tiny angle right icon"></i></span></div></li><li data-icon="mars alternate"><i class="mars alternate icon"></i><div>mars alternate<span><i class="tiny angle left icon"></i>\f229<i class="tiny angle right icon"></i></span></div></li><li data-icon="mars vertical"><i class="mars vertical icon"></i><div>mars vertical<span><i class="tiny angle left icon"></i>\f22a<i class="tiny angle right icon"></i></span></div></li><li data-icon="mars horizontal"><i class="mars horizontal icon"></i><div>mars horizontal<span><i class="tiny angle left icon"></i>\f22b<i class="tiny angle right icon"></i></span></div></li><li data-icon="mars stroke vertical"><i class="mars stroke vertical icon"></i><div>mars stroke vertical<span><i class="tiny angle left icon"></i>\f22a<i class="tiny angle right icon"></i></span></div></li><li data-icon="mars stroke horizontal"><i class="mars stroke horizontal icon"></i><div>mars stroke horizontal<span><i class="tiny angle left icon"></i>\f22b<i class="tiny angle right icon"></i></span></div></li><li data-icon="facebook official"><i class="facebook official icon"></i><div>facebook official<span><i class="tiny angle left icon"></i>\f230<i class="tiny angle right icon"></i></span></div></li><li data-icon="pinterest official"><i class="pinterest official icon"></i><div>pinterest official<span><i class="tiny angle left icon"></i>\f231<i class="tiny angle right icon"></i></span></div></li><li data-icon="bed"><i class="bed icon"></i><div>bed<span><i class="tiny angle left icon"></i>\f236<i class="tiny angle right icon"></i></span></div></li></ul>
+<div id="footer" class="ui column centered grid">
+made with <i class="icons"><i class="red heart icon"></i><i class="corner red heart icon"></i>
+</i> by <a href="#">Jakka Prihatna</a>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://oss.maxcdn.com/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://oss.maxcdn.com/semantic-ui/2.1.6/semantic.min.js"></script>
+<script id="rendered-js">
+      var icons = [// version 2.1.6
+{ className: 'search', content: '\\f002' },
+{ className: 'mail outline', content: '\\f003' },
+{ className: 'external', content: '\\f08e' },
+{ className: 'signal', content: '\\f012' },
+{ className: 'setting', content: '\\f013' },
+{ className: 'home', content: '\\f015' },
+{ className: 'inbox', content: '\\f01c' },
+{ className: 'browser', content: '\\f022' },
+{ className: 'tag', content: '\\f02b' },
+{ className: 'tags', content: '\\f02c' },
+{ className: 'calendar', content: '\\f073' },
+{ className: 'comment', content: '\\f075' },
+{ className: 'comments', content: '\\f086' },
+{ className: 'shop', content: '\\f07a' },
+{ className: 'privacy', content: '\\f084' },
+{ className: 'settings', content: '\\f085' },
+{ className: 'trophy', content: '\\f091' },
+{ className: 'payment', content: '\\f09d' },
+{ className: 'feed', content: '\\f09e' },
+{ className: 'alarm outline', content: '\\f0a2' },
+{ className: 'tasks', content: '\\f0ae' },
+{ className: 'cloud', content: '\\f0c2' },
+{ className: 'lab', content: '\\f0c3' },
+{ className: 'mail', content: '\\f0e0' },
+{ className: 'idea', content: '\\f0eb' },
+{ className: 'dashboard', content: '\\f0e4' },
+{ className: 'sitemap', content: '\\f0e8' },
+{ className: 'alarm', content: '\\f0f3' },
+{ className: 'terminal', content: '\\f120' },
+{ className: 'code', content: '\\f121' },
+{ className: 'protect', content: '\\f132' },
+{ className: 'calendar outline', content: '\\f133' },
+{ className: 'ticket', content: '\\f145' },
+{ className: 'external square', content: '\\f14c' },
+{ className: 'map', content: '\\f14e' },
+{ className: 'bug', content: '\\f188' },
+{ className: 'mail square', content: '\\f199' },
+{ className: 'history', content: '\\f1da' },
+{ className: 'options', content: '\\f1de' },
+{ className: 'comment outline', content: '\\f0e5' },
+{ className: 'comments outline', content: '\\f0e6' },
+{ className: 'text telephone', content: '\\f1e4' },
+{ className: 'find', content: '\\f1e5' },
+{ className: 'wifi', content: '\\f1eb' },
+{ className: 'alarm slash', content: '\\f1f6' },
+{ className: 'alarm slash outline', content: '\\f1f7' },
+{ className: 'copyright', content: '\\f1f9' },
+{ className: 'at', content: '\\f1fa' },
+{ className: 'eyedropper', content: '\\f1fb' },
+{ className: 'paint brush', content: '\\f1fc' },
+{ className: 'heartbeat', content: '\\f21e' },
+{ className: 'download', content: '\\f019' },
+{ className: 'repeat', content: '\\f01e' },
+{ className: 'refresh', content: '\\f021' },
+{ className: 'lock', content: '\\f023' },
+{ className: 'bookmark', content: '\\f02e' },
+{ className: 'print', content: '\\f02f' },
+{ className: 'write', content: '\\f040' },
+{ className: 'theme', content: '\\f043' },
+{ className: 'adjust', content: '\\f042' },
+{ className: 'edit', content: '\\f044' },
+{ className: 'external share', content: '\\f045' },
+{ className: 'ban', content: '\\f05e' },
+{ className: 'mail forward', content: '\\f064' },
+{ className: 'share', content: '\\f064' },
+{ className: 'expand', content: '\\f065' },
+{ className: 'compress', content: '\\f066' },
+{ className: 'unhide', content: '\\f06e' },
+{ className: 'hide', content: '\\f070' },
+{ className: 'random', content: '\\f074' },
+{ className: 'retweet', content: '\\f079' },
+{ className: 'sign out', content: '\\f08b' },
+{ className: 'pin', content: '\\f08d' },
+{ className: 'sign in', content: '\\f090' },
+{ className: 'upload', content: '\\f093' },
+{ className: 'call', content: '\\f095' },
+{ className: 'call square', content: '\\f098' },
+{ className: 'remove bookmark', content: '\\f097' },
+{ className: 'unlock', content: '\\f09c' },
+{ className: 'configure', content: '\\f0ad' },
+{ className: 'filter', content: '\\f0b0' },
+{ className: 'wizard', content: '\\f0d0' },
+{ className: 'undo', content: '\\f0e2' },
+{ className: 'exchange', content: '\\f0ec' },
+{ className: 'cloud download', content: '\\f0ed' },
+{ className: 'cloud upload', content: '\\f0ee' },
+{ className: 'reply', content: '\\f112' },
+{ className: 'reply all', content: '\\f122' },
+{ className: 'erase', content: '\\f12d' },
+{ className: 'unlock alternate', content: '\\f13e' },
+{ className: 'archive', content: '\\f187' },
+{ className: 'translate', content: '\\f1ab' },
+{ className: 'recycle', content: '\\f1b8' },
+{ className: 'send', content: '\\f1d8' },
+{ className: 'send outline', content: '\\f1d9' },
+{ className: 'share alternate', content: '\\f1e0' },
+{ className: 'share alternate square', content: '\\f1e1' },
+{ className: 'wait', content: '\\f017' },
+{ className: 'write square', content: '\\f14b' },
+{ className: 'share square', content: '\\f14d' },
+{ className: 'add to cart', content: '\\f217' },
+{ className: 'in cart', content: '\\f218' },
+{ className: 'add user', content: '\\f234' },
+{ className: 'remove user', content: '\\f235' },
+{ className: 'help circle', content: '\\f059' },
+{ className: 'info circle', content: '\\f05a' },
+{ className: 'warning', content: '\\f12a' },
+{ className: 'warning circle', content: '\\f06a' },
+{ className: 'warning sign', content: '\\f071' },
+{ className: 'help', content: '\\f128' },
+{ className: 'info', content: '\\f129' },
+{ className: 'announcement', content: '\\f0a1' },
+{ className: 'birthday', content: '\\f1fd' },
+{ className: 'users', content: '\\f0c0' },
+{ className: 'doctor', content: '\\f0f0' },
+{ className: 'child', content: '\\f1ae' },
+{ className: 'user', content: '\\f007' },
+{ className: 'handicap', content: '\\f193' },
+{ className: 'student', content: '\\f19d' },
+{ className: 'spy', content: '\\f21b' },
+{ className: 'female', content: '\\f182' },
+{ className: 'male', content: '\\f183' },
+{ className: 'woman', content: '\\f221' },
+{ className: 'man', content: '\\f222' },
+{ className: 'non binary transgender', content: '\\f223' },
+{ className: 'intergender', content: '\\f224' },
+{ className: 'transgender', content: '\\f225' },
+{ className: 'lesbian', content: '\\f226' },
+{ className: 'gay', content: '\\f227' },
+{ className: 'heterosexual', content: '\\f228' },
+{ className: 'other gender', content: '\\f229' },
+{ className: 'other gender vertical', content: '\\f22a' },
+{ className: 'other gender horizontal', content: '\\f22b' },
+{ className: 'neuter', content: '\\f22c' },
+{ className: 'grid layout', content: '\\f00a' },
+{ className: 'list layout', content: '\\f00b' },
+{ className: 'block layout', content: '\\f009' },
+{ className: 'zoom', content: '\\f00e' },
+{ className: 'zoom out', content: '\\f010' },
+{ className: 'resize vertical', content: '\\f07d' },
+{ className: 'resize horizontal', content: '\\f07e' },
+{ className: 'maximize', content: '\\f0b2' },
+{ className: 'crop', content: '\\f125' },
+{ className: 'cocktail', content: '\\f000' },
+{ className: 'road', content: '\\f018' },
+{ className: 'flag', content: '\\f024' },
+{ className: 'book', content: '\\f02d' },
+{ className: 'gift', content: '\\f06b' },
+{ className: 'leaf', content: '\\f06c' },
+{ className: 'fire', content: '\\f06d' },
+{ className: 'plane', content: '\\f072' },
+{ className: 'magnet', content: '\\f076' },
+{ className: 'legal', content: '\\f0e3' },
+{ className: 'lemon', content: '\\f094' },
+{ className: 'world', content: '\\f0ac' },
+{ className: 'travel', content: '\\f0b1' },
+{ className: 'shipping', content: '\\f0d1' },
+{ className: 'money', content: '\\f0d6' },
+{ className: 'lightning', content: '\\f0e7' },
+{ className: 'rain', content: '\\f0e9' },
+{ className: 'treatment', content: '\\f0f1' },
+{ className: 'suitcase', content: '\\f0f2' },
+{ className: 'bar', content: '\\f0fc' },
+{ className: 'flag outline', content: '\\f11d' },
+{ className: 'flag checkered', content: '\\f11e' },
+{ className: 'puzzle', content: '\\f12e' },
+{ className: 'fire extinguisher', content: '\\f134' },
+{ className: 'rocket', content: '\\f135' },
+{ className: 'anchor', content: '\\f13d' },
+{ className: 'bullseye', content: '\\f140' },
+{ className: 'sun', content: '\\f185' },
+{ className: 'moon', content: '\\f186' },
+{ className: 'fax', content: '\\f1ac' },
+{ className: 'life ring', content: '\\f1cd' },
+{ className: 'bomb', content: '\\f1e2' },
+{ className: 'soccer', content: '\\f1e3' },
+{ className: 'calculator', content: '\\f1ec' },
+{ className: 'diamond', content: '\\f219' },
+{ className: 'crosshairs', content: '\\f05b' },
+{ className: 'asterisk', content: '\\f069' },
+{ className: 'certificate', content: '\\f0a3' },
+{ className: 'circle', content: '\\f111' },
+{ className: 'quote left', content: '\\f10d' },
+{ className: 'quote right', content: '\\f10e' },
+{ className: 'ellipsis horizontal', content: '\\f141' },
+{ className: 'ellipsis vertical', content: '\\f142' },
+{ className: 'cube', content: '\\f1b2' },
+{ className: 'cubes', content: '\\f1b3' },
+{ className: 'circle notched', content: '\\f1ce' },
+{ className: 'circle thin', content: '\\f1db' },
+{ className: 'square outline', content: '\\f096' },
+{ className: 'square', content: '\\f0c8' },
+{ className: 'checkmark', content: '\\f00c' },
+{ className: 'remove', content: '\\f00d' },
+{ className: 'checkmark box', content: '\\f046' },
+{ className: 'move', content: '\\f047' },
+{ className: 'add circle', content: '\\f055' },
+{ className: 'minus circle', content: '\\f056' },
+{ className: 'remove circle', content: '\\f057' },
+{ className: 'check circle', content: '\\f058' },
+{ className: 'remove circle outline', content: '\\f05c' },
+{ className: 'check circle outline', content: '\\f05d' },
+{ className: 'plus', content: '\\f067' },
+{ className: 'minus', content: '\\f068' },
+{ className: 'add square', content: '\\f0fe' },
+{ className: 'radio', content: '\\f10c' },
+{ className: 'selected radio', content: '\\f192' },
+{ className: 'minus square', content: '\\f146' },
+{ className: 'minus square outline', content: '\\f147' },
+{ className: 'check square', content: '\\f14a' },
+{ className: 'plus square outline', content: '\\f196' },
+{ className: 'toggle off', content: '\\f204' },
+{ className: 'toggle on', content: '\\f205' },
+{ className: 'film', content: '\\f008' },
+{ className: 'sound', content: '\\f025' },
+{ className: 'photo', content: '\\f030' },
+{ className: 'bar chart', content: '\\f080' },
+{ className: 'camera retro', content: '\\f083' },
+{ className: 'newspaper', content: '\\f1ea' },
+{ className: 'area chart', content: '\\f1fe' },
+{ className: 'pie chart', content: '\\f200' },
+{ className: 'line chart', content: '\\f201' },
+{ className: 'arrow circle outline down', content: '\\f01a' },
+{ className: 'arrow circle outline up', content: '\\f01b' },
+{ className: 'chevron left', content: '\\f053' },
+{ className: 'chevron right', content: '\\f054' },
+{ className: 'arrow left', content: '\\f060' },
+{ className: 'arrow right', content: '\\f061' },
+{ className: 'arrow up', content: '\\f062' },
+{ className: 'arrow down', content: '\\f063' },
+{ className: 'chevron up', content: '\\f077' },
+{ className: 'chevron down', content: '\\f078' },
+{ className: 'pointing right', content: '\\f0a4' },
+{ className: 'pointing left', content: '\\f0a5' },
+{ className: 'pointing up', content: '\\f0a6' },
+{ className: 'pointing down', content: '\\f0a7' },
+{ className: 'arrow circle left', content: '\\f0a8' },
+{ className: 'arrow circle right', content: '\\f0a9' },
+{ className: 'arrow circle up', content: '\\f0aa' },
+{ className: 'arrow circle down', content: '\\f0ab' },
+{ className: 'caret down', content: '\\f0d7' },
+{ className: 'caret up', content: '\\f0d8' },
+{ className: 'caret left', content: '\\f0d9' },
+{ className: 'caret right', content: '\\f0da' },
+{ className: 'angle double left', content: '\\f100' },
+{ className: 'angle double right', content: '\\f101' },
+{ className: 'angle double up', content: '\\f102' },
+{ className: 'angle double down', content: '\\f103' },
+{ className: 'angle left', content: '\\f104' },
+{ className: 'angle right', content: '\\f105' },
+{ className: 'angle up', content: '\\f106' },
+{ className: 'angle down', content: '\\f107' },
+{ className: 'chevron circle left', content: '\\f137' },
+{ className: 'chevron circle right', content: '\\f138' },
+{ className: 'chevron circle up', content: '\\f139' },
+{ className: 'chevron circle down', content: '\\f13a' },
+{ className: 'toggle down', content: '\\f150' },
+{ className: 'toggle up', content: '\\f151' },
+{ className: 'toggle right', content: '\\f152' },
+{ className: 'long arrow down', content: '\\f175' },
+{ className: 'long arrow up', content: '\\f176' },
+{ className: 'long arrow left', content: '\\f177' },
+{ className: 'long arrow right', content: '\\f178' },
+{ className: 'arrow circle outline right', content: '\\f18e' },
+{ className: 'arrow circle outline left', content: '\\f190' },
+{ className: 'toggle left', content: '\\f191' },
+{ className: 'power', content: '\\f011' },
+{ className: 'trash', content: '\\f1f8' },
+{ className: 'trash outline', content: '\\f014' },
+{ className: 'disk outline', content: '\\f0a0' },
+{ className: 'desktop', content: '\\f108' },
+{ className: 'laptop', content: '\\f109' },
+{ className: 'tablet', content: '\\f10a' },
+{ className: 'mobile', content: '\\f10b' },
+{ className: 'game', content: '\\f11b' },
+{ className: 'keyboard', content: '\\f11c' },
+{ className: 'plug', content: '\\f1e6' },
+{ className: 'folder', content: '\\f07b' },
+{ className: 'folder open', content: '\\f07c' },
+{ className: 'level up', content: '\\f148' },
+{ className: 'level down', content: '\\f149' },
+{ className: 'file', content: '\\f15b' },
+{ className: 'file outline', content: '\\f016' },
+{ className: 'file text', content: '\\f15c' },
+{ className: 'file text outline', content: '\\f0f6' },
+{ className: 'folder outline', content: '\\f114' },
+{ className: 'folder open outline', content: '\\f115' },
+{ className: 'file pdf outline', content: '\\f1c1' },
+{ className: 'file word outline', content: '\\f1c2' },
+{ className: 'file excel outline', content: '\\f1c3' },
+{ className: 'file powerpoint outline', content: '\\f1c4' },
+{ className: 'file image outline', content: '\\f1c5' },
+{ className: 'file archive outline', content: '\\f1c6' },
+{ className: 'file audio outline', content: '\\f1c7' },
+{ className: 'file video outline', content: '\\f1c8' },
+{ className: 'file code outline', content: '\\f1c9' },
+{ className: 'barcode', content: '\\f02a' },
+{ className: 'qrcode', content: '\\f029' },
+{ className: 'fork', content: '\\f126' },
+{ className: 'html5', content: '\\f13b' },
+{ className: 'css3', content: '\\f13c' },
+{ className: 'rss', content: '\\f09e' },
+{ className: 'rss square', content: '\\f143' },
+{ className: 'openid', content: '\\f19b' },
+{ className: 'database', content: '\\f1c0' },
+{ className: 'server', content: '\\f233' },
+{ className: 'heart', content: '\\f004' },
+{ className: 'star', content: '\\f005' },
+{ className: 'empty star', content: '\\f006' },
+{ className: 'thumbs outline up', content: '\\f087' },
+{ className: 'thumbs outline down', content: '\\f088' },
+{ className: 'star half', content: '\\f089' },
+{ className: 'empty heart', content: '\\f08a' },
+{ className: 'smile', content: '\\f118' },
+{ className: 'frown', content: '\\f119' },
+{ className: 'meh', content: '\\f11a' },
+{ className: 'star half empty', content: '\\f123' },
+{ className: 'thumbs up', content: '\\f164' },
+{ className: 'thumbs down', content: '\\f165' },
+{ className: 'music', content: '\\f001' },
+{ className: 'video play outline', content: '\\f01d' },
+{ className: 'volume off', content: '\\f026' },
+{ className: 'volume down', content: '\\f027' },
+{ className: 'volume up', content: '\\f028' },
+{ className: 'record', content: '\\f03d' },
+{ className: 'step backward', content: '\\f048' },
+{ className: 'fast backward', content: '\\f049' },
+{ className: 'backward', content: '\\f04a' },
+{ className: 'play', content: '\\f04b' },
+{ className: 'pause', content: '\\f04c' },
+{ className: 'stop', content: '\\f04d' },
+{ className: 'forward', content: '\\f04e' },
+{ className: 'fast forward', content: '\\f050' },
+{ className: 'step forward', content: '\\f051' },
+{ className: 'eject', content: '\\f052' },
+{ className: 'unmute', content: '\\f130' },
+{ className: 'mute', content: '\\f131' },
+{ className: 'video play', content: '\\f144' },
+{ className: 'closed captioning', content: '\\f20a' },
+{ className: 'marker', content: '\\f041' },
+{ className: 'coffee', content: '\\f0f4' },
+{ className: 'food', content: '\\f0f5' },
+{ className: 'building outline', content: '\\f0f7' },
+{ className: 'hospital', content: '\\f0f8' },
+{ className: 'emergency', content: '\\f0f9' },
+{ className: 'first aid', content: '\\f0fa' },
+{ className: 'military', content: '\\f0fb' },
+{ className: 'h', content: '\\f0fd' },
+{ className: 'location arrow', content: '\\f124' },
+{ className: 'space shuttle', content: '\\f197' },
+{ className: 'university', content: '\\f19c' },
+{ className: 'building', content: '\\f1ad' },
+{ className: 'paw', content: '\\f1b0' },
+{ className: 'spoon', content: '\\f1b1' },
+{ className: 'car', content: '\\f1b9' },
+{ className: 'taxi', content: '\\f1ba' },
+{ className: 'tree', content: '\\f1bb' },
+{ className: 'bicycle', content: '\\f206' },
+{ className: 'bus', content: '\\f207' },
+{ className: 'ship', content: '\\f21a' },
+{ className: 'motorcycle', content: '\\f21c' },
+{ className: 'street view', content: '\\f21d' },
+{ className: 'hotel', content: '\\f236' },
+{ className: 'train', content: '\\f238' },
+{ className: 'subway', content: '\\f239' },
+{ className: 'table', content: '\\f0ce' },
+{ className: 'columns', content: '\\f0db' },
+{ className: 'sort', content: '\\f0dc' },
+{ className: 'sort ascending', content: '\\f0de' },
+{ className: 'sort descending', content: '\\f0dd' },
+{ className: 'sort alphabet ascending', content: '\\f15d' },
+{ className: 'sort alphabet descending', content: '\\f15e' },
+{ className: 'sort content ascending', content: '\\f160' },
+{ className: 'sort content descending', content: '\\f161' },
+{ className: 'sort numeric ascending', content: '\\f162' },
+{ className: 'sort numeric descending', content: '\\f163' },
+{ className: 'font', content: '\\f031' },
+{ className: 'bold', content: '\\f032' },
+{ className: 'italic', content: '\\f033' },
+{ className: 'text height', content: '\\f034' },
+{ className: 'text width', content: '\\f035' },
+{ className: 'align left', content: '\\f036' },
+{ className: 'align center', content: '\\f037' },
+{ className: 'align right', content: '\\f038' },
+{ className: 'align justify', content: '\\f039' },
+{ className: 'list', content: '\\f03a' },
+{ className: 'outdent', content: '\\f03b' },
+{ className: 'indent', content: '\\f03c' },
+{ className: 'linkify', content: '\\f0c1' },
+{ className: 'cut', content: '\\f0c4' },
+{ className: 'copy', content: '\\f0c5' },
+{ className: 'attach', content: '\\f0c6' },
+{ className: 'save', content: '\\f0c7' },
+{ className: 'content', content: '\\f0c9' },
+{ className: 'unordered list', content: '\\f0ca' },
+{ className: 'ordered list', content: '\\f0cb' },
+{ className: 'strikethrough', content: '\\f0cc' },
+{ className: 'underline', content: '\\f0cd' },
+{ className: 'paste', content: '\\f0ea' },
+{ className: 'unlink', content: '\\f127' },
+{ className: 'superscript', content: '\\f12b' },
+{ className: 'subscript', content: '\\f12c' },
+{ className: 'header', content: '\\f1dc' },
+{ className: 'paragraph', content: '\\f1dd' },
+{ className: 'euro', content: '\\f153' },
+{ className: 'pound', content: '\\f154' },
+{ className: 'dollar', content: '\\f155' },
+{ className: 'rupee', content: '\\f156' },
+{ className: 'yen', content: '\\f157' },
+{ className: 'ruble', content: '\\f158' },
+{ className: 'won', content: '\\f159' },
+{ className: 'lira', content: '\\f195' },
+{ className: 'shekel', content: '\\f20b' },
+{ className: 'paypal', content: '\\f1ed' },
+{ className: 'paypal card', content: '\\f1f4' },
+{ className: 'google wallet', content: '\\f1ee' },
+{ className: 'visa', content: '\\f1f0' },
+{ className: 'mastercard', content: '\\f1f1' },
+{ className: 'discover', content: '\\f1f2' },
+{ className: 'american express', content: '\\f1f3' },
+{ className: 'stripe', content: '\\f1f5' },
+{ className: 'twitter square', content: '\\f081' },
+{ className: 'facebook square', content: '\\f082' },
+{ className: 'linkedin square', content: '\\f08c' },
+{ className: 'github square', content: '\\f092' },
+{ className: 'twitter', content: '\\f099' },
+{ className: 'facebook', content: '\\f09a' },
+{ className: 'github', content: '\\f09b' },
+{ className: 'pinterest', content: '\\f0d2' },
+{ className: 'pinterest square', content: '\\f0d3' },
+{ className: 'google plus square', content: '\\f0d4' },
+{ className: 'google plus', content: '\\f0d5' },
+{ className: 'linkedin', content: '\\f0e1' },
+{ className: 'github alternate', content: '\\f113' },
+{ className: 'maxcdn', content: '\\f136' },
+{ className: 'bitcoin', content: '\\f15a' },
+{ className: 'youtube square', content: '\\f166' },
+{ className: 'youtube', content: '\\f167' },
+{ className: 'xing', content: '\\f168' },
+{ className: 'xing square', content: '\\f169' },
+{ className: 'youtube play', content: '\\f16a' },
+{ className: 'dropbox', content: '\\f16b' },
+{ className: 'stack overflow', content: '\\f16c' },
+{ className: 'instagram', content: '\\f16d' },
+{ className: 'flickr', content: '\\f16e' },
+{ className: 'adn', content: '\\f170' },
+{ className: 'bitbucket', content: '\\f171' },
+{ className: 'bitbucket square', content: '\\f172' },
+{ className: 'tumblr', content: '\\f173' },
+{ className: 'tumblr square', content: '\\f174' },
+{ className: 'apple', content: '\\f179' },
+{ className: 'windows', content: '\\f17a' },
+{ className: 'android', content: '\\f17b' },
+{ className: 'linux', content: '\\f17c' },
+{ className: 'dribbble', content: '\\f17d' },
+{ className: 'skype', content: '\\f17e' },
+{ className: 'foursquare', content: '\\f180' },
+{ className: 'trello', content: '\\f181' },
+{ className: 'gittip', content: '\\f184' },
+{ className: 'vk', content: '\\f189' },
+{ className: 'weibo', content: '\\f18a' },
+{ className: 'renren', content: '\\f18b' },
+{ className: 'pagelines', content: '\\f18c' },
+{ className: 'stack exchange', content: '\\f18d' },
+{ className: 'vimeo', content: '\\f194' },
+{ className: 'slack', content: '\\f198' },
+{ className: 'wordpress', content: '\\f19a' },
+{ className: 'yahoo', content: '\\f19e' },
+{ className: 'google', content: '\\f1a0' },
+{ className: 'reddit', content: '\\f1a1' },
+{ className: 'reddit square', content: '\\f1a2' },
+{ className: 'stumbleupon circle', content: '\\f1a3' },
+{ className: 'stumbleupon', content: '\\f1a4' },
+{ className: 'delicious', content: '\\f1a5' },
+{ className: 'digg', content: '\\f1a6' },
+{ className: 'pied piper', content: '\\f1a7' },
+{ className: 'pied piper alternate', content: '\\f1a8' },
+{ className: 'drupal', content: '\\f1a9' },
+{ className: 'joomla', content: '\\f1aa' },
+{ className: 'behance', content: '\\f1b4' },
+{ className: 'behance square', content: '\\f1b5' },
+{ className: 'steam', content: '\\f1b6' },
+{ className: 'steam square', content: '\\f1b7' },
+{ className: 'spotify', content: '\\f1bc' },
+{ className: 'deviantart', content: '\\f1bd' },
+{ className: 'soundcloud', content: '\\f1be' },
+{ className: 'vine', content: '\\f1ca' },
+{ className: 'codepen', content: '\\f1cb' },
+{ className: 'jsfiddle', content: '\\f1cc' },
+{ className: 'rebel', content: '\\f1d0' },
+{ className: 'empire', content: '\\f1d1' },
+{ className: 'git square', content: '\\f1d2' },
+{ className: 'git', content: '\\f1d3' },
+{ className: 'hacker news', content: '\\f1d4' },
+{ className: 'tencent weibo', content: '\\f1d5' },
+{ className: 'qq', content: '\\f1d6' },
+{ className: 'wechat', content: '\\f1d7' },
+{ className: 'slideshare', content: '\\f1e7' },
+{ className: 'twitch', content: '\\f1e8' },
+{ className: 'yelp', content: '\\f1e9' },
+{ className: 'lastfm', content: '\\f202' },
+{ className: 'lastfm square', content: '\\f203' },
+{ className: 'ioxhost', content: '\\f208' },
+{ className: 'angellist', content: '\\f209' },
+{ className: 'meanpath', content: '\\f20c' },
+{ className: 'buysellads', content: '\\f20d' },
+{ className: 'connectdevelop', content: '\\f20e' },
+{ className: 'dashcube', content: '\\f210' },
+{ className: 'forumbee', content: '\\f211' },
+{ className: 'leanpub', content: '\\f212' },
+{ className: 'sellsy', content: '\\f213' },
+{ className: 'shirtsinbulk', content: '\\f214' },
+{ className: 'simplybuilt', content: '\\f215' },
+{ className: 'skyatlas', content: '\\f216' },
+{ className: 'whatsapp', content: '\\f232' },
+{ className: 'viacoin', content: '\\f237' },
+{ className: 'medium', content: '\\f23a' },
+{ className: 'like', content: '\\f004' },
+{ className: 'favorite', content: '\\f005' },
+{ className: 'video', content: '\\f008' },
+{ className: 'check', content: '\\f00c' },
+{ className: 'close', content: '\\f00d' },
+{ className: 'cancel', content: '\\f00d' },
+{ className: 'delete', content: '\\f00d' },
+{ className: 'x', content: '\\f00d' },
+{ className: 'user times', content: '\\f235' },
+{ className: 'user close', content: '\\f235' },
+{ className: 'user cancel', content: '\\f235' },
+{ className: 'user delete', content: '\\f235' },
+{ className: 'user x', content: '\\f235' },
+{ className: 'zoom in', content: '\\f00e' },
+{ className: 'magnify', content: '\\f00e' },
+{ className: 'shutdown', content: '\\f011' },
+{ className: 'clock', content: '\\f017' },
+{ className: 'time', content: '\\f017' },
+{ className: 'play circle outline', content: '\\f01d' },
+{ className: 'headphone', content: '\\f025' },
+{ className: 'camera', content: '\\f030' },
+{ className: 'video camera', content: '\\f03d' },
+{ className: 'picture', content: '\\f03e' },
+{ className: 'pencil', content: '\\f040' },
+{ className: 'compose', content: '\\f040' },
+{ className: 'point', content: '\\f041' },
+{ className: 'tint', content: '\\f043' },
+{ className: 'signup', content: '\\f044' },
+{ className: 'plus circle', content: '\\f055' },
+{ className: 'dont', content: '\\f05e' },
+{ className: 'minimize', content: '\\f066' },
+{ className: 'add', content: '\\f067' },
+{ className: 'eye', content: '\\f06e' },
+{ className: 'attention', content: '\\f06a' },
+{ className: 'cart', content: '\\f07a' },
+{ className: 'shuffle', content: '\\f074' },
+{ className: 'talk', content: '\\f075' },
+{ className: 'chat', content: '\\f075' },
+{ className: 'shopping cart', content: '\\f07a' },
+{ className: 'bar graph', content: '\\f080' },
+{ className: 'area graph', content: '\\f1fe' },
+{ className: 'pie graph', content: '\\f200' },
+{ className: 'line graph', content: '\\f201' },
+{ className: 'key', content: '\\f084' },
+{ className: 'cogs', content: '\\f085' },
+{ className: 'discussions', content: '\\f086' },
+{ className: 'like outline', content: '\\f087' },
+{ className: 'dislike outline', content: '\\f088' },
+{ className: 'heart outline', content: '\\f08a' },
+{ className: 'log out', content: '\\f08b' },
+{ className: 'thumb tack', content: '\\f08d' },
+{ className: 'winner', content: '\\f091' },
+{ className: 'bookmark outline', content: '\\f097' },
+{ className: 'phone', content: '\\f095' },
+{ className: 'phone square', content: '\\f098' },
+{ className: 'credit card', content: '\\f09d' },
+{ className: 'hdd outline', content: '\\f0a0' },
+{ className: 'bullhorn', content: '\\f0a1' },
+{ className: 'bell', content: '\\f0f3' },
+{ className: 'bell outline', content: '\\f0a2' },
+{ className: 'bell slash', content: '\\f1f6' },
+{ className: 'bell slash outline', content: '\\f1f7' },
+{ className: 'hand outline right', content: '\\f0a4' },
+{ className: 'hand outline left', content: '\\f0a5' },
+{ className: 'hand outline up', content: '\\f0a6' },
+{ className: 'hand outline down', content: '\\f0a7' },
+{ className: 'globe', content: '\\f0ac' },
+{ className: 'wrench', content: '\\f0ad' },
+{ className: 'briefcase', content: '\\f0b1' },
+{ className: 'group', content: '\\f0c0' },
+{ className: 'flask', content: '\\f0c3' },
+{ className: 'sidebar', content: '\\f0c9' },
+{ className: 'bars', content: '\\f0c9' },
+{ className: 'list ul', content: '\\f0ca' },
+{ className: 'list ol', content: '\\f0cb' },
+{ className: 'numbered list', content: '\\f0cb' },
+{ className: 'magic', content: '\\f0d0' },
+{ className: 'truck', content: '\\f0d1' },
+{ className: 'currency', content: '\\f0d6' },
+{ className: 'triangle down', content: '\\f0d7' },
+{ className: 'dropdown', content: '\\f0d7' },
+{ className: 'triangle up', content: '\\f0d8' },
+{ className: 'triangle left', content: '\\f0d9' },
+{ className: 'triangle right', content: '\\f0da' },
+{ className: 'envelope', content: '\\f0e0' },
+{ className: 'conversation', content: '\\f0e6' },
+{ className: 'umbrella', content: '\\f0e9' },
+{ className: 'clipboard', content: '\\f0ea' },
+{ className: 'lightbulb', content: '\\f0eb' },
+{ className: 'ambulance', content: '\\f0f9' },
+{ className: 'medkit', content: '\\f0fa' },
+{ className: 'fighter jet', content: '\\f0fb' },
+{ className: 'beer', content: '\\f0fc' },
+{ className: 'plus square', content: '\\f0fe' },
+{ className: 'computer', content: '\\f108' },
+{ className: 'circle outline', content: '\\f10c' },
+{ className: 'intersex', content: '\\f10c' },
+{ className: 'asexual', content: '\\f10c' },
+{ className: 'spinner', content: '\\f110' },
+{ className: 'gamepad', content: '\\f11b' },
+{ className: 'star half full', content: '\\f123' },
+{ className: 'question', content: '\\f128' },
+{ className: 'eraser', content: '\\f12d' },
+{ className: 'microphone', content: '\\f130' },
+{ className: 'microphone slash', content: '\\f131' },
+{ className: 'shield', content: '\\f132' },
+{ className: 'target', content: '\\f140' },
+{ className: 'play circle', content: '\\f144' },
+{ className: 'pencil square', content: '\\f14b' },
+{ className: 'compass', content: '\\f14e' },
+{ className: 'amex', content: '\\f1f3' },
+{ className: 'eur', content: '\\f153' },
+{ className: 'gbp', content: '\\f154' },
+{ className: 'usd', content: '\\f155' },
+{ className: 'inr', content: '\\f156' },
+{ className: 'cny', content: '\\f157' },
+{ className: 'rmb', content: '\\f157' },
+{ className: 'jpy', content: '\\f157' },
+{ className: 'rouble', content: '\\f158' },
+{ className: 'rub', content: '\\f158' },
+{ className: 'krw', content: '\\f159' },
+{ className: 'btc', content: '\\f15a' },
+{ className: 'sheqel', content: '\\f20b' },
+{ className: 'ils', content: '\\f20b' },
+{ className: 'try', content: '\\f195' },
+{ className: 'zip', content: '\\f187' },
+{ className: 'dot circle outline', content: '\\f192' },
+{ className: 'sliders', content: '\\f1de' },
+{ className: 'wi-fi', content: '\\f1eb' },
+{ className: 'graduation', content: '\\f19d' },
+{ className: 'weixin', content: '\\f1d7' },
+{ className: 'binoculars', content: '\\f1e5' },
+{ className: 'gratipay', content: '\\f184' },
+{ className: 'genderless', content: '\\f1db' },
+{ className: 'teletype', content: '\\f1e4' },
+{ className: 'power cord', content: '\\f1e6' },
+{ className: 'tty', content: '\\f1e4' },
+{ className: 'cc', content: '\\f20a' },
+{ className: 'plus cart', content: '\\f217' },
+{ className: 'arrow down cart', content: '\\f218' },
+{ className: 'detective', content: '\\f21b' },
+{ className: 'venus', content: '\\f221' },
+{ className: 'mars', content: '\\f222' },
+{ className: 'mercury', content: '\\f223' },
+{ className: 'venus double', content: '\\f226' },
+{ className: 'female homosexual', content: '\\f226' },
+{ className: 'mars double', content: '\\f227' },
+{ className: 'male homosexual', content: '\\f227' },
+{ className: 'venus mars', content: '\\f228' },
+{ className: 'mars stroke', content: '\\f229' },
+{ className: 'mars alternate', content: '\\f229' },
+{ className: 'mars vertical', content: '\\f22a' },
+{ className: 'mars horizontal', content: '\\f22b' },
+{ className: 'mars stroke vertical', content: '\\f22a' },
+{ className: 'mars stroke horizontal', content: '\\f22b' },
+{ className: 'facebook official', content: '\\f230' },
+{ className: 'pinterest official', content: '\\f231' },
+{ className: 'bed', content: '\\f236' }];
+
+
+$.expr[':'].icon = function (a, i, m) {
+  return (a.getAttribute('data-icon') || '').toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+};
+var $container = $('#container');
+$.each(icons, function (i, v) {
+  var html = [
+  '<i class="' + v.className + ' icon"></i>',
+  '<div>' + v.className + '<span>',
+  '<i class="tiny angle left icon"></i>',
+  v.content,
+  '<i class="tiny angle right icon"></i>',
+  '</span>',
+  '</div>',
+  '</li>'];
+  $('<li></li>').
+  attr('data-icon', v.className).
+  html(html.join('')).
+  appendTo($container);
+});
+var $search = $('#search');
+$search.on('keyup', function () {
+  var filter = $(this).val();
+  if (filter) {
+    var $matches = $($container).find('li:icon(' + filter + ')');
+    $('li', $container).not($matches).hide();
+    $matches.show();
+  } else
+  {
+    $('li', $container).show();
+  }
+
+  return false;
+});
+      //# sourceURL=pen.js
+    </script>
+
+
+</body></html>

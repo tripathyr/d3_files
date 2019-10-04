@@ -1,0 +1,124 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Bitcoin Price in INR Widget </title>
+<style>
+      
+
+body{
+    background: linen;
+}
+
+.container {
+  display: flex;
+flex-direction: row;
+  font-size:1.3em;
+margin-top: 50px;
+}
+
+
+button {
+  font-size:1em;
+  
+  margin-left: 100px;
+}
+
+@media all and (max-width: 640px) {
+  body{
+    background-color: linen;
+  }
+  
+ .container{
+   flex-direction: column;
+   margin-top: 50px;
+}
+  
+  button {
+     margin-top:50px;
+      font-size:1.2em;
+   }
+}
+  
+  
+
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="container">
+<div id="price">Bitcoin Price: ₹554601.68</div>
+<div>
+<button>Click to update</button></div>
+</div>
+<div>
+<i>(Price update after every 5 minutes.)</i>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      var btn = document.querySelector("button");
+var price = document.querySelector("#price");
+
+
+var url1 = "https://api.coindesk.com/v1/bpi/currentprice.json";
+var url2 = "https://free.currencyconverterapi.com/api/v6/convert?q=USD_INR&compact=y&apiKey=5bfe2d13b6d1541b2791";
+
+fetch(url2).
+then(function (res) {
+  return res.json();
+}).then(function (data) {
+  console.log("INR: " + data.USD_INR.val);
+  return data;
+}).
+then(function (data2) {
+  fetch(url1).
+  then(function (res2) {
+    return res2.json();
+  }).then(function (data3) {
+    console.log("Bitcoin price: " + data3.bpi.USD.rate + " USD");
+    console.log("INR float: " + parseFloat(data2.USD_INR.val));
+    console.log("USD float: " + parseFloat(data3.bpi.USD.rate_float));
+    console.log("Bitcoin Price: " + parseFloat(data2.USD_INR.val) * parseFloat(data3.bpi.USD.rate_float) + " INR");
+
+    var gross = parseFloat(data2.USD_INR.val) * parseFloat(data3.bpi.USD.rate_float);
+    price.innerHTML = "Bitcoin Price: " + "₹" + gross.toFixed(2);
+  });
+});
+
+btn.addEventListener("click", function () {
+  fetch(url2).
+  then(function (res) {
+    return res.json();
+  }).then(function (data) {
+    console.log("INR: " + data.USD_INR.val);
+    return data;
+  }).
+  then(function (data2) {
+    fetch(url1).
+    then(function (res2) {
+      return res2.json();
+    }).then(function (data3) {
+      console.log("Bitcoin price: " + data3.bpi.USD.rate + " USD");
+      console.log("INR float: " + parseFloat(data2.USD_INR.val));
+      console.log("USD float: " + parseFloat(data3.bpi.USD.rate_float));
+      console.log("Bitcoin Price: " + parseFloat(data2.USD_INR.val) * parseFloat(data3.bpi.USD.rate_float) + " INR");
+
+      var gross = parseFloat(data2.USD_INR.val) * parseFloat(data3.bpi.USD.rate_float);
+      price.innerHTML = "Bitcoin Price: " + "₹" + gross.toFixed(2);
+    });
+  });
+});
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

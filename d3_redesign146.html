@@ -1,0 +1,194 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Bitcoin Price Display &amp; Toggle</title>
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+<style>
+      body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to bottom, #EFF0F5 0%, #D7D9DC 100%);
+}
+
+.container {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  margin: 20px;
+  padding: 20px 80px;
+  max-width: 700px;
+  min-width: 300px;
+  height: 70vh;
+  min-height: 250px;
+  max-height: 300px;
+  background: linear-gradient(135deg, #4A4F5A 0%,#080B10 100%);
+  border-radius: 40px;
+  box-shadow: 0px 20px 40px -10px rgba(0,0,0,.5);
+  transition: max-width 3s ease;
+}
+
+#symbol {
+  position: absolute;
+  top: -20px;
+  left: 5%;
+  color: rgba(0,0,0,.7);
+  font-family: 'Playfair Display', serif;
+  font-size: 60vh;
+  text-align: center;
+  z-index: 0;
+}
+
+#price {
+  position: relative;
+  top: 10px;
+  font-family: 'Playfair Display', serif;
+  font-size: 20vw;
+  text-align: center;
+  color: #e2c196; /* for non webkit */
+  background: linear-gradient(35deg, #ffefba 0%,#e2c196 40%,#b29370 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  z-index: 1;
+}
+
+.switcher {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  margin: 40px 0 0;
+  text-align: center;
+}
+
+button {
+  background: transparent;
+  border: 1px solid transparent;
+  color: rgba(255,255,255,.3);
+  transition: border 1s;
+}
+button.selected {
+  border: 1px solid #e2c196;
+  border-left: none;
+  border-right: none;
+  color: #e2c196;
+}
+button:focus {
+  outline: 0;
+  background: rgba(255,255,255,0.1);
+}
+
+#disclaimer {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 100%;
+  color: rgba(0,0,0,.5);
+  font-size: 10px;
+  text-align: center;
+  z-index: -1;
+}
+
+@media screen and (max-width: 500px) {
+  #price {
+    top: 30px;
+    font-size: 100px;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  #price {
+    font-size: 140px;
+  }
+}
+
+@media screen and (min-height: 400px) {
+  #symbol {
+    font-size: 250px;
+  }
+}
+
+@media screen and (max-height: 350px) {
+  #symbol {
+    font-size: 200px;
+  }
+}
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="container">
+  <div id="symbol"></div>
+  <div id="price"></div>
+  <div class="switcher">
+    <button id="usd" class="selected">USD</button>
+    <button id="eur">EUR</button>
+    <button id="gbp">GBP</button>
+  </div>
+</div>
+<div id="disclaimer"></div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      let usd = {};
+let gbp = {};
+let eur = {};
+let priceDiv = document.getElementById('price');
+
+fetch('https://api.coindesk.com/v1/bpi/currentprice.json').then(r => {
+  return r.json();
+}).then(r => {
+  priceDiv.innerHTML = JSON.stringify(r);
+  usd = r.bpi.USD;
+  gbp = r.bpi.GBP;
+  eur = r.bpi.EUR;
+  parseCurrency(usd);
+  document.getElementById('disclaimer').innerHTML = r.disclaimer;
+});
+
+function parseCurrency(c) {
+  let x = usd;
+  switch (c) {
+    case 'eur':
+      x = eur;
+      break;
+    case 'gbp':
+      x = gbp;
+      break;
+    default:
+      x = usd;}
+
+  document.getElementById('symbol').innerHTML = x.symbol;
+  priceDiv.innerHTML = x.rate.substring(0, x.rate.length - 2);
+}
+
+function selectCurrency(bid) {
+  document.querySelector('.switcher button.selected').classList.remove('selected');
+  bid.classList.add('selected');
+  parseCurrency(bid.id);
+}
+
+document.querySelectorAll('button').forEach(element => {
+  element.addEventListener('click', e => {
+    selectCurrency(e.target);
+  });
+});
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

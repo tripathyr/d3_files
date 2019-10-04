@@ -1,0 +1,306 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - A Pen by  Fabián</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+<style>
+      html, body{
+  height:100%;
+  font-family: 'Ubuntu', sans-serif !important;
+}
+
+main{
+  text-align:center;
+transition: background-color 600ms cubic-bezier(0, 1.35, 0.68, 1.23);
+  text-shadow: 0 2px 2px #061928;
+  height:100%;
+  /*filter:grayscale(0) hue-rotate(45deg);*/
+  background: #061928;
+  overflow:hidden;
+}
+
+.over-box{
+  position: absolute;
+    width: 100%;
+    top: 25%;
+  color:#fff;
+}
+.block{
+  display:none;
+  border-radius:3px;
+  background:rgba(0,0,0,.2);
+  width:300px;
+  margin: 0 auto;
+    
+}
+
+.row{
+  word-wrap:break-word;
+}
+
+#canvas{
+  filter: blur(.5px)
+}
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<main>
+<canvas id="canvas" width="1186" height="631"></canvas>
+<div class="over-box">
+<h1>Bitcoin realtime</h1>
+<div class="row">
+<div class="columns">Transactions count: <b class="count">451922453</b></div>
+<div class="columns">Last transaction: <b class="last-tx">f2d3b236933284ca2258cb0921fbd771f38b85d8c3572a59c524dc842edf703f</b></div>
+<div class="columns">
+<div class="block">
+<p>Last block: <b class="last-block-id"></b> <b class="last-block-tx-am"></b></p>
+<p>Total transactions:
+<b class="last-block-tx-count"></b>
+</p>
+<p>Size:
+<b class="last-block-size"></b> Kb
+</p>
+<p>Found by:
+<b class="last-block-found-by"></b>
+</p>
+</div>
+<div class="degub"><div class="obj-count">44</div></div>
+</div>
+</div>
+</div>
+</main>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script id="rendered-js">
+      var lasttx = "";
+var txcount = 0;
+var particles = [];
+var animationElapsed = 0;
+var sound;
+var volume = 0.1;
+
+satoshi = 100000000;
+symbol = symbol_btc = JSON.parse('{"symbol":"","code":"BTC","symbolAppearsAfter":true,"name":"Bitcoin","local":false,"conversion":100000000}');
+
+function formatMoney(a, c, b) {
+  var d = formatSymbol(a, symbol, false, b);
+  return d;
+}
+function formatSymbol(a, d, b, c) {
+  var e;
+  if (d !== symbol_btc) {
+    e = convert(a, d.conversion);
+  } else {
+    e = formatSatoshi(a, sShift(d), false, c);
+  }
+  if (b) {
+    e = e.replace(/([1-9]\d*\.\d{2}?)(.*)/, '$1<span style="font-size:85%;">$2</span>');
+  }
+  if (d.symbolAppearsAfter) {
+    e += " " + d.symbol;
+  } else {
+    e = d.symbol + " " + e;
+  }
+  return e;
+}
+function formatSatoshi(c, a, e, b) {
+  if (!c) {
+    return "0.00";
+  }
+  a = a || 0;
+  b = b || 8 - a;
+  valueShifted = c / symbol.conversion;
+  valueString = valueShifted.toFixed(b);
+  valueString = valueString.replace(/0+$/, "").replace(/\.$/, "");
+  if (!e) {
+    var d = valueString.split(".");
+    d[0] = d[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    valueString = d[1] ? d.join(".") : d[0];
+  }
+  return valueString;
+}
+function convert(a, b) {
+  return (a / b).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+function formatBTC(a) {
+  return formatSymbol(a, symbol_btc);
+}
+function sShift(a) {
+  return (satoshi / a.conversion).toString().length - 1;
+}
+
+
+$(document).ready(function () {
+  var ws = new WebSocket("wss://ws.blockchain.info/inv");
+  ws.onopen = function (event) {
+    ws.send('{"op":"unconfirmed_sub"}{"op":"blocks_sub"}');
+  };
+  ws.onclose = function () {
+    document.location.removedByCodePen();
+  };
+
+
+  ws.onmessage = function (event) {
+    //document.body.innerHTML+=event.data;
+    var obj = JSON.parse(event.data);
+    if (obj['op'] == 'block') {
+      return Block(obj);
+    }
+    txcount = parseInt(obj['x']['tx_index']);
+    lasttx = obj['x']['hash'];
+
+    $('.count').html(txcount);
+    $('.last-tx').html(lasttx);
+
+    var spents = obj['x']['out']; //array
+    var value = 0;
+
+    for (a = 0; a < spents.length; a++) {
+      if (spents[a].n > 0)
+      value += spents[a].value;
+    }
+
+    vl = formatMoney(value, false);
+
+    //console.log(vl)
+
+    particles.push({
+      x: Math.random() * w - imageObj.width * vl + imageObj.width * vl / 2,
+      y: -(imageObj.height * vl) - 10,
+      l: Math.random() * 1,
+      xs: -4 + Math.random() * 4 + 2,
+      ys: Math.random() * 10 + 10,
+      vl: parseFloat(vl) * .5,
+      ag: 0,
+      tp: 'tx' });
+
+  };
+
+  var Block = function (data) {
+    $('.block').show();
+    var x = data.x;
+    $('.last-block-id').html(x.blockIndex);
+    $('.last-block-tx-count').html(x.nTx);
+
+    var t = new Date(x.time * 1000);
+    var formatted = t.toLocaleString();
+
+    $('.last-block-size').html(x.size);
+
+    $('.last-block-found-by').html(x.foundBy.description);
+    particles.push({
+      x: window.innerWidth / 2,
+      y: -blockImg.height - 10,
+      l: Math.random() * 1,
+      xs: -4 + Math.random() * 4 + 2,
+      ys: Math.random() * 10 + 10,
+      vl: parseFloat(0.1),
+      ag: 0,
+      tp: 'block' });
+
+    sound = new Audio('https://my.mixtape.moe/nsnucr.ogg');
+    sound.volume = volume;
+    sound.play();
+  };
+
+  var imageObj = new Image();
+  imageObj.src = "https://bitcoin.org/img/icons/opengraph.png";
+
+  var blockImg = new Image();
+  blockImg.src = "https://minecraft.gamepedia.com/media/minecraft.gamepedia.com/4/40/Block_of_Diamond.png";
+
+  var canvas = $('#canvas')[0];
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  if (canvas.getContext) {
+    var ctx = canvas.getContext('2d');
+    var w = canvas.width;
+    var h = canvas.height;
+    ctx.strokeStyle = 'rgba(255, 219, 17, 1)';
+    ctx.lineWidth = 10;
+    ctx.lineCap = 'round';
+
+  }
+
+  function draw() {
+    elapsed = new Date() - animationElapsed;
+    ctx.clearRect(0, 0, w, h);
+    var pl = particles.length;
+    for (var c = 0; c < pl; c++) {
+      var p = particles[c];
+      //ctx.beginPath();
+      //ctx.moveTo(p.x, p.y);
+      //ctx.lineTo(p.x + p.l * p.xs, p.y + p.l * p.ys);
+
+      var multiplyer = p.vl;
+
+      if (multiplyer > 20) {
+        multiplyer = 20;
+      }
+      width = imageObj.width * multiplyer;
+      height = imageObj.height * multiplyer;
+
+
+      //console.log(width)
+
+      //console.log(p.ag)
+
+      if (p.tp == 'block') {
+        ctx.drawImage(blockImg, p.x + p.l * p.xs, p.y + p.l * p.ys);
+
+      } else
+      {
+        ctx.drawImage(imageObj, p.x + p.l * p.xs, p.y + p.l * p.ys, width, height);
+      }
+
+      ctx.stroke();
+    }
+    move();
+    animationElapsed = new Date();
+  }
+  function move() {
+    var pl = particles.length;
+    for (var b = 0; b < pl; b++) {
+      var p = particles[b];
+      if (typeof p == 'undefined') {
+        continue;
+      }
+      var gravity = p.vl;
+      if (gravity < 0.08) {
+        gravity = 0.08;
+      } else
+      if (gravity > 4) {
+        gravity = 4;
+      }
+      p.x += p.xs * elapsed / 30;
+      p.y += p.ys * elapsed / 30 * gravity;
+
+      if (p.y > h) {
+        var index = particles.indexOf(p);
+        if (index > -1) {
+          particles.splice(index, 1);
+        }
+      }
+    }
+    $('.obj-count').html(particles.length);
+  }
+
+  setInterval(draw, 33);
+});
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

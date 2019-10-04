@@ -1,0 +1,233 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Circular Progress Bar</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400|Hind:400,500,600">
+<style>
+    html,
+body {
+  height: 100%;
+  width: 100%;
+}
+html,
+button,
+input,
+select,
+textarea {
+  color: #5e5e5e;
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  background-color: #f0f1f1;
+  font: 1rem/1.2 Montserrat, Helvetica, Helvetica Neue, Arial;
+}
+.page {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  width: 275px;
+  margin: 20px auto;
+}
+.progress-bar {
+  display: inline-block;
+  width: 275px;
+  height: 275px;
+  margin: 7px;
+  padding: 0;
+}
+.progress-bar .progress-active {
+  position: relative;
+  top: -279px;
+}
+.progress-bar p {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 275px;
+  top: -460px;
+  font-size: 54px;
+  font-weight: 900;
+  text-align: center;
+}
+#progressControllerContainer {
+  position: absolute;
+  top: 320px;
+  padding: 10px 80px;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 38px 0;
+  width: 100%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 20px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: #ffffff;
+  border-radius: 0px;
+  border: 1px solid #e6e6e6;
+}
+input[type=range]::-webkit-slider-thumb {
+  border: 1px solid #d6d6d6;
+  height: 38px;
+  width: 20px;
+  border-radius: 5px;
+  background: #e1e1e1;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -10px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #ffffff;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 20px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: #ffffff;
+  border-radius: 0px;
+  border: 1px solid #e6e6e6;
+}
+input[type=range]::-moz-range-thumb {
+  border: 1px solid #d6d6d6;
+  height: 38px;
+  width: 20px;
+  border-radius: 5px;
+  background: #e1e1e1;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 20px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  border-width: 20px 0;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #f2f2f2;
+  border: 1px solid #e6e6e6;
+  border-radius: 0px;
+}
+input[type=range]::-ms-fill-upper {
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 0px;
+}
+input[type=range]::-ms-thumb {
+  border: 1px solid #d6d6d6;
+  height: 38px;
+  width: 20px;
+  border-radius: 5px;
+  background: #e1e1e1;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #ffffff;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #ffffff;
+}
+
+  </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+
+<div id="page" class="page">
+<div class="progress-bar">
+<canvas id="inactiveProgress" class="progress-inactive" height="275px" width="275px"></canvas>
+<canvas id="activeProgress" class="progress-active" height="275px" width="275"></canvas>
+<p>52%</p>
+</div>
+<div id="progressControllerContainer">
+<input type="range" id="progressController" min="0" max="100" value="15">
+</div>
+
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script id="rendered-js">
+      $(document).ready(function () {
+  var $pc = $('#progressController');
+  var $pCaption = $('.progress-bar p');
+  var iProgress = document.getElementById('inactiveProgress');
+  var aProgress = document.getElementById('activeProgress');
+  var iProgressCTX = iProgress.getContext('2d');
+
+
+  drawInactive(iProgressCTX);
+
+  $pc.on('change', function () {
+    var percentage = $(this).val() / 100;
+    drawProgress(aProgress, percentage, $pCaption);
+  });
+
+  function drawInactive(iProgressCTX) {
+    iProgressCTX.lineCap = 'square';
+
+    //outer ring
+    iProgressCTX.beginPath();
+    iProgressCTX.lineWidth = 15;
+    iProgressCTX.strokeStyle = '#e1e1e1';
+    iProgressCTX.arc(137.5, 137.5, 129, 0, 2 * Math.PI);
+    iProgressCTX.stroke();
+
+    //progress bar
+    iProgressCTX.beginPath();
+    iProgressCTX.lineWidth = 0;
+    iProgressCTX.fillStyle = '#e6e6e6';
+    iProgressCTX.arc(137.5, 137.5, 121, 0, 2 * Math.PI);
+    iProgressCTX.fill();
+
+    //progressbar caption
+    iProgressCTX.beginPath();
+    iProgressCTX.lineWidth = 0;
+    iProgressCTX.fillStyle = '#fff';
+    iProgressCTX.arc(137.5, 137.5, 100, 0, 2 * Math.PI);
+    iProgressCTX.fill();
+
+  }
+  function drawProgress(bar, percentage, $pCaption) {
+    var barCTX = bar.getContext("2d");
+    var quarterTurn = Math.PI / 2;
+    var endingAngle = 2 * percentage * Math.PI - quarterTurn;
+    var startingAngle = 0 - quarterTurn;
+
+    bar.width = bar.width;
+    barCTX.lineCap = 'square';
+
+    barCTX.beginPath();
+    barCTX.lineWidth = 20;
+    barCTX.strokeStyle = '#00B4FF';
+    barCTX.arc(137.5, 137.5, 111, startingAngle, endingAngle);
+    barCTX.stroke();
+
+    $pCaption.text(parseInt(percentage * 100, 10) + '%');
+  }
+
+  var percentage = $pc.val() / 100;
+  drawProgress(aProgress, percentage, $pCaption);
+
+
+});
+      //# sourceURL=pen.js
+    </script>
+
+
+</div></body></html>
