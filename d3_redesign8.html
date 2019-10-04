@@ -1,0 +1,177 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Daily Pen #7 - Gold</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<style>
+      html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #333;
+}
+#container {
+  padding: 50px;
+}
+.konvajs-content {
+  margin: 0 auto;
+  box-shadow: 0 0 50px black;
+  background: black;
+}
+.stats {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  opacity: 0.3 !important;
+}
+.stats:hover {
+  opacity: 1 !important;
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div id="container"><div class="konvajs-content" role="presentation" style="position: relative; width: 600px; height: 600px;"><canvas width="1200" height="1200" style="padding: 0px; margin: 0px; border: 0px; background: transparent; position: absolute; top: 0px; left: 0px; width: 600px; height: 600px;"></canvas></div></div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
+<script src="https://public.kelvinh.studio/cdn/js/kelvin_util.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/victor/1.1.0/victor.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/konva/1.7.6/konva.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.1/tinycolor.min.js"></script>
+<script id="rendered-js">
+      const km = kelvinUtil.math;
+const width = 600;
+const height = 600;
+const bgColor = 'black';
+const bgOpacity = 1;
+const color = {
+  red1: '#E74C3C',
+  red2: '#C0392B',
+  orange1: '#E67E22',
+  orange2: '#D35400',
+  yellow1: '#F1C40F',
+  yellow2: '#F39C12',
+  green1: '#2ECC71',
+  green2: '#27AE60',
+  mint1: '#1ABC9C',
+  mint2: '#16A085',
+  blue1: '#3498DB',
+  blue2: '#2980B9',
+  purple1: '#9B59B6',
+  purple2: '#8E44AD',
+  light1: '#ECF0F1',
+  light2: '#BDC3C7',
+  grey1: '#95A5A6',
+  grey2: '#7F8C8D',
+  dark1: '#34495E',
+  dark2: '#2C3E50' };
+
+
+let mouseX = 0;
+let mouseY = 0;
+let frameCount = 0;
+let ss = [];
+let ss2 = [];
+
+let delta = 0;
+let num = 27;
+let quan = width / num;
+let speed = 60;
+
+let stage = new Konva.Stage({
+  container: 'container',
+  width: width,
+  height: height });
+
+
+let layer = new Konva.FastLayer({
+  clearBeforeDraw: false });
+
+stage.add(layer);
+
+let bg = new Konva.Rect({
+  x: 0,
+  y: 0,
+  width: width,
+  height: height,
+  fill: bgColor,
+  opacity: bgOpacity });
+
+layer.add(bg);
+bg.moveToBottom();
+
+// stats
+let stats = new Stats();
+stats.showPanel(0);
+stats.domElement.className += ' stats';
+document.body.appendChild(stats.domElement);
+
+new Konva.Animation(frame => {
+  stats.begin();
+
+  let z = 0;
+
+  for (let y = 0; y < num; y++) {if (window.CP.shouldStopExecution(0)) break;if (window.CP.shouldStopExecution(0)) break;
+    for (let x = 0; x < num; x++) {if (window.CP.shouldStopExecution(1)) break;if (window.CP.shouldStopExecution(1)) break;
+      let shit;
+      if (typeof ss[z] === 'undefined') {
+        shit = new Konva.RegularPolygon({
+          x: 0,
+          y: 0,
+          sides: 6,
+          radius: 5,
+          fill: color.yellow1,
+          opacity: 0.3,
+          globalCompositeOperation: 'lighter' });
+
+
+        ss.push(shit);
+        layer.add(shit);
+      } else
+      {
+        shit = ss[z];
+      }
+
+      let dist = km.dist(width / 2, height / 2, x * quan, y * quan);
+      let margin = km.map(dist, 0, km.sqrt(km.sq(width / 2) + km.sq(height / 2)), 0, km.TWO_PI);
+      let wow = km.map(km.sin(delta + margin), -1, 1, quan * .9, quan * .1);
+      let lol = km.map(km.sin(delta + margin), -1, 1, 20, -20);
+      let yep = km.map(dist, 0, km.sqrt(km.sq(width / 2) + km.sq(height / 2)), 0, PI);
+      let nope = km.map(dist, 0, km.sqrt(km.sq(width / 2) + km.sq(height / 2)), 3, 2);
+
+      let v = new Konva.Transform();
+      v.translate(x * quan, y * quan);
+      let qq = v.getTranslation();
+      shit.width(wow);
+      shit.height(wow * nope);
+      shit.offsetX(shit.width() / 2 + lol);
+      shit.offsetY(shit.height() / 2);
+      shit.rotation(km.degrees(yep));
+      shit.x(qq.x);
+      shit.y(qq.y);
+
+      z++;
+    }window.CP.exitedLoop(1);window.CP.exitedLoop(1);
+  }window.CP.exitedLoop(0);window.CP.exitedLoop(0);
+
+  delta -= km.TWO_PI / speed;
+  stats.end();
+}, layer).start();
+      //# sourceURL=pen.js
+    </script><div class=" stats" style="cursor: pointer; opacity: 0.9;"><canvas width="160" height="96" style="width: 80px; height: 48px; display: block;"></canvas><canvas width="160" height="96" style="width: 80px; height: 48px; display: none;"></canvas><canvas width="160" height="96" style="width: 80px; height: 48px; display: none;"></canvas></div>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

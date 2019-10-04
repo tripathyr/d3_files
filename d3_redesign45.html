@@ -1,0 +1,175 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Quikly Network UI Layout</title>
+<style>
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans:600,400,300|Roboto:300);
+body {
+  font-family: 'Open Sans' !important;
+  font-style: normal;
+  font-weight: 400;
+  background: #000;
+}
+
+.component-invitations {
+  margin: 50px auto;
+  max-width: 980px;
+}
+
+.invitations {
+  color: #fff;
+}
+.invitations .networks {
+  text-align: center;
+}
+.invitations .networks:before, .invitations .networks:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+.invitations .networks .ui-horizontal-lines {
+  position: relative;
+  display: inline-block;
+  width: calc(75% - 40px);
+  height: 70px;
+}
+.invitations .networks .ui-horizontal-lines:before, .invitations .networks .ui-horizontal-lines:after {
+  position: absolute;
+  bottom: 0;
+  width: 50%;
+  height: 20px;
+  content: '';
+  border-style: dashed;
+  border-color: gray;
+}
+.invitations .networks .ui-horizontal-lines:before {
+  left: 0;
+  border-width: 1px 1px 0 0;
+  border-radius: 0 20px 0 0;
+}
+.invitations .networks .ui-horizontal-lines:after {
+  right: 0;
+  border-width: 1px 0 0 1px;
+  border-radius: 20px 0 0 0;
+}
+.invitations .network {
+  float: left;
+  width: 25%;
+  text-align: center;
+}
+.invitations .network p {
+  margin: 0;
+}
+.invitations .network .title,
+.invitations .network .unit {
+  font-size: 11px;
+}
+.invitations .network .tally {
+  color: #5c9fb2;
+  font-size: 38px;
+  font-family: 'Roboto' !important;
+}
+.invitations .network .unit {
+  margin-top: 3px;
+  color: #434446;
+}
+.invitations .network:nth-child(1), .invitations .network:nth-child(2), .invitations .network:nth-child(3), .invitations .network:nth-child(4) {
+  position: relative;
+}
+.invitations .network:nth-child(1):before, .invitations .network:nth-child(1):after, .invitations .network:nth-child(2):before, .invitations .network:nth-child(2):after, .invitations .network:nth-child(3):before, .invitations .network:nth-child(3):after, .invitations .network:nth-child(4):before, .invitations .network:nth-child(4):after {
+  position: absolute;
+  content: '';
+  border-color: gray;
+}
+.invitations .network:nth-child(1):before, .invitations .network:nth-child(2):before, .invitations .network:nth-child(3):before, .invitations .network:nth-child(4):before {
+  left: 50%;
+  bottom: -26px;
+  margin-left: -2px;
+  width: 4px;
+  height: 4px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+}
+.invitations .network:nth-child(1):after, .invitations .network:nth-child(2):after, .invitations .network:nth-child(3):after, .invitations .network:nth-child(4):after {
+  bottom: -50px;
+  width: 20px;
+  height: 20px;
+  border-style: dashed;
+}
+.invitations .network:nth-child(1):after, .invitations .network:nth-child(2):after {
+  left: 50%;
+  border-width: 0 0 1px 1px;
+  border-radius: 0 0 0 20px;
+}
+.invitations .network:nth-child(3):after, .invitations .network:nth-child(4):after {
+  right: 50%;
+  border-width: 0 1px 1px 0;
+  border-radius: 0 0 20px 0;
+}
+.invitations .viralability {
+  text-align: center;
+}
+.invitations .viralability .stats-wrapper p {
+  margin: 0;
+}
+.invitations .viralability .stats-wrapper .tally {
+  color: #5c9fb2;
+  font-size: 53px;
+}
+.invitations .viralability .stats-wrapper .unit {
+  margin-top: 3px;
+  color: #434446;
+  font-size: 11px;
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<section class="component-invitations">
+<div class="invitations">
+<div class="networks">
+<div class="network facebook">
+<p class="title">Facebook Invitations</p>
+<p class="tally">110,578</p>
+<p class="unit">People</p>
+</div>
+<div class="network twitter">
+<p class="title">Twitter Invitations</p>
+<p class="tally">35,123</p>
+<p class="unit">Tweets</p>
+</div>
+<div class="network email">
+<p class="title">Email Invitations</p>
+<p class="tally">24,312</p>
+<p class="unit">People</p>
+</div>
+<div class="network pinterest">
+<p class="title">Pinterest Invitations</p>
+<p class="tally">20,997</p>
+<p class="unit">Pins</p>
+</div>
+<div class="ui-horizontal-lines"></div>
+</div>
+<div class="viralability">
+<div class="stats-wrapper">
+<p class="tally">160,444</p>
+<p class="unit">People</p>
+</div>
+</div>
+</div>
+</section>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

@@ -1,0 +1,401 @@
+<html lang="en" class=" -webkit-"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Icon Hover Effects</title>
+<style>
+      @import url(http://weloveiconfonts.com/api/?family=fontawesome);
+@import url(https://fonts.googleapis.com/css?family=Abel);
+h1{
+  font-family: 'Abel', sans-serif;
+  text-align:center;
+  color:rgba(255,255,255,.5);
+  font-size:3rem;
+}
+h2{
+  font-family: 'Abel', sans-serif;
+  text-align:center;
+  color:rgba(255,255,255,.5);
+  font-size:2rem;
+}
+body{
+  background:#52292A;
+  
+}
+.icon{
+  height:100px;
+  width:100%;
+  text-align:center;
+  padding-top:50px;
+}
+
+.button{
+  display:inline-block;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin-right:20px;
+  margin-bottom:20px;
+  text-align:center;
+  cursor:pointer;
+  float:left;
+}
+.button:first-of-type{
+  margin-left:5em;
+}
+.button:after{
+  display:inline-block;
+  position:relative;
+  border-radius: 50%; 
+  content:'';
+  box-sizing:content-box;
+  backface-visibility: hidden;
+}
+.button:before{
+  position:relative;
+  display:block;
+  font-family: 'FontAwesome', sans-serif;
+  font-size:2.5rem;
+  z-index :1;
+  line-height:90px;
+}
+
+
+.fontawesome-glass{
+  background:rgba(255,255,255,.1);
+  transition:background .2s;
+}
+.fontawesome-music{
+  background:rgba(255,255,255,.1);
+  transition:background .2s;
+}
+.fontawesome-heart{
+  box-shadow:0 0 0 3px white;
+}
+.fontawesome-user{
+  box-shadow:0 0 0 3px white;
+}
+.fontawesome-film{
+  box-shadow:0 0 0 3px white;
+}
+.fontawesome-trash{
+  box-shadow:0 0 0 3px white;
+}
+.fontawesome-home{
+  box-shadow: 0 0 0 4px #fff;
+  transform:box-shadow .2s;
+}
+.fontawesome-time{
+  box-shadow: 0 0 0 4px #fff;
+  transform:box-shadow .2s;
+}
+.fontawesome-lock{
+  overflow:hidden;
+  box-shadow: 0 0 0 4px #fff;
+  transform:box-shadow .2s,background .2s;
+  margin-bottom:90px;
+}
+.fontawesome-star-empty{
+  box-shadow: 0 0 0 4px #fff;
+  transform:background .2s;
+}
+.fontawesome-gift{
+  box-shadow: 0 0 0 4px #fff;
+}
+.fontawesome-leaf{
+  background:rgba(255,255,255,.1);
+  tansition:transform ease-out .1s,background .2s;
+}
+
+
+
+.fontawesome-glass:after{
+  width: 100px;
+  height: 100px;
+  top:-95px;
+  left:-5px;
+  box-shadow: 0 0 0 4px #fff;
+  opacity:0;
+  transform:scale(.8);
+  transition:transform .2s, opacity .2s;
+}
+.fontawesome-music:after{
+  width: 100px;
+  height: 100px;
+  top:-95px;
+  left:-5px;
+  box-shadow: 0 0 0 4px #fff;
+  transition:transform .2s, opacity .2s;
+  transform:scale(1.2);
+  opacity:0;
+}
+.fontawesome-heart:after{
+  width: 90px;
+  height: 90px;
+  top:-90px;
+  background:white;
+  transition:transform .2s;
+}
+.fontawesome-user:after{
+  width: 90px;
+  height: 90px;
+  top:-90px;
+  background:white;
+  transition:transform .2s;
+}
+.fontawesome-film:after{
+  width: 90px;
+  height: 90px;
+  top:-90px;
+  background:white;
+  transition:transform .2s, opacity .2s;
+}
+.fontawesome-trash:after{
+  width: 90px;
+  height: 90px;
+  top:-90px;
+  background:white;
+  transform:scale(1.5);
+  opacity:0;
+  transition:transform .2s, opacity .2s;
+}
+.fontawesome-home:after{
+  width: 90px;
+  height: 90px;
+  top:-93.5px;
+  left:-3.5px;
+  border:4px dashed #fff;
+}
+.fontawesome-time:after{
+  width: 90px;
+  height: 90px;
+  top:-93.5px;
+  left:-3.5px;
+  border:4px dashed #fff;
+}
+.fontawesome-gift:after{
+  width: 105px;
+  height: 105px;
+  top:-97px;
+  left:-7px;
+  box-shadow:2px 0 0 0 #fff;
+  opacity:0;
+  transition:box-shadow .2s,opacity .2s;
+}
+.fontawesome-leaf:after{
+  width: 100px;
+  height: 100px;
+  top:-95px;
+  left:-5px;
+  transform:scale(.9);
+  box-shadow:0 0 0 2px #fff;
+  opacity:0;
+}
+
+
+
+
+.fontawesome-glass:before{
+  color:white;
+  transition:color .2s;
+}
+.fontawesome-music:before{
+  color:white;
+  transition:color .2s;
+}
+.fontawesome-heart:before{
+  color:#52292A;
+}
+.fontawesome-user:before{
+  color:#52292A;
+  transition:color .2s;
+}
+.fontawesome-film:before{
+  color:#52292A;
+  transition:color .2s;
+}
+.fontawesome-trash:before{
+  color:white;
+  transition:color .2s;
+}
+.fontawesome-home:before{
+  color:white;
+}
+.fontawesome-time:before{
+  color:white;
+}
+.fontawesome-lock:before{
+  color:white;
+  transform:color .2s;
+}
+.fontawesome-star-empty:before{
+  color:white;
+  transform:color .2s;
+}
+.fontawesome-gift:before{
+  color:white;
+  transition:transform .2s;
+}
+.fontawesome-leaf:before{
+  color:white;
+}
+
+
+.fontawesome-glass:hover{
+  background:#fff;
+}
+.fontawesome-music:hover{
+  background:#fff;
+}
+.fontawesome-home:hover{
+   box-shadow: 0 0 0 0px #fff;
+}
+.fontawesome-time:hover{
+   box-shadow: 0 0 0 0px #fff;
+}
+.fontawesome-lock:hover{
+   box-shadow: 0 0 0 8px rgba(255,255,255,.5);
+   background:white;
+}
+.fontawesome-star-empty:hover{
+   background:white;
+}
+.fontawesome-leaf:hover{
+   background:rgba(255,255,255,.05);
+   transform:scale(.95);
+}
+
+
+.fontawesome-glass:hover:after{
+    transform:scale(1);
+    opacity:1;
+}
+.fontawesome-music:hover:after{
+    transform:scale(1);
+    opacity:1;
+}
+.fontawesome-heart:hover:after{
+    transform:scale(.85);
+}
+.fontawesome-user:hover:after{
+    transform:scale(0);
+}
+.fontawesome-film:hover:after{
+    transform:scale(1.5);
+    opacity:0;
+}
+.fontawesome-trash:hover:after{
+    transform:scale(1);
+    opacity:1;
+}
+.fontawesome-time:hover:after{
+    animation:spin 9s linear infinite;
+}
+.fontawesome-gift:hover:after{
+    box-shadow:2px 2px 0 0 #fff;
+    opacity:1;
+}
+.fontawesome-leaf:hover:after{
+  animation:ripple 1.3s ease-out 75ms;
+}
+
+
+.fontawesome-glass:hover:before{
+  color:#52292A;
+}
+.fontawesome-music:hover:before{
+  color:#52292A;
+} 
+.fontawesome-user:hover:before{
+  color:white;
+} 
+.fontawesome-film:hover:before{
+  color:white;
+} 
+.fontawesome-trash:hover:before{
+  color:#52292A;
+}
+.fontawesome-lock:hover:before{
+  color:#52292A;
+  animation:slide .3s forwards;
+} 
+.fontawesome-star-empty:hover:before{
+  color:#52292A;
+  animation:spin 2s linear infinite;
+}
+.fontawesome-gift:hover:before{
+  transform:scale(1.3);
+}
+
+
+
+@keyframes spin{
+  from{
+    transform:rotate(0deg);  
+  }
+  to{
+    transform:rotate(360deg);
+  }
+}
+@keyframes slide{
+  49% {
+    transform: translate(-100%);
+  }
+  50% {
+    opacity: 0;
+    transform: translate(100%);
+  }
+  51% {
+    opacity: 1;
+  }
+}
+@keyframes ripple{
+  0% {
+    opacity: 0.3;
+  }
+  40% {
+    opacity: 0.5;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.1), 0 0 10px 10px #52292A, 0 0 0 10px rgba(255,255,255,0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.1), 0 0 10px 10px #52292A, 0 0 0 10px rgba(255,255,255,0.5);
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<h1>Icon Hover Effects</h1>
+<h2>Simple hover effects for circular icons</h2>
+<div class="icon">
+<a class="fontawesome-glass button"></a>
+<a class="fontawesome-music button"></a>
+<a class="fontawesome-heart button"></a>
+<a class="fontawesome-user button"></a>
+<a class="fontawesome-film button"></a>
+<a class="fontawesome-trash button"></a>
+<a class="fontawesome-home button"></a>
+<a class="fontawesome-time button"></a>
+<a class="fontawesome-lock button"></a>
+<a class="fontawesome-star-empty button"></a>
+<a class="fontawesome-gift button"></a>
+<a class="fontawesome-leaf button"></a>
+</div>
+<br>
+<br><br>
+<h2>As seen on codrops:</h2>
+<h2>https://tympanus.net/Development/IconHoverEffects/#set-1</h2>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

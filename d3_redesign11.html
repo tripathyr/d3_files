@@ -1,0 +1,370 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - React Calculator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<style>
+      @import "https://fonts.googleapis.com/css?family=Roboto+Mono";
+:root {
+  font-size: 18px;
+}
+
+@media only screen and (min-width: 768px) {
+  :root {
+    font-size: 24px;
+  }
+}
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto Mono';
+  font-size: 1rem;
+  background: linear-gradient(to bottom right, #542437 0%, #CDB380 100%) 100% no-repeat;
+}
+
+button {
+  width: 4rem;
+  height: 4rem;
+  font-family: 'Roboto Mono';
+  font-size: 16px;
+  background: none;
+  color: #CDB380;
+  border: none;
+  cursor: pointer;
+  transition: color 300ms ease-in-out;
+}
+button:hover {
+  color: #5E6F8C;
+}
+button:focus {
+  outline: none;
+}
+
+.calculator {
+  width: 16rem;
+  background: #343838;
+  box-shadow: 0 0 4rem 0 rgba(0, 0, 0, 0.3);
+}
+
+.calc-display {
+  font-size: 18px;
+  padding: 1.6rem 1.3333333333rem;
+  text-align: right;
+  color: #CDB380;
+  border-bottom: 3px solid #5E6F8C;
+  box-shadow: 0 5px 21px -5px rgba(0, 0, 0, 0.3);
+}
+
+.calc-numbers {
+  width: 12rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  float: left;
+}
+
+.calc-functions {
+  float: left;
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div id="app"><div data-reactroot="" class="calculator"><div class="calc-display">12</div><div class="calc-functions"><button name="c">c</button><button name="±">±</button><button name=".">.</button></div><div class="calc-numbers"><button name="1">1</button><button name="2">2</button><button name="3">3</button><button name="4">4</button><button name="5">5</button><button name="6">6</button><button name="7">7</button><button name="8">8</button><button name="9">9</button><button name="0">0</button></div><div class="calc-operations"><button name="+">+</button><button name="-">-</button><button name="*">*</button><button name="/">/</button><button name="=">=</button></div></div></div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://npmcdn.com/react@15.3.0/dist/react.min.js"></script>
+<script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.min.js"></script>
+<script id="rendered-js">
+      class Calculator extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      displayVal: "0",
+      calcVals: [] };
+
+  }
+  _displayNum(num) {
+    if (this.state.displayVal.length > 19) {// Where var too long for display
+      return;
+    } else if (this.state.displayVal === "0" || this.state.displayVal === "Undefined! 😫") {// Where var is 0, or where result is undefined
+      this.setState({
+        displayVal: num });
+
+    } else if (this.state.displayVal.charAt(0) === "-" && this.state.displayVal.charAt(1) === "0") {// Fix to allow user to add - sign while displayed value is still 0
+      this.setState({
+        displayVal: `-${num}` });
+
+    } else
+    {
+      this.setState({
+        displayVal: this.state.displayVal + num });
+
+    }
+  }
+  _clearVals() {
+    this.setState({
+      displayVal: "0",
+      calcVals: [] });
+
+  }
+  _insDecimal() {
+    if (this.state.displayVal.length > 19) {
+      return;
+    } else if (this.state.displayVal.indexOf(".") === -1) {
+      this.setState({
+        displayVal: this.state.displayVal + "." });
+
+    } else {
+      return;
+    }
+  }
+  _swapSign() {
+    const char = this.state.displayVal.charAt(0);
+    if (char === "-") {
+      this.setState({
+        displayVal: this.state.displayVal.slice(1) });
+
+    } else {
+      this.setState({
+        displayVal: "-" + this.state.displayVal });
+
+    }
+  }
+  _addToCalc(oper) {
+    const currentVal = parseFloat(this.state.displayVal),
+    calc = {
+      val: currentVal,
+      sign: oper },
+
+    vals = [...this.state.calcVals];
+    vals.push(calc);
+    this.setState({
+      displayVal: "0",
+      calcVals: vals });
+
+  }
+  _calcResult(oper) {
+    const valsToCalc = [...this.state.calcVals],
+    currentVal = parseFloat(this.state.displayVal);
+    let result = 0;
+    // Add current value to array
+    valsToCalc.push({ val: currentVal, sign: oper });
+    for (let i = 0, x = valsToCalc.length; i < x; i++) {if (window.CP.shouldStopExecution(0)) break;if (window.CP.shouldStopExecution(0)) break;
+      // For first iteration, set result = to first value
+      // This is so we can do sums between current and previous loop iteration
+      if (i === 0) {
+        result = valsToCalc[i].val;
+      } else {
+        // Referencing the previous iteration's sign
+        switch (valsToCalc[i - 1].sign) {
+          case "+":
+            result += valsToCalc[i].val;
+            break;
+          case "-":
+            result -= valsToCalc[i].val;
+            break;
+          case "*":
+            result *= valsToCalc[i].val;
+            break;
+          case "/":
+            result /= valsToCalc[i].val;
+            break;
+          default:
+            console.log("Something went wrong...");}
+
+      }
+    }
+    // Catch if user divides by 0
+    window.CP.exitedLoop(0);window.CP.exitedLoop(0);if (isNaN(result) || result === Infinity) {
+      result = "Undefined! 😫";
+    } else {
+      result = result.toString();
+    }
+    // Set result on state
+    this.setState({
+      displayVal: result,
+      calcVals: [] });
+
+  }
+  render() {
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
+    operations = ['+', '-', '*', '/', '='],
+    functions = ['c', '±', '.'];
+    return (
+      React.createElement("div", { className: "calculator" },
+      React.createElement(Display, {
+        displayVal: this.state.displayVal }),
+
+      React.createElement(Functions, {
+        functions: functions,
+        _clearVals: this._clearVals.bind(this),
+        _insDecimal: this._insDecimal.bind(this),
+        _swapSign: this._swapSign.bind(this) }),
+
+      React.createElement(Numbers, {
+        numbers: numbers,
+        _displayNum: this._displayNum.bind(this) }),
+
+      React.createElement(Operations, {
+        operations: operations,
+        _addToCalc: this._addToCalc.bind(this),
+        _calcResult: this._calcResult.bind(this) })));
+
+
+
+  }}
+;
+
+class Operations extends React.Component {
+  _handleOper(oper) {
+    switch (oper) {
+      case "+":
+      case "-":
+      case "*":
+      case "/":
+        this.props._addToCalc(oper);
+        break;
+      case "=":
+        this.props._calcResult(oper);
+        break;
+      default:
+        console.log("Something went wrong...");}
+
+  }
+  render() {
+    return (
+      React.createElement("div", { className: "calc-operations" },
+      this.props.operations.map(operation => {
+        return React.createElement(Button, {
+          button: operation,
+          _handleOper: this._handleOper.bind(this) });
+
+      })));
+
+
+  }}
+;
+
+class Functions extends React.Component {
+  _handleFunct(funct) {
+    // Conditional to call appropriate function
+    switch (funct) {
+      case "c":
+        this.props._clearVals();
+        break;
+      case "±":
+        this.props._swapSign();
+        break;
+      case ".":
+        this.props._insDecimal();
+        break;
+      default:
+        console.log("Something went wrong...");}
+
+  }
+  render() {
+    return (
+      React.createElement("div", { className: "calc-functions" },
+      this.props.functions.map(funct => {
+        return React.createElement(Button, {
+          button: funct,
+          _handleFunct: this._handleFunct.bind(this) });
+
+      })));
+
+
+  }}
+;
+
+class Numbers extends React.Component {
+  _handleNum(num) {
+    const parsedNum = num.toString();
+    this.props._displayNum(parsedNum);
+  }
+  render() {
+    return (
+      React.createElement("div", { className: "calc-numbers" },
+      this.props.numbers.map(number => {
+        return React.createElement(Button, {
+          button: number,
+          _handleNum: this._handleNum.bind(this) });
+
+      })));
+
+
+  }}
+;
+
+class Display extends React.Component {
+  render() {
+    return (
+      React.createElement("div", { className: "calc-display" },
+      this.props.displayVal));
+
+
+  }}
+;
+
+class Button extends React.Component {
+  _handleClick(e) {
+    // Conditional to handle different types of buttons
+    switch (this.props.button) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+      case 9:
+        this.props._handleNum(this.props.button);
+        break;
+      case "c":
+      case "±":
+      case ".":
+        this.props._handleFunct(this.props.button);
+        break;
+      case "+":
+      case "-":
+      case "*":
+      case "/":
+      case "=":
+        this.props._handleOper(this.props.button);
+        break;}
+
+  }
+  render() {
+    return (
+      React.createElement("button", { name: this.props.button, onClick: this._handleClick.bind(this) },
+      this.props.button));
+
+
+  }}
+;
+
+// Render app
+ReactDOM.render(
+React.createElement(Calculator, null),
+document.querySelector('#app'));
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

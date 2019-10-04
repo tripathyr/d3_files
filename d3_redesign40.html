@@ -1,0 +1,713 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Week #10 - Wallet Widget</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css">
+<style>
+      html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  background: #ffcc66;
+  cursor: default;
+  font: 14px 'Open Sans', Helvetica, sans-serif;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+.main {
+  height: 100%;
+  padding: 80px 0;
+}
+
+::-moz-selection {
+  background: rgba(255, 204, 102, 0.3);
+}
+
+::selection {
+  background: rgba(255, 204, 102, 0.3);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  -webkit-font-smoothing: antialiased;
+}
+
+.button {
+  cursor: pointer;
+  transition: 0.2s ease;
+  transition-property: background-color, color;
+}
+.button:focus {
+  box-shadow: none;
+  outline: 1px dotted #bbb;
+}
+
+.button--icon {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: none;
+  border: 0;
+  color: rgba(131, 147, 202, 0.4);
+  font-size: 192%;
+  line-height: 1;
+  padding: 0;
+  vertical-align: baseline;
+}
+.button--icon:hover {
+  color: rgba(54, 70, 126, 0.4);
+}
+
+.u--center {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+.icon {
+  border: 2px solid #f2f2f2;
+  border-radius: 999px;
+  display: inline-block;
+  height: 1.1em;
+  line-height: 1.1em;
+  text-align: center;
+  width: 1.1em;
+}
+.icon:before {
+  position: relative;
+  top: -.15em;
+}
+
+.icon--debit:before {
+  content: '-';
+}
+
+.icon--credit:before {
+  content: '+';
+  top: -.085em;
+}
+
+.tooltip {
+  background: #000;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  font-size: 70%;
+  opacity: 0;
+  padding: .2em 1.25em .2em 1em;
+  pointer-events: none;
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  transition: 0.2s ease;
+  transition-property: opacity, -webkit-transform;
+  transition-property: opacity, transform;
+  transition-property: opacity, transform, -webkit-transform;
+}
+:hover > .tooltip {
+  opacity: 1;
+  -webkit-transform: translate(-1.17em, -50%);
+          transform: translate(-1.17em, -50%);
+}
+.tooltip:after {
+  border-radius: 4px;
+  border-top: 0.9em solid transparent;
+  border-bottom: 0.9em solid transparent;
+  border-left: 0.9em solid #000;
+  content: '';
+  display: block;
+  left: 100%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-1px, -50%);
+          transform: translate(-1px, -50%);
+}
+
+.dollar-amount sup {
+  font-size: 58.3%;
+  position: relative;
+  top: .05em;
+  vertical-align: super;
+}
+
+.card {
+  background: #fff;
+  box-shadow: 0 0 0 2px #e1e1e1;
+  border-radius: 4.5px;
+  color: #666;
+  font-size: 20px;
+  padding: .8em 1em .75em;
+}
+.card.tab__selector:not(.tab__selector--active):hover {
+  box-shadow: 0 0 0 2px tint(#8393ca, 55%);
+}
+.card.tab__selector--active {
+  box-shadow: 0 0 0 4px #8393ca;
+  color: #666;
+}
+.card__num {
+  margin: .5em 0;
+}
+.card__meta {
+  color: #b3b3b3;
+  font-size: .8em;
+}
+
+.card-icon {
+  background: #e5e5e5 no-repeat center center;
+  border-radius: 5.1px;
+  display: inline-block;
+  font-size: 12px;
+  height: 3.66em;
+  width: 5.33em;
+}
+
+.card-icon--visa {
+  background-color: #48a0dc;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/93048/visa.svg");
+  background-size: 4em 1.33em;
+}
+
+.card-icon--amex {
+  background-color: #66ccff;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/93048/amex.svg");
+  background-size: 4.66em 1.16em;
+}
+
+.card-icon--mstc {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/93048/mastercard.svg");
+  background-size: 4em 2.33em;
+}
+
+.scroll {
+  max-height: 100%;
+  overflow: auto;
+}
+
+.tab__selector {
+  cursor: pointer;
+  transition: 0.2s ease;
+  transition-property: border-color, box-shadow, color;
+}
+.tab__selector:hover {
+  border-color: tint(#8393ca, 55%);
+}
+.tab__selector--active {
+  border-color: #8393ca;
+  color: #8393ca;
+  cursor: default;
+}
+.tab__selector--active:hover {
+  border-color: #8393ca;
+}
+.tab__item {
+  height: 0;
+  overflow: hidden;
+}
+.tab__item--active {
+  height: auto;
+  overflow: visible;
+}
+
+.toggle {
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 6px 20px 0 #ffa61b;
+  font-size: 14px;
+  height: 700px;
+  max-width: 880px;
+  overflow: hidden;
+}
+.toggle .shelf {
+  padding-bottom: 55px;
+}
+.toggle .icon {
+  position: relative;
+}
+.toggle__tabber,
+.toggle .tab__item--active {
+  padding: 55px;
+}
+.toggle .tab__item {
+  opacity: 0;
+  -webkit-transform: translate(100%, 0);
+          transform: translate(100%, 0);
+  transition: .3s ease-out;
+  transition-property: opacity, -webkit-transform;
+  transition-property: opacity, transform;
+  transition-property: opacity, transform, -webkit-transform;
+  will-change: transform;
+}
+.toggle .tab__item--active {
+  opacity: 1;
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+.toggle__container {
+  display: table;
+  overflow: visible;
+  width: 100%;
+}
+.toggle__tabber, .toggle__content {
+  display: table-cell;
+  vertical-align: top;
+}
+.toggle__tabber {
+  background: #f2f2f2;
+  padding: 55px;
+  width: 360px;
+}
+.toggle__tabber .shelf {
+  border: 0;
+}
+.toggle__tabber .card + .card {
+  margin-top: 30px;
+}
+.toggle__content .tab__item {
+  padding-right: 45.1px;
+}
+.toggle__content .shelf .dollar-amount {
+  color: #444751;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.shelf {
+  border-bottom: 1px solid #e5e5e5;
+  display: table;
+  font-size: 24px;
+  padding: 0 0 1em;
+  width: 100%;
+}
+.shelf__header {
+  color: #707584;
+  font-size: 100%;
+}
+.shelf__content, .shelf__aside {
+  display: table-cell;
+  vertical-align: bottom;
+}
+.shelf__content {
+  padding-right: 1em;
+}
+.shelf__aside {
+  text-align: right;
+  width: 25%;
+}
+
+.statement {
+  font-size: 18px;
+}
+.shelf + .statement {
+  padding-top: 3em;
+}
+.statement__item {
+  color: #333;
+  display: table;
+  width: 100%;
+}
+.statement__item--credit .statement__figure {
+  color: #66cc33;
+}
+.statement__icon, .statement__summary, .statement__figure {
+  display: table-cell;
+  vertical-align: middle;
+}
+.statement__icon {
+  width: 2.5em;
+}
+.statement__icon .icon {
+  cursor: help;
+}
+.statement__figure {
+  text-align: right;
+}
+.statement__title {
+  font-weight: 600;
+}
+.statement__memo {
+  color: #b3b3b3;
+  font-size: 77%;
+  letter-spacing: .7px;
+}
+.statement__item + .statement__item {
+  margin-top: 2em;
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+
+<main class="main" role="main">
+<div class="toggle  u--center">
+<div class="toggle__container">
+<aside class="toggle__tabber">
+<header class="shelf  toggle__shelf">
+<div class="shelf__content">
+<h2 class="shelf__header">My Wallets</h2>
+</div>
+<div class="shelf__aside">
+<button class="button button--icon">+</button>
+</div>
+</header>
+
+<ul class="tab__navigation  toggle__tabs" data-nav-for="content">
+<li class="card card--visa  tab__selector tab__selector--active" data-to-tab="card01">
+<i class="card-icon card-icon--visa"></i>
+ <h3 class="card__num">**** **** **** 2562</h3>
+<h4 class="card__meta">Valid Thru: 12/17</h4>
+</li>
+<li class="card card--amex  tab__selector" data-to-tab="card02">
+<i class="card-icon card-icon--amex"></i>
+<h3 class="card__num">**** ****** 21001</h3>
+<h4 class="card__meta">Valid Thru: 07/19</h4>
+</li>
+<li class="card card--mstc  tab__selector" data-to-tab="card03">
+<i class="card-icon card-icon--mstc"></i>
+<h3 class="card__num">**** **** **** 2562</h3>
+<h4 class="card__meta">Valid Thru: 12/17</h4>
+</li>
+</ul>
+
+</aside>
+
+<section class="toggle__content">
+<div class="tab__container" data-tab-group="content">
+<div class="tab__item tab__item--active" data-tab="card01">
+<header class="shelf  toggle__shelf">
+<div class="shelf__content">
+<h2 class="shelf__header">Current Balance</h2>
+</div>
+<div class="shelf__aside">
+<div class="dollar-amount">$729.<sup>00</sup>
+</div>
+</div></header>
+
+<div class="statement" id="content">
+<article class="statement__item statement__item--debit">
+<div class="statement__icon"><i class="icon icon--debit"><span class="tooltip">Debit</span></i></div>
+<div class="statement__summary">
+<h3 class="statement__title">Apple iPhone 6, 16GB</h3>
+<p class="statement__memo">Electronics #343223 - 12 July, 2015</p>
+</div>
+<div class="dollar-amount  statement__figure">$650.<sup>00</sup></div>
+</article>
+
+<article class="statement__item statement__item--credit">
+<div class="statement__icon"><i class="icon icon--credit"><span class="tooltip">Credit</span></i></div>
+<div class="statement__summary">
+<h3 class="statement__title">Deposit</h3>
+<p class="statement__memo">Payment #343212 - 11 July, 2015</p>
+</div>
+<div class="dollar-amount  statement__figure">$900.<sup>00</sup></div>
+</article>
+
+<article class="statement__item statement__item--debit">
+<div class="statement__icon"><i class="icon icon--debit"><span class="tooltip">Debit</span></i></div>
+<div class="statement__summary">
+<h3 class="statement__title">Flowers for bae</h3>
+<p class="statement__memo">#343566 - 11 July, 2015</p>
+</div>
+<div class="dollar-amount  statement__figure">$14.<sup>96</sup></div>
+</article>
+
+<article class="statement__item statement__item--debit">
+<div class="statement__icon"><i class="icon icon--debit"><span class="tooltip">Debit</span></i></div>
+<div class="statement__summary">
+<h3 class="statement__title">Mega Image SRL</h3>
+<p class="statement__memo">Food &amp; Health #34365 - 11 July, 2015</p>
+</div>
+<div class="dollar-amount  statement__figure">$112.<sup>75</sup></div>
+</article>
+
+<article class="statement__item statement__item--debit">
+<div class="statement__icon"><i class="icon icon--debit"><span class="tooltip">Debit</span></i></div>
+<div class="statement__summary">
+<h3 class="statement__title">Strippers and coke</h3>
+<p class="statement__memo">#343253 - 09 July, 2015</p>
+</div>
+<div class="dollar-amount  statement__figure">$1403.<sup>67</sup></div>
+</article>
+
+<article class="statement__item statement__item--debit">
+<div class="statement__icon"><i class="icon icon--debit"><span class="tooltip">Debit</span></i></div>
+<div class="statement__summary">
+<h3 class="statement__title">Lukoil Station</h3>
+<p class="statement__memo">Gas #343279 - 09 July, 2015</p>
+</div>
+<div class="dollar-amount  statement__figure">$190.<sup>48</sup></div>
+</article>
+
+<article class="statement__item statement__item--debit">
+<div class="statement__icon"><i class="icon icon--debit"><span class="tooltip">Debit</span></i></div>
+<div class="statement__summary">
+<h3 class="statement__title">ATM DV24</h3>
+<p class="statement__memo">#343182 - 06 July, 2015</p>
+</div>
+<div class="dollar-amount  statement__figure">$140.<sup>00</sup></div>
+</article>
+
+</div>
+
+</div>
+
+<div class="tab__item" data-tab="card02">
+<header class="shelf  toggle__shelf">
+<div class="shelf__content">
+<h2 class="shelf__header">Current Balance</h2>
+</div>
+<div class="shelf__aside">
+<div class="dollar-amount">$729.<sup>00</sup>
+</div>
+</div></header>
+
+<div class="statement" id="content">
+<article class="statement__item statement__item--debit">
+<div class="statement__icon"><i class="icon icon--debit"><span class="tooltip">Debit</span></i></div>
+<div class="statement__summary">
+<h3 class="statement__title">Apple iPhone 6, 16GB</h3>
+<p class="statement__memo">Electronics #343223 - 12 July, 2015</p>
+</div>
+<div class="dollar-amount  statement__figure">$650.<sup>00</sup></div>
+</article>
+
+<article class="statement__item statement__item--credit">
+<div class="statement__icon"><i class="icon icon--credit"><span class="tooltip">Credit</span></i></div>
+<div class="statement__summary">
+<h3 class="statement__title">Deposit</h3>
+<p class="statement__memo">Payment #343212 - 11 July, 2015</p>
+</div>
+<div class="dollar-amount  statement__figure">$900.<sup>00</sup></div>
+</article>
+
+<article class="statement__item statement__item--debit">
+<div class="statement__icon"><i class="icon icon--debit"><span class="tooltip">Debit</span></i></div>
+<div class="statement__summary">
+<h3 class="statement__title">Energy Bill</h3>
+<p class="statement__memo">#343566 - 11 July, 2015</p>
+</div>
+<div class="dollar-amount  statement__figure">$84.<sup>96</sup></div>
+</article>
+
+<article class="statement__item statement__item--debit">
+<div class="statement__icon"><i class="icon icon--debit"><span class="tooltip">Debit</span></i></div>
+<div class="statement__summary">
+<h3 class="statement__title">Mega Image SRL</h3>
+<p class="statement__memo">Food &amp; Health #34365 - 11 July, 2015</p>
+</div>
+<div class="dollar-amount  statement__figure">$112.<sup>75</sup></div>
+</article>
+
+<article class="statement__item statement__item--debit">
+<div class="statement__icon"><i class="icon icon--debit"><span class="tooltip">Debit</span></i></div>
+<div class="statement__summary">
+<h3 class="statement__title">ATM DV24</h3>
+<p class="statement__memo">#343253 - 09 July, 2015</p>
+</div>
+<div class="dollar-amount  statement__figure">$200.<sup>00</sup></div>
+</article>
+
+<article class="statement__item statement__item--debit">
+<div class="statement__icon"><i class="icon icon--debit"><span class="tooltip">Debit</span></i></div>
+<div class="statement__summary">
+<h3 class="statement__title">Lukoil Station</h3>
+<p class="statement__memo">Gas #343279 - 09 July, 2015</p>
+</div>
+<div class="dollar-amount  statement__figure">$190.<sup>48</sup></div>
+</article>
+
+<article class="statement__item statement__item--debit">
+<div class="statement__icon"><i class="icon icon--debit"><span class="tooltip">Debit</span></i></div>
+<div class="statement__summary">
+<h3 class="statement__title">ATM DV24</h3>
+<p class="statement__memo">#343182 - 06 July, 2015</p>
+</div>
+<div class="dollar-amount  statement__figure">$140.<sup>00</sup></div>
+</article>
+
+</div>
+
+ </div>
+
+<div class="tab__item" data-tab="card03">
+<header class="shelf  toggle__shelf">
+<div class="shelf__content">
+<h2 class="shelf__header">Current Balance</h2>
+</div>
+<div class="shelf__aside">
+<div class="dollar-amount">$729.<sup>00</sup>
+</div>
+</div></header>
+
+<div class="statement" id="content">
+<article class="statement__item statement__item--debit">
+<div class="statement__icon"><i class="icon icon--debit"><span class="tooltip">Debit</span></i></div>
+<div class="statement__summary">
+<h3 class="statement__title">Apple iPhone 6, 16GB</h3>
+<p class="statement__memo">Electronics #343223 - 12 July, 2015</p>
+</div>
+<div class="dollar-amount  statement__figure">$650.<sup>00</sup></div>
+</article>
+
+<article class="statement__item statement__item--credit">
+<div class="statement__icon"><i class="icon icon--credit"><span class="tooltip">Credit</span></i></div>
+<div class="statement__summary">
+<h3 class="statement__title">Deposit</h3>
+<p class="statement__memo">Payment #343212 - 11 July, 2015</p>
+</div>
+<div class="dollar-amount  statement__figure">$900.<sup>00</sup></div>
+</article>
+
+<article class="statement__item statement__item--debit">
+<div class="statement__icon"><i class="icon icon--debit"><span class="tooltip">Debit</span></i></div>
+<div class="statement__summary">
+<h3 class="statement__title">Energy Bill</h3>
+<p class="statement__memo">#343566 - 11 July, 2015</p>
+</div>
+<div class="dollar-amount  statement__figure">$84.<sup>96</sup></div>
+</article>
+
+<article class="statement__item statement__item--debit">
+<div class="statement__icon"><i class="icon icon--debit"><span class="tooltip">Debit</span></i></div>
+<div class="statement__summary">
+<h3 class="statement__title">Mega Image SRL</h3>
+<p class="statement__memo">Food &amp; Health #34365 - 11 July, 2015</p>
+</div>
+<div class="dollar-amount  statement__figure">$112.<sup>75</sup></div>
+</article>
+
+<article class="statement__item statement__item--debit">
+<div class="statement__icon"><i class="icon icon--debit"><span class="tooltip">Debit</span></i></div>
+<div class="statement__summary">
+<h3 class="statement__title">ATM DV24</h3>
+<p class="statement__memo">#343253 - 09 July, 2015</p>
+</div>
+<div class="dollar-amount  statement__figure">$200.<sup>00</sup></div>
+ </article>
+
+<article class="statement__item statement__item--debit">
+<div class="statement__icon"><i class="icon icon--debit"><span class="tooltip">Debit</span></i></div>
+<div class="statement__summary">
+<h3 class="statement__title">Lukoil Station</h3>
+<p class="statement__memo">Gas #343279 - 09 July, 2015</p>
+</div>
+<div class="dollar-amount  statement__figure">$190.<sup>48</sup></div>
+</article>
+
+<article class="statement__item statement__item--debit">
+<div class="statement__icon"><i class="icon icon--debit"><span class="tooltip">Debit</span></i></div>
+<div class="statement__summary">
+<h3 class="statement__title">ATM DV24</h3>
+<p class="statement__memo">#343182 - 06 July, 2015</p>
+</div>
+<div class="dollar-amount  statement__figure">$140.<sup>00</sup></div>
+</article>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+</div>
+
+</main>
+
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script id="rendered-js">
+      var app = function () {
+  var _self;
+
+  return {
+    init: function () {
+      _self = this;
+
+      _self.tabs.init();
+    },
+    tabs: function () {
+      var tabGroupDataKey = 'tab-group',
+      toTabDataKey = 'to-tab',
+      tabNameDataKey = 'tab',
+      $tabGroups = $('[data-' + tabGroupDataKey + ']'),
+      navItemSelector = '[data-' + toTabDataKey + ']',
+      navItemActiveClass = 'tab__selector--active',
+      tabSelector = '[data-' + tabNameDataKey + ']',
+      tabActiveClass = 'tab__item--active';
+
+      return {
+        init: function () {
+          $tabGroups.each(function (i, el) {
+            var $tabGroup = $(el),
+            $tabs = $tabGroup.find(tabSelector),
+            groupName = $tabGroup.data(tabGroupDataKey),
+            $nav = $('[data-nav-for="' + groupName + '"]'),
+            $tabSelectors;
+
+            if ($nav.length) {
+              $tabSelectors = $nav.find(navItemSelector);
+              $tabSelectors.on('click', function () {
+                var $tabSelector = $(this),
+                tabName = $tabSelector.data(toTabDataKey),
+                $tab = $tabGroup.find('[data-' + tabNameDataKey + '="' + tabName + '"]').eq(0);
+
+                if ($tabSelector.hasClass(navItemActiveClass)) {
+                  return;
+                }
+
+                if ($tab.length) {
+                  $tabSelectors.removeClass(navItemActiveClass);
+                  $tabSelector.addClass(navItemActiveClass);
+                  // ==
+                  $tabs.removeClass(tabActiveClass);
+                  $tab.addClass(tabActiveClass);
+                }
+              });
+            }
+          });
+        } };
+
+    }() };
+
+}();
+
+$(function () {
+  app.init();
+});
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

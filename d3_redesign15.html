@@ -1,0 +1,607 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - A Pen by  Amelia Wattenberger</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<style>
+      body {
+  background: #191818;
+  font-family: 'Proxima Nova', sans-serif;
+}
+.wrapper {
+  max-width: 1600px;
+  margin: auto;
+  text-align: center;
+  padding: 0 0 300px 0;
+  overflow-x: hidden;
+}
+.thingy {
+  display: block;
+  position: relative;
+  text-align: center;
+  margin: 60px auto;
+  height: 480px;
+  width: 480px;
+}
+.inner-circle {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 480px;
+  width: 480px;
+  border-radius: 1000px;
+  border: 2px dashed #2f2f2f;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.inner-circle.inner-circle-2 {
+  top: 32px;
+  left: 32px;
+  height: 416px;
+  width: 416px;
+}
+.inner-circle.inner-circle-2 .arc {
+  transform: rotate(105deg) skewX(10deg);
+}
+.inner-circle.inner-circle-2 .arc:before {
+  transform: skewX(-10deg);
+}
+.inner-circle.inner-circle-3 {
+  top: 64px;
+  left: 64px;
+  height: 352px;
+  width: 352px;
+}
+.inner-circle.inner-circle-3 .arc {
+  transform: rotate(90deg) skewX(10deg);
+}
+.inner-circle.inner-circle-3 .arc:before {
+  transform: skewX(-10deg);
+}
+.inner-circle.inner-circle-selected {
+  border: 2px solid #525353;
+  z-index: 2;
+}
+.arc {
+  overflow: hidden;
+  position: absolute;
+  top: -3px;
+  right: 50%;
+  bottom: 50%;
+  left: -3px;
+  transform-origin: 100% 100%;
+  transform: rotate(50deg) skewX(0deg);
+  z-index: 10;
+}
+.arc:before {
+  box-sizing: border-box;
+  display: block;
+  border: solid 5px #191818;
+  width: 200%;
+  height: 200%;
+  border-radius: 50%;
+  transform: skewX(0deg);
+  content: '';
+}
+.arc-2 {
+  overflow: hidden;
+  position: absolute;
+  top: -3px;
+  right: 50%;
+  bottom: 50%;
+  left: -3px;
+  transform-origin: 100% 100%;
+  transform: rotate(170deg) skewX(0deg);
+  z-index: 10;
+}
+.arc-2:before {
+  box-sizing: border-box;
+  display: block;
+  border: solid 5px #191818;
+  width: 200%;
+  height: 200%;
+  border-radius: 50%;
+  transform: skewX(0deg);
+  content: '';
+}
+.steps {
+  position: absolute;
+  top: 96px;
+  left: 96px;
+  height: 288px;
+  width: 288px;
+  border-radius: 1000px;
+  border: 2px solid #f7ad1d;
+}
+svg {
+  position: absolute;
+  top: 152px;
+  left: 152px;
+  height: auto;
+  width: 176px;
+}
+svg.overlay path {
+  fill: #191818;
+  stroke: #191818;
+  opacity: 0;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.hexagon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 48px;
+}
+.hexagon polygon {
+  fill: #191818;
+  stroke: #f7ad1d;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.hexagon polygon.inner {
+  opacity: 0;
+}
+.hexagon.hexagon-4 .inner {
+  opacity: 1;
+}
+.step {
+  position: relative;
+}
+.step .step-num {
+  position: absolute;
+  color: #f7ad1d;
+}
+.step {
+  position: absolute;
+  top: 176px;
+  left: -9.6px;
+  height: 48px;
+  width: 48px;
+  z-index: 10;
+  cursor: pointer;
+}
+.step:hover .step-num {
+  color: #191818;
+}
+.step:hover .hexagon polygon.outer {
+  fill: #f7ad1d;
+}
+.step.step-2 {
+  top: 24px;
+  left: 16px;
+}
+.step.step-3 {
+  top: -20.8px;
+  left: 144px;
+}
+.step.step-4 {
+  top: 25.6px;
+  left: 230.4px;
+}
+.step.step-4:hover svg.hexagon polygon.outer {
+  fill: #191818;
+}
+.step.step-4:hover svg.hexagon polygon.inner {
+  fill: #f7ad1d;
+}
+.step-num {
+  position: absolute;
+  top: 17.6px;
+  left: 16px;
+  color: #f7ad1d;
+  font-size: 13px;
+  font-weight: 100;
+  z-index: 2;
+}
+/* COPY */
+.copy {
+  position: relative;
+  padding-top: 528px;
+  width: 100%;
+}
+.copy .copy-wrapper {
+  position: absolute;
+  margin: 10px auto;
+  width: 550px;
+  color: #f4f4f4;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.copy .copy-wrapper .copy-num {
+  position: absolute;
+  top: 11px;
+  left: -69px;
+}
+.copy .copy-wrapper .copy-num svg.hexagon {
+  width: 140px;
+}
+.copy .copy-wrapper .copy-num svg.hexagon polygon {
+  stroke-width: 0.4px;
+}
+.copy .copy-wrapper .copy-num .step-num {
+  top: 48px;
+  left: 18px;
+  width: 100px;
+  color: #f7ad1d;
+  text-align: center;
+  font-size: 43px;
+  font-weight: 100;
+  -webkit-font-smoothing: antialiased;
+  z-index: 10;
+}
+.copy .copy-wrapper .copy-num .step-num .small-logo {
+  position: absolute;
+  top: -8px;
+  left: 25px;
+  width: 53px;
+}
+.copy .copy-wrapper .copy-num .step-num .small-logo path {
+  fill: none;
+  stroke: #f7ad1d;
+  stroke-width: 0.5px;
+}
+.copy .copy-wrapper .copy-content {
+  width: 450px;
+  font-size: 14px;
+  line-height: 1.16em;
+  padding: 30px 30px 30px 80px;
+  text-align: left;
+  border: 1px solid #2f2f2f;
+}
+.copy .copy-2 {
+  margin-left: 100vw;
+}
+.copy .copy-3 {
+  margin-left: 200vw;
+}
+.copy .copy-4 {
+  margin-left: 300vw;
+}
+h6 {
+  margin-bottom: 2px;
+  font-size: 10px;
+  color: #f7ad1d;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+h4 {
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+p {
+  font-family: Lexia, serif;
+  font-style: italic;
+}
+/* STATES */
+.thingy[step="1"] svg.overlay .u,
+.thingy[step="1"] svg.overlay .dash {
+  opacity: 0.9;
+}
+.thingy[step="1"] .inner-circle-selected {
+  top: 64px;
+  left: 64px;
+  height: 352px;
+  width: 352px;
+}
+.thingy[step="1"] .step-1 .step-num {
+  color: #191818;
+}
+.thingy[step="1"] .hexagon-1 polygon.outer {
+  fill: #f7ad1d;
+}
+.thingy[step="1"] .copy .copy-1 {
+  margin-left: 0;
+}
+.thingy[step="1"] .copy .copy-2 {
+  margin-left: 100vw;
+}
+.thingy[step="1"] .copy .copy-3 {
+  margin-left: 200vw;
+}
+.thingy[step="1"] .copy .copy-4 {
+  margin-left: 300vw;
+}
+.thingy[step="2"] svg.overlay .dot,
+.thingy[step="2"] svg.overlay .dash {
+  opacity: 0.9;
+}
+.thingy[step="2"] .inner-circle-selected {
+  top: 32px;
+  left: 32px;
+  height: 416px;
+  width: 416px;
+}
+.thingy[step="2"] .step-2 .step-num {
+  color: #191818;
+}
+.thingy[step="2"] .hexagon-2 polygon.outer {
+  fill: #f7ad1d;
+}
+.thingy[step="2"] .copy .copy-1 {
+  margin-left: -100vw;
+}
+.thingy[step="2"] .copy .copy-2 {
+  margin-left: 0;
+}
+.thingy[step="2"] .copy .copy-3 {
+  margin-left: 100vw;
+}
+.thingy[step="2"] .copy .copy-4 {
+  margin-left: 200vw;
+}
+.thingy[step="3"] svg.overlay .u {
+  opacity: 0.9;
+}
+.thingy[step="3"] .inner-circle-selected {
+  top: 0px;
+  left: 0px;
+  height: 480px;
+  width: 480px;
+}
+.thingy[step="3"] .step-3 .step-num {
+  color: #191818;
+}
+.thingy[step="3"] .hexagon-3 polygon.outer {
+  fill: #f7ad1d;
+}
+.thingy[step="3"] .copy .copy-1 {
+  margin-left: -200vw;
+}
+.thingy[step="3"] .copy .copy-2 {
+  margin-left: -100vw;
+}
+.thingy[step="3"] .copy .copy-3 {
+  margin-left: 0;
+}
+.thingy[step="3"] .copy .copy-4 {
+  margin-left: 100vw;
+}
+.thingy[step="4"] .inner-circle-selected {
+  top: 0px;
+  left: 0px;
+  height: 480px;
+  width: 480px;
+}
+.thingy[step="4"] .hexagon-4 polygon.inner {
+  fill: #f7ad1d;
+}
+.thingy[step="4"] .copy .copy-1 {
+  margin-left: -300vw;
+}
+.thingy[step="4"] .copy .copy-2 {
+  margin-left: -200vw;
+}
+.thingy[step="4"] .copy .copy-3 {
+  margin-left: -100vw;
+}
+.thingy[step="4"] .copy .copy-4 {
+  margin-left: 0;
+}
+/* ARROWS */
+.arrow {
+  position: absolute;
+  top: 240px;
+  left: -160px;
+  height: 50px;
+  width: 50px;
+  color: #525353;
+  font-size: 40px;
+  border: 1px solid #525353;
+  border-radius: 100px;
+  cursor: pointer;
+}
+.arrow .text {
+  margin: 6px 0;
+  -webkit-transform: scale(0.6, 1);
+  -moz-transform: scale(0.6, 1);
+  -ms-transform: scale(0.6, 1);
+  -o-transform: scale(0.6, 1);
+  transform: scale(0.6, 1);
+}
+.arrow:hover {
+  background: #525353;
+  color: #191818;
+}
+.arrow.arrow-right {
+  left: auto;
+  right: -160px;
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="wrapper">
+<div id="thingy" class="thingy" step="4">
+<div class="inner-circle inner-circle-selected"><div class="arc"></div></div>
+<div class="inner-circle inner-circle-1"><div class="arc"></div></div>
+<div class="inner-circle inner-circle-2"><div class="arc"></div></div>
+<div class="inner-circle inner-circle-3"><div class="arc"></div><div class="arc-2"></div></div>
+<div class="steps">
+<div class="step step-1">
+<svg class="hexagon hexagon-1" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
+<polygon class="outer" fill="#F6AD1D" points="15.7,28.3 4.9,22 4.9,9.5 15.8,3.3 26.6,9.6 26.6,22 "></polygon>
+<polygon class="inner" fill="#F6AD1D" points="15.7,25 7.8,20.4 7.8,11.2 15.8,6.6 23.8,11.2 23.7,20.4 "></polygon>
+</svg>
+<div class="step-num">01</div>
+</div>
+<div class="step step-2">
+<svg class="hexagon hexagon-2" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
+<polygon class="outer" fill="#F6AD1D" points="15.7,28.3 4.9,22 4.9,9.5 15.8,3.3 26.6,9.6 26.6,22 "></polygon>
+<polygon class="inner" fill="#F6AD1D" points="15.7,25 7.8,20.4 7.8,11.2 15.8,6.6 23.8,11.2 23.7,20.4 "></polygon>
+</svg>
+<div class="step-num">02</div>
+</div>
+<div class="step step-3">
+<svg class="hexagon hexagon-3" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
+<polygon class="outer" fill="#F6AD1D" points="15.7,28.3 4.9,22 4.9,9.5 15.8,3.3 26.6,9.6 26.6,22 "></polygon>
+<polygon class="inner" fill="#F6AD1D" points="15.7,25 7.8,20.4 7.8,11.2 15.8,6.6 23.8,11.2 23.7,20.4 "></polygon>
+</svg>
+<div class="step-num">03</div>
+</div>
+<div class="step step-4">
+<svg class="hexagon hexagon-4" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
+<polygon class="outer" fill="#F6AD1D" points="15.7,28.3 4.9,22 4.9,9.5 15.8,3.3 26.6,9.6 26.6,22 "></polygon>
+<polygon class="inner" fill="#F6AD1D" points="15.7,25 7.8,20.4 7.8,11.2 15.8,6.6 23.8,11.2 23.7,20.4 "></polygon>
+</svg>
+</div>
+</div>
+<svg class="logo" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="16" y1="31.2" x2="16" y2="1.2" gradientTransform="matrix(1 0 0 -1 0 32)">
+<stop offset="0" style="stop-color:#44AEB0"></stop>
+<stop offset="1" style="stop-color:#FBB040"></stop>
+</linearGradient>
+<path fill="url(#SVGID_1_)" d="M18.6,3.4C18.6,4.9,17.4,6,16,6s-2.6-1.2-2.6-2.6s1.2-2.6,2.6-2.6C17.4,0.8,18.6,2,18.6,3.4z
+      M25.8,8.1c0,1.4-1.2,2.6-2.6,2.6s-2.6-1.2-2.6-2.6s1.2-2.6,2.6-2.6C24.6,5.5,25.8,6.7,25.8,8.1z M11.4,8.1c0,1.4-1.2,2.6-2.6,2.6
+      S6.2,9.5,6.2,8.1s1.2-2.6,2.6-2.6C10.3,5.5,11.4,6.7,11.4,8.1z M16,30.8c-5.1,0-9.3-4.2-9.3-9.3v-6.4c0-1.1,0.9-1.9,1.9-1.9
+      c1.1,0,1.9,0.9,1.9,1.9v6.4c0,3,2.4,5.4,5.4,5.4s5.4-2.4,5.4-5.4v-6.4c0-1.1,0.9-1.9,1.9-1.9c1.1,0,1.9,0.9,1.9,1.9v6.4
+      C25.3,26.6,21.1,30.8,16,30.8L16,30.8z M16,23.5c-1.1,0-1.9-0.9-1.9-1.9v-11c0-1.1,0.9-1.9,1.9-1.9c1.1,0,1.9,0.9,1.9,1.9v11
+      C17.9,22.6,17.1,23.5,16,23.5L16,23.5z"></path>
+</svg>
+<svg class="overlay" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
+<g>
+<g>
+<g>
+<path class="dot dot-2" fill="#010101" d="M18.6,3.4C18.6,4.9,17.4,6,16,6c-1.4,0-2.6-1.2-2.6-2.6c0-1.4,1.2-2.6,2.6-2.6C17.4,0.8,18.6,2,18.6,3.4z
+            "></path>
+<path class="dot dot-3" fill="#010101" d="M25.8,8.1c0,1.4-1.2,2.6-2.6,2.6c-1.4,0-2.6-1.2-2.6-2.6c0-1.4,1.2-2.6,2.6-2.6
+            C24.6,5.5,25.8,6.7,25.8,8.1z"></path>
+<path class="dot dot-1" fill="#010101" d="M11.4,8.1c0,1.4-1.2,2.6-2.6,2.6c-1.4,0-2.6-1.2-2.6-2.6c0-1.4,1.2-2.6,2.6-2.6
+            C10.3,5.5,11.4,6.7,11.4,8.1z"></path>
+<path class="u" fill="#010101" d="M16,30.8c-5.1,0-9.3-4.2-9.3-9.3v-6.4c0-1.1,0.9-1.9,1.9-1.9c1.1,0,1.9,0.9,1.9,1.9v6.4
+            c0,3,2.4,5.4,5.4,5.4c3,0,5.4-2.4,5.4-5.4v-6.4c0-1.1,0.9-1.9,1.9-1.9c1.1,0,1.9,0.9,1.9,1.9v6.4C25.3,26.6,21.1,30.8,16,30.8
+            L16,30.8z"></path>
+<path class="dash" fill="#010101" d="M16,23.5c-1.1,0-1.9-0.9-1.9-1.9v-11c0-1.1,0.9-1.9,1.9-1.9c1.1,0,1.9,0.9,1.9,1.9v11
+            C17.9,22.6,17.1,23.5,16,23.5L16,23.5z"></path>
+</g>
+</g>
+</g>
+</svg>
+<div class="copy">
+<div class="copy-wrapper copy-1">
+<div class="copy-num">
+<svg class="hexagon hexagon-copy" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
+<polygon class="outer" fill="#F6AD1D" points="15.7,28.3 4.9,22 4.9,9.5 15.8,3.3 26.6,9.6 26.6,22 "></polygon>
+<polygon class="inner" fill="#F6AD1D" points="15.7,25 7.8,20.4 7.8,11.2 15.8,6.6 23.8,11.2 23.7,20.4 "></polygon>
+</svg>
+<div class="step-num">01</div>
+</div>
+<div class="copy-content">
+<h6>Step One</h6>
+<h4>Integrate</h4>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quid in isto egregio tuo officio et tanta fide-sic enim existimo-ad corpus refers? Quid turpius quam sapientis vitam ex insipientium sermone pendere?</p>
+</div>
+</div>
+<div class="copy-wrapper copy-2">
+<div class="copy-num">
+<svg class="hexagon hexagon-copy" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
+<polygon class="outer" fill="#F6AD1D" points="15.7,28.3 4.9,22 4.9,9.5 15.8,3.3 26.6,9.6 26.6,22 "></polygon>
+<polygon class="inner" fill="#F6AD1D" points="15.7,25 7.8,20.4 7.8,11.2 15.8,6.6 23.8,11.2 23.7,20.4 "></polygon>
+</svg>
+<div class="step-num">02</div>
+</div>
+<div class="copy-content">
+<h6>Step Two</h6>
+<h4>Unite</h4>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quid in isto egregio tuo officio et tanta fide-sic enim existimo-ad corpus refers? Quid turpius quam sapientis vitam ex insipientium sermone pendere?</p>
+</div>
+</div>
+<div class="copy-wrapper copy-3">
+<div class="copy-num">
+<svg class="hexagon hexagon-copy" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
+<polygon class="outer" fill="#F6AD1D" points="15.7,28.3 4.9,22 4.9,9.5 15.8,3.3 26.6,9.6 26.6,22 "></polygon>
+<polygon class="inner" fill="#F6AD1D" points="15.7,25 7.8,20.4 7.8,11.2 15.8,6.6 23.8,11.2 23.7,20.4 "></polygon>
+</svg>
+<div class="step-num">03</div>
+</div>
+<div class="copy-content">
+<h6>Step Three</h6>
+<h4>Activate</h4>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quid in isto egregio tuo officio et tanta fide-sic enim existimo-ad corpus refers? Quid turpius quam sapientis vitam ex insipientium sermone pendere?</p>
+</div>
+</div>
+<div class="copy-wrapper copy-4">
+<div class="copy-num">
+<svg class="hexagon hexagon-copy" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
+<polygon class="outer" fill="#F6AD1D" points="15.7,28.3 4.9,22 4.9,9.5 15.8,3.3 26.6,9.6 26.6,22 "></polygon>
+<polygon class="inner" fill="#F6AD1D" points="15.7,25 7.8,20.4 7.8,11.2 15.8,6.6 23.8,11.2 23.7,20.4 "></polygon>
+</svg>
+<div class="step-num">
+<svg class="small-logo" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
+<path d="M18.6,3.4C18.6,4.9,17.4,6,16,6s-2.6-1.2-2.6-2.6s1.2-2.6,2.6-2.6C17.4,0.8,18.6,2,18.6,3.4z
+              M25.8,8.1c0,1.4-1.2,2.6-2.6,2.6s-2.6-1.2-2.6-2.6s1.2-2.6,2.6-2.6C24.6,5.5,25.8,6.7,25.8,8.1z M11.4,8.1c0,1.4-1.2,2.6-2.6,2.6
+              S6.2,9.5,6.2,8.1s1.2-2.6,2.6-2.6C10.3,5.5,11.4,6.7,11.4,8.1z M16,30.8c-5.1,0-9.3-4.2-9.3-9.3v-6.4c0-1.1,0.9-1.9,1.9-1.9
+              c1.1,0,1.9,0.9,1.9,1.9v6.4c0,3,2.4,5.4,5.4,5.4s5.4-2.4,5.4-5.4v-6.4c0-1.1,0.9-1.9,1.9-1.9c1.1,0,1.9,0.9,1.9,1.9v6.4
+              C25.3,26.6,21.1,30.8,16,30.8L16,30.8z M16,23.5c-1.1,0-1.9-0.9-1.9-1.9v-11c0-1.1,0.9-1.9,1.9-1.9c1.1,0,1.9,0.9,1.9,1.9v11
+              C17.9,22.6,17.1,23.5,16,23.5L16,23.5z"></path>
+</svg>
+</div>
+</div>
+<div class="copy-content">
+<h6>Your data. United.</h6>
+<h4>Umbel</h4>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quid in isto egregio tuo officio et tanta fide-sic enim existimo-ad corpus refers? Quid turpius quam sapientis vitam ex insipientium sermone pendere?</p>
+</div>
+</div>
+<div class="arrow arrow-left" id="left">
+<div class="text">&lt;</div>
+</div>
+<div class="arrow arrow-right" id="right">
+<div class="text">&gt;</div>
+</div>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mousetrap/1.4.6/mousetrap.min.js"></script>
+<script id="rendered-js">
+      var step = 1;
+
+var changeStep = function (step) {
+  $("#thingy").attr("step", step);
+  console.log(step);
+};
+
+var move = function (dir) {
+  step += dir;
+  if (step > 4) {
+    step = 1;
+  } else if (step < 1) {
+    step = 4;
+  }
+  changeStep(step);
+};
+
+$("#left").click(function () {move(-1);});
+$("#right").click(function () {move(1);});
+$(".step-1").click(function () {changeStep(1);});
+$(".step-2").click(function () {changeStep(2);});
+$(".step-3").click(function () {changeStep(3);});
+$(".step-4").click(function () {changeStep(4);});
+
+Mousetrap.bind('left', function () {move(-1);});
+Mousetrap.bind('right', function () {move(1);});
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</div></div></body></html>

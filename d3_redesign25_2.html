@@ -1,0 +1,263 @@
+<html lang="en"><head>
+
+<title>Blockchain Animation</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<style>
+      html {
+  background: #0C0019;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+    </style>
+
+</head>
+<body>
+<script>
+//Given an initial point, a slope, and length, find the next point
+
+function findSlope(x0,y0,x1,y1){
+  var slope = (y1-y0)/(x1-x0);
+  console.log(slope);
+  return slope; 
+}
+
+
+function findNextPoint(x0,y0,slope,segment_length){
+    var point ={};
+    point.x  = x0+segment_length*Math.sqrt((1/(1+Math.pow(slope, 2))));
+    point.y = y0+slope*segment_length*Math.sqrt((1/(1+Math.pow(slope, 2))));
+    return point;
+}
+
+function findPerpendicularPoint(x0,y0,slope,segment_length){
+   var point ={};
+   var perpendicularSlope = -1/slope;
+   point.x = x0+segment_length*Math.sqrt((1/(1+Math.pow(perpendicularSlope, 2))));
+   point.y = y0+slope*segment_length*Math.sqrt((1/(1+Math.pow(perpendicularSlope, 2))));
+   return point;
+}  
+
+</script>  
+
+<div class="container">
+ 
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="99vh" viewBox="0 0 2000 1200" enable-background="new 0 0 2000 1200" xml:space="preserve">
+
+<!-- Line for Orientation -->
+<line fill="none" stroke="#FF4D6B" stroke-width="3.4927" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="355" y1="952" x2="1430.3" y2="315.4"></line>
+
+<!-- Try one more line -->
+<line fill="none" stroke="#FF4D6B" stroke-width="3.4927" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="500" y1="500" x2="586.05" y2="449.05"></line>
+
+<line fill="none" stroke="#FF4D6B" stroke-width="3.4927" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="500" y1="500" x2="585" y2="552"></line>
+
+<line fill="none" stroke="#FF4D6B" stroke-width="3.4927" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="500" y1="500" x2="500" y2="600" transform='translate(95 15)'></line>
+
+
+
+
+
+<!-- Main slope
+-0.59202083139
+
+Angular Slope 0.6135802469135808
+
+Searching for third slope
+Third slope is infinity .. its vertical
+
+tan theta = (m1-m2)/(1+m1*m2) 
+-->
+
+
+
+<!-- JUST ONE RED BOX -->
+<g transform='translate(95 155)'>
+<linearGradient id="SVGID_73_" x1="665.5068" x2="727.5029" y1="64.4837" y2="31.3026" gradientTransform="matrix(1 0 0 1 0 700)" gradientUnits="userSpaceOnUse">
+<stop offset="0" style="stop-color:#A91B37"></stop>
+<stop offset="0.2857" style="stop-color:#B21F37"></stop>
+<stop offset="0.75" style="stop-color:#CA2B38"></stop>
+<stop offset="1" style="stop-color:#DA3239"></stop>
+</linearGradient>
+<polygon fill="url(#SVGID_73_)" points="666.8,689.6 666.8,766.9 728.8,804.8 728.8,731.7             "></polygon>
+<linearGradient id="SVGID_74_" x1="738.5" x2="790.6" y1="22.2" y2="74.3" gradientTransform="matrix(1 0 0 1 0 700)" gradientUnits="userSpaceOnUse">
+<stop offset="0" style="stop-color:#FF999F"></stop>
+<stop offset="0.1701" style="stop-color:#F27B85"></stop>
+<stop offset="0.4158" style="stop-color:#E35566"></stop>
+<stop offset="0.6441" style="stop-color:#D73A4F"></stop>
+<stop offset="0.8458" style="stop-color:#D02A41"></stop>
+<stop offset="1" style="stop-color:#CE243C"></stop>
+</linearGradient>
+<polygon fill="url(#SVGID_74_)" points="729,731.7 729,804.8 798,766.9 798,689.6             "></polygon>
+<linearGradient id="SVGID_75_" x1="712.8423" x2="753.9279" y1="19.8539" y2="-44.4645" gradientTransform="matrix(1 0 0 1 0 700)" gradientUnits="userSpaceOnUse">
+<stop offset="0" style="stop-color:#E64852"></stop>
+<stop offset="5.850000e-02" style="stop-color:#E44550"></stop>
+<stop offset="0.6415" style="stop-color:#D42D41"></stop>
+<stop offset="1" style="stop-color:#CE243C"></stop>
+</linearGradient>
+<polygon fill="url(#SVGID_75_)" points="666.7,689.5 728.6,731.7 797.7,689.6 733.7,649           "></polygon>
+<g opacity="0.12">
+<polygon fill="#FFFFFF" points="682,700.7 682,757.9 729,785.9 729,731.9                 "></polygon>
+<polygon fill="#FFFFFF" points="779,700.7 779,757.9 729,785.9 729,731.9                 "></polygon>
+<polygon fill="#FFFFFF" points="682.1,700.7 728.7,731.9 779.5,700.7 731.9,670.8                 "></polygon>
+</g>
+<linearGradient id="SVGID_76_" x1="756.335" x2="770.4348" y1="4.3349" y2="18.4348" gradientTransform="matrix(1 0 0 1 0 700)" gradientUnits="userSpaceOnUse">
+<stop offset="0" style="stop-color:#FFFFFF"></stop>
+<stop offset="0.2713" style="stop-color:#FDC8BA"></stop>
+<stop offset="0.5184" style="stop-color:#FB9C83"></stop>
+<stop offset="0.7299" style="stop-color:#F97C5B"></stop>
+<stop offset="0.8974" style="stop-color:#F86843"></stop>
+<stop offset="1" style="stop-color:#F8613A"></stop>
+</linearGradient>
+<polygon fill="url(#SVGID_76_)" points="729,731.7 729,733.1 797.9,691 797.8,689.7           "></polygon>
+<linearGradient id="SVGID_77_" x1="4518.6602" x2="4529.3257" y1="6.0099" y2="16.6755" gradientTransform="matrix(-1 0 0 1 5222 700)" gradientUnits="userSpaceOnUse">
+<stop offset="0" style="stop-color:#FFFFFF"></stop>
+<stop offset="0.2713" style="stop-color:#FDC8BA"></stop>
+<stop offset="0.5184" style="stop-color:#FB9C83"></stop>
+<stop offset="0.7299" style="stop-color:#F97C5B"></stop>
+<stop offset="0.8974" style="stop-color:#F86843"></stop>
+<stop offset="1" style="stop-color:#F8613A"></stop>
+</linearGradient>
+<polygon fill="url(#SVGID_77_)" points="729,731.7 729,733.1 667,691 667,689.6           "></polygon>
+<linearGradient id="SVGID_78_" x1="711.2" x2="747.55" y1="50.2999" y2="86.6501" gradientTransform="matrix(1 0 0 1 0 700)" gradientUnits="userSpaceOnUse">
+<stop offset="0" style="stop-color:#FFFFFF"></stop>
+<stop offset="0.2713" style="stop-color:#FDC8BA"></stop>
+<stop offset="0.5184" style="stop-color:#FB9C83"></stop>
+<stop offset="0.7299" style="stop-color:#F97C5B"></stop>
+<stop offset="0.8974" style="stop-color:#F86843"></stop>
+<stop offset="1" style="stop-color:#F8613A"></stop>
+</linearGradient>
+<polygon fill="url(#SVGID_78_)" points="730,732.4 729,732.5 729,804.8 730,804.2             "></polygon>
+</g>
+
+
+<!-- Just one grey box translate(0,0) scale(1) translate(-900,-850) scale(2) translate(-1800,-1700) scale(3) translate(-2700,-2550) scale(4) translate(-3600,-3400) scale(5) translate(-(n-1)*900,-(n-1)*850) -->
+<g transform="scale(1)">
+<linearGradient id="SVGID_119_" gradientUnits="userSpaceOnUse" x1="905.4864" y1="314.215" x2="948.4024" y2="337.1843" gradientTransform="matrix(1 1.170540e-04 1.170540e-04 -1 -1.549590e-02 1199.7689)">
+<stop offset="0" style="stop-color:#262626"></stop>
+<stop offset="0.2774" style="stop-color:#2F2F2F"></stop>
+<stop offset="0.7283" style="stop-color:#474747"></stop>
+<stop offset="1" style="stop-color:#595959"></stop>
+</linearGradient>
+<polygon fill="url(#SVGID_119_)" points="906.3,834.2 906.3,887.2 949.4,913.2 949.4,863.1                "></polygon>
+<linearGradient id="SVGID_120_" gradientUnits="userSpaceOnUse" x1="955.8588" y1="343.3028" x2="991.5549" y2="307.6066" gradientTransform="matrix(1 1.170540e-04 1.170540e-04 -1 -1.549590e-02 1199.7689)">
+<stop offset="0" style="stop-color:#BFBFBF"></stop>
+<stop offset="0.2132" style="stop-color:#969696"></stop>
+<stop offset="0.4462" style="stop-color:#717171"></stop>
+<stop offset="0.6625" style="stop-color:#565656"></stop>
+<stop offset="0.8538" style="stop-color:#464646"></stop>
+<stop offset="1" style="stop-color:#404040"></stop>
+</linearGradient>
+<polygon fill="url(#SVGID_120_)" points="949.4,863.1 949.4,913.2 996.6,887.2 996.6,834.2                "></polygon>
+<linearGradient id="SVGID_121_" gradientUnits="userSpaceOnUse" x1="938.2895" y1="344.8793" x2="966.4595" y2="388.9789" gradientTransform="matrix(1 1.170540e-04 1.170540e-04 -1 -1.549590e-02 1199.7689)">
+<stop offset="0" style="stop-color:#BFBFBF"></stop>
+<stop offset="0.219" style="stop-color:#A2A2A2"></stop>
+<stop offset="0.5607" style="stop-color:#7B7B7B"></stop>
+<stop offset="0.833" style="stop-color:#636363"></stop>
+<stop offset="1" style="stop-color:#5A5A5A"></stop>
+</linearGradient>
+<polygon fill="url(#SVGID_121_)" points="906.7,834.2 949.1,863.1 996.5,834.3 952.6,806.4                "></polygon>
+<g opacity="0.12">
+<polygon fill="#FFFFFF" points="917.3,841.9 917.3,881.1 949.4,900.3 949.4,863.2                     "></polygon>
+<polygon fill="#FFFFFF" points="983.1,841.9 983.1,881.1 949.4,900.3 949.4,863.2                     "></polygon>
+<polygon fill="#FFFFFF" points="917.2,841.9 949.2,863.2 984,841.9 951.3,821.3                   "></polygon>
+</g>
+<linearGradient id="SVGID_122_" gradientUnits="userSpaceOnUse" x1="968.6761" y1="355.4992" x2="978.1812" y2="345.994" gradientTransform="matrix(1 1.170540e-04 1.170540e-04 -1 -1.549590e-02 1199.7689)">
+<stop offset="0" style="stop-color:#FFFFFF"></stop>
+<stop offset="0.2961" style="stop-color:#D3D3D3"></stop>
+<stop offset="0.604" style="stop-color:#ABABAB"></stop>
+<stop offset="0.8495" style="stop-color:#939393"></stop>
+<stop offset="1" style="stop-color:#8A8A8A"></stop>
+</linearGradient>
+<polygon fill="url(#SVGID_122_)" points="950,863.1 950,864.1 996.9,835.2 997,834.3              "></polygon>
+<linearGradient id="SVGID_123_" gradientUnits="userSpaceOnUse" x1="2789.7456" y1="354.521" x2="2797.3054" y2="346.9612" gradientTransform="matrix(-1 -1.170540e-04 1.170540e-04 -1 3721.9844 1200.2046)">
+<stop offset="0" style="stop-color:#FFFFFF"></stop>
+<stop offset="0.2961" style="stop-color:#D3D3D3"></stop>
+<stop offset="0.604" style="stop-color:#ABABAB"></stop>
+<stop offset="0.8495" style="stop-color:#939393"></stop>
+<stop offset="1" style="stop-color:#8A8A8A"></stop>
+</linearGradient>
+ <polygon fill="url(#SVGID_123_)" points="950,863.1 950,864.1 907,835.2 907,834.2               "></polygon>
+<linearGradient id="SVGID_124_" gradientUnits="userSpaceOnUse" x1="937.2116" y1="324.0675" x2="962.2169" y2="299.0622" gradientTransform="matrix(1 1.170540e-04 1.170540e-04 -1 -1.549590e-02 1199.7689)">
+<stop offset="0" style="stop-color:#FFFFFF"></stop>
+<stop offset="0.2961" style="stop-color:#D3D3D3"></stop>
+<stop offset="0.604" style="stop-color:#ABABAB"></stop>
+<stop offset="0.8495" style="stop-color:#939393"></stop>
+<stop offset="1" style="stop-color:#8A8A8A"></stop>
+</linearGradient>
+<polygon fill="url(#SVGID_124_)" points="950.2,863.6 949.4,863.7 949.4,913.2 950.2,912.8                "></polygon>
+</g>
+
+
+<!-- One small support box -->
+<g>
+<g opacity="0.25">
+<linearGradient id="SVGID_140_" gradientUnits="userSpaceOnUse" x1="1177.757" y1="159.506" x2="1204.4315" y2="173.7825" gradientTransform="matrix(1 0 0 -1 0 1200)">
+<stop offset="0" style="stop-color:#494949"></stop>
+<stop offset="0.2255" style="stop-color:#525252"></stop>
+<stop offset="0.593" style="stop-color:#6A6A6A"></stop>
+<stop offset="1" style="stop-color:#8C8C8C"></stop>
+</linearGradient>
+<polygon fill="url(#SVGID_140_)" points="1178.5,1008.3 1178.4,1041.7 1205,1057.7 1205,1026.4                "></polygon>
+<linearGradient id="SVGID_141_" gradientUnits="userSpaceOnUse" x1="1208.9335" y1="177.5215" x2="1230.967" y2="155.488" gradientTransform="matrix(1 0 0 -1 0 1200)">
+<stop offset="0" style="stop-color:#BFBFBF"></stop>
+<stop offset="0.219" style="stop-color:#A2A2A2"></stop>
+<stop offset="0.5607" style="stop-color:#7B7B7B"></stop>
+<stop offset="0.833" style="stop-color:#636363"></stop>
+<stop offset="1" style="stop-color:#5A5A5A"></stop>
+</linearGradient>
+<polygon fill="url(#SVGID_141_)" points="1205,1026.4 1205,1057.7 1234,1041.5 1234,1008.4                "></polygon>
+<linearGradient id="SVGID_142_" gradientUnits="userSpaceOnUse" x1="1197.9689" y1="178.8337" x2="1215.4098" y2="206.1371" gradientTransform="matrix(1 0 0 -1 0 1200)">
+<stop offset="0" style="stop-color:#A6A6A6"></stop>
+<stop offset="3.360000e-02" style="stop-color:#A2A2A2"></stop>
+<stop offset="0.4566" style="stop-color:#7B7B7B"></stop>
+<stop offset="0.7934" style="stop-color:#636363"></stop>
+<stop offset="1" style="stop-color:#5A5A5A"></stop>
+</linearGradient>
+<polygon fill="url(#SVGID_142_)" points="1178.5,1008.4 1205,1026.4 1233.8,1008.4 1206.9,991                 "></polygon>
+ </g>
+<linearGradient id="SVGID_143_" gradientUnits="userSpaceOnUse" x1="1234.4193" y1="157.2996" x2="1178.0508" y2="192.9343" gradientTransform="matrix(1 0 0 -1 0 1200)">
+<stop offset="0" style="stop-color:#595959"></stop>
+<stop offset="4.910000e-02" style="stop-color:#555557"></stop>
+<stop offset="0.2942" style="stop-color:#464752"></stop>
+<stop offset="0.58" style="stop-color:#3D3F4E"></stop>
+<stop offset="1" style="stop-color:#3A3C4D"></stop>
+</linearGradient>
+
+<linearGradient id="SVGID_144_" gradientUnits="userSpaceOnUse" x1="1234.6152" y1="190.7464" x2="1343.2386" y2="260.4814" gradientTransform="matrix(1 0 0 -1 0 1200)">
+<stop offset="0" style="stop-color:#BFBFBF"></stop>
+<stop offset="0.1122" style="stop-color:#AAAAAE"></stop>
+<stop offset="0.4064" style="stop-color:#767884"></stop>
+<stop offset="0.6631" style="stop-color:#515366"></stop>
+<stop offset="0.8695" style="stop-color:#3A3D54"></stop>
+<stop offset="1" style="stop-color:#32354D"></stop>
+</linearGradient>
+
+</g>  
+
+
+
+<!-- One base plate transform='translate(-881 -1022) scale(2.0)' translate(-1762 -2044) scale(3.0) -->
+<polygon fill="#202333" points="881,1022.3 962,1072 1046,1023.3 964,974" transform='scale(1.0)'></polygon>
+
+<!-- Light Rectangle around the main chain -->
+<g>
+<linearGradient id="linepath_1_" gradientUnits="userSpaceOnUse" x1="415.4998" y1="357.141" x2="1526.2567" y2="805.9159">
+<stop offset="0" style="stop-color:#202333"></stop>
+<stop offset="1" style="stop-color:#5C6399"></stop>
+</linearGradient>
+<polygon id="linepath" fill="none" stroke="url(#linepath_1_)" stroke-miterlimit="10" points="197.9,898.1 1501.2,115.4 
+            1738.2,279.2 474.7,1061.5       "></polygon>
+</g>
+
+
+</svg>
+</div>
+
+
+
+</body></html>

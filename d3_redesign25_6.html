@@ -1,0 +1,274 @@
+<html lang="en"><head>
+
+<title>Blockchain Animation</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<style>
+      html {
+  background: #0C0019;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+
+#redbox {
+            
+            animation: blockdis 4s 1s ease infinite;
+}
+
+
+@keyframes moveblocks {
+  0% {
+    transform: translate3d(160px, -93px, 0);
+  }
+  50%,
+    100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes blockdis {
+  30% {
+    opacity: 1;
+  }
+  40%, 100% {
+    opacity: 0;
+     transform: translate3d(-160px, 93px, 0);
+  }
+}
+
+@keyframes firstBlock {
+  0%,
+    15% {
+    opacity: 0;
+  }
+  40%,
+    100% {
+    opacity: 1;
+  }
+}
+
+
+@keyframes arrows2 {
+  to {
+    -webkit-transform: translate(-25px, -25px);
+            transform: translate(-25px, -25px);
+  }
+}
+
+@keyframes arrows {
+  to {
+    -webkit-transform: translate(25px, 25px);
+            transform: translate(25px, 25px);
+  }
+}
+
+@keyframes updown {
+  100% {
+    -webkit-transform: translate(0, -20px);
+            transform: translate(0, -20px);
+  }
+}
+
+@keyframes glow {
+  0%,
+    45% {
+    opacity: 0;
+  }
+  60%, 100% {
+    opacity: 0.35;
+  }
+}
+
+
+@keyframes up {
+  to {
+    -webkit-transform: translate(0, -25px);
+            transform: translate(0, -25px);
+  }
+}
+
+@keyframes dots {
+  0%,
+    35% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+    opacity: 0;
+  }
+  60%, 80% {
+    -webkit-transform: translate(55px, -35px);
+            transform: translate(55px, -35px);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translate(55px, -35px);
+            transform: translate(55px, -35px);
+    opacity: 0;
+  }
+}
+
+@keyframes p {
+  85%,
+     100% {
+    opacity: 0;
+  }
+}
+
+@keyframes particles {
+  0%, 100% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+  50% {
+    -webkit-transform: translate(10px, 15px);
+            transform: translate(10px, 15px);
+  }
+}
+
+
+    </style>
+
+</head>
+<body>
+<script>
+//Given an initial point, a slope, and length, find the next point
+
+function findSlope(x0,y0,x1,y1){
+  var slope = (y1-y0)/(x1-x0);
+  console.log(slope);
+  return slope; 
+}
+
+
+function findNextPoint(x0,y0,slope,segment_length){
+    var point ={};
+    point.x  = x0+segment_length*Math.sqrt((1/(1+Math.pow(slope, 2))));
+    point.y = y0+slope*segment_length*Math.sqrt((1/(1+Math.pow(slope, 2))));
+    return point;
+}
+
+function findPerpendicularPoint(x0,y0,slope,segment_length){
+   var point ={};
+   var perpendicularSlope = -1/slope;
+   point.x = x0+segment_length*Math.sqrt((1/(1+Math.pow(perpendicularSlope, 2))));
+   point.y = y0+slope*segment_length*Math.sqrt((1/(1+Math.pow(perpendicularSlope, 2))));
+   return point;
+}  
+
+</script>  
+
+<div class="container">
+ 
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="99vh" viewBox="0 0 2000 1200" enable-background="new 0 0 2000 1200" xml:space="preserve">
+
+<!-- Line for Orientation -->
+<line fill="none" stroke="#FF4D6B" stroke-width="3.4927" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="355" y1="952" x2="1430.3" y2="315.4"></line>
+
+ 
+
+
+
+<!-- Main slope
+-0.59202083139
+
+Angular Slope 0.6135802469135808
+
+Searching for third slope
+Third slope is infinity .. its vertical
+
+tan theta = (m1-m2)/(1+m1*m2) 
+-->
+
+
+
+<!-- JUST ONE RED BOX -->
+ <g id="redbox">
+<linearGradient id="SVGID_73_" x1="665.5068" x2="727.5029" y1="64.4837" y2="31.3026" gradientTransform="matrix(1 0 0 1 0 700)" gradientUnits="userSpaceOnUse">
+<stop offset="0" style="stop-color:#A91B37"></stop>
+<stop offset="0.2857" style="stop-color:#B21F37"></stop>
+<stop offset="0.75" style="stop-color:#CA2B38"></stop>
+<stop offset="1" style="stop-color:#DA3239"></stop>
+</linearGradient>
+<polygon fill="url(#SVGID_73_)" points="666.8,689.6 666.8,766.9 728.8,804.8 728.8,731.7             "></polygon>
+<linearGradient id="SVGID_74_" x1="738.5" x2="790.6" y1="22.2" y2="74.3" gradientTransform="matrix(1 0 0 1 0 700)" gradientUnits="userSpaceOnUse">
+<stop offset="0" style="stop-color:#FF999F"></stop>
+<stop offset="0.1701" style="stop-color:#F27B85"></stop>
+<stop offset="0.4158" style="stop-color:#E35566"></stop>
+<stop offset="0.6441" style="stop-color:#D73A4F"></stop>
+<stop offset="0.8458" style="stop-color:#D02A41"></stop>
+<stop offset="1" style="stop-color:#CE243C"></stop>
+</linearGradient>
+<polygon fill="url(#SVGID_74_)" points="729,731.7 729,804.8 798,766.9 798,689.6             "></polygon>
+<linearGradient id="SVGID_75_" x1="712.8423" x2="753.9279" y1="19.8539" y2="-44.4645" gradientTransform="matrix(1 0 0 1 0 700)" gradientUnits="userSpaceOnUse">
+<stop offset="0" style="stop-color:#E64852"></stop>
+<stop offset="5.850000e-02" style="stop-color:#E44550"></stop>
+<stop offset="0.6415" style="stop-color:#D42D41"></stop>
+<stop offset="1" style="stop-color:#CE243C"></stop>
+</linearGradient>
+<polygon fill="url(#SVGID_75_)" points="666.7,689.5 728.6,731.7 797.7,689.6 733.7,649           "></polygon>
+<g opacity="0.12">
+<polygon fill="#FFFFFF" points="682,700.7 682,757.9 729,785.9 729,731.9                 "></polygon>
+<polygon fill="#FFFFFF" points="779,700.7 779,757.9 729,785.9 729,731.9                 "></polygon>
+<polygon fill="#FFFFFF" points="682.1,700.7 728.7,731.9 779.5,700.7 731.9,670.8                 "></polygon>
+</g>
+<linearGradient id="SVGID_76_" x1="756.335" x2="770.4348" y1="4.3349" y2="18.4348" gradientTransform="matrix(1 0 0 1 0 700)" gradientUnits="userSpaceOnUse">
+<stop offset="0" style="stop-color:#FFFFFF"></stop>
+<stop offset="0.2713" style="stop-color:#FDC8BA"></stop>
+<stop offset="0.5184" style="stop-color:#FB9C83"></stop>
+<stop offset="0.7299" style="stop-color:#F97C5B"></stop>
+<stop offset="0.8974" style="stop-color:#F86843"></stop>
+<stop offset="1" style="stop-color:#F8613A"></stop>
+</linearGradient>
+<polygon fill="url(#SVGID_76_)" points="729,731.7 729,733.1 797.9,691 797.8,689.7           "></polygon>
+<linearGradient id="SVGID_77_" x1="4518.6602" x2="4529.3257" y1="6.0099" y2="16.6755" gradientTransform="matrix(-1 0 0 1 5222 700)" gradientUnits="userSpaceOnUse">
+<stop offset="0" style="stop-color:#FFFFFF"></stop>
+<stop offset="0.2713" style="stop-color:#FDC8BA"></stop>
+<stop offset="0.5184" style="stop-color:#FB9C83"></stop>
+<stop offset="0.7299" style="stop-color:#F97C5B"></stop>
+<stop offset="0.8974" style="stop-color:#F86843"></stop>
+<stop offset="1" style="stop-color:#F8613A"></stop>
+</linearGradient>
+<polygon fill="url(#SVGID_77_)" points="729,731.7 729,733.1 667,691 667,689.6           "></polygon>
+<linearGradient id="SVGID_78_" x1="711.2" x2="747.55" y1="50.2999" y2="86.6501" gradientTransform="matrix(1 0 0 1 0 700)" gradientUnits="userSpaceOnUse">
+<stop offset="0" style="stop-color:#FFFFFF"></stop>
+<stop offset="0.2713" style="stop-color:#FDC8BA"></stop>
+<stop offset="0.5184" style="stop-color:#FB9C83"></stop>
+<stop offset="0.7299" style="stop-color:#F97C5B"></stop>
+<stop offset="0.8974" style="stop-color:#F86843"></stop>
+<stop offset="1" style="stop-color:#F8613A"></stop>
+</linearGradient>
+<polygon fill="url(#SVGID_78_)" points="730,732.4 729,732.5 729,804.8 730,804.2             "></polygon>
+</g>
+ 
+
+<path id="bottomline" d="m969.4 873.9 241.4 151.8 291.8-184.6 177.5-105.4-241.9-153.4" style="fill:none;stroke-miterlimit:10;stroke:red"></path>
+
+
+
+<circle r="10" style="fill:#fff" opacity="4gf.2">
+<animateMotion begin="-200ms" dur="10s" repeatCount="indefinite">
+<mpath xlink:href="#bottomline"></mpath>
+</animateMotion>
+</circle>
+
+</svg>
+</div>
+
+<script>
+
+
+
+</script>  
+
+
+
+</body></html>

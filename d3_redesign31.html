@@ -1,0 +1,272 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - A Pen by  x3pr</title>
+<style>
+      body {
+  margin: 0;
+  background: #282828;
+  color: white;
+  font-family: monospace;
+  font-size: 15px;
+}
+
+.header {
+  padding: 5px 20px;
+}
+
+.header p {
+  padding-left: 20px;
+  max-width: 630px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.Block {
+  margin: 1em;
+  display: block;
+  background: tomato;
+  padding: 0.5em;
+}
+
+.Block.correct {
+  background: #5ea25d;
+}
+
+.col {
+  display: block;
+  width: 100%;
+}
+
+.col > * {
+  float: left;
+}
+
+label {
+  height: 18px;
+  display: inline-block;
+  width: 140px;
+  text-align: right;
+  vertical-align: middle;
+  padding-right: 10px;
+  margin: 2px 0;
+}
+
+input {
+  height: 18px;
+  font-size: 15px;
+  border: none;
+  padding: 2px;
+  margin: 6px 0 0;
+}
+
+pre {
+  height: 18px;
+  display: inline-block;
+  margin: 6px 0 0;
+  padding: 4px 4px 2px;
+  background: rgba(0, 0, 0, 0.2);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+button {
+  margin: 6px 0 0;
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 5px 10px;
+  color: white;
+  background: rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="header">
+<h1>BlockChain example in React</h1>
+<p>
+The hash of a block is formed with 3 factors in this scenario. Data, the hash of a previous block and a nounce.
+</p>
+<p>
+For a hash to be correct, it needs to start with four 0s ('0000'). This can be achieved by mining it (click the button). The block uses the hash of the previous block to calculate it's own hash. This means when you change something in a previous block, all next blocks will now be corrupt where they were correct before. That's why it's called a chain :)
+</p>
+</div>
+<div id="blockchain"><div data-reactroot="" class="BlockChain"><div class="Block"><div class="row"><label>Block</label><pre><!-- react-text: 6 -->#<!-- /react-text --><!-- react-text: 7 -->0<!-- /react-text --></pre></div><div class="row"><label>Nounce</label><input type="number" value="0"></div><div class="row"><label>Data</label><input value=""></div><div class="row"><label>Previous Hash</label><pre>7daf20c662cc2a1ebf87f23f15a2369f677af29139df78216d849524dd354a6f</pre></div><div class="row"><label>Hash</label><pre>60870ce357d1b5f423a3a9da42b6064a04b76de75c8416f7f3d02b866cf17fa3</pre></div><div class="row"><button>Mine!</button><!-- react-text: 22 --> <!-- /react-text --></div></div><div class="Block"><div class="row"><label>Block</label><pre><!-- react-text: 27 -->#<!-- /react-text --><!-- react-text: 28 -->1<!-- /react-text --></pre></div><div class="row"><label>Nounce</label><input type="number" value="0"></div><div class="row"><label>Data</label><input value=""></div><div class="row"><label>Previous Hash</label><pre>60870ce357d1b5f423a3a9da42b6064a04b76de75c8416f7f3d02b866cf17fa3</pre></div><div class="row"><label>Hash</label><pre>86bb8dbc93e9c00e5f2f9749f41d68652f1c497557bacf0f2a833f3a3b61ca2f</pre></div><div class="row"><button>Mine!</button><!-- react-text: 43 --> <!-- /react-text --></div></div><div class="Block"><div class="row"><label>Block</label><pre><!-- react-text: 48 -->#<!-- /react-text --><!-- react-text: 49 -->2<!-- /react-text --></pre></div><div class="row"><label>Nounce</label><input type="number" value="0"></div><div class="row"><label>Data</label><input value=""></div><div class="row"><label>Previous Hash</label><pre>86bb8dbc93e9c00e5f2f9749f41d68652f1c497557bacf0f2a833f3a3b61ca2f</pre></div><div class="row"><label>Hash</label><pre>1b5eed1362cd809770abe7de21312da42255318373be11dd936acd9fdb3c718e</pre></div><div class="row"><button>Mine!</button><!-- react-text: 64 --> <!-- /react-text --></div></div><div class="Block correct"><div class="row"><label>Block</label><pre><!-- react-text: 69 -->#<!-- /react-text --><!-- react-text: 70 -->3<!-- /react-text --></pre></div><div class="row"><label>Nounce</label><input type="number" value="198660"></div><div class="row"><label>Data</label><input value="cvcvzc"></div><div class="row"><label>Previous Hash</label><pre>1b5eed1362cd809770abe7de21312da42255318373be11dd936acd9fdb3c718e</pre></div><div class="row"><label>Hash</label><pre>0000251759cd648377ffd4296c97c4a0bb3bdd269c88b3fc690816b8ae679ce7</pre></div><div class="row"><button>Mine!</button><!-- react-text: 85 --> <!-- /react-text --><span><!-- react-text: 108 -->in <!-- /react-text --><!-- react-text: 109 -->3.791<!-- /react-text --><!-- react-text: 110 -->s<!-- /react-text --></span></div></div><div class="Block"><div class="row"><label>Block</label><pre><!-- react-text: 90 -->#<!-- /react-text --><!-- react-text: 91 -->4<!-- /react-text --></pre></div><div class="row"><label>Nounce</label><input type="number" value="0"></div><div class="row"><label>Data</label><input value=""></div><div class="row"><label>Previous Hash</label><pre>0000251759cd648377ffd4296c97c4a0bb3bdd269c88b3fc690816b8ae679ce7</pre></div><div class="row"><label>Hash</label><pre>dcbec00c2fa5443d912b480e0f9a2e2881cf96c7b6d02966292bfe026f29c6a6</pre></div><div class="row"><button>Mine!</button><!-- react-text: 106 --> <!-- /react-text --></div></div></div></div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jshashes/1.0.7/hashes.min.js"></script>
+<script id="rendered-js">
+      function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}const sha256 = new Hashes.SHA256();
+// Requirement of four 0000 at the start
+const char = '0';
+const iterations = 4;
+
+const isCorrectHash = (value) =>
+String(value).substring(0, iterations) === char.repeat(iterations);
+
+const calculateHash = (previousHash, data, nounce) =>
+sha256.hex(String(previousHash) + String(data) + String(nounce));
+
+const mine = (previousHash, data) => {
+  const startTime = performance.now();
+
+  let nounce = 0;
+  let hash;
+  while (isCorrectHash(hash) === false) {if (window.CP.shouldStopExecution(0)) break;if (window.CP.shouldStopExecution(0)) break;
+    hash = calculateHash(previousHash, data, nounce + 1);
+    nounce++;
+  }window.CP.exitedLoop(0);window.CP.exitedLoop(0);
+
+  const executionTime = Math.round(performance.now() - startTime) / 1000;
+
+  return {
+    previousHash,
+    hash,
+    nounce,
+    data,
+    executionTime };
+
+};
+
+class BlockChain extends React.Component {
+  constructor(props) {
+    super(props);_defineProperty(this, "calculateHashes",
+
+
+
+
+
+
+
+
+
+
+    () => {
+      const { hashes } = this.state;
+
+      if (hashes[0] === undefined) {
+        // Gotta have a starting point :)
+        // And yes negative array values are somehow valid
+        // Just don't ask
+        hashes[-1] = {
+          hash: sha256.hex('start-hash') };
+
+      }
+
+      for (let i = 0; i < this.state.blocks; i++) {if (window.CP.shouldStopExecution(1)) break;if (window.CP.shouldStopExecution(2)) break;if (window.CP.shouldStopExecution(1)) break;
+        const previousHash = hashes[i - 1].hash;
+        const data = hashes[i] ? hashes[i].data : '';
+        const nounce = hashes[i] ? hashes[i].nounce : 0;
+        const executionTime = hashes[i] ? hashes[i].executionTime : 0;
+        const hash = calculateHash(previousHash, data, nounce);
+
+        hashes[i] = {
+          previousHash,
+          hash,
+          nounce,
+          data,
+          executionTime };
+
+      }window.CP.exitedLoop(1);window.CP.exitedLoop(2);window.CP.exitedLoop(1);
+
+      this.setState({ hashes });
+    });_defineProperty(this, "mineIndex",
+
+    i => {
+      const { hashes } = this.state;
+
+      const previousHash = hashes[i - 1] ? hashes[i - 1].hash : '';
+      const data = hashes[i] ? hashes[i].data : '';
+      hashes[i] = mine(previousHash, data);
+
+      this.setState({ hashes });
+
+      this.calculateHashes();
+    });_defineProperty(this, "editData",
+
+    (event, index, key) => {
+      const { hashes } = this.state;
+
+      hashes[index][key] = event.target.value;
+
+      this.setState({ hashes });
+      this.calculateHashes();
+    });this.state = { blocks: 5, hashes: [] };}componentDidMount() {this.calculateHashes();}
+
+  render() {
+    return (
+      React.createElement("div", { className: "BlockChain" },
+      this.state.hashes.map((hash, index) =>
+      React.createElement(Block, {
+        hash: hash,
+        onMine: () => this.mineIndex(index),
+        onNounce: event => this.editData(event, index, 'nounce'),
+        onData: event => this.editData(event, index, 'data'),
+        id: index,
+        key: index }))));
+
+
+
+
+  }}
+
+
+const Block = props => {
+  const { id, onMine, onNounce, onData } = props;
+  const { previousHash, hash, nounce, data, executionTime } = props.hash;
+
+  return (
+    React.createElement("div", { className: 'Block' + (isCorrectHash(hash) ? ' correct' : '') },
+    React.createElement("div", { className: "row" },
+    React.createElement("label", null, "Block"),
+    React.createElement("pre", null, "#", id)),
+
+    React.createElement("div", { className: "row" },
+    React.createElement("label", null, "Nounce"),
+    React.createElement("input", { type: "number", value: nounce, onChange: onNounce })),
+
+    React.createElement("div", { className: "row" },
+    React.createElement("label", null, "Data"),
+    React.createElement("input", { value: data, onChange: onData })),
+
+    React.createElement("div", { className: "row" },
+    React.createElement("label", null, "Previous Hash"),
+    React.createElement("pre", null, previousHash)),
+
+    React.createElement("div", { className: "row" },
+    React.createElement("label", null, "Hash"),
+    React.createElement("pre", null, hash)),
+
+    React.createElement("div", { className: "row" },
+    React.createElement("button", { onClick: onMine }, "Mine!"), ' ',
+    executionTime > 0 && React.createElement("span", null, "in ", executionTime, "s"))));
+
+
+
+};
+
+ReactDOM.render(React.createElement(BlockChain, null), document.getElementById('blockchain'));
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

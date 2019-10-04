@@ -1,0 +1,294 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Text generation with Markov model or neural network (Brain.js/Synaptic.js)</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif">
+<style>
+      body {
+  font-size: 3vmin;
+  line-height: 1.3em;
+  font-family: 'Droid Serif', serif;
+  background: whitesmoke;
+  color: dimgray;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 10%;
+  box-sizing: border-box;
+  /* Flexbox: */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.stop {
+  background: tomato;
+  color: white;
+}
+
+#output {
+  margin-top: 1em;
+}
+
+/* Nice & simple: Button - http://codepen.io/tomsoderlund/pen/qqyzqp */
+button {
+  background-color: greenyellow;
+  border-radius: 0.2em;
+  border: none;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  color: black;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: bold;
+  width: 100%;
+  max-width: 20em;
+  outline: none;
+  padding: 0.6em;
+  margin: 0.2em;
+  transition: all 0.2s;
+}
+
+button:hover {
+  opacity: 0.8;
+  transition: box-shadow 0s;
+}
+
+button:active {
+  margin-top: 0.3em;
+  margin-bottom: 0.1em;
+  box-shadow: 0 0.5px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Nice & simple: Input and Dropdown Menu - http://codepen.io/tomsoderlund/pen/GNBbWz */
+input,
+textarea,
+select {
+  outline: none;
+  resize: none;
+  box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 0.2em;
+  border: 2px solid lightgray;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  width: 100%;
+  max-width: 20em;
+  padding: 0.6em;
+  margin: 0.2em;
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+  border-color: silver;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: darkgray;
+}
+
+textarea {
+  height: 8em;
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<textarea id="input" placeholder="Write some text here">Because they are not taking their job seriously as it pertains to this country. We want jobs, manufacturing in this country. If you look at some of those people that you're talking about, they're outside of the country. They're having a lot of their product made outside. If you look at Merck as an example. Take a look where — excuse me, excuse me. Take a look at where their product is made. It's made outside of our country. We want products made in the country. Now, I have to tell you, some of the folks that will leave, they are leaving out of embarrassment because they make their products outside and I've been lecturing them, including the gentleman that you're referring to, about you have to bring it back to this country. You can't do it necessarily in Ireland and all of these other places. You have to bring this work back to this country. That's what I want. I want manufacturing to be back into the United States so that American workers can benefit.</textarea>
+<button id="buttonStart" onclick="runWordGenerator()">Start</button>
+<p id="output">Because they are not taking their products made in this country. That's what I want manufacturing to be back to about they're outside of these other places. Take a look at where their product is made outside. If you some of the United States so that American workers can benefit.</p>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+<script src="https://harthur.github.io/brain/brain-0.6.3.js"></script>
+<script src="https://caza.la/synaptic/scripts/homepage/synaptic.js"></script>
+<script id="rendered-js">
+      var USE_METHOD = 'markov'; // 'markov' or 'neural'
+
+var brainJsNetwork = new brain.NeuralNetwork();
+
+var synapticNetwork = new Architect.Perceptron(1, 3, 3, 3, 3, 1);
+var synapticTrainer = new Trainer(synapticNetwork);
+
+var dictionaryWords;
+
+var getCleanWordArray = function () {
+  function lowercaseFirstLetter(string) {
+    return string.charAt(0).toLowerCase() + string.slice(1);
+  }
+
+  var inputText = $('#input').val();
+  // Remove first-word uppercase
+  var sentences = inputText.split('.');
+  for (var i = 0; i < sentences.length; i++) {
+    sentences[i] = lowercaseFirstLetter(sentences[i]);
+  }
+  inputText = sentences.join('. ').trim();
+  // Make ./period a word
+  inputText = inputText.replace(/\. /g, ' . ');
+  // Remove invalid characters
+  inputText = inputText.replace(/[\n\t,–—?;:`!@#$€%^&§°*<>()\[\]\{\}_\+=\/\|\\]/g, '');
+  return inputText.split(' ');
+};
+
+var prettifyText = function () {
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  var newText = $('#output').text();
+  var sentences = newText.split('.');
+  for (var i = 0; i < sentences.length; i++) {
+    sentences[i] = sentences[i].trim();
+    sentences[i] = capitalizeFirstLetter(sentences[i]);
+  }
+  newText = sentences.join('. ').trim();
+  $('#output').text(newText);
+};
+
+var neuralTrain = function (wordsInOrder) {
+  dictionaryWords = _.uniq(wordsInOrder);
+  dictionaryWords = _.sortBy(dictionaryWords);
+  // Create learning dataset of which words follow each other
+  var trainingSet = [];
+  for (var i = 0; i < wordsInOrder.length - 1; i++) {
+    //console.log('Train: (%s) %s -> %s', wordsInOrder[i], getWordValue(wordsInOrder[i]), getWordValue(wordsInOrder[i+1]) );
+    var trainingValue = {
+      input: [getWordValue(wordsInOrder[i])],
+      output: [getWordValue(wordsInOrder[i + 1])] };
+    //console.log('Train:', trainingValue);
+    trainingSet.push(trainingValue);
+  }
+  //console.log('trainingSet', trainingSet);
+  var trainResult = brainJsNetwork.train(trainingSet, {
+    //log: true,
+    //logPeriod: 100,
+    //errorThresh: 0.00005,
+    //learningRate: 0.6,
+    //iterations: 20000,
+  });
+  //synapticTrainer.train(trainingSet, { rate: 0.01, iterations: 1000 });
+  console.log('trainResult', trainResult);
+};
+
+var getWordValue = function (word) {
+  return dictionaryWords.indexOf(word) / dictionaryWords.length;
+};
+
+var lastWordValue;
+var generateWord = function () {
+  // Start with last used word, or pick random
+  var startWordValue = Math.floor(Math.random() * dictionaryWords.length) / dictionaryWords.length;
+  var wordValue = lastWordValue || startWordValue;
+  // Run the neural network
+  var output = brainJsNetwork.run([wordValue]);
+  //var output = synapticNetwork.activate([wordValue]);
+  // Get the word from dictionary
+  var wordIndex = Math.floor(output[0] * dictionaryWords.length);
+  var wordStr = dictionaryWords[wordIndex];
+  console.log('Gen: %s -> %s (%s)', wordValue, output[0], wordStr);
+  $('#output').text($('#output').text() + ' ' + wordStr);
+  lastWordValue = getWordValue(wordStr);
+};
+
+var generateMarkovSentence = function () {
+  var min_length = 5;
+  $('#output').text(markovMakeSentence(min_length));
+};
+
+var isRunning = false;
+var timerId;
+var runWordGenerator = function () {
+  isRunning = !isRunning;
+  if (isRunning) {
+    $('#output').text('');
+    if (USE_METHOD === 'markov') {
+      markovTrain(getCleanWordArray());
+      generateMarkovSentence();
+      prettifyText();
+    } else
+    {
+      $('#buttonStart').addClass('stop');
+      $('#buttonStart').html('Stop');
+      neuralTrain(getCleanWordArray());
+      timerId = setInterval(generateWord, 500);
+    }
+  } else
+  {
+    $('#buttonStart').removeClass('stop');
+    $('#buttonStart').html('Start');
+    if (USE_METHOD !== 'markov') {
+      clearInterval(timerId);
+    }
+  }
+};
+
+// Markov Model from https://www.soliantconsulting.com/blog/2013/02/title-generator-using-markov-chains
+
+var markovTerminals = {};
+var markovStartWords = [];
+var markovWordStats = {};
+
+var markovTrain = function (words) {
+  markovTerminals = {};
+  markovStartWords = [];
+  markovWordStats = {};
+  markovTerminals[words[words.length - 1]] = true;
+  markovStartWords.push(words[0]);
+  for (var j = 0; j < words.length - 1; j++) {
+    if (markovWordStats.hasOwnProperty(words[j])) {
+      markovWordStats[words[j]].push(words[j + 1]);
+    } else
+    {
+      markovWordStats[words[j]] = [words[j + 1]];
+    }
+  }
+};
+
+var markovWordChoice = function (a) {
+  var i = Math.floor(a.length * Math.random());
+  return a[i];
+};
+
+var markovMakeSentence = function (min_length) {
+  // Init
+  word = markovWordChoice(markovStartWords);
+  var sentence = [word];
+  // Loop
+  while (markovWordStats.hasOwnProperty(word)) {
+    var next_words = markovWordStats[word];
+    word = markovWordChoice(next_words);
+    sentence.push(word);
+    if (sentence.length > min_length && markovTerminals.hasOwnProperty(word)) {
+      break;
+    };
+  }
+  // Recursive call
+  if (sentence.length < min_length && Math.random() > 0.2) {
+    return markovMakeSentence(min_length);
+  };
+  return sentence.join(' ');
+};
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

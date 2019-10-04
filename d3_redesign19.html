@@ -1,0 +1,1835 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Responsive and Accessible Sorting Table</title>
+<style>
+      @import url(https://fonts.googleapis.com/css?family=Oswald:400|Raleway:400,700,400italic,700italic);
+
+/************************************************/
+/*************** GENERAL SETTINGS ***************/
+/************************************************/
+
+*,
+:before,
+:after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #1d1f20;
+  color: #e5e5e5;
+  font: 16px/1.25 'Raleway', sans-serif;
+  padding: 0.5em;
+}
+
+main,
+footer {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 64em;
+  width: 100%;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  margin: 0.25em 0;
+  text-align: center;
+}
+
+/* Links */
+a {
+  color: #a2ed56;
+}
+
+a:hover {
+  color: #83e4e2;
+}
+
+
+
+/************************************************/
+/********************* TABLE ********************/
+/************************************************/
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  max-width: 100%;
+  width: 100%;
+}
+
+
+
+/*** HEADER ***/
+table thead {
+  border-bottom: 2px solid #e5e5e5;
+}
+
+table th,
+table td {
+  padding: 1em 0.5em;
+  position: relative;
+}
+
+table th {
+  font: 400 1.25em/1 'Oswald', sans-serif;
+  letter-spacing: 0.025em;
+  outline: none;
+  padding-right: 2em;
+  text-align: left;
+  text-transform: uppercase;
+  transition: color 0.2s ease-in-out;
+}
+
+table th:hover,
+table th:focus {
+  color: #83e4e2;
+}
+
+/* Arrows */
+table th:after,
+table th:before {
+  border: 0.35em solid transparent;
+  content: '';
+  height: 0; 
+  position: absolute;
+  right: 0.65em;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: border-color 0.2s ease-in-out;
+  width: 0; 
+}
+
+table th:before {
+  border-bottom-color: rgba(255, 255, 255, 0.25);
+  border-top: 0;
+  margin-top: -0.35em;
+}
+
+table th:after {
+  border-bottom: 0;
+  border-top-color: rgba(255, 255, 255, 0.25);
+  margin-top: 0.35em;
+}
+
+table th:hover:before,
+table th:focus:before {
+  border-bottom-color: rgba(255, 255, 255, 0.75);
+}
+
+table th:hover:after,
+table th:focus:after {
+  border-top-color: rgba(255, 255, 255, 0.75);
+}
+
+table th[aria-sort="ascending"],
+table th[aria-sort="descending"] {
+  color: #fddc32;
+}
+
+table th[aria-sort="ascending"]:before {
+  border-bottom-color: #a2ed56;
+}
+
+table th[aria-sort="ascending"]:after {
+  border-top-color: rgba(255, 255, 255, 0.25);
+}
+
+table th[aria-sort="descending"]:before {
+  border-bottom-color: rgba(255, 255, 255, 0.25);
+}
+
+table th[aria-sort="descending"]:after {
+  border-top-color: #fd6470;
+}
+
+
+
+/*** BODY ***/
+table tbody > tr {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+table tbody > tr:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 1);
+  color: #fff;
+}
+
+/* Primary Color */
+table tbody > tr:nth-of-type(6n+1) {
+  border-color: rgba(162, 237, 86, 0.5);
+}
+
+table tbody > tr:nth-of-type(6n+1):hover {
+  background-color: rgba(162, 237, 86, 0.25);
+  border-color: rgba(162, 237, 86, 1);
+}
+
+/* Secondary Color */
+table tbody > tr:nth-of-type(6n+2) {
+  border-color: rgba(131, 228, 226, 0.5);
+}
+
+table tbody > tr:nth-of-type(6n+2):hover {
+  background-color: rgba(131, 228, 226, 0.25);
+  border-color: rgba(131, 228, 226, 1);
+}
+
+/* Tertiary Color */
+table tbody > tr:nth-of-type(6n+3) {
+  border-color: rgba(253, 100, 112, 0.5);
+}
+
+table tbody > tr:nth-of-type(6n+3):hover {
+  background-color: rgba(253, 100, 112, 0.25);
+  border-color: rgba(253, 100, 112, 1);
+}
+
+/* Quaternary Color */
+table tbody > tr:nth-of-type(6n+4) {
+  border-color: rgba(252, 168, 88, 0.5);
+}
+
+table tbody > tr:nth-of-type(6n+4):hover {
+  background-color: rgba(252, 168, 88, 0.25);
+  border-color: rgba(252, 168, 88, 1);
+}
+
+/* Quinary Color */
+table tbody > tr:nth-of-type(6n+5) {
+  border-color: rgba(253, 220, 50, 0.5);
+}
+
+table tbody > tr:nth-of-type(6n+5):hover {
+  background-color: rgba(253, 220, 50, 0.25);
+  border-color: rgba(253, 220, 50, 1);
+}
+
+/* Name Cell */
+table td[data-label="Name"] {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* Animal Cells */
+table td[data-label="Chickens"],
+table td[data-label="Pigs"],
+table td[data-label="Snakes"] {
+  text-align: center;
+}
+
+/* Check and Cross Marks */
+table tr span.yes,
+table tr span.no {
+  transition: all 0.2s ease-in-out;
+}
+
+table tr:hover span.yes,
+table tr:hover span.no {
+  color: #fff;
+}
+
+table span.yes {
+  color: #a2ed56;
+  font-size: 1.25em;
+}
+
+table span.no {
+  color: #fd6470;
+  font-size: 0.875em;
+}
+
+
+
+/*** FOOTER ***/
+footer {
+  text-align: center;
+}
+
+footer a {
+  display: inline-block;
+}
+
+
+
+
+
+/************************************************/
+/***************** MEDIA QUERIES ****************/
+/************************************************/
+@media (max-width: 50em) {
+
+  /*** TABLE ***/
+  table tr,
+  table td {
+    display: block;
+  }
+
+  table tr {
+    padding: 0.75em 0;
+  }
+
+  /* Header */
+  table thead tr {
+    text-align: center;
+  }
+
+  table th {
+    display: block;
+    padding: 0.25em 0.5em;
+  }
+
+  /* Body */
+  table td {
+    padding: 0.25em 0.5em 0.25em 6.5em;
+  }
+
+  table td:before {
+    content: attr(data-label);
+    font: 400 1.125em/1 'Oswald', sans-serif;
+    left: 0.5em;
+    position: absolute;
+    top: 0.125em;
+    width: 100%;
+  }
+
+  /* Animal Cells */
+  table td[data-label="Chickens"],
+  table td[data-label="Pigs"],
+  table td[data-label="Snakes"] {
+    text-align: left;
+  }
+
+  /* Check and Cross Marks */
+  table span.yes {
+    line-height: 0.875;
+  }
+}
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<main>
+<h1>Sea of Thieves Cheatsheet</h1>
+<table class="tablesorter tablesorter-default tablesorter8a963db16c7ef" role="grid">
+<thead>
+<tr role="row" class="tablesorter-headerRow">
+<th data-column="0" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="Name: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Name</div></th>
+<th data-column="1" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="Grid: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Grid</div></th>
+<th data-column="2" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="Type: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Type</div></th>
+<th data-column="3" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="Region: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Region</div></th>
+<th data-column="4" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="Chickens: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Chickens</div></th>
+<th data-column="5" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="Pigs: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Pigs</div></th>
+<th data-column="6" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="Snakes: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Snakes</div></th>
+</tr>
+</thead>
+<tbody aria-live="polite" aria-relevant="all">
+<tr role="row">
+<td data-label="Name">
+Ancient Spire Outpost
+</td>
+<td data-label="Grid">
+V-21
+</td>
+<td data-label="Type">
+Outpost
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Barnacle Cay
+</td>
+<td data-label="Grid">
+T-19
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Black Sand Atoll
+</td>
+<td data-label="Grid">
+T-3
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Wilds
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="yes">✓</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Black Water Enclave
+</td>
+<td data-label="Grid">
+X-5
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Wilds
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Blind Man's Lagoon
+</td>
+<td data-label="Grid">
+S-6
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Wilds
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Booty Isle
+</td>
+<td data-label="Grid">
+N-25
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="yes">✓</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Boulder Cay
+</td>
+<td data-label="Grid">
+H-5
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Shores of Plenty
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Cannon Cove
+</td>
+<td data-label="Grid">
+H-11
+</td>
+<td data-label="Type">
+Large Island
+</td>
+<td data-label="Region">
+The Shores of Plenty
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Castaway Isle
+</td>
+<td data-label="Grid">
+M-16
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="yes">✓</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Chicken Isle
+</td>
+<td data-label="Grid">
+K-19
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Crook's Hollow
+</td>
+<td data-label="Grid">
+Q-19
+</td>
+<td data-label="Type">
+Large Island
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="yes">✓</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Cutlass Cay
+</td>
+<td data-label="Grid">
+Q-22
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="yes">✓</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Dagger Tooth Outpost
+</td>
+<td data-label="Grid">
+Q-8
+</td>
+<td data-label="Type">
+Outpost
+</td>
+<td data-label="Region">
+The Wilds
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+ <span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Devil's Ridge
+</td>
+<td data-label="Grid">
+U-24
+</td>
+<td data-label="Type">
+Large Island
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="yes">✓</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Discovery Ridge
+</td>
+<td data-label="Grid">
+E-24
+</td>
+<td data-label="Type">
+Large Island
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="yes">✓</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Fools Lagoon
+</td>
+<td data-label="Grid">
+K-17
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Galleon's Grave Outpost
+</td>
+<td data-label="Grid">
+X-9
+</td>
+<td data-label="Type">
+Outpost
+</td>
+<td data-label="Region">
+The Wilds
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Golden Sands Outpost
+</td>
+<td data-label="Grid">
+E-12
+</td>
+<td data-label="Type">
+Outpost
+</td>
+<td data-label="Region">
+The Shores of Plenty
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Hidden Spring Keep
+</td>
+<td data-label="Grid">
+K-9
+</td>
+<td data-label="Type">
+Fortress
+</td>
+<td data-label="Region">
+The Shores of Plenty
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Isle of Last Words
+</td>
+<td data-label="Grid">
+S-10
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Wilds
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="yes">✓</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Keel Haul Fort
+</td>
+<td data-label="Grid">
+C-7
+</td>
+<td data-label="Type">
+Fortress
+</td>
+<td data-label="Region">
+The Shores of Plenty
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Kraken Watchtower
+</td>
+<td data-label="Grid">
+O-6
+</td>
+<td data-label="Type">
+Fortress
+</td>
+<td data-label="Region">
+The Wilds
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Kraken's Fall
+</td>
+<td data-label="Grid">
+X-15
+</td>
+<td data-label="Type">
+Large Island
+</td>
+<td data-label="Region">
+The Wilds
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="yes">✓</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Lagoon of Whispers
+</td>
+<td data-label="Grid">
+D-15
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Shores of Plenty
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="yes">✓</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Liar's Backbone
+</td>
+<td data-label="Grid">
+Y-13
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Wilds
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="yes">✓</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Lone Cove
+</td>
+<td data-label="Grid">
+J-6
+</td>
+<td data-label="Type">
+Large Island
+</td>
+<td data-label="Region">
+The Shores of Plenty
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="yes">✓</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Lonely Isle
+</td>
+<td data-label="Grid">
+I-9
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Shores of Plenty
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="yes">✓</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Lookout Point
+</td>
+<td data-label="Grid">
+L-25
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Lost Gold Fort
+</td>
+<td data-label="Grid">
+J-21
+</td>
+<td data-label="Type">
+Fortress
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+ Marauder's Arch
+</td>
+<td data-label="Grid">
+V-3
+</td>
+<td data-label="Type">
+Large Island
+</td>
+<td data-label="Region">
+The Wilds
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="yes">✓</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Mermaid's Hideaway
+</td>
+<td data-label="Grid">
+B-16
+</td>
+<td data-label="Type">
+Large Island
+</td>
+<td data-label="Region">
+The Shores of Plenty
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Mutineer Rock
+</td>
+<td data-label="Grid">
+R-24
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Old Boot Fort
+</td>
+<td data-label="Grid">
+P-17
+</td>
+<td data-label="Type">
+Fortress
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Old Faithful Isle
+</td>
+<td data-label="Grid">
+Q-4
+</td>
+<td data-label="Type">
+Large Island
+</td>
+<td data-label="Region">
+The Wilds
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Old Salts Atoll
+</td>
+<td data-label="Grid">
+G-23
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Paradise Spring
+</td>
+<td data-label="Grid">
+O-21
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Picaroon Palms
+</td>
+<td data-label="Grid">
+K-4
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Shores of Plenty
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="yes">✓</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Plunder Outpost
+</td>
+<td data-label="Grid">
+M-22
+</td>
+<td data-label="Type">
+Outpost
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Plunder Valley
+</td>
+<td data-label="Grid">
+H-19
+</td>
+<td data-label="Type">
+Large Island
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Plunderer's Plight
+</td>
+<td data-label="Grid">
+W-6
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Wilds
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Rapier Cay
+</td>
+<td data-label="Grid">
+D-9
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Shores of Plenty
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Rum Runner Isle
+</td>
+<td data-label="Grid">
+J-11
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Shores of Plenty
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Sailor's Bounty
+</td>
+<td data-label="Grid">
+B-3
+</td>
+<td data-label="Type">
+Large Island
+</td>
+<td data-label="Region">
+The Shores of Plenty
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Sailor's Knot Stronghold
+</td>
+<td data-label="Grid">
+E-17
+</td>
+<td data-label="Type">
+Fortress
+</td>
+<td data-label="Region">
+The Shores of Plenty
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Salty Sands
+</td>
+<td data-label="Grid">
+I-3
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Shores of Plenty
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Sanctuary Outpost
+</td>
+<td data-label="Grid">
+ G-7
+</td>
+<td data-label="Type">
+Outpost
+</td>
+<td data-label="Region">
+The Shores of Plenty
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Sandy Shallows
+</td>
+<td data-label="Grid">
+E-5
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Shores of Plenty
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="yes">✓</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Scurvy Isley
+</td>
+<td data-label="Grid">
+N-4
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Wilds
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Sea Dog's Rest
+</td>
+<td data-label="Grid">
+B-13
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Shores of Plenty
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Shark Bait Cove
+</td>
+<td data-label="Grid">
+I-24
+</td>
+<td data-label="Type">
+Large Island
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Shark Fin Camp
+</td>
+<td data-label="Grid">
+U-5
+</td>
+<td data-label="Type">
+Fortress
+</td>
+<td data-label="Region">
+The Wilds
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Shark Tooth Key
+</td>
+<td data-label="Grid">
+U-15
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Wilds
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Shipwreck Bay
+</td>
+<td data-label="Grid">
+Q-12
+</td>
+<td data-label="Type">
+Large Island
+</td>
+<td data-label="Region">
+The Wilds
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Shiver Retreat
+</td>
+<td data-label="Grid">
+V-13
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Wilds
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Skull Keep
+</td>
+<td data-label="Grid">
+U-11
+</td>
+<td data-label="Type">
+Fortress
+</td>
+<td data-label="Region">
+The Wilds
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Smugglers' Bay
+</td>
+<td data-label="Grid">
+F-3
+</td>
+<td data-label="Type">
+Large Island
+</td>
+<td data-label="Region">
+The Shores of Plenty
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="yes">✓</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Snake Island
+</td>
+<td data-label="Grid">
+N-19
+</td>
+<td data-label="Type">
+Large Island
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="yes">✓</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+The Crooked Masts
+</td>
+<td data-label="Grid">
+T-13
+</td>
+<td data-label="Type">
+Large Island
+</td>
+<td data-label="Region">
+The Wilds
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="yes">✓</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+The Crow's Nest Fortress
+</td>
+<td data-label="Grid">
+S-22
+</td>
+<td data-label="Type">
+Fortress
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+The Sunken Grove
+</td>
+<td data-label="Grid">
+T-8
+</td>
+<td data-label="Type">
+Large Island
+</td>
+<td data-label="Region">
+The Wilds
+</td>
+<td data-label="Chickens">
+<span class="no">✗</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="yes">✓</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Thieves' Haven
+</td>
+<td data-label="Grid">
+P-24
+</td>
+<td data-label="Type">
+Large Island
+</td>
+<td data-label="Region">
+The Ancient Isles
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="yes">✓</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Tri-Rock Isle
+</td>
+<td data-label="Grid">
+W-11
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+ The Wilds
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Twin Groves
+</td>
+<td data-label="Grid">
+I-13
+</td>
+<td data-label="Type">
+Small Island
+</td>
+<td data-label="Region">
+The Shores of Plenty
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="no">✗</span>
+</td>
+</tr>
+<tr role="row">
+<td data-label="Name">
+Wanderers Refuge
+</td>
+<td data-label="Grid">
+H-14
+</td>
+<td data-label="Type">
+Large Island
+</td>
+<td data-label="Region">
+The Shores of Plenty
+</td>
+<td data-label="Chickens">
+<span class="yes">✓</span>
+</td>
+<td data-label="Pigs">
+<span class="no">✗</span>
+</td>
+<td data-label="Snakes">
+<span class="yes">✓</span>
+</td>
+</tr>
+</tbody>
+</table>
+</main>
+<footer>
+<p>Thanks to <a href="https://www.reddit.com/r/Seaofthieves/comments/8715ud/updated_merchant_cheatsheet/">Mickeychr</a> and <a href="https://seaofthieves.gamepedia.com/Locations">Sea of Theives Wiki</a>.</p>
+</footer>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.30.1/js/jquery.tablesorter.min.js"></script>
+<script id="rendered-js">
+      $(function () {
+  $('table').tablesorter();
+});
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

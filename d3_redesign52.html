@@ -1,0 +1,192 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - iFrame</title>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+<link rel="stylesheet" href="https://izimodal.marcelodolce.com/css/iziModal1.3.0.min.css">
+<style>
+      @import url(https://fonts.googleapis.com/css?family=Lato:400);
+
+/* Some reset */
+@charset "utf-8";
+html, body, div, span, applet, object, iframe, h1, h2, h3,
+h4, h5, h6, p, blockquote, pre, a, abbr, acronym,
+address, big, cite, code, del, dfn, em, font, img, ins,
+kbd, q, s, samp, small, strike, strong, sub, sup, tt,
+var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+}
+:focus { outline: 0;}
+a:link, a:visited, a:active{text-decoration:none; color: #21b3b4}
+table { border-collapse: separate;border-spacing: 0; width: 100%;}
+th, td {text-align: left; font-weight: normal;}
+tr{line-height: 30px;}
+img, iframe {border: none; text-decoration:none;}
+ol, ul {list-style: none;}
+input, textarea, select, button {font-size: 100%;font-family: inherit;}
+*, *:after, *::before{box-sizing:border-box; -ms-box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
+
+/* Main */
+body {
+  font-family: Lato;
+  background: #444B54;
+  padding: 15px;
+  overflow-x:hidden;
+}
+
+.trigger-iFrame , .trigger-iFrame-2 , .trigger-iFrame-3 , .trigger-iFrame-4 {
+  font-size: 20px;
+  background: #F04903;
+  color: white;
+  width: 300px;
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+p{
+  padding: 15px;
+  font-size: 20px;
+  text-align: justify;
+}
+
+.iziModal .iziModal-header-title , .iziModal-header-subtitle {
+    font-family: Lato;
+    font-weight: 100;
+    font-size: 25px;
+}
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+
+<a class="waves-effect waves-light btn-large red darken-2 trigger-iFrame">Modal iFrame</a>
+<div id="modal-iFrame" class="iziModal"></div>
+<br>
+
+<a class="waves-effect waves-light btn-large red darken-2 trigger-iFrame-2">Modal iFrame 2</a>
+<div id="modal-iFrame-2" class="iziModal"></div>
+<br>
+
+<a class="waves-effect waves-light btn-large red darken-2 trigger-iFrame-3">Modal iFrame 3</a>
+<div id="modal-iFrame-3" class="iziModal"></div>
+<br>
+
+<a class="waves-effect waves-light btn-large red darken-2 trigger-iFrame-4">Modal iFrame 4</a>
+<div id="modal-iFrame-4" class="iziModal"></div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+<script src="https://izimodal.marcelodolce.com/js/iziModal1.3.0.min.js"></script>
+<script id="rendered-js">
+      //Modal initialization
+$(document).on('click', '.trigger-iFrame', function (event) {
+  event.preventDefault();
+  $('#modal-iFrame').iziModal('open', this); // Do not forget the "this"
+});
+
+//Modal options
+$("#modal-iFrame").iziModal({
+  title: 'The Mountain', //Modal title
+  subtitle: 'A gorgeous nature time lapse.', //Modal subtitle
+  fullscreen: true, //Icon to expand modal to fullscreen
+  headerColor: 'rgb(51, 76, 123)', //Color of modal header. Hexa colors allowed.
+  overlayColor: 'rgba(0, 0, 0, 0.4)', //Color of overlay behind the modal
+  iconColor: '',
+  iconClass: 'icon-chat',
+  iframe: true, //In this example, this flag is mandatory. Izimodal needs to understand you will call an iFrame from here
+  iframeURL: "https://player.vimeo.com/video/22439234?autoplay=1" //Link will be opened inside modal
+});
+
+// Modal iFrame 2
+
+$(document).on('click', '.trigger-iFrame-2', function (event) {
+  event.preventDefault();
+  $('#modal-iFrame-2').iziModal('open', this); // Do not forget the "this"
+});
+
+$("#modal-iFrame-2").iziModal({
+  title: 'An iFrame modal to this pen',
+  subtitle: 'Inception concept? =)',
+  fullscreen: true,
+  headerColor: 'rgb(51, 76, 123)',
+  overlayColor: 'rgba(0, 0, 0, 0.4)',
+  iconColor: '',
+  iconClass: 'icon-chat',
+  iframe: true,
+  iframeHeight: 300,
+  iframeURL: "https://codepen.io/tofanelli/embed/WxKEgP",
+  width: 800 });
+
+
+// Modal iFrame 3
+
+$(document).on('click', '.trigger-iFrame-3', function (event) {
+  event.preventDefault();
+  $('#modal-iFrame-3').iziModal('open', this); // Do not forget the "this"
+});
+
+$("#modal-iFrame-3").iziModal({
+  title: 'Opening an external content',
+  subtitle: 'No problems so far has been experienced =D',
+  fullscreen: true,
+  headerColor: 'rgb(51, 76, 123)',
+  overlayColor: 'rgba(0, 0, 0, 0.4)',
+  iconColor: '',
+  iconClass: 'icon-chat',
+  iframe: true,
+  iframeHeight: 500,
+  iframeURL: "https://tympanus.net/Blueprints/FullWidthTabs/",
+  width: 800,
+  onFullscreen: function (modal) {
+    console.log(modal.isFullscreen);
+  } });
+
+
+// Modal iFrame 4
+
+$(document).on('click', '.trigger-iFrame-4', function (event) {
+  event.preventDefault();
+  $('#modal-iFrame-4').iziModal('open', this); // Do not forget the "this"
+});
+
+$("#modal-iFrame-4").iziModal({
+  title: 'Opening an external content',
+  subtitle: 'No problems so far has been experienced =D',
+  fullscreen: true,
+  headerColor: 'rgb(51, 76, 123)',
+  overlayColor: 'rgba(0, 0, 0, 0.4)',
+  iconColor: '',
+  iconClass: 'icon-chat',
+  iframe: true,
+  iframeHeight: 800,
+  iframeURL: "https://gabrielecirulli.github.io/2048/",
+  width: 800 });
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+<div class="hiddendiv common"></div></body></html>

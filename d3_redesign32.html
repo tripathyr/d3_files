@@ -1,0 +1,214 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Horizontal Timeline</title>
+<style>
+      @import url(https://fonts.googleapis.com/css?family=Roboto);
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Roboto';
+}
+
+.content {
+  background: linear-gradient(#61cae6, #60569C);
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.timeline {
+  background: linear-gradient(90deg, #654e9c 50%, #9b75de 50%);
+  width: 100%;
+  height: 560px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow-x: hidden;
+}
+.timeline__line {
+  background: white;
+  width: 100%;
+  height: 5px;
+}
+.timeline__points {
+  width: inherit;
+  height: 560px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-basis: 300px;
+  position: absolute;
+}
+
+.point {
+  background: rgba(0, 0, 0, 0.1);
+  width: 300px;
+  height: 560px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.point .upper-content {
+  width: 100%;
+  height: calc(560px * 0.5 - 40px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.point .upper-content strong {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+.point .bottom-content {
+  width: 100%;
+  height: calc(560px * 0.5 - 40px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.short-line {
+  background: linear-gradient(white 70%, rgba(0, 0, 0, 0.5) 90%);
+  width: 2px;
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 36px;
+}
+
+.circle {
+  background: orange;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  border: 7px solid white;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 7px 16px 0 rgba(238, 145, 36, 0.4);
+}
+.circle::after {
+  content: '';
+  display: inline-block;
+  border: 5px solid white;
+  width: 68px;
+  height: 68px;
+  border-radius: inherit;
+  position: absolute;
+  transition: all 0.3s ease-out;
+  opacity: 0;
+}
+.circle.active::after {
+  opacity: 1;
+}
+.circle:hover {
+  cursor: pointer;
+}
+
+.tooltip {
+  background-color: white;
+  padding: 16px;
+  border-radius: 16px;
+  margin-top: 24px;
+  position: relative;
+  transition: all 0.3s;
+  opacity: 0;
+}
+.tooltip.active {
+  opacity: 1;
+}
+.tooltip::before {
+  content: '';
+  display: inline-block;
+  background: white;
+  width: 5px;
+  height: 24px;
+  position: absolute;
+  top: -24px;
+  left: 49%;
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div id="content" class="content"><div class="timeline"><div class="timeline__line"></div> <div class="timeline__points"><div class="point"><div class="upper-content"><strong>Q1 2018</strong></div> <div class="circle active">1</div> <div class="bottom-content"><div class="tooltip active"><p>Start verifying and developing technology engaged with 100 brands with various products, financial institution, insurance company &amp; medical industry</p></div></div></div><div class="point"><div class="upper-content"><strong>Q2 2018</strong></div> <div class="circle">2</div> <div class="bottom-content"><div class="tooltip"><p>Pre ICO - Running online &amp; offline campaign. Token presale</p></div></div></div><div class="point"><div class="upper-content"><strong>Q3 2018</strong></div> <div class="circle">3</div> <div class="bottom-content"><div class="tooltip"><p>ICO - Distributing tokens &amp; crowdsale</p></div></div></div><div class="point"><div class="upper-content"><strong>Q4 2018</strong></div> <div class="circle">4</div> <div class="bottom-content"><div class="tooltip"><p>Releasing blueprint technology</p></div></div></div><div class="point"><div class="upper-content"><strong>Q1 2019</strong></div> <div class="circle">5</div> <div class="bottom-content"><div class="tooltip"><p>Close beta for App Launch, first App create API token stacking system and loyalty program</p></div></div></div><div class="point"><div class="upper-content"><strong>Q2 2019</strong></div> <div class="circle">6</div> <div class="bottom-content"><div class="tooltip"><p>Close beta for token stacking system launch token stacking and loyalty program</p></div></div></div><div class="point"><div class="upper-content"><strong>Q3 2019</strong></div> <div class="circle">7</div> <div class="bottom-content"><div class="tooltip"><p>Partner Expand 1500 brand product and logistic around Java</p></div></div></div></div></div></div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
+<script id="rendered-js">
+      var timeline_points = [
+{ period: 'Q1 2018', desc: 'Start verifying and developing technology engaged with 100 brands with various products, financial institution, insurance company & medical industry' },
+{ period: 'Q2 2018', desc: 'Pre ICO - Running online & offline campaign. Token presale' },
+{ period: 'Q3 2018', desc: 'ICO - Distributing tokens & crowdsale' },
+{ period: 'Q4 2018', desc: 'Releasing blueprint technology' },
+{ period: 'Q1 2019', desc: 'Close beta for App Launch, first App create API token stacking system and loyalty program' },
+{ period: 'Q2 2019', desc: 'Close beta for token stacking system launch token stacking and loyalty program' },
+{ period: 'Q3 2019', desc: 'Partner Expand 1500 brand product and logistic around Java' }];
+
+
+
+
+
+var vm = new Vue({
+  el: '#content',
+  data: {
+    timelinePoints: timeline_points,
+    toggled: false },
+
+  methods: {
+    normalizeSelection(idx) {
+      var circ, tooltip;
+      for (var i = 0; i < 8; i++) {if (window.CP.shouldStopExecution(0)) break;
+        if (i != idx) {
+          circ = this.$refs['circle' + i][0];
+          tooltip = this.$refs['tooltip' + i][0];
+          circ.classList.remove('active');
+          tooltip.classList.remove('active');
+        }
+      }window.CP.exitedLoop(0);
+    },
+    toggleTooltip(idx) {
+      var circ = this.$refs['circle' + idx][0];
+      var tooltip = this.$refs['tooltip' + idx][0];
+      if (!circ.classList.contains('active')) {
+        circ.classList.add('active');
+        tooltip.classList.add('active');
+      } else {
+        circ.classList.remove('active');
+        tooltip.classList.remove('active');
+      }
+    } } });
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

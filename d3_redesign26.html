@@ -1,0 +1,1014 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Lego Blockchain</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<style>
+      body {
+  background-color: #00a690;
+  overflow: hidden;
+}
+.blocks-container {
+  position: absolute;
+  bottom: 0;
+  left: 35%;
+  width: 7.81vw;
+  height: 40vw;
+  margin-left: calc(-207px - 5.5vw);
+}
+.item-particles {
+  position: absolute;
+  top: 41.31%;
+  left: 42.71%;
+  height: 49.145%;
+  width: 36.458%;
+  border-radius: 23px;
+  overflow: hidden;
+}
+.block {
+  position: absolute;
+  left: 50%;
+  top: -100%;
+  width: 7.81vw;
+  height: 7.81vw;
+  transform-origin: 50% 50%;
+}
+.block.is-orange .block-plane {
+  background: #ff9d52;
+}
+.block.is-orange .block-plane:before,
+.block.is-orange .block-plane:after {
+  box-shadow: 10px 10px 0px 3px #eb6600;
+}
+.block.is-orange .face-left {
+  background: #ff801f;
+}
+.block.is-orange .face-right {
+  background: #eb6600;
+}
+.block.is-orange .circles:before,
+.block.is-orange .circles:after {
+  box-shadow: 10px 10px 0px 3px #eb6600;
+}
+.block.is-red .block-plane {
+  background: #eb413b;
+}
+.block.is-red .block-plane:before,
+.block.is-red .block-plane:after {
+  box-shadow: 10px 10px 0px 3px #ae1712;
+}
+.block.is-red .face-left {
+  background: #dc1d17;
+}
+.block.is-red .face-right {
+  background: #ae1712;
+}
+.block.is-red .circles:before,
+.block.is-red .circles:after {
+  box-shadow: 10px 10px 0px 3px #ae1712;
+}
+.block.is-green .block-plane {
+  background: #9ed027;
+}
+.block.is-green .block-plane:before,
+.block.is-green .block-plane:after {
+  box-shadow: 10px 10px 0px 3px #5d7a17;
+}
+.block.is-green .face-left {
+  background: #7da51f;
+}
+.block.is-green .face-right {
+  background: #5d7a17;
+}
+.block.is-green .circles:before,
+.block.is-green .circles:after {
+  box-shadow: 10px 10px 0px 3px #5d7a17;
+}
+.block.is-blue .block-plane {
+  background: #63d2f3;
+}
+.block.is-blue .block-plane:before,
+.block.is-blue .block-plane:after {
+  box-shadow: 10px 10px 0px 3px #11b0df;
+}
+.block.is-blue .face-left {
+  background: #34c4ef;
+}
+.block.is-blue .face-right {
+  background: #11b0df;
+}
+.block.is-blue .circles:before,
+.block.is-blue .circles:after {
+  box-shadow: 10px 10px 0px 3px #11b0df;
+}
+.block.is-yellow .block-plane {
+  background: #f9eb2f;
+}
+.block.is-yellow .block-plane:before,
+.block.is-yellow .block-plane:after {
+  box-shadow: 10px 10px 0px 3px #bdb005;
+}
+.block.is-yellow .face-left {
+  background: #eede07;
+}
+.block.is-yellow .face-right {
+  background: #bdb005;
+}
+.block.is-yellow .circles:before,
+.block.is-yellow .circles:after {
+  box-shadow: 10px 10px 0px 3px #bdb005;
+}
+.block.is-big-1 .block-plane {
+  width: 150%;
+}
+.block.is-big-1 .block-plane .circles {
+  left: 66.66%;
+}
+.block.is-big-1 .block-plane:before,
+.block.is-big-1 .block-plane:after {
+  content: "";
+  position: absolute;
+  left: 20%;
+  height: 1.9525vw;
+  width: 1.9525vw;
+  margin: -1.562vw 0 0 -1.562vw;
+  border-radius: 50%;
+}
+.block.is-big-1 .block-plane:before {
+  top: 25%;
+}
+.block.is-big-1 .block-plane:after {
+  top: 75%;
+}
+.block.is-big-1 .face-left {
+  top: 67%;
+  left: 18%;
+  width: 106%;
+}
+.block.is-big-1 .face-right {
+  top: 76%;
+  left: 18%;
+}
+.block.is-big-2 .block-plane {
+  height: 150%;
+}
+.block.is-big-2 .block-plane .circles-1 {
+  top: 20%;
+}
+.block.is-big-2 .block-plane .circles-2 {
+  top: 50%;
+}
+.block.is-big-2 .block-plane:before,
+.block.is-big-2 .block-plane:after {
+  content: "";
+  position: absolute;
+  top: 80%;
+  height: 1.9525vw;
+  width: 1.9525vw;
+  margin: -1.562vw 0 0 -1.562vw;
+  border-radius: 50%;
+}
+.block.is-big-2 .block-plane:before {
+  left: 27%;
+}
+.block.is-big-2 .block-plane:after {
+  left: 73%;
+}
+.block.is-big-2 .face-left {
+  top: 101%;
+  left: -18%;
+}
+.block.is-big-2 .face-right {
+  top: 92%;
+  left: -18%;
+  width: 107%;
+}
+.block.is-small-1 .block-plane {
+  width: 50%;
+}
+.block.is-small-1 .block-plane .circles {
+  left: 6%;
+}
+.block.is-small-1 .block-plane .circles:after {
+  display: none;
+}
+.block.is-small-1 .face-left {
+  top: 67%;
+  left: -18%;
+  width: 35%;
+}
+.block.is-small-1 .face-right {
+  top: 58%;
+  left: -18%;
+  width: 71%;
+}
+.block.is-small-2 .block-plane {
+  height: 50%;
+}
+.block.is-small-2 .block-plane .circles {
+  top: 50%;
+}
+.block.is-small-2 .block-plane .circles-2 {
+  display: none;
+}
+.block.is-small-2 .face-left {
+  top: 33%;
+  left: 18%;
+  width: 71%;
+}
+.block.is-small-2 .face-right {
+  top: 42%;
+  left: 18%;
+  width: 35%;
+}
+.block-plane {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  transform: translateX(-50%) rotateX(60deg) rotateZ(45deg);
+  transform-origin: 50% 50%;
+}
+.block-plane .circles {
+  position: absolute;
+  left: 50%;
+  height: 1.9525vw;
+  width: 1.9525vw;
+  margin: -1.562vw 0 0 -1.562vw;
+}
+.block-plane .circles:before,
+.block-plane .circles:after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+.block-plane .circles:before {
+  left: 1.83764706vw;
+}
+.block-plane .circles:after {
+  right: 1.83764706vw;
+}
+.block-plane .circles-1 {
+  top: 25%;
+}
+.block-plane .circles-2 {
+  top: 75%;
+}
+.block-face {
+  position: absolute;
+  width: 70%;
+  height: 50%;
+  top: 67%;
+  transform-origin: 50% 50%;
+}
+.face-right {
+  transform: translateX(0%) skewY(-26.5deg);
+}
+.face-left {
+  transform: translateX(-100%) skewY(26.5deg);
+}
+.block-data {
+  position: absolute;
+  top: 72%;
+  left: 90%;
+  width: 167px;
+  margin: 0;
+  padding: 15px 20px;
+  color: #fff;
+  background-color: #2d2e30;
+  font-family: sans-serif;
+  font-size: 15px;
+  border-radius: 40px;
+  opacity: 0;
+  transform: translateY(-50%);
+}
+.block-data:before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  width: 0;
+  height: 0;
+  margin-top: -7px;
+  border-style: solid;
+  border-width: 8px 10px 8px 0;
+  border-color: transparent #2d2e30 transparent transparent;
+}
+.block-data p {
+  display: block;
+}
+.block-data p + p {
+  margin-top: 5px;
+}
+.illustrations-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+}
+.illustrations-container svg {
+  display: block;
+}
+.illustrations-container .is-shadow {
+  position: absolute;
+  top: 3%;
+  left: 3%;
+  height: 100%;
+  width: 100%;
+  transform: translate(5%, 5%);
+}
+.illustrations-container .is-top {
+  position: relative;
+  z-index: 10;
+}
+.illustrations-container.is-animated .vibrations-container {
+  animation: vibration 0.2s infinite ease-in-out both;
+}
+.illustrations-container .vibrations-container {
+  display: block;
+}
+.illustrations-container .vibrations-container:not(.is-block) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.item-illustration:not(.is-block) {
+  position: absolute;
+}
+.item-illustration.is-full {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+.illustration-background:not(.is-block) {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+.illustration-background.is-block {
+  position: relative;
+  z-index: 0;
+}
+.illustration-bulb {
+  top: 0;
+  left: 60%;
+  width: 12.5%;
+}
+.illustration-bulb .item-light {
+  position: absolute;
+  top: 1%;
+  left: 7%;
+  width: 84%;
+  height: 91%;
+  border-top-left-radius: 80px;
+  border-top-right-radius: 80px;
+  box-shadow: 0px 0 0 transparent;
+}
+.illustration-bulb svg {
+  position: relative;
+  z-index: 10;
+}
+.illustration-bulb-small {
+  top: 17%;
+  width: 2.9%;
+}
+.illustration-bulb-small.bulb-1 {
+  left: 49.16%;
+}
+.illustration-bulb-small.bulb-2 {
+  left: 53.54%;
+}
+.illustration-bulb-small.bulb-3 {
+  left: 58%;
+}
+.illustration-wheel-small {
+  top: 14.67%;
+  left: 65.8%;
+  width: 9.79%;
+}
+.illustration-bar {
+  top: 24.5%;
+  left: 49.3%;
+  width: 11.5%;
+  height: 1.7%;
+}
+.illustration-bar .bar-background,
+.illustration-bar .bar-shadow,
+.illustration-bar .bar-fill {
+  width: 100%;
+  height: 100%;
+  border-radius: 7px;
+}
+.illustration-bar .bar-background {
+  background-color: #c7cdd1;
+  overflow: hidden;
+}
+.illustration-bar .bar-shadow {
+  background-color: #0e0e0f;
+  transform: translate(4%, 40%);
+}
+.illustration-bar .bar-fill {
+  width: 0;
+  background-color: #11b0df;
+}
+.illustration-measure {
+  top: 33.47%;
+  left: 48.43%;
+  width: 7%;
+}
+.illustration-button {
+  top: 33.47%;
+  width: 4.38%;
+}
+.illustration-button.button-1 {
+  left: 58.85%;
+}
+.illustration-button.button-2 {
+  left: 67.29%;
+}
+.illustration-button.button-2 .button-pointer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+  transform: rotate(162deg);
+  z-index: 20;
+}
+.illustration-satellite {
+  top: 6.4%;
+  left: 0;
+  width: 44.8%;
+}
+.illustration-satellite .satellite-arm-1 {
+  transform-origin: 98.5% 53.5%;
+}
+.illustration-satellite .satellite-arm-2 {
+  transform-origin: 68% 97%;
+}
+.illustration-satellite .satellite-head {
+  transform-origin: 45% 64.5%;
+}
+.illustration-wheel {
+  top: 41.2%;
+  right: -28.33%;
+  width: 56.66%;
+  animation: rotate 3s linear infinite both;
+}
+#wheel-small {
+  transform-origin: center;
+}
+.measure-pointer {
+  transform-origin: 50% 90%;
+  animation: pointerAnimation 0.3s ease-in-out infinite both;
+}
+.illustration-wave {
+  height: 2vw;
+  width: 2vw;
+  top: -1.05vw;
+  left: -3.5vw;
+  transform-origin: center;
+  opacity: 0;
+}
+@keyframes vibration {
+  0%,
+  50% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+@keyframes pointerAnimation {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(5deg);
+  }
+  40% {
+    transform: rotate(-7deg);
+  }
+  60% {
+    transform: rotate(12deg);
+  }
+  80% {
+    transform: rotate(-5deg);
+  }
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="blocks-container" id="blocks-container"><div class="block is-blue" style="top: 40%; margin-top: 11.715vw;"><div class="block-plane"><div class="circles circles-1"></div><div class="circles circles-2"></div></div><div class="block-face face-left"></div><div class="block-face face-right"></div><div class="block-data" style="left: 90%; opacity: 0;"><p>Block: 1</p><p>Transactions: 4298</p></div></div><div class="block is-yellow" style="top: 40%; margin-top: 7.81vw;"><div class="block-plane"><div class="circles circles-1"></div><div class="circles circles-2"></div></div><div class="block-face face-left"></div><div class="block-face face-right"></div><div class="block-data" style="left: 90%; opacity: 0;"><p>Block: 2</p><p>Transactions: 1114</p></div></div><div class="block is-green" style="top: 40%; margin-top: 3.905vw;"><div class="block-plane"><div class="circles circles-1"></div><div class="circles circles-2"></div></div><div class="block-face face-left"></div><div class="block-face face-right"></div><div class="block-data" style="left: 90%; opacity: 0;"><p>Block: 3</p><p>Transactions: 3063</p></div></div><div class="block is-green" style="top: 0%;"><div class="block-plane"><div class="circles circles-1"></div><div class="circles circles-2"></div></div><div class="block-face face-left"></div><div class="block-face face-right"></div><div class="block-data" style="left: 100%; opacity: 1;"><p>Block: 4</p><p>Transactions: 7327</p></div></div></div>
+<div class="illustrations-container is-animated" id="illustrations-container">
+<div class="vibrations-container">
+<div class="item-illustration illustration-background">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-225 94.5 508.4 372.5">
+<path fill="#2d2e30" d="M174.4 108h-88c-9 0-17.4 2.5-24.7 6.7l-44 20.9 3.7 325.3h131l39.1-19.1c.7-.3 1.3-.5 2-.8 2.2-.9 4.3-2 6.3-3.3 3-1.9 5.8-4 8.4-6.5a49 49 0 0 0 15.2-35.4v-239c0-26.7-22-48.8-49-48.8z"></path>
+<path fill="#141516" d="M199.1 225.7H197c-4.1 0-7.4-3.3-7.4-7.4v-17.4c0-4.1 3.3-7.4 7.4-7.4h2.1c4.1 0 7.4 3.3 7.4 7.4v17.4c0 4.1-3.3 7.4-7.4 7.4z"></path>
+<path fill="#0e0e0f" d="M196.9 258c-3.7 0-6.5 3-6.5 6.7v177.8c5.2-2.4 7.6-4.4 13-7.2V264.7c0-3.6-2.8-6.7-6.5-6.7z"></path>
+</svg>
+</div>
+</div>
+<div class="item-illustration illustration-background is-block">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-225 94.5 508.4 372.5">
+<path fill="#0e0e0f" d="M190.4 435.4h93v7h-93z"></path>
+<path fill="#424447" d="M258.4 147.7v38.9c0 8.5-7.3 15.4-15.8 15.4h-53.2v15h53.2c16.7 0 30.8-13.7 30.8-30.4v-38.9c0-6.8 4.1-12.7 10-14.8v-15.4c-14.3 2.4-25 15.2-25 30.2z"></path>
+<path fill="#353639" d="M270.7 145h-10.9c-1 0-1.4.6-1.4 1.6v2c0 1.1.5 2.5 1.7 2.5h10.3v33h-10.6c-1 0-1.4.5-1.4 1.5v2.1c0 1 .5 1.4 1.5 1.4h10.3c-2.2 13-11.8 23-24.8 25.2v-10.4c0-.9-.7-1.7-1.6-1.7h-2.2c-1 0-2.2.9-2.2 1.9v11.1h-41.1c-2 0-3.9-2-3.9-4v-9h-5v15h53.3c.5 0 .9-.1 1.4-.1h.3c.4 0 1.1-.1 1.1-.1 14-1.4 26-12.8 27.4-27.8 0 0 0-.6.1-1 0-.1.3-.1.3-.1 0-.5.3-.9.3-1.3v-39.1c0-.5-.2-.9-.2-1.3 0-.2-.1-.4-.1-.6.8-5.9 4.7-10.8 10.2-12.7v-2.9c-7.1 1.3-12.5 6.8-12.8 14.8z"></path>
+<path fill="#2d2e30" d="M240.3 218.1h2.4c.7 0 1.4-.6 1.4-1.4v-14.8c0-.7-.6-1.4-1.4-1.4h-2.4c-.7 0-1.4.6-1.4 1.4v14.8c0 .8.6 1.4 1.4 1.4zm16.4-33.9v2.4c0 .7.6 1.4 1.4 1.4h14.8c.7 0 1.4-.6 1.4-1.4v-2.4c0-.7-.6-1.4-1.4-1.4h-14.8c-.8.1-1.4.7-1.4 1.4zm0-39v2.4c0 .7.6 1.4 1.4 1.4h14.8c.7 0 1.4-.6 1.4-1.4v-2.4c0-.7-.6-1.4-1.4-1.4h-14.8c-.8 0-1.4.7-1.4 1.4z"></path>
+</svg>
+</div>
+<div class="item-illustration illustration-wheel">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-336 137 287 288">
+<path fill="#181819" d="M-50.8 282.8l1.9-.7V276l-14.5-4.9c-.1-1.4-.1-2.7-.3-4l13.8-7.2-1-6.1h-.2l-15.2-2.6-.9-3.9 12.5-9.3-1.9-5.9h-.1v-.1l-15.5-.2c-.5-1.2-1-2.5-1.5-3.6l10.9-11.2-2.8-5.5h-.1v-.1l-15.5 2.2c-.7-1.1-1.3-2.2-2-3.3l9-12.7-3.6-5h-.1l-.1-.1-15 4.6c-.8-.9-1.6-1.9-2.4-2.8l7-14.1-4.4-4.4h-.1l-.2-.2-14.1 6.9c-.9-.8-1.9-1.6-2.8-2.4l4.6-14.9-.1-.1v-.1l-5-3.6-12.9 9.1c-1-.7-2.1-1.3-3.2-2l2.2-15.4-.1-.1v-.1l-5.5-2.9-11.3 11c-1.1-.5-2.3-1-3.5-1.5l-.2-15.4h-.1v-.2l-5.9-2-9.5 12.7c-1.2-.3-2.4-.6-3.6-.8l-2.7-15.4h-.1v-.2l-6.1-1-7.4 14.1c-1.2-.1-2.5.3-3.7.2l-5.1-14.5h-6.3l-5.1 14.6-3.8.3-7.3-13.9-.1-.4-6.1.8-2.1 12.8-.5 2.8c-1.3.3-2.5.6-3.7.9l-9.5-12.7-5.9 1.9v.2l-.2 15.7c-.4.2-.7.3-1.1.5-.8.3-1.6.7-2.4 1l-11.3-11-5.5 2.8v.1h-.1l2.2 15.5c-1.1.7-2.2 1.3-3.2 2l-12.8-9-5 3.6v.1l-.1.1 4.6 14.9c-1 .8-2.1 1.6-3.1 2.4l-13.9-6.8-.1.1-.2-.1-4.4 4.4 7 14.1c-.9 1-1.7 2-2.5 3l-14.7-4.7-3.6 5v.1l-.1.1 8.9 12.6c-.7 1.2-1.4 2.3-2.1 3.5l-15.3-2.3-2.8 5.5.1.1v.1l10.7 11c-.5 1.2-1 2.5-1.5 3.7l-15.6.2-1.9 5.9.1.1v.1l12.3 9.2c-.4 1.3-.7 2.7-1 4l-15.2 2.6-1 6.1.1.1v.1l13.5 7.1c-.1 1.3-.5 2.7-.6 4.1l-14.7 5v6.2l14.7 4.9c.1 1.4.3 2.8.5 4.2l-13.4 7.4v.3l.9 5.6 15 2.5c.3 1.4.7 2.7 1 4.1l-12.1 9v.1l1.9 5.9 15.2.2c.5 1.3 1.1 2.7 1.7 4l-10.5 10.7.1.1 2.8 5.5 14.9-2.1c.7 1.2 1.5 2.5 2.3 3.7l-8.6 12.2.1.1-.1.1 3.6 5 14.4-4.5c1 1.2 1.8 2.4 2.8 3.4l-2.9 5.9-3.8 7.7 4.4 4.4 13.6-6.7c1.1 1 2.3 1.9 3.4 2.8l-4.3 14.3v.2l5 3.6 12.3-8.7c1.2.8 2.6 1.6 3.8 2.3l-2.2 14.8 5.5 2.8 6.2-6 4.6-4.5c1.4.6 2.8 1.2 4.1 1.7l.2 15 5.9 1.9.1-.1h.1l9-12c1.4.3 2.8.7 4.2 1l2.1 14.8h-.3l1.2.1 5.4.8h.3l7-13.3c1.5.1 2.9 1.2 4.4 1.3l4.8 15.2h6.3l4.9-15.3c1.5-.1 2.9-.7 4.4-.9l7 13 .1-.1 6.1-1 2.5-14.8c1.4-.3 2.9-.7 4.3-1l8.9 12 5.9-1.9.2-15.1c1.4-.5 2.8-1.1 4.1-1.7l8 7.8 2.7 2.7 4.4-2.2 1.1-.6-2.2-15c1.2-.8 2.5-1.5 3.7-2.3l12.3 8.7 5-3.6-4.5-14.5c1.1-.9 2.2-1.9 3.3-2.9l13.7 6.8 4.4-4.4-6.8-13.9.2-.2c.9-1 1.7-2 2.6-3l14.6 4.6 3.6-5-8.9-12.6c.8-1.2 1.5-2.4 2.2-3.6l15.3 2.2 2.8-5.5-10.7-11.1c.6-1.2 1.1-2.6 1.6-3.9l15.4-.2 1.9-5.9-12.4-9.3c.4-1.4.7-2.7 1-4.1l15.2-2.6.9-6.1-13.7-7.3c.1-1.4.3-2.7.3-4.1l12.3-4.2zm-54.6-82.2c19.7 21.3 30.2 48.5 31.4 75.5h-96.6c-.6-2.8-1.8-5.5-3.4-7.8l68.6-67.7zm-6.9-8l-69 69c-1.8-1-3.7-1.8-5.7-2.3v-97.4a117 117 0 0 1 74.7 30.7zM-228 167.2c10.1-3.2 20-5 31-5.4V259c-2.2.5-4.3 1.2-6.2 2.3l-68.6-68.6c12.5-11.4 27.4-20.2 43.8-25.5zm-51.1 33.8l67.9 67.5c-1.5 2.2-2.6 4.8-3.2 7.5h-95.8c1.2-30 12.8-55.1 31.1-75zm-.4 159.7c-18.1-19.9-29.6-47.7-30.8-74.7h95.9c.5 2.4 1.5 4.6 2.7 6.6l-67.8 68.1zm7.3 6.2l67.3-67.2c2.4 1.6 5 2.7 7.9 3.3v95.2c-29-1.2-55.2-12.8-75.2-31.3zm112.8 26.9c-8.8 2.5-17.6 4-27.6 4.4v-95.5c2.7-.7 5.2-1.8 7.4-3.4L-112 367c-14 12.9-30.3 21.9-47.4 26.8zm54.7-33.3l-68.2-68.5c1-1.8 1.8-3.8 2.3-6h96.8c-1.1 27-11.4 53.3-30.9 74.5z"></path>
+</svg>
+</div>
+<div class="item-illustration illustration-satellite">
+<div class="waves-container item-illustration is-full">
+<div class="item-illustration illustration-wave wave-1" id="wave-1" style="opacity: 0; left: -57px; transform: matrix(2.8, 0, 0, 2.8, 0, 0);">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="127 -127 754 754">
+<path fill="#fff" d="M279.7-115.8c-38 38.1-70.4 82-95 129.9-23.8 46.4-40.9 96.4-49.8 147.8-8.7 50.7-10.4 102.4-3.8 153.5 6.8 52.6 21.1 103.3 43.2 151.6 22.2 48.5 52.5 93.3 88.7 132.5 4.5 4.9 9.1 9.6 13.8 14.3 6.7 6.7 18.9 7.2 25.5 0 6.6-7.2 7.1-18.3 0-25.5-9.3-9.3-18.3-19-26.9-29.1-4.2-5-8.4-10-12.4-15.1-.4-.5-3-3.8-1.7-2.2 1.3 1.7-1.3-1.7-1.6-2.2l-6-8.1a488.56 488.56 0 0 1-48-82.3c-1.2-2.5-2.3-5.1-3.4-7.6-.7-1.5-1.3-3-1.9-4.5-.8-1.9.4 1 .5 1.1-.4-.9-.7-1.7-1.1-2.6-4.8-11.6-9.1-23.3-13-35.2a490 490 0 0 1-17.5-71.7c-.5-2.9-1-5.9-1.4-8.8-.2-1.6-.5-3.2-.7-4.8-.3-2.1.2 1.3.2 1.4.2-.2-.3-2.4-.4-2.7-.8-6.1-1.4-12.3-2-18.5-1.1-12.3-1.7-24.7-1.9-37.1-.2-12.1.1-24.3.8-36.4.4-6.2.8-12.4 1.4-18.5l.9-8.9c.2-1.4.3-2.7.5-4.1l.3-2.7c.4-3.1 0 .7-.1.7.4 0 2.6-16.8 2.9-18.4 1.1-6.1 2.3-12.2 3.6-18.3 2.6-12 5.6-23.8 9-35.6 3.5-12 7.5-23.9 11.9-35.7 2.2-5.9 4.6-11.7 7-17.5-1.2 2.9-.3.6.4-.9.6-1.5 1.3-3 2-4.5 1.3-3 2.7-6 4.1-9a493.73 493.73 0 0 1 48.4-82 369 369 0 0 1 5.6-7.6c.9-1.2 1.8-2.3 2.6-3.5-2.3 3 1-1.2 1.7-2.1 8-10.2 16.5-20 25.3-29.5 4.5-4.9 9.2-9.7 13.9-14.4 6.7-6.7 7.2-18.9 0-25.5-7.4-6.3-18.5-6.9-25.6.3z"></path>
+</svg>
+</div>
+<div class="item-illustration illustration-wave wave-2" id="wave-2" style="opacity: 0; left: -57px; transform: matrix(2.8, 0, 0, 2.8, 0, 0);">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="127 -127 754 754">
+<path fill="#fff" d="M279.7-115.8c-38 38.1-70.4 82-95 129.9-23.8 46.4-40.9 96.4-49.8 147.8-8.7 50.7-10.4 102.4-3.8 153.5 6.8 52.6 21.1 103.3 43.2 151.6 22.2 48.5 52.5 93.3 88.7 132.5 4.5 4.9 9.1 9.6 13.8 14.3 6.7 6.7 18.9 7.2 25.5 0 6.6-7.2 7.1-18.3 0-25.5-9.3-9.3-18.3-19-26.9-29.1-4.2-5-8.4-10-12.4-15.1-.4-.5-3-3.8-1.7-2.2 1.3 1.7-1.3-1.7-1.6-2.2l-6-8.1a488.56 488.56 0 0 1-48-82.3c-1.2-2.5-2.3-5.1-3.4-7.6-.7-1.5-1.3-3-1.9-4.5-.8-1.9.4 1 .5 1.1-.4-.9-.7-1.7-1.1-2.6-4.8-11.6-9.1-23.3-13-35.2a490 490 0 0 1-17.5-71.7c-.5-2.9-1-5.9-1.4-8.8-.2-1.6-.5-3.2-.7-4.8-.3-2.1.2 1.3.2 1.4.2-.2-.3-2.4-.4-2.7-.8-6.1-1.4-12.3-2-18.5-1.1-12.3-1.7-24.7-1.9-37.1-.2-12.1.1-24.3.8-36.4.4-6.2.8-12.4 1.4-18.5l.9-8.9c.2-1.4.3-2.7.5-4.1l.3-2.7c.4-3.1 0 .7-.1.7.4 0 2.6-16.8 2.9-18.4 1.1-6.1 2.3-12.2 3.6-18.3 2.6-12 5.6-23.8 9-35.6 3.5-12 7.5-23.9 11.9-35.7 2.2-5.9 4.6-11.7 7-17.5-1.2 2.9-.3.6.4-.9.6-1.5 1.3-3 2-4.5 1.3-3 2.7-6 4.1-9a493.73 493.73 0 0 1 48.4-82 369 369 0 0 1 5.6-7.6c.9-1.2 1.8-2.3 2.6-3.5-2.3 3 1-1.2 1.7-2.1 8-10.2 16.5-20 25.3-29.5 4.5-4.9 9.2-9.7 13.9-14.4 6.7-6.7 7.2-18.9 0-25.5-7.4-6.3-18.5-6.9-25.6.3z"></path>
+</svg>
+</div>
+<div class="item-illustration illustration-wave wave-3" id="wave-3" style="opacity: 0; left: -57px; transform: matrix(2.8, 0, 0, 2.8, 0, 0);">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="127 -127 754 754">
+<path fill="#fff" d="M279.7-115.8c-38 38.1-70.4 82-95 129.9-23.8 46.4-40.9 96.4-49.8 147.8-8.7 50.7-10.4 102.4-3.8 153.5 6.8 52.6 21.1 103.3 43.2 151.6 22.2 48.5 52.5 93.3 88.7 132.5 4.5 4.9 9.1 9.6 13.8 14.3 6.7 6.7 18.9 7.2 25.5 0 6.6-7.2 7.1-18.3 0-25.5-9.3-9.3-18.3-19-26.9-29.1-4.2-5-8.4-10-12.4-15.1-.4-.5-3-3.8-1.7-2.2 1.3 1.7-1.3-1.7-1.6-2.2l-6-8.1a488.56 488.56 0 0 1-48-82.3c-1.2-2.5-2.3-5.1-3.4-7.6-.7-1.5-1.3-3-1.9-4.5-.8-1.9.4 1 .5 1.1-.4-.9-.7-1.7-1.1-2.6-4.8-11.6-9.1-23.3-13-35.2a490 490 0 0 1-17.5-71.7c-.5-2.9-1-5.9-1.4-8.8-.2-1.6-.5-3.2-.7-4.8-.3-2.1.2 1.3.2 1.4.2-.2-.3-2.4-.4-2.7-.8-6.1-1.4-12.3-2-18.5-1.1-12.3-1.7-24.7-1.9-37.1-.2-12.1.1-24.3.8-36.4.4-6.2.8-12.4 1.4-18.5l.9-8.9c.2-1.4.3-2.7.5-4.1l.3-2.7c.4-3.1 0 .7-.1.7.4 0 2.6-16.8 2.9-18.4 1.1-6.1 2.3-12.2 3.6-18.3 2.6-12 5.6-23.8 9-35.6 3.5-12 7.5-23.9 11.9-35.7 2.2-5.9 4.6-11.7 7-17.5-1.2 2.9-.3.6.4-.9.6-1.5 1.3-3 2-4.5 1.3-3 2.7-6 4.1-9a493.73 493.73 0 0 1 48.4-82 369 369 0 0 1 5.6-7.6c.9-1.2 1.8-2.3 2.6-3.5-2.3 3 1-1.2 1.7-2.1 8-10.2 16.5-20 25.3-29.5 4.5-4.9 9.2-9.7 13.9-14.4 6.7-6.7 7.2-18.9 0-25.5-7.4-6.3-18.5-6.9-25.6.3z"></path>
+</svg>
+</div>
+</div>
+<div class="satellite-arm-1" id="satellite-arm-1" style="transform: matrix(0, 1, -1, 0, 0, 0);">
+<div class="satellite-arm-2" id="satellite-arm-2" style="transform: matrix(-0.64278, -0.76604, 0.76604, -0.64278, 0, 0);">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-355 193.5 247.6 174.5">
+<path fill="#424447" d="M-236.99 304.87l55.44 56.42-7.2 7.08-55.44-56.43z"></path>
+<circle cx="-241" cy="307.2" r="8.5" fill="#424447"></circle>
+<path d="M-232.7 309.1c-.8 3.6-4 6.3-7.7 6.5l2 2c3.8-.2 6.9-2.9 7.8-6.5l-2.1-2z" opacity=".2"></path>
+<circle cx="-240.9" cy="307.3" r="5.4" fill="#141516"></circle>
+</svg>
+<div class="satellite-head item-illustration is-full" id="satellite-head" style="transform: matrix(0.93969, 0.34202, -0.34202, 0.93969, 0, 0);">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-355 193.5 247.6 174.5">
+<path fill="#262728" d="M-321.3 344.7c13.2-8.2 29.6-33 41.4-64.7 13.8-36.9 16.8-70.9 8.2-82.1-.5-.6-.9-1.1-1.5-1.6a8.8 8.8 0 0 0-2.9-1.8c-.2-.1-.4-.1-.5-.2-.4-.2-.9-.3-.7-.2-.2 0-.4-.1-.6-.1-13.9-2-36.3 27.2-51.4 67.5-7.7 20.7-12.1 40.4-12.9 55.8-.6 11 .7 19.8 3.8 25 .7 1.1 1.4 2 2.2 2.8.8.7 1.7 1.3 2.6 1.7.1.1.3.1.4.2.4.1.8.3 1.2.3h.2c.6.1 1.3.2 1.9.2 1.5 0 3.1-.3 4.8-1 1.3-.3 2.5-1.1 3.8-1.8z"></path>
+ <path d="M-275.1 261.4c-12.1 28.3-31.6 52.1-48.9 61.8-1.7.9-3.2 1.8-5 2.3-2.3 1-4.5 1.6-6.6 2-.8.1-1.8.2-2.7.3h-.3c-.6.1-1.1 0-1.7 0-.2-.1-.4 0-.6-.1-.4 0-.9-.1-1.3-.2.4 6.2 1.7 11.2 3.8 14.7.7 1.1 1.4 2 2.2 2.8.8.7 1.7 1.3 2.6 1.7.1.1.3.1.4.2.4.1.8.3 1.2.3h.2c.6.1 1.3.2 1.9.2 1.5 0 3.1-.3 4.8-1 1.3-.3 2.5-1.1 3.8-1.8 13.2-8.2 29.6-33 41.4-64.7 3.7-9.8 6.6-19.4 8.7-28.4-1.1 3.3-2.4 6.6-3.9 9.9z" opacity=".2"></path>
+<path fill="#141516" d="M-319.8 268.9l38.7 13.9c.3-.8.6-1.7.9-2.5.4-1.1.9-2 1.2-3.1l-38.8-14 46.3-10.7c.4-2.4 1.3-4.9 1.6-7.2l-59.3 13.8-7.8-2.8c-.2-3.3-2.4-6.5-5.8-7.7-4.5-1.6-9.5.8-11.1 5.3s.8 9.2 5.4 10.8c3.4 1.2 7 .6 9.5-2.7l7.8 2.8 36 48.1c1.3-2 2.3-4.4 3.5-6.5l-28.1-37.5z"></path>
+<path fill="#0e0e0f" d="M-339.3 250.8c.1.7.2 1.4.2 2.2 0 6-4.7 10.8-10.8 10.8h-.5c1.4.9 3.2 1.3 4.7 1.4 4.2.3 8.6-3.8 8.6-8.6 0-2.2-.8-4.2-2.2-5.8z" opacity=".5"></path>
+<path fill="#0e0e0f" d="M-331.2 264.8l11.4 4.1 1 1.3-11-3.6zm50.1 18c.3-.8.6-1.7.9-2.5.4-1.1.9-2 1.2-3.1l-5.3-1.9c-.9 1.8-1.6 3.5-2.5 5.5l5.7 2zm9.6-30.3c.4-2.4 1.3-4.9 1.6-7.2l-4.2 1c-.6 2.4-1.1 4.8-1.8 7.2l4.4-1zm-23.7 60.4c1.3-2 2.3-4.4 3.5-6.5l-4-5.3c-1.5 2.2-2.1 3.3-4 5.9l4.5 5.9z"></path>
+<path fill="#424447" d="M-273.2 196.2c10.3 9.3 7.8 44.9-6.8 83.8-15.2 40.7-38 70-51.8 67.3 34.9 6.9 71.8-9.4 89.1-42.5 20.1-38.9 6.4-86.3-30.5-108.6z"></path>
+<path d="M-245.1 224.4c6.2 20 4.8 42.3-5.6 62.4-11.6 22.3-32.1 37-54.9 42.2-9.6 12.8-19.1 19.7-26.2 18.3 34.9 6.9 71.8-9.4 89.1-42.5a82.86 82.86 0 0 0-2.4-80.4z" opacity=".2"></path>
+</svg>
+</div>
+</div>
+<svg class="item-illustration is-full" xmlns="http://www.w3.org/2000/svg" viewBox="-355 193.5 247.6 174.5">
+<path fill="#424447" d="M-186.5 354.57l72.68-71.42 7.08 7.2-72.68 71.43z"></path>
+<circle cx="-187" cy="360.2" r="8.5" fill="#424447"></circle>
+<circle cx="-186.9" cy="360.3" r="5.4" fill="#141516"></circle>
+<path d="M-177 359.3a9 9 0 0 0-3.1-4.1c1 1.4 1.6 3.1 1.6 4.9v.6l1.5-1.4z" opacity=".2"></path>
+</svg>
+</div>
+</div>
+<div class="vibrations-container">
+<div class="item-illustration illustration-foreground is-block">
+<div class="item-particles" id="item-particles"><canvas class="particles-js-canvas-el" width="316" height="314" style="width: 100%; height: 100%;"></canvas></div>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-225 94.5 508.4 372.5">
+<path fill="#a2afba" d="M147.4 261h-132c-6.6 0-12 5.4-12 12v132c0 6.6 5.4 12 12 12h132c6.6 0 12-5.4 12-12V273c0-6.6-5.4-12-12-12z"></path>
+<path fill="#fff" d="M72.3 261H50.5L22.6 417h21.9l27.8-156zm56 0h-6.4L94.1 417h6.4l27.8-156zm12.5 0h-3.5l-27.8 156h3.4l27.9-156z"></path>
+</svg>
+</div>
+</div>
+<div class="item-illustration illustration-foreground is-full">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-225 94.5 508.4 372.5">
+<path fill="#00a690" d="M127.2 442.5h156.3v24.6H127.2z"></path>
+</svg>
+</div>
+<div class="vibrations-container">
+<div class="item-illustration illustration-foreground is-full">
+<div class="item-particles" id="item-particles"></div>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-225 94.5 508.4 372.5">
+<path fill="#2d2e30" d="M190.4 118.4c-3.2-.7-12.6-10.4-16-10.4h-88c-9 0-17.4 2.5-24.7 6.7L22 133.6c5.7-2.3 11.8-3.6 18.3-3.6h88c27 0 49 22 49 49v239c-.1 17.9-9.9 34.4-25.6 43h.6l32-15.6 6-2.9V118.4h.1z"></path>
+<path fill="#141516" d="M128.4 130h-88c-6.5 0-12.7 1.3-18.3 3.6-8.6 3.5-16 9.4-21.4 16.8-5.8 8.1-9.3 17.9-9.3 28.6v239c0 27 22 49 49 49h88c4 0 8-.5 11.7-1.4 2.5-.6 5-1.4 7.3-2.4 1.5-.6 2.9-1.3 4.3-2.1 3.8-2.1 7.3-4.7 10.4-7.6 9.5-9 15.3-21.6 15.3-35.5V179c0-27-22-49-49-49zm31 275c0 6.6-5.4 12-12 12h-132c-6.6 0-12-5.4-12-12V273c0-6.6 5.4-12 12-12h132c6.6 0 12 5.4 12 12v132z"></path>
+<path fill="#0e0e0f" d="M190.4 264.7h5V441h-5V264.7z" opacity=".5"></path>
+</svg>
+</div>
+<div class="item-illustration illustration-bulb">
+<div class="item-light" id="bulb-light" style="box-shadow: rgba(160, 209, 44, 0.976) 0px -10px 29px 0px;"></div>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62.2 29.5">
+<path d="M32.1 2C18.7 2 2.6 27.5 2.6 27.5H0l2 2h60.2C57.9 12.5 46 2 32.1 2z" opacity=".2"></path>
+<path id="bulb" fill="#c7cdd1" d="M30.1 0C16.2 0 4.4 10.5 0 27.5h60.2C55.9 10.5 44 0 30.1 0z" style="fill: rgb(159, 208, 43);"></path>
+<path d="M37.5 27.5h22.8c-2.4-9-7-16.2-12.9-21.1 11.5 18.5-9.9 21.1-9.9 21.1z" opacity=".15"></path>
+<ellipse cx="20.6" cy="10.3" fill="#fff" rx="13.8" ry="5.9" transform="rotate(-33.07 20.56 10.35)" opacity=".5"></ellipse>
+</svg>
+</div>
+<div class="item-illustration illustration-wheel-small">
+<svg id="wheel-shadow" class="is-shadow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49.4 49.4" style="transform: matrix3d(0.997474, -0.0710335, 0, 0, 0.0710335, 0.997474, 0, 0, 0, 0, 1, 0, 2.125, 2.125, 0, 1);">
+<path fill="#0e0e0f" d="M24.7 0C11 0 0 11 0 24.7A24.69 24.69 0 1 0 24.7 0zm1.6 4.7c11 .7 18.6 9.4 18.6 20 0 2.9-.7 5.6-1.8 8L31 26.4c.2-.6.4-1.2.4-1.8 0-3.1-2.1-5.8-5.1-6.4V4.7zm-3 0v13.6c-2 .6-5.1 3.2-5.1 6.4 0 .6.1 1.2.3 1.8L6.3 32.7a19.8 19.8 0 0 1-1.7-8c0-10.6 8.7-19.3 18.7-20zm1.4 40c-7.3 0-13.6-3.9-17.1-9.7l12.1-6.3c1.2 1.5 3 2.4 5 2.4s3.9-.9 5-2.4L41.8 35c-3.5 5.8-9.8 9.7-17.1 9.7zM42.4 34c0 .1-.1.2-.1.3l.1-.3z"></path>
+</svg>
+<svg class="is-top" id="wheel" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49.4 49.4" style="transform: matrix3d(0.997474, -0.0710335, 0, 0, 0.0710335, 0.997474, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);">
+<path fill="#424447" d="M24.7 0C11.1 0 0 11.1 0 24.7s11.1 24.7 24.7 24.7 24.7-11.1 24.7-24.7S38.4 0 24.7 0zm1.7 4.7c11 .7 18.6 9.4 18.6 20 0 2.9-.7 5.6-1.8 8L31 26.5c.2-.6.4-1.2.4-1.8 0-3.1-2-5.8-5-6.4V4.7zm-3 0v13.6c-2 .6-5.2 3.2-5.2 6.4 0 .6.1 1.2.3 1.8L6.4 32.8a19.8 19.8 0 0 1-1.7-8c0-10.7 8.7-19.4 18.7-20.1zm1.3 40c-7.3 0-13.6-3.9-17.1-9.7l12.1-6.3c1.2 1.5 3 2.4 5 2.4s3.9-.9 5-2.4L41.8 35a19.7 19.7 0 0 1-17.1 9.7zM42.4 34c0 .1-.1.2-.1.3l.1-.3z"></path>
+</svg>
+</div>
+<div class="item-illustration illustration-bulb-small bulb-1">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.3 15.3">
+<circle cx="8.1" cy="8.1" r="7.1" fill="#0e0e0f"></circle>
+<circle id="bulb-1" cx="7.1" cy="7.1" r="7.1" fill="#c7cdd1" style="fill: rgb(235, 65, 59);"></circle>
+<ellipse cx="5" cy="4.4" fill="#fff" rx="4.3" ry="1.9" transform="rotate(-33.07 5.05 4.38)" opacity=".5"></ellipse>
+</svg>
+</div>
+<div class="item-illustration illustration-bulb-small bulb-2">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.3 15.3">
+<circle cx="8.1" cy="8.1" r="7.1" fill="#0e0e0f"></circle>
+<circle id="bulb-2" cx="7.1" cy="7.1" r="7.1" fill="#c7cdd1" style="fill: rgb(249, 235, 47);"></circle>
+<ellipse cx="5" cy="4.4" fill="#fff" rx="4.3" ry="1.9" transform="rotate(-33.07 5.05 4.38)" opacity=".5"></ellipse>
+</svg>
+</div>
+<div class="item-illustration illustration-bulb-small bulb-3">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.3 15.3">
+<circle cx="8.1" cy="8.1" r="7.1" fill="#0e0e0f"></circle>
+<circle id="bulb-3" cx="7.1" cy="7.1" r="7.1" fill="#c7cdd1" style="fill: rgb(158, 208, 39);"></circle>
+<ellipse cx="5" cy="4.4" fill="#fff" rx="4.3" ry="1.9" transform="rotate(-33.07 5.05 4.38)" opacity=".5"></ellipse>
+</svg>
+</div>
+<div class="item-illustration illustration-bar">
+<div class="item-illustration bar-shadow"></div>
+<div class="item-illustration bar-background">
+<div id="bar" class="item-illustration bar-fill" style="width: 98.8685%;"></div>
+</div>
+</div>
+<div class="item-illustration illustration-measure">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 20.5">
+<path fill="#c7cdd1" d="M14 16.6c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5v.4h13c0-9-7.6-17-17-17S0 8 0 17h14v-.4z"></path>
+<path class="measure-pointer" fill="#5e1010" d="M16.3 14l1-10.5 1 10.5z"></path>
+<circle cx="17.5" cy="16.8" r="3.7" fill="#424447"></circle>
+</svg>
+</div>
+<div class="item-illustration illustration-button button-1">
+<svg class="is-shadow" xmlns="http://www.w3.org/2000/svg" viewBox="-467 268.5 22.6 22.6">
+<circle cx="-455.7" cy="279.8" r="11.3" fill="#0e0e0f"></circle>
+</svg>
+<svg class="is-top" xmlns="http://www.w3.org/2000/svg" viewBox="-467 268.5 22.6 22.6">
+<circle cx="-455.7" cy="279.8" r="11.3" fill="#424447"></circle>
+<path fill="#5e1010" d="M-462.8 270.9l6.7 8.1-8.1-6.7z"></path>
+</svg>
+</div>
+<div class="item-illustration illustration-button button-2">
+<svg class="is-shadow" xmlns="http://www.w3.org/2000/svg" viewBox="-467 268.5 22.6 22.6">
+<circle cx="-455.7" cy="279.8" r="11.3" fill="#0e0e0f"></circle>
+</svg>
+<svg class="is-top" xmlns="http://www.w3.org/2000/svg" viewBox="-467 268.5 22.6 22.6">
+<circle cx="-455.7" cy="279.8" r="11.3" fill="#424447"></circle>
+</svg>
+<svg class="button-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="-467 268.5 22.6 22.6">
+<path fill="#5e1010" d="M-462.8 270.9l6.7 8.1-8.1-6.7z"></path>
+</svg>
+</div>
+</div>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+<script src="https://cdn.rawgit.com/VincentGarreau/particles.js/d01286d6/particles.min.js"></script>
+<script id="rendered-js">
+      (function () {
+
+  window.launchApp = function () {
+
+    /// ---------------------------
+    //  INIT
+    /// ---------------------------
+    this.blocksContainer = document.getElementById('blocks-container');
+    this.illustrationsContainer = document.getElementById('illustrations-container');
+    this.blockTime = 5000;
+    this.transactionsPerSecond = 2000;
+    this.blockHeight = 7.81;
+    this.blockNumber = 0;
+    this.maxBlocks = 6;
+    this.blocks = [];
+    this.currentBlockValidation = true;
+    this.colors = ['blue', 'green', 'yellow', 'orange', 'red'];
+    this.wrongBlocks = ['big-1', 'big-2', 'small-1', 'small-2'];
+    this.wheel = document.getElementById('wheel');
+    this.wheelShadow = document.getElementById('wheel-shadow');
+    this.bulb = document.getElementById('bulb');
+    this.bulbLight = document.getElementById('bulb-light');
+    this.bulb1 = document.getElementById('bulb-1');
+    this.bulb2 = document.getElementById('bulb-2');
+    this.bulb3 = document.getElementById('bulb-3');
+    this.bar = document.getElementById('bar');
+    this.satelliteArm1 = document.getElementById('satellite-arm-1');
+    this.satelliteArm2 = document.getElementById('satellite-arm-2');
+    this.satelliteHead = document.getElementById('satellite-head');
+    this.wave1 = document.getElementById('wave-1');
+    this.wave2 = document.getElementById('wave-2');
+    this.wave3 = document.getElementById('wave-3');
+
+    this.initApp = function () {
+      this.createBlock();
+      this.launchParticles();
+    };
+
+    /// ---------------------------
+    //  BLOCK UTILS
+    /// ---------------------------
+    this.createBlock = function () {
+      var color = this.colors[Math.floor(Math.random() * this.colors.length)];
+      var randomValidation = Math.floor(Math.random() * Math.floor(5));
+      this.currentBlockValidation = randomValidation === 1 ? false : true;
+
+
+      var block = document.createElement("div");
+      if (!this.currentBlockValidation) {
+        var form = this.wrongBlocks[Math.floor(Math.random() * this.wrongBlocks.length)];
+        block.className = 'block is-' + color + ' is-' + form;
+      } else {
+        block.className = 'block is-' + color;
+      }
+
+      var blockPlane = document.createElement("div");
+      blockPlane.className = 'block-plane';
+
+      var blockCircles1 = document.createElement("div");
+      blockCircles1.className = 'circles circles-1';
+      var blockCircles2 = document.createElement("div");
+      blockCircles2.className = 'circles circles-2';
+
+      var blockFaceLeft = document.createElement("div");
+      blockFaceLeft.className = 'block-face face-left';
+      var blockFaceRight = document.createElement("div");
+      blockFaceRight.className = 'block-face face-right';
+
+      var blockData = document.createElement("div");
+      blockData.className = 'block-data';
+      var blockDataBlock = document.createElement("p");
+      var blockNumber = document.createTextNode('Block: ' + (this.blockNumber + 1).toString());
+      var blockDataTransactions = document.createElement("p");
+      var transactionsNumber = Math.floor(Math.random() * (this.blockTime / 1000 * this.transactionsPerSecond) + 0).toString();
+      var blockTransactions = document.createTextNode('Transactions: ' + transactionsNumber);
+
+      blockPlane.appendChild(blockCircles1);
+      blockPlane.appendChild(blockCircles2);
+      blockDataBlock.appendChild(blockNumber);
+      blockDataTransactions.appendChild(blockTransactions);
+      blockData.appendChild(blockDataBlock);
+      blockData.appendChild(blockDataTransactions);
+      block.appendChild(blockPlane);
+      block.appendChild(blockFaceLeft);
+      block.appendChild(blockFaceRight);
+      block.appendChild(blockData);
+
+      this.blocks.push(block);
+      this.blocksContainer.appendChild(block, blockData);
+
+      this.showBlock(block, blockData);
+      this.validateBlock();
+
+      var self = this;
+      setTimeout(function () {
+        if (self.currentBlockValidation) {
+          self.blockNumber++;
+        }
+        self.createBlock();
+      }, self.blockTime);
+
+      if (this.blockNumber >= this.maxBlocks && self.currentBlockValidation) {
+        this.deleteLastBlock();
+      }
+    };
+
+    this.deleteLastBlock = function () {
+      this.blocksContainer.removeChild(this.blocks[0]);
+      this.blocks.splice(0, 1);
+    };
+    this.deleteCreatedBlock = function () {
+      var lastBlockPosition = this.blocks.length;
+      this.blocksContainer.removeChild(this.blocks[this.blockNumber]);
+      this.blocks.splice(this.blockNumber, 1);
+    };
+
+    this.validateBlock = function () {
+      this.validationAnimation();
+    };
+
+    /// ---------------------------
+    //  SOUND UTILS
+    /// ---------------------------
+
+    /// ---------------------------
+    //  UTILS
+    /// ---------------------------        
+    this.launchParticles = function () {
+      var particlesOptions = {
+        "particles": {
+          "number": {
+            "value": 25,
+            "density": {
+              "enable": false,
+              "value_area": 800 } },
+
+
+          "color": {
+            "value": "#ffffff" },
+
+          "shape": {
+            "type": "circle",
+            "stroke": {
+              "width": 0,
+              "color": "#000000" } },
+
+
+          "opacity": {
+            "value": 0.6,
+            "random": false,
+            "anim": {
+              "enable": false,
+              "speed": 1,
+              "opacity_min": 0.1,
+              "sync": false } },
+
+
+          "size": {
+            "value": 5,
+            "random": true,
+            "anim": {
+              "enable": false,
+              "speed": 40,
+              "size_min": 0.1,
+              "sync": false } },
+
+
+          "line_linked": {
+            "enable": true,
+            "distance": 150,
+            "color": "#ffffff",
+            "opacity": 0.4,
+            "width": 1 },
+
+          "move": {
+            "enable": true,
+            "speed": 3,
+            "direction": "none",
+            "random": false,
+            "straight": false,
+            "out_mode": "bounce",
+            "attract": {
+              "enable": false } } },
+
+
+
+        "interactivity": {
+          "detect_on": "canvas",
+          "events": {
+            "onhover": {
+              "enable": false },
+
+            "onclick": {
+              "enable": false },
+
+            "resize": true } },
+
+
+        "retina_detect": true };
+
+
+      particlesJS('item-particles', particlesOptions);
+    };
+
+    /// ---------------------------
+    //  ANIMATIONS
+    /// ---------------------------
+    this.showBlock = function (block, blockData) {
+      var self = this;
+      var baseTimeline = new TimelineMax({
+        onComplete: function () {
+          if (self.currentBlockValidation) {
+            self.addBlockToPile();
+          } else {
+            self.throwBlock(block);
+          }
+        } });
+
+      baseTimeline.clear();
+
+      baseTimeline.
+      to(block, 0.5, { css: { top: "0%" }, ease: Power2.easeOut }).
+      to(blockData, 0.5, { css: { opacity: "1", left: "100%" }, ease: Power2.easeOut }, 0.4).
+      to(blockData, 0.5, { css: { opacity: "0", left: "90%" }, ease: Power2.easeOut }, 3);
+    };
+
+    this.addBlockToPile = function () {
+      var blockLength = this.blocks.length;
+      for (i = 0; i < blockLength; i++) {if (window.CP.shouldStopExecution(0)) break;
+        new TimelineMax().to(this.blocks[i], 0.5, { css: { top: "40%", marginTop: (blockLength - i) * (this.blockHeight / 2) + "vw" }, ease: Power2.easeOut });
+      }window.CP.exitedLoop(0);
+    };
+
+    this.throwBlock = function (block) {
+      var self = this;
+
+      new TimelineMax({
+        onComplete: function () {
+          self.deleteCreatedBlock();
+          self.resetAnimationValues();
+        } }).
+      to(block, 0.5, { left: "-35vw", ease: Power2.easeOut });
+    };
+
+    this.validationAnimation = function () {
+      var self = this;
+      var bulbColor = this.currentBlockValidation ? "#9ed027" : "#eb413b";
+
+      var baseTimeline = new TimelineMax({
+        onComplete: function () {
+          self.resetAnimationValues();
+        } });
+
+      baseTimeline.clear();
+
+      baseTimeline.
+      to(this.wheel, 2, { rotation: "360deg", ease: Power2.easeOut }, 0.9).
+      to(this.wheelShadow, 2, { rotation: "360deg", ease: Power2.easeOut }, 0.9).
+      to(this.bar, 2, { width: "100%", ease: Power2.easeOut }, 0.9).
+      to(this.bulb1, 0.1, { fill: "#eb413b", ease: Power2.easeOut }, 0.9).
+      to(this.bulb2, 0.1, { fill: "#f9eb2f", ease: Power2.easeOut }, 1.16).
+      to(this.bulb3, 0.1, { fill: "#9ed027", ease: Power2.easeOut }, 1.72).
+      to(this.bulb, 0.1, { fill: bulbColor, ease: Power2.easeOut }, 2.38).
+      to(this.bulbLight, 0.1, { css: { boxShadow: "0px -10px 30px " + bulbColor }, ease: Power2.easeOut }, 2.38).
+      to(this.satelliteArm1, 0.5, { rotation: "90deg", ease: Power2.easeOut }, 0.4).
+      to(this.satelliteArm2, 0.5, { rotation: "-130deg", ease: Power2.easeOut }, 0.4).
+      to(this.satelliteHead, 0.5, { rotation: "20deg", ease: Power2.easeOut }, 0.4).
+      to(this.wave1, 0.8, { left: "-6vw", opacity: "0.4", scale: "2.3", ease: "linear" }, 0.9).
+      to(this.wave2, 0.8, { left: "-6vw", opacity: "0.4", scale: "2.3", ease: "linear" }, 1.1).
+      to(this.wave3, 0.8, { left: "-6vw", opacity: "0.4", scale: "2.3", ease: "linear" }, 1.3).
+      to(this.bar, 0.5, { width: "0%", ease: Power2.easeOut }, 3).
+      to(this.bulb1, 0.2, { fill: "#c7cdd1", ease: Power2.easeOut }, 3).
+      to(this.bulb2, 0.2, { fill: "#c7cdd1", ease: Power2.easeOut }, 3).
+      to(this.bulb3, 0.2, { fill: "#c7cdd1", ease: Power2.easeOut }, 3).
+      to(this.bulb, 0.2, { fill: "#c7cdd1", ease: Power2.easeOut }, 3).
+      to(this.bulbLight, 0.1, { css: { boxShadow: "0px 0px 0px transparent" }, ease: Power2.easeOut }, 3).
+      to(this.satelliteArm1, 0.5, { rotation: "0deg", ease: Power2.easeOut }, 3).
+      to(this.satelliteArm2, 0.5, { rotation: "0deg", ease: Power2.easeOut }, 3).
+      to(this.satelliteHead, 0.5, { rotation: "0deg", ease: Power2.easeOut }, 3).
+      to(this.wave1, 0.2, { left: "-6.5vw", opacity: "0", scale: "2.8", ease: "linear" }, 1.7).
+      to(this.wave2, 0.2, { left: "-6.5vw", opacity: "0", scale: "2.8", ease: "linear" }, 1.9).
+      to(this.wave3, 0.2, { left: "-6.5vw", opacity: "0", scale: "2.8", ease: "linear" }, 2.1);
+
+      setTimeout(function () {
+        self.illustrationsContainer.classList.add('is-animated');
+
+        setTimeout(function () {
+          self.illustrationsContainer.classList.remove('is-animated');
+        }, 2100);
+      }, 900);
+    };
+    this.resetAnimationValues = function () {
+      TweenLite.set(this.wheel, { clearProps: "rotation" });
+      TweenLite.set(this.wheelShadow, { clearProps: "rotation" });
+      TweenLite.set(this.wave1, { left: "-3.5vw", opacity: "0", scale: "1" });
+      TweenLite.set(this.wave2, { left: "-3.5vw", opacity: "0", scale: "1" });
+      TweenLite.set(this.wave3, { left: "-3.5vw", opacity: "0", scale: "1" });
+    };
+
+
+    /// ---------------------------
+    //  START
+    /// ---------------------------
+    this.initApp();
+  };
+
+  document.addEventListener("DOMContentLoaded", function () {
+    this.app = new launchApp();
+  });
+
+})();
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

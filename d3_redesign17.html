@@ -1,0 +1,423 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Minimal Film Poster: LOTR</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<style>
+      @import url("https://use.typekit.net/ujo6qrj.css");
+.portfolio-experiment, .scene {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-display: flex;
+  -webkit-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -webkit-align-items: center;
+}
+
+.portfolio-experiment:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url(" http://api.thumbr.it/whitenoise-361x370.png?background=4ea6ca00&noise=626262&density=23&opacity=15") repeat;
+}
+.portfolio-experiment:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url(" http://api.thumbr.it/whitenoise-361x370.png?background=4ea6ca00&noise=626262&density=23&opacity=10") repeat;
+  z-index: 10;
+}
+.portfolio-experiment .scene {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+@-webkit-keyframes grow {
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes grow {
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@-webkit-keyframes scene-in {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes scene-in {
+  to {
+    opacity: 1;
+  }
+}
+.portfolio-experiment .shire {
+  background: radial-gradient(#0c5225 0%, #052616 100%);
+}
+.portfolio-experiment .modor {
+  background: radial-gradient(#272927 0%, #0e0f0e 100%);
+  -webkit-animation: scene-in 5s forwards 3s;
+          animation: scene-in 5s forwards 3s;
+}
+.portfolio-experiment .modor:not(.on) {
+  opacity: 0;
+}
+.portfolio-experiment .doom {
+  background: radial-gradient(#ec6210 20%, #bc310d 60%);
+  -webkit-animation: scene-in 5s forwards 8s;
+          animation: scene-in 5s forwards 8s;
+}
+.portfolio-experiment .doom:not(.on) {
+  opacity: 0;
+}
+.portfolio-experiment .ring-con {
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+  opacity: .9;
+  z-index: 10;
+  position: relative;
+  -webkit-animation: shrink 11.5s cubic-bezier(0.57, 0.01, 0.84, 0.67) forwards, out 5s cubic-bezier(0.31, 0.01, 0.28, 1.01) forwards 9s;
+          animation: shrink 11.5s cubic-bezier(0.57, 0.01, 0.84, 0.67) forwards, out 5s cubic-bezier(0.31, 0.01, 0.28, 1.01) forwards 9s;
+}
+@-webkit-keyframes shrink {
+  to {
+    -webkit-transform: scale3d(0.7, 0.7, 1);
+            transform: scale3d(0.7, 0.7, 1);
+  }
+}
+@keyframes shrink {
+  to {
+    -webkit-transform: scale3d(0.7, 0.7, 1);
+            transform: scale3d(0.7, 0.7, 1);
+  }
+}
+@-webkit-keyframes out {
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes out {
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.portfolio-experiment .ring {
+  width: 25vw;
+  height: 25vw;
+  box-shadow: inset 0 0 2.5vw 0.8325vw rgba(206, 178, 17, 0.99), inset 0 0 0 2.5vw rgba(230, 198, 19, 0.99), -2vw 4vw 5vw rgba(0, 0, 0, 0.18), 2vw 4vw 5vw rgba(0, 0, 0, 0.18), inset 1vw 0 2vw 5vw rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  position: relative;
+  z-index: 100;
+  background: url(" http://api.thumbr.it/whitenoise-361x370.png?background=4ea6ca00&noise=626262&density=23&opacity=15");
+}
+.portfolio-experiment .ring:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 50%;
+  box-shadow: 0 -2vw 10vw rgba(239, 212, 61, 0.5), inset 4vw -4vw 10vw 2vw rgba(230, 198, 19, 0.3);
+  opacity: .8;
+  -webkit-animation: glow 3s infinite alternate;
+          animation: glow 3s infinite alternate;
+}
+@-webkit-keyframes glow {
+  to {
+    opacity: .4;
+  }
+}
+@keyframes glow {
+  to {
+    opacity: .4;
+  }
+}
+.portfolio-experiment .ring:after {
+  content: '';
+  position: absolute;
+  top: 2.5vw;
+  right: 2.5vw;
+  bottom: 2.5vw;
+  left: 2.5vw;
+  background: #ec6210;
+  border-radius: 50%;
+  opacity: 0;
+  -webkit-animation: 5s melt cubic-bezier(0.31, 0.01, 0.28, 1.01) forwards 10s;
+          animation: 5s melt cubic-bezier(0.31, 0.01, 0.28, 1.01) forwards 10s;
+}
+@-webkit-keyframes melt {
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.4, 1.3, 1) rotate(90deg);
+            transform: scale3d(1.4, 1.3, 1) rotate(90deg);
+  }
+}
+@keyframes melt {
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.4, 1.3, 1) rotate(90deg);
+            transform: scale3d(1.4, 1.3, 1) rotate(90deg);
+  }
+}
+section:not(.test) .portfolio-experiment .ring {
+  -webkit-transform: rotateY(40deg);
+          transform: rotateY(40deg);
+  opacity: 0;
+  -webkit-animation: rotate 3s forwards 0.2s;
+          animation: rotate 3s forwards 0.2s;
+}
+@-webkit-keyframes rotate {
+  to {
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+    opacity: 1;
+  }
+}
+@keyframes rotate {
+  to {
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+    opacity: 1;
+  }
+}
+.portfolio-experiment .top {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 50%;
+  box-shadow: -5px 0 5px rgba(255, 255, 255, 0.05), inset 0 0 10px 0.8325vw rgba(238, 209, 49, 0.99), inset 0 0 0 2.5vw rgba(238, 210, 54, 0.99);
+  z-index: -1;
+}
+.portfolio-experiment .top:before {
+  content: '';
+  position: absolute;
+  top: 0.8325vw;
+  right: 0.8325vw;
+  bottom: 0.8325vw;
+  left: 0.8325vw;
+  border-radius: 50%;
+  border-top: 0.8325vw solid rgba(251, 243, 202, 0.99);
+  opacity: .5;
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
+}
+section:not(.test) .portfolio-experiment .top:before {
+  -webkit-transform: rotate(10deg);
+          transform: rotate(10deg);
+  -webkit-animation: highlight 3s forwards 0.2s;
+          animation: highlight 3s forwards 0.2s;
+}
+@-webkit-keyframes highlight {
+  to {
+    -webkit-transform: rotate(-20deg);
+            transform: rotate(-20deg);
+    opacity: 1;
+  }
+}
+@keyframes highlight {
+  to {
+    -webkit-transform: rotate(-20deg);
+            transform: rotate(-20deg);
+    opacity: 1;
+  }
+}
+.portfolio-experiment .top:after {
+  content: '';
+  position: absolute;
+  top: 0.175vw;
+  right: 0.175vw;
+  bottom: 0.175vw;
+  left: 0.175vw;
+  border-radius: 50%;
+  border-bottom: 0.8325vw solid rgba(237, 207, 37, 0.99);
+  -webkit-filter: blur(2px);
+          filter: blur(2px);
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+section:not(.test) .portfolio-experiment .top {
+  -webkit-transform: translate3d(10%, 0, 0);
+          transform: translate3d(10%, 0, 0);
+  -webkit-animation: rotate-ring 3s forwards 0.2s;
+          animation: rotate-ring 3s forwards 0.2s;
+}
+@-webkit-keyframes rotate-ring {
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes rotate-ring {
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+.portfolio-experiment .experiment-title {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate3d(0, -50%, 0);
+          transform: translate3d(0, -50%, 0);
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-between;
+  align-items: center;
+  font-family: "din-condensed",sans-serif;
+  font-size: 2vw;
+}
+.portfolio-experiment .experiment-title > span:not(.large) {
+  font-family: "le-monde-livre-classic-std-s";
+}
+.portfolio-experiment .experiment-title span {
+  opacity: 0;
+  -webkit-filter: blur(8px);
+          filter: blur(8px);
+  -webkit-transform: scale3d(0.9, 0.9, 1);
+          transform: scale3d(0.9, 0.9, 1);
+  -webkit-animation: blur-in 2.4s cubic-bezier(0.17, 0.67, 0.25, 1.01) forwards 12.5s;
+          animation: blur-in 2.4s cubic-bezier(0.17, 0.67, 0.25, 1.01) forwards 12.5s;
+}
+@-webkit-keyframes blur-in {
+  to {
+    opacity: 1;
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes blur-in {
+  to {
+    opacity: 1;
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+.portfolio-experiment .experiment-title .large {
+  text-transform: uppercase;
+  font-size: 12vw;
+  display: block;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 2vw;
+  margin: 2.4vw 0 0.4vw;
+}
+.portfolio-experiment .experiment-title .large span:nth-of-type(1) {
+  -webkit-animation: blur-in 3s cubic-bezier(0.17, 0.67, 0.25, 1.01) forwards 12.79s;
+          animation: blur-in 3s cubic-bezier(0.17, 0.67, 0.25, 1.01) forwards 12.79s;
+  -webkit-transform: scale3d(1.2, 1.2, 1);
+          transform: scale3d(1.2, 1.2, 1);
+}
+.portfolio-experiment .experiment-title .large span:nth-of-type(2) {
+  -webkit-animation: blur-in 3s cubic-bezier(0.17, 0.67, 0.25, 1.01) forwards 12.78s;
+          animation: blur-in 3s cubic-bezier(0.17, 0.67, 0.25, 1.01) forwards 12.78s;
+  -webkit-transform: scale3d(1.2, 1.2, 1);
+          transform: scale3d(1.2, 1.2, 1);
+}
+.portfolio-experiment .experiment-title .large span:nth-of-type(3) {
+  -webkit-animation: blur-in 3s cubic-bezier(0.17, 0.67, 0.25, 1.01) forwards 12.94s;
+          animation: blur-in 3s cubic-bezier(0.17, 0.67, 0.25, 1.01) forwards 12.94s;
+  -webkit-transform: scale3d(1.2, 1.2, 1);
+          transform: scale3d(1.2, 1.2, 1);
+}
+.portfolio-experiment .experiment-title .large span:nth-of-type(4) {
+  -webkit-animation: blur-in 3s cubic-bezier(0.17, 0.67, 0.25, 1.01) forwards 12.98s;
+          animation: blur-in 3s cubic-bezier(0.17, 0.67, 0.25, 1.01) forwards 12.98s;
+  -webkit-transform: scale3d(1.2, 1.2, 1);
+          transform: scale3d(1.2, 1.2, 1);
+}
+.portfolio-experiment .experiment-title .large .o {
+  margin: 0 2vw -0.48vw 0;
+  width: 7.2vw;
+  height: 7.2vw;
+  border-radius: 50%;
+  display: inline-block;
+  border: 1.2vw solid black;
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<section class="portfolio-experiment">
+<div class="scene shire"></div>
+<div class="scene modor"></div>
+<div class="scene doom"></div>
+<div class="ring-con">
+<div class="ring">
+<div class="top"></div>
+</div>
+</div>
+<div class="experiment-title"><span>The</span><span class="large"> <span>L</span><span class="o"></span><span>r</span><span>d</span></span><span>of the</span><span class="large"> <span>R</span><span>i</span><span>n</span><span>g</span><span>s</span></span></div>
+</section>
+<button class="info"></button>
+<div class="summary">
+<div class="content">
+<p>The future of civilization rests in the fate of the One Ring, which has been lost for centuries. Powerful forces are unrelenting in their search for it. But fate has placed it in the hands of a young Hobbit named Frodo Baggins (Elijah Wood), who inherits the Ring and steps into legend. A daunting task lies ahead for Frodo when he becomes the Ringbearer - to destroy the One Ring in the fires of Mount Doom where it was forged.</p>
+</div>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script id="rendered-js">
+      
+$('.info').on('click', function () {
+  $(this).toggleClass('active');
+});
+;
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

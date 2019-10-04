@@ -1,0 +1,116 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Glass Buttons</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<style>
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,700,300,600,800);
+body{
+  background:url('http://snag.gy/REBCW.jpg') no-repeat center fixed;
+  background-size:cover;
+  font-family: 'Open Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.window{
+  background: rgba(24, 24, 24, 0.28);
+  border: solid 1px rgba(204, 204, 204, 0.33);
+  width: 550px;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 15%;
+  opacity: 1;
+  color: #202020;
+  cursor:default;
+  border-radius:3px;
+  padding:14px;
+}
+.center{
+  text-align:center;
+}
+.center p{
+  letter-spacing: -2px;
+  font-weight: 300;
+  font-size: 3em;
+  margin-bottom: 30px;
+  color: rgba(252, 252, 252, 0.91);
+  /*text-transform: uppercase;*/
+  text-shadow: 2px 2px 0px rgba(51, 51, 51, 0.2);
+}
+.btn{
+  background: rgba(61, 61, 61, 0.53);
+  border: solid 1px rgba(204, 204, 204, 0.33);
+  color: #fff;
+  font-family: inherit;
+  padding: 11px 19px;
+  min-width: 106px;
+  cursor: pointer;
+  font-size: .9em;
+  outline:none;
+  transition:background .2s linear;
+  border-radius:2px;
+  text-decoration:none;
+}
+.btn[disabled],.btn[disabled]:hover,.btn[disabled]:active{
+  color:#B8B8B8;
+  cursor:not-allowed;
+}
+.btn.b:hover,a.btn:hover{
+  background: #2A94C5;
+  border-color: #6AC5F0;
+}
+.btn.g:hover{
+  background: #1E9749;
+  border-color: #4FC277;
+}
+.btn.r:hover{
+  background: #C23232;
+  border-color: #DD6868;
+}
+.btn.b:active{
+  box-shadow: inset 0px 0px 41px #1B6B91;
+}
+.btn.g:active{
+  box-shadow: inset 0px 0px 41px #0F7533;
+}
+.btn.r:active{
+  box-shadow: inset 0px 0px 41px #7A2222;
+}
+.center.bottom{
+  color: #fff;
+  text-shadow: 2px 2px 0px rgba(51, 51, 51, 0.2);
+  position: relative;
+  bottom: -80px;
+  font-size: .9em;
+  font-weight: 300;
+}
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="window">
+<div class="center">
+<p>GLASS<b> BUTTONS</b></p>
+<button class="btn b">Blue</button>
+<button class="btn g">Green</button>
+<button class="btn r">Red</button>
+<button class="btn" disabled="">Disabled</button>
+<a href="#" class="btn">Hyperlink</a>
+</div>
+<div class="center bottom">Photo: Puerto Madero, Buenos Aires, Argentina.</div>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

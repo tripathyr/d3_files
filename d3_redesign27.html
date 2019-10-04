@@ -1,0 +1,169 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Blockchain in realtime</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cousine:400,700">
+<style>
+      /*
+@giphy: http://giphy.com/gifs/3ohze2apsm6Qpb281y
+@see: http://simianuprising.com/wp-content/uploads/2012/08/solarized-reference-horizontal.png
+*/
+
+body {
+    width: 630px;
+    margin: 0 auto;
+    background-color:#002B36;
+    color: #FDF6E3;
+    font-family: 'Cousine', monospace;
+}
+
+h1 {
+  font-variant: small-caps;
+  letter-spacing: 2px ;
+  font-size:60px;
+}
+
+#btc {
+  font-size:40px;
+  color:#859900;
+}
+
+#exchange-values {
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+#exchange {
+  margin-top:4px;
+  color: #E53B27;
+}
+
+#sell {
+  color: #D7B836;
+}
+/*
+@see:http://jsfiddle.net/jonathansampson/xxuxd/
+*/
+
+/* Make it a marquee */
+.marquee {
+    background-color: #073642;
+
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    animation: marquee 50s linear infinite;
+}
+
+.marquee:hover {
+    animation-play-state: paused
+}
+
+/* Make it move */
+@keyframes marquee {
+    0%   { text-indent: 27.5em }
+    100% { text-indent: -105em }
+}
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+
+<h1>Blockchain in realtime</h1>
+<div id="amount"><p id="btc"><strong>BTC:</strong> 162.963716</p></div>
+<h4>Exchange values</h4>
+<div id="exchange-values">
+<div id="sell" class="marquee"><strong>USD (S):</strong> 5651.73$ | <strong>USD (B):</strong> 5651.73$ | <strong>AUD (S):</strong> 8091.78$ | <strong>AUD (B):</strong> 8091.78$ | <strong>BRL (S):</strong> 22427.85R$ | <strong>BRL (B):</strong> 22427.85R$ | <strong>CAD (S):</strong> 7623.45$ | <strong>CAD (B):</strong> 7623.45$ | <strong>CHF (S):</strong> 5761.42CHF | <strong>CHF (B):</strong> 5761.42CHF | <strong>CLP (S):</strong> 3857869.95$ | <strong>CLP (B):</strong> 3857869.95$ | <strong>CNY (S):</strong> 38262.55¥ | <strong>CNY (B):</strong> 38262.55¥ | <strong>DKK (S):</strong> 37724.73kr | <strong>DKK (B):</strong> 37724.73kr | <strong>EUR (S):</strong> 5051.3€ | <strong>EUR (B):</strong> 5051.3€ | <strong>GBP (S):</strong> 4318.21£ | <strong>GBP (B):</strong> 4318.21£ | <strong>HKD (S):</strong> 44343.18$ | <strong>HKD (B):</strong> 44343.18$ | <strong>INR (S):</strong> 392043.46₹ | <strong>INR (B):</strong> 392043.46₹ | <strong>ISK (S):</strong> 688211.13kr | <strong>ISK (B):</strong> 688211.13kr | <strong>JPY (S):</strong> 626603.71¥ | <strong>JPY (B):</strong> 626603.71¥ | <strong>KRW (S):</strong> 6620717.48₩ | <strong>KRW (B):</strong> 6620717.48₩ | <strong>NZD (S):</strong> 8557.64$ | <strong>NZD (B):</strong> 8557.64$ | <strong>PLN (S):</strong> 21630.88zł | <strong>PLN (B):</strong> 21630.88zł | <strong>RUB (S):</strong> 368562.22RUB | <strong>RUB (B):</strong> 368562.22RUB | <strong>SEK (S):</strong> 54260.29kr | <strong>SEK (B):</strong> 54260.29kr | <strong>SGD (S):</strong> 7709.29$ | <strong>SGD (B):</strong> 7709.29$ | <strong>THB (S):</strong> 180403.18฿ | <strong>THB (B):</strong> 180403.18฿ | <strong>TWD (S):</strong> 174867.66NT$ | <strong>TWD (B):</strong> 174867.66NT$ | </div>
+<div id="exchange" class="marquee"><strong>USD:</strong> 5814.69$ | <strong>AUD:</strong> 8254.74$ | <strong>BRL:</strong> 22590.81R$ | <strong>CAD:</strong> 7786.41$ | <strong>CHF:</strong> 5924.38CHF | <strong>CLP:</strong> 3858032.91$ | <strong>CNY:</strong> 38425.51¥ | <strong>DKK:</strong> 37887.69kr | <strong>EUR:</strong> 5214.26€ | <strong>GBP:</strong> 4481.17£ | <strong>HKD:</strong> 44506.14$ | <strong>INR:</strong> 392206.42₹ | <strong>ISK:</strong> 688374.09kr | <strong>JPY:</strong> 626766.67¥ | <strong>KRW:</strong> 6620880.44₩ | <strong>NZD:</strong> 8720.60$ | <strong>PLN:</strong> 21793.84zł | <strong>RUB:</strong> 368725.18RUB | <strong>SEK:</strong> 54423.25kr | <strong>SGD:</strong> 7872.25$ | <strong>THB:</strong> 180566.14฿ | <strong>TWD:</strong> 175030.62NT$ | </div>
+</div>
+<p>Since you connected...</p>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      // @giphy: http://giphy.com/gifs/3ohze2apsm6Qpb281y
+// @see: https://bl.ocks.org/npedrini/6030317
+// @converter: https://blockchain.info/es/api/exchange_rates_api
+var bitcoinsAmount = 0;
+var exchangeRates = false;
+var targetAmount = document.getElementById("amount");
+//var targetExchange = document.getElementById("exchange");
+/*---- AJAX ----*/
+var xmlHttp = new XMLHttpRequest();
+
+xmlHttp.onreadystatechange = function () {
+
+  if (xmlHttp.readyState === 4) {
+    if (xmlHttp.status >= 100 && xmlHttp.status < 300) {
+      exchangeRates = JSON.parse(xmlHttp.responseText);
+      //console.log(exchangeRates)
+    } else {
+      exchangeRates = false;
+      console.error("ERROR! AJAX!", xmlHttp.status);
+      console.info(JSON.parse(xmlHttp.responseText));
+    }
+  }
+};
+
+xmlHttp.open("GET", "https://blockchain.info/es/ticker?cors=true", true);
+xmlHttp.send();
+//https://blockchain.info/es/ticker
+
+/*---- WEBSOCKETS ----*/
+var blockchain = new WebSocket('wss://ws.blockchain.info/inv');
+
+blockchain.onerror = function (error) {
+  console.log('connection.onerror', error);
+};
+
+blockchain.onopen = function () {
+  blockchain.send(JSON.stringify({
+    "op": "unconfirmed_sub" }));
+  //    subscribe to uncofirmed activity
+  blockchain.send(JSON.stringify({
+    "op": "blocks_sub" }));
+  //    subscribe to new blocks
+};
+
+blockchain.onmessage = function (message) {
+  var response = JSON.parse(message.data);
+  if (response.op == "utx") {
+    var amount = 0;
+    for (var i = 0; i < response.x.out.length; i++) {if (window.CP.shouldStopExecution(0)) break;
+      amount += response.x.out[i].value;
+    }
+    //  amount is in satoshi
+    //  1 BTC = 100,000,000 Satoshi (https://en.bitcoin.it/wiki/activity)
+    window.CP.exitedLoop(0);response.amount = amount / 100000000;
+    bitcoinsAmount += response.amount;
+    var contentAmount = "";
+
+    if (exchangeRates) {
+      var contentExchange = "";
+      var sellExchange = "";
+      for (var coin in exchangeRates) {
+        contentExchange += "<strong>" + coin + ":</strong> " + (bitcoinsAmount + exchangeRates[coin]["sell"]).toFixed(2) + exchangeRates[coin]["symbol"] + " | ";
+        sellExchange += "<strong>" + coin + " (S):</strong> " + exchangeRates[coin]["sell"] + exchangeRates[coin]["symbol"] + " | ";
+        sellExchange += "<strong>" + coin + " (B):</strong> " + exchangeRates[coin]["buy"] + exchangeRates[coin]["symbol"] + " | ";
+      }
+      document.getElementById("sell").innerHTML = sellExchange;
+      document.getElementById("exchange").innerHTML = contentExchange;
+    }
+    contentAmount = "<p id='btc'><strong>BTC:</strong> " + bitcoinsAmount.toFixed(6) + "</p>";
+
+    targetAmount.innerHTML = contentAmount;
+
+  }
+};
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

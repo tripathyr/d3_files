@@ -1,0 +1,231 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - iPhone 7 CSS Gold</title>
+<style>
+      body{
+  height:100%;
+  width:100%;
+  padding:0;
+  margin:0;
+}
+
+.wrapper{
+  text-align: center;
+  width: 30%;
+    margin:3%;
+    display:inline-block;
+    vertical-align: bottom;
+}
+
+.plus{
+  width: 33%;
+}
+
+.phone{
+  display: inline-block;
+  width: 100%;
+  background: #F4F2F3;
+  margin-top:5%;
+  height: 100%;
+  position: relative;
+  height: auto;
+  border-radius: 3vw;
+  box-shadow: 0 0 .5rem #FFF0E8, 0 0 0px 1px #EDE6E9, inset 0 0 5px 5px white;
+  border: 1px solid #F4EDF0;
+  border-bottom: 1px solid #EDE6E8;
+  border-top: 1px solid #EDE6E8;
+}
+
+.phone::before{
+  content: '';
+  width: 100%;
+  height: 100%;
+  padding: 1.5%;
+  margin-left: -1.5%;
+  margin-top: -1.5%;
+  background:linear-gradient(#F7D9C5 0%, #fbe5d8 50%, #F7D9C5 100%);
+  border:1px solid #EFCBB1;
+  height: auto;
+  box-shadow: 0 0 0px 1px #BF9476, inset 0 0 .5rem #EFCCB8;
+  position: absolute;
+  border-radius:3.5vw;
+  left: 0;
+  top:0;
+  bottom: -.75%;
+  z-index: -2;
+  clip-path:  polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.phone::after{
+  content: '';
+  width: 0;
+  padding: .5%;
+  margin-left: -2.7%;
+  margin-top: -2.5%;
+  background: linear-gradient(#D8A786 0%, #EFCBB1 12%, #fbe5d8, #EFCBB1 78%, #D8A786 100%);
+  border-right: none;
+  border-top-left-radius: .3em;
+  border-bottom-left-radius: .3em;
+  left: 0;
+  top:11%;
+  bottom: 86%;
+  height: auto;
+  position: absolute;
+  z-index: -1;
+}
+
+.upper{
+    border-radius: .33em;
+    display: block;
+    width: 15%;
+    top:4.5%;
+    left:calc(50% - 7.5%);
+    height: 1%;
+    background: #20222B;
+    z-index:1000;
+    position: absolute;
+    z-index: 1;
+}
+
+.upper::before{
+  content: '';
+  display: block;
+  position: relative;
+  left: -75%;
+  height: 160%;
+  border-radius: 50%;
+  top:-25%;
+  width: 22%;
+  background: #20222B;
+
+}
+
+.upper::after{
+  content: '';
+  display: block;
+  position: absolute;
+  left:calc(50% - 7.5%);
+  top: -250%;
+  height: 100%;
+  border-radius: 50%;
+  width: 14%;
+  background: #20222B;
+}
+
+.screen{
+  width: 92%;
+  margin: auto;
+  height: auto;
+  line-height: 0;
+  margin: 20% auto;
+  display: inline-block;
+  border: .1em solid #33353D;
+  border-radius:2px;
+  box-shadow: 0 0 2px 2px white;
+}
+
+.screen::after{
+  content: '';
+  width: 0;
+  padding: .5%;
+  margin-left: -2.7%;
+  margin-top: -2.5%;
+  background: linear-gradient(#D8A786 0%, #EFCBB1 12%, #fbe5d8, #EFCBB1 78%, #D8A786 100%);
+  border-right: none;
+  border-top-left-radius: .3em;
+  border-bottom-left-radius: .3em;
+  left: 0;
+  top:18%;
+  bottom: 76%;
+  height: auto;
+  position: absolute;
+  z-index: -1;
+}
+
+.screen::before{
+  content: '';
+  width: 0;
+  padding: .5%;
+  margin-left: -2.7%;
+  margin-top: -2.5%;
+  background: linear-gradient(#D8A786 0%, #EFCBB1 12%, #fbe5d8, #EFCBB1 78%, #D8A786 100%);
+  border-right: none;
+  border-top-left-radius: .3em;
+  border-bottom-left-radius: .3em;
+  left: 0;
+  top:26%;
+  bottom: 68%;
+  height: auto;
+  position: absolute;
+  z-index: -1;
+}
+
+.screen img{
+    width: 100%;
+}
+
+.lower{
+  border-radius: 50%;
+  display: block;
+  width: 14%;
+  bottom:1.5%;
+  left:calc(50% - 7%);
+  height: 7%;
+  background: linear-gradient(160deg, #C39A7E 0%,#EFD8B8 51%, #C39A7E 100%);
+  z-index:1000;
+  position: absolute;
+  z-index: 1;
+}
+
+.lower::after{
+  content: '';
+  display: inline-block;
+  /*top: 0;
+  bottom:0;*/
+  width: 84%;
+  height: 84%;
+  margin: 8% 8%;
+  border-radius: 50%;
+  background: radial-gradient(white 0%, #F4F2F3 80%);
+  position: relative;
+  z-index: -1;
+}
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+
+<div class="wrapper plus">
+<div class="phone">
+<div class="upper"></div>
+<div class="screen"><img src="http://cdn.iphonehacks.com/wp-content/uploads/2013/06/ios7-homescreen1.jpg" alt=""></div>
+<div class="lower"></div>
+</div>
+</div>
+<div class="wrapper">
+<div class="phone">
+<div class="upper"></div>
+<div class="screen"><img src="http://cdn.iphonehacks.com/wp-content/uploads/2013/06/ios7-homescreen1.jpg" alt=""></div>
+<div class="lower"></div>
+</div>
+</div>
+
+
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      /* current without app implementation */
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

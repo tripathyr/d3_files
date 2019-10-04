@@ -1,0 +1,284 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - SVG Circle Clock 💫</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Courgette">
+<style>
+      *, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #10191f;
+  font-family: 'Courgette', Monaco, Consolas, monospace;
+  font-size: 30px;
+  font-weight: normal;
+  color: #20292f;
+}
+body:before {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://raw.githubusercontent.com/rainner/codepen-assets/master/images/abstract_wireframe.jpg");
+  background-position: center bottom;
+  background-size: cover;
+  content: '';
+  z-index: 1;
+  opacity: .1;
+}
+
+.clock-wrap {
+  position: relative;
+  font-size: 8vw;
+  height: 80vw;
+  width: 80vw;
+  z-index: 100;
+}
+@media only screen and (min-width: 420px) {
+  .clock-wrap {
+    font-size: 8vh;
+    height: 80vh;
+    width: 80vh;
+  }
+}
+.clock-wrap .clock-day,
+.clock-wrap .clock-date,
+.clock-wrap .clock-time {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: absolute;
+  white-space: nowrap;
+}
+.clock-wrap .clock-day {
+  left: 50%;
+  top: 30%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  letter-spacing: 0;
+  font-size: 80%;
+  color: #b3b3b3;
+}
+.clock-wrap .clock-date {
+  left: 50%;
+  bottom: 30%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  letter-spacing: 0;
+  font-size: 70%;
+  color: gray;
+}
+.clock-wrap .clock-time {
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #35434d;
+}
+.clock-wrap .clock-time > span {
+  padding: 0 .05em;
+}
+.clock-wrap .clock-time .hours {
+  color: OliveDrab;
+}
+.clock-wrap .clock-time .minutes {
+  color: DeepPink;
+}
+.clock-wrap .clock-time .seconds {
+  color: SteelBlue;
+}
+.clock-wrap svg {
+  display: block;
+  -webkit-filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.2));
+}
+.clock-wrap svg circle {
+  position: relative;
+  fill: none;
+  stroke-linecap: round;
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
+.clock-wrap svg .track {
+  z-index: 1;
+  stroke-width: 16;
+  stroke: #20292f;
+}
+.clock-wrap svg .path {
+  z-index: 2;
+  stroke-width: 16;
+  transition: stroke-dashoffset 500ms ease-out;
+}
+.clock-wrap .clock-seconds .path {
+  stroke: rgba(70, 130, 180, 0.8);
+}
+.clock-wrap .clock-minutes .path {
+  stroke: rgba(255, 20, 147, 0.8);
+}
+.clock-wrap .clock-hours .path {
+  stroke: rgba(107, 142, 35, 0.8);
+}
+.clock-wrap .clock-markers .dots {
+  stroke-width: 16;
+  stroke: #313e47;
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="clock-wrap">
+<div class="clock-day">
+<span class="day">Monday</span>
+</div>
+<div class="clock-date">
+<span class="date">05/06/2019</span>
+</div>
+<div class="clock-time">
+<span class="hours">08</span>
+<span class="dots">:</span>
+<span class="minutes">16</span>
+<span class="dots">:</span>
+<span class="seconds">36</span>
+<span class="ampm">pm</span>
+</div>
+<svg width="100%" height="100%" viewBox="0 0 600 600">
+<g class="clock-seconds">
+<circle class="track" cx="300" cy="300" r="280"></circle>
+<circle class="path" cx="300" cy="300" r="280" style="stroke-dasharray: 1758, 1758; stroke-dashoffset: 703;"></circle>
+</g>
+<g class="clock-minutes">
+<circle class="track" cx="300" cy="300" r="260"></circle>
+<circle class="path" cx="300" cy="300" r="260" style="stroke-dasharray: 1632, 1632; stroke-dashoffset: 1196;"></circle>
+</g>
+<g class="clock-hours">
+<circle class="track" cx="300" cy="300" r="240"></circle>
+<circle class="path" cx="300" cy="300" r="240" style="stroke-dasharray: 1507, 1507; stroke-dashoffset: 502;"></circle>
+</g>
+<g class="clock-markers">
+<circle class="dots" cx="300" cy="300" r="210" style="stroke-dasharray: 1, 109;"></circle>
+</g>
+</svg>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      /**
+ * SVG Circle Clock.
+ *
+ * Working with SVG stroke dasharray: 
+ * https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray
+ *
+ * Working with JS Date class: 
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+ *
+ * ❤ if you like it!
+ */
+
+(function () {
+  const txtDay = document.querySelector('.clock-wrap .clock-day .day');
+  const txtDate = document.querySelector('.clock-wrap .clock-date .date');
+  const timeHours = document.querySelector('.clock-wrap .clock-time .hours');
+  const timeMins = document.querySelector('.clock-wrap .clock-time .minutes');
+  const timeSecs = document.querySelector('.clock-wrap .clock-time .seconds');
+  const timeAmPm = document.querySelector('.clock-wrap .clock-time .ampm');
+  const pathSecs = document.querySelector('.clock-wrap .clock-seconds .path');
+  const pathMins = document.querySelector('.clock-wrap .clock-minutes .path');
+  const pathHours = document.querySelector('.clock-wrap .clock-hours .path');
+  const markDots = document.querySelector('.clock-wrap .clock-markers .dots');
+
+  // add zero on left 
+  const pad = num => {
+    return num < 10 ? '0' + num : '' + num;
+  };
+
+  // calculate dash offset for a path 
+  const updatePath = (path, cur, max) => {
+    const len = Math.floor(path.getTotalLength());
+    const offset = Math.floor(len - cur * len / max);
+    path.style.strokeDasharray = len + ' ' + len;
+    path.style.strokeDashoffset = offset;
+  };
+
+  // update clock text display 
+  const updateClock = (elm, num) => {
+    elm.textContent = pad(num);
+  };
+
+  // update day of the week 
+  const updateDay = date => {
+    let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    txtDay.textContent = days[date.getDay()];
+  };
+
+  // update full date 
+  const updateDate = date => {
+    let month = pad(date.getMonth() + 1);
+    let day = pad(date.getDate());
+    let year = pad(date.getFullYear());
+    txtDate.textContent = [month, day, year].join('/');
+  };
+
+  // add clock marks 
+  const addMarks = () => {
+    const len = Math.floor(markDots.getTotalLength());
+    markDots.style.strokeDasharray = 1 + ' ' + Math.floor(len / 12);
+  };
+
+  // get time and update stuff
+  const updateTime = () => {
+    let date = new Date();
+    let secs = date.getSeconds();
+    let mins = date.getMinutes();
+    let fhours = date.getHours();
+    let hours = fhours >= 12 ? fhours - 12 : fhours;
+
+    updatePath(pathSecs, secs, 60);
+    updatePath(pathMins, mins, 60);
+    updatePath(pathHours, hours, 12);
+    updateClock(timeHours, hours ? hours : 12);
+    updateClock(timeMins, mins);
+    updateClock(timeSecs, secs);
+    updateClock(timeAmPm, fhours < 12 ? 'am' : 'pm');
+    updateDate(date);
+    updateDay(date);
+  };
+
+  // update time on interval 
+  setInterval(updateTime, 1000);
+  updateTime();
+  addMarks();
+})();
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

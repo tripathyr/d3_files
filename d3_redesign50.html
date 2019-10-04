@@ -1,0 +1,706 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Machine Learning Theme Generator</title>
+<style>
+      body {
+  background: #222;
+  color: white;
+  font-family: helvetica neue;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1, h2, h3 {
+  font-weight: 200;
+}
+h4 {
+  color: #ccc;
+  font-weight: 400;
+}
+hr {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
+  border: 0;
+  height: 1px;
+}
+.predicted-theme {
+  background: black;
+  border:  1px solid white;
+  border-radius:  20px;
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  width: 457px;
+}
+.editor-wrapper {
+  background: #333;
+  display: inline-block;
+  font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Inconsolata", 'Courier New', monospace;
+  font-size: 10pt;
+  font-weight: normal;
+  padding: 8px;
+  text-align: left;
+  width: 400px;
+}
+.star {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 18pt;
+  margin: 0;
+  outline: none;
+  padding: 0;
+}
+.star.gold {
+  color: goldenrod;
+}
+li {
+  color: #6f6f6f;
+  list-style-type: none;
+  font-size: 10pt;
+  font-weight: 400;
+}
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<h1>How good does this theme look?</h1>
+<div class="editor-wrapper" style="background: rgb(4, 48, 22);">
+<span class="color-1" style="color: rgb(188, 68, 167);">import</span> React <span class="color-1" style="color: rgb(188, 68, 167);">from</span> <span class="color-2" style="color: rgb(243, 87, 104);">"react"</span><br>
+<span class="color-1" style="color: rgb(188, 68, 167);">import</span> ReactDOM <span class="color-1" style="color: rgb(188, 68, 167);">from</span> <span class="color-2" style="color: rgb(243, 87, 104);">"react-dom"</span><br>
+<span class="color-1" style="color: rgb(188, 68, 167);">import {</span> Provider <span class="color-1" style="color: rgb(188, 68, 167);">} from</span> <span class="color-2" style="color: rgb(243, 87, 104);">"react-redux"</span><br>
+<br>
+<span class="color-1" style="color: rgb(188, 68, 167);">import</span> Layout <span class="color-1" style="color: rgb(188, 68, 167);">from</span> <span class="color-2" style="color: rgb(243, 87, 104);">"./components/Layout"</span><br>
+<span class="color-1" style="color: rgb(188, 68, 167);">import</span> store <span class="color-1" style="color: rgb(188, 68, 167);">from</span> <span class="color-2" style="color: rgb(243, 87, 104);">"./store"</span><br>
+<br>
+<span class="color-1" style="color: rgb(188, 68, 167);">const</span> app<span class="color-1" style="color: rgb(188, 68, 167);"> = </span>document.<span class="color-3" style="color: rgb(252, 252, 245);">getElementById</span><span class="color-1" style="color: rgb(188, 68, 167);">(</span><span class="color-2" style="color: rgb(243, 87, 104);">'app'</span><span class="color-1" style="color: rgb(188, 68, 167);">)</span><br>
+<br>
+ReactDOM.render<span class="color-1" style="color: rgb(188, 68, 167);">(</span>&lt;<span class="color-3" style="color: rgb(252, 252, 245);">Provider store={</span>store<span class="color-3" style="color: rgb(252, 252, 245);">}</span>&gt;<br>
+&nbsp;&nbsp;&lt;<span class="color-3" style="color: rgb(252, 252, 245);">Layout </span>/&gt;<br>
+&lt;/<span class="color-3" style="color: rgb(252, 252, 245);">Provider</span>&gt;, app<span class="color-1" style="color: rgb(188, 68, 167);">)</span>
+</div>
+<hr>
+<button class="star" id="star1">★</button>
+<button class="star" id="star2">★</button>
+<button class="star" id="star3">★</button>
+<button class="star" id="star4">★</button>
+<button class="star" id="star5">★</button>
+<hr>
+<h4>
+Rate color combinations to get machine-learning-recommended themes below.<br>
+Keep rating and the recommendations will keep getting better!<br>
+(it often takes at least 20 ratings to get good recommendations)
+</h4>
+<div id="themes"><div class="predicted-theme">
+  <div class="editor-wrapper" style="background:rgb(26, 36, 47)">
+    <span style="color:rgb(249, 205, 209)">import</span> React <span style="color:rgb(249, 205, 209)">from</span> <span style="color: rgb(241, 248, 218)">"react"</span><br>
+    <span style="color:rgb(249, 205, 209)">import</span> ReactDOM <span style="color:rgb(249, 205, 209)">from</span> <span style="color: rgb(241, 248, 218)">"react-dom"</span><br>
+    <span style="color:rgb(249, 205, 209)">import {</span> Provider <span style="color:rgb(249, 205, 209)">} from</span> <span style="color: rgb(241, 248, 218)">"react-redux"</span><br>
+    <br>
+    <span style="color:rgb(249, 205, 209)">import</span> Layout <span style="color:rgb(249, 205, 209)">from</span> <span style="color: rgb(241, 248, 218)">"./components/Layout"</span><br>
+    <span style="color:rgb(249, 205, 209)">import</span> store <span style="color:rgb(249, 205, 209)">from</span> <span style="color: rgb(241, 248, 218)">"./store"</span><br>
+    <br>
+    <span style="color:rgb(249, 205, 209)">const</span> app<span style="color:rgb(249, 205, 209)"> = </span>document.<span style="color: rgb(247, 222, 254)">getElementById</span><span style="color:rgb(249, 205, 209)">(</span><span style="color: rgb(241, 248, 218)">'app'</span><span style="color:rgb(249, 205, 209)">)</span><br>
+    <br>
+    ReactDOM.render<span style="color:rgb(249, 205, 209)">(</span>&lt;<span style="color: rgb(247, 222, 254)">Provider store={</span>store<span style="color: rgb(247, 222, 254)">}</span>&gt;<br>
+    &nbsp;&nbsp;&lt;<span style="color: rgb(247, 222, 254)">Layout </span>/&gt;<br>
+    &lt;/<span style="color: rgb(247, 222, 254)">Provider</span>&gt;, app<span style="color:rgb(249, 205, 209)" "="">)</span>
+  </div>
+  <li>Score 0.502199649810791</li>
+  <li>Background rgb(26, 36, 47)</li>
+  <li>Color 1 rgb(249, 205, 209)</li>
+  <li>Color 2 rgb(241, 248, 218)</li>
+  <li>Color 3 rgb(247, 222, 254)</li>
+  </div><div class="predicted-theme">
+  <div class="editor-wrapper" style="background:rgb(30, 40, 15)">
+    <span style="color:rgb(240, 226, 198)">import</span> React <span style="color:rgb(240, 226, 198)">from</span> <span style="color: rgb(228, 249, 239)">"react"</span><br>
+    <span style="color:rgb(240, 226, 198)">import</span> ReactDOM <span style="color:rgb(240, 226, 198)">from</span> <span style="color: rgb(228, 249, 239)">"react-dom"</span><br>
+    <span style="color:rgb(240, 226, 198)">import {</span> Provider <span style="color:rgb(240, 226, 198)">} from</span> <span style="color: rgb(228, 249, 239)">"react-redux"</span><br>
+    <br>
+    <span style="color:rgb(240, 226, 198)">import</span> Layout <span style="color:rgb(240, 226, 198)">from</span> <span style="color: rgb(228, 249, 239)">"./components/Layout"</span><br>
+    <span style="color:rgb(240, 226, 198)">import</span> store <span style="color:rgb(240, 226, 198)">from</span> <span style="color: rgb(228, 249, 239)">"./store"</span><br>
+    <br>
+    <span style="color:rgb(240, 226, 198)">const</span> app<span style="color:rgb(240, 226, 198)"> = </span>document.<span style="color: rgb(254, 218, 243)">getElementById</span><span style="color:rgb(240, 226, 198)">(</span><span style="color: rgb(228, 249, 239)">'app'</span><span style="color:rgb(240, 226, 198)">)</span><br>
+    <br>
+    ReactDOM.render<span style="color:rgb(240, 226, 198)">(</span>&lt;<span style="color: rgb(254, 218, 243)">Provider store={</span>store<span style="color: rgb(254, 218, 243)">}</span>&gt;<br>
+    &nbsp;&nbsp;&lt;<span style="color: rgb(254, 218, 243)">Layout </span>/&gt;<br>
+    &lt;/<span style="color: rgb(254, 218, 243)">Provider</span>&gt;, app<span style="color:rgb(240, 226, 198)" "="">)</span>
+  </div>
+  <li>Score 0.49750134348869324</li>
+  <li>Background rgb(30, 40, 15)</li>
+  <li>Color 1 rgb(240, 226, 198)</li>
+  <li>Color 2 rgb(228, 249, 239)</li>
+  <li>Color 3 rgb(254, 218, 243)</li>
+  </div><div class="predicted-theme">
+  <div class="editor-wrapper" style="background:rgb(31, 34, 8)">
+    <span style="color:rgb(223, 219, 217)">import</span> React <span style="color:rgb(223, 219, 217)">from</span> <span style="color: rgb(236, 243, 179)">"react"</span><br>
+    <span style="color:rgb(223, 219, 217)">import</span> ReactDOM <span style="color:rgb(223, 219, 217)">from</span> <span style="color: rgb(236, 243, 179)">"react-dom"</span><br>
+    <span style="color:rgb(223, 219, 217)">import {</span> Provider <span style="color:rgb(223, 219, 217)">} from</span> <span style="color: rgb(236, 243, 179)">"react-redux"</span><br>
+    <br>
+    <span style="color:rgb(223, 219, 217)">import</span> Layout <span style="color:rgb(223, 219, 217)">from</span> <span style="color: rgb(236, 243, 179)">"./components/Layout"</span><br>
+    <span style="color:rgb(223, 219, 217)">import</span> store <span style="color:rgb(223, 219, 217)">from</span> <span style="color: rgb(236, 243, 179)">"./store"</span><br>
+    <br>
+    <span style="color:rgb(223, 219, 217)">const</span> app<span style="color:rgb(223, 219, 217)"> = </span>document.<span style="color: rgb(240, 232, 240)">getElementById</span><span style="color:rgb(223, 219, 217)">(</span><span style="color: rgb(236, 243, 179)">'app'</span><span style="color:rgb(223, 219, 217)">)</span><br>
+    <br>
+    ReactDOM.render<span style="color:rgb(223, 219, 217)">(</span>&lt;<span style="color: rgb(240, 232, 240)">Provider store={</span>store<span style="color: rgb(240, 232, 240)">}</span>&gt;<br>
+    &nbsp;&nbsp;&lt;<span style="color: rgb(240, 232, 240)">Layout </span>/&gt;<br>
+    &lt;/<span style="color: rgb(240, 232, 240)">Provider</span>&gt;, app<span style="color:rgb(223, 219, 217)" "="">)</span>
+  </div>
+  <li>Score 0.49302637577056885</li>
+  <li>Background rgb(31, 34, 8)</li>
+  <li>Color 1 rgb(223, 219, 217)</li>
+  <li>Color 2 rgb(236, 243, 179)</li>
+  <li>Color 3 rgb(240, 232, 240)</li>
+  </div><div class="predicted-theme">
+  <div class="editor-wrapper" style="background:rgb(7, 18, 48)">
+    <span style="color:rgb(178, 184, 227)">import</span> React <span style="color:rgb(178, 184, 227)">from</span> <span style="color: rgb(249, 253, 193)">"react"</span><br>
+    <span style="color:rgb(178, 184, 227)">import</span> ReactDOM <span style="color:rgb(178, 184, 227)">from</span> <span style="color: rgb(249, 253, 193)">"react-dom"</span><br>
+    <span style="color:rgb(178, 184, 227)">import {</span> Provider <span style="color:rgb(178, 184, 227)">} from</span> <span style="color: rgb(249, 253, 193)">"react-redux"</span><br>
+    <br>
+    <span style="color:rgb(178, 184, 227)">import</span> Layout <span style="color:rgb(178, 184, 227)">from</span> <span style="color: rgb(249, 253, 193)">"./components/Layout"</span><br>
+    <span style="color:rgb(178, 184, 227)">import</span> store <span style="color:rgb(178, 184, 227)">from</span> <span style="color: rgb(249, 253, 193)">"./store"</span><br>
+    <br>
+    <span style="color:rgb(178, 184, 227)">const</span> app<span style="color:rgb(178, 184, 227)"> = </span>document.<span style="color: rgb(198, 227, 252)">getElementById</span><span style="color:rgb(178, 184, 227)">(</span><span style="color: rgb(249, 253, 193)">'app'</span><span style="color:rgb(178, 184, 227)">)</span><br>
+    <br>
+    ReactDOM.render<span style="color:rgb(178, 184, 227)">(</span>&lt;<span style="color: rgb(198, 227, 252)">Provider store={</span>store<span style="color: rgb(198, 227, 252)">}</span>&gt;<br>
+    &nbsp;&nbsp;&lt;<span style="color: rgb(198, 227, 252)">Layout </span>/&gt;<br>
+    &lt;/<span style="color: rgb(198, 227, 252)">Provider</span>&gt;, app<span style="color:rgb(178, 184, 227)" "="">)</span>
+  </div>
+  <li>Score 0.4902668297290802</li>
+  <li>Background rgb(7, 18, 48)</li>
+  <li>Color 1 rgb(178, 184, 227)</li>
+  <li>Color 2 rgb(249, 253, 193)</li>
+  <li>Color 3 rgb(198, 227, 252)</li>
+  </div><div class="predicted-theme">
+  <div class="editor-wrapper" style="background:rgb(0, 4, 28)">
+    <span style="color:rgb(208, 244, 212)">import</span> React <span style="color:rgb(208, 244, 212)">from</span> <span style="color: rgb(234, 253, 226)">"react"</span><br>
+    <span style="color:rgb(208, 244, 212)">import</span> ReactDOM <span style="color:rgb(208, 244, 212)">from</span> <span style="color: rgb(234, 253, 226)">"react-dom"</span><br>
+    <span style="color:rgb(208, 244, 212)">import {</span> Provider <span style="color:rgb(208, 244, 212)">} from</span> <span style="color: rgb(234, 253, 226)">"react-redux"</span><br>
+    <br>
+    <span style="color:rgb(208, 244, 212)">import</span> Layout <span style="color:rgb(208, 244, 212)">from</span> <span style="color: rgb(234, 253, 226)">"./components/Layout"</span><br>
+    <span style="color:rgb(208, 244, 212)">import</span> store <span style="color:rgb(208, 244, 212)">from</span> <span style="color: rgb(234, 253, 226)">"./store"</span><br>
+    <br>
+    <span style="color:rgb(208, 244, 212)">const</span> app<span style="color:rgb(208, 244, 212)"> = </span>document.<span style="color: rgb(182, 226, 229)">getElementById</span><span style="color:rgb(208, 244, 212)">(</span><span style="color: rgb(234, 253, 226)">'app'</span><span style="color:rgb(208, 244, 212)">)</span><br>
+    <br>
+    ReactDOM.render<span style="color:rgb(208, 244, 212)">(</span>&lt;<span style="color: rgb(182, 226, 229)">Provider store={</span>store<span style="color: rgb(182, 226, 229)">}</span>&gt;<br>
+    &nbsp;&nbsp;&lt;<span style="color: rgb(182, 226, 229)">Layout </span>/&gt;<br>
+    &lt;/<span style="color: rgb(182, 226, 229)">Provider</span>&gt;, app<span style="color:rgb(208, 244, 212)" "="">)</span>
+  </div>
+  <li>Score 0.48973268270492554</li>
+  <li>Background rgb(0, 4, 28)</li>
+  <li>Color 1 rgb(208, 244, 212)</li>
+  <li>Color 2 rgb(234, 253, 226)</li>
+  <li>Color 3 rgb(182, 226, 229)</li>
+  </div><div class="predicted-theme">
+  <div class="editor-wrapper" style="background:rgb(43, 37, 34)">
+    <span style="color:rgb(246, 212, 248)">import</span> React <span style="color:rgb(246, 212, 248)">from</span> <span style="color: rgb(250, 249, 55)">"react"</span><br>
+    <span style="color:rgb(246, 212, 248)">import</span> ReactDOM <span style="color:rgb(246, 212, 248)">from</span> <span style="color: rgb(250, 249, 55)">"react-dom"</span><br>
+    <span style="color:rgb(246, 212, 248)">import {</span> Provider <span style="color:rgb(246, 212, 248)">} from</span> <span style="color: rgb(250, 249, 55)">"react-redux"</span><br>
+    <br>
+    <span style="color:rgb(246, 212, 248)">import</span> Layout <span style="color:rgb(246, 212, 248)">from</span> <span style="color: rgb(250, 249, 55)">"./components/Layout"</span><br>
+    <span style="color:rgb(246, 212, 248)">import</span> store <span style="color:rgb(246, 212, 248)">from</span> <span style="color: rgb(250, 249, 55)">"./store"</span><br>
+    <br>
+    <span style="color:rgb(246, 212, 248)">const</span> app<span style="color:rgb(246, 212, 248)"> = </span>document.<span style="color: rgb(196, 131, 246)">getElementById</span><span style="color:rgb(246, 212, 248)">(</span><span style="color: rgb(250, 249, 55)">'app'</span><span style="color:rgb(246, 212, 248)">)</span><br>
+    <br>
+    ReactDOM.render<span style="color:rgb(246, 212, 248)">(</span>&lt;<span style="color: rgb(196, 131, 246)">Provider store={</span>store<span style="color: rgb(196, 131, 246)">}</span>&gt;<br>
+    &nbsp;&nbsp;&lt;<span style="color: rgb(196, 131, 246)">Layout </span>/&gt;<br>
+    &lt;/<span style="color: rgb(196, 131, 246)">Provider</span>&gt;, app<span style="color:rgb(246, 212, 248)" "="">)</span>
+  </div>
+  <li>Score 0.4889889061450958</li>
+  <li>Background rgb(43, 37, 34)</li>
+  <li>Color 1 rgb(246, 212, 248)</li>
+  <li>Color 2 rgb(250, 249, 55)</li>
+  <li>Color 3 rgb(196, 131, 246)</li>
+  </div><div class="predicted-theme">
+  <div class="editor-wrapper" style="background:rgb(4, 5, 23)">
+    <span style="color:rgb(115, 247, 218)">import</span> React <span style="color:rgb(115, 247, 218)">from</span> <span style="color: rgb(252, 255, 184)">"react"</span><br>
+    <span style="color:rgb(115, 247, 218)">import</span> ReactDOM <span style="color:rgb(115, 247, 218)">from</span> <span style="color: rgb(252, 255, 184)">"react-dom"</span><br>
+    <span style="color:rgb(115, 247, 218)">import {</span> Provider <span style="color:rgb(115, 247, 218)">} from</span> <span style="color: rgb(252, 255, 184)">"react-redux"</span><br>
+    <br>
+    <span style="color:rgb(115, 247, 218)">import</span> Layout <span style="color:rgb(115, 247, 218)">from</span> <span style="color: rgb(252, 255, 184)">"./components/Layout"</span><br>
+    <span style="color:rgb(115, 247, 218)">import</span> store <span style="color:rgb(115, 247, 218)">from</span> <span style="color: rgb(252, 255, 184)">"./store"</span><br>
+    <br>
+    <span style="color:rgb(115, 247, 218)">const</span> app<span style="color:rgb(115, 247, 218)"> = </span>document.<span style="color: rgb(248, 220, 249)">getElementById</span><span style="color:rgb(115, 247, 218)">(</span><span style="color: rgb(252, 255, 184)">'app'</span><span style="color:rgb(115, 247, 218)">)</span><br>
+    <br>
+    ReactDOM.render<span style="color:rgb(115, 247, 218)">(</span>&lt;<span style="color: rgb(248, 220, 249)">Provider store={</span>store<span style="color: rgb(248, 220, 249)">}</span>&gt;<br>
+    &nbsp;&nbsp;&lt;<span style="color: rgb(248, 220, 249)">Layout </span>/&gt;<br>
+    &lt;/<span style="color: rgb(248, 220, 249)">Provider</span>&gt;, app<span style="color:rgb(115, 247, 218)" "="">)</span>
+  </div>
+  <li>Score 0.4879923164844513</li>
+  <li>Background rgb(4, 5, 23)</li>
+  <li>Color 1 rgb(115, 247, 218)</li>
+  <li>Color 2 rgb(252, 255, 184)</li>
+  <li>Color 3 rgb(248, 220, 249)</li>
+  </div><div class="predicted-theme">
+  <div class="editor-wrapper" style="background:rgb(36, 23, 42)">
+    <span style="color:rgb(228, 232, 214)">import</span> React <span style="color:rgb(228, 232, 214)">from</span> <span style="color: rgb(235, 239, 128)">"react"</span><br>
+    <span style="color:rgb(228, 232, 214)">import</span> ReactDOM <span style="color:rgb(228, 232, 214)">from</span> <span style="color: rgb(235, 239, 128)">"react-dom"</span><br>
+    <span style="color:rgb(228, 232, 214)">import {</span> Provider <span style="color:rgb(228, 232, 214)">} from</span> <span style="color: rgb(235, 239, 128)">"react-redux"</span><br>
+    <br>
+    <span style="color:rgb(228, 232, 214)">import</span> Layout <span style="color:rgb(228, 232, 214)">from</span> <span style="color: rgb(235, 239, 128)">"./components/Layout"</span><br>
+    <span style="color:rgb(228, 232, 214)">import</span> store <span style="color:rgb(228, 232, 214)">from</span> <span style="color: rgb(235, 239, 128)">"./store"</span><br>
+    <br>
+    <span style="color:rgb(228, 232, 214)">const</span> app<span style="color:rgb(228, 232, 214)"> = </span>document.<span style="color: rgb(129, 223, 254)">getElementById</span><span style="color:rgb(228, 232, 214)">(</span><span style="color: rgb(235, 239, 128)">'app'</span><span style="color:rgb(228, 232, 214)">)</span><br>
+    <br>
+    ReactDOM.render<span style="color:rgb(228, 232, 214)">(</span>&lt;<span style="color: rgb(129, 223, 254)">Provider store={</span>store<span style="color: rgb(129, 223, 254)">}</span>&gt;<br>
+    &nbsp;&nbsp;&lt;<span style="color: rgb(129, 223, 254)">Layout </span>/&gt;<br>
+    &lt;/<span style="color: rgb(129, 223, 254)">Provider</span>&gt;, app<span style="color:rgb(228, 232, 214)" "="">)</span>
+  </div>
+  <li>Score 0.48740237951278687</li>
+  <li>Background rgb(36, 23, 42)</li>
+  <li>Color 1 rgb(228, 232, 214)</li>
+  <li>Color 2 rgb(235, 239, 128)</li>
+  <li>Color 3 rgb(129, 223, 254)</li>
+  </div><div class="predicted-theme">
+  <div class="editor-wrapper" style="background:rgb(37, 17, 45)">
+    <span style="color:rgb(198, 238, 61)">import</span> React <span style="color:rgb(198, 238, 61)">from</span> <span style="color: rgb(252, 252, 236)">"react"</span><br>
+    <span style="color:rgb(198, 238, 61)">import</span> ReactDOM <span style="color:rgb(198, 238, 61)">from</span> <span style="color: rgb(252, 252, 236)">"react-dom"</span><br>
+    <span style="color:rgb(198, 238, 61)">import {</span> Provider <span style="color:rgb(198, 238, 61)">} from</span> <span style="color: rgb(252, 252, 236)">"react-redux"</span><br>
+    <br>
+    <span style="color:rgb(198, 238, 61)">import</span> Layout <span style="color:rgb(198, 238, 61)">from</span> <span style="color: rgb(252, 252, 236)">"./components/Layout"</span><br>
+    <span style="color:rgb(198, 238, 61)">import</span> store <span style="color:rgb(198, 238, 61)">from</span> <span style="color: rgb(252, 252, 236)">"./store"</span><br>
+    <br>
+    <span style="color:rgb(198, 238, 61)">const</span> app<span style="color:rgb(198, 238, 61)"> = </span>document.<span style="color: rgb(226, 213, 252)">getElementById</span><span style="color:rgb(198, 238, 61)">(</span><span style="color: rgb(252, 252, 236)">'app'</span><span style="color:rgb(198, 238, 61)">)</span><br>
+    <br>
+    ReactDOM.render<span style="color:rgb(198, 238, 61)">(</span>&lt;<span style="color: rgb(226, 213, 252)">Provider store={</span>store<span style="color: rgb(226, 213, 252)">}</span>&gt;<br>
+    &nbsp;&nbsp;&lt;<span style="color: rgb(226, 213, 252)">Layout </span>/&gt;<br>
+    &lt;/<span style="color: rgb(226, 213, 252)">Provider</span>&gt;, app<span style="color:rgb(198, 238, 61)" "="">)</span>
+  </div>
+  <li>Score 0.4870567321777344</li>
+  <li>Background rgb(37, 17, 45)</li>
+  <li>Color 1 rgb(198, 238, 61)</li>
+  <li>Color 2 rgb(252, 252, 236)</li>
+  <li>Color 3 rgb(226, 213, 252)</li>
+  </div><div class="predicted-theme">
+  <div class="editor-wrapper" style="background:rgb(1, 45, 32)">
+    <span style="color:rgb(151, 222, 198)">import</span> React <span style="color:rgb(151, 222, 198)">from</span> <span style="color: rgb(255, 234, 218)">"react"</span><br>
+    <span style="color:rgb(151, 222, 198)">import</span> ReactDOM <span style="color:rgb(151, 222, 198)">from</span> <span style="color: rgb(255, 234, 218)">"react-dom"</span><br>
+    <span style="color:rgb(151, 222, 198)">import {</span> Provider <span style="color:rgb(151, 222, 198)">} from</span> <span style="color: rgb(255, 234, 218)">"react-redux"</span><br>
+    <br>
+    <span style="color:rgb(151, 222, 198)">import</span> Layout <span style="color:rgb(151, 222, 198)">from</span> <span style="color: rgb(255, 234, 218)">"./components/Layout"</span><br>
+    <span style="color:rgb(151, 222, 198)">import</span> store <span style="color:rgb(151, 222, 198)">from</span> <span style="color: rgb(255, 234, 218)">"./store"</span><br>
+    <br>
+    <span style="color:rgb(151, 222, 198)">const</span> app<span style="color:rgb(151, 222, 198)"> = </span>document.<span style="color: rgb(217, 246, 240)">getElementById</span><span style="color:rgb(151, 222, 198)">(</span><span style="color: rgb(255, 234, 218)">'app'</span><span style="color:rgb(151, 222, 198)">)</span><br>
+    <br>
+    ReactDOM.render<span style="color:rgb(151, 222, 198)">(</span>&lt;<span style="color: rgb(217, 246, 240)">Provider store={</span>store<span style="color: rgb(217, 246, 240)">}</span>&gt;<br>
+    &nbsp;&nbsp;&lt;<span style="color: rgb(217, 246, 240)">Layout </span>/&gt;<br>
+    &lt;/<span style="color: rgb(217, 246, 240)">Provider</span>&gt;, app<span style="color:rgb(151, 222, 198)" "="">)</span>
+  </div>
+  <li>Score 0.4864461123943329</li>
+  <li>Background rgb(1, 45, 32)</li>
+  <li>Color 1 rgb(151, 222, 198)</li>
+  <li>Color 2 rgb(255, 234, 218)</li>
+  <li>Color 3 rgb(217, 246, 240)</li>
+  </div><div class="predicted-theme">
+  <div class="editor-wrapper" style="background:rgb(27, 17, 27)">
+    <span style="color:rgb(240, 243, 243)">import</span> React <span style="color:rgb(240, 243, 243)">from</span> <span style="color: rgb(251, 237, 166)">"react"</span><br>
+    <span style="color:rgb(240, 243, 243)">import</span> ReactDOM <span style="color:rgb(240, 243, 243)">from</span> <span style="color: rgb(251, 237, 166)">"react-dom"</span><br>
+    <span style="color:rgb(240, 243, 243)">import {</span> Provider <span style="color:rgb(240, 243, 243)">} from</span> <span style="color: rgb(251, 237, 166)">"react-redux"</span><br>
+    <br>
+    <span style="color:rgb(240, 243, 243)">import</span> Layout <span style="color:rgb(240, 243, 243)">from</span> <span style="color: rgb(251, 237, 166)">"./components/Layout"</span><br>
+    <span style="color:rgb(240, 243, 243)">import</span> store <span style="color:rgb(240, 243, 243)">from</span> <span style="color: rgb(251, 237, 166)">"./store"</span><br>
+    <br>
+    <span style="color:rgb(240, 243, 243)">const</span> app<span style="color:rgb(240, 243, 243)"> = </span>document.<span style="color: rgb(105, 229, 211)">getElementById</span><span style="color:rgb(240, 243, 243)">(</span><span style="color: rgb(251, 237, 166)">'app'</span><span style="color:rgb(240, 243, 243)">)</span><br>
+    <br>
+    ReactDOM.render<span style="color:rgb(240, 243, 243)">(</span>&lt;<span style="color: rgb(105, 229, 211)">Provider store={</span>store<span style="color: rgb(105, 229, 211)">}</span>&gt;<br>
+    &nbsp;&nbsp;&lt;<span style="color: rgb(105, 229, 211)">Layout </span>/&gt;<br>
+    &lt;/<span style="color: rgb(105, 229, 211)">Provider</span>&gt;, app<span style="color:rgb(240, 243, 243)" "="">)</span>
+  </div>
+  <li>Score 0.4861225485801697</li>
+  <li>Background rgb(27, 17, 27)</li>
+  <li>Color 1 rgb(240, 243, 243)</li>
+  <li>Color 2 rgb(251, 237, 166)</li>
+  <li>Color 3 rgb(105, 229, 211)</li>
+  </div><div class="predicted-theme">
+  <div class="editor-wrapper" style="background:rgb(30, 24, 32)">
+    <span style="color:rgb(245, 246, 209)">import</span> React <span style="color:rgb(245, 246, 209)">from</span> <span style="color: rgb(220, 238, 98)">"react"</span><br>
+    <span style="color:rgb(245, 246, 209)">import</span> ReactDOM <span style="color:rgb(245, 246, 209)">from</span> <span style="color: rgb(220, 238, 98)">"react-dom"</span><br>
+    <span style="color:rgb(245, 246, 209)">import {</span> Provider <span style="color:rgb(245, 246, 209)">} from</span> <span style="color: rgb(220, 238, 98)">"react-redux"</span><br>
+    <br>
+    <span style="color:rgb(245, 246, 209)">import</span> Layout <span style="color:rgb(245, 246, 209)">from</span> <span style="color: rgb(220, 238, 98)">"./components/Layout"</span><br>
+    <span style="color:rgb(245, 246, 209)">import</span> store <span style="color:rgb(245, 246, 209)">from</span> <span style="color: rgb(220, 238, 98)">"./store"</span><br>
+    <br>
+    <span style="color:rgb(245, 246, 209)">const</span> app<span style="color:rgb(245, 246, 209)"> = </span>document.<span style="color: rgb(205, 188, 244)">getElementById</span><span style="color:rgb(245, 246, 209)">(</span><span style="color: rgb(220, 238, 98)">'app'</span><span style="color:rgb(245, 246, 209)">)</span><br>
+    <br>
+    ReactDOM.render<span style="color:rgb(245, 246, 209)">(</span>&lt;<span style="color: rgb(205, 188, 244)">Provider store={</span>store<span style="color: rgb(205, 188, 244)">}</span>&gt;<br>
+    &nbsp;&nbsp;&lt;<span style="color: rgb(205, 188, 244)">Layout </span>/&gt;<br>
+    &lt;/<span style="color: rgb(205, 188, 244)">Provider</span>&gt;, app<span style="color:rgb(245, 246, 209)" "="">)</span>
+  </div>
+  <li>Score 0.4859143793582916</li>
+  <li>Background rgb(30, 24, 32)</li>
+  <li>Color 1 rgb(245, 246, 209)</li>
+  <li>Color 2 rgb(220, 238, 98)</li>
+  <li>Color 3 rgb(205, 188, 244)</li>
+  </div><div class="predicted-theme">
+  <div class="editor-wrapper" style="background:rgb(23, 46, 35)">
+    <span style="color:rgb(248, 234, 215)">import</span> React <span style="color:rgb(248, 234, 215)">from</span> <span style="color: rgb(221, 238, 178)">"react"</span><br>
+    <span style="color:rgb(248, 234, 215)">import</span> ReactDOM <span style="color:rgb(248, 234, 215)">from</span> <span style="color: rgb(221, 238, 178)">"react-dom"</span><br>
+    <span style="color:rgb(248, 234, 215)">import {</span> Provider <span style="color:rgb(248, 234, 215)">} from</span> <span style="color: rgb(221, 238, 178)">"react-redux"</span><br>
+    <br>
+    <span style="color:rgb(248, 234, 215)">import</span> Layout <span style="color:rgb(248, 234, 215)">from</span> <span style="color: rgb(221, 238, 178)">"./components/Layout"</span><br>
+    <span style="color:rgb(248, 234, 215)">import</span> store <span style="color:rgb(248, 234, 215)">from</span> <span style="color: rgb(221, 238, 178)">"./store"</span><br>
+    <br>
+    <span style="color:rgb(248, 234, 215)">const</span> app<span style="color:rgb(248, 234, 215)"> = </span>document.<span style="color: rgb(244, 138, 224)">getElementById</span><span style="color:rgb(248, 234, 215)">(</span><span style="color: rgb(221, 238, 178)">'app'</span><span style="color:rgb(248, 234, 215)">)</span><br>
+    <br>
+    ReactDOM.render<span style="color:rgb(248, 234, 215)">(</span>&lt;<span style="color: rgb(244, 138, 224)">Provider store={</span>store<span style="color: rgb(244, 138, 224)">}</span>&gt;<br>
+    &nbsp;&nbsp;&lt;<span style="color: rgb(244, 138, 224)">Layout </span>/&gt;<br>
+    &lt;/<span style="color: rgb(244, 138, 224)">Provider</span>&gt;, app<span style="color:rgb(248, 234, 215)" "="">)</span>
+  </div>
+  <li>Score 0.48571541905403137</li>
+  <li>Background rgb(23, 46, 35)</li>
+  <li>Color 1 rgb(248, 234, 215)</li>
+  <li>Color 2 rgb(221, 238, 178)</li>
+  <li>Color 3 rgb(244, 138, 224)</li>
+  </div><div class="predicted-theme">
+  <div class="editor-wrapper" style="background:rgb(23, 37, 25)">
+    <span style="color:rgb(249, 209, 246)">import</span> React <span style="color:rgb(249, 209, 246)">from</span> <span style="color: rgb(230, 240, 141)">"react"</span><br>
+    <span style="color:rgb(249, 209, 246)">import</span> ReactDOM <span style="color:rgb(249, 209, 246)">from</span> <span style="color: rgb(230, 240, 141)">"react-dom"</span><br>
+    <span style="color:rgb(249, 209, 246)">import {</span> Provider <span style="color:rgb(249, 209, 246)">} from</span> <span style="color: rgb(230, 240, 141)">"react-redux"</span><br>
+    <br>
+    <span style="color:rgb(249, 209, 246)">import</span> Layout <span style="color:rgb(249, 209, 246)">from</span> <span style="color: rgb(230, 240, 141)">"./components/Layout"</span><br>
+    <span style="color:rgb(249, 209, 246)">import</span> store <span style="color:rgb(249, 209, 246)">from</span> <span style="color: rgb(230, 240, 141)">"./store"</span><br>
+    <br>
+    <span style="color:rgb(249, 209, 246)">const</span> app<span style="color:rgb(249, 209, 246)"> = </span>document.<span style="color: rgb(161, 242, 212)">getElementById</span><span style="color:rgb(249, 209, 246)">(</span><span style="color: rgb(230, 240, 141)">'app'</span><span style="color:rgb(249, 209, 246)">)</span><br>
+    <br>
+    ReactDOM.render<span style="color:rgb(249, 209, 246)">(</span>&lt;<span style="color: rgb(161, 242, 212)">Provider store={</span>store<span style="color: rgb(161, 242, 212)">}</span>&gt;<br>
+    &nbsp;&nbsp;&lt;<span style="color: rgb(161, 242, 212)">Layout </span>/&gt;<br>
+    &lt;/<span style="color: rgb(161, 242, 212)">Provider</span>&gt;, app<span style="color:rgb(249, 209, 246)" "="">)</span>
+  </div>
+  <li>Score 0.48560285568237305</li>
+  <li>Background rgb(23, 37, 25)</li>
+  <li>Color 1 rgb(249, 209, 246)</li>
+  <li>Color 2 rgb(230, 240, 141)</li>
+  <li>Color 3 rgb(161, 242, 212)</li>
+  </div><div class="predicted-theme">
+  <div class="editor-wrapper" style="background:rgb(27, 6, 13)">
+    <span style="color:rgb(210, 144, 202)">import</span> React <span style="color:rgb(210, 144, 202)">from</span> <span style="color: rgb(228, 255, 252)">"react"</span><br>
+    <span style="color:rgb(210, 144, 202)">import</span> ReactDOM <span style="color:rgb(210, 144, 202)">from</span> <span style="color: rgb(228, 255, 252)">"react-dom"</span><br>
+    <span style="color:rgb(210, 144, 202)">import {</span> Provider <span style="color:rgb(210, 144, 202)">} from</span> <span style="color: rgb(228, 255, 252)">"react-redux"</span><br>
+    <br>
+    <span style="color:rgb(210, 144, 202)">import</span> Layout <span style="color:rgb(210, 144, 202)">from</span> <span style="color: rgb(228, 255, 252)">"./components/Layout"</span><br>
+    <span style="color:rgb(210, 144, 202)">import</span> store <span style="color:rgb(210, 144, 202)">from</span> <span style="color: rgb(228, 255, 252)">"./store"</span><br>
+    <br>
+    <span style="color:rgb(210, 144, 202)">const</span> app<span style="color:rgb(210, 144, 202)"> = </span>document.<span style="color: rgb(251, 184, 250)">getElementById</span><span style="color:rgb(210, 144, 202)">(</span><span style="color: rgb(228, 255, 252)">'app'</span><span style="color:rgb(210, 144, 202)">)</span><br>
+    <br>
+    ReactDOM.render<span style="color:rgb(210, 144, 202)">(</span>&lt;<span style="color: rgb(251, 184, 250)">Provider store={</span>store<span style="color: rgb(251, 184, 250)">}</span>&gt;<br>
+    &nbsp;&nbsp;&lt;<span style="color: rgb(251, 184, 250)">Layout </span>/&gt;<br>
+    &lt;/<span style="color: rgb(251, 184, 250)">Provider</span>&gt;, app<span style="color:rgb(210, 144, 202)" "="">)</span>
+  </div>
+  <li>Score 0.48550713062286377</li>
+  <li>Background rgb(27, 6, 13)</li>
+  <li>Color 1 rgb(210, 144, 202)</li>
+  <li>Color 2 rgb(228, 255, 252)</li>
+  <li>Color 3 rgb(251, 184, 250)</li>
+  </div><div class="predicted-theme">
+  <div class="editor-wrapper" style="background:rgb(28, 45, 46)">
+    <span style="color:rgb(253, 238, 200)">import</span> React <span style="color:rgb(253, 238, 200)">from</span> <span style="color: rgb(241, 247, 142)">"react"</span><br>
+    <span style="color:rgb(253, 238, 200)">import</span> ReactDOM <span style="color:rgb(253, 238, 200)">from</span> <span style="color: rgb(241, 247, 142)">"react-dom"</span><br>
+    <span style="color:rgb(253, 238, 200)">import {</span> Provider <span style="color:rgb(253, 238, 200)">} from</span> <span style="color: rgb(241, 247, 142)">"react-redux"</span><br>
+    <br>
+    <span style="color:rgb(253, 238, 200)">import</span> Layout <span style="color:rgb(253, 238, 200)">from</span> <span style="color: rgb(241, 247, 142)">"./components/Layout"</span><br>
+    <span style="color:rgb(253, 238, 200)">import</span> store <span style="color:rgb(253, 238, 200)">from</span> <span style="color: rgb(241, 247, 142)">"./store"</span><br>
+    <br>
+    <span style="color:rgb(253, 238, 200)">const</span> app<span style="color:rgb(253, 238, 200)"> = </span>document.<span style="color: rgb(250, 73, 221)">getElementById</span><span style="color:rgb(253, 238, 200)">(</span><span style="color: rgb(241, 247, 142)">'app'</span><span style="color:rgb(253, 238, 200)">)</span><br>
+    <br>
+    ReactDOM.render<span style="color:rgb(253, 238, 200)">(</span>&lt;<span style="color: rgb(250, 73, 221)">Provider store={</span>store<span style="color: rgb(250, 73, 221)">}</span>&gt;<br>
+    &nbsp;&nbsp;&lt;<span style="color: rgb(250, 73, 221)">Layout </span>/&gt;<br>
+    &lt;/<span style="color: rgb(250, 73, 221)">Provider</span>&gt;, app<span style="color:rgb(253, 238, 200)" "="">)</span>
+  </div>
+  <li>Score 0.4854346513748169</li>
+  <li>Background rgb(28, 45, 46)</li>
+  <li>Color 1 rgb(253, 238, 200)</li>
+  <li>Color 2 rgb(241, 247, 142)</li>
+  <li>Color 3 rgb(250, 73, 221)</li>
+  </div><div class="predicted-theme">
+  <div class="editor-wrapper" style="background:rgb(12, 49, 24)">
+    <span style="color:rgb(252, 232, 250)">import</span> React <span style="color:rgb(252, 232, 250)">from</span> <span style="color: rgb(203, 245, 174)">"react"</span><br>
+    <span style="color:rgb(252, 232, 250)">import</span> ReactDOM <span style="color:rgb(252, 232, 250)">from</span> <span style="color: rgb(203, 245, 174)">"react-dom"</span><br>
+    <span style="color:rgb(252, 232, 250)">import {</span> Provider <span style="color:rgb(252, 232, 250)">} from</span> <span style="color: rgb(203, 245, 174)">"react-redux"</span><br>
+    <br>
+    <span style="color:rgb(252, 232, 250)">import</span> Layout <span style="color:rgb(252, 232, 250)">from</span> <span style="color: rgb(203, 245, 174)">"./components/Layout"</span><br>
+    <span style="color:rgb(252, 232, 250)">import</span> store <span style="color:rgb(252, 232, 250)">from</span> <span style="color: rgb(203, 245, 174)">"./store"</span><br>
+    <br>
+    <span style="color:rgb(252, 232, 250)">const</span> app<span style="color:rgb(252, 232, 250)"> = </span>document.<span style="color: rgb(245, 223, 186)">getElementById</span><span style="color:rgb(252, 232, 250)">(</span><span style="color: rgb(203, 245, 174)">'app'</span><span style="color:rgb(252, 232, 250)">)</span><br>
+    <br>
+    ReactDOM.render<span style="color:rgb(252, 232, 250)">(</span>&lt;<span style="color: rgb(245, 223, 186)">Provider store={</span>store<span style="color: rgb(245, 223, 186)">}</span>&gt;<br>
+    &nbsp;&nbsp;&lt;<span style="color: rgb(245, 223, 186)">Layout </span>/&gt;<br>
+    &lt;/<span style="color: rgb(245, 223, 186)">Provider</span>&gt;, app<span style="color:rgb(252, 232, 250)" "="">)</span>
+  </div>
+  <li>Score 0.4852882921695709</li>
+  <li>Background rgb(12, 49, 24)</li>
+  <li>Color 1 rgb(252, 232, 250)</li>
+  <li>Color 2 rgb(203, 245, 174)</li>
+  <li>Color 3 rgb(245, 223, 186)</li>
+  </div><div class="predicted-theme">
+  <div class="editor-wrapper" style="background:rgb(37, 24, 9)">
+    <span style="color:rgb(234, 237, 226)">import</span> React <span style="color:rgb(234, 237, 226)">from</span> <span style="color: rgb(220, 239, 192)">"react"</span><br>
+    <span style="color:rgb(234, 237, 226)">import</span> ReactDOM <span style="color:rgb(234, 237, 226)">from</span> <span style="color: rgb(220, 239, 192)">"react-dom"</span><br>
+    <span style="color:rgb(234, 237, 226)">import {</span> Provider <span style="color:rgb(234, 237, 226)">} from</span> <span style="color: rgb(220, 239, 192)">"react-redux"</span><br>
+    <br>
+    <span style="color:rgb(234, 237, 226)">import</span> Layout <span style="color:rgb(234, 237, 226)">from</span> <span style="color: rgb(220, 239, 192)">"./components/Layout"</span><br>
+    <span style="color:rgb(234, 237, 226)">import</span> store <span style="color:rgb(234, 237, 226)">from</span> <span style="color: rgb(220, 239, 192)">"./store"</span><br>
+    <br>
+    <span style="color:rgb(234, 237, 226)">const</span> app<span style="color:rgb(234, 237, 226)"> = </span>document.<span style="color: rgb(246, 194, 207)">getElementById</span><span style="color:rgb(234, 237, 226)">(</span><span style="color: rgb(220, 239, 192)">'app'</span><span style="color:rgb(234, 237, 226)">)</span><br>
+    <br>
+    ReactDOM.render<span style="color:rgb(234, 237, 226)">(</span>&lt;<span style="color: rgb(246, 194, 207)">Provider store={</span>store<span style="color: rgb(246, 194, 207)">}</span>&gt;<br>
+    &nbsp;&nbsp;&lt;<span style="color: rgb(246, 194, 207)">Layout </span>/&gt;<br>
+    &lt;/<span style="color: rgb(246, 194, 207)">Provider</span>&gt;, app<span style="color:rgb(234, 237, 226)" "="">)</span>
+  </div>
+  <li>Score 0.48497405648231506</li>
+  <li>Background rgb(37, 24, 9)</li>
+  <li>Color 1 rgb(234, 237, 226)</li>
+  <li>Color 2 rgb(220, 239, 192)</li>
+  <li>Color 3 rgb(246, 194, 207)</li>
+  </div><div class="predicted-theme">
+  <div class="editor-wrapper" style="background:rgb(17, 46, 18)">
+    <span style="color:rgb(180, 207, 248)">import</span> React <span style="color:rgb(180, 207, 248)">from</span> <span style="color: rgb(245, 249, 248)">"react"</span><br>
+    <span style="color:rgb(180, 207, 248)">import</span> ReactDOM <span style="color:rgb(180, 207, 248)">from</span> <span style="color: rgb(245, 249, 248)">"react-dom"</span><br>
+    <span style="color:rgb(180, 207, 248)">import {</span> Provider <span style="color:rgb(180, 207, 248)">} from</span> <span style="color: rgb(245, 249, 248)">"react-redux"</span><br>
+    <br>
+    <span style="color:rgb(180, 207, 248)">import</span> Layout <span style="color:rgb(180, 207, 248)">from</span> <span style="color: rgb(245, 249, 248)">"./components/Layout"</span><br>
+    <span style="color:rgb(180, 207, 248)">import</span> store <span style="color:rgb(180, 207, 248)">from</span> <span style="color: rgb(245, 249, 248)">"./store"</span><br>
+    <br>
+    <span style="color:rgb(180, 207, 248)">const</span> app<span style="color:rgb(180, 207, 248)"> = </span>document.<span style="color: rgb(213, 73, 249)">getElementById</span><span style="color:rgb(180, 207, 248)">(</span><span style="color: rgb(245, 249, 248)">'app'</span><span style="color:rgb(180, 207, 248)">)</span><br>
+    <br>
+    ReactDOM.render<span style="color:rgb(180, 207, 248)">(</span>&lt;<span style="color: rgb(213, 73, 249)">Provider store={</span>store<span style="color: rgb(213, 73, 249)">}</span>&gt;<br>
+    &nbsp;&nbsp;&lt;<span style="color: rgb(213, 73, 249)">Layout </span>/&gt;<br>
+    &lt;/<span style="color: rgb(213, 73, 249)">Provider</span>&gt;, app<span style="color:rgb(180, 207, 248)" "="">)</span>
+  </div>
+  <li>Score 0.4849080741405487</li>
+  <li>Background rgb(17, 46, 18)</li>
+  <li>Color 1 rgb(180, 207, 248)</li>
+  <li>Color 2 rgb(245, 249, 248)</li>
+  <li>Color 3 rgb(213, 73, 249)</li>
+  </div><div class="predicted-theme">
+  <div class="editor-wrapper" style="background:rgb(20, 36, 31)">
+    <span style="color:rgb(248, 184, 231)">import</span> React <span style="color:rgb(248, 184, 231)">from</span> <span style="color: rgb(231, 251, 189)">"react"</span><br>
+    <span style="color:rgb(248, 184, 231)">import</span> ReactDOM <span style="color:rgb(248, 184, 231)">from</span> <span style="color: rgb(231, 251, 189)">"react-dom"</span><br>
+    <span style="color:rgb(248, 184, 231)">import {</span> Provider <span style="color:rgb(248, 184, 231)">} from</span> <span style="color: rgb(231, 251, 189)">"react-redux"</span><br>
+    <br>
+    <span style="color:rgb(248, 184, 231)">import</span> Layout <span style="color:rgb(248, 184, 231)">from</span> <span style="color: rgb(231, 251, 189)">"./components/Layout"</span><br>
+    <span style="color:rgb(248, 184, 231)">import</span> store <span style="color:rgb(248, 184, 231)">from</span> <span style="color: rgb(231, 251, 189)">"./store"</span><br>
+    <br>
+    <span style="color:rgb(248, 184, 231)">const</span> app<span style="color:rgb(248, 184, 231)"> = </span>document.<span style="color: rgb(170, 202, 214)">getElementById</span><span style="color:rgb(248, 184, 231)">(</span><span style="color: rgb(231, 251, 189)">'app'</span><span style="color:rgb(248, 184, 231)">)</span><br>
+    <br>
+    ReactDOM.render<span style="color:rgb(248, 184, 231)">(</span>&lt;<span style="color: rgb(170, 202, 214)">Provider store={</span>store<span style="color: rgb(170, 202, 214)">}</span>&gt;<br>
+    &nbsp;&nbsp;&lt;<span style="color: rgb(170, 202, 214)">Layout </span>/&gt;<br>
+    &lt;/<span style="color: rgb(170, 202, 214)">Provider</span>&gt;, app<span style="color:rgb(248, 184, 231)" "="">)</span>
+  </div>
+  <li>Score 0.48481613397598267</li>
+  <li>Background rgb(20, 36, 31)</li>
+  <li>Color 1 rgb(248, 184, 231)</li>
+  <li>Color 2 rgb(231, 251, 189)</li>
+  <li>Color 3 rgb(170, 202, 214)</li>
+  </div></div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://unpkg.com/brain.js@1.1.2/browser.min.js"></script>
+<script id="rendered-js">
+      const editorWrapper = document.querySelector(".editor-wrapper");
+const colorOne = document.querySelectorAll(".color-1");
+const colorTwo = document.querySelectorAll(".color-2");
+const colorThree = document.querySelectorAll(".color-3");
+const stars = document.querySelectorAll(".star");
+const themes = document.getElementById("themes");
+
+window.localStorage.trainingData = window.localStorage.trainingData || JSON.stringify([]);
+
+
+// our current voting combination
+const currentColors = {
+  back: {},
+  one: {},
+  two: {},
+  three: {}
+
+  // kick it off by creating a random theme for you to vote on
+  /* 
+    as you vote, saveTrainingData
+    - saves to localstorage
+    - runs predictThemeCombinations
+  */
+  /*
+       predictThemeCombinations
+       - trains a neural network from your vote history
+       - creates 100,000 random themes
+       - runs the themes through the network, getting a score for each
+       - sorts and returns the top 20 scored themes
+     */ };
+generateRandomTheme();
+predictThemeCombinations();
+
+stars.forEach((star, i) => {
+  const score = i / 4;
+  star.addEventListener("mouseenter", setStars.bind(setStars, i));
+  star.addEventListener("mouseleave", clearStars);
+  star.addEventListener("click", saveTrainingData.bind(saveTrainingData, score));
+});
+
+function saveTrainingData(score) {
+  const data = JSON.parse(window.localStorage.trainingData);
+
+  data.push({
+    input: [
+    Math.round(currentColors.back.r / 2.55) / 100, // divide by 255 and round to 2 decimal places
+    Math.round(currentColors.back.g / 2.55) / 100,
+    Math.round(currentColors.back.b / 2.55) / 100,
+    Math.round(currentColors.one.r / 2.55) / 100,
+    Math.round(currentColors.one.g / 2.55) / 100,
+    Math.round(currentColors.one.b / 2.55) / 100,
+    Math.round(currentColors.two.r / 2.55) / 100,
+    Math.round(currentColors.two.g / 2.55) / 100,
+    Math.round(currentColors.two.b / 2.55) / 100,
+    Math.round(currentColors.three.r / 2.55) / 100,
+    Math.round(currentColors.three.g / 2.55) / 100,
+    Math.round(currentColors.three.b / 2.55) / 100],
+
+    output: [score] });
+
+
+  window.localStorage.trainingData = JSON.stringify(data);
+
+
+  predictThemeCombinations();
+  clearStars();
+  generateRandomTheme();
+}
+
+// once we have a good set of data, generate some color combinations!
+function predictThemeCombinations() {
+  const data = JSON.parse(window.localStorage.trainingData);
+  if (!data.length) {
+    return;
+  }
+
+  themes.innerHTML = "";
+  const net = new brain.NeuralNetwork({ activation: "leaky-relu" });
+  const results = [];
+
+  net.train(data);
+
+  for (let i = 0; i < 100000; i++) {if (window.CP.shouldStopExecution(0)) break;
+    const back = getRandomBackgroundRgb();
+    const one = getRandomRgb();
+    const two = getRandomRgb();
+    const three = getRandomRgb();
+    const colors = [
+    Math.round(back.r / 2.55) / 100, // divide by 255 and round to 2 decimal places
+    Math.round(back.g / 2.55) / 100,
+    Math.round(back.b / 2.55) / 100,
+    Math.round(one.r / 2.55) / 100,
+    Math.round(one.g / 2.55) / 100,
+    Math.round(one.b / 2.55) / 100,
+    Math.round(two.r / 2.55) / 100,
+    Math.round(two.g / 2.55) / 100,
+    Math.round(two.b / 2.55) / 100,
+    Math.round(three.r / 2.55) / 100,
+    Math.round(three.g / 2.55) / 100,
+    Math.round(three.b / 2.55) / 100];
+
+
+    const [score] = net.run(colors);
+    results.push({ back, one, two, three, score });
+  }
+
+  // sort results
+  window.CP.exitedLoop(0);const sortedResults = results.sort(function (a, b) {
+    var a = a.score;
+    var b = b.score;
+
+    return b - a;
+  });
+
+  // keep the top 20 results!
+  for (let i = 0; i < 20; i++) {if (window.CP.shouldStopExecution(1)) break;
+    addNewTheme(sortedResults[i]);
+  }window.CP.exitedLoop(1);
+}
+
+function addNewTheme({ back, one, two, three, score }) {
+  const newTheme = document.createElement("div");
+  newTheme.classList.add("predicted-theme");
+  newTheme.innerHTML = `
+  <div class="editor-wrapper" style="background:rgb(${back.r}, ${back.g}, ${back.b})">
+    <span style="color:rgb(${one.r}, ${one.g}, ${one.b})">import</span> React <span style="color:rgb(${one.r}, ${one.g}, ${one.b})">from</span> <span style="color: rgb(${two.r}, ${two.g}, ${two.b})">"react"</span><br/>
+    <span style="color:rgb(${one.r}, ${one.g}, ${one.b})">import</span> ReactDOM <span style="color:rgb(${one.r}, ${one.g}, ${one.b})">from</span> <span style="color: rgb(${two.r}, ${two.g}, ${two.b})">"react-dom"</span><br/>
+    <span style="color:rgb(${one.r}, ${one.g}, ${one.b})">import {</span> Provider <span style="color:rgb(${one.r}, ${one.g}, ${one.b})">} from</span> <span style="color: rgb(${two.r}, ${two.g}, ${two.b})">"react-redux"</span><br/>
+    <br/>
+    <span style="color:rgb(${one.r}, ${one.g}, ${one.b})">import</span> Layout <span style="color:rgb(${one.r}, ${one.g}, ${one.b})">from</span> <span style="color: rgb(${two.r}, ${two.g}, ${two.b})">"./components/Layout"</span><br/>
+    <span style="color:rgb(${one.r}, ${one.g}, ${one.b})">import</span> store <span style="color:rgb(${one.r}, ${one.g}, ${one.b})">from</span> <span style="color: rgb(${two.r}, ${two.g}, ${two.b})">"./store"</span><br/>
+    <br/>
+    <span style="color:rgb(${one.r}, ${one.g}, ${one.b})">const</span> app<span style="color:rgb(${one.r}, ${one.g}, ${one.b})"> = </span>document.<span style="color: rgb(${three.r}, ${three.g}, ${three.b})">getElementById</span><span style="color:rgb(${one.r}, ${one.g}, ${one.b})">(</span><span style="color: rgb(${two.r}, ${two.g}, ${two.b})">'app'</span><span style="color:rgb(${one.r}, ${one.g}, ${one.b})">)</span><br/>
+    <br/>
+    ReactDOM.render<span style="color:rgb(${one.r}, ${one.g}, ${one.b})">(</span>&lt;<span style="color: rgb(${three.r}, ${three.g}, ${three.b})">Provider store={</span>store<span style="color: rgb(${three.r}, ${three.g}, ${three.b})">}</span>&gt;<br/>
+    &nbsp;&nbsp;&lt;<span style="color: rgb(${three.r}, ${three.g}, ${three.b})">Layout </span>/&gt;<br/>
+    &lt;/<span style="color: rgb(${three.r}, ${three.g}, ${three.b})">Provider</span>&gt;, app<span style="color:rgb(${one.r}, ${one.g}, ${one.b})"">)</span>
+  </div>
+  <li>Score ${score}</li>
+  <li>Background rgb(${back.r}, ${back.g}, ${back.b})</li>
+  <li>Color 1 rgb(${one.r}, ${one.g}, ${one.b})</li>
+  <li>Color 2 rgb(${two.r}, ${two.g}, ${two.b})</li>
+  <li>Color 3 rgb(${three.r}, ${three.g}, ${three.b})</li>
+  `;
+  themes.appendChild(newTheme);
+}
+
+function setStars(whichStar) {
+  for (let i = 0; i < stars.length; i++) {if (window.CP.shouldStopExecution(2)) break;
+    stars[i].classList.add("gold");
+    if (i >= whichStar) {
+      break;
+    }
+  }window.CP.exitedLoop(2);
+}
+
+function clearStars() {
+  for (const star of stars) {
+    star.classList.remove("gold");
+  }
+}
+function generateRandomTheme() {
+  currentColors.back = getRandomBackgroundRgb();
+  currentColors.one = getRandomRgb();
+  currentColors.two = getRandomRgb();
+  currentColors.three = getRandomRgb();
+
+  editorWrapper.style.background = `rgb(${currentColors.back.r},${currentColors.back.g},${currentColors.back.b})`;
+  for (let color of colorOne) {
+    color.style.color = `rgb(${currentColors.one.r},${currentColors.one.g},${currentColors.one.b})`;
+  }
+  for (let color of colorTwo) {
+    color.style.color = `rgb(${currentColors.two.r},${currentColors.two.g},${currentColors.two.b})`;
+  }
+  for (let color of colorThree) {
+    color.style.color = `rgb(${currentColors.three.r},${currentColors.three.g},${currentColors.three.b})`;
+  }
+}
+
+function getRandomRgb() {
+  return {
+    r: Math.round(Math.random() * 205 + 50), // number between 50 and 255
+    g: Math.round(Math.random() * 205 + 50),
+    b: Math.round(Math.random() * 205 + 50) };
+
+}
+
+function getRandomBackgroundRgb() {
+  return {
+    r: Math.round(Math.random() * 50), // number between 0 and 50
+    g: Math.round(Math.random() * 50),
+    b: Math.round(Math.random() * 50) };
+
+}
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

@@ -1,0 +1,399 @@
+<html lang="en" style="--left:463px; --top:-60px;"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Triangle Machinery</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<style>
+      ShowIfPicked,
+ShowIfFeatured,
+ShowIfThumbnail,
+.show-if-picked,
+.show-if-featured,
+.show-if-thumbnail {
+  display: none;
+}
+
+body.pen-is-picked ShowIfPicked,
+body.pen-is-picked .show-if-picked {
+  display: block;
+}
+
+body.pen-is-featured ShowIfFeatured,
+body.pen-is-featured .show-if-featured {
+  display: block;
+}
+
+body.pen-is-thumbnail ShowIfThumbnail,
+body.pen-is-thumbnail .show-if-thumbnail {
+  display: block;
+}
+
+:root {
+  --left: 0;
+  --top: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+.message {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #ddd;
+  font-size: 28px;
+  font-family: georgia;
+}
+
+Scene {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #111;
+  -webkit-perspective: 500px;
+          perspective: 500px;
+}
+
+Shape {
+  width: 45vmin;
+  height: 45vmin;
+  position: relative;
+  left: var(--left);
+  top: var(--top);
+}
+Shape Side {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-top: 45vmin solid;
+  border-right: 45vmin solid transparent;
+  border-radius: 10px;
+  box-shadow: 0 0 100px;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+Shape Side:nth-child(0) {
+  -webkit-animation: rotate-side-0 0.5s linear infinite, change-color 10s linear infinite;
+          animation: rotate-side-0 0.5s linear infinite, change-color 10s linear infinite;
+}
+Shape Side:nth-child(1) {
+  -webkit-animation: rotate-side-1 0.5s linear infinite, change-color 10s linear infinite;
+          animation: rotate-side-1 0.5s linear infinite, change-color 10s linear infinite;
+}
+Shape Side:nth-child(2) {
+  -webkit-animation: rotate-side-2 0.5s linear infinite, change-color 10s linear infinite;
+          animation: rotate-side-2 0.5s linear infinite, change-color 10s linear infinite;
+}
+Shape Side:nth-child(3) {
+  -webkit-animation: rotate-side-3 0.5s linear infinite, change-color 10s linear infinite;
+          animation: rotate-side-3 0.5s linear infinite, change-color 10s linear infinite;
+}
+Shape Side:nth-child(4) {
+  -webkit-animation: rotate-side-4 0.5s linear infinite, change-color 10s linear infinite;
+          animation: rotate-side-4 0.5s linear infinite, change-color 10s linear infinite;
+}
+Shape Side:nth-child(5) {
+  -webkit-animation: rotate-side-5 0.5s linear infinite, change-color 10s linear infinite;
+          animation: rotate-side-5 0.5s linear infinite, change-color 10s linear infinite;
+}
+Shape Side:nth-child(6) {
+  -webkit-animation: rotate-side-6 0.5s linear infinite, change-color 10s linear infinite;
+          animation: rotate-side-6 0.5s linear infinite, change-color 10s linear infinite;
+}
+Shape Side:nth-child(7) {
+  -webkit-animation: rotate-side-7 0.5s linear infinite, change-color 10s linear infinite;
+          animation: rotate-side-7 0.5s linear infinite, change-color 10s linear infinite;
+}
+Shape Side:nth-child(8) {
+  -webkit-animation: rotate-side-8 0.5s linear infinite, change-color 10s linear infinite;
+          animation: rotate-side-8 0.5s linear infinite, change-color 10s linear infinite;
+}
+
+@-webkit-keyframes rotate-side-0 {
+  from {
+    -webkit-transform: scale(0.8, 1) rotateX(0deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(0deg) rotate(45deg);
+  }
+  to {
+    -webkit-transform: scale(0.8, 1) rotateX(-45deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(-45deg) rotate(45deg);
+  }
+}
+
+@keyframes rotate-side-0 {
+  from {
+    -webkit-transform: scale(0.8, 1) rotateX(0deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(0deg) rotate(45deg);
+  }
+  to {
+    -webkit-transform: scale(0.8, 1) rotateX(-45deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(-45deg) rotate(45deg);
+  }
+}
+@-webkit-keyframes rotate-side-1 {
+  from {
+    -webkit-transform: scale(0.8, 1) rotateX(45deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(45deg) rotate(45deg);
+  }
+  to {
+    -webkit-transform: scale(0.8, 1) rotateX(0deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(0deg) rotate(45deg);
+  }
+}
+@keyframes rotate-side-1 {
+  from {
+    -webkit-transform: scale(0.8, 1) rotateX(45deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(45deg) rotate(45deg);
+  }
+  to {
+    -webkit-transform: scale(0.8, 1) rotateX(0deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(0deg) rotate(45deg);
+  }
+}
+@-webkit-keyframes rotate-side-2 {
+  from {
+    -webkit-transform: scale(0.8, 1) rotateX(90deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(90deg) rotate(45deg);
+  }
+  to {
+    -webkit-transform: scale(0.8, 1) rotateX(45deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(45deg) rotate(45deg);
+  }
+}
+@keyframes rotate-side-2 {
+  from {
+    -webkit-transform: scale(0.8, 1) rotateX(90deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(90deg) rotate(45deg);
+  }
+  to {
+    -webkit-transform: scale(0.8, 1) rotateX(45deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(45deg) rotate(45deg);
+  }
+}
+@-webkit-keyframes rotate-side-3 {
+  from {
+    -webkit-transform: scale(0.8, 1) rotateX(135deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(135deg) rotate(45deg);
+  }
+  to {
+    -webkit-transform: scale(0.8, 1) rotateX(90deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(90deg) rotate(45deg);
+  }
+}
+@keyframes rotate-side-3 {
+  from {
+    -webkit-transform: scale(0.8, 1) rotateX(135deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(135deg) rotate(45deg);
+  }
+  to {
+    -webkit-transform: scale(0.8, 1) rotateX(90deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(90deg) rotate(45deg);
+  }
+}
+@-webkit-keyframes rotate-side-4 {
+  from {
+    -webkit-transform: scale(0.8, 1) rotateX(180deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(180deg) rotate(45deg);
+  }
+  to {
+    -webkit-transform: scale(0.8, 1) rotateX(135deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(135deg) rotate(45deg);
+  }
+}
+@keyframes rotate-side-4 {
+  from {
+    -webkit-transform: scale(0.8, 1) rotateX(180deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(180deg) rotate(45deg);
+  }
+  to {
+    -webkit-transform: scale(0.8, 1) rotateX(135deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(135deg) rotate(45deg);
+  }
+}
+@-webkit-keyframes rotate-side-5 {
+  from {
+    -webkit-transform: scale(0.8, 1) rotateX(225deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(225deg) rotate(45deg);
+  }
+  to {
+    -webkit-transform: scale(0.8, 1) rotateX(180deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(180deg) rotate(45deg);
+  }
+}
+@keyframes rotate-side-5 {
+  from {
+    -webkit-transform: scale(0.8, 1) rotateX(225deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(225deg) rotate(45deg);
+  }
+  to {
+    -webkit-transform: scale(0.8, 1) rotateX(180deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(180deg) rotate(45deg);
+  }
+}
+@-webkit-keyframes rotate-side-6 {
+  from {
+    -webkit-transform: scale(0.8, 1) rotateX(270deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(270deg) rotate(45deg);
+  }
+  to {
+    -webkit-transform: scale(0.8, 1) rotateX(225deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(225deg) rotate(45deg);
+  }
+}
+@keyframes rotate-side-6 {
+  from {
+    -webkit-transform: scale(0.8, 1) rotateX(270deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(270deg) rotate(45deg);
+  }
+  to {
+    -webkit-transform: scale(0.8, 1) rotateX(225deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(225deg) rotate(45deg);
+  }
+}
+@-webkit-keyframes rotate-side-7 {
+  from {
+    -webkit-transform: scale(0.8, 1) rotateX(315deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(315deg) rotate(45deg);
+  }
+  to {
+    -webkit-transform: scale(0.8, 1) rotateX(270deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(270deg) rotate(45deg);
+  }
+}
+@keyframes rotate-side-7 {
+  from {
+    -webkit-transform: scale(0.8, 1) rotateX(315deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(315deg) rotate(45deg);
+  }
+  to {
+    -webkit-transform: scale(0.8, 1) rotateX(270deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(270deg) rotate(45deg);
+  }
+}
+@-webkit-keyframes rotate-side-8 {
+  from {
+    -webkit-transform: scale(0.8, 1) rotateX(360deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(360deg) rotate(45deg);
+  }
+  to {
+    -webkit-transform: scale(0.8, 1) rotateX(315deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(315deg) rotate(45deg);
+  }
+}
+@keyframes rotate-side-8 {
+  from {
+    -webkit-transform: scale(0.8, 1) rotateX(360deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(360deg) rotate(45deg);
+  }
+  to {
+    -webkit-transform: scale(0.8, 1) rotateX(315deg) rotate(45deg);
+            transform: scale(0.8, 1) rotateX(315deg) rotate(45deg);
+  }
+}
+@-webkit-keyframes change-color {
+  from, 20% {
+    color: rgba(0, 250, 154, 0.25);
+  }
+  20.1%, 40% {
+    color: rgba(255, 192, 203, 0.25);
+  }
+  40.1%, 60% {
+    color: rgba(0, 255, 255, 0.25);
+  }
+  60.1%, 80% {
+    color: rgba(255, 215, 0, 0.25);
+  }
+  80.1%, to {
+    color: rgba(220, 20, 60, 0.25);
+  }
+}
+@keyframes change-color {
+  from, 20% {
+    color: rgba(0, 250, 154, 0.25);
+  }
+  20.1%, 40% {
+    color: rgba(255, 192, 203, 0.25);
+  }
+  40.1%, 60% {
+    color: rgba(0, 255, 255, 0.25);
+  }
+  60.1%, 80% {
+    color: rgba(255, 215, 0, 0.25);
+  }
+  80.1%, to {
+    color: rgba(220, 20, 60, 0.25);
+  }
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<scene>
+<shape>
+<side></side>
+<side></side>
+<side></side>
+<side></side>
+<side></side>
+<side></side>
+<side></side>
+<side></side>
+</shape>
+</scene>
+<div class="message show-if-picked show-if-thumbnail">
+Move your mouse
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      window.penEnv = function () {
+  var width = window.innerWidth;
+  var height = window.innerHeight;
+
+  var environments = {
+    '741,417': 'picked',
+    '1553,621': 'featured',
+    '726,408': 'thumbnail' };
+
+
+  return environments[[width, height].join()] || null;
+}();
+
+if (window.penEnv) {
+  document.body.classList.add(
+  `pen-is-${window.penEnv}`);
+
+}
+;var dom = document.documentElement;
+window.addEventListener('mousemove', event => {
+  requestAnimationFrame(_ => {
+    var { innerWidth, innerHeight } = window;
+    var { clientX, clientY } = event;
+    var relativeX = clientX - innerWidth / 2;
+    var relativeY = clientY - innerHeight / 2;
+    dom.style.setProperty('--left', relativeX + 'px');
+    dom.style.setProperty('--top', relativeY + 'px');
+  });
+});
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

@@ -1,0 +1,103 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Tool Tip</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<style>
+      .container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.container:hover .tool-tip {
+  top: -70px;
+  transition: all 0.4s cubic-bezier(1, 0, 0.4, 1.7);
+  -webkit-transform: translateX(-50%) scale(1);
+          transform: translateX(-50%) scale(1);
+}
+
+a {
+  border-radius: 3px;
+  overflow: hidden;
+  background-color: #F54C6B;
+  padding: 12px 24px;
+  display: block;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 1px;
+  color: #FFF;
+  position: relative;
+  z-index: 10;
+}
+a:before {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 3px;
+  background-color: #D42111;
+  transition: all 0.2s ease-out;
+}
+a:hover:before {
+  width: 100%;
+}
+
+.tool-tip {
+  width: 125px;
+  height: 50px;
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  border-radius: 50px;
+  background-color: #333;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  line-height: 50px;
+  color: #FFF;
+  text-align: center;
+  -webkit-transform: translateX(-50%) scale(0);
+          transform: translateX(-50%) scale(0);
+  -webkit-transform-origin: bottom center;
+          transform-origin: bottom center;
+  transition: all 0.4s cubic-bezier(1, 0, 0.4, 1);
+}
+.tool-tip:after {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #333;
+  content: '';
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="container">
+<a href="#">Hover</a>
+<div class="tool-tip">Tool Tip...Yay!</div>
+</div>
+
+
+
+</body></html>

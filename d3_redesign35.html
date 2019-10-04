@@ -1,0 +1,336 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - NEM Wallet Generator</title>
+<style>
+      html {
+  width: 100%;
+  height: 100%;
+  display: table;
+}
+
+body {
+  padding-top: 0px !important;
+  background-image: linear-gradient(
+    to left top,
+    #3bb9ea,
+    #00bde1,
+    #00c0d4,
+    #00c1c2,
+    #00c2ae
+  );
+  background-repeat: no-repeat;
+  width: 100%;
+  display: table-cell;
+}
+
+a {
+  color: #f80 !important;
+}
+
+a:hover {
+  color: #20b5ac;
+  text-decoration: none;
+}
+
+p {
+  margin-bottom: 5px !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.title {
+  text-align: center;
+}
+
+.title h3 {
+  padding: 0px;
+  margin: 0px;
+  color: #20b5ac;
+  font-weight: bold;
+  letter-spacing: 1px;
+  float: left;
+  margin-right: 10px;
+}
+
+.title img {
+  height: 30px;
+  height: 30px;
+  float: right;
+  margin-top: -3px;
+}
+
+.square {
+  display: inline-block;
+  border-style: solid;
+  border-color: white;
+  padding: 20px 20px 16px 20px;
+  background: white;
+  -webkit-box-shadow: 0px 0px 76px -15px rgba(112, 112, 112, 1);
+  -moz-box-shadow: 0px 0px 76px -15px rgba(112, 112, 112, 1);
+  box-shadow: 0px 0px 76px -15px rgba(112, 112, 112, 1);
+}
+
+.block {
+  margin-top: 50px;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 76px -15px rgba(112, 112, 112, 1);
+  -moz-box-shadow: 0px 0px 76px -15px rgba(112, 112, 112, 1);
+  box-shadow: 0px 0px 76px -15px rgba(112, 112, 112, 1);
+}
+
+.block span,
+.block p {
+  color: gray;
+}
+
+.block > div {
+  padding: 25px;
+}
+
+.block h4 {
+  color: #20b5ac;
+  margin-bottom: 15px;
+}
+
+.btn {
+  border-radius: 0px;
+}
+
+.btn-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#generate-block {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+#links-list li {
+  list-style: none;
+}
+
+#generate {
+  text-transform: uppercase;
+  background-color: white;
+  margin: 0px;
+  color: #20b5ac;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 1.75rem;
+}
+
+#footer p {
+  text-align: center;
+  color: white;
+}
+
+#footer a:hover {
+  color: #f80;
+  text-decoration: none;
+}
+
+.wallet-outer-wrap {
+  display: block;
+  width: 100%;
+  height: 250px;
+  border: 3px dashed white;
+  margin-top: 50px;
+}
+
+.wallet-outer-wrap .row {
+  height: inherit;
+}
+
+.wallet-outer-wrap .col-md-2 {
+  padding: 0px !important;
+}
+
+.wallet-outer-wrap .col-md-2 p {
+  position: absolute;
+  top: 83%;
+  width: 100%;
+  text-align: center;
+  color: white;
+  letter-spacing: 0px;
+}
+
+.wallet-outer-wrap img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.wallet-outer-wrap .col-md-10 {
+  border-left: 2px dashed white;
+}
+
+.wallet-outer-wrap .col-md-10 p:nth-of-type(1),
+.wallet-outer-wrap .col-md-10 p:nth-of-type(3n + 0) {
+  letter-spacing: 1px;
+}
+
+.wallet-outer-wrap .col-md-10 p:nth-of-type(2n + 0) {
+  text-decoration: underline;
+}
+
+.wallet-outer-wrap .col-md-10 p {
+  position: relative;
+  top: 11%;
+  color: white;
+  font-size: 19px;
+  padding-left: 8px;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+<meta name="description" content="A browser based NEM papper wallet generator built on JavaScript. Generate your NEM papper wallet.">
+<meta name="keywords" content="NEM, XEM, New Economy Movement, Blockchain, Cryptocurrency, Papper Wallet, NEM Papper Wallet, NEM Papper Wallet Generator, NEM Cold Wallet, NEM Cold Storage Wallet, NEM Cold Papper Wallet, NEM Community Project">
+<meta name="author" content="Viktor Veljanovski">
+<title>NEM Offline Wallet</title>
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/solid.css" integrity="sha384-TbilV5Lbhlwdyc4RuIV/JhD8NR+BfMrvz4BL5QFa2we1hQu6wvREr3v6XSRfCTRp" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/nem-sdk@1.6.7/dist/nem-sdk.js"></script>
+
+
+<div class="container">
+<div class="row block">
+<div class="col-md-12">
+<h4>Simple NEM Wallet Generator</h4>
+<p>What's included:</p>
+<a href="https://github.com/QuantumMechanics/NEM-sdk" target="_blank">NEM SDK</a>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;NEM Developer Kit for Node.js and the browser</p>
+<p><a href="https://getbootstrap.com/" target="_blank">BootStrap</a></p>
+<p><a href="https://jquery.com/" target="_blank">jQuery</a></p>
+<p><a href="https://davidshimjs.github.io/qrcodejs/" target="_blank">QRCodejs</a></p>
+<p>Check out the <a href="https://fesovel.github.io/nem-papper-wallet-generator/" target="_blank">full version</a> for a printable wallet.</p>
+<br>
+<p>DO NOT use this wallet !</p>
+</div>
+</div>
+</div>
+<div class="container">
+<div id="generate-block" class="row block">
+<div class="col-md-12 btn-wrap">
+<button type="button" id="generate" class="square btn btn-default">Generate Wallet</button>
+</div>
+</div>
+</div>
+<div class="container wallet-outer-wrap">
+          <div class="row">
+            <div class="col-md-2">
+              <div id="qrcode" title="NB4OY4K25MME6H3NUJRCFKEY46J52LN624II56MI"><canvas width="150" height="150" style="display: none;"></canvas><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAYAAAA8AXHiAAALKklEQVR4Xu2dQZbcNgxE7UP4NMnad07WOU1yiMmT7Tz3SEx/fIKSZjw1W5AgWCgUKHar5/PLy8vLpwv/fv/zH7XaX1+/PB1P/uz8/XjyPwrOrrn3QTGQnfypBEwO/hxivSa6TVqINWZeiLVT0BBrUqJ200KsEGsNk4hYM2eKZ5GtUICOf7u+HT+TFXsG68bUnU97HO3noFgh1uuHhdV4bEkKsYiqBfvV1bIngl3fji9AcBgSYs2gtptzdqLIP9np0TyKxSSYaoVUXftlrWJ0E0/rd4lj97+tRxhQzF1MaH2yE5Uq8/GMZYGlRa2diEFJovmkSHb/IdZ3xEMs+CQgxDrqF4lDiDVoW6Rw1CaiWL+IYtlWtnp8hWiWrKtjpDObVeUPoVhXJ2GGSCHWxBMNHZ5ttdxNFIo3xKo99b77w/vdRJwhGrWeq/dE8VjxeBOH95nEdOaQIpG9s3Z1LiWaiEett3JGehZrZf7tilUFe9U4Ig7ZV8XxzE+INUCH2GyrbXUiiThkXx3PyF+IFWKdwrMPQawucmcrAPnv2iv7t2tUfJozDvmj+Gg+2ac+hCanZL96U7YVr4iPfJACEYb0VEbzKT6aT/YQq3BPN3MGpMSFWIXPzoi99lHX+rP+bdJDLJ+RkmJ5t27G6lbVJY6dv+32V9iDy5offftbOjaxdyc1xKqRLMTavWlNxA2xQqxvCKxWxBCrSKzf/vj70t9uqIW1btTqJ7JRZBWVe5xH48nevX5Yh+7/e/ocYvVh7hLBqmqI1c9Z20MUqw3hlIMo1hRsrydFsY4gamKRAqwGuSv71GbshWuFh4RRxcezMYTxzCXv43oUf8V/iLXLoCXiiACUmBBrgACBRtVECmT9U5IsUez4EGucgShWFOvAjBXFfSAWVezVdlKk1faK4lbOGCvPLBZz6gp0riRMKxiFWDsUK6CFWM9/t3WDNMQKsfCH4EgBh1+b2d+8W9mlCu/aSZZX2ynebb0oVkGx6Oe4CWiyE9u7xFhdCJV46XBb8WHOYBYjIv4V8ePXZog4ZLcgWxBDrCNiIZZlUeFejYhO9kohXFHxHWhCrA56P+ZGsd6oYtHXZlZX5wIuneqCiLotTph0FYPm0z0Uzac9dvc3vG6goCmrtCmaf7edQA+xak/F+JEOsbdyJrmbLGb9EKuvyFGsiYeBKNakYlHFWrtRi20stVJan9brzh/5P1vVuzHb+Sv2c/pHOpRo20otSHRmJCJX4l+RiGfrXL3nFfsJseR/fI1i1a43QqwQ68CUSxSLWoFtJRQ03Yx316P5lbZDY7p7pONBd33KKdkpR8OnQgKFNk1BkX8KmojRPVNR0kZPhRQzYbYaE/JHOSJ7Zb/YCu0iNJ42TUGHWP5nAygn1k45imItuseqAP241Orx1p8l0oziomKtDpr8kSJRq1ptHyWBYuy2Y0o87ZHWt0ShnI3iDbHgv9iHWPxDcyHWxM8ahVgh1jcOUJuw9hBrklj0nXfq92Sn/kznFSKCPU/Q+aLrj/DY7BaTLga0XiVmOwa/824dUuJWg9QlgiV2F48QawWCE9VJRFlNhNX+KrCRgli7xYzuEit7oDFRrBP+2TiBbomzWuVvIRZt2rY6Gk/Vtno+JX2FnVSwu0aXaISp9T/aT/v/FXaJGGJ5mtnEk0JRDmcKJcTyecUZM4lApw8DQqwBWgS6rS6reCaBs2Npj7N+/5v3Loll+y+NtyBaYnXHz5CAEmvthJGN0WJyRnHiUyH13xCrf+EZYi14C5hAtNXWHW/VYIvfKpItzm6xWkyiWIULV0oKkYKIH2JVEPr0ST8VUvWRvRbWz1HWHykQEYuqfYvs7JhWF0dlT49r0v7IvvkKsRZ8H4sSZ8keYk2cN6JYRwQsMUl1u2cmUiSyR7Em2lpaYe0okFaYVniQUFIksl+iWFaW6TxCrZTaBNnJ/+ip0J6JKms8G0OJJQxXYPAY36iVn65YIRb/3pQlWog1QMweVC3oVI1kr6xn90DjK2t2rgOouEnhKL4oVuEplkBMK6w91eqfirQyTNVK1WLnd8dTPBXi0RhSTdoD+bf2M/YcYn398ioPZ4BsW1GIVWgtBBIl0s7vjqd4rBqMxkexJohDrZIezam6aX6I5al/RjHpVkiJpW1R4mk+rU9qQP6788n/CgWzRFiNOeVgs4dYO5RCLF8aI6KHWCGWZ9JuRohVgDCKVQCpQiz6UZDuYZz6O/nvnifIf+W8QFDTHmk+7ZH82/mEifU32t/pL1NYULqKQfNtPESKzU4+yUc3kXZ+iFX4Fyh0PUEgRrH45RDCOIpVUBeq/sp1ASmUJTMpIsVsVdz6GxLL/iPMrgLQJm1SrL9ukirE6mJECmETT/GQnXKy5KnQBkHjCSTaVIh1RIgwsXbKQYh1USukYuq2QipGSxwbbyV+fUFqg6DxBBJVC4FIbaUCUjeGbvvt7tHmgOKtYKZ/592CTOMtsQjks+2j6wWbOMLEJpYSTZicEU+IBW/pjIhPiSL7GYl89PkWiB5ihVjE86kL4BArxDqHWPazQoxCDlh9nqDlbZsaxUfnQtoTtSo6M9EDifVP6xFmo/3qzwopcdZOSSB/lGSbBBq/2WlN2pNNvF3P+g+xBiwj0IkoND+KxZ8lRrEK3+EnIkaxJn8UpNt6qA2Q7NL65J/agLWP4qEYaA8zKvnMJ/mjeMg+s188Y1ki2CAsKOTfEocOpiHW3PfNQqyJF1aJ3KQAVEzWP/mjeMhu49n8hVghFvFq7oJ0f49l2U9s7vqz8+nw3W2VM4d32sNMO37Ghm5OuvOHikUgUOLsmYz82XisP0rqiusG2gPFgJKyG9AlRnd+iFW4fgixjrSmQgmxQqyhGN6iWHbRrszb9agVUlupVCP5IHsXk+4eKT57nCndvBOwNtFdEO16XdBp/zYplXuw7pqEUTdmii/EKiBMIBZc4JBusXWLBwPcDSBMQqwCogRiwQUO+RDEovcKEaXmACvjdA9F54Pues3tlg7LRG7aA80nxbMYjzaFb+mcAeSjTwKpS5QuSDZJM3hZBSPMbMy0Pq0XYhXeKyQizxCH5lBiSWG6MdP6IdYgg1EsovXcF/nIq/4QmhySnRJt7bTeGdU+U8EmTouBVRzybxWw9FRoAJgZS5uydhsDkaJyPiEfNiZK5GriEMYUT6VYo1g7lEKsY1kQJlGswuGdQNxgj2K9Jl+JWBVgjdSTjJOsUjzkn0hAbWG0vvVp90h7sv4oX931htcN3S/6nR10iOXfYyTMusSkwtr84z/CJOKQvVsNBBL5JxCiWHzdQESMYg0QCLFuIhZVPD2arlYUWz2WOBTvqDpn5jz6sRhTl+jau12i1ArtpruJJKKGWF3a8PwQq/Do3yU6gTy6fqjMiWLt3rsjvncTGcUihM+3U2FUWj8+FV7dCi0xCWaKf/V6VygYJX71ccEW+5s8Y61OdIjFnxQQ5iHWQL5CrBDrGy2oeq5uA3a9tMLv1X37GYvOAzOJXfnENfNZoW0dXVW16xHmdG6t2EMsQCnEqtDoOCbECrFO+RpQiBVi3UOsOSH8OatymfZsje75gx4GuueTUezdPRPmFhM6U1mMKL7S4b3ixBDDHsYtiJRU629m/xTDjE/zQEIYU3yEUSV+bIUVJyHWawQocasxtapL8YVYE/deBBpVe4UUlLiKD1Os74JY3U3T/BWJM6Db84MdT/vd7N09E1FtsZztb3jGqgDVGdMFmda+AjSKwSoI+Tt7T7aYKuNvf6+QQLX2s5Ng44lizSA2MSeK5UE7u1gqCvQYdWV8FGuX5wpolhrdYnqPxPoXyM3l6vsZDzEAAAAASUVORK5CYII=" style="display: block;"></div>
+              <p>Your Address</p>
+            </div>
+            <div class="col-md-10">
+              <p>Private Key</p>
+              <p>6366f27b567ccfb6169d630484fe5d14bdc60037ab68d8d80d5734f55516efb2</p>
+              <p>Public Key</p>
+              <p>e488ab0838ccb289e8ebd600a7f8acf1e7c65c4da079e2332b041f612ce099f5</p>
+              <p>Address</p>
+              <p>NB4OY4K25MME6H3NUJRCFKEY46J52LN624II56MI</p>
+            </div>
+          </div>
+        </div>
+<section id="footer">
+<div class="container">
+<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+<p>CodePen By <a href="https://twitter.com/theVikVel" target="_blank">VikVel</a></p>
+</div>
+</div>
+</section>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://davidshimjs.github.io/qrcodejs/qrcode.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      $ = jQuery;
+$("#generate").on("click", function () {
+  var data = [];
+  /* - Initiate the SDK - */
+  var nem = require("nem-sdk").default;
+  /* - Generate 32 random bytes - */
+  var rBytes = nem.crypto.nacl.randomBytes(32);
+  /* - Generate the private key - */
+  data["privateKey"] = nem.utils.convert.ua2hex(rBytes);
+  /* - Generate key - pair - */
+  var keyPair = nem.crypto.keyPair.create(data["privateKey"]);
+  /* - Generate the public key - */
+  data["publicKey"] = keyPair.publicKey.toString();
+  /* - Generate the address - */
+  data["address"] = nem.model.address.toAddress(
+  keyPair.publicKey.toString(),
+  nem.model.network.data.mainnet.id);
+
+  const Item = ({ privateKey, publicKey, address }) => `
+          <div class="row">
+            <div class="col-md-2">
+              <div id="qrcode"></div>
+              <p>Your Address</p>
+            </div>
+            <div class="col-md-10">
+              <p>Private Key</p>
+              <p>${privateKey}</p>
+              <p>Public Key</p>
+              <p>${publicKey}</p>
+              <p>Address</p>
+              <p>${address}</p>
+            </div>
+          </div>
+        `;
+  $(".wallet-outer-wrap").html(
+  [
+  {
+    privateKey: data["privateKey"],
+    publicKey: data["publicKey"],
+    address: data["address"] }].
+
+
+  map(Item).
+  join(""));
+
+  var qrcode = new QRCode("qrcode", {
+    text: data["address"],
+    width: 150,
+    height: 150,
+    colorDark: "#ffffff",
+    colorLight: "#3bb9ea",
+    correctLevel: QRCode.CorrectLevel.H });
+
+});
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

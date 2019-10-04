@@ -1,0 +1,988 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - codrops: Circle Hover Styles</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<style>
+      @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* =================================================== DEMO STYLE */
+body {
+  background-color: darkgray;
+  font-family: "Lato", Monospace;
+  max-width: 980px;
+  margin: 1em auto;
+  font-size: 20px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* colors */
+/* time of the animation */
+/* sizes */
+#set-1 {
+  background: #3e70a0;
+}
+
+#set-2 {
+  background: #517099;
+}
+
+#set-3 {
+  background: #647092;
+}
+
+#set-4 {
+  background: #78708b;
+}
+
+#set-5 {
+  background: #8b7084;
+}
+
+#set-6 {
+  background: #9e707e;
+}
+
+#set-7 {
+  background: #b27077;
+}
+
+#set-8 {
+  background: #c57070;
+}
+
+#set-9 {
+  background: #d87069;
+}
+
+.credits {
+  clear: both;
+  text-align: center;
+}
+
+section {
+  z-index: 1;
+  margin: 0;
+  float: left;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+}
+
+.hi-wrap {
+  display: inline-block;
+  text-align: center;
+  margin: 2em 1em;
+  padding: 0em;
+  float: left;
+  align-self: flex-start;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 .5em;
+}
+
+.cell {
+  flex: 1;
+}
+
+[class^="cell"] {
+  padding: 0 .5em;
+}
+
+/* Column Spans */
+.cell-1of2 {
+  flex: 0 0 50%;
+}
+
+.cell-1of3 {
+  flex: 0 0 33.3333%;
+}
+
+.cell-2of3 {
+  flex: 0 0 66.6666%;
+}
+
+.cell-1of4 {
+  flex: 0 0 25%;
+}
+
+.cell-3of4 {
+  flex: 0 0 75%;
+}
+
+.cell-1of5 {
+  flex: 0 0 20%;
+}
+
+.cell-2of5 {
+  flex: 0 0 40%;
+}
+
+.cell-3of5 {
+  flex: 0 0 60%;
+}
+
+.cell-4of5 {
+  flex: 0 0 80%;
+}
+
+.cell-1of8 {
+  flex: 0 0 12.5;
+}
+
+.cell-3of8 {
+  flex: 0 0 37.5%;
+}
+
+.cell-5of8 {
+  flex: 0 0 62.5%;
+}
+
+.cell-7of8 {
+  flex: 0 0 87.5%;
+}
+
+/* 100% Width Columns on Small Screens */
+@media (max-width: 500px) {
+  [class^="cell"] {
+    flex: 0 0 100%;
+  }
+}
+/* ============================================ COMMON ICON STYLE */
+.hi {
+  text-decoration: none;
+  display: inline-block;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  color: #fff;
+}
+
+.hi:after {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  content: '';
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.hi:before {
+  font-size: 48px;
+  line-height: 90px;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  display: block;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===================================================== EFFECT 1 */
+.hi.hi--eff-1 {
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-transition: background 0.6s, color 0.6s;
+  -moz-transition: background 0.6s, color 0.6s;
+  transition: background 0.6s, color 0.6s;
+}
+
+.hi.hi--eff-1:after {
+  top: -7px;
+  left: -7px;
+  padding: 7px;
+  box-shadow: 0 0 0 4px #fff;
+  -webkit-transition: -webkit-transform 0.6s, opacity 0.6s;
+  -webkit-transform: scale(0.8);
+  -moz-transition: -moz-transform 0.6s, opacity 0.6s;
+  -moz-transform: scale(0.8);
+  -ms-transform: scale(0.8);
+  transition: transform 0.6s, opacity 0.6s;
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+/* -------------------------------------- EFFECT 1a */
+.hi.hi--eff-1.hi--eff-1a:hover {
+  background: white;
+  color: #3e70a0;
+}
+
+.hi.hi--eff-1.hi--eff-1a:hover:after {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* -------------------------------------- EFFECT 1b */
+.hi.hi--eff-1.hi--eff-1b:hover {
+  background: white;
+  color: #3e70a0;
+}
+
+.hi.hi--eff-1.hi--eff-1b:after {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.hi.hi--eff-1.hi--eff-1b:hover:after {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* ===================================================== EFFECT 2 */
+.hi.hi--eff-2 {
+  color: #517099;
+  box-shadow: 0 0 0 3px #fff;
+  -webkit-transition: color 0.6s;
+  -moz-transition: color 0.6s;
+  transition: color 0.6s;
+}
+
+.hi.hi--eff-2:after {
+  top: -2px;
+  left: -2px;
+  padding: 2px;
+  z-index: -1;
+  background: #fff;
+  -webkit-transition: -webkit-transform 0.6s, opacity 0.6s;
+  -moz-transition: -moz-transform 0.6s, opacity 0.6s;
+  transition: transform 0.6s, opacity 0.6s;
+}
+
+/* -------------------------------------- EFFECT 2a */
+.hi.hi--eff-2.hi--eff-2a:hover {
+  color: #517099;
+}
+
+.hi.hi--eff-2.hi--eff-2a:hover:after {
+  -webkit-transform: scale(0.85);
+  -moz-transform: scale(0.85);
+  -ms-transform: scale(0.85);
+  transform: scale(0.85);
+}
+
+/* -------------------------------------- EFFECT 2b */
+.hi.hi--eff-2.hi--eff-2b:hover:after {
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+  opacity: 0;
+  -webkit-transition: -webkit-transform 1.2s, opacity 0.6s;
+  -moz-transition: -moz-transform 1.2s, opacity 0.6s;
+  transition: transform 1.2s, opacity 0.6s;
+}
+
+.hi.hi--eff-2.hi--eff-2b:hover {
+  color: #fff;
+}
+
+/* ===================================================== EFFECT 3 */
+.hi.hi--eff-3 {
+  box-shadow: 0 0 0 4px #fff;
+  -webkit-transition: color 0.6s;
+  -moz-transition: color 0.6s;
+  transition: color 0.6s;
+}
+
+.hi.hi--eff-3:after {
+  top: -2px;
+  left: -2px;
+  padding: 2px;
+  z-index: -1;
+  background: #fff;
+  -webkit-transition: -webkit-transform 0.6s, opacity 0.6s;
+  -moz-transition: -moz-transform 0.6s, opacity 0.6s;
+  transition: transform 0.6s, opacity 0.6s;
+}
+
+/* -------------------------------------- EFFECT 3a */
+.hi.hi--eff-3.hi--eff-3a {
+  color: #647092;
+}
+
+.hi.hi--eff-3.hi--eff-3a:hover {
+  color: #fff;
+}
+
+.hi.hi--eff-3.hi--eff-3a:hover:after {
+  -webkit-transform: scale(1.3);
+  -moz-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.3);
+  opacity: 0;
+}
+
+/* -------------------------------------- EFFECT 3b */
+.hi.hi--eff-3.hi--eff-3b {
+  color: #fff;
+}
+
+.hi.hi--eff-3.hi--eff-3b:hover {
+  color: #647092;
+}
+
+.hi.hi--eff-3.hi--eff-3b:after {
+  -webkit-transform: scale(1.3);
+  -moz-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.3);
+  opacity: 0;
+}
+
+.hi.hi--eff-3.hi--eff-3b:hover:after {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* ===================================================== EFFECT 4 */
+.hi.hi--eff-4 {
+  width: 92px;
+  height: 92px;
+  box-shadow: 0 0 0 4px white;
+}
+
+.hi.hi--eff-4:before {
+  line-height: 92px;
+}
+
+.hi.hi--eff-4:after {
+  top: -4px;
+  left: -4px;
+  padding: 0;
+  z-index: 10;
+  border: 4px dashed #fff;
+}
+
+.hi.hi--eff-4:hover {
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  color: #fff;
+}
+
+/* -------------------------------------- EFFECT 4a */
+.hi.hi--eff-4.hi--eff-4a {
+  -webkit-transition: box-shadow 0.6s;
+  -moz-transition: box-shadow 0.6s;
+  transition: box-shadow 0.6s;
+}
+
+/* -------------------------------------- EFFECT 4b */
+.hi.hi--eff-4.hi--eff-4b:hover {
+  -webkit-transition: box-shadow 0.6s;
+  -moz-transition: box-shadow 0.6s;
+  transition: box-shadow 0.6s;
+}
+
+.hi.hi--eff-4.hi--eff-4b:hover:after {
+  -webkit-animation: spinAround 9s linear infinite;
+  -moz-animation: spinAround 9s linear infinite;
+  animation: spinAround 9s linear infinite;
+}
+
+@-webkit-keyframes spinAround {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinAround {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+@keyframes spinAround {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* btw: just eff-5 is beautiful in itself */
+/* ===================================================== EFFECT 5 */
+.hi.hi--eff-5 {
+  box-shadow: 0 0 0 4px white;
+  overflow: hidden;
+  -webkit-transition: background 0.6s, color 0.6s, box-shadow 0.6s;
+  -moz-transition: background 0.6s, color 0.6s, box-shadow 0.6s;
+  transition: background 0.6s, color 0.6s, box-shadow 0.6s;
+}
+
+.hi.hi--eff-5:after {
+  display: none;
+}
+
+.hi.hi--eff-5:hover {
+  background: white;
+  color: #8b7084;
+  box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+/* -------------------------------------- EFFECT 5a */
+.hi.hi--eff-5.hi--eff-5a:hover:before {
+  -webkit-animation: toRightFromLeft 0.6s forwards;
+  -moz-animation: toRightFromLeft 0.6s forwards;
+  animation: toRightFromLeft 0.6s forwards;
+}
+
+@-webkit-keyframes toRightFromLeft {
+  49% {
+    -webkit-transform: translate(100%);
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: translate(-100%);
+  }
+  51% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes toRightFromLeft {
+  49% {
+    -moz-transform: translate(100%);
+  }
+  50% {
+    opacity: 0;
+    -moz-transform: translate(-100%);
+  }
+  51% {
+    opacity: 1;
+  }
+}
+@keyframes toRightFromLeft {
+  49% {
+    transform: translate(100%);
+  }
+  50% {
+    opacity: 0;
+    transform: translate(-100%);
+  }
+  51% {
+    opacity: 1;
+  }
+}
+/* -------------------------------------- EFFECT 5b */
+.hi.hi--eff-5.hi--eff-5b:hover:before {
+  -webkit-animation: toLeftFromRight 0.6s forwards;
+  -moz-animation: toLeftFromRight 0.6s forwards;
+  animation: toLeftFromRight 0.6s forwards;
+}
+
+@-webkit-keyframes toLeftFromRight {
+  49% {
+    -webkit-transform: translate(-100%);
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: translate(100%);
+  }
+  51% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes toLeftFromRight {
+  49% {
+    -moz-transform: translate(-100%);
+  }
+  50% {
+    opacity: 0;
+    -moz-transform: translate(100%);
+  }
+  51% {
+    opacity: 1;
+  }
+}
+@keyframes toLeftFromRight {
+  49% {
+    transform: translate(-100%);
+  }
+  50% {
+    opacity: 0;
+    transform: translate(100%);
+  }
+  51% {
+    opacity: 1;
+  }
+}
+/* -------------------------------------- EFFECT 5c */
+.hi.hi--eff-5.hi--eff-5c:hover:before {
+  -webkit-animation: toTopFromBottom 0.6s forwards;
+  -moz-animation: toTopFromBottom 0.6s forwards;
+  animation: toTopFromBottom 0.6s forwards;
+}
+
+@-webkit-keyframes toTopFromBottom {
+  49% {
+    -webkit-transform: translateY(-100%);
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: translateY(100%);
+  }
+  51% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes toTopFromBottom {
+  49% {
+    -moz-transform: translateY(-100%);
+  }
+  50% {
+    opacity: 0;
+    -moz-transform: translateY(100%);
+  }
+  51% {
+    opacity: 1;
+  }
+}
+@keyframes toTopFromBottom {
+  49% {
+    transform: translateY(-100%);
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  51% {
+    opacity: 1;
+  }
+}
+/* -------------------------------------- EFFECT 5d */
+.hi.hi--eff-5.hi--eff-5d:hover:before {
+  -webkit-animation: toBottomFromTop 0.6s forwards;
+  -moz-animation: toBottomFromTop 0.6s forwards;
+  animation: toBottomFromTop 0.6s forwards;
+}
+
+@-webkit-keyframes toBottomFromTop {
+  49% {
+    -webkit-transform: translateY(100%);
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: translateY(-100%);
+  }
+  51% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes toBottomFromTop {
+  49% {
+    -moz-transform: translateY(100%);
+  }
+  50% {
+    opacity: 0;
+    -moz-transform: translateY(-100%);
+  }
+  51% {
+    opacity: 1;
+  }
+}
+@keyframes toBottomFromTop {
+  49% {
+    transform: translateY(100%);
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  51% {
+    opacity: 1;
+  }
+}
+/* ===================================================== EFFECT 6 */
+.hi.hi--eff-6 {
+  box-shadow: 0 0 0 4px white;
+  -webkit-transition: background 0.6s, color 0.6s;
+  -moz-transition: background 0.6s, color 0.6s;
+  transition: background 0.6s, color 0.6s;
+}
+
+.hi.hi--eff-6:hover {
+  background: white;
+  color: #9e707e;
+}
+
+.hi.hi--eff-6:hover:before {
+  -webkit-animation: spinAround 2s linear infinite;
+  -moz-animation: spinAround 2s linear infinite;
+  animation: spinAround 2s linear infinite;
+}
+
+/* this is a copy from eff-3b */
+@-webkit-keyframes spinAround {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinAround {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+@keyframes spinAround {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* ===================================================== EFFECT 7 */
+.hi.hi--eff-7 {
+  box-shadow: 0 0 0 4px white;
+  -webkit-transition: background 0.6s, color 0.6s;
+  -moz-transition: background 0.6s, color 0.6s;
+  transition: background 0.6s, color 0.6s;
+}
+
+.hi.hi--eff-7:hover {
+  color: #fff;
+}
+
+.hi.hi--eff-7:after {
+  top: -8px;
+  left: -8px;
+  padding: 8px;
+  z-index: -1;
+  opacity: 0;
+}
+
+/* -------------------------------------- EFFECT 7a */
+.hi.hi--eff-7.hi--eff-7a:after {
+  box-shadow: 0 0 0 white;
+  -webkit-transition: opacity 0.6s, box-shadow 0.6s;
+  -moz-transition: opacity 0.6s, box-shadow 0.6s;
+  transition: opacity 0.6s, box-shadow 0.6s;
+}
+
+.hi.hi--eff-7.hi--eff-7a:hover:after {
+  opacity: 1;
+  box-shadow: 3px 3px 0 white;
+}
+
+.hi.hi--eff-7.hi--eff-7a:before {
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  -ms-transform: scale(0.8);
+  transform: scale(0.8);
+  opacity: 0.7;
+  -webkit-transition: -webkit-transform 0.6s, opacity 0.6s;
+  -moz-transition: -moz-transform 0.6s, opacity 0.6s;
+  transition: transform 0.6s, opacity 0.6s;
+}
+
+.hi.hi--eff-7.hi--eff-7a:hover:before {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* -------------------------------------- EFFECT 7b */
+.hi.hi--eff-7.hi--eff-7b:after {
+  box-shadow: 3px 3px white;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  -webkit-transition: opacity 0.6s, -webkit-transform 0.6s;
+  -moz-transition: opacity 0.6s, -moz-transform 0.6s;
+  transition: opacity 0.6s, transform 0.6s;
+}
+
+.hi.hi--eff-7.hi--eff-7b:hover:after {
+  opacity: 1;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+
+.hi.hi--eff-7.hi--eff-7b:before {
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  -ms-transform: scale(0.8);
+  transform: scale(0.8);
+  opacity: 0.7;
+  -webkit-transition: -webkit-transform 0.6s, opacity 0.6s;
+  -moz-transition: -moz-transform 0.6s, opacity 0.6s;
+  transition: transform 0.6s, opacity 0.6s;
+}
+
+.hi.hi--eff-7.hi--eff-7b:hover:before {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* ===================================================== EFFECT 8 */
+.hi.hi--eff-8 {
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-transition: -webkit-transform ease-out 0.6s, background 0.6s;
+  -moz-transition: -moz-transform ease-out 0.6s, background 0.6s;
+  transition: transform ease-out 0.6s, background 0.6s;
+}
+
+.hi.hi--eff-8:after {
+  top: 0;
+  left: 0;
+  padding: 0;
+  z-index: -1;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  -webkit-transform: scale(0.9);
+  -moz-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  transform: scale(0.9);
+}
+
+.hi.hi--eff-8:hover {
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-transform: scale(0.93);
+  -moz-transform: scale(0.93);
+  -ms-transform: scale(0.93);
+  transform: scale(0.93);
+  color: #fff;
+}
+
+.hi.hi--eff-8:hover:after {
+  -webkit-animation: sonarEffect 1.2s ease-out 75ms;
+  -moz-animation: sonarEffect 1.2s ease-out 75ms;
+  animation: sonarEffect 1.2s ease-out 75ms;
+}
+
+@-webkit-keyframes sonarEffect {
+  0% {
+    opacity: 0.3;
+  }
+  40% {
+    opacity: 0.5;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px #c57070, 0 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px #c57070, 0 0 0 10px rgba(255, 255, 255, 0.5);
+    -webkit-transform: scale(1.5);
+    opacity: 0;
+  }
+}
+@-moz-keyframes sonarEffect {
+  0% {
+    opacity: 0.3;
+  }
+  40% {
+    opacity: 0.5;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px #c57070, 0 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px #c57070, 0 0 0 10px rgba(255, 255, 255, 0.5);
+    -moz-transform: scale(1.5);
+    opacity: 0;
+  }
+}
+@keyframes sonarEffect {
+  0% {
+    opacity: 0.3;
+  }
+  40% {
+    opacity: 0.5;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px #c57070, 0 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px #c57070, 0 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+/* ===================================================== EFFECT 9 */
+.hi.hi--eff-9 {
+  -webkit-transition: box-shadow 0.6s;
+  -moz-transition: box-shadow 0.6s;
+  transition: box-shadow 0.6s;
+}
+
+.hi.hi--eff-9:after {
+  top: 0;
+  left: 0;
+  padding: 0;
+  box-shadow: 0 0 0 3px #fff;
+  -webkit-transition: -webkit-transform 0.6s, opacity 0.6s;
+  -moz-transition: -moz-transform 0.6s, opacity 0.6s;
+  transition: transform 0.6s, opacity 0.6s;
+}
+
+/* -------------------------------------- EFFECT 9a */
+.hi.hi--eff-9.hi--eff-9a:hover:after {
+  -webkit-transform: scale(0.85);
+  -moz-transform: scale(0.85);
+  -ms-transform: scale(0.85);
+  transform: scale(0.85);
+  opacity: 0.5;
+}
+
+.hi.hi--eff-9.hi--eff-9a:hover {
+  box-shadow: 0 0 0 10px white;
+  color: #fff;
+}
+
+/* -------------------------------------- EFFECT 9b */
+.hi.hi--eff-9.hi--eff-9b:hover:after {
+  -webkit-transform: scale(0.85);
+  -moz-transform: scale(0.85);
+  -ms-transform: scale(0.85);
+  transform: scale(0.85);
+}
+
+.hi.hi--eff-9.hi--eff-9b:hover {
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="row">
+<section class="cell" id="set-1">
+
+<div class="hi-wrap">
+<a href="#" class="hi hi--eff-1 hi--eff-1a  fa fa-flask"></a>
+</div>
+
+<div class="hi-wrap">
+<a href="#" class="hi hi--eff-1 hi--eff-1b fa fa-bell"></a>
+</div>
+</section>
+<section class="cell" id="set-2">
+<div class="hi-wrap">
+<a href="#" class="hi hi--eff-2 hi--eff-2a fa fa-cog"></a>
+</div>
+<div class="hi-wrap">
+<a href="#" class="hi hi--eff-2 hi--eff-2b  fa fa-bug"></a>
+</div>
+</section>
+</div>
+<div class="row">
+<section class="cell" id="set-3">
+<div class="hi-wrap">
+<a href="#" class="hi hi--eff-3 hi--eff-3a fa fa-camera"></a>
+</div>
+<div class="hi-wrap">
+<a href="#" class="hi hi--eff-3 hi--eff-3b fa fa-print"></a>
+</div>
+</section>
+<section class="cell" id="set-4">
+<div class="hi-wrap">
+<a href="#" class="hi hi--eff-4 hi--eff-4a fa fa-tasks"></a>
+</div>
+<div class="hi-wrap">
+<a href="#" class="hi hi--eff-4 hi--eff-4b fa fa-tablet"></a>
+</div>
+
+</section>
+</div>
+<div class="row">
+<section class="cell" id="set-5">
+<div class="hi-wrap">
+<a href="#" class="hi hi--eff-5 hi--eff-5a fa fa-sliders"></a>
+</div>
+<div class="hi-wrap">
+<a href="#" class="hi hi--eff-5 hi--eff-5b fa fa-eye"></a>
+</div>
+<div class="hi-wrap">
+<a href="#" class="hi hi--eff-5 hi--eff-5c fa fa-spinner"></a>
+</div>
+<div class="hi-wrap">
+<a href="#" class="hi hi--eff-5 hi--eff-5d fa fa-sitemap"></a>
+</div>
+</section>
+</div>
+<div class="row">
+<section class="cell" id="set-6">
+<div class="hi-wrap">
+<a href="#" class="hi hi--eff-6 fa fa-tags"></a>
+</div>
+</section>
+<section class="cell-1of2" id="set-7">
+<div class="hi-wrap">
+<a href="#" class="hi hi--eff-7 hi--eff-7a fa fa-film"></a>
+</div>
+<div class="hi-wrap">
+<a href="#" class="hi hi--eff-7 hi--eff-7b fa fa-bullhorn"></a>
+</div>
+</section>
+<section class="cell" id="set-8">
+<div class="hi-wrap">
+<a href="#" class="hi hi--eff-8 fa fa-tree"></a>
+</div>
+</section>
+</div>
+<div class="row">
+<section class="cell" id="set-9">
+<div class="hi-wrap">
+<a href="#" class="hi hi--eff-9 hi--eff-9a fa fa-thumb-tack"></a>
+</div>
+<div class="hi-wrap">
+<a href="#" class="hi hi--eff-9 hi--eff-9b fa fa-calendar"></a>
+</div>
+</section>
+</div>
+<h3>Special Thanks to:</h3>
+<p><a href="https://tympanus.net/Development/ButtonStylesInspiration/">Codrops</a> for hover styles + code</p>
+<p><a href="http://fontawesome.io/icons/">Font Awesome</a> for icons</p>
+
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

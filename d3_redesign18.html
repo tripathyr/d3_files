@@ -1,0 +1,265 @@
+<html lang="en" class=" -webkit-"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Analog Clock</title>
+<style media="" data-href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}</style>
+<style media="" data-href="https://fonts.googleapis.com/css?family=Poiret+One">/* cyrillic */
+@font-face {
+  font-family: 'Poiret One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Poiret One'), local('PoiretOne-Regular'), url(https://fonts.gstatic.com/s/poiretone/v7/UqyVK80NJXN4zfRgbdfbo5pcV_cx.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Poiret One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Poiret One'), local('PoiretOne-Regular'), url(https://fonts.gstatic.com/s/poiretone/v7/UqyVK80NJXN4zfRgbdfbo5BcV_cx.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Poiret One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Poiret One'), local('PoiretOne-Regular'), url(https://fonts.gstatic.com/s/poiretone/v7/UqyVK80NJXN4zfRgbdfbo55cVw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+      .clock {
+  background: #ececec;
+  width: 300px;
+  height: 300px;
+  margin: 8% auto 0;
+  border-radius: 50%;
+  border: 14px solid #333;
+  position: relative;
+  box-shadow: 0 2vw 4vw -1vw rgba(0,0,0,0.8);
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ccc;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+  z-index: 10;
+  box-shadow: 0 2px 4px -1px black;
+}
+
+.hour-hand {
+  position: absolute;
+  z-index: 5;
+  width: 4px;
+  height: 65px;
+  background: #333;
+  top: 79px;
+  transform-origin: 50% 72px;
+  left: 50%;
+  margin-left: -2px;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+}
+
+.minute-hand {
+  position: absolute;
+  z-index: 6;
+  width: 4px;
+  height: 100px;
+  background: #666;
+  top: 46px;
+  left: 50%;
+  margin-left: -2px;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  transform-origin: 50% 105px;
+}
+
+.second-hand {
+  position: absolute;
+  z-index: 7;
+  width: 2px;
+  height: 120px;
+  background: gold;
+  top: 26px;
+  lefT: 50%;
+  margin-left: -1px;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  transform-origin: 50% 125px;
+}
+
+span {
+  display: inline-block;
+  position: absolute;
+  color: #333;
+  font-size: 22px;
+  font-family: 'Poiret One';
+  font-weight: 700;
+  z-index: 4;
+}
+
+.h12 {
+  top: 30px;
+  left: 50%;
+  margin-left: -9px;
+}
+.h3 {
+  top: 140px;
+  right: 30px;
+}
+.h6 {
+  bottom: 30px;
+  left: 50%;
+  margin-left: -5px;
+}
+.h9 {
+  left: 32px;
+  top: 140px;
+}
+
+.diallines {
+  position: absolute;
+  z-index: 2;
+  width: 2px;
+  height: 15px;
+  background: #666;
+  left: 50%;
+  margin-left: -1px;
+  transform-origin: 50% 150px;
+}
+.diallines:nth-of-type(5n) {
+  position: absolute;
+  z-index: 2;
+  width: 4px;
+  height: 25px;
+  background: #666;
+  left: 50%;
+  margin-left: -1px;
+  transform-origin: 50% 150px;
+}
+
+.info {
+  position: absolute;
+  width: 120px;
+  height: 20px;
+  border-radius: 7px;
+  background: #ccc;
+  text-align: center;
+  line-height: 20px;
+  color: #000;
+  font-size: 11px;
+  top: 200px;
+  left: 50%;
+  margin-left: -60px;
+  font-family: "Poiret One";
+  font-weight: 700;
+  z-index: 3;
+  letter-spacing: 3px;
+  margin-left: -60px;
+  left: 50%;
+}
+.date {
+    top: 80px;
+  }
+.day {
+    top: 200px;
+}
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="clock">
+<div>
+<div class="info date">6/05/2019</div>
+<div class="info day">Monday</div>
+</div>
+<div class="dot"></div>
+<div>
+<div class="hour-hand" style="transform: rotate(575.5deg);"></div>
+<div class="minute-hand" style="transform: rotate(67deg);"></div>
+<div class="second-hand" style="transform: rotate(60deg);"></div>
+</div>
+<div>
+<span class="h3">3</span>
+<span class="h6">6</span>
+<span class="h9">9</span>
+<span class="h12">12</span>
+</div>
+<div class="diallines"></div>
+<div class="diallines" style="transform: rotate(6deg);"></div><div class="diallines" style="transform: rotate(12deg);"></div><div class="diallines" style="transform: rotate(18deg);"></div><div class="diallines" style="transform: rotate(24deg);"></div><div class="diallines" style="transform: rotate(30deg);"></div><div class="diallines" style="transform: rotate(36deg);"></div><div class="diallines" style="transform: rotate(42deg);"></div><div class="diallines" style="transform: rotate(48deg);"></div><div class="diallines" style="transform: rotate(54deg);"></div><div class="diallines" style="transform: rotate(60deg);"></div><div class="diallines" style="transform: rotate(66deg);"></div><div class="diallines" style="transform: rotate(72deg);"></div><div class="diallines" style="transform: rotate(78deg);"></div><div class="diallines" style="transform: rotate(84deg);"></div><div class="diallines" style="transform: rotate(90deg);"></div><div class="diallines" style="transform: rotate(96deg);"></div><div class="diallines" style="transform: rotate(102deg);"></div><div class="diallines" style="transform: rotate(108deg);"></div><div class="diallines" style="transform: rotate(114deg);"></div><div class="diallines" style="transform: rotate(120deg);"></div><div class="diallines" style="transform: rotate(126deg);"></div><div class="diallines" style="transform: rotate(132deg);"></div><div class="diallines" style="transform: rotate(138deg);"></div><div class="diallines" style="transform: rotate(144deg);"></div><div class="diallines" style="transform: rotate(150deg);"></div><div class="diallines" style="transform: rotate(156deg);"></div><div class="diallines" style="transform: rotate(162deg);"></div><div class="diallines" style="transform: rotate(168deg);"></div><div class="diallines" style="transform: rotate(174deg);"></div><div class="diallines" style="transform: rotate(180deg);"></div><div class="diallines" style="transform: rotate(186deg);"></div><div class="diallines" style="transform: rotate(192deg);"></div><div class="diallines" style="transform: rotate(198deg);"></div><div class="diallines" style="transform: rotate(204deg);"></div><div class="diallines" style="transform: rotate(210deg);"></div><div class="diallines" style="transform: rotate(216deg);"></div><div class="diallines" style="transform: rotate(222deg);"></div><div class="diallines" style="transform: rotate(228deg);"></div><div class="diallines" style="transform: rotate(234deg);"></div><div class="diallines" style="transform: rotate(240deg);"></div><div class="diallines" style="transform: rotate(246deg);"></div><div class="diallines" style="transform: rotate(252deg);"></div><div class="diallines" style="transform: rotate(258deg);"></div><div class="diallines" style="transform: rotate(264deg);"></div><div class="diallines" style="transform: rotate(270deg);"></div><div class="diallines" style="transform: rotate(276deg);"></div><div class="diallines" style="transform: rotate(282deg);"></div><div class="diallines" style="transform: rotate(288deg);"></div><div class="diallines" style="transform: rotate(294deg);"></div><div class="diallines" style="transform: rotate(300deg);"></div><div class="diallines" style="transform: rotate(306deg);"></div><div class="diallines" style="transform: rotate(312deg);"></div><div class="diallines" style="transform: rotate(318deg);"></div><div class="diallines" style="transform: rotate(324deg);"></div><div class="diallines" style="transform: rotate(330deg);"></div><div class="diallines" style="transform: rotate(336deg);"></div><div class="diallines" style="transform: rotate(342deg);"></div><div class="diallines" style="transform: rotate(348deg);"></div><div class="diallines" style="transform: rotate(354deg);"></div></div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      var dialLines = document.getElementsByClassName('diallines');
+var clockEl = document.getElementsByClassName('clock')[0];
+
+for (var i = 1; i < 60; i++) {
+  clockEl.innerHTML += "<div class='diallines'></div>";
+  dialLines[i].style.transform = "rotate(" + 6 * i + "deg)";
+}
+
+function clock() {
+  var weekday = new Array(7),
+  d = new Date(),
+  h = d.getHours(),
+  m = d.getMinutes(),
+  s = d.getSeconds(),
+  date = d.getDate(),
+  month = d.getMonth() + 1,
+  year = d.getFullYear(),
+
+  hDeg = h * 30 + m * (360 / 720),
+  mDeg = m * 6 + s * (360 / 3600),
+  sDeg = s * 6,
+
+  hEl = document.querySelector('.hour-hand'),
+  mEl = document.querySelector('.minute-hand'),
+  sEl = document.querySelector('.second-hand'),
+  dateEl = document.querySelector('.date'),
+  dayEl = document.querySelector('.day');
+
+  weekday[0] = "Sunday";
+  weekday[1] = "Monday";
+  weekday[2] = "Tuesday";
+  weekday[3] = "Wednesday";
+  weekday[4] = "Thursday";
+  weekday[5] = "Friday";
+  weekday[6] = "Saturday";
+
+  var day = weekday[d.getDay()];
+
+  if (month < 9) {
+    month = "0" + month;
+  }
+
+  hEl.style.transform = "rotate(" + hDeg + "deg)";
+  mEl.style.transform = "rotate(" + mDeg + "deg)";
+  sEl.style.transform = "rotate(" + sDeg + "deg)";
+  dateEl.innerHTML = date + "/" + month + "/" + year;
+  dayEl.innerHTML = day;
+}
+
+setInterval("clock()", 100);
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

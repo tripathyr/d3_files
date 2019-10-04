@@ -1,0 +1,2207 @@
+<html lang="en" style="" class=" js flexbox flexboxlegacy canvas canvastext webgl touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js cssanimations"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Codrops Subtle Click Feedback Effects</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+<style>
+      body {
+background: #2A3947;
+color: #f0f0f0;
+font-weight: 500;
+font-size: 1em;
+font-family: Arial, sans-serif;
+}
+/* DEMO */
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,700);
+
+@font-face {
+  font-weight: normal;
+  font-style: normal;
+  font-family: 'codropsicons';
+  src:url('../fonts/codropsicons/codropsicons.eot');
+  src:url('../fonts/codropsicons/codropsicons.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/codropsicons/codropsicons.woff') format('woff'),
+    url('../fonts/codropsicons/codropsicons.ttf') format('truetype'),
+    url('../fonts/codropsicons/codropsicons.svg#codropsicons') format('svg');
+}
+
+*, *:after, *:before { -webkit-box-sizing: border-box; box-sizing: border-box; }
+.clearfix:before, .clearfix:after { content: ''; display: table; }
+.clearfix:after { clear: both; }
+
+body {
+  background: #2A3947;
+  color: #f0f0f0;
+  font-weight: 500;
+  font-size: 1em;
+  font-family: 'Raleway', Arial, sans-serif;
+}
+
+a {
+  color: #9DAAB6;
+  text-decoration: none;
+  outline: none;
+}
+
+a:hover, a:focus {
+  color: #fff;
+}
+
+.hidden {
+  position: absolute;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Header */
+.codrops-header {
+  padding: 3em 1em 4em;
+  text-align: center;
+}
+
+.codrops-header h1 {
+  font-weight: 800;
+  font-size: 3em;
+  line-height: 1;
+  margin-bottom: 0.5em;
+  letter-spacing: -1px;
+}
+
+.codrops-header h1 span {
+  display: block;
+  font-size: 0.45em;
+  font-weight: 700;
+  padding: 1em;
+  color: #16232F;
+}
+
+/* Top Navigation Style */
+.codrops-links {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 1.25em;
+  text-align: center;
+}
+
+.codrops-links::after {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -1px;
+  width: 2px;
+  height: 100%;
+  background: #7b93ab;
+  content: '';
+  -webkit-transform: rotate3d(0,0,1,22.5deg);
+  transform: rotate3d(0,0,1,22.5deg);
+}
+
+.codrops-icon {
+  display: inline-block;
+  margin: 0.5em;
+  padding: 0em 0;
+  width: 1.5em;
+  text-decoration: none;
+}
+
+.codrops-icon span {
+  display: none;
+}
+
+.codrops-icon:before {
+  margin: 0 5px;
+  text-transform: none;
+  font-weight: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-family: 'codropsicons';
+  line-height: 1;
+  speak: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.codrops-icon--drop:before {
+  content: "\e001";
+}
+
+.codrops-icon--prev:before {
+  content: "\e004";
+}
+
+/* Content */
+.content {
+  padding: 3em 0;
+}
+
+.box {
+  padding: 1em;
+  min-height: 240px;
+  text-align: center;
+}
+
+.box__title {
+  color: rgb(22, 35, 47);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 1.1em;
+  margin-bottom: 1.5em;
+}
+
+.box__title span {
+  display: block;
+  letter-spacing: 0;
+  font-size: 75%;
+  padding-top: 1em;
+}
+
+/* Related demos */
+.content--related {
+  text-align: center;
+  color: #D8DADB;
+  font-weight: bold;
+}
+
+.media-item {
+  display: inline-block;
+  padding: 1em;
+  vertical-align: top;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+
+.media-item__img {
+  opacity: 0.3;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.media-item:hover .media-item__img,
+.media-item:focus .media-item__img {
+  opacity: 1;
+}
+
+.media-item__title {
+  font-size: 1em;
+  margin: 0;
+  padding: 0.5em;
+}
+
+body #cdawrap {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+body #cdawrap .carbon-text {
+  color: #fff;
+}
+
+
+@media screen and (max-width: 50em) {
+  .codrops-header {
+    padding: 3em 10% 4em;
+  }
+}
+
+@media screen and (max-width: 40em) {
+  .codrops-header h1 {
+    font-size: 2.8em;
+  }
+}
+/* BOTONES */
+.cbutton {
+  position: relative;
+  display: inline-block;
+  margin: 1em;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #286aab;
+  font-size: 1.4em;
+  overflow: visible;
+  -webkit-transition: color 0.7s;
+  transition: color 0.7s;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.cbutton.cbutton--click,
+.cbutton:focus {
+  outline: none;
+  color: #3c8ddc;
+}
+
+.cbutton__icon {
+  display: block;
+}
+
+.cbutton__text {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cbutton::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -35px 0 0 -35px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  content: '';
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cbutton--box {
+  width: 24px;
+  height: 24px;
+  border: 4px solid rgb(22, 35, 47);
+}
+
+.cbutton--box-color-1 {
+  background: #ff8b00;
+}
+
+.cbutton--box-color-2 {
+  background: #b61854;
+}
+
+.cbutton--box-color-3 {
+  background: #1d5cab;
+}
+
+.cbutton--box-color-4 {
+  background: #f2438c;
+}
+
+.cbutton--box-color-5 {
+  background: #ff6414;
+}
+
+.cbutton--box-color-6 {
+  background: #5ed500;
+}
+
+.cbutton--box-color-7 {
+  background: #0077ff;
+}
+
+.cbutton--box-color-8 {
+  background: #7bff00;
+}
+
+.cbutton--box-color-9 {
+  background: #fff;
+}
+
+/* Individual Effects */
+
+/* Effect Boris */
+.cbutton--effect-boris::after {
+  background: rgba(111,148,182,0.1);
+}
+
+.cbutton--effect-boris.cbutton--click::after {
+  -webkit-animation: anim-effect-boris 0.3s forwards;
+  animation: anim-effect-boris 0.3s forwards;
+}
+
+@-webkit-keyframes anim-effect-boris {
+  0% {
+    -webkit-transform: scale3d(0.3, 0.3, 1);
+    transform: scale3d(0.3, 0.3, 1);
+  }
+  25%, 50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    -webkit-transform: scale3d(1.2, 1.2, 1);
+    transform: scale3d(1.2, 1.2, 1);
+  }
+}
+
+@keyframes anim-effect-boris {
+  0% {
+    -webkit-transform: scale3d(0.3, 0.3, 1);
+    transform: scale3d(0.3, 0.3, 1);
+  }
+  25%, 50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    -webkit-transform: scale3d(1.2, 1.2, 1);
+    transform: scale3d(1.2, 1.2, 1);
+  }
+}
+
+/* Jelena */
+.cbutton--effect-jelena::after {
+  border: 2px solid rgba(111,148,182,0.5);
+}
+
+.cbutton--effect-jelena.cbutton--click::after {
+  -webkit-animation: anim-effect-jelena 0.3s ease-out forwards;
+  animation: anim-effect-jelena 0.3s ease-out forwards;
+}
+
+@-webkit-keyframes anim-effect-jelena {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.5, 0.5, 1);
+    transform: scale3d(0.5, 0.5, 1);
+  }
+  to {
+    opacity: 0;
+    -webkit-transform: scale3d(1.2, 1.2, 1);
+    transform: scale3d(1.2, 1.2, 1);
+  }
+}
+
+@keyframes anim-effect-jelena {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.5, 0.5, 1);
+    transform: scale3d(0.5, 0.5, 1);
+  }
+  to {
+    opacity: 0;
+    -webkit-transform: scale3d(1.2, 1.2, 1);
+    transform: scale3d(1.2, 1.2, 1);
+  }
+}
+
+/* Radomir */
+.cbutton--effect-radomir::after {
+  box-shadow: inset 0 0 0 35px rgba(111,148,182,0);
+}
+
+.cbutton--effect-radomir.cbutton--click::after {
+  -webkit-animation: anim-effect-radomir 0.5s ease-out forwards;
+  animation: anim-effect-radomir 0.5s ease-out forwards;
+}
+
+@-webkit-keyframes anim-effect-radomir {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.4, 0.4, 1);
+    transform: scale3d(0.4, 0.4, 1);
+  }
+  80% {
+    box-shadow: inset 0 0 0 2px rgba(111,148,182,0.8);
+    opacity: 0.1;
+  }
+  100% {
+    box-shadow: inset 0 0 0 2px rgba(111,148,182,0.8);
+    opacity: 0;
+    -webkit-transform: scale3d(1.2, 1.2, 1);
+    transform: scale3d(1.2, 1.2, 1);
+  }
+}
+
+@keyframes anim-effect-radomir {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.4, 0.4, 1);
+    transform: scale3d(0.4, 0.4, 1);
+  }
+  80% {
+    box-shadow: inset 0 0 0 2px rgba(111,148,182,0.8);
+    opacity: 0.1;
+  }
+  100% {
+    box-shadow: inset 0 0 0 2px rgba(111,148,182,0.8);
+    opacity: 0;
+    -webkit-transform: scale3d(1.2, 1.2, 1);
+    transform: scale3d(1.2, 1.2, 1);
+  }
+}
+
+/* Sanja */
+.cbutton--effect-sanja::after {
+  background: rgba(111,148,182,0.1);
+}
+
+.cbutton--effect-sanja.cbutton--click::after {
+  -webkit-animation: anim-effect-sanja 1s ease-out forwards;
+  animation: anim-effect-sanja 1s ease-out forwards;
+}
+
+@-webkit-keyframes anim-effect-sanja {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.5, 0.5, 1);
+    transform: scale3d(0.5, 0.5, 1);
+  }
+  25% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes anim-effect-sanja {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.5, 0.5, 1);
+    transform: scale3d(0.5, 0.5, 1);
+  }
+  25% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+/* Novak */
+.cbutton--effect-novak::after {
+  background: rgba(111,148,182,0.25);
+}
+
+.cbutton--effect-novak.cbutton--click::after {
+  -webkit-animation: anim-effect-novak 0.5s forwards;
+  animation: anim-effect-novak 0.5s forwards;
+}
+
+@-webkit-keyframes anim-effect-novak {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.1, 0.1, 1);
+    transform: scale3d(0.1, 0.1, 1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(8, 8, 1);
+    transform: scale3d(8, 8, 1);
+  }
+}
+
+@keyframes anim-effect-novak {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.1, 0.1, 1);
+    transform: scale3d(0.1, 0.1, 1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(8, 8, 1);
+    transform: scale3d(8, 8, 1);
+  }
+}
+
+/* Ilinka */
+.cbutton--effect-ilinka::after {
+  background: rgba(111,148,182,0.25);
+}
+
+.cbutton--effect-ilinka.cbutton--click::after {
+  -webkit-animation: anim-effect-ilinka 0.5s ease-out forwards;
+  animation: anim-effect-ilinka 0.5s ease-out forwards;
+}
+
+@-webkit-keyframes anim-effect-ilinka {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes anim-effect-ilinka {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Marin */
+.cbutton--effect-marin::after {
+  box-shadow: inset 0 0 0 3px rgba(111,148,182,0.05);
+}
+
+.cbutton--effect-marin.cbutton--click::after {
+  -webkit-animation: anim-effect-marin 0.5s ease-out forwards;
+  animation: anim-effect-marin 0.5s ease-out forwards;
+}
+
+@-webkit-keyframes anim-effect-marin {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    box-shadow: inset 0 0 0 3px rgba(111,148,182,0.8);
+    opacity: 0;
+    -webkit-transform: scale3d(0.75, 0.75, 1);
+    transform: scale3d(0.75, 0.75, 1);
+  }
+}
+
+@keyframes anim-effect-marin {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    box-shadow: inset 0 0 0 3px rgba(111,148,182,0.8);
+    opacity: 0;
+    -webkit-transform: scale3d(0.75, 0.75, 1);
+    transform: scale3d(0.75, 0.75, 1);
+  }
+}
+
+/* Nikola */
+.cbutton--effect-nikola::after {
+  background: rgba(111,148,182,0.1);
+}
+
+.cbutton--effect-nikola.cbutton--click::after {
+  -webkit-animation: anim-effect-nikola 0.5s forwards;
+  animation: anim-effect-nikola 0.5s forwards;
+}
+
+@-webkit-keyframes anim-effect-nikola {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.2, 0.2, 1);
+    transform: scale3d(0.2, 0.2, 1);
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.2, 1.2, 1);
+    transform: scale3d(1.2, 1.2, 1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.8, 0.8, 1);
+    transform: scale3d(0.8, 0.8, 1);
+  }
+}
+
+@keyframes anim-effect-nikola {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.2, 0.2, 1);
+    transform: scale3d(0.2, 0.2, 1);
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.2, 1.2, 1);
+    transform: scale3d(1.2, 1.2, 1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.8, 0.8, 1);
+    transform: scale3d(0.8, 0.8, 1);
+  }
+}
+
+/* Tamara */
+.cbutton--effect-tamara::after {
+  box-shadow: 0 0 0 3px rgba(111,148,182,0.05);
+}
+
+.cbutton--effect-tamara.cbutton--click::after {
+  -webkit-animation: anim-effect-tamara 0.5s ease-out forwards;
+  animation: anim-effect-tamara 0.5s ease-out forwards;
+}
+
+@-webkit-keyframes anim-effect-tamara {
+  0% {
+    box-shadow: 0 0 0 3px rgba(111,148,182,0.3);
+    opacity: 1;
+    -webkit-transform: scale3d(0.6, 0.6, 1);
+    transform: scale3d(0.6, 0.6, 1);
+  }
+  100% {
+    box-shadow: 0 0 0 100px rgba(111,148,182,0);
+    opacity: 0;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes anim-effect-tamara {
+  0% {
+    box-shadow: 0 0 0 3px rgba(111,148,182,0.3);
+    opacity: 1;
+    -webkit-transform: scale3d(0.6, 0.6, 1);
+    transform: scale3d(0.6, 0.6, 1);
+  }
+  100% {
+    box-shadow: 0 0 0 100px rgba(111,148,182,0);
+    opacity: 0;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+/* Zoran */
+.cbutton--effect-zoran::after {
+  background: rgba(111,148,182,0.1);
+}
+
+.cbutton--effect-zoran.cbutton--click::after {
+  -webkit-animation: anim-effect-zoran 0.5s ease-out forwards;
+  animation: anim-effect-zoran 0.5s ease-out forwards;
+}
+
+@-webkit-keyframes anim-effect-zoran {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.6, 1, 1);
+    transform: scale3d(0.6, 1, 1);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  100% {
+    opacity: 0.3;
+    -webkit-transform: scale3d(1.1, 1.1, 1);
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes anim-effect-zoran {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.6, 1, 1);
+    transform: scale3d(0.6, 1, 1);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  100% {
+    opacity: 0.3;
+    -webkit-transform: scale3d(1.1, 1.1, 1);
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+/* Ivana */
+.cbutton--effect-ivana::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -35px 0 0 -35px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  content: '';
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cbutton--effect-ivana::before,
+.cbutton--effect-ivana::after {
+  box-shadow: 0 0 0 2px rgba(111,148,182,0.5);
+}
+
+.cbutton--effect-ivana.cbutton--click::before {
+  -webkit-animation: anim-effect-ivana-1 0.5s forwards;
+  animation: anim-effect-ivana-1 0.5s forwards;
+}
+
+.cbutton--effect-ivana.cbutton--click::after {
+  -webkit-animation: anim-effect-ivana-2 0.5s forwards;
+  animation: anim-effect-ivana-2 0.5s forwards;
+}
+
+@-webkit-keyframes anim-effect-ivana-1 {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.5, 0.5, 1);
+    transform: scale3d(0.5, 0.5, 1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(1.1, 1.1, 1);
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes anim-effect-ivana-1 {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.5, 0.5, 1);
+    transform: scale3d(0.5, 0.5, 1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(1.1, 1.1, 1);
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@-webkit-keyframes anim-effect-ivana-2 {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.5, 0.5, 1);
+    transform: scale3d(0.5, 0.5, 1);
+  }
+  50%, 100% {
+    opacity: 0;
+    -webkit-transform: scale3d(1.2, 1.2, 1);
+    transform: scale3d(1.2, 1.2, 1);
+  }
+}
+
+@keyframes anim-effect-ivana-2 {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.5, 0.5, 1);
+    transform: scale3d(0.5, 0.5, 1);
+  }
+  50%, 100% {
+    opacity: 0;
+    -webkit-transform: scale3d(1.2, 1.2, 1);
+    transform: scale3d(1.2, 1.2, 1);
+  }
+}
+
+/* Marko */
+.cbutton--effect-marko::after {
+  box-shadow: inset 0 0 0 2px rgba(111,148,182,0.3);
+}
+
+.cbutton--effect-marko.cbutton--click::after {
+  -webkit-animation: anim-effect-marko 0.5s forwards;
+  animation: anim-effect-marko 0.5s forwards;
+}
+
+@-webkit-keyframes anim-effect-marko {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    box-shadow: inset 0 0 0 35px rgba(111,148,182,0.1);
+    opacity: 1;
+  }
+  100% {
+    box-shadow: inset 0 0 0 35px rgba(111,148,182,0.1);
+    opacity: 0;
+    -webkit-transform: scale3d(1.1, 1.1, 1);
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes anim-effect-marko {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    box-shadow: inset 0 0 0 35px rgba(111,148,182,0.1);
+    opacity: 1;
+  }
+  100% {
+    box-shadow: inset 0 0 0 35px rgba(111,148,182,0.1);
+    opacity: 0;
+    -webkit-transform: scale3d(1.1, 1.1, 1);
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+/* Stoja */
+.cbutton--effect-stoja::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -35px 0 0 -35px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  content: '';
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cbutton--effect-stoja::before,
+.cbutton--effect-stoja::after {
+  box-shadow: 0 0 0 2px rgba(111,148,182,0.5);
+}
+
+.cbutton--effect-stoja-left::before,
+.cbutton--effect-stoja-left::after {
+  -webkit-clip-path: polygon(0% 0%, 50% 0%, 50% 50%, 0% 50%);
+  clip-path: polygon(0% 0%, 50% 0%, 50% 50%, 0% 50%);
+}
+
+.cbutton--effect-stoja-top::before,
+.cbutton--effect-stoja-top::after {
+  -webkit-clip-path: polygon(10% 0%, 90% 0%, 50% 50%);
+  clip-path: polygon(25% 0%, 75% 0%, 50% 50%);
+}
+
+.cbutton--effect-stoja-right::before,
+.cbutton--effect-stoja-right::after {
+  -webkit-clip-path: polygon(50% 0%, 100% 0%, 100% 50%, 50% 50%);
+  clip-path: polygon(50% 0%, 100% 0%, 100% 50%, 50% 50%);
+}
+
+.cbutton--effect-stoja.cbutton--click::before {
+  -webkit-animation: anim-effect-stoja-1 0.5s forwards;
+  animation: anim-effect-stoja-1 0.5s forwards;
+}
+
+.cbutton--effect-stoja.cbutton--click::after {
+  -webkit-animation: anim-effect-stoja-2 0.5s forwards;
+  animation: anim-effect-stoja-2 0.5s forwards;
+}
+
+@-webkit-keyframes anim-effect-stoja-1 {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.3, 0.3, 1);
+    transform: scale3d(0.3, 0.3, 1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes anim-effect-stoja-1 {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.3, 0.3, 1);
+    transform: scale3d(0.3, 0.3, 1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@-webkit-keyframes anim-effect-stoja-2 {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.5, 0.5, 1);
+    transform: scale3d(0.5, 0.5, 1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(1.5, 1.5, 1);
+    transform: scale3d(1.5, 1.5, 1);
+  }
+}
+
+@keyframes anim-effect-stoja-2 {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.5, 0.5, 1);
+    transform: scale3d(0.5, 0.5, 1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(1.5, 1.5, 1);
+    transform: scale3d(1.5, 1.5, 1);
+  }
+}
+
+/* Azra */
+.cbutton--effect-azra img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -35px 0 0 -35px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cbutton--effect-azra.cbutton--click img {
+  -webkit-animation: anim-effect-azra 0.5s ease-in forwards;
+  animation: anim-effect-azra 0.5s ease-in forwards;
+}
+
+@-webkit-keyframes anim-effect-azra {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.2, 0.2, 1) translate3d(0, 100%, 0);
+    transform: scale3d(0.2, 0.2, 1) translate3d(0, 100%, 0);
+  }
+  50% {
+    opacity: 0.7;
+    -webkit-transform: scale3d(0.5, 0.5, 1) translate3d(0, 100%, 0);
+    transform: scale3d(0.5, 0.5, 1) translate3d(0, 100%, 0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.5, 0.5, 1) translate3d(0, 200%, 0);
+    transform: scale3d(0.5, 0.5, 1) translate3d(0, 200%, 0);
+  }
+}
+
+@keyframes anim-effect-azra {
+  0% {
+    opacity: 0.5;
+    -webkit-transform: scale3d(0.2, 0.2, 1) translate3d(0, 100%, 0);
+    transform: scale3d(0.2, 0.2, 1) translate3d(0, 100%, 0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.5, 0.5, 1) translate3d(0, 200%, 0);
+    transform: scale3d(0.5, 0.5, 1) translate3d(0, 200%, 0);
+  }
+}
+
+/* Dejan */
+
+.cbutton--effect-dejan::after {
+  margin: -4px 0 0 -4px;
+  width: 8px;
+  height: 8px;
+}
+
+.cbutton--box-color-4.cbutton--effect-dejan::after {
+  background: #f2438c;
+}
+
+.cbutton--box-color-5.cbutton--effect-dejan::after {
+  background: #ff6414;
+}
+
+.cbutton--box-color-6.cbutton--effect-dejan::after {
+  background: #5ed500;
+}
+
+.cbutton--effect-dejan .cbutton__helper {
+  position: absolute;
+  bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cbutton--effect-dejan .cbutton__helper--first {
+  left: -15px;
+  width: 30px;
+  height: 30px;
+  -webkit-transform-origin: -40% 50%;
+  transform-origin: -40% 50%;
+}
+
+.cbutton--effect-dejan .cbutton__helper--second {
+  left: 0px;
+  width: 30px;
+  height: 60px;
+  -webkit-transform-origin: 140% 50%;
+  transform-origin: 140% 50%;
+}
+
+.cbutton--effect-dejan .cbutton__helper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.cbutton--effect-dejan.cbutton--click .cbutton__helper--first {
+  -webkit-animation: anim-effect-dejan-1 0.3s ease-out forwards;
+  animation: anim-effect-dejan-1 0.3s ease-out forwards;
+}
+
+.cbutton--effect-dejan.cbutton--click .cbutton__helper--second {
+  -webkit-animation: anim-effect-dejan-2 0.3s ease-out forwards;
+  animation: anim-effect-dejan-2 0.3s ease-out forwards;
+}
+
+.cbutton--effect-dejan.cbutton--click .cbutton__helper--first img,
+.cbutton--effect-dejan.cbutton--click .cbutton__helper--second img {
+  -webkit-animation: anim-effect-dejan-3 0.3s ease-in forwards;
+  animation: anim-effect-dejan-3 0.3s ease-in forwards;
+}
+
+.cbutton--effect-dejan.cbutton--click::after {
+  -webkit-animation: anim-effect-dejan-4 0.3s ease-out forwards;
+  animation: anim-effect-dejan-4 0.3s ease-out forwards;
+}
+
+@-webkit-keyframes anim-effect-dejan-1 {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: rotate3d(0, 0, 1, -90deg);
+    transform: rotate3d(0, 0, 1, -90deg);
+  }
+}
+
+@keyframes anim-effect-dejan-1 {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: rotate3d(0, 0, 1, -90deg);
+    transform: rotate3d(0, 0, 1, -90deg);
+  }
+}
+
+@-webkit-keyframes anim-effect-dejan-2 {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: rotate3d(0, 0, 1, 90deg);
+    transform: rotate3d(0, 0, 1, 90deg);
+  }
+}
+
+@keyframes anim-effect-dejan-2 {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: rotate3d(0, 0, 1, 90deg);
+    transform: rotate3d(0, 0, 1, 90deg);
+  }
+}
+
+@-webkit-keyframes anim-effect-dejan-3 {
+  0% {
+    -webkit-transform: scale3d(0.4, 0.4, 1);
+    transform: scale3d(0.4, 0.4, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes anim-effect-dejan-3 {
+  0% {
+    -webkit-transform: scale3d(0.4, 0.4, 1);
+    transform: scale3d(0.4, 0.4, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@-webkit-keyframes anim-effect-dejan-4 {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.1, 0.1, 1);
+    transform: scale3d(0.1, 0.1, 1);
+  }
+  80% {
+    opacity: 0.7;
+    -webkit-transform: translate3d(0, -70px, 0) scale3d(1, 1, 1);
+    transform: translate3d(0, -70px, 0) scale3d(1, 1, 1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -60px, 0) scale3d(1, 1, 1);
+    transform: translate3d(0, -60px, 0) scale3d(1, 1, 1);
+  }
+}
+
+@keyframes anim-effect-dejan-4 {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.1, 0.1, 1);
+    transform: scale3d(0.1, 0.1, 1);
+  }
+  80% {
+    opacity: 0.7;
+    -webkit-transform: translate3d(0, -70px, 0) scale3d(1, 1, 1);
+    transform: translate3d(0, -70px, 0) scale3d(1, 1, 1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -60px, 0) scale3d(1, 1, 1);
+    transform: translate3d(0, -60px, 0) scale3d(1, 1, 1);
+  }
+}
+
+/* Filipa */
+.cbutton--effect-filipa::after {
+  border-radius: 0px;
+  box-shadow: 0 0 0 2px rgba(111,148,182,0.9);
+}
+
+.cbutton--effect-filipa.cbutton--effect-filipa-left.cbutton--click::after {
+  -webkit-animation: anim-effect-filipa-left 0.5s forwards;
+  animation: anim-effect-filipa-left 0.5s forwards;
+}
+
+@-webkit-keyframes anim-effect-filipa-left {
+  0% {
+    opacity: 0.7;
+    -webkit-transform: scale3d(0.2, 0.2, 1);
+    transform: scale3d(0.2, 0.2, 1) 
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, -135deg);
+    transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, -135deg);
+  }
+}
+
+@keyframes anim-effect-filipa-left {
+  0% {
+    opacity: 0.7;
+    -webkit-transform: scale3d(0.2, 0.2, 1);
+    transform: scale3d(0.2, 0.2, 1) 
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, -135deg);
+    transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, -135deg);
+  }
+}
+
+.cbutton--effect-filipa.cbutton--effect-filipa-right.cbutton--click::after {
+  -webkit-animation: anim-effect-filipa-right 0.5s forwards;
+  animation: anim-effect-filipa-right 0.5s forwards;
+}
+
+@-webkit-keyframes anim-effect-filipa-right {
+  0% {
+    opacity: 0.7;
+    -webkit-transform: scale3d(0.2, 0.2, 1);
+    transform: scale3d(0.2, 0.2, 1) 
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 135deg);
+    transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 135deg);
+  }
+}
+
+@keyframes anim-effect-filipa-right {
+  0% {
+    opacity: 0.7;
+    -webkit-transform: scale3d(0.2, 0.2, 1);
+    transform: scale3d(0.2, 0.2, 1) 
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 135deg);
+    transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 135deg);
+  }
+}
+
+/* Lazar */
+.cbutton--effect-lazar-inverted {
+  -webkit-transform: scale3d(-1, 1, 1);
+  transform: scale3d(-1, 1, 1);
+}
+.cbutton--effect-lazar::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -35px 0 0 0;
+  width: 35px;
+  height: 70px;
+    border-radius: 0 35px 35px 0;
+  background: rgba(111,148,182,0.15);
+  content: '';
+  opacity: 0;
+  -webkit-transform-origin: 0 50%;
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
+
+.cbutton--effect-lazar::after {
+  right: 50%;
+  left: auto;
+  margin: -35px 0 0 0;
+  width: 35px;
+  height: 70px;
+  border-radius: 35px 0 0 35px;
+  background: rgba(111,148,182,0.1);
+  -webkit-transform-origin: 100% 50%;
+  transform-origin: 100% 50%;
+}
+
+.cbutton--effect-lazar.cbutton--click::before {
+  -webkit-animation: anim-effect-lazar-1 0.8s ease-out forwards;
+  animation: anim-effect-lazar-1 0.8s ease-out forwards;
+}
+
+.cbutton--effect-lazar.cbutton--click::after {
+  -webkit-animation: anim-effect-lazar-2 0.8s ease-out forwards;
+  animation: anim-effect-lazar-2 0.8s ease-out forwards;
+}
+
+@-webkit-keyframes anim-effect-lazar-1 {
+  0%, 25% {
+    opacity: 1;
+    -webkit-transform: perspective(1000px) rotate3d(0, 1, 0, 0deg);
+    transform: perspective(1000px) rotate3d(0, 1, 0, 0deg);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: perspective(1000px) rotate3d(0, 1, 0, 180deg);
+    transform: perspective(1000px) rotate3d(0, 1, 0, 180deg);
+  }
+}
+
+@keyframes anim-effect-lazar-1 {
+  0%, 25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: perspective(1000px) rotate3d(0, 1, 0, 180deg);
+    transform: perspective(1000px) rotate3d(0, 1, 0, 180deg);
+  }
+}
+
+@-webkit-keyframes anim-effect-lazar-2 {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes anim-effect-lazar-2 {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Jagoda */
+.cbutton--effect-jagoda::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  content: '';
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cbutton--effect-jagoda::after {
+  margin: -25px 0 0 -25px;
+  width: 50px;
+  height: 50px;
+}
+
+.cbutton--effect-jagoda::before,
+.cbutton--effect-jagoda::after {
+  box-shadow: 0 0 0 2px rgba(111,148,182,0.5);
+}
+
+.cbutton--effect-jagoda.cbutton--click::before,
+.cbutton--effect-jagoda.cbutton--click::after {
+  -webkit-animation-name: anim-effect-jagoda-2, anim-effect-jagoda-1;
+  animation-name:anim-effect-jagoda-2, anim-effect-jagoda-1;
+  -webkit-animation-duration: 1.2s;
+  animation-duration: 1.2s;
+  -webkit-animation-iteration-count: 5;
+  animation-iteration-count: 5;
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.cbutton--effect-jagoda.cbutton--click::after {
+  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+
+@-webkit-keyframes anim-effect-jagoda-1 {
+  0%, 100% {
+    opacity: 0;
+  }
+  40%, 60% {
+    opacity: 1;
+  }
+}
+
+@keyframes anim-effect-jagoda-1 {
+  0%, 100% {
+    opacity: 0;
+  }
+  40%, 60% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes anim-effect-jagoda-2 {
+  0% {
+    -webkit-transform: scale3d(0.5, 0.5, 1);
+    transform: scale3d(0.5, 0.5, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1.4, 1.4, 1);
+    transform: scale3d(1.4, 1.4, 1);
+  }
+}
+
+@keyframes anim-effect-jagoda-2 {
+  0% {
+    -webkit-transform: scale3d(0.5, 0.5, 1);
+    transform: scale3d(0.5, 0.5, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1.4, 1.4, 1);
+    transform: scale3d(1.4, 1.4, 1);
+  }
+}
+
+/* Simo */
+.cbutton--effect-simo::before {
+  position: absolute;
+  top: 50%;
+  left: -20px;
+  margin: -4px 0 0 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(111,148,182,0.3);
+  content: '';
+  opacity: 0;
+  -webkit-transform-origin: 35px 50%;
+  transform-origin: 35px 50%;
+}
+
+.cbutton--effect-simo::after {
+  border: 8px solid rgba(111,148,182,0.1);
+}
+
+.cbutton--effect-simo.cbutton--click::after {
+  -webkit-animation: anim-effect-simo-1 5s forwards;
+  animation: anim-effect-simo-1 5s forwards;
+}
+
+.cbutton--effect-simo.cbutton--click::before {
+  -webkit-animation-name: anim-effect-simo-2, anim-effect-simo-3;
+  animation-name: anim-effect-simo-2, anim-effect-simo-3;
+  -webkit-animation-duration: 5s, 0.4s;
+  animation-duration: 5s, 0.4s;
+  -webkit-animation-iteration-count: 1, infinite;
+  animation-iteration-count: 1, infinite;
+  -webkit-animation-timing-function: ease, linear;
+  animation-timing-function: ease, linear;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes anim-effect-simo-1 {
+  0%, 100% {
+    -webkit-transform: scale3d(0, 0, 1);
+    transform: scale3d(0, 0, 1);
+    opacity: 0;
+  }
+  5%, 95% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes anim-effect-simo-1 {
+  0%, 100% {
+    -webkit-transform: scale3d(0, 0, 1);
+    transform: scale3d(0, 0, 1);
+    opacity: 0;
+  }
+  5%, 95% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@-webkit-keyframes anim-effect-simo-2 {
+  0%, 5%, 95%, 100% {
+    opacity: 0;
+  }
+  10%, 90% {
+    opacity: 1;
+  }
+}
+
+@keyframes anim-effect-simo-2 {
+  0%, 5%, 95%, 100% {
+    opacity: 0;
+  }
+  10%, 90% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes anim-effect-simo-3 {
+  100% {
+    -webkit-transform: rotate3d(0, 0, 1, 360deg);
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
+
+@keyframes anim-effect-simo-3 {
+  100% {
+    -webkit-transform: rotate3d(0, 0, 1, 360deg);
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
+
+/* Milan */
+.cbutton--effect-milan::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -35px 0 0 -35px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cbutton--effect-milan::after,
+.cbutton--effect-milan::before {
+  border: 4px solid rgba(111,148,182,0.1);
+}
+
+.cbutton--effect-milan.cbutton--click::after {
+  -webkit-animation-name: anim-effect-milan-3, anim-effect-milan-1;
+  animation-name: anim-effect-milan-3, anim-effect-milan-1;
+  -webkit-animation-duration: 5s, 2s;
+  animation-duration: 5s, 2s;
+  -webkit-animation-iteration-count: 1, infinite;
+  animation-iteration-count: 1, infinite;
+  -webkit-animation-timing-function: ease, linear;
+  animation-timing-function: ease, linear;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.cbutton--effect-milan.cbutton--click::before {
+  -webkit-animation-name: anim-effect-milan-3, anim-effect-milan-2;
+  animation-name: anim-effect-milan-3, anim-effect-milan-2;
+  -webkit-animation-duration: 5s, 2s;
+  animation-duration: 5s, 2s;
+  -webkit-animation-iteration-count: 1, infinite;
+  animation-iteration-count: 1, infinite;
+  -webkit-animation-timing-function: ease, linear;
+  animation-timing-function: ease, linear;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes anim-effect-milan-1 {
+  0% {
+    -webkit-transform: perspective(1000px) rotate3d(1, 1, 1, 0deg);
+    transform: perspective(1000px) rotate3d(1, 1, 1, 0deg);
+  }
+  100% {
+    -webkit-transform: perspective(1000px) rotate3d(1, 1, 1, 360deg);
+    transform: perspective(1000px) rotate3d(1, 1, 1, 360deg);
+  }
+}
+
+@keyframes anim-effect-milan-1 {
+  0% {
+    -webkit-transform: perspective(1000px) rotate3d(1, 1, 1, 0deg);
+    transform: perspective(1000px) rotate3d(1, 1, 1, 0deg);
+  }
+  100% {
+    -webkit-transform: perspective(1000px) rotate3d(1, 1, 1, 360deg);
+    transform: perspective(1000px) rotate3d(1, 1, 1, 360deg);
+  }
+}
+
+@-webkit-keyframes anim-effect-milan-2 {
+  0% {
+    -webkit-transform: perspective(1000px) rotate3d(-1, -1, -1, 0deg);
+    transform: perspective(1000px) rotate3d(-1, -1, -1, 0deg);
+  }
+  100% {
+    -webkit-transform: perspective(1000px) rotate3d(-1, -1, -1, 360deg);
+    transform: perspective(1000px) rotate3d(-1, -1, -1, 360deg);
+  }
+}
+
+@keyframes anim-effect-milan-2 {
+  0% {
+    -webkit-transform: perspective(1000px) rotate3d(1, -1, 1, 0deg);
+    transform: perspective(1000px) rotate3d(1, -1, 1, 0deg);
+  }
+  100% {
+    -webkit-transform: perspective(1000px) rotate3d(1, -1, 1, 360deg);
+    transform: perspective(1000px) rotate3d(1, -1, 1, 360deg);
+  }
+}
+
+@-webkit-keyframes anim-effect-milan-3 {
+  0%, 100% {
+    opacity: 0;
+  }
+  25%, 75% {
+    opacity: 1;
+  }
+}
+
+@keyframes anim-effect-milan-3 {
+  0%, 100% {
+    opacity: 0;
+  }
+  25%, 75% {
+    opacity: 1;
+  }
+}
+
+/* Zorka */
+.cbutton--effect-zorka .cbutton__helper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -35px 0 0 -100px;
+  width: 200px;
+  height: 70px;
+  opacity: 0;
+  -webkit-filter: url(../index.html#lb-goo-filter);
+  filter: url(../index.html#lb-goo-filter);
+  pointer-events: none;
+}
+
+.cbutton--effect-zorka .cbutton__helper::before,
+.cbutton--effect-zorka .cbutton__helper::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -28px 0 0 -28px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgb(111,148,182);
+  content: '';
+}
+
+.cbutton--effect-zorka.cbutton--click .cbutton__helper {
+  -webkit-animation: anim-effect-zorka-1 0.7s ease-out;
+  animation: anim-effect-zorka-1 0.7s ease-out;
+}
+
+.cbutton--effect-zorka.cbutton--click .cbutton__helper::before {
+  -webkit-animation: anim-effect-zorka-2 0.7s ease-out forwards;
+  animation: anim-effect-zorka-2 0.7s ease-out forwards;
+}
+
+.cbutton--effect-zorka.cbutton--click .cbutton__helper::after {
+  -webkit-animation: anim-effect-zorka-3 0.7s ease-out forwards;
+  animation: anim-effect-zorka-3 0.7s ease-out forwards;
+}
+
+@-webkit-keyframes anim-effect-zorka-1 {
+  0% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.175;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes anim-effect-zorka-1 {
+  0% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.175;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes anim-effect-zorka-2 {
+  100% {
+    -webkit-transform: translate3d(40px, 0, 0) scale3d(0.8, 0.8, 1);
+    transform: translate3d(40px, 0, 0) scale3d(0.8, 0.8, 1);
+  }
+}
+
+@keyframes anim-effect-zorka-2 {
+  100% {
+    -webkit-transform: translate3d(40px, 0, 0) scale3d(0.8, 0.8, 1);
+    transform: translate3d(40px, 0, 0) scale3d(0.8, 0.8, 1);
+  }
+}
+
+@-webkit-keyframes anim-effect-zorka-3 {
+  100% {
+    -webkit-transform: translate3d(-40px, 0, 0) scale3d(0.8, 0.8, 1);
+    transform: translate3d(-40px, 0, 0) scale3d(0.8, 0.8, 1);
+  }
+}
+
+@keyframes anim-effect-zorka-3 {
+  100% {
+    -webkit-transform: translate3d(-40px, 0, 0) scale3d(0.8, 0.8, 1);
+    transform: translate3d(-40px, 0, 0) scale3d(0.8, 0.8, 1);
+  }
+}
+
+/* Stana */
+.cbutton--effect-stana .cbutton__helper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -40px 0 0 -40px;
+  width: 80px;
+  height: 80px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cbutton--effect-stana line {
+  fill: none;
+  stroke-width: 2;
+}
+
+.cbutton--box-color-7 line {
+  stroke: #0077ff;
+}
+
+.cbutton--box-color-8 line {
+  stroke: #7bff00;
+}
+
+.cbutton--box-color-9 line {
+  stroke: #fff;
+}
+
+.clip-ring {
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+
+.cbutton--effect-stana.cbutton--click .cbutton__helper {
+  -webkit-animation: anim-effect-stana 0.4s ease-in forwards;
+  animation: anim-effect-stana 0.4s ease-in forwards;
+}
+
+@-webkit-keyframes anim-effect-stana {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+
+    -webkit-animation-timing: ease-out;
+    animation-timing: ease-out;
+  }
+}
+
+@keyframes anim-effect-stana {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+
+    -webkit-animation-timing: ease-out;
+    animation-timing: ease-out;
+  }
+}
+
+.cbutton--effect-stana.cbutton--click .clip-ring {
+  -webkit-transition: -webkit-transform 0.4s ease-in-out;
+    transition: transform 0.4s ease-in-out;
+  -webkit-transform: scale3d(3, 3, 1);
+  transform: scale3d(3, 3, 1);
+}
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<link rel="stylesheet" type="https://tympanus.net/Development/ClickEffects/css/normalize.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<script src="https://tympanus.net/Development/ClickEffects/js/modernizr.custom.js"></script>
+<div class="content content--main clearfix">
+<div class="box">
+<h2 class="box__title">Boris</h2>
+<button class="cbutton cbutton--effect-boris">
+<i class="cbutton__icon fa fa-fw fa-step-backward"></i>
+<span class="cbutton__text">Backward</span>
+</button>
+<button class="cbutton cbutton--effect-boris">
+<i class="cbutton__icon fa fa-fw fa-play"></i>
+<span class="cbutton__text">Play</span>
+</button>
+<button class="cbutton cbutton--effect-boris">
+<i class="cbutton__icon fa fa-fw fa-step-forward"></i>
+<span class="cbutton__text">Forward</span>
+</button>
+</div>
+<div class="box">
+<h2 class="box__title">Jelena</h2>
+<button class="cbutton cbutton--effect-jelena">
+<i class="cbutton__icon fa fa-fw fa-rotate-left"></i>
+<span class="cbutton__text">Rotate left</span>
+</button>
+<button class="cbutton cbutton--effect-jelena">
+<i class="cbutton__icon fa fa-fw fa-cut"></i>
+<span class="cbutton__text">Cut</span>
+</button>
+<button class="cbutton cbutton--effect-jelena">
+<i class="cbutton__icon fa fa-fw fa-rotate-right"></i>
+<span class="cbutton__text">Rotate right</span>
+</button>
+</div>
+<div class="box">
+<h2 class="box__title">Radomir</h2>
+<button class="cbutton cbutton--effect-radomir">
+<i class="cbutton__icon fa fa-fw fa-save"></i>
+<span class="cbutton__text">Save</span>
+</button>
+<button class="cbutton cbutton--effect-radomir">
+<i class="cbutton__icon fa fa-fw fa-copy"></i>
+<span class="cbutton__text">Copy</span>
+</button>
+<button class="cbutton cbutton--effect-radomir">
+<i class="cbutton__icon fa fa-fw fa-paste"></i>
+<span class="cbutton__text">Paste</span>
+</button>
+</div>
+<div class="box">
+<h2 class="box__title">Sanja</h2>
+<button class="cbutton cbutton--effect-sanja">
+<i class="cbutton__icon fa fa-fw fa-eyedropper"></i>
+<span class="cbutton__text">Pick</span>
+</button>
+<button class="cbutton cbutton--effect-sanja">
+<i class="cbutton__icon fa fa-fw fa-gear"></i>
+<span class="cbutton__text">Settings</span>
+</button>
+<button class="cbutton cbutton--effect-sanja">
+<i class="cbutton__icon fa fa-fw fa-lock"></i>
+<span class="cbutton__text">Lock</span>
+</button>
+</div>
+<div class="box">
+<h2 class="box__title">Novak</h2>
+<button class="cbutton cbutton--effect-novak">
+<i class="cbutton__icon fa fa-fw fa-minus"></i>
+<span class="cbutton__text">Minus</span>
+</button>
+<button class="cbutton cbutton--effect-novak">
+<i class="cbutton__icon fa fa-fw fa-plus"></i>
+<span class="cbutton__text">Plus</span>
+</button>
+<button class="cbutton cbutton--effect-novak">
+<i class="cbutton__icon fa fa-fw fa-remove"></i>
+<span class="cbutton__text">Remove</span>
+</button>
+</div>
+<div class="box">
+<h2 class="box__title">Ilinka</h2>
+<button class="cbutton cbutton--effect-ilinka">
+<i class="cbutton__icon fa fa-fw fa-send"></i>
+<span class="cbutton__text">Send</span>
+</button>
+<button class="cbutton cbutton--effect-ilinka">
+<i class="cbutton__icon fa fa-fw fa-search"></i>
+<span class="cbutton__text">Search</span>
+</button>
+<button class="cbutton cbutton--effect-ilinka">
+<i class="cbutton__icon fa fa-fw fa-share"></i>
+<span class="cbutton__text">Share</span>
+</button>
+</div>
+<div class="box">
+<h2 class="box__title">Marin</h2>
+<button class="cbutton cbutton--effect-marin">
+<i class="cbutton__icon fa fa-fw fa-star"></i>
+<span class="cbutton__text">Fav</span>
+</button>
+<button class="cbutton cbutton--effect-marin">
+<i class="cbutton__icon fa fa-fw fa-flag"></i>
+<span class="cbutton__text">Flag</span>
+</button>
+<button class="cbutton cbutton--effect-marin">
+<i class="cbutton__icon fa fa-fw fa-thumbs-up"></i>
+<span class="cbutton__text">Like</span>
+</button>
+</div>
+<div class="box">
+<h2 class="box__title">Nikola</h2>
+<button class="cbutton cbutton--effect-nikola">
+<i class="cbutton__icon fa fa-fw fa-refresh"></i>
+<span class="cbutton__text">Refresh</span>
+</button>
+<button class="cbutton cbutton--effect-nikola">
+<i class="cbutton__icon fa fa-fw fa-trash-o"></i>
+<span class="cbutton__text">Trash</span>
+</button>
+<button class="cbutton cbutton--effect-nikola">
+<i class="cbutton__icon fa fa-fw fa-heart"></i>
+<span class="cbutton__text">Heart</span>
+</button>
+</div>
+<div class="box">
+<h2 class="box__title">Tamara</h2>
+<button class="cbutton cbutton--effect-tamara">
+<i class="cbutton__icon fa fa-fw fa-file-text-o"></i>
+<span class="cbutton__text">File</span>
+</button>
+<button class="cbutton cbutton--effect-tamara">
+<i class="cbutton__icon fa fa-fw fa-link"></i>
+<span class="cbutton__text">Link</span>
+</button>
+<button class="cbutton cbutton--effect-tamara">
+<i class="cbutton__icon fa fa-fw fa-columns"></i>
+<span class="cbutton__text">Layout</span>
+</button>
+</div>
+<div class="box">
+<h2 class="box__title">Zoran</h2>
+<button class="cbutton cbutton--effect-zoran">
+<i class="cbutton__icon fa fa-fw fa-bitcoin"></i>
+<span class="cbutton__text">Bitcoin</span>
+</button>
+<button class="cbutton cbutton--effect-zoran">
+<i class="cbutton__icon fa fa-fw fa-dollar"></i>
+<span class="cbutton__text">Dollar</span>
+</button>
+<button class="cbutton cbutton--effect-zoran">
+<i class="cbutton__icon fa fa-fw fa-euro"></i>
+<span class="cbutton__text">Euro</span>
+</button>
+</div>
+<div class="box">
+<h2 class="box__title">Ivana</h2>
+<button class="cbutton cbutton--effect-ivana">
+<i class="cbutton__icon fa fa-fw fa-step-backward"></i>
+<span class="cbutton__text">Backward</span>
+</button>
+<button class="cbutton cbutton--effect-ivana">
+<i class="cbutton__icon fa fa-fw fa-play"></i>
+<span class="cbutton__text">Play</span>
+</button>
+<button class="cbutton cbutton--effect-ivana">
+<i class="cbutton__icon fa fa-fw fa-step-forward"></i>
+<span class="cbutton__text">Forward</span>
+</button>
+</div>
+<div class="box">
+<h2 class="box__title">Marko</h2>
+<button class="cbutton cbutton--effect-marko">
+<i class="cbutton__icon fa fa-fw fa-minus"></i>
+<span class="cbutton__text">Minus</span>
+</button>
+<button class="cbutton cbutton--effect-marko">
+<i class="cbutton__icon fa fa-fw fa-plus"></i>
+<span class="cbutton__text">Plus</span>
+</button>
+<button class="cbutton cbutton--effect-marko">
+<i class="cbutton__icon fa fa-fw fa-remove"></i>
+<span class="cbutton__text">Remove</span>
+</button>
+</div>
+<div class="box">
+<h2 class="box__title">Stoja <span>(Chrome + Safari)</span></h2>
+<button class="cbutton cbutton--effect-stoja cbutton--effect-stoja-left">
+<i class="cbutton__icon fa fa-fw fa-save"></i>
+<span class="cbutton__text">Save</span>
+</button>
+<button class="cbutton cbutton--effect-stoja cbutton--effect-stoja-top">
+<i class="cbutton__icon fa fa-fw fa-copy"></i>
+<span class="cbutton__text">Copy</span>
+</button>
+<button class="cbutton cbutton--effect-stoja cbutton--effect-stoja-right">
+<i class="cbutton__icon fa fa-fw fa-paste"></i>
+<span class="cbutton__text">Paste</span>
+</button>
+</div>
+<div class="box">
+<h2 class="box__title">Azra</h2>
+<button class="cbutton cbutton--complex cbutton--box cbutton--box-color-1 cbutton--effect-azra">
+<img class="cbutton__helper" src="img/drop.svg#color-1">
+<span class="cbutton__text">Colorpicker</span>
+</button>
+<button class="cbutton cbutton--complex cbutton--box cbutton--box-color-2 cbutton--effect-azra">
+ <img class="cbutton__helper" src="img/drop.svg#color-2">
+<span class="cbutton__text">Colorpicker</span>
+</button>
+<button class="cbutton cbutton--complex cbutton--box cbutton--box-color-3 cbutton--effect-azra">
+<img class="cbutton__helper" src="img/drop.svg#color-3">
+<span class="cbutton__text">Colorpicker</span>
+</button>
+</div>
+<div class="box">
+<h2 class="box__title">Dejan</h2>
+<button class="cbutton cbutton--complex cbutton--box cbutton--box-color-4 cbutton--effect-dejan">
+<span class="cbutton__text">Colorpicker</span>
+<span class="cbutton__helper cbutton__helper--first"><img src="img/splash_1.svg#color-4"></span>
+<span class="cbutton__helper cbutton__helper--second"><img src="img/splash_2.svg#color-4"></span>
+</button>
+<button class="cbutton cbutton--complex cbutton--box cbutton--box-color-5 cbutton--effect-dejan">
+<span class="cbutton__text">Colorpicker</span>
+<span class="cbutton__helper cbutton__helper--first"><img src="img/splash_1.svg#color-5"></span>
+<span class="cbutton__helper cbutton__helper--second"><img src="img/splash_2.svg#color-5"></span>
+</button>
+<button class="cbutton cbutton--complex cbutton--box cbutton--box-color-6 cbutton--effect-dejan">
+<span class="cbutton__text">Colorpicker</span>
+<span class="cbutton__helper cbutton__helper--first"><img src="img/splash_1.svg#color-6"></span>
+<span class="cbutton__helper cbutton__helper--second"><img src="img/splash_2.svg#color-6"></span>
+</button>
+</div>
+<div class="box">
+<h2 class="box__title">Stana <span>(Chrome only)</span></h2>
+<button class="cbutton cbutton--complex cbutton--box cbutton--box-color-7 cbutton--effect-stana">
+<span class="cbutton__text">Colorpicker</span>
+<span class="cbutton__helper">
+<svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+<clipPath id="clip_shape_1">
+<path class="clip-ring" d="M50,24.188c-14.255,0-25.812,11.557-25.812,25.812 c0,14.255,11.557,25.812,25.812,25.812c14.255 0,25.812-11.558,25.812-25.812C75.812,35.745,64.255,24.188,50,24.188z M50,64.75 c-8.146,0-14.749-6.604-14.749-14.75c0-8.146,6.603-14.749,14.749-14.749c8.146,0,14.75,6.603,14.75,14.749 C64.75,58.146,58.146,64.75,50,64.75z"></path>
+</clipPath>
+<g clip-path="url(#clip_shape_1)">
+<line x1="50" y1="89.75" x2="50" y2="75.75"></line>
+<line x1="84.844" y1="70.132" x2="72.191" y2="62.828"></line>
+<line x1="84.844" y1="29.956" x2="72.193" y2="37.259"></line>
+<line x1="50" y1="9.25" x2="50" y2="24.25"></line>
+<line x1="15.243" y1="70.132" x2="27.894" y2="62.829"></line>
+<line x1="15.243" y1="29.956" x2="27.893" y2="37.258"></line>
+</g>
+</svg>
+</span>
+</button>
+<button class="cbutton cbutton--complex cbutton--box cbutton--box-color-8 cbutton--effect-stana">
+<span class="cbutton__text">Colorpicker</span>
+<span class="cbutton__helper">
+<svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+<clipPath id="clip_shape_2">
+<path class="clip-ring" d="M50,24.188c-14.255,0-25.812,11.557-25.812,25.812 c0,14.255,11.557,25.812,25.812,25.812c14.255 0,25.812-11.558,25.812-25.812C75.812,35.745,64.255,24.188,50,24.188z M50,64.75 c-8.146,0-14.749-6.604-14.749-14.75c0-8.146,6.603-14.749,14.749-14.749c8.146,0,14.75,6.603,14.75,14.749 C64.75,58.146,58.146,64.75,50,64.75z"></path>
+</clipPath>
+<g clip-path="url(#clip_shape_2)">
+<line x1="50" y1="89.75" x2="50" y2="75.75"></line>
+<line x1="84.844" y1="70.132" x2="72.191" y2="62.828"></line>
+<line x1="84.844" y1="29.956" x2="72.193" y2="37.259"></line>
+<line x1="50" y1="9.25" x2="50" y2="24.25"></line>
+<line x1="15.243" y1="70.132" x2="27.894" y2="62.829"></line>
+<line x1="15.243" y1="29.956" x2="27.893" y2="37.258"></line>
+</g>
+</svg>
+</span>
+</button>
+<button class="cbutton cbutton--complex cbutton--box cbutton--box-color-9 cbutton--effect-stana">
+<span class="cbutton__text">Colorpicker</span>
+<span class="cbutton__helper">
+<svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+<clipPath id="clip_shape_3">
+<path class="clip-ring" d="M50,24.188c-14.255,0-25.812,11.557-25.812,25.812 c0,14.255,11.557,25.812,25.812,25.812c14.255 0,25.812-11.558,25.812-25.812C75.812,35.745,64.255,24.188,50,24.188z M50,64.75 c-8.146,0-14.749-6.604-14.749-14.75c0-8.146,6.603-14.749,14.749-14.749c8.146,0,14.75,6.603,14.75,14.749 C64.75,58.146,58.146,64.75,50,64.75z"></path>
+</clipPath>
+<g clip-path="url(#clip_shape_3)">
+<line x1="50" y1="89.75" x2="50" y2="75.75"></line>
+<line x1="84.844" y1="70.132" x2="72.191" y2="62.828"></line>
+<line x1="84.844" y1="29.956" x2="72.193" y2="37.259"></line>
+<line x1="50" y1="9.25" x2="50" y2="24.25"></line>
+<line x1="15.243" y1="70.132" x2="27.894" y2="62.829"></line>
+<line x1="15.243" y1="29.956" x2="27.893" y2="37.258"></line>
+</g>
+</svg>
+</span>
+</button>
+</div>
+<div class="box">
+<h2 class="box__title">Filipa</h2>
+<button class="cbutton cbutton--effect-filipa cbutton--effect-filipa-left">
+<i class="cbutton__icon fa fa-fw fa-rotate-left"></i>
+<span class="cbutton__text">Rotate left</span>
+</button>
+<button class="cbutton cbutton--effect-filipa cbutton--effect-filipa-right">
+<i class="cbutton__icon fa fa-fw fa-rotate-right"></i>
+<span class="cbutton__text">Rotate right</span>
+</button>
+</div>
+<div class="box">
+<h2 class="box__title">Lazar</h2>
+<button class="cbutton cbutton--effect-lazar cbutton--effect-lazar-inverted">
+<i class="cbutton__icon fa fa-fw fa-chevron-right"></i>
+<span class="cbutton__text">Prev</span>
+</button>
+<button class="cbutton cbutton--effect-lazar">
+<i class="cbutton__icon fa fa-fw fa-chevron-right"></i>
+<span class="cbutton__text">Next</span>
+</button>
+</div>
+<div class="box">
+<h2 class="box__title">Jagoda <span>(simulated loading)</span></h2>
+<button class="cbutton cbutton--effect-jagoda">
+<i class="cbutton__icon fa fa-fw fa-star"></i>
+<span class="cbutton__text">Fav</span>
+</button>
+<button class="cbutton cbutton--effect-jagoda">
+<i class="cbutton__icon fa fa-fw fa-flag"></i>
+<span class="cbutton__text">Flag</span>
+</button>
+<button class="cbutton cbutton--effect-jagoda">
+<i class="cbutton__icon fa fa-fw fa-thumbs-up"></i>
+<span class="cbutton__text">Like</span>
+</button>
+</div>
+<div class="box">
+<h2 class="box__title">Simo <span>(simulated loading)</span></h2>
+<button class="cbutton cbutton--effect-simo">
+<i class="cbutton__icon fa fa-fw fa-refresh"></i>
+<span class="cbutton__text">Refresh</span>
+</button>
+<button class="cbutton cbutton--effect-simo">
+<i class="cbutton__icon fa fa-fw fa-trash-o"></i>
+<span class="cbutton__text">Trash</span>
+</button>
+<button class="cbutton cbutton--effect-simo">
+<i class="cbutton__icon fa fa-fw fa-heart"></i>
+<span class="cbutton__text">Heart</span>
+</button>
+</div>
+<div class="box">
+<h2 class="box__title">Milan <span>(simulated loading)</span></h2>
+<button class="cbutton cbutton--effect-milan">
+<i class="cbutton__icon fa fa-fw fa-refresh"></i>
+<span class="cbutton__text">Refresh</span>
+</button>
+<button class="cbutton cbutton--effect-milan">
+<i class="cbutton__icon fa fa-fw fa-trash-o"></i>
+<span class="cbutton__text">Trash</span>
+</button>
+<button class="cbutton cbutton--effect-milan">
+<i class="cbutton__icon fa fa-fw fa-heart"></i>
+<span class="cbutton__text">Heart</span>
+</button>
+</div>
+<div class="box">
+<h2 class="box__title">Zorka <span>(with goo filter technique by <a href="https://twitter.com/lucasbebber">Lucas Bebber</a>)</span></h2>
+<button class="cbutton cbutton--complex cbutton--effect-zorka">
+<i class="cbutton__icon fa fa-fw fa-code-fork"></i>
+<span class="cbutton__text">Search</span>
+<span class="cbutton__helper"></span>
+</button>
+<svg class="hidden">
+
+<defs>
+<filter id="lb-goo-filter">
+<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+<feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"></feColorMatrix>
+<feComposite in="SourceGraphic" in2="goo" operator="atop"></feComposite>
+</filter>
+</defs>
+</svg>
+</div>
+</div>
+
+<section class="content content--related">
+<p>If you enjoyed this demo you might also like:</p>
+<a class="media-item" href="https://tympanus.net/Development/CreativeLinkEffects/">
+<img class="media-item__img" src="img/related/CreativeLinkEffects.png">
+<h3 class="media-item__title">Creative Link Effects</h3>
+</a>
+<a class="media-item" href="https://tympanus.net/Development/AnimatedSVGIcons/">
+<img class="media-item__img" src="img/related/AnimatedSVGIcons.jpg">
+<h3 class="media-item__title">Animated SVG Icons</h3>
+</a>
+</section>
+
+<script src="https://tympanus.net/Development/ClickEffects/js/classie.js"></script>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script id="rendered-js">
+      (function () {
+
+  // http://stackoverflow.com/a/11381730/989439
+  function mobilecheck() {
+    var check = false;
+    (function (a) {if (/(android|ipad|playbook|silk|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;})(navigator.userAgent || navigator.vendor || window.opera);
+    return check;
+  }
+
+  var support = { animations: Modernizr.cssanimations },
+  animEndEventNames = { 'WebkitAnimation': 'webkitAnimationEnd', 'OAnimation': 'oAnimationEnd', 'msAnimation': 'MSAnimationEnd', 'animation': 'animationend' },
+  animEndEventName = animEndEventNames[Modernizr.prefixed('animation')],
+  onEndAnimation = function (el, callback) {
+    var onEndCallbackFn = function (ev) {
+      if (support.animations) {
+        if (ev.target != this) return;
+        this.removeEventListener(animEndEventName, onEndCallbackFn);
+      }
+      if (callback && typeof callback === 'function') {callback.call();}
+    };
+    if (support.animations) {
+      el.addEventListener(animEndEventName, onEndCallbackFn);
+    } else
+    {
+      onEndCallbackFn();
+    }
+  },
+  eventtype = mobilecheck() ? 'touchstart' : 'click';
+
+  [].slice.call(document.querySelectorAll('.cbutton')).forEach(function (el) {
+    el.addEventListener(eventtype, function (ev) {
+      classie.add(el, 'cbutton--click');
+      onEndAnimation(classie.has(el, 'cbutton--complex') ? el.querySelector('.cbutton__helper') : el, function () {
+        classie.remove(el, 'cbutton--click');
+      });
+    });
+  });
+
+})();
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

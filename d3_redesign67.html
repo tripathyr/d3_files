@@ -1,0 +1,67 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Frosted Glass Effect with CSS</title>
+<style>
+      html, body, main {
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size: 2em;
+  font-weight: 300;
+  color: rgba(255,255,255,.7);
+  margin: 0;
+}
+
+main {
+  background: url(https://images.pexels.com/photos/314380/pexels-photo-314380.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb) fixed no-repeat;
+  background-size: cover;
+  padding-top: 4rem;
+}
+
+.frosted-glass {
+  width: 400px;
+  height: 200px;
+  background: inherit;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 2rem;
+  box-sizing: border-box;
+  box-shadow: 0 .5em 1em rgba(0,0,0,.3);
+}
+
+.frosted-glass::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: inherit;
+  box-shadow: inset 0 0 3000px rgba(255,255,255,.5);
+  filter: blur(10px);
+  margin: -20px;
+}
+    </style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<main>
+<div class="frosted-glass">
+I am frosted glass
+</div>
+</main>
+
+
+
+</body></html>
