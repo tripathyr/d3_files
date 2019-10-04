@@ -1,0 +1,272 @@
+<html>
+
+<body onload="rePaint()" onresize="rePaint()">
+
+<style>
+
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block;}audio,canvas,video{display:inline-block;}audio:not([controls]){display:none;height:0;}[hidden]{display:none;}html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}body{margin:0;}a:focus{outline:thin dotted;}a:active,a:hover{outline:0;}h1{font-size:2em;margin:0.67em 0;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:bold;}dfn{font-style:italic;}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0;}mark{background:#ff0;color:#000;}code,kbd,pre,samp{font-family:monospace,serif;font-size:1em;}pre{white-space:pre-wrap;}q{quotes:"\201C" "\201D" "\2018" "\2019";}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-0.5em;}sub{bottom:-0.25em;}img{border:0;}svg:not(:root){overflow:hidden;}figure{margin:0;}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em;}legend{border:0;padding:0;}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0;}button,input{line-height:normal;}button,select{text-transform:none;}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer;}button[disabled],html input[disabled]{cursor:default;}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0;}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}textarea{overflow:auto;vertical-align:top;}table{border-collapse:collapse;border-spacing:0;}
+
+p { 
+   word-wrap:break-word;
+}
+
+
+div {
+box-sizing: border-box;
+}
+
+#rootDiv {
+box-sizing: border-box;  
+position:relative;
+top:0px;
+}
+
+</style>  
+
+<!--Entire Document is mounted here -->
+<div id="rootDiv"></div>
+
+
+<script id="userNonPresentationData">
+  //User Data Section. Keep things that will fetch user non-presentation data here
+  //Do not put presentation elements here. Presentation elements will need rePainting when screens are resized. Put them in next script tag UserPresentationCode under function rePaintUserData() 
+
+  function test(){
+    console.log("test works");
+    }
+  test();
+
+
+//This function will be called by framework for you
+  function userDataNeedingNoRePaint(){
+
+    function test(){
+      console.log("test works inside userDataNeedingNoRePaint");
+    }
+
+
+    test();
+  
+
+  }
+
+</script>
+
+<script id="SystemConfiguration">
+ 
+   var screenAlpha ={};
+
+  //Main configuration for number of boxes in grid. You only have to define minimum width, minimum height and total number of boxes. Positioning will be taken care of by the code
+  screenAlpha.boxMinimumWidth = 340;
+  screenAlpha.boxMinimumHeight = 390;
+  screenAlpha.totalBoxes = 9;
+    
+  //Turn them false when layout job is done
+  screenAlpha.lastUserDivShouldCoverWholeLine  = true;
+  screenAlpha.showBaseDivNumber = true  ;
+  screenAlpha.showBaseDivBackground = true;
+  screenAlpha.showLastOverLayDivBackground = true;
+  
+  //Styling Information for base Div grid, and overlay Div grid 
+  screenAlpha.baseDivGridBackground = "white";
+  screenAlpha.OverlayDivGridBackground ="grey";
+  screenAlpha.OverlayDivOpacity ="0.9";
+
+</script>
+
+
+<script id="UserPresentationCode">
+/*
+  
+  1. You can create your own overlay divs, and put user HTML/Javascript code inside it. Give it space by calling createUserDiv(baseDivNumber,howManyAdjacentDivs,heightMultiplier)
+  2. Keep static calculations outside rePainting zone in <script id="script_userNonPresentationData"> section
+  3. Keep all the screen specific display in <script id="script_UserPresentationData"> zone
+  4. All user presentation code should strictly be inside the function rePaintUserData()
+*/
+
+  function rePaintUserData(){
+  //createUserDiv(baseDivNumber,howManyAdjacentDivs,heightMultiplier)
+ /* 
+  //Creates a user div which spans the entire line with id div_overlay_2 which be used to style and put content inside the div. Positioning has been taken care of
+    createUserDiv(6,"full_line",1);
+    document.getElementById("div_overlay_6").style.backgroundColor="Red";
+    document.getElementById("div_overlay_6").innerHTML="<h1 style='opacity:0.7'>This is user HTML</h1>";
+
+  //Creates a user div which spans 2 adjacent divs or end of line if those adjacent divs are could not be placed. The height is 3 row of divs. Div id is div_overlay_7
+    createUserDiv(15,2,3);
+    document.getElementById("div_overlay_15").style.backgroundColor="Green";
+
+   // You get last overly div ID for free if screenAlpha.lastUserDivShouldCoverWholeLine  = true; 
+    if(screenAlpha.lastDivNumber) document.getElementById("div_overlay_"+screenAlpha.lastDivNumber).innerHTML="Last overlay DIV takes the whole row if configured that way";
+ */   
+
+    var x1 = createUserDiv(3,1,1);
+    x1.style.backgroundColor = "teal";
+    x1.innerHTML = "<h1 style='position:relative;top:100px;'>My name is Vivek1</h1>"
+ 
+    var x3 = createUserDiv(1,1,1);
+    var x3dimensions = getUserDivDimensions(1);
+    x3.style.backgroundColor="pink";
+    x3.innerHTML = `<h1 style="height:${x3dimensions.height-320}px;overflow:hidden;">User Created HTML is working great here I think. What will happen if data is increased. will it overflow. I need more data here for sure. And still more data is surely needed here.</h1>`;
+
+    var x0= createUserDiv(0,1,1);
+    x0.style.backgroundColor = "red";
+    x0.innerHTML = "<h1>This is header redux zone being tried here</h1>";
+
+} // Main function end
+</script>  
+
+<script id="script_last">
+//Positioning section 
+//Keep this script tag section as the last tag
+
+//Do not touch these settings
+  screenAlpha.widthAdjustment = 15;
+  screenAlpha.heightAdjustment = 20;
+  screenAlpha.baseDivIdList = [];
+  screenAlpha.userDivIdList = [];
+  screenAlpha.lastDivNumber = screenAlpha.totalBoxes -1;
+
+//One time tasks not needing repainting
+  oneTimeTasks();
+
+  function oneTimeTasks(){
+    createAllBaseDivs(screenAlpha.totalBoxes);
+    userDataNeedingNoRePaint();
+  }
+
+  function createAllBaseDivs(totalBoxes){
+      var index;
+      for (index = 0; index < totalBoxes; index++) { 
+      var divId = "div_"+index;
+      createSingleBaseDiv(divId);
+      screenAlpha.baseDivIdList.push(divId);
+    }
+  }
+
+  function createSingleBaseDiv(divId){
+   var divCreated = document.createElement("div");
+   divCreated.id=divId;
+   divCreated.style.position = "absolute";
+   if(screenAlpha.showBaseDivBackground) {
+      divCreated.style.borderStyle = "dotted";
+      }
+   rootDiv.appendChild(divCreated);
+ }
+
+//Tasks needing repainting
+  function rePaint(){
+    screenAlpha.boxDetails = boxesPerRowData(screenAlpha.boxMinimumWidth,screenAlpha.boxMinimumHeight);
+    rootDivSetDimensions("rootDiv");
+    positionTheBaseDivs();
+    if(screenAlpha.lastUserDivShouldCoverWholeLine ) lastBaseDivOverlay();
+    if(screenAlpha.showBaseDivBackground) {
+      document.getElementById("rootDiv").style.backgroundColor = screenAlpha.baseDivGridBackground;
+      }
+    rePaintUserData();
+    }
+
+  function rootDivSetDimensions (rootElementId){
+    var divSelected = document.getElementById(rootElementId);
+    divSelected.style.width = (window.innerWidth-screenAlpha.widthAdjustment);
+    divSelected.style.height = Math.ceil(screenAlpha.totalBoxes/screenAlpha.boxDetails.numberOfBoxesInRow)*screenAlpha.boxMinimumHeight;
+    }
+
+  function boxesPerRowData(boxMinimumWidth, boxMinimumHeight){
+    var boxDetails = {};
+    var numberOfBoxesInRow = Math.floor((window.innerWidth-screenAlpha.widthAdjustment)/boxMinimumWidth);
+    var spillOverPerRow = (window.innerWidth-screenAlpha.widthAdjustment) - numberOfBoxesInRow*boxMinimumWidth;
+    if (numberOfBoxesInRow == 0) {numberOfBoxesInRow = 1}; //to solve Divide by Zero problem
+    var spillOverPerBox = spillOverPerRow/numberOfBoxesInRow;
+    var boxEffectiveWidth = boxMinimumWidth + spillOverPerBox;
+    boxDetails.numberOfBoxesInRow = numberOfBoxesInRow;
+    boxDetails.boxEffectiveWidth = boxEffectiveWidth;
+    screenAlpha.numberOfBoxesInRow = numberOfBoxesInRow;
+    screenAlpha.boxEffectiveWidth = boxEffectiveWidth;
+    return boxDetails;
+  }
+ 
+ function topAndLeftPositionOfBaseDivs(divNumber){
+    heightPositionMultiplier = Math.floor(divNumber/screenAlpha.boxDetails.numberOfBoxesInRow);
+    widthPositionMultiplier = divNumber % screenAlpha.boxDetails.numberOfBoxesInRow;
+    topPosition = screenAlpha.boxMinimumHeight*heightPositionMultiplier;
+    leftPosition = screenAlpha.boxDetails.boxEffectiveWidth*widthPositionMultiplier;
+    screenAlpha["div_"+divNumber+"_topPosition"] = topPosition;
+    screenAlpha["div_"+divNumber+"_leftPosition"] = leftPosition;
+  }
+
+  function positionTheBaseDivs(){
+    var index;
+    for (index = 0; index < screenAlpha.baseDivIdList.length; index++) {
+    topAndLeftPositionOfBaseDivs(index);
+    var divId = "div_"+index;
+    document.getElementById(divId).style.top=screenAlpha["div_"+index+"_topPosition"]+"px";
+    document.getElementById(divId).style.left=screenAlpha["div_"+index+"_leftPosition"]+"px";
+    document.getElementById(divId).style.width=screenAlpha.boxDetails.boxEffectiveWidth+"px";
+    document.getElementById(divId).style.height = screenAlpha.boxMinimumHeight+"px"; 
+    if(screenAlpha.showBaseDivNumber) document.getElementById(divId).innerHTML = index; 
+      }
+    }
+
+   function createUserDiv(baseDivNumber,howManyAdjacentDivs,heightMultiplier){
+     var topPosition = screenAlpha["div_"+baseDivNumber+"_topPosition"];
+     if (howManyAdjacentDivs == "full_line") {
+       var divWidth = screenAlpha.boxEffectiveWidth*screenAlpha.numberOfBoxesInRow;
+       var leftPosition = "0";
+       } 
+     else
+     {
+       var originalLeftPosition = screenAlpha["div_"+baseDivNumber+"_leftPosition"];
+       //Obtain the lowest width of 3 possibilities for overlay  
+       var divWidth1 = screenAlpha.boxEffectiveWidth*screenAlpha.numberOfBoxesInRow;
+       var divWidth2 = howManyAdjacentDivs*screenAlpha.boxEffectiveWidth;
+       var divWidth3 = divWidth1 - screenAlpha["div_"+baseDivNumber+"_leftPosition"];
+       var divWidthTemp = (divWidth1 > divWidth2) ? divWidth2 : divWidth1;
+       var divWidth = (divWidthTemp > divWidth3) ? divWidth3 : divWidthTemp;
+     }
+     var divHeight = screenAlpha.boxMinimumHeight*heightMultiplier;
+     var divId="div_overlay_"+baseDivNumber;
+    if (!document.getElementById(divId)){
+     var overlayDiv = document.createElement("div");
+     overlayDiv.id=divId;
+     overlayDiv.style.position = "absolute";
+     document.getElementById("rootDiv").appendChild(overlayDiv)
+    }
+     var overlayDiv = document.getElementById(divId);
+     overlayDiv.style.top = topPosition+"px";screenAlpha[divId+"_top"]=topPosition;
+     if(howManyAdjacentDivs == "full_line") {screenAlpha[divId+"_left"]=0 } else {overlayDiv.style.left=originalLeftPosition+"px";screenAlpha[divId+"_left"]=originalLeftPosition};
+     overlayDiv.style.width=divWidth+"px";screenAlpha[divId+"_width"]=divWidth;
+     overlayDiv.style.height=divHeight+"px";screenAlpha[divId+"_height"]=divHeight;
+     if(screenAlpha.showLastOverLayDivBackground) { 
+      overlayDiv.style.backgroundColor=screenAlpha.OverlayDivGridBackground;
+      overlayDiv.style.opacity=screenAlpha.OverlayDivOpacity;
+      if(screenAlpha.showBaseDivNumber) {
+        overlayDiv.innerHTML="<span style='position:relative;left:20px'>Overlay Div Number "+baseDivNumber+"</span>";}
+     }
+     if(!screenAlpha.userDivIdList.includes(divId)) {
+      screenAlpha.userDivIdList.push(divId);
+      }
+     return document.getElementById("div_overlay_"+baseDivNumber);
+   }
+
+   function getUserDivDimensions(userDivNumber){
+     var x = {};
+     x.height = screenAlpha["div_overlay_"+userDivNumber+"_height"];
+     x.width = screenAlpha["div_overlay_"+userDivNumber+"_width"];
+     x.top = screenAlpha["div_overlay_"+userDivNumber+"_top"];
+     x.left = screenAlpha["div_overlay_"+userDivNumber+"_left"];
+     return x;
+    }
+
+   function lastBaseDivOverlay(){
+    //Last div will take over the whole line if the screenAlpha.lastUserDivShouldCoverWholeLine  configuration allows is
+    var lastDivNumber = screenAlpha.totalBoxes - 1 ;
+    createUserDiv(lastDivNumber,"full_line",1)
+   } 
+
+//End of positioning code
+</script>
+
+</body>
+</html>
+

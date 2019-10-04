@@ -1,0 +1,136 @@
+<html>
+<body onresize="rePaint()">
+
+<style>
+.test {
+  width: 300px;
+  height:300px;
+  border-style: dotted;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  background-color: red;
+}
+</style>  
+
+<svg id="svg1" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(25,0) rotate(30)">
+    <rect x="0" y="0" width="900" height="40" fill="blue"/>
+</g>
+</svg>
+
+<script>
+
+  function rePaint(){
+  var svgSelected = document.querySelector("svg");
+  //var svgSelected = document.getElementsByTagName("svg")[0];
+  //var svgSelected = document.getElementById("svg1");
+  svgSelected.setAttribute("width",window.innerWidth-30); 
+  svgSelected.setAttribute("height",window.innerHeight-30);
+  }
+
+  rePaint(); 
+</script>  
+
+<!-- First Method .. Boxes under SVG 
+<svg xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <rect x="0" y="0" width="100" height="100" fill="red"></rect>
+    <text x="0" y="50" font-family="Verdana" font-size="35" fill="blue">Hello</text>
+  </g>
+</svg>
+-->
+
+<!-- Second Method Flex Container
+<div class="flex-container">
+  <div>
+    <div class="test"></div><div class="test"></div>
+  </div>  
+  <div>
+    <div class="test"></div><div class="test"></div>
+  </div>
+</div>
+-->
+
+<!-- Third Method Positioning -->
+<!-- This is taking reference from end of flex container -->
+<!--
+<div style="position:relative;top:10px">
+  <div style="position:absolute;top:0px;left:0px;width:300px;height:300px;border-style:dotted;"></div>
+  <div style="position:absolute;top:0px;left:300px;width:300px;height:300px;border-style:dotted;"></div>
+</div>
+
+<div style="position:relative;top:320px">
+  <div style="position:absolute;top:0px;left:0px;width:300px;height:300px;border-style:dotted"></div>
+  <div style="position:absolute;top:0px;left:300px;width:300px;height:300px;border-style:dotted;"></div>
+</div>
+
+<div style="position:relative;top:630px">
+  <div style="position:absolute;top:0px;left:0px;width:300px;height:300px;border-style:dotted;"></div>
+  <div style="position:absolute;top:0px;left:300px;width:300px;height:300px;border-style:dotted;"></div>
+</div>
+-->
+<!-- This is taking reference from end of flex container -->
+
+<!--
+<div style="position:relative;top:940px">
+  <div style="position:absolute;top:0px;left:0px;width:300px;height:300px;border-style:dotted;"></div>
+  <div style="position:absolute;top:0px;left:300px;width:300px;height:300px;border-style:dotted;"></div>
+  <div style="position:absolute;top:300px;left:0px;width:300px;height:300px;border-style:dotted;"></div>
+  <div style="position:absolute;top:300px;left:300px;width:300px;height:300px;border-style:dotted;"></div>
+  <div style="position:absolute;top:600px;left:0px;width:300px;height:300px;border-style:dotted;"></div>
+  <div style="position:absolute;top:600px;left:300px;width:300px;height:300px;border-style:dotted;"></div>
+</div>
+
+<div style="position:fixed;top:200px">
+  <div style="position:absolute;top:0px;left:0px;width:300px;height:300px;border-style:dotted;background-color: blue"></div>
+</div>
+-->
+
+<!-- Second Method .. Lots of div positioned appropriately --> 
+<!--
+
+-->
+
+
+<script>
+//Get the width. Get the height
+//Calculate safe limits
+//Calculate the counts per line
+//Place the divs per line
+//Put an event onresize to handle the presentation
+/*
+function rePaint(){
+ document.body.innerHTML=""; 
+ var width = window.innerWidth, height=window.innerHeight;
+ minimumDivWidth = 140;
+ minimumDivHeight = 150;
+ numberDivsPerLine = Math.floor(width/minimumDivWidth);
+ flowOver = (width/minimumDivWidth) - numberDivsPerLine;
+ widthExpansionPerDiv = flowOver/numberDivsPerLine;
+ effectiveWidth = Math.floor(minimumDivWidth + widthExpansionPerDiv*minimumDivWidth);
+ document.body.innerHTML = "Number of divs is "+numberDivsPerLine+" and widthPerDiv is "+effectiveWidth;
+}
+
+rePaint();
+*/
+</script> 
+
+<!--
+//Structure of div
+//Repeat number of row
+<div>
+  <div></div><div></div>  <= Repeat this number of divs per line
+</div>
+
+Put a <div>
+   Put number of divs per line
+Put a </div>   
+
+--> 
+
+</body>
+</html>
+

@@ -1,0 +1,116 @@
+
+ 
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<style>
+
+
+
+body { background:#dedede }
+.toggle {
+  display:block;
+  margin:20px;
+  width:160px;
+  height:80px;
+  border-radius:40px;
+  position:relative;
+  cursor:pointer;
+  background:linear-gradient(to bottom, #9c9c9c, #f9f9f9);
+}
+.toggle input[type="checkbox"] { display:none }
+.toggle:before, .toggle:after, .toggle .switch:after, .switch .brushed-metal:before, .switch .brushed-metal:after {
+  content:'';
+  display:block;
+  position:absolute;
+  z-index:1;
+}
+.toggle:before {
+  width:156px;
+  height:76px;
+  top:2px; left:2px;
+  border-radius:38px;
+  background:linear-gradient(to bottom, #7b7b7b, #ececec);
+}
+.toggle:after {
+  width:120px;
+  height:48px;
+  top:16px; left:20px;
+  border-radius:24px;
+  background-color:#3b3b3d;
+  box-shadow:inset rgba(0,0,0,.7) 0 6px 12px;
+  -webkit-transition:background-color .3s linear;
+     -moz-transition:background-color .3s linear;
+          transition:background-color .3s linear;
+}
+.toggle.checked:after { background-color:#00c0d2 }
+.toggle .switch {
+  diplay:block;
+  width:68px;
+  height:68px;
+  border-radius:50%;
+  position:absolute;
+  top:6px; left:6px;
+  z-index:9;
+  background:linear-gradient(to bottom, #ddd, #636363);
+  -webkit-transition:left .2s linear;
+     -moz-transition:left .2s linear;
+          transition:left .2s linear;
+}
+.toggle.checked .switch { left:86px }
+.toggle .switch:after {
+  width:24px;
+  height:24px;
+  top:22px; left:22px;
+  border-radius:50%;
+  background:#3b3b3d;
+  box-shadow:inset rgba(0,0,0,.6) 0 3px 6px;
+  z-index:8;
+}
+.switch .brushed-metal {
+  display:block;
+  width:64px; height:64px;
+  position:absolute;
+  top:2px; left:2px;
+  border-radius:50%;
+  z-index:4;
+  background-color:#a9a9a9;
+  background-image:
+    -webkit-radial-gradient(  50%   0%,  8% 50%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+    -webkit-radial-gradient(  50% 100%, 12% 50%, hsla(0,0%,100%,.6) 0%, hsla(0,0%,100%,0) 100%),
+    -webkit-radial-gradient(   0%  50%, 50%  7%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+    -webkit-radial-gradient( 100%  50%, 50%  5%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+
+    -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,  0%,0) 0%, hsla(0,0%,  0%,0)   3%, hsla(0,0%,  0%,.1) 3.5%),
+    -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0)   6%, hsla(0,0%,100%,.1) 7.5%),
+    -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.2) 2.2%),
+
+    -webkit-radial-gradient( 50% 50%, 200% 50%, hsla(0,0%,90%,1) 5%, hsla(0,0%,85%,1) 30%, hsla(0,0%,60%,1) 100%);
+}
+.switch .brushed-metal:before, .switch .brushed-metal:after {
+  top:0; left:0;
+  width:inherit;
+  height:inherit;
+  border-radius:inherit;
+
+  /* fake conical gradients */
+  background-image:
+    -webkit-radial-gradient(  50%   0%, 10% 50%, hsla(0,0%,0%,.1) 0%, hsla(0,0%,0%,0) 100%),
+    -webkit-radial-gradient(  50% 100%, 10% 50%, hsla(0,0%,0%,.1) 0%, hsla(0,0%,0%,0) 100%),
+    -webkit-radial-gradient(   0%  50%, 50% 10%, hsla(0,0%,0%,.1) 0%, hsla(0,0%,0%,0) 100%),
+    -webkit-radial-gradient( 100%  50%, 50% 06%, hsla(0,0%,0%,.1) 0%, hsla(0,0%,0%,0) 100%);
+}
+.switch .brushed-metal:before { transform:rotate(65deg) }
+.switch .brushed-metal:after { transform:rotate(-65deg) }
+
+</style>
+<body>
+<label class="toggle"><input type="checkbox"/><b class="switch"><b class="brushed-metal"></b></b></label>
+</body>
+
+<script>
+    $('input[type="checkbox"]').on('click', function(e) {
+  $(this).parent().toggleClass('checked', $(this).prop('checked'));
+});
+</script>    

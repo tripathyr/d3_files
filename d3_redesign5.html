@@ -1,0 +1,257 @@
+<html lang="en" style="" class=" js flexbox flexboxlegacy canvas canvastext webgl touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths -webkit-"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Light Metal Volume Dial</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+<style>
+      html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #f1f1f1;
+  background-image: linear-gradient(top, #f7f7f7, #e8e8e8);
+  background-repeat: repeat-x;
+  position: relative;
+  overflow: hidden;
+}
+#dial-holder {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -75px;
+  margin-left: -75px;
+}
+#dial-holder .key {
+  width: 250px;
+  height: 50px;
+  position: absolute;
+  left: 50%;
+  margin-left: -125px;
+  bottom: -50px;
+}
+#dial-holder .key div {
+  position: absolute;
+  top: 0;
+  display: inline-block;
+  color: #909090;
+  text-shadow: 0 2px 0 white;
+  font-size: 12px;
+  line-height: 12px;
+  font-family: "Gotham";
+  font-weight: 500;
+}
+#dial-holder .key div span {
+  display: inline-block;
+  position: absolute;
+  top: -16px;
+  color: #c2c2c2;
+  font-size: 17px;
+  font-weight: 500;
+}
+#dial-holder .key .min {
+  left: 0;
+}
+#dial-holder .key .min span {
+  right: -19px;
+  transform: rotate(20deg);
+}
+#dial-holder .key .max {
+  right: 0;
+}
+#dial-holder .key .max span {
+  left: -15px;
+  transform: rotate(-20deg);
+}
+#dial-holder .outer-circle {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  border-radius: 150px;
+  box-shadow: inset 0 2px 1px 0px rgba(0, 0, 0, 0.2), 0 0 2px 0 #ffffff;
+  background-color: #f3f3f3;
+  background-image: linear-gradient(top, #ebebeb, #ffffff);
+  background-repeat: repeat-x;
+}
+#dial-holder .dial {
+  width: 130px;
+  height: 130px;
+  position: relative;
+  top: 10px;
+  left: 10px;
+  border-radius: 130px;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1), 0 5px 3px 1px rgba(0, 0, 0, 0.1), 0 3px 3px 0px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(bottom, #f4f4f4, #ffffff 40%);
+}
+#dial-holder .dial .dial-inner-holder {
+  width: 130px;
+  height: 130px;
+  border-radius: 130px;
+  transform: rotate(0deg);
+}
+#dial-holder .dial .dial-inner {
+  width: 118px;
+  height: 118px;
+  position: relative;
+  top: 6px;
+  left: 6px;
+  border-radius: 118px;
+  background: linear-gradient(top, #f4f4f4, #ffffff 40%);
+}
+#dial-holder .dial .handle {
+  width: 22px;
+  height: 22px;
+  margin: 0 auto;
+  position: relative;
+  top: 12px;
+  border-radius: 22px;
+  box-shadow: inset 0 2px 2px 0px rgba(0, 0, 0, 0.2), 0 2px 1px #ffffff;
+  background-color: #ededed;
+  background-image: linear-gradient(top, #ececec, #eeeeee);
+  background-repeat: repeat-x;
+  cursor: pointer;
+}
+
+    </style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
+
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no" style="cursor: default;">
+<div id="dial-holder">
+<div class="outer-circle">
+<div class="dial">
+<div class="dial-inner-holder" style="transform: rotate(-122.735deg);">
+<div class="dial-inner">
+<div class="handle" draggable="true"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="key">
+<div class="min">MIN<span>/</span></div>
+<div class="max">MAX<span>\</span></div>
+</div>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script id="rendered-js">
+      var handleX, handleY, $dial, $handle, $display, d, c, r, cx, cy;
+var pi = Math.PI;
+var max = 130;
+var min = -130;
+var lastAngle = 0;
+
+var deg2rad = function(deg) {
+    return deg * (pi / 180);
+}
+
+var rad2deg = function(rad) {
+    return rad * (180 / pi);
+}
+
+var dragStop = function(e) {
+    $('body').css('cursor', 'default');
+    window.removeEventListener('mouseup', dragStop);
+    window.removeEventListener('mousemove', mouseMove);
+    console.log(lastAngle);
+};
+
+var mouseMove = function(e) {
+    var x = e.clientX;
+    var y = e.clientY;
+    
+    var distance = Math.sqrt( Math.pow((cx - x), 2) + Math.pow((cy - y), 2) );
+    
+    if (distance <= r) {
+        rx = x - cx;
+        ry = y - cy; 
+        
+        var Angle = rad2deg(Math.atan2(ry, rx));
+        if (Angle < 0) {
+            Angle = 180 + (Angle + 180);
+        }
+        
+        rotate(Angle);
+        lastAngle = Angle;
+    }
+}
+
+var rotate = function(angle) {
+    var newAngle = angle + 90;
+    if (newAngle > 359) {
+        newAngle -= 360;
+    };
+    if (newAngle > 180) {
+        newAngle = (360 - newAngle) - ((360 - newAngle) * 2);
+    };
+    
+    if (newAngle > max || newAngle < min) {
+        return;
+    }
+    
+    $dial.css('-webkit-transform', 'rotate(' + newAngle + 'deg)');
+    // updateVolume(newAngle);
+}
+
+$(function() {
+    
+    $dialHolder = $('#dial-holder');
+    $dial = $('.dial-inner-holder');
+    $handle = $('.handle');
+                    
+    d = $dial.outerWidth();
+    c = pi * d;
+    r = d / 2;
+    cx = $dial.offset().left + r;
+    cy = $dial.offset().top + r;
+    
+    window.addEventListener('foobar', function(e) {
+        var x = e.clientX;
+        var y = e.clientY;
+        
+        var distance = Math.sqrt( Math.pow((cx - x), 2) + Math.pow((cy - y), 2) );
+        
+        if (distance <= r) {
+            rx = x - cx;
+            ry = y - cy; 
+            
+            var Angle = rad2deg(Math.atan2(ry, rx));
+            if (Angle < 0) {
+                Angle = 180 + (Angle + 180);
+            }
+            
+            rotate(Angle);
+        }
+    });
+    
+    $('.handle').on('dragstart', function(e) {
+        var $this = $(this);
+        $('body').css('cursor', 'pointer');
+        
+        window.addEventListener('mousemove', mouseMove);
+        window.addEventListener('mouseup', dragStop);
+        e.preventDefault();
+    });
+    
+});
+      //# sourceURL=pen.js
+    </script>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+
+</body></html>

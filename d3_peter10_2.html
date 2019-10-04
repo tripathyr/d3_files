@@ -1,0 +1,74 @@
+<body translate="no">
+    <table border="0">
+        <tbody>
+            <tr>
+                <td></td>
+                <td>SVG</td>
+                <td>DIV <sup>1</sup></td>
+            </tr>
+            <tr>
+                <td>stroke-width 1rem</td>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+                        <path style="stroke:#000; stroke-width:1rem;" d="M0 20L40 20"></path>
+                    </svg>
+                </td>
+                <td>
+                    <div></div>
+                </td>
+            </tr>
+            <tr>
+                <td>stroke-width 1em</td>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+                        <path style="stroke:#000; stroke-width:1em;" d="M0 20L40 20"></path>
+                    </svg>
+                </td>
+                <td>
+                    <div></div>
+                </td>
+            </tr>
+            <tr>
+                <td>stroke-width 25%</td>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+                        <path style="stroke:#000; stroke-width:25%;" d="M0 20L40 20"></path>
+                    </svg>
+                </td>
+                <td>
+                    <div></div>
+                </td>
+            </tr>
+            <tr>
+                <td>stroke-width 10px <sup>2</sup></td>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+                        <path style="stroke:#000; stroke-width:10px;" d="M0 20L40 20"></path>
+                    </svg>
+                </td>
+                <td>
+                    <div></div>
+                </td>
+            </tr>
+            <tr>
+                <td>stroke-width 10px <sup>3</sup></td>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+                        <path vector-effect="non-scaling-stroke" style="stroke:#000; stroke-width:10px;" d="M0 20L40 20"></path>
+                    </svg>
+                </td>
+                <td>
+                    <div></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        <sup>1</sup> DIV height is 1rem<br>
+        <sup>2</sup> Without <em>vector-effect="non-scaling-stroke"</em><br>
+        <sup>3</sup> With <em>vector-effect="non-scaling-stroke"</em>
+    </p>
+    <p>
+        Compare zooming in Firefox (with <em>"only text"</em> option) and Chrome
+    </p>
+</body>

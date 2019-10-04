@@ -1,0 +1,56 @@
+<!-- https://codepen.io/nw/pen/RWzyMV -->
+
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Brushed metal button (single element)</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<style>
+      body {
+  background: #222;
+}
+
+.power-check {
+  display: none;
+}
+
+.power-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
+  width: 100px;
+  height: 100px;
+  display: block;
+  text-align: center;
+  line-height: 64px;
+  cursor: pointer;
+  border-radius: 100%;
+  background: radial-gradient(ellipse 200% 15px at -150% 50%, white 50%, transparent), radial-gradient(ellipse 200% 15px at 250% 50%, white 50%, transparent), radial-gradient(ellipse 50px 200% at 50% -150%, black 0%, transparent), radial-gradient(ellipse 50px 200% at 50% 250%, black 0%, transparent), radial-gradient(ellipse 4% 14% at 97.5% 50%, white 0%, transparent), radial-gradient(ellipse 4% 14% at 2.5% 50%, white 0%, transparent), radial-gradient(closest-side, transparent 94%, #6f6f6f 95%), repeating-radial-gradient(4px, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.1)), radial-gradient(#eee 30%, #888888 100%);
+  box-shadow: 0 4px 4px black;
+}
+.power-button__icon {
+  margin-top: 29px;
+  font-size: 42px;
+  color: #333;
+  text-shadow: 1px 1px 0 white;
+  transition: color, text-shadow;
+  transition-duration: 0.2s;
+}
+.power-check:checked + .power-button .power-button__icon {
+  color: white;
+  text-shadow: 0 0 1px white, 0 0 10px #9dfbff;
+}
+
+    </style>
+
+</head>
+<body translate="no">
+<input class="power-check" id="power" type="checkbox">
+<label class="power-button" for="power"><i class="material-icons power-button__icon">power_settings_new</i></label>
+
+
+
+</body></html>

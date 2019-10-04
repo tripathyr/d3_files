@@ -1,0 +1,114 @@
+<html>
+<body onload="rePaint()" onresize="rePaint()">
+
+<style>
+
+div {
+box-sizing: border-box;
+}
+
+#rootDiv {
+position:relative;
+top:10px;
+background-color:Orange;
+height: auto;
+}
+
+</style>  
+
+
+<div id="rootDiv">
+</div>
+
+
+<script>
+  
+  var screenAlpha ={};
+  screenAlpha.widthAdjustment = 30;
+  screenAlpha.heightAdjustment = 20;
+  screenAlpha.boxMinimumWidth = 240;
+  screenAlpha.boxMinimumHeight = 290;
+  screenAlpha.totalBoxes = 100;
+  screenAlpha.divIdListArray = [];
+
+//One time tasks not needing repainting
+  createMultipleDivs(screenAlpha.totalBoxes);
+
+  function createMultipleDivs(totalBoxes){
+      var index;
+      for (index = 0; index < totalBoxes; index++) { 
+      var divId = "div_"+index;
+      createOneDiv(divId);
+      screenAlpha.divIdListArray.push(divId);
+    }
+  }
+
+  function createOneDiv(divId){
+   var divCreated = document.createElement("div");
+   divCreated.id=divId;
+   divCreated.style.position = "absolute";
+   divCreated.style.borderStyle = "dotted";
+   rootDiv.appendChild(divCreated);
+ }
+
+
+
+//Tasks needing repainting
+  function rePaint(){
+    
+    screenAlpha.boxDetails = boxesPerRowData(screenAlpha.boxMinimumWidth,screenAlpha.boxMinimumHeight);
+    rootDivSetDimensions("rootDiv");
+    positionTheDivs();
+  }
+
+  function rootDivSetDimensions (rootElementId){
+    var divSelected = document.getElementById(rootElementId);
+    divSelected.style.width = (window.innerWidth-screenAlpha.widthAdjustment);
+    divSelected.style.height = Math.ceil(screenAlpha.totalBoxes/screenAlpha.boxDetails.numberOfBoxesInRow)*screenAlpha.boxMinimumHeight;
+    }
+
+  function boxesPerRowData(boxMinimumWidth, boxMinimumHeight){
+    var boxDetails = {};
+    var numberOfBoxesInRow = Math.floor((window.innerWidth-screenAlpha.widthAdjustment)/boxMinimumWidth);
+    
+    var spillOverPerRow = (window.innerWidth-screenAlpha.widthAdjustment) - numberOfBoxesInRow*boxMinimumWidth;
+    if (numberOfBoxesInRow == 0) {numberOfBoxesInRow = 1}; //to solve Divide by Zero problem
+    var spillOverPerBox = spillOverPerRow/numberOfBoxesInRow;
+    var boxEffectiveWidth = boxMinimumWidth + spillOverPerBox;
+    
+    boxDetails.numberOfBoxesInRow = numberOfBoxesInRow;
+    boxDetails.boxEffectiveWidth = boxEffectiveWidth;
+    
+    screenAlpha.numberOfBoxesInRow = numberOfBoxesInRow;
+    screenAlpha.boxEffectiveWidth = boxEffectiveWidth;
+    return boxDetails;
+  }
+ 
+ function topAndLeftOfDivs(divNumber){
+    heightPositionMultiplier = Math.floor(divNumber/screenAlpha.boxDetails.numberOfBoxesInRow);
+    widthPositionMultiplier = divNumber % screenAlpha.boxDetails.numberOfBoxesInRow;
+    topPosition = screenAlpha.boxMinimumHeight*heightPositionMultiplier;
+    leftPosition = screenAlpha.boxDetails.boxEffectiveWidth*widthPositionMultiplier;
+    screenAlpha["div_"+divNumber+"_topPosition"] = topPosition;
+    screenAlpha["div_"+divNumber+"_leftPosition"] = leftPosition;
+  }
+
+  function positionTheDivs(){
+    
+    var index;
+    for (index = 0; index < screenAlpha.divIdListArray.length; index++) {
+    topAndLeftOfDivs(index);
+    var divId = "div_"+index;
+    document.getElementById(divId).style.top=screenAlpha["div_"+index+"_topPosition"]+"px";
+    document.getElementById(divId).style.left=screenAlpha["div_"+index+"_leftPosition"]+"px";
+    document.getElementById(divId).style.width=screenAlpha.boxDetails.boxEffectiveWidth+"px";
+    document.getElementById(divId).style.height = screenAlpha.boxMinimumHeight+"px"; 
+    }
+
+  }
+
+</script>  
+
+</body>
+</html>
+

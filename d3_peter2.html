@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 20" id="external-1">
+  <rect width="80" height="60" fill="#eee"/>
+  <text font-size="5px" x="3" y="8" id="item">Hello Rohit</text>
+  <script type="text/javascript"><![CDATA[
+    var svg = document.getElementsByTagName('svg')[0];
+    console.log(svg);
+    var el = document.getElementById('item');
+    var y = parseFloat(el.getAttributeNS(null, 'y'));
+    console.log(y);
+    el.setAttributeNS(null, 'y', y+8);
+  ]]></script>
+</svg>
