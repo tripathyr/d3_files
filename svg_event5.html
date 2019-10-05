@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svg onclick="menu(evt)" width="60px" height="60px" viewBox="0 0 60 60" version="1.1"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xml:space="preserve">
+
+    <script type="application/ecmascript">
+    <![CDATA[
+        function menu(evt) {
+
+            var trigger = document.getElementById("trigger");
+
+            if(typeof clicked === 'undefined') {
+
+                clicked = true;
+
+                trigger.setAttribute("from", "0 30 30");
+                trigger.setAttribute("to", "-90 30 30");
+
+            } else {
+
+                delete clicked;
+
+                trigger.setAttribute("from", "-90 30 30");
+                trigger.setAttribute("to", "0 30 30");
+            }
+        }
+    ]]>
+    </script>
+
+    <g stroke="none" fill="#444">
+        <rect x="10" y="10" width="40" height="9" />
+        <rect x="10" y="25.5" width="40" height="9" />
+        <rect x="10" y="41" width="40" height="9" />
+
+        <rect x="0" y="0" width="60" height="60" fill="transparent" stroke="none" stroke-width="0" />
+
+        <animateTransform id="trigger" begin="click"
+                          attributeName="transform" type="rotate" additive="replace"
+                          from="0 30 30" to="-90 30 30" dur="0.5s" fill="freeze" />
+    </g>
+</svg>
+
+<!-- https://bigbite.net/insights/introduction-svg-animation/ -->

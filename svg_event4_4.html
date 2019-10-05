@@ -1,0 +1,76 @@
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" height="768px" width="1024px" version="1.1" id="SVGRoot" viewBox="0 0 1024 768" inkscape:version="0.92.3 (2405546, 2018-03-11)" sodipodi:docname="i12.svg">
+
+<!-- SOLVED. CLICK ON TOP BOTTOM COMES OUT -->
+
+<script type="application/ecmascript">
+    <![CDATA[
+        function menu(evt) {
+
+            var trigger = document.getElementById("trigger");
+
+            if(typeof clicked === 'undefined') {
+
+                clicked = true;
+
+                trigger.setAttribute("from", "0 0");
+                trigger.setAttribute("to", "100 0");
+
+            } else {
+
+                delete clicked;
+
+                trigger.setAttribute("from", " 100 0");
+                trigger.setAttribute("to", "0 0");
+            }
+        }
+    ]]>
+    </script>  
+   
+
+<g id="desktop" onClick="menu(evt)" >
+    <rect ry="0" y="79.999992" x="128" height="440" width="264" id="rect816" style="opacity:1;fill:#c8ab37;fill-opacity:1;fill-rule:evenodd;stroke:#aeaeae;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" >
+        
+    <animateTransform xlink:href="#rect816" id="trigger" begin="desktop.click" attributeName="transform" type="translate" dur="0.5s" fill="freeze" />
+
+    </rect>
+    
+    <rect style="opacity:1;fill:#483e37;fill-opacity:1;fill-rule:evenodd;stroke:#aeaeae;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" id="rect814"  height="440" width="264" x="128" y="79.999992" ry="0" >
+
+      
+
+    </rect>
+
+ 
+  
+
+  </g>  
+
+
+ 
+
+
+</svg>
+<script>
+//document.getElementById('rect816').style.display = "none";
+
+function buttonClick() {
+    if (document.getElementById('rect816').style.display == "none") {
+        document.getElementById('rect816').style.display = "block";
+    } else document.getElementById('rect816').style.display = "none";
+}
+</script>
+
+<!-- <animate attributeName="width" from="10px" to="100px" begin="0s" dur="10s" /> 
+
+if you want to start an animation with javascript it would go something like this...
+
+var svgDocument = document.getElementById("<objectId>").getSVGDocument();
+svgDocument.getElementById('<animationElementId>').beginElement();
+
+
+==
+
+<animateTransform begin="click" attributeName="transform" type="rotate" dur="0.5s" from="0 30 30" to="-90 30 30" fill="freeze" />
+
+
+ -->

@@ -1,0 +1,125 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+
+<!-- 
+PATH ANIMATION EXPERIMENT .. FAILED MISERABLY .. THEN IMPROVED SLIGHTLY .. NO KEY FRAMES COULD BE DEDCUED BY SYSTEM
+-->
+
+<title>A Pen by  Marc Heatley</title>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<style>
+    * {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0 1em;
+}
+
+figure {
+  padding: 1em 0;
+  margin: 0 0 0.5em;
+}
+
+figcaption {
+  display: block;
+  width: 100%;
+  padding: 0.5em 0;
+  border-bottom: solid thin;
+  margin: 0 0 1em 0;
+}
+
+pre {
+  color: white;
+  background: #1e1e1e;
+  padding: 1em;
+}
+
+.navicon {
+  width: 100%;
+  fill: none;
+  stroke: white;
+  stroke-linecap: round;
+  stroke-width: 10;
+  display: block;
+  background: #464646;
+  padding: 10%;
+  border-radius: 15%;
+}
+
+.animation-demo-svg {
+  width: 20%;
+  margin: 0 0 1em;
+}
+
+.button {
+  /*   display:block; */
+  margin-bottom: 1ex;
+}
+
+.is-menu .to-menu {
+  display: none;
+}
+
+.is-arrow .to-arrow {
+  display: none;
+}
+
+  </style>
+
+</head>
+<body translate="no">
+<figure class="animation-demo is-menu">
+<figcaption>Animated Navicon</figcaption>
+<div class="animation-demo-svg">
+
+<svg class="navicon" id="navicon-full" viewBox="0 0 600 600">
+<path id="path" d="m 80,432 48,-64 h 32 l 48,40 -16,64 32,56 40,-40 24,-72 v -72.00001 l 88,-40">
+
+<animate id="menu-to-arrow" attributeType="XML" attributeName="d" from="m 80,432 48,-64 h 32 l 48,40 -16,64 32,56 40,-40 24,-72 v -72.00001 l 88,-40" to="m 112,440 16,-72 h 32 l 48,40 -32,64 48,56 40,-40 32,-72 -8,-72.00001 c 29.33333,-13.33333 12.49731,36.75435 88,-40" dur="1s" begin="indefinite" fill="freeze"></animate>
+
+<animate id="arrow-to-menu" attributeType="XML" attributeName="d" from="m 112,440 16,-72 h 32 l 48,40 -32,64 48,56 40,-40 32,-72 -8,-72.00001 c 29.33333,-13.33333 12.49731,36.75435 88,-40" to="m 80,432 48,-64 h 32 l 48,40 -16,64 32,56 40,-40 24,-72 v -72.00001 l 88,-40" dur="1s" begin="indefinite" fill="freeze"></animate>
+</path>
+</svg>
+</div>
+
+<div class="animation-demo-buttons">
+<button class="button to-arrow">Switch to arrow icon</button>
+<button class="button to-menu">Switch to menu icon</button>
+</div>
+</figure>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script id="rendered-js">
+
+menuToArrow = document.getElementById('menu-to-arrow');
+arrowToMenu = document.getElementById('arrow-to-menu');
+
+
+function animateMenuToArrow() {
+  menuToArrow.beginElement();
+}
+
+function animateArrowToMenu() {
+  arrowToMenu.beginElement();
+}
+
+// Demo script
+
+wrapper = $('.animation-demo');
+
+$('.to-arrow').click(function () {
+  animateMenuToArrow();
+  wrapper.addClass('is-arrow').removeClass('is-menu');
+});
+
+$('.to-menu').click(function () {
+  animateArrowToMenu();
+  wrapper.addClass('is-menu').removeClass('is-arrow');
+});
+      //# sourceURL=pen.js
+    </script>
+
+
+</body></html>

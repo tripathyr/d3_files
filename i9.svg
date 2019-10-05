@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="SVGRoot"
+   viewBox="0 0 1024 768"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="i9.svg">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.5325521"
+     inkscape:cx="505.47494"
+     inkscape:cy="384"
+     inkscape:document-units="px"
+     inkscape:current-layer="SVGRoot"
+     showgrid="true"
+     units="px"
+     inkscape:window-width="3200"
+     inkscape:window-height="1559"
+     inkscape:window-x="0"
+     inkscape:window-y="55"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       empspacing="2"
+       empopacity="0.25098039"
+       empcolor="#ff0000"
+       spacingy="8.0000001"
+       spacingx="8"
+       id="grid20267"
+       type="xygrid" />
+  </sodipodi:namedview>
+  <title
+     id="title20269">Desktop template</title>
+  <defs
+     id="defs1980" />
+  <metadata
+     id="metadata1984">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Desktop template</dc:title>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Xaviju</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>web desktop 1920x1080</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by/4.0/" />
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by/4.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <rect
+     style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#aeaeae;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     id="rect9964"
+     width="1024"
+     height="760"
+     x="0"
+     y="7.9999905"
+     ry="10.9091" />
+  <g
+     id="desktop" />
+  <path
+     style="fill:none;stroke:#73cb8f;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 616,351.99999 312,-40"
+     id="path9940"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#aeaeae;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 616,375.44378 H 968"
+     id="path9944"
+     inkscape:connector-curvature="0" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path9946"
+     d="M 616,462.33147 H 968"
+     style="fill:none;stroke:#aeaeae;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     style="fill:none;stroke:#aeaeae;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 616,418.88763 H 968"
+     id="path9950"
+     inkscape:connector-curvature="0" />
+  <rect
+     style="opacity:1;fill:#ff2a2a;fill-opacity:1;fill-rule:evenodd;stroke:#aeaeae;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     id="rect9952"
+     width="200"
+     height="40"
+     x="32"
+     y="106.66671"
+     ry="10.9091" />
+  <rect
+     ry="10.9091"
+     y="245.33337"
+     x="32"
+     height="40"
+     width="200"
+     id="rect9958"
+     style="opacity:1;fill:#ff2a2a;fill-opacity:1;fill-rule:evenodd;stroke:#aeaeae;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+  <rect
+     style="opacity:1;fill:#ff2a2a;fill-opacity:1;fill-rule:evenodd;stroke:#aeaeae;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     id="rect9960"
+     width="200"
+     height="40"
+     x="32"
+     y="314.66672"
+     ry="10.9091" />
+  <rect
+     ry="10.9091"
+     y="176"
+     x="32"
+     height="40"
+     width="200"
+     id="rect9962"
+     style="opacity:1;fill:#ff2a2a;fill-opacity:1;fill-rule:evenodd;stroke:#aeaeae;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+</svg>

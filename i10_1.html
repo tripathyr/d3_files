@@ -1,0 +1,15 @@
+<style></style>
+
+<script>if(window.innerWidth > window.innerHeight){ var displayMode = "landscape"} else var displayMode = "portrait"</script>
+
+<svg id="svg1" viewBox="0 0 100 100">
+  <style>#svg1 { background-color: red; }</style>
+  <circle cx="100" cy="100" r="100" fill="#529fca" />
+</svg>
+
+<svg id="svg2" viewBox="0 0 100 100">
+  <style>#svg2 { background-color: pink; }</style>
+  <circle cx="100" cy="100" r="100" fill="#529fca" />
+</svg>
+
+<script>if(displayMode == "landscape"){ document.getElementById('svg1').style.width = "49%";document.getElementById('svg2').style.width = "49%"; } </script>

@@ -1,0 +1,232 @@
+<html><head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title></title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <script type="text/javascript" src="https://d3js.org/d3.v3.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+
+
+  <style id="compiled-css" type="text/css">
+      
+  </style>
+
+
+  <!-- TODO: Missing CoffeeScript 2 -->
+
+  <script type="text/javascript">//<![CDATA[
+
+    window.onload=function(){
+      
+var keydown = function() {
+    if (!focused) return;
+    var text = focused.text;
+    var code = d3.event.keyCode;
+    if (code == 8) { // Backspace
+        d3.event.preventDefault();
+        text = text.substring(0,text.length-1);
+    };
+    if (code == 13) { // Enter
+        focused.stroke = d3.rgb(240,240,240);
+        focused.callback();
+    };
+    //console.log("keydown: code: "+ code + ", text: "+text);
+    focused.text = text;
+}
+
+var keypress = function() {
+    if (!focused) return;
+    var text = focused.text;
+    var code = d3.event.keyCode;
+    text = text+String.fromCharCode(code);
+    //console.log("keypress: code: "+ code + ", text: "+text);
+    focused.text = text;
+}
+
+var focused = null;
+d3.select("body")
+    .on("keydown",keydown)
+    .on("keypress",keypress)
+    .on("click", function() {
+        if (focused) {
+            focused.stroke = d3.rgb(240,240,240);
+            focused = null;
+        }
+    });
+
+svg = d3.select("body").append("svg");
+t = new Textbox(svg);
+
+function Textbox(parent) {
+    var text = "text",
+        fontsize = 12,
+        x = 10,
+        y = 30,
+        width = 100,
+        height = 20,
+        stroke = d3.rgb(240,240,240),
+        fill = d3.rgb(255,255,255);
+    var textgroup = parent.append("g")
+        .attr("transform", "translate(" + x + "," + y + ")");
+    var rct = textgroup.append("rect")
+        .attr("width", width)
+        .attr("height", height)
+        .style("fill",fill)
+        .style("stroke-width","1px")
+        .style("stroke",stroke)
+        .style("opacity", 1);
+    var txt = textgroup.append("text")
+        .text(text)
+        .style("fill","black")
+        .style("font", fontsize+"px 'Helvetica Neue'");
+    var cover = textgroup.append("rect") // Transparent cover to hide cursor when mousing over text
+        .attr("width", width)
+        .attr("height", height)
+        .style("opacity", 0);
+        
+    var txt_width = txt.node().getComputedTextLength();
+    txt.attr("x",.5*(width-txt_width));
+    txt.attr("y",.5*(height+fontsize)-2);
+        
+    var callback = function() {
+        console.log("Text: "+txt.text());
+    }
+            
+    var aligntext = function() {
+        txt.attr("x",.5*(width-txt_width));
+        txt.attr("y",.5*(height+fontsize)-2);               
+    };
+        
+    function textbox() {
+    }
+        
+    Object.defineProperty(textbox,"text",{
+        get: function() {return text;},
+        set: function(_) {
+            text = _;
+            txt.text(_);
+            txt_width = txt.node().getComputedTextLength();
+            aligntext();
+        },
+        enumerable: true,
+        cofigurable: true
+    });
+
+    Object.defineProperty(textbox,"x",{
+        get: function() {return x;},
+        set: function(_) {
+            x = _;
+            textgroup.attr("transform", "translate(" + x + "," + y + ")");
+        },
+        enumerable: true,
+        cofigurable: true
+    });
+        Object.defineProperty(textbox,"y",{
+        get: function() {return y;},
+        set: function(_) {
+            y = _;
+            textgroup.attr("transform", "translate(" + x + "," + y + ")");
+        },
+        enumerable: true,
+        cofigurable: true
+    });
+        
+    Object.defineProperty(textbox,"width",{
+        get: function() {return width;},
+        set: function(_) {
+            width = _;
+                rct.attr("width",_);
+                cover.attr("width",_);
+                aligntext();
+            },
+            enumerable: true,
+            cofigurable: true
+    });
+
+    Object.defineProperty(textbox,"height",{
+        get: function() {return height;},
+        set: function(_) {
+            height = _;
+            rct.attr("height",_);
+            cover.attr("height",_);
+            aligntext();
+        },
+        enumerable: true,
+        cofigurable: true
+    });
+
+    Object.defineProperty(textbox,"position",{
+        get: function() {return [x, y, width, height];},
+        set: function(_) {
+            textbox.x = _[0]; 
+            textbox.y = _[1];
+            textbox.width = _[2];
+            textbox.height = _[3];
+        },
+        enumerable: true,
+        cofigurable: true
+    })
+                
+    Object.defineProperty(textbox,"stroke",{
+        get: function() {return stroke;},
+        set: function(_) {
+            stroke = _;
+            rct.style("stroke",stroke);
+        },
+        enumerable: true,
+        cofigurable: true
+    });
+        
+    Object.defineProperty(textbox,"cover",{
+        get: function() {return cover;},
+        enumerable: true,
+        cofigurable: true
+    });
+        
+    Object.defineProperty(textbox,"callback",{
+        get: function() {return callback;},
+        set: function(_) {
+            callback = _;
+        },
+        enumerable: true,
+        cofigurable: true
+    });
+
+    cover.on("click", function() {
+        focused = textbox;
+        rct.style("stroke","#347bbe");
+        d3.event.stopPropagation();
+    });
+    
+    return textbox;
+}
+
+    }
+
+  //]]></script>
+
+</head>
+<body>
+    
+
+  
+  <script>
+    // tell the embed parent frame the height of the content
+    if (window.parent && window.parent.parent){
+      window.parent.parent.postMessage(["resultsFrame", {
+        height: document.body.getBoundingClientRect().height,
+        slug: "ppoakf0k"
+      }], "*")
+    }
+
+    // always overwrite window.name, in case users try to set it manually
+    window.name = "result"
+  </script>
+
+
+<svg><g transform="translate(10,30)"><rect width="100" height="20" style="fill: rgb(255, 255, 255); stroke-width: 1px; stroke: rgb(240, 240, 240); opacity: 1;"></rect><text x="36.669921875" y="14" style="fill: black; font: 12px &quot;Helvetica Neue&quot;;">Hello</text><rect width="100" height="20" style="opacity: 0;"></rect></g></svg></body></html>

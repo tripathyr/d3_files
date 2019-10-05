@@ -1,0 +1,25 @@
+
+<script>if(window.innerWidth > window.innerHeight){ var displayMode = "landscape"} else var displayMode = "portrait"</script>
+
+<svg id="svg1" viewBox="0 0 100 100"> 
+  <style>#svg1 { background-color: red; }</style>
+  <circle cx="100" cy="100" r="100" fill="#529fca" />
+    <text x="10" y="15" fill="black" id="text1" textLength="37"  lengthAdjust="spacingAndGlyphs"  onClick="this.innerHTML = 'Second SVG Text'">The first SVG Text</text>
+</svg>
+
+<svg id="svg2" viewBox="0 0 100 100">
+  <style>#svg2 { background-color: pink; }</style>
+  <circle cx="100" cy="100" r="100" fill="#529fca" />
+   <text x="50.1" y="50.1" font-size="2pt" stroke="black" stroke-width="0.01" fill="red" onClick="hello();">My text</text>
+    <text x="60.15" y="60.15" font-size="1pt" stroke="green" stroke-width="0.001" fill="green">My text2</text>
+</svg>
+
+<script>
+
+if(displayMode == "landscape") { document.getElementById('svg1').style.width = "49%";document.getElementById('svg2').style.width = "49%"; 
+}
+
+function hello() { console.log("tada")} ;
+
+
+</script>

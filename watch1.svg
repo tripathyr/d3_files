@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 312 390">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="186.353" height="14" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect width="51" height="" fill="none"/>
+    </clipPath>
+  </defs>
+
+  <g id="Charts_-_12" data-name="Charts - 12" >
+    <rect width="312" height="390"/>
+    <path id="Path_38" data-name="Path 38" d="M4225.859,1295.021s35.567,80.385,73.463,45.453-2.614-153.505,80.386-150.542,80.042-87.844,110.813-89.177" transform="translate(-4202 -1032)" fill="none" stroke="#ffe800" stroke-width="4"/>
+    <g id="Symbol_1_5" data-name="Symbol 1 – 5" transform="translate(35 39)" clip-path="url(#clip-path)">
+      <rect id="Rectangle_30" data-name="Rectangle 30" width="186.353" height="6" rx="3" fill="#f2f4ff"/>
+      <rect id="Rectangle_31" data-name="Rectangle 31" width="114.353" height="5" rx="2.5" transform="translate(0 9)" fill="#f2f4ff"/>
+    </g>
+    <rect id="Rectangle_71" data-name="Rectangle 71" width="70" height="66" rx="8" transform="translate(210 284)" fill="#0f91fd"/>
+    <path id="image_icon" d="M0,25.434,8.3,0c0,.14,9.079,15.715,9.079,15.715,0,.126,6.9-7.16,6.9-7.16,0-.1,6.171,16.877,6.171,16.877ZM24.871,2.4a2.4,2.4,0,1,1,2.4,2.4A2.4,2.4,0,0,1,24.871,2.4Z" transform="translate(230 295.599)" fill="#fff"/>
+    <g id="Line_SM" transform="translate(220 331)" clip-path="url(#clip-path-2)">
+      <rect id="Rectangle_33" data-name="Rectangle 33" width="51" height="3" rx="1.5" transform="translate(0 5)" fill="#fff"/>
+      <rect id="Rectangle_34" data-name="Rectangle 34" width="51" height="3" rx="1.5" fill="#fff"/>
+    </g>
+    <circle id="Ellipse_77" data-name="Ellipse 77" cx="9.5" cy="9.5" r="9.5" transform="translate(16 257)" fill="#ffe800"/>
+    <circle id="Ellipse_78" data-name="Ellipse 78" cx="9.5" cy="9.5" r="9.5" transform="translate(279 59)" fill="#ffe800"/>
+  </g>
+</svg>

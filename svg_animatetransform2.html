@@ -1,0 +1,100 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Just the animateTransform examples</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<style>
+    @import url(//fonts.googleapis.com/css?family=Lato:400,700,900);
+svg {
+  border: 3px solid red;
+}
+
+html {
+  background: #68cc1f;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  line-height: 1.4;
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0.5rem;
+}
+
+h1, h2 {
+  font-weight: 900;
+  margin: 2rem 0 0 0;
+  line-height: 1.1;
+}
+
+  </style>
+
+</head>
+<body translate="no">
+<!-- <h3>type="rotate"</h3>
+<svg width="120" height="120" viewBox="0 0 120 120">
+<polygon points="60,30 90,90 30,90" transform="rotate(344.133 60 70)">
+<animateTransform attributeName="transform" type="rotate" from="0 60 70" to="360 60 70" dur="10s" repeatCount="indefinite"></animateTransform>
+</polygon>
+</svg>
+ -->
+<!--  <h3>type="scale"</h3>
+<svg width="120" height="120" viewBox="0 0 220 320">
+<polygon points="60,30 90,90 30,90" transform="scale(2.55924 2.55924)">
+<animateTransform attributeName="transform" type="scale" from="1" to="3" dur="2s" repeatCount="indefinite"></animateTransform>
+</polygon>
+</svg> -->
+<h3>type="translate in X direction"</h3>
+<svg width="200" height="200" viewBox="0 0 200 200">
+
+<rect x="0" y="10" width="30" height="150">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="100 0" dur="5s" repeatCount="indefinite"></animateTransform>
+</rect>  
+</svg>
+
+
+<h3>type="translate in Y direction"</h3>
+<svg width="200" height="200" viewBox="0 0 200 200">
+
+<rect x="0" y="00" width="30" height="100">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="0 100" dur="5s" repeatCount="indefinite"></animateTransform>
+</rect>  
+</svg>
+
+
+  <h3>type="scale in X direction"</h3>
+  <svg width="200" height="200" viewBox="0 0 200 200">
+
+  <rect x="0" y="0" width="10" height="10">
+  <animateTransform attributeName="transform" type="scale" from="1 1" to="5 1" dur="2s" repeatCount="indefinite"></animateTransform>
+  </rect>  
+  </svg>
+
+
+  <h3>type="scale in Y direction"</h3>
+  <svg width="200" height="200" viewBox="0 0 200 200">
+
+  <rect x="0" y="0" width="10" height="10">
+  <animateTransform attributeName="transform" type="scale" from="1 1" to="1 5" dur="2s" repeatCount="indefinite"></animateTransform>
+  </rect>  
+  </svg>
+
+<!-- <h3>type="skewX"</h3>
+<svg width="120" height="120" viewBox="0 0 220 220">
+<polygon points="60,30 90,90 30,90" transform="skewX(38.9809)">
+<animateTransform attributeName="transform" type="skewX" from="0 0" to="50" dur="2s" repeatCount="indefinite"></animateTransform>
+</polygon>
+</svg>
+<h3>type="skewY"</h3>
+<svg width="120" height="120" viewBox="0 0 220 220">
+<polygon points="60,30 90,90 30,90" transform="skewY(38.9809)">
+<animateTransform attributeName="transform" type="skewY" from="0 0" to="50" dur="2s" repeatCount="indefinite"></animateTransform>
+</polygon>
+</svg> -->
+
+
+</body></html>
+
+<!-- https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform -->

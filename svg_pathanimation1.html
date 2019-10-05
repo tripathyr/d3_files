@@ -1,0 +1,89 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - SVG - Animate CSS d:path</title>
+<style>
+    body {
+  background-color: #022040;
+}
+
+#path {
+  d: path('M425,225 L475,275 L575,175 L675,275 L775,175 L875,275 L925,225'); 
+  stroke: #1EFE64;
+  fill: none;
+  -webkit-animation-name: path;
+          animation-name: path;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+  -webkit-animation-timing-function: ease-in;
+          animation-timing-function: ease-in;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+
+@-webkit-keyframes path {
+
+  0% {
+     d: path('M425,225 L475,275');
+  }
+
+  25% {
+     d: path('M425,225 L475,275 L575,175 L575,175 L575,175 L575,175 L575,175');
+  }
+  
+  50% {
+     d: path('M425,225 L475,275 L575,175 L675,275 L675,275 L675,275 L675,275'); 
+  }
+  
+  75% {
+     d: path('M425,225 L475,275 L575,175 L675,275 L775,175 L775,175 L775,175'); 
+  }
+  
+  90% {
+     d: path('M425,225 L475,275 L575,175 L675,275 L775,175 L875,275 L875,275'); 
+  }
+  
+  100% {
+     d: path('M425,225 L475,275 L575,175 L675,275 L775,175 L875,275 L925,225'); 
+  }
+}
+
+
+@keyframes path {
+
+  0% {
+     d: path('M425,225 L475,275');
+  }
+
+  25% {
+     d: path('M425,225 L475,275 L575,175 L575,175 L575,175 L575,175 L575,175');
+  }
+  
+  50% {
+     d: path('M425,225 L475,275 L575,175 L675,275 L675,275 L675,275 L675,275'); 
+  }
+  
+  75% {
+     d: path('M425,225 L475,275 L575,175 L675,275 L775,175 L775,175 L775,175'); 
+  }
+  
+  90% {
+     d: path('M425,225 L475,275 L575,175 L675,275 L775,175 L875,275 L875,275'); 
+  }
+  
+  100% {
+     d: path('M425,225 L475,275 L575,175 L675,275 L775,175 L875,275 L925,225'); 
+  }
+}
+  </style>
+
+</head>
+<body translate="no">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="400">
+<path id="path" stroke-width="20"></path>
+</svg>
+
+
+</body></html>

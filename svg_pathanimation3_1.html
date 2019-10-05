@@ -1,0 +1,55 @@
+<svg id="mySvg" xmlns:svg="http://www.w3.org/2000/svg" 
+     xmlns="http://www.w3.org/2000/svg" 
+     version="1.1" 
+     x="0"
+     y="0"
+
+     viewBox="0 0 400 400" 
+     preserveAspectRatio="none">
+      
+    <path d="M10 90 L 90 90 " 
+          fill="lightblue" 
+          stroke="#eee9ea" 
+          stroke-width="10.51">
+          
+            <animate 
+            attributeName="d"
+            from="M10 90 L 90 90"
+            to="M50 90 L 10 51" 
+            dur="5s"
+            values="M10 90 L 90 90;M50 90 L 10 51;M10 90 L 90 90"
+            repeatCount="indefinite" />
+     </path>
+</svg>
+
+<!-- 
+
+M10 10 L 90 10 M10 50 L 90 50 M10 90 L 90 90
+M50 10 L 10 49 M90 50 L 10 50 M50 90 L 10 51 
+-->
+
+<script>
+
+function changeBranchPoint(projectCode,branch,newPoint,startOrEnd) { 
+var message;
+
+if (branch != "mainLine"){
+
+if (startOrEnd == 1){
+if(newPoint<=projectMap[projectCode][branch][3]){
+projectMap[projectCode][branch][2]= newPoint;
+message = newPoint;} else {message = "Start point cannot be later than end point"}
+  }
+}
+if (startOrEnd == 2){
+if(newPoint >= projectMap[projectCode][branch][2]){
+projectMap[projectCode][branch][3]= newPoint;
+message = newPoint;
+   } else {message = "End point cannot be earlier than start point"}
+ }
+}
+
+if (branch == "mainLine"){message ="mainLine cannot be rerouted" }
+return message;
+}
+</script>    
